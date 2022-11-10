@@ -4,14 +4,14 @@
          xmlns:gnome="http://api.gnome.org/doap-extensions#"
          xmlns="http://usefulinc.com/ns/doap#">
 
-  <name xml:lang="en">libwnck</name>
+  <name xml:lang="en">libvnck</name>
   <shortdesc xml:lang="en">Library to manage X windows and workspaces (via pagers, tasklists, etc.)</shortdesc>
   <!--
   <homepage rdf:resource="http://www.gnome.org/" />
   -->
   <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/desktop-devel-list" />
-  <download-page rdf:resource="http://download.gnome.org/sources/libwnck/" />
-  <bug-database rdf:resource="http://bugzilla.gnome.org/browse.cgi?product=libwnck" />
+  <download-page rdf:resource="http://download.gnome.org/sources/libvnck/" />
+  <bug-database rdf:resource="http://bugzilla.gnome.org/browse.cgi?product=libvnck" />
 
   <category rdf:resource="http://api.gnome.org/doap-extensions#core" />
   <programming-language>C</programming-language>

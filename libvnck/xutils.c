@@ -32,7 +32,7 @@
 #include "private.h"
 
 gboolean
-_wnck_get_cardinal (Screen *screen,
+_vnck_get_cardinal (Screen *screen,
                     Window  xwindow,
                     Atom    atom,
                     int    *val)
@@ -49,7 +49,7 @@ _wnck_get_cardinal (Screen *screen,
 
   *val = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   type = None;
   result = XGetWindowProperty (display,
 			       xwindow,
@@ -57,7 +57,7 @@ _wnck_get_cardinal (Screen *screen,
 			       0, G_MAXLONG,
 			       False, XA_CARDINAL, &type, &format, &nitems,
 			       &bytes_after, (void*)&num);
-  err = _wnck_error_trap_pop (display);
+  err = _vnck_error_trap_pop (display);
   if (err != Success ||
       result != Success)
     return FALSE;
@@ -76,7 +76,7 @@ _wnck_get_cardinal (Screen *screen,
 }
 
 int
-_wnck_get_wm_state (Screen *screen,
+_vnck_get_wm_state (Screen *screen,
                     Window  xwindow)
 {
   Display *display;
@@ -91,10 +91,10 @@ _wnck_get_wm_state (Screen *screen,
 
   display = DisplayOfScreen (screen);
 
-  wm_state = _wnck_atom_get ("WM_STATE");
+  wm_state = _vnck_atom_get ("WM_STATE");
   retval = NormalState;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   type = None;
   result = XGetWindowProperty (display,
 			       xwindow,
@@ -102,7 +102,7 @@ _wnck_get_wm_state (Screen *screen,
 			       0, G_MAXLONG,
 			       False, wm_state, &type, &format, &nitems,
 			       &bytes_after, (void*)&num);
-  err = _wnck_error_trap_pop (display);
+  err = _vnck_error_trap_pop (display);
   if (err != Success ||
       result != Success)
     return retval;
@@ -121,7 +121,7 @@ _wnck_get_wm_state (Screen *screen,
 }
 
 gboolean
-_wnck_get_window (Screen *screen,
+_vnck_get_window (Screen *screen,
                   Window  xwindow,
                   Atom    atom,
                   Window *val)
@@ -138,7 +138,7 @@ _wnck_get_window (Screen *screen,
 
   *val = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   type = None;
   result = XGetWindowProperty (display,
 			       xwindow,
@@ -146,7 +146,7 @@ _wnck_get_window (Screen *screen,
 			       0, G_MAXLONG,
 			       False, XA_WINDOW, &type, &format, &nitems,
 			       &bytes_after, (void*)&w);
-  err = _wnck_error_trap_pop (display);
+  err = _vnck_error_trap_pop (display);
   if (err != Success ||
       result != Success)
     return FALSE;
@@ -165,7 +165,7 @@ _wnck_get_window (Screen *screen,
 }
 
 gboolean
-_wnck_get_pixmap (Screen *screen,
+_vnck_get_pixmap (Screen *screen,
                   Window  xwindow,
                   Atom    atom,
                   Pixmap *val)
@@ -182,7 +182,7 @@ _wnck_get_pixmap (Screen *screen,
 
   *val = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   type = None;
   result = XGetWindowProperty (display,
 			       xwindow,
@@ -190,7 +190,7 @@ _wnck_get_pixmap (Screen *screen,
 			       0, G_MAXLONG,
 			       False, XA_PIXMAP, &type, &format, &nitems,
 			       &bytes_after, (void*)&w);
-  err = _wnck_error_trap_pop (display);
+  err = _vnck_error_trap_pop (display);
   if (err != Success ||
       result != Success)
     return FALSE;
@@ -209,7 +209,7 @@ _wnck_get_pixmap (Screen *screen,
 }
 
 gboolean
-_wnck_get_atom (Screen *screen,
+_vnck_get_atom (Screen *screen,
                 Window  xwindow,
                 Atom    atom,
                 Atom   *val)
@@ -226,7 +226,7 @@ _wnck_get_atom (Screen *screen,
 
   *val = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   type = None;
   result = XGetWindowProperty (display,
 			       xwindow,
@@ -234,7 +234,7 @@ _wnck_get_atom (Screen *screen,
 			       0, G_MAXLONG,
 			       False, XA_ATOM, &type, &format, &nitems,
 			       &bytes_after, (void*)&a);
-  err = _wnck_error_trap_pop (display);
+  err = _vnck_error_trap_pop (display);
   if (err != Success ||
       result != Success)
     return FALSE;
@@ -263,7 +263,7 @@ text_property_to_utf8 (Display             *display,
 
   list = NULL;
 
-  gdkdisplay = _wnck_gdk_display_lookup_from_display (display);
+  gdkdisplay = _vnck_gdk_display_lookup_from_display (display);
   if (!gdkdisplay)
     return NULL;
 
@@ -288,7 +288,7 @@ text_property_to_utf8 (Display             *display,
 }
 
 char*
-_wnck_get_text_property (Screen *screen,
+_vnck_get_text_property (Screen *screen,
                          Window  xwindow,
                          Atom    atom)
 {
@@ -298,7 +298,7 @@ _wnck_get_text_property (Screen *screen,
 
   display = DisplayOfScreen (screen);
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
 
   text.nitems = 0;
   if (XGetTextProperty (display,
@@ -316,13 +316,13 @@ _wnck_get_text_property (Screen *screen,
       retval = NULL;
     }
 
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 
   return retval;
 }
 
 static char*
-_wnck_get_string_property_latin1 (Screen *screen,
+_vnck_get_string_property_latin1 (Screen *screen,
                                   Window  xwindow,
                                   Atom    atom)
 {
@@ -337,7 +337,7 @@ _wnck_get_string_property_latin1 (Screen *screen,
 
   display = DisplayOfScreen (screen);
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   str = NULL;
   result = XGetWindowProperty (display,
 			       xwindow, atom,
@@ -345,7 +345,7 @@ _wnck_get_string_property_latin1 (Screen *screen,
 			       False, XA_STRING, &type, &format, &nitems,
 			       &bytes_after, (guchar **)&str);
 
-  err = _wnck_error_trap_pop (display);
+  err = _vnck_error_trap_pop (display);
   if (err != Success ||
       result != Success)
     return NULL;
@@ -364,7 +364,7 @@ _wnck_get_string_property_latin1 (Screen *screen,
 }
 
 char*
-_wnck_get_utf8_property (Screen *screen,
+_vnck_get_utf8_property (Screen *screen,
                          Window  xwindow,
                          Atom    atom)
 {
@@ -380,9 +380,9 @@ _wnck_get_utf8_property (Screen *screen,
 
   display = DisplayOfScreen (screen);
 
-  utf8_string = _wnck_atom_get ("UTF8_STRING");
+  utf8_string = _vnck_atom_get ("UTF8_STRING");
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   type = None;
   val = NULL;
   result = XGetWindowProperty (display,
@@ -392,7 +392,7 @@ _wnck_get_utf8_property (Screen *screen,
 			       False, utf8_string,
 			       &type, &format, &nitems,
 			       &bytes_after, (guchar **)&val);
-  err = _wnck_error_trap_pop (display);
+  err = _vnck_error_trap_pop (display);
 
   if (err != Success ||
       result != Success)
@@ -410,7 +410,7 @@ _wnck_get_utf8_property (Screen *screen,
   if (!g_utf8_validate (val, nitems, NULL))
     {
       g_warning ("Property %s contained invalid UTF-8\n",
-                 _wnck_atom_name (atom));
+                 _vnck_atom_name (atom));
       XFree (val);
       return NULL;
     }
@@ -423,7 +423,7 @@ _wnck_get_utf8_property (Screen *screen,
 }
 
 gboolean
-_wnck_get_window_list (Screen  *screen,
+_vnck_get_window_list (Screen  *screen,
                        Window   xwindow,
                        Atom     atom,
                        Window **windows,
@@ -442,7 +442,7 @@ _wnck_get_window_list (Screen  *screen,
   *windows = NULL;
   *len = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   type = None;
   result = XGetWindowProperty (display,
 			       xwindow,
@@ -450,7 +450,7 @@ _wnck_get_window_list (Screen  *screen,
 			       0, G_MAXLONG,
 			       False, XA_WINDOW, &type, &format, &nitems,
 			       &bytes_after, (void*)&data);
-  err = _wnck_error_trap_pop (display);
+  err = _vnck_error_trap_pop (display);
   if (err != Success ||
       result != Success)
     return FALSE;
@@ -471,7 +471,7 @@ _wnck_get_window_list (Screen  *screen,
 }
 
 gboolean
-_wnck_get_atom_list (Screen  *screen,
+_vnck_get_atom_list (Screen  *screen,
                      Window   xwindow,
                      Atom     atom,
                      Atom   **atoms,
@@ -490,7 +490,7 @@ _wnck_get_atom_list (Screen  *screen,
   *atoms = NULL;
   *len = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   type = None;
   result = XGetWindowProperty (display,
 			       xwindow,
@@ -498,7 +498,7 @@ _wnck_get_atom_list (Screen  *screen,
 			       0, G_MAXLONG,
 			       False, XA_ATOM, &type, &format, &nitems,
 			       &bytes_after, (void*)&data);
-  err = _wnck_error_trap_pop (display);
+  err = _vnck_error_trap_pop (display);
   if (err != Success ||
       result != Success)
     return FALSE;
@@ -519,7 +519,7 @@ _wnck_get_atom_list (Screen  *screen,
 }
 
 gboolean
-_wnck_get_cardinal_list (Screen  *screen,
+_vnck_get_cardinal_list (Screen  *screen,
                          Window   xwindow,
                          Atom     atom,
                          gulong **cardinals,
@@ -538,7 +538,7 @@ _wnck_get_cardinal_list (Screen  *screen,
   *cardinals = NULL;
   *len = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   type = None;
   result = XGetWindowProperty (display,
 			       xwindow,
@@ -546,7 +546,7 @@ _wnck_get_cardinal_list (Screen  *screen,
 			       0, G_MAXLONG,
 			       False, XA_CARDINAL, &type, &format, &nitems,
 			       &bytes_after, (void*)&nums);
-  err = _wnck_error_trap_pop (display);
+  err = _vnck_error_trap_pop (display);
   if (err != Success ||
       result != Success)
     return FALSE;
@@ -567,7 +567,7 @@ _wnck_get_cardinal_list (Screen  *screen,
 }
 
 char**
-_wnck_get_utf8_list (Screen *screen,
+_vnck_get_utf8_list (Screen *screen,
                      Window  xwindow,
                      Atom    atom)
 {
@@ -586,9 +586,9 @@ _wnck_get_utf8_list (Screen *screen,
 
   display = DisplayOfScreen (screen);
 
-  utf8_string = _wnck_atom_get ("UTF8_STRING");
+  utf8_string = _vnck_atom_get ("UTF8_STRING");
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   type = None;
   val = NULL;
   result = XGetWindowProperty (display,
@@ -598,7 +598,7 @@ _wnck_get_utf8_list (Screen *screen,
 			       False, utf8_string,
 			       &type, &format, &nitems,
 			       &bytes_after, (void*)&val);
-  err = _wnck_error_trap_pop (display);
+  err = _vnck_error_trap_pop (display);
 
   if (err != Success ||
       result != Success)
@@ -641,7 +641,7 @@ _wnck_get_utf8_list (Screen *screen,
       if (!g_utf8_validate (p, -1, NULL))
         {
           g_warning ("Property %s contained invalid UTF-8\n",
-                     _wnck_atom_name (atom));
+                     _vnck_atom_name (atom));
           XFree (val);
           g_strfreev (retval);
           return NULL;
@@ -659,7 +659,7 @@ _wnck_get_utf8_list (Screen *screen,
 }
 
 void
-_wnck_set_utf8_list (Screen  *screen,
+_vnck_set_utf8_list (Screen  *screen,
                      Window   xwindow,
                      Atom     atom,
                      char   **list)
@@ -671,7 +671,7 @@ _wnck_set_utf8_list (Screen  *screen,
 
   display = DisplayOfScreen (screen);
 
-  utf8_string = _wnck_atom_get ("UTF8_STRING");
+  utf8_string = _vnck_atom_get ("UTF8_STRING");
 
   /* flatten to nul-separated list */
   flattened = g_string_new ("");
@@ -683,7 +683,7 @@ _wnck_set_utf8_list (Screen  *screen,
       ++i;
     }
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
 
   XChangeProperty (display,
 		   xwindow,
@@ -691,13 +691,13 @@ _wnck_set_utf8_list (Screen  *screen,
 		   utf8_string, 8, PropModeReplace,
 		   (guchar *) flattened->str, flattened->len);
 
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 
   g_string_free (flattened, TRUE);
 }
 
 void
-_wnck_error_trap_push (Display *display)
+_vnck_error_trap_push (Display *display)
 {
   GdkDisplay *gdk_display;
 
@@ -708,7 +708,7 @@ _wnck_error_trap_push (Display *display)
 }
 
 int
-_wnck_error_trap_pop (Display *display)
+_vnck_error_trap_pop (Display *display)
 {
   GdkDisplay *gdk_display;
 
@@ -736,22 +736,22 @@ filter_func (GdkXEvent  *gdkxevent,
       {
         WnckScreen *screen;
 
-        screen = wnck_screen_get_for_root (xevent->xany.window);
+        screen = vnck_screen_get_for_root (xevent->xany.window);
         if (screen != NULL)
-          _wnck_screen_process_property_notify (screen, xevent);
+          _vnck_screen_process_property_notify (screen, xevent);
         else
           {
             WnckWindow *window;
             WnckApplication *app;
 
-            window = wnck_window_get (xevent->xany.window);
-            app = wnck_application_get (xevent->xany.window);
+            window = vnck_window_get (xevent->xany.window);
+            app = vnck_application_get (xevent->xany.window);
 
             if (app)
-              _wnck_application_process_property_notify (app, xevent);
+              _vnck_application_process_property_notify (app, xevent);
 
             if (window)
-              _wnck_window_process_property_notify (window, xevent);
+              _vnck_window_process_property_notify (window, xevent);
           }
       }
       break;
@@ -760,16 +760,16 @@ filter_func (GdkXEvent  *gdkxevent,
       {
         WnckWindow *window;
 
-        window = wnck_window_get (xevent->xconfigure.window);
+        window = vnck_window_get (xevent->xconfigure.window);
 
         if (window)
-          _wnck_window_process_configure_notify (window, xevent);
+          _vnck_window_process_configure_notify (window, xevent);
       }
       break;
 
     case SelectionClear:
       {
-        _wnck_desktop_layout_manager_process_event (xevent);
+        _vnck_desktop_layout_manager_process_event (xevent);
       }
       break;
 
@@ -785,9 +785,9 @@ filter_func (GdkXEvent  *gdkxevent,
         {
           WnckScreen *s;
 
-          s = _wnck_screen_get_existing (i);
+          s = _vnck_screen_get_existing (i);
           if (s != NULL)
-            sn_display_process_event (_wnck_screen_get_sn_display (s),
+            sn_display_process_event (_vnck_screen_get_sn_display (s),
                                       xevent);
 
           ++i;
@@ -802,39 +802,39 @@ filter_func (GdkXEvent  *gdkxevent,
   return GDK_FILTER_CONTINUE;
 }
 
-static gboolean _wnck_event_filter_initialized = FALSE;
+static gboolean _vnck_event_filter_initialized = FALSE;
 
 void
-_wnck_event_filter_init (void)
+_vnck_event_filter_init (void)
 {
 
-  if (!_wnck_event_filter_initialized)
+  if (!_vnck_event_filter_initialized)
     {
       gdk_window_add_filter (NULL, filter_func, NULL);
-      _wnck_event_filter_initialized = TRUE;
+      _vnck_event_filter_initialized = TRUE;
     }
 }
 
 void
-_wnck_event_filter_shutdown (void)
+_vnck_event_filter_shutdown (void)
 {
 
-  if (_wnck_event_filter_initialized)
+  if (_vnck_event_filter_initialized)
     {
       gdk_window_remove_filter (NULL, filter_func, NULL);
-      _wnck_event_filter_initialized = FALSE;
+      _vnck_event_filter_initialized = FALSE;
     }
 }
 
 int
-_wnck_xid_equal (gconstpointer v1,
+_vnck_xid_equal (gconstpointer v1,
                  gconstpointer v2)
 {
   return *((const gulong*) v1) == *((const gulong*) v2);
 }
 
 guint
-_wnck_xid_hash (gconstpointer v)
+_vnck_xid_hash (gconstpointer v)
 {
   gulong val = * (const gulong *) v;
 
@@ -847,20 +847,20 @@ _wnck_xid_hash (gconstpointer v)
 }
 
 void
-_wnck_iconify (Screen *screen,
+_vnck_iconify (Screen *screen,
                Window  xwindow)
 {
   Display *display;
 
   display = DisplayOfScreen (screen);
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XIconifyWindow (display, xwindow, DefaultScreen (display));
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 void
-_wnck_deiconify (Screen *screen,
+_vnck_deiconify (Screen *screen,
                  Window  xwindow)
 {
   /* We need special precautions, because GDK doesn't like
@@ -871,18 +871,18 @@ _wnck_deiconify (Screen *screen,
   GdkWindow *gdkwindow;
 
   display = DisplayOfScreen (screen);
-  gdkwindow = _wnck_gdk_window_lookup_from_window (screen, xwindow);
+  gdkwindow = _vnck_gdk_window_lookup_from_window (screen, xwindow);
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   if (gdkwindow)
     gdk_window_show (gdkwindow);
   else
     XMapRaised (display, xwindow);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 void
-_wnck_close (WnckScreen *screen,
+_vnck_close (WnckScreen *screen,
              Window      xwindow,
              Time        timestamp)
 {
@@ -891,7 +891,7 @@ _wnck_close (WnckScreen *screen,
   Window root;
   XEvent xev;
 
-  xscreen = _wnck_screen_get_xscreen (screen);
+  xscreen = _vnck_screen_get_xscreen (screen);
   display = DisplayOfScreen (xscreen);
   root = RootWindowOfScreen (xscreen);
 
@@ -900,21 +900,21 @@ _wnck_close (WnckScreen *screen,
   xev.xclient.send_event = True;
   xev.xclient.display = display;
   xev.xclient.window = xwindow;
-  xev.xclient.message_type = _wnck_atom_get ("_NET_CLOSE_WINDOW");
+  xev.xclient.message_type = _vnck_atom_get ("_NET_CLOSE_WINDOW");
   xev.xclient.format = 32;
   xev.xclient.data.l[0] = timestamp;
-  xev.xclient.data.l[1] = _wnck_get_client_type ();
+  xev.xclient.data.l[1] = _vnck_get_client_type ();
   xev.xclient.data.l[2] = 0;
   xev.xclient.data.l[3] = 0;
   xev.xclient.data.l[4] = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XSendEvent (display,
               root,
               False,
 	      SubstructureRedirectMask | SubstructureNotifyMask,
 	      &xev);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 #define _NET_WM_MOVERESIZE_SIZE_TOPLEFT      0
@@ -930,7 +930,7 @@ _wnck_close (WnckScreen *screen,
 #define _NET_WM_MOVERESIZE_MOVE_KEYBOARD    10
 
 void
-_wnck_keyboard_move (WnckScreen *screen,
+_vnck_keyboard_move (WnckScreen *screen,
                      Window      xwindow)
 {
   Screen *xscreen;
@@ -938,7 +938,7 @@ _wnck_keyboard_move (WnckScreen *screen,
   Window root;
   XEvent xev;
 
-  xscreen = _wnck_screen_get_xscreen (screen);
+  xscreen = _vnck_screen_get_xscreen (screen);
   display = DisplayOfScreen (xscreen);
   root = RootWindowOfScreen (xscreen);
 
@@ -947,25 +947,25 @@ _wnck_keyboard_move (WnckScreen *screen,
   xev.xclient.send_event = True;
   xev.xclient.display = display;
   xev.xclient.window = xwindow;
-  xev.xclient.message_type = _wnck_atom_get ("_NET_WM_MOVERESIZE");
+  xev.xclient.message_type = _vnck_atom_get ("_NET_WM_MOVERESIZE");
   xev.xclient.format = 32;
   xev.xclient.data.l[0] = 0; /* unused */
   xev.xclient.data.l[1] = 0; /* unused */
   xev.xclient.data.l[2] = _NET_WM_MOVERESIZE_MOVE_KEYBOARD;
   xev.xclient.data.l[3] = 0; /* unused */
-  xev.xclient.data.l[4] = _wnck_get_client_type ();
+  xev.xclient.data.l[4] = _vnck_get_client_type ();
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XSendEvent (display,
               root,
               False,
               SubstructureRedirectMask | SubstructureNotifyMask,
               &xev);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 void
-_wnck_keyboard_size (WnckScreen *screen,
+_vnck_keyboard_size (WnckScreen *screen,
                      Window      xwindow)
 {
   Screen *xscreen;
@@ -973,7 +973,7 @@ _wnck_keyboard_size (WnckScreen *screen,
   Window root;
   XEvent xev;
 
-  xscreen = _wnck_screen_get_xscreen (screen);
+  xscreen = _vnck_screen_get_xscreen (screen);
   display = DisplayOfScreen (xscreen);
   root = RootWindowOfScreen (xscreen);
 
@@ -982,25 +982,25 @@ _wnck_keyboard_size (WnckScreen *screen,
   xev.xclient.send_event = True;
   xev.xclient.display = display;
   xev.xclient.window = xwindow;
-  xev.xclient.message_type = _wnck_atom_get ("_NET_WM_MOVERESIZE");
+  xev.xclient.message_type = _vnck_atom_get ("_NET_WM_MOVERESIZE");
   xev.xclient.format = 32;
   xev.xclient.data.l[0] = 0; /* unused */
   xev.xclient.data.l[1] = 0; /* unused */
   xev.xclient.data.l[2] = _NET_WM_MOVERESIZE_SIZE_KEYBOARD;
   xev.xclient.data.l[3] = 0; /* unused */
-  xev.xclient.data.l[4] = _wnck_get_client_type ();
+  xev.xclient.data.l[4] = _vnck_get_client_type ();
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XSendEvent (display,
               root,
               False,
               SubstructureRedirectMask | SubstructureNotifyMask,
               &xev);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 void
-_wnck_change_state (WnckScreen *screen,
+_vnck_change_state (WnckScreen *screen,
                     Window      xwindow,
                     gboolean    add,
                     Atom        state1,
@@ -1015,7 +1015,7 @@ _wnck_change_state (WnckScreen *screen,
 #define _NET_WM_STATE_ADD           1    /* add/set property */
 #define _NET_WM_STATE_TOGGLE        2    /* toggle property  */
 
-  xscreen = _wnck_screen_get_xscreen (screen);
+  xscreen = _vnck_screen_get_xscreen (screen);
   display = DisplayOfScreen (xscreen);
   root = RootWindowOfScreen (xscreen);
 
@@ -1024,25 +1024,25 @@ _wnck_change_state (WnckScreen *screen,
   xev.xclient.send_event = True;
   xev.xclient.display = display;
   xev.xclient.window = xwindow;
-  xev.xclient.message_type = _wnck_atom_get ("_NET_WM_STATE");
+  xev.xclient.message_type = _vnck_atom_get ("_NET_WM_STATE");
   xev.xclient.format = 32;
   xev.xclient.data.l[0] = add ? _NET_WM_STATE_ADD : _NET_WM_STATE_REMOVE;
   xev.xclient.data.l[1] = state1;
   xev.xclient.data.l[2] = state2;
-  xev.xclient.data.l[3] = _wnck_get_client_type ();
+  xev.xclient.data.l[3] = _vnck_get_client_type ();
   xev.xclient.data.l[4] = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XSendEvent (display,
 	      root,
               False,
 	      SubstructureRedirectMask | SubstructureNotifyMask,
 	      &xev);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 void
-_wnck_change_workspace (WnckScreen *screen,
+_vnck_change_workspace (WnckScreen *screen,
                         Window      xwindow,
                         int         new_space)
 {
@@ -1051,7 +1051,7 @@ _wnck_change_workspace (WnckScreen *screen,
   Window root;
   XEvent xev;
 
-  xscreen = _wnck_screen_get_xscreen (screen);
+  xscreen = _vnck_screen_get_xscreen (screen);
   display = DisplayOfScreen (xscreen);
   root = RootWindowOfScreen (xscreen);
 
@@ -1060,25 +1060,25 @@ _wnck_change_workspace (WnckScreen *screen,
   xev.xclient.send_event = True;
   xev.xclient.display = display;
   xev.xclient.window = xwindow;
-  xev.xclient.message_type = _wnck_atom_get ("_NET_WM_DESKTOP");
+  xev.xclient.message_type = _vnck_atom_get ("_NET_WM_DESKTOP");
   xev.xclient.format = 32;
   xev.xclient.data.l[0] = new_space;
-  xev.xclient.data.l[1] = _wnck_get_client_type ();
+  xev.xclient.data.l[1] = _vnck_get_client_type ();
   xev.xclient.data.l[2] = 0;
   xev.xclient.data.l[3] = 0;
   xev.xclient.data.l[4] = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XSendEvent (display,
 	      root,
               False,
 	      SubstructureRedirectMask | SubstructureNotifyMask,
 	      &xev);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 void
-_wnck_activate (WnckScreen *screen,
+_vnck_activate (WnckScreen *screen,
                 Window      xwindow,
                 Time        timestamp)
 {
@@ -1091,7 +1091,7 @@ _wnck_activate (WnckScreen *screen,
     g_warning ("Received a timestamp of 0; window activation may not "
                "function properly.\n");
 
-  xscreen = _wnck_screen_get_xscreen (screen);
+  xscreen = _vnck_screen_get_xscreen (screen);
   display = DisplayOfScreen (xscreen);
   root = RootWindowOfScreen (xscreen);
 
@@ -1100,25 +1100,25 @@ _wnck_activate (WnckScreen *screen,
   xev.xclient.send_event = True;
   xev.xclient.display = display;
   xev.xclient.window = xwindow;
-  xev.xclient.message_type = _wnck_atom_get ("_NET_ACTIVE_WINDOW");
+  xev.xclient.message_type = _vnck_atom_get ("_NET_ACTIVE_WINDOW");
   xev.xclient.format = 32;
-  xev.xclient.data.l[0] = _wnck_get_client_type ();
+  xev.xclient.data.l[0] = _vnck_get_client_type ();
   xev.xclient.data.l[1] = timestamp;
   xev.xclient.data.l[2] = 0;
   xev.xclient.data.l[3] = 0;
   xev.xclient.data.l[4] = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XSendEvent (display,
 	      root,
               False,
 	      SubstructureRedirectMask | SubstructureNotifyMask,
 	      &xev);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 void
-_wnck_activate_workspace (Screen *screen,
+_vnck_activate_workspace (Screen *screen,
                           int     new_active_space,
                           Time    timestamp)
 {
@@ -1134,7 +1134,7 @@ _wnck_activate_workspace (Screen *screen,
   xev.xclient.send_event = True;
   xev.xclient.display = display;
   xev.xclient.window = root;
-  xev.xclient.message_type = _wnck_atom_get ("_NET_CURRENT_DESKTOP");
+  xev.xclient.message_type = _vnck_atom_get ("_NET_CURRENT_DESKTOP");
   xev.xclient.format = 32;
   xev.xclient.data.l[0] = new_active_space;
   xev.xclient.data.l[1] = timestamp;
@@ -1142,17 +1142,17 @@ _wnck_activate_workspace (Screen *screen,
   xev.xclient.data.l[3] = 0;
   xev.xclient.data.l[4] = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XSendEvent (display,
 	      root,
               False,
 	      SubstructureRedirectMask | SubstructureNotifyMask,
 	      &xev);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 void
-_wnck_change_viewport (Screen *screen,
+_vnck_change_viewport (Screen *screen,
 		       int     x,
 		       int     y)
 {
@@ -1168,7 +1168,7 @@ _wnck_change_viewport (Screen *screen,
   xev.xclient.send_event = True;
   xev.xclient.display = display;
   xev.xclient.window = root;
-  xev.xclient.message_type = _wnck_atom_get ("_NET_DESKTOP_VIEWPORT");
+  xev.xclient.message_type = _vnck_atom_get ("_NET_DESKTOP_VIEWPORT");
   xev.xclient.format = 32;
   xev.xclient.data.l[0] = x;
   xev.xclient.data.l[1] = y;
@@ -1176,17 +1176,17 @@ _wnck_change_viewport (Screen *screen,
   xev.xclient.data.l[3] = 0;
   xev.xclient.data.l[4] = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XSendEvent (display,
 	      root,
               False,
 	      SubstructureRedirectMask | SubstructureNotifyMask,
 	      &xev);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 void
-_wnck_toggle_showing_desktop (Screen  *screen,
+_vnck_toggle_showing_desktop (Screen  *screen,
                               gboolean show)
 {
   Display *display;
@@ -1201,7 +1201,7 @@ _wnck_toggle_showing_desktop (Screen  *screen,
   xev.xclient.send_event = True;
   xev.xclient.display = display;
   xev.xclient.window = root;
-  xev.xclient.message_type = _wnck_atom_get ("_NET_SHOWING_DESKTOP");
+  xev.xclient.message_type = _vnck_atom_get ("_NET_SHOWING_DESKTOP");
   xev.xclient.format = 32;
   xev.xclient.data.l[0] = show != FALSE;
   xev.xclient.data.l[1] = 0;
@@ -1209,41 +1209,41 @@ _wnck_toggle_showing_desktop (Screen  *screen,
   xev.xclient.data.l[3] = 0;
   xev.xclient.data.l[4] = 0;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XSendEvent (display,
 	      root,
               False,
 	      SubstructureRedirectMask | SubstructureNotifyMask,
 	      &xev);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 char*
-_wnck_get_session_id (Screen *screen,
+_vnck_get_session_id (Screen *screen,
                       Window  xwindow)
 {
   Window client_leader;
 
   client_leader = None;
-  _wnck_get_window (screen, xwindow,
-                    _wnck_atom_get ("WM_CLIENT_LEADER"),
+  _vnck_get_window (screen, xwindow,
+                    _vnck_atom_get ("WM_CLIENT_LEADER"),
                     &client_leader);
 
   if (client_leader == None)
     return NULL;
 
-  return _wnck_get_string_property_latin1 (screen, client_leader,
-                                           _wnck_atom_get ("SM_CLIENT_ID"));
+  return _vnck_get_string_property_latin1 (screen, client_leader,
+                                           _vnck_atom_get ("SM_CLIENT_ID"));
 }
 
 int
-_wnck_get_pid (Screen *screen,
+_vnck_get_pid (Screen *screen,
                Window  xwindow)
 {
   int val;
 
-  if (!_wnck_get_cardinal (screen, xwindow,
-                           _wnck_atom_get ("_NET_WM_PID"),
+  if (!_vnck_get_cardinal (screen, xwindow,
+                           _vnck_atom_get ("_NET_WM_PID"),
                            &val))
     return 0;
   else
@@ -1251,40 +1251,40 @@ _wnck_get_pid (Screen *screen,
 }
 
 char*
-_wnck_get_name (Screen *screen,
+_vnck_get_name (Screen *screen,
                 Window  xwindow)
 {
   char *name;
 
-  name = _wnck_get_utf8_property (screen, xwindow,
-                                  _wnck_atom_get ("_NET_WM_VISIBLE_NAME"));
+  name = _vnck_get_utf8_property (screen, xwindow,
+                                  _vnck_atom_get ("_NET_WM_VISIBLE_NAME"));
 
   if (name == NULL)
-    name = _wnck_get_utf8_property (screen, xwindow,
-                                    _wnck_atom_get ("_NET_WM_NAME"));
+    name = _vnck_get_utf8_property (screen, xwindow,
+                                    _vnck_atom_get ("_NET_WM_NAME"));
 
   if (name == NULL)
-    name = _wnck_get_text_property (screen, xwindow,
+    name = _vnck_get_text_property (screen, xwindow,
                                     XA_WM_NAME);
 
   return name;
 }
 
 char*
-_wnck_get_icon_name (Screen *screen,
+_vnck_get_icon_name (Screen *screen,
                      Window  xwindow)
 {
   char *name;
 
-  name = _wnck_get_utf8_property (screen, xwindow,
-                                  _wnck_atom_get ("_NET_WM_VISIBLE_ICON_NAME"));
+  name = _vnck_get_utf8_property (screen, xwindow,
+                                  _vnck_atom_get ("_NET_WM_VISIBLE_ICON_NAME"));
 
   if (name == NULL)
-    name = _wnck_get_utf8_property (screen, xwindow,
-                                    _wnck_atom_get ("_NET_WM_ICON_NAME"));
+    name = _vnck_get_utf8_property (screen, xwindow,
+                                    _vnck_atom_get ("_NET_WM_ICON_NAME"));
 
   if (name == NULL)
-    name = _wnck_get_text_property (screen, xwindow,
+    name = _vnck_get_text_property (screen, xwindow,
                                     XA_WM_ICON_NAME);
 
   return name;
@@ -1309,18 +1309,18 @@ latin1_to_utf8 (const char *latin1)
 }
 
 char*
-_wnck_get_res_class_utf8 (Screen *screen,
+_vnck_get_res_class_utf8 (Screen *screen,
                           Window  xwindow)
 {
   char *res_class;
 
-  _wnck_get_wmclass (screen, xwindow, &res_class, NULL);
+  _vnck_get_wmclass (screen, xwindow, &res_class, NULL);
 
   return res_class;
 }
 
 void
-_wnck_get_wmclass (Screen *screen,
+_vnck_get_wmclass (Screen *screen,
                    Window  xwindow,
                    char **res_class,
                    char **res_name)
@@ -1330,14 +1330,14 @@ _wnck_get_wmclass (Screen *screen,
 
   display = DisplayOfScreen (screen);
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
 
   ch.res_name = NULL;
   ch.res_class = NULL;
 
   XGetClassHint (display, xwindow, &ch);
 
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 
   if (res_class)
     *res_class = NULL;
@@ -1363,7 +1363,7 @@ _wnck_get_wmclass (Screen *screen,
 }
 
 gboolean
-_wnck_get_frame_extents (Screen *screen,
+_vnck_get_frame_extents (Screen *screen,
                          Window  xwindow,
                          int    *left_frame,
                          int    *right_frame,
@@ -1378,8 +1378,8 @@ _wnck_get_frame_extents (Screen *screen,
   p_size = NULL;
   n_size = 0;
 
-  _wnck_get_cardinal_list (screen, xwindow,
-                           _wnck_atom_get ("_NET_FRAME_EXTENTS"),
+  _vnck_get_cardinal_list (screen, xwindow,
+                           _vnck_atom_get ("_NET_FRAME_EXTENTS"),
                            &p_size, &n_size);
 
   if (p_size != NULL && n_size == 4)
@@ -1394,8 +1394,8 @@ _wnck_get_frame_extents (Screen *screen,
 
   if (p_size == NULL)
     {
-      _wnck_get_cardinal_list (screen, xwindow,
-                               _wnck_atom_get ("_GTK_FRAME_EXTENTS"),
+      _vnck_get_cardinal_list (screen, xwindow,
+                               _vnck_atom_get ("_GTK_FRAME_EXTENTS"),
                                &p_size, &n_size);
 
       if (p_size != NULL && n_size == 4)
@@ -1416,7 +1416,7 @@ _wnck_get_frame_extents (Screen *screen,
 }
 
 int
-_wnck_select_input (Screen *screen,
+_vnck_select_input (Screen *screen,
                     Window  xwindow,
                     int     mask,
                     gboolean update)
@@ -1427,9 +1427,9 @@ _wnck_select_input (Screen *screen,
 
   display = DisplayOfScreen (screen);
 
-  gdkwindow = _wnck_gdk_window_lookup_from_window (screen, xwindow);
+  gdkwindow = _vnck_gdk_window_lookup_from_window (screen, xwindow);
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   if (gdkwindow)
     {
       /* Avoid breaking GDK's setup,
@@ -1446,7 +1446,7 @@ _wnck_select_input (Screen *screen,
     }
 
   XSelectInput (display, xwindow, mask);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 
   return old_mask;
 }
@@ -1642,17 +1642,17 @@ read_rgb_icon (Screen        *screen,
 
   display = DisplayOfScreen (screen);
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   type = None;
   data = NULL;
   result = XGetWindowProperty (display,
 			       xwindow,
-			       _wnck_atom_get ("_NET_WM_ICON"),
+			       _vnck_atom_get ("_NET_WM_ICON"),
 			       0, G_MAXLONG,
 			       False, XA_CARDINAL, &type, &format, &nitems,
 			       &bytes_after, (void*)&data);
 
-  err = _wnck_error_trap_pop (display);
+  err = _vnck_error_trap_pop (display);
 
   if (err != Success ||
       result != Success)
@@ -1701,7 +1701,7 @@ free_pixels (guchar *pixels, gpointer data)
 }
 
 static cairo_surface_t *
-_wnck_cairo_surface_get_from_pixmap (Screen *screen,
+_vnck_cairo_surface_get_from_pixmap (Screen *screen,
                                      Pixmap  xpixmap)
 {
   cairo_surface_t *surface;
@@ -1714,7 +1714,7 @@ _wnck_cairo_surface_get_from_pixmap (Screen *screen,
   surface = NULL;
   display = DisplayOfScreen (screen);
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
 
   if (!XGetGeometry (display, xpixmap, &root_return,
                      &x_ret, &y_ret, &w_ret, &h_ret, &bw_ret, &depth_ret))
@@ -1764,19 +1764,19 @@ _wnck_cairo_surface_get_from_pixmap (Screen *screen,
     }
 
 TRAP_POP:
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 
   return surface;
 }
 
 GdkPixbuf*
-_wnck_gdk_pixbuf_get_from_pixmap (Screen *screen,
+_vnck_gdk_pixbuf_get_from_pixmap (Screen *screen,
                                   Pixmap  xpixmap)
 {
   cairo_surface_t *surface;
   GdkPixbuf *retval;
 
-  surface = _wnck_cairo_surface_get_from_pixmap (screen, xpixmap);
+  surface = _vnck_cairo_surface_get_from_pixmap (screen, xpixmap);
 
   if (surface == NULL)
     return NULL;
@@ -1811,10 +1811,10 @@ try_pixmap_and_mask (Screen     *screen,
   if (src_pixmap == None)
     return FALSE;
 
-  surface = _wnck_cairo_surface_get_from_pixmap (screen, src_pixmap);
+  surface = _vnck_cairo_surface_get_from_pixmap (screen, src_pixmap);
 
   if (surface && src_mask != None)
-    mask_surface = _wnck_cairo_surface_get_from_pixmap (screen, src_mask);
+    mask_surface = _vnck_cairo_surface_get_from_pixmap (screen, src_mask);
   else
     mask_surface = NULL;
 
@@ -1919,22 +1919,22 @@ get_kwm_win_icon (Screen *screen,
   *pixmap = None;
   *mask = None;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   icons = NULL;
   result = XGetWindowProperty (display, xwindow,
-			       _wnck_atom_get ("KWM_WIN_ICON"),
+			       _vnck_atom_get ("KWM_WIN_ICON"),
 			       0, G_MAXLONG,
 			       False,
-			       _wnck_atom_get ("KWM_WIN_ICON"),
+			       _vnck_atom_get ("KWM_WIN_ICON"),
 			       &type, &format, &nitems,
 			       &bytes_after, (void*)&icons);
 
-  err = _wnck_error_trap_pop (display);
+  err = _vnck_error_trap_pop (display);
   if (err != Success ||
       result != Success)
     return;
 
-  if (type != _wnck_atom_get ("KWM_WIN_ICON"))
+  if (type != _vnck_atom_get ("KWM_WIN_ICON"))
     {
       XFree (icons);
       return;
@@ -1980,7 +1980,7 @@ struct _WnckIconCache
 };
 
 WnckIconCache*
-_wnck_icon_cache_new (void)
+_vnck_icon_cache_new (void)
 {
   WnckIconCache *icon_cache;
 
@@ -2025,7 +2025,7 @@ clear_icon_cache (WnckIconCache *icon_cache,
 }
 
 void
-_wnck_icon_cache_free (WnckIconCache *icon_cache)
+_vnck_icon_cache_free (WnckIconCache *icon_cache)
 {
   clear_icon_cache (icon_cache, FALSE);
 
@@ -2033,19 +2033,19 @@ _wnck_icon_cache_free (WnckIconCache *icon_cache)
 }
 
 void
-_wnck_icon_cache_property_changed (WnckIconCache *icon_cache,
+_vnck_icon_cache_property_changed (WnckIconCache *icon_cache,
                                    Atom           atom)
 {
-  if (atom == _wnck_atom_get ("_NET_WM_ICON"))
+  if (atom == _vnck_atom_get ("_NET_WM_ICON"))
     icon_cache->net_wm_icon_dirty = TRUE;
-  else if (atom == _wnck_atom_get ("KWM_WIN_ICON"))
+  else if (atom == _vnck_atom_get ("KWM_WIN_ICON"))
     icon_cache->kwm_win_icon_dirty = TRUE;
-  else if (atom == _wnck_atom_get ("WM_HINTS"))
+  else if (atom == _vnck_atom_get ("WM_HINTS"))
     icon_cache->wm_hints_dirty = TRUE;
 }
 
 gboolean
-_wnck_icon_cache_get_icon_invalidated (WnckIconCache *icon_cache)
+_vnck_icon_cache_get_icon_invalidated (WnckIconCache *icon_cache)
 {
   if (icon_cache->origin <= USING_KWM_WIN_ICON &&
       icon_cache->kwm_win_icon_dirty)
@@ -2069,14 +2069,14 @@ _wnck_icon_cache_get_icon_invalidated (WnckIconCache *icon_cache)
 }
 
 void
-_wnck_icon_cache_set_want_fallback (WnckIconCache *icon_cache,
+_vnck_icon_cache_set_want_fallback (WnckIconCache *icon_cache,
                                     gboolean       setting)
 {
   icon_cache->want_fallback = setting;
 }
 
 gboolean
-_wnck_icon_cache_get_is_fallback (WnckIconCache *icon_cache)
+_vnck_icon_cache_get_is_fallback (WnckIconCache *icon_cache)
 {
   return icon_cache->origin == USING_FALLBACK_ICON;
 }
@@ -2159,7 +2159,7 @@ scaled_from_pixdata (guchar *pixdata,
 }
 
 gboolean
-_wnck_read_icons (WnckScreen     *screen,
+_vnck_read_icons (WnckScreen     *screen,
                   Window          xwindow,
                   WnckIconCache  *icon_cache,
                   GdkPixbuf     **iconp,
@@ -2183,7 +2183,7 @@ _wnck_read_icons (WnckScreen     *screen,
 
   g_return_val_if_fail (icon_cache != NULL, FALSE);
 
-  xscreen = _wnck_screen_get_xscreen (screen);
+  xscreen = _vnck_screen_get_xscreen (screen);
   display = DisplayOfScreen (xscreen);
 
   *iconp = NULL;
@@ -2200,7 +2200,7 @@ _wnck_read_icons (WnckScreen     *screen,
   icon_cache->ideal_mini_width = ideal_mini_width;
   icon_cache->ideal_mini_height = ideal_mini_height;
 
-  if (!_wnck_icon_cache_get_icon_invalidated (icon_cache))
+  if (!_vnck_icon_cache_get_icon_invalidated (icon_cache))
     return FALSE; /* we have no new info to use */
 
   pixdata = NULL;
@@ -2243,9 +2243,9 @@ _wnck_read_icons (WnckScreen     *screen,
     {
       icon_cache->wm_hints_dirty = FALSE;
 
-      _wnck_error_trap_push (display);
+      _vnck_error_trap_push (display);
       hints = XGetWMHints (display, xwindow);
-      _wnck_error_trap_pop (display);
+      _vnck_error_trap_pop (display);
       pixmap = None;
       mask = None;
       if (hints)
@@ -2311,7 +2311,7 @@ _wnck_read_icons (WnckScreen     *screen,
   if (icon_cache->want_fallback &&
       icon_cache->origin < USING_FALLBACK_ICON)
     {
-      _wnck_get_fallback_icons (iconp,
+      _vnck_get_fallback_icons (iconp,
                                 ideal_width,
                                 ideal_height,
                                 mini_iconp,
@@ -2343,7 +2343,7 @@ default_icon_at_size (int width,
 {
   GdkPixbuf *base;
 
-  base = gdk_pixbuf_new_from_resource ("/org/gnome/libwnck/default_icon.png", NULL);
+  base = gdk_pixbuf_new_from_resource ("/org/gnome/libvnck/default_icon.png", NULL);
 
   g_assert (base);
 
@@ -2371,7 +2371,7 @@ default_icon_at_size (int width,
 }
 
 void
-_wnck_get_fallback_icons (GdkPixbuf **iconp,
+_vnck_get_fallback_icons (GdkPixbuf **iconp,
                           int         ideal_width,
                           int         ideal_height,
                           GdkPixbuf **mini_iconp,
@@ -2380,20 +2380,20 @@ _wnck_get_fallback_icons (GdkPixbuf **iconp,
 {
   if (iconp)
     *iconp = default_icon_at_size (ideal_width > 0 ? ideal_width :
-                                   (int) _wnck_get_default_icon_size (),
+                                   (int) _vnck_get_default_icon_size (),
                                    ideal_height > 0 ? ideal_height :
-                                   (int) _wnck_get_default_icon_size ());
+                                   (int) _vnck_get_default_icon_size ());
 
   if (mini_iconp)
     *mini_iconp = default_icon_at_size (ideal_mini_width > 0 ? ideal_mini_width :
-                                        (int) _wnck_get_default_mini_icon_size (),
+                                        (int) _vnck_get_default_mini_icon_size (),
                                         ideal_mini_height > 0 ? ideal_mini_height :
-                                        (int) _wnck_get_default_mini_icon_size ());
+                                        (int) _vnck_get_default_mini_icon_size ());
 }
 
 
 void
-_wnck_get_window_geometry (Screen *screen,
+_vnck_get_window_geometry (Screen *screen,
 			   Window  xwindow,
                            int    *xp,
                            int    *yp,
@@ -2410,16 +2410,16 @@ _wnck_get_window_geometry (Screen *screen,
 
   display = DisplayOfScreen (screen);
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
 
   XGetGeometry (display,
                 xwindow,
                 &root_window,
                 &x, &y, &width, &height, &bw, &depth);
 
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 
-  _wnck_get_window_position (screen, xwindow, xp, yp);
+  _vnck_get_window_position (screen, xwindow, xp, yp);
 
   if (widthp)
     *widthp = width;
@@ -2427,7 +2427,7 @@ _wnck_get_window_geometry (Screen *screen,
     *heightp = height;
 }
 
-void _wnck_set_window_geometry (Screen *screen,
+void _vnck_set_window_geometry (Screen *screen,
                                 Window  xwindow,
                                 int     gravity_and_flags,
                                 int     x,
@@ -2447,7 +2447,7 @@ void _wnck_set_window_geometry (Screen *screen,
   xev.xclient.send_event = True;
   xev.xclient.display = display;
   xev.xclient.window = xwindow;
-  xev.xclient.message_type = _wnck_atom_get ("_NET_MOVERESIZE_WINDOW");
+  xev.xclient.message_type = _vnck_atom_get ("_NET_MOVERESIZE_WINDOW");
   xev.xclient.format = 32;
   xev.xclient.data.l[0] = gravity_and_flags;
   xev.xclient.data.l[1] = x;
@@ -2455,17 +2455,17 @@ void _wnck_set_window_geometry (Screen *screen,
   xev.xclient.data.l[3] = width;
   xev.xclient.data.l[4] = height;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XSendEvent (display,
               root,
               False,
               SubstructureRedirectMask | SubstructureNotifyMask,
               &xev);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 void
-_wnck_get_window_position (Screen *screen,
+_vnck_get_window_position (Screen *screen,
 			   Window  xwindow,
                            int    *xp,
                            int    *yp)
@@ -2481,13 +2481,13 @@ _wnck_get_window_position (Screen *screen,
   display = DisplayOfScreen (screen);
   root = RootWindowOfScreen (screen);
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XTranslateCoordinates (display,
                          xwindow,
 			 root,
                          0, 0,
                          &x, &y, &child);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 
   if (xp)
     *xp = x;
@@ -2496,7 +2496,7 @@ _wnck_get_window_position (Screen *screen,
 }
 
 void
-_wnck_set_icon_geometry  (Screen *screen,
+_vnck_set_icon_geometry  (Screen *screen,
                           Window  xwindow,
 			  int     x,
 			  int     y,
@@ -2513,19 +2513,19 @@ _wnck_set_icon_geometry  (Screen *screen,
   data[2] = width;
   data[3] = height;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
 
   XChangeProperty (display,
 		   xwindow,
-		   _wnck_atom_get ("_NET_WM_ICON_GEOMETRY"),
+		   _vnck_atom_get ("_NET_WM_ICON_GEOMETRY"),
 		   XA_CARDINAL, 32, PropModeReplace,
 		   (guchar *)&data, 4);
 
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 GdkDisplay*
-_wnck_gdk_display_lookup_from_display (Display *display)
+_vnck_gdk_display_lookup_from_display (Display *display)
 {
   GdkDisplay *gdkdisplay = NULL;
 
@@ -2539,14 +2539,14 @@ _wnck_gdk_display_lookup_from_display (Display *display)
 }
 
 GdkWindow*
-_wnck_gdk_window_lookup_from_window (Screen *screen,
+_vnck_gdk_window_lookup_from_window (Screen *screen,
                                      Window  xwindow)
 {
   Display    *display;
   GdkDisplay *gdkdisplay;
 
   display = DisplayOfScreen (screen);
-  gdkdisplay = _wnck_gdk_display_lookup_from_display (display);
+  gdkdisplay = _vnck_gdk_display_lookup_from_display (display);
   if (!gdkdisplay)
     return NULL;
 
@@ -2564,7 +2564,7 @@ _wnck_gdk_window_lookup_from_window (Screen *screen,
 #define _NET_WM_BOTTOMLEFT  3
 
 void
-_wnck_set_desktop_layout (Screen *xscreen,
+_vnck_set_desktop_layout (Screen *xscreen,
                           int     rows,
                           int     columns)
 {
@@ -2574,7 +2574,7 @@ _wnck_set_desktop_layout (Screen *xscreen,
 
   /* FIXME: hack, hack, hack so as not
    * to have to add a orientation param
-   * to wnck_screen_try_set_workspace_layout.
+   * to vnck_screen_try_set_workspace_layout.
    *
    * Remove this crack asap.
    */
@@ -2588,15 +2588,15 @@ _wnck_set_desktop_layout (Screen *xscreen,
   data[2] = rows;
   data[3] = _NET_WM_TOPLEFT;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
 
   XChangeProperty (display,
                    root,
-		   _wnck_atom_get ("_NET_DESKTOP_LAYOUT"),
+		   _vnck_atom_get ("_NET_DESKTOP_LAYOUT"),
 		   XA_CARDINAL, 32, PropModeReplace,
 		   (guchar *)&data, 4);
 
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 typedef struct
@@ -2639,7 +2639,7 @@ get_server_time (Display *display,
   XEvent xevent;
   TimeStampInfo info;
 
-  info.timestamp_prop_atom = _wnck_atom_get ("_TIMESTAMP_PROP");
+  info.timestamp_prop_atom = _vnck_atom_get ("_TIMESTAMP_PROP");
   info.window = window;
 
   XChangeProperty (display, window,
@@ -2666,11 +2666,11 @@ static GSList *layout_managers = NULL;
 static int next_token = 1;
 
 static void
-_wnck_free_layout_manager (LayoutManager *lm)
+_vnck_free_layout_manager (LayoutManager *lm)
 {
-  _wnck_error_trap_push (lm->display);
+  _vnck_error_trap_push (lm->display);
   XDestroyWindow (lm->display, lm->window);
-  _wnck_error_trap_pop (lm->display);
+  _vnck_error_trap_pop (lm->display);
 
   g_slice_free (LayoutManager, lm);
 
@@ -2678,7 +2678,7 @@ _wnck_free_layout_manager (LayoutManager *lm)
 }
 
 int
-_wnck_try_desktop_layout_manager (Screen *xscreen,
+_vnck_try_desktop_layout_manager (Screen *xscreen,
                                   int     current_token)
 {
   Display *display;
@@ -2697,7 +2697,7 @@ _wnck_try_desktop_layout_manager (Screen *xscreen,
   number = XScreenNumberOfScreen (xscreen);
 
   sprintf (buffer, "_NET_DESKTOP_LAYOUT_S%d", number);
-  selection_atom = _wnck_atom_get (buffer);
+  selection_atom = _vnck_atom_get (buffer);
 
   owner = XGetSelectionOwner (display, selection_atom);
 
@@ -2715,7 +2715,7 @@ _wnck_try_desktop_layout_manager (Screen *xscreen,
                 return current_token; /* we still have the selection */
               else
                 { /* we lost the selection */
-                  _wnck_free_layout_manager (lm);
+                  _vnck_free_layout_manager (lm);
                   break;
                 }
             }
@@ -2739,9 +2739,9 @@ _wnck_try_desktop_layout_manager (Screen *xscreen,
   ++next_token;
 
   lm->selection_atom = selection_atom;
-  lm->manager_atom = _wnck_atom_get ("MANAGER");
+  lm->manager_atom = _vnck_atom_get ("MANAGER");
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
 
   lm->window = XCreateSimpleWindow (display,
                                     root,
@@ -2755,7 +2755,7 @@ _wnck_try_desktop_layout_manager (Screen *xscreen,
   XSetSelectionOwner (display, lm->selection_atom,
 		      lm->window, timestamp);
 
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 
   /* Check to see if we managed to claim the selection. */
 
@@ -2776,10 +2776,10 @@ _wnck_try_desktop_layout_manager (Screen *xscreen,
   xev.data.l[3] = 0;	/* manager specific data */
   xev.data.l[4] = 0;	/* manager specific data */
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XSendEvent (display, root,
               False, StructureNotifyMask, (XEvent *)&xev);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 
   layout_managers = g_slist_prepend (layout_managers,
                                      lm);
@@ -2788,7 +2788,7 @@ _wnck_try_desktop_layout_manager (Screen *xscreen,
 }
 
 void
-_wnck_release_desktop_layout_manager (Screen *xscreen,
+_vnck_release_desktop_layout_manager (Screen *xscreen,
                                       int     current_token)
 {
   Display *display;
@@ -2809,7 +2809,7 @@ _wnck_release_desktop_layout_manager (Screen *xscreen,
         {
           if (current_token == lm->token)
             {
-              _wnck_error_trap_push (display);
+              _vnck_error_trap_push (display);
 
               /* release selection ownership */
               if (XGetSelectionOwner (display, lm->selection_atom) !=
@@ -2822,9 +2822,9 @@ _wnck_release_desktop_layout_manager (Screen *xscreen,
                                       None, timestamp);
                 }
 
-              _wnck_error_trap_pop (display);
+              _vnck_error_trap_pop (display);
 
-              _wnck_free_layout_manager (lm);
+              _vnck_free_layout_manager (lm);
               return;
             }
         }
@@ -2834,7 +2834,7 @@ _wnck_release_desktop_layout_manager (Screen *xscreen,
 }
 
 gboolean
-_wnck_desktop_layout_manager_process_event (XEvent *xev)
+_vnck_desktop_layout_manager_process_event (XEvent *xev)
 {
   GSList *tmp;
   LayoutManager *lm;
@@ -2851,7 +2851,7 @@ _wnck_desktop_layout_manager_process_event (XEvent *xev)
           xev->xany.window == lm->window &&
           xev->xselectionclear.selection == lm->selection_atom)
         {
-          _wnck_free_layout_manager (lm);
+          _vnck_free_layout_manager (lm);
           return TRUE;
         }
 

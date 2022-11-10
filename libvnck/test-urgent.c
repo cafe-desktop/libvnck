@@ -28,7 +28,7 @@ static gboolean
 make_urgent (GtkWidget *widget)
 {
   set_urgent (widget, TRUE);
-  g_object_set_data (G_OBJECT (widget), "wnck-timeout", NULL);
+  g_object_set_data (G_OBJECT (widget), "vnck-timeout", NULL);
 
   return FALSE;
 }
@@ -42,8 +42,8 @@ focused_in (GtkWidget     *widget,
 
   set_urgent (widget, FALSE);
 
-  id = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (widget), "wnck-timeout"));
-  g_object_set_data (G_OBJECT (widget), "wnck-timeout", NULL);
+  id = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (widget), "vnck-timeout"));
+  g_object_set_data (G_OBJECT (widget), "vnck-timeout", NULL);
 
   if (id)
     g_source_remove (id);
@@ -59,7 +59,7 @@ focused_out (GtkWidget     *widget,
   guint id;
 
   id = g_timeout_add_seconds (3, (GSourceFunc) make_urgent, widget);
-  g_object_set_data (G_OBJECT (widget), "wnck-timeout", GUINT_TO_POINTER (id));
+  g_object_set_data (G_OBJECT (widget), "vnck-timeout", GUINT_TO_POINTER (id));
 
   return FALSE;
 }

@@ -26,7 +26,7 @@
 
 /* TODO:
  *  uncomment code that prints the workspace layout when API is public.
- *  uncomment code for wnck_class_group_get_icon_is_fallback() when API is done
+ *  uncomment code for vnck_class_group_get_icon_is_fallback() when API is done
  *
  *  add --list-screen
  */
@@ -43,7 +43,7 @@
 
 #include <glib/gi18n.h>
 
-#include <libwnck/libwnck.h>
+#include <libvnck/libvnck.h>
 
 enum {
   INVALID_MODE,
@@ -326,7 +326,7 @@ get_xserver_timestamp (WnckScreen *screen)
   XEvent xevent;
 
   display = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
-  number = wnck_screen_get_number (screen);
+  number = vnck_screen_get_number (screen);
   xscreen = ScreenOfDisplay (display, number);
 
   info.window = XCreateSimpleWindow (display,
@@ -848,48 +848,48 @@ update_screen (WnckScreen *screen)
   int viewport_y;
 
   if (set_n_workspaces > 0)
-    wnck_screen_change_workspace_count (screen, set_n_workspaces);
+    vnck_screen_change_workspace_count (screen, set_n_workspaces);
 
   if (set_workspace_rows > 0 || set_workspace_cols > 0)
     {
       int token;
 
-      token = wnck_screen_try_set_workspace_layout (screen, 0,
+      token = vnck_screen_try_set_workspace_layout (screen, 0,
                                                     set_workspace_rows,
                                                     set_workspace_cols);
       if (token)
-        wnck_screen_release_workspace_layout (screen, token);
+        vnck_screen_release_workspace_layout (screen, token);
       else
         g_printerr (_("Cannot change the workspace layout on the screen: "
                       "the layout is already owned\n"));
     }
 
   if (set_show_desktop)
-    wnck_screen_toggle_showing_desktop (screen, TRUE);
+    vnck_screen_toggle_showing_desktop (screen, TRUE);
   else if (set_unshow_desktop)
-    wnck_screen_toggle_showing_desktop (screen, FALSE);
+    vnck_screen_toggle_showing_desktop (screen, FALSE);
 
   if (set_viewport_x != -1 || set_viewport_y != -1)
     {
        WnckWorkspace *active_space;
 
-       active_space = wnck_screen_get_active_workspace (screen);
+       active_space = vnck_screen_get_active_workspace (screen);
 
        if (active_space != NULL)
          {
-           if (wnck_workspace_is_virtual (active_space))
+           if (vnck_workspace_is_virtual (active_space))
              {
                if (set_viewport_x != -1)
                  viewport_x = set_viewport_x;
                else
-                 viewport_x = wnck_workspace_get_viewport_x (active_space);
+                 viewport_x = vnck_workspace_get_viewport_x (active_space);
 
                if (set_viewport_y != -1)
                  viewport_y = set_viewport_y;
                else
-                 viewport_y = wnck_workspace_get_viewport_y (active_space);
+                 viewport_y = vnck_workspace_get_viewport_y (active_space);
 
-               wnck_screen_move_viewport (screen, viewport_x, viewport_y);
+               vnck_screen_move_viewport (screen, viewport_x, viewport_y);
              }
            else
          /* Translators: 'viewport' is kind of the viewable area. A viewport
@@ -912,13 +912,13 @@ update_workspace (WnckWorkspace *space)
 {
   unsigned int timestamp;
 
-  timestamp = get_xserver_timestamp (wnck_workspace_get_screen (space));
+  timestamp = get_xserver_timestamp (vnck_workspace_get_screen (space));
 
   if (set_activate)
-    wnck_workspace_activate (space, timestamp);
+    vnck_workspace_activate (space, timestamp);
 
   if (set_change_name)
-    wnck_workspace_change_name (space, set_change_name);
+    vnck_workspace_change_name (space, set_change_name);
 }
 
 
@@ -929,14 +929,14 @@ update_window (WnckWindow *window)
   WnckWindowMoveResizeMask geometry_mask;
   unsigned int             timestamp;
 
-  actions = wnck_window_get_actions (window);
-  timestamp = get_xserver_timestamp (wnck_window_get_screen (window));
+  actions = vnck_window_get_actions (window);
+  timestamp = get_xserver_timestamp (vnck_window_get_screen (window));
 
 #define SET_PROPERTY(name, action)                                      \
   if (set_##name)                                                       \
     {                                                                   \
       if (actions & action)                                             \
-        wnck_window_##name (window);                                    \
+        vnck_window_##name (window);                                    \
       else                                                              \
         g_printerr (_("Action not allowed\n"));                         \
     }
@@ -945,7 +945,7 @@ update_window (WnckWindow *window)
   if (set_##name)                                                       \
     {                                                                   \
       if (actions & action)                                             \
-        wnck_window_##name (window, timestamp);                         \
+        vnck_window_##name (window, timestamp);                         \
       else                                                              \
         g_printerr (_("Action not allowed\n"));                         \
     }
@@ -954,14 +954,14 @@ update_window (WnckWindow *window)
   if (set_##name)                                                       \
     {                                                                   \
       if (actions & action1)                                            \
-        wnck_window_##name (window);                                    \
+        vnck_window_##name (window);                                    \
       else                                                              \
         g_printerr (_("Action not allowed\n"));                         \
     }                                                                   \
   else if (set_un##name)                                                \
     {                                                                   \
       if (actions & action2)                                            \
-        wnck_window_un##name (window);                                  \
+        vnck_window_un##name (window);                                  \
       else                                                              \
         g_printerr (_("Action not allowed\n"));                         \
     }
@@ -971,14 +971,14 @@ update_window (WnckWindow *window)
   if (set_##name)                                                       \
     {                                                                   \
       if (actions & action1)                                            \
-        wnck_window_set_##name (window, TRUE);                          \
+        vnck_window_set_##name (window, TRUE);                          \
       else                                                              \
         g_printerr (_("Action not allowed\n"));                         \
     }                                                                   \
   else if (set_un##name)                                                \
     {                                                                   \
       if (actions & action2)                                            \
-        wnck_window_set_##name (window, FALSE);                         \
+        vnck_window_set_##name (window, FALSE);                         \
       else                                                              \
         g_printerr (_("Action not allowed\n"));                         \
     }
@@ -1029,10 +1029,10 @@ update_window (WnckWindow *window)
            WnckScreen    *screen;
            WnckWorkspace *space;
 
-           screen = wnck_window_get_screen (window);
-           space = wnck_screen_get_workspace (screen, set_workspace);
+           screen = vnck_window_get_screen (window);
+           space = vnck_screen_get_workspace (screen, set_workspace);
            if (space)
-             wnck_window_move_to_workspace (window, space);
+             vnck_window_move_to_workspace (window, space);
            else
              g_printerr (_("Window cannot be moved to workspace %d: "
                            "the workspace does not exist\n"), set_workspace);
@@ -1047,18 +1047,18 @@ update_window (WnckWindow *window)
        WnckScreen    *screen;
        WnckWorkspace *space;
 
-       screen = wnck_window_get_screen (window);
-       space = wnck_window_get_workspace (window);
+       screen = vnck_window_get_screen (window);
+       space = vnck_window_get_workspace (window);
        if (space != NULL)
          {
            WnckWorkspace *active_space;
 
-           active_space = wnck_screen_get_active_workspace (screen);
+           active_space = vnck_screen_get_active_workspace (screen);
            if (space != active_space)
-             wnck_workspace_activate (space, timestamp);
+             vnck_workspace_activate (space, timestamp);
          }
 
-      wnck_window_activate_transient (window, timestamp);
+      vnck_window_activate_transient (window, timestamp);
     }
 
   geometry_mask = 0;
@@ -1068,17 +1068,17 @@ update_window (WnckWindow *window)
   SET_GEOMETRY (height, -1, WNCK_WINDOW_ACTION_RESIZE, WNCK_WINDOW_CHANGE_HEIGHT)
 
   if (geometry_mask != 0)
-    wnck_window_set_geometry (window,
+    vnck_window_set_geometry (window,
                               WNCK_WINDOW_GRAVITY_CURRENT, geometry_mask,
                               set_x, set_y, set_width, set_height);
 
   if (set_window_type != NULL)
-    wnck_window_set_window_type (window, set_window_type_t);
+    vnck_window_set_window_type (window, set_window_type_t);
 
   /* interactive actions at the end */
   SET_PROPERTY (keyboard_move, WNCK_WINDOW_ACTION_MOVE)
   /* FIXME: hack: we should rename the API */
-  #define wnck_window_keyboard_resize wnck_window_keyboard_size
+  #define vnck_window_keyboard_resize vnck_window_keyboard_size
   SET_PROPERTY (keyboard_resize, WNCK_WINDOW_ACTION_RESIZE)
   SET_PROPERTY_TIMESTAMP (close, WNCK_WINDOW_ACTION_CLOSE)
 }
@@ -1094,14 +1094,14 @@ list_windows (GList *windows)
     {
       window = WNCK_WINDOW (l->data);
 
-      if (wnck_window_has_name (window))
-        buf = wnck_window_get_name (window);
+      if (vnck_window_has_name (window))
+        buf = vnck_window_get_name (window);
       else
         /* Translators: 'unset' in the sense of "something has not been set". */
         buf = _("<name unset>");
 
       /* Translators: %lu is a window number and %s a window name */
-      g_print (_("%lu: %s\n"), wnck_window_get_xid (window), buf);
+      g_print (_("%lu: %s\n"), vnck_window_get_xid (window), buf);
     }
 }
 
@@ -1114,7 +1114,7 @@ list_screen (WnckScreen *screen)
       GList         *spaces;
       GList         *l;
 
-      spaces = wnck_screen_get_workspaces (screen);
+      spaces = vnck_screen_get_workspaces (screen);
 
       for (l = spaces; l; l = l->next)
         {
@@ -1122,12 +1122,12 @@ list_screen (WnckScreen *screen)
 
           /* Translators: %d is a workspace number and %s a workspace name */
           g_print (_("%d: %s\n"),
-                   wnck_workspace_get_number (space),
-                   wnck_workspace_get_name (space));
+                   vnck_workspace_get_number (space),
+                   vnck_workspace_get_name (space));
         }
     }
   else
-    list_windows (wnck_screen_get_windows (screen));
+    list_windows (vnck_screen_get_windows (screen));
 }
 
 static void
@@ -1138,15 +1138,15 @@ list_workspace (WnckWorkspace *space)
   GList      *l;
   GList      *space_windows;
 
-  all_windows = wnck_screen_get_windows (wnck_workspace_get_screen (space));
+  all_windows = vnck_screen_get_windows (vnck_workspace_get_screen (space));
   space_windows = NULL;
 
   for (l = all_windows; l; l = l->next)
     {
       window = WNCK_WINDOW (l->data);
 
-      if (wnck_window_get_workspace (window) != NULL &&
-          wnck_window_get_workspace (window) != space)
+      if (vnck_window_get_workspace (window) != NULL &&
+          vnck_window_get_workspace (window) != space)
         continue;
 
       space_windows = g_list_prepend (space_windows, window);
@@ -1162,13 +1162,13 @@ list_workspace (WnckWorkspace *space)
 static void
 list_class_group (WnckClassGroup *class_group)
 {
-  list_windows (wnck_class_group_get_windows (class_group));
+  list_windows (vnck_class_group_get_windows (class_group));
 }
 
 static void
 list_application (WnckApplication *app)
 {
-  list_windows (wnck_application_get_windows (app));
+  list_windows (vnck_application_get_windows (app));
 }
 
 static void
@@ -1184,17 +1184,17 @@ print_screen (WnckScreen *screen)
   int            columns;
 #endif
 
-  g_print (_("Screen Number: %d\n"), wnck_screen_get_number (screen));
+  g_print (_("Screen Number: %d\n"), vnck_screen_get_number (screen));
 
   g_print (_("Geometry (width, height): %d, %d\n"),
-           wnck_screen_get_width (screen),
-           wnck_screen_get_height (screen));
+           vnck_screen_get_width (screen),
+           vnck_screen_get_height (screen));
 
   g_print (_("Number of Workspaces: %d\n"),
-           wnck_screen_get_workspace_count (screen));
+           vnck_screen_get_workspace_count (screen));
 
 #if 0
-  wnck_screen_get_workspace_layout (screen, &orientation, &rows, &columns,
+  vnck_screen_get_workspace_layout (screen, &orientation, &rows, &columns,
                                     NULL);
   g_print (_("Workspace Layout (rows, columns, orientation): "
              "%d, %d, %s\n"),
@@ -1203,38 +1203,38 @@ print_screen (WnckScreen *screen)
                                                              "horizontal");
 #endif
 
-  if (wnck_screen_get_window_manager_name (screen) != NULL)
-    buf = wnck_screen_get_window_manager_name (screen);
+  if (vnck_screen_get_window_manager_name (screen) != NULL)
+    buf = vnck_screen_get_window_manager_name (screen);
   else
     buf = _("<no EWMH-compliant window manager>");
   g_print (_("Window Manager: %s\n"), buf);
 
-  space = wnck_screen_get_active_workspace (screen);
+  space = vnck_screen_get_active_workspace (screen);
   if (space)
     /* Translators: %d is a workspace number and %s a workspace name */
     free_buf = g_strdup_printf (_("%d (\"%s\")"),
-                                wnck_workspace_get_number (space),
-                                wnck_workspace_get_name (space));
+                                vnck_workspace_get_number (space),
+                                vnck_workspace_get_name (space));
   else
     /* Translators: "none" here means "no workspace" */
     free_buf = g_strdup (C_("workspace", "none"));
   g_print (_("Active Workspace: %s\n"), free_buf);
   g_free (free_buf);
 
-  window = wnck_screen_get_active_window (screen);
+  window = vnck_screen_get_active_window (screen);
   if (window)
     {
       char *name;
 
-      if (wnck_window_has_name (window))
-        name = g_strdup_printf (_("\"%s\""), wnck_window_get_name (window));
+      if (vnck_window_has_name (window))
+        name = g_strdup_printf (_("\"%s\""), vnck_window_get_name (window));
       else
         /* Translators: 'unset' in the sense of "something has not been set". */
         name = g_strdup (_("<name unset>"));
 
       /* Translators: %lu is a window identifier (number) and %s a window name */
       free_buf = g_strdup_printf (_("%lu (%s)"),
-                                  wnck_window_get_xid (window), name);
+                                  vnck_window_get_xid (window), name);
       g_free (name);
     }
   else
@@ -1244,7 +1244,7 @@ print_screen (WnckScreen *screen)
   g_free (free_buf);
 
   g_print (_("Showing the desktop: %s\n"),
-           wnck_screen_get_showing_desktop (screen) ?
+           vnck_screen_get_showing_desktop (screen) ?
              _("true") : _("false"));
 }
 
@@ -1256,25 +1256,25 @@ print_workspace (WnckWorkspace *space)
   const char    *buf;
   char          *free_buf;
 
-  g_print (_("Workspace Name: %s\n"), wnck_workspace_get_name (space));
-  g_print (_("Workspace Number: %d\n"), wnck_workspace_get_number (space));
+  g_print (_("Workspace Name: %s\n"), vnck_workspace_get_name (space));
+  g_print (_("Workspace Number: %d\n"), vnck_workspace_get_number (space));
 
-  screen = wnck_workspace_get_screen (space);
-  if (wnck_screen_get_window_manager_name (screen) != NULL)
-    buf = wnck_screen_get_window_manager_name (screen);
+  screen = vnck_workspace_get_screen (space);
+  if (vnck_screen_get_window_manager_name (screen) != NULL)
+    buf = vnck_screen_get_window_manager_name (screen);
   else
     buf = _("<no EWMH-compliant window manager>");
   g_print (_("On Screen: %d (Window Manager: %s)\n"),
-           wnck_screen_get_number (screen), buf);
+           vnck_screen_get_number (screen), buf);
 
   g_print (_("Geometry (width, height): %d, %d\n"),
-           wnck_workspace_get_width (space),
-           wnck_workspace_get_height (space));
+           vnck_workspace_get_width (space),
+           vnck_workspace_get_height (space));
 
-  if (wnck_workspace_is_virtual (space))
+  if (vnck_workspace_is_virtual (space))
     free_buf = g_strdup_printf ("%d, %d",
-                                wnck_workspace_get_viewport_x (space),
-                                wnck_workspace_get_viewport_y (space));
+                                vnck_workspace_get_viewport_x (space),
+                                vnck_workspace_get_viewport_y (space));
   else
     /* Translators: 'viewport' is kind of the viewable area. A viewport can be
      * used to implement workspaces (e.g. compiz is an example); however it is
@@ -1287,51 +1287,51 @@ print_workspace (WnckWorkspace *space)
   g_free (free_buf);
 
   g_print (_("Position in Layout (row, column): %d, %d\n"),
-           wnck_workspace_get_layout_row (space),
-           wnck_workspace_get_layout_column (space));
+           vnck_workspace_get_layout_row (space),
+           vnck_workspace_get_layout_column (space));
 
-  neighbor = wnck_workspace_get_neighbor (space, WNCK_MOTION_LEFT);
+  neighbor = vnck_workspace_get_neighbor (space, WNCK_MOTION_LEFT);
   if (neighbor)
     /* Translators: %d is a workspace number and %s a workspace name */
     free_buf = g_strdup_printf (_("%d (\"%s\")"),
-                                wnck_workspace_get_number (neighbor),
-                                wnck_workspace_get_name (neighbor));
+                                vnck_workspace_get_number (neighbor),
+                                vnck_workspace_get_name (neighbor));
   else
     /* Translators: "none" here means "no workspace" */
     free_buf = g_strdup (C_("workspace", "none"));
   g_print (_("Left Neighbor: %s\n"), free_buf);
   g_free (free_buf);
 
-  neighbor = wnck_workspace_get_neighbor (space, WNCK_MOTION_RIGHT);
+  neighbor = vnck_workspace_get_neighbor (space, WNCK_MOTION_RIGHT);
   if (neighbor)
     /* Translators: %d is a workspace number and %s a workspace name */
     free_buf = g_strdup_printf (_("%d (\"%s\")"),
-                                wnck_workspace_get_number (neighbor),
-                                wnck_workspace_get_name (neighbor));
+                                vnck_workspace_get_number (neighbor),
+                                vnck_workspace_get_name (neighbor));
   else
     /* Translators: "none" here means "no workspace" */
     free_buf = g_strdup (C_("workspace", "none"));
   g_print (_("Right Neighbor: %s\n"), free_buf);
   g_free (free_buf);
 
-  neighbor = wnck_workspace_get_neighbor (space, WNCK_MOTION_UP);
+  neighbor = vnck_workspace_get_neighbor (space, WNCK_MOTION_UP);
   if (neighbor)
     /* Translators: %d is a workspace number and %s a workspace name */
     free_buf = g_strdup_printf (_("%d (\"%s\")"),
-                                wnck_workspace_get_number (neighbor),
-                                wnck_workspace_get_name (neighbor));
+                                vnck_workspace_get_number (neighbor),
+                                vnck_workspace_get_name (neighbor));
   else
     /* Translators: "none" here means "no workspace" */
     free_buf = g_strdup (C_("workspace", "none"));
   g_print (_("Top Neighbor: %s\n"), free_buf);
   g_free (free_buf);
 
-  neighbor = wnck_workspace_get_neighbor (space, WNCK_MOTION_DOWN);
+  neighbor = vnck_workspace_get_neighbor (space, WNCK_MOTION_DOWN);
   if (neighbor)
     /* Translators: %d is a workspace number and %s a workspace name */
     free_buf = g_strdup_printf (_("%d (\"%s\")"),
-                                wnck_workspace_get_number (neighbor),
-                                wnck_workspace_get_name (neighbor));
+                                vnck_workspace_get_number (neighbor),
+                                vnck_workspace_get_name (neighbor));
   else
     /* Translators: "none" here means "no workspace" */
     free_buf = g_strdup (C_("workspace", "none"));
@@ -1344,19 +1344,19 @@ print_class_group (WnckClassGroup *class_group)
 {
   GList *windows;
 
-  windows = wnck_class_group_get_windows (class_group);
+  windows = vnck_class_group_get_windows (class_group);
 
   /* Translators: A class is like a "family". E.g., all gvim windows are of the
    * same class. */
   g_print (_("Class Group ID: %s\n"),
-           wnck_class_group_get_id (class_group));
+           vnck_class_group_get_id (class_group));
   /* Translators: A class is like a "family". E.g., all gvim windows are of the
    * same class. */
-  g_print (_("Class Group Name: %s\n"), wnck_class_group_get_name (class_group));
+  g_print (_("Class Group Name: %s\n"), vnck_class_group_get_name (class_group));
 
   /* TODO: missing API */
 #if 0
-  if (!wnck_class_group_get_icon_is_fallback (class_group))
+  if (!vnck_class_group_get_icon_is_fallback (class_group))
     /* Translators: 'set' in the sense of "something has been set". */
     buf = _("set");
   else
@@ -1375,12 +1375,12 @@ print_application (WnckApplication *app)
   char       *free_buf;
   GList      *windows;
 
-  windows = wnck_application_get_windows (app);
+  windows = vnck_application_get_windows (app);
 
-  g_print (_("Name: %s\n"), wnck_application_get_name (app));
-  g_print (_("Icon Name: %s\n"), wnck_application_get_icon_name (app));
+  g_print (_("Name: %s\n"), vnck_application_get_name (app));
+  g_print (_("Icon Name: %s\n"), vnck_application_get_icon_name (app));
 
-  if (!wnck_application_get_icon_is_fallback (app))
+  if (!vnck_application_get_icon_is_fallback (app))
     /* Translators: 'set' in the sense of "something has been set". */
     buf = _("set");
   else
@@ -1388,16 +1388,16 @@ print_application (WnckApplication *app)
     buf = _("<unset>");
   g_print (_("Icons: %s\n"), buf);
 
-  if (wnck_application_get_pid (app) != 0)
-    free_buf = g_strdup_printf ("%d", wnck_application_get_pid (app));
+  if (vnck_application_get_pid (app) != 0)
+    free_buf = g_strdup_printf ("%d", vnck_application_get_pid (app));
   else
     /* Translators: 'unset' in the sense of "something has not been set". */
     free_buf = g_strdup (_("<unset>"));
   g_print (_("PID: %s\n"), free_buf);
   g_free (free_buf);
 
-  if (wnck_application_get_startup_id (app) != NULL)
-    buf = wnck_application_get_startup_id (app);
+  if (vnck_application_get_startup_id (app) != NULL)
+    buf = vnck_application_get_startup_id (app);
   else
     /* Translators: "none" here means "no startup ID" */
     buf = C_("startupID", "none");
@@ -1418,15 +1418,15 @@ print_window (WnckWindow *window)
   const char        *buf;
   char              *free_buf;
 
-  if (wnck_window_has_name (window))
-    buf = wnck_window_get_name (window);
+  if (vnck_window_has_name (window))
+    buf = vnck_window_get_name (window);
   else
     /* Translators: 'unset' in the sense of "something has not been set". */
     buf = _("<unset>");
   g_print (_("Name: %s\n"), buf);
 
-  if (wnck_window_has_icon_name (window))
-    buf = wnck_window_get_icon_name (window);
+  if (vnck_window_has_icon_name (window))
+    buf = vnck_window_get_icon_name (window);
   else
     /* Translators: 'unset' in the sense of "something has not been set". */
     buf = _("<unset>");
@@ -1434,7 +1434,7 @@ print_window (WnckWindow *window)
    * management-related meaning. It means minimized. */
   g_print (_("Icon Name: %s\n"), buf);
 
-  if (!wnck_window_get_icon_is_fallback (window))
+  if (!vnck_window_get_icon_is_fallback (window))
     /* Translators: 'set' in the sense of "something has been set". */
     buf = _("set");
   else
@@ -1442,13 +1442,13 @@ print_window (WnckWindow *window)
     buf = _("<unset>");
   g_print (_("Icons: %s\n"), buf);
 
-  space = wnck_window_get_workspace (window);
+  space = vnck_window_get_workspace (window);
   if (space)
     /* Translators: %d is a workspace number and %s a workspace name */
     free_buf = g_strdup_printf (_("%d (\"%s\")"),
-                                wnck_workspace_get_number (space),
-                                wnck_workspace_get_name (space));
-  else if (wnck_window_is_pinned (window))
+                                vnck_workspace_get_number (space),
+                                vnck_workspace_get_name (space));
+  else if (vnck_window_is_pinned (window))
     free_buf = g_strdup (_("all workspaces"));
   else
     /* Translators: "none" here means "no workspace" */
@@ -1456,15 +1456,15 @@ print_window (WnckWindow *window)
   g_print (_("On Workspace: %s\n"), free_buf);
   g_free (free_buf);
 
-  screen = wnck_window_get_screen (window);
-  if (wnck_screen_get_window_manager_name (screen) != NULL)
-    buf = wnck_screen_get_window_manager_name (screen);
+  screen = vnck_window_get_screen (window);
+  if (vnck_screen_get_window_manager_name (screen) != NULL)
+    buf = vnck_screen_get_window_manager_name (screen);
   else
     buf = _("<no EWMH-compliant window manager>");
   g_print (_("On Screen: %d (Window Manager: %s)\n"),
-           wnck_screen_get_number (screen), buf);
+           vnck_screen_get_number (screen), buf);
 
-  type = wnck_window_get_window_type (window);
+  type = vnck_window_get_window_type (window);
   switch (type)
     {
       case WNCK_WINDOW_NORMAL:
@@ -1496,12 +1496,12 @@ print_window (WnckWindow *window)
     }
   g_print (_("Window Type: %s\n"), buf);
 
-  wnck_window_get_geometry (window, &x, &y, &w, &h);
+  vnck_window_get_geometry (window, &x, &y, &w, &h);
   g_print (_("Geometry (x, y, width, height): %d, %d, %d, %d\n"), x, y, w, h);
 
-  class_group = wnck_window_get_class_group (window);
-  if (strcmp (wnck_class_group_get_id (class_group), ""))
-    buf = wnck_class_group_get_id (class_group);
+  class_group = vnck_window_get_class_group (window);
+  if (strcmp (vnck_class_group_get_id (class_group), ""))
+    buf = vnck_class_group_get_id (class_group);
   else
     /* Translators: 'unset' in the sense of "something has not been set". */
     buf = _("<unset>");
@@ -1509,8 +1509,8 @@ print_window (WnckWindow *window)
    * same class. */
   g_print (_("Class Group ID: %s\n"), buf);
 
-  if (g_strcmp0 (wnck_window_get_class_instance_name (window), ""))
-    buf = wnck_window_get_class_instance_name (window);
+  if (g_strcmp0 (vnck_window_get_class_instance_name (window), ""))
+    buf = vnck_window_get_class_instance_name (window);
   else
     /* Translators: 'unset' in the sense of "something has not been set". */
     buf = _("<unset>");
@@ -1519,43 +1519,43 @@ print_window (WnckWindow *window)
    * to the same class group. */
   g_print (_("Class Instance: %s\n"), buf);
 
-  g_print (_("XID: %lu\n"), wnck_window_get_xid (window));
+  g_print (_("XID: %lu\n"), vnck_window_get_xid (window));
 
-  if (wnck_window_get_pid (window) != 0)
-    free_buf = g_strdup_printf ("%d", wnck_window_get_pid (window));
+  if (vnck_window_get_pid (window) != 0)
+    free_buf = g_strdup_printf ("%d", vnck_window_get_pid (window));
   else
     /* Translators: 'unset' in the sense of "something has not been set". */
     free_buf = g_strdup (_("<unset>"));
   g_print (_("PID: %s\n"), free_buf);
   g_free (free_buf);
 
-  if (wnck_window_get_session_id (window))
-    buf = wnck_window_get_session_id (window);
+  if (vnck_window_get_session_id (window))
+    buf = vnck_window_get_session_id (window);
   else
     /* Translators: 'unset' in the sense of "something has not been set". */
     buf = _("<unset>");
   g_print (_("Session ID: %s\n"), buf);
 
-  if (wnck_window_get_role (window))
-    buf = wnck_window_get_role (window);
+  if (vnck_window_get_role (window))
+    buf = vnck_window_get_role (window);
   else
     /* Translators: 'unset' in the sense of "something has not been set". */
     buf = _("<unset>");
   g_print (_("Role: %s\n"), buf);
 
-  if (wnck_window_get_group_leader (window) != wnck_window_get_xid (window))
+  if (vnck_window_get_group_leader (window) != vnck_window_get_xid (window))
     /* Translators: A group leader is the window that is the "owner" of a group
      * of windows, ie: if you have multiple windows in one application, one
      * window has some information about the application (like the application
      * name). */
-    g_print (_("Group Leader: %lu\n"), wnck_window_get_group_leader (window));
+    g_print (_("Group Leader: %lu\n"), vnck_window_get_group_leader (window));
   //FIXME: else print something?
 
-  if (wnck_window_get_transient (window))
+  if (vnck_window_get_transient (window))
     /* Translators: A window can be transient for another window: it means it's
      * on top of it */
     g_print (_("Transient for: %lu\n"),
-             wnck_window_get_xid (wnck_window_get_transient (window)));
+             vnck_window_get_xid (vnck_window_get_transient (window)));
   //FIXME: else print something?
 
 #define PRINT_LIST_ITEM(func, string)                           \
@@ -1579,30 +1579,30 @@ print_window (WnckWindow *window)
       free_buf = tmp;                                           \
     }
   free_buf = NULL;
-  PRINT_LIST_ITEM (wnck_window_is_minimized, _("minimized"));
-  PRINT_LIST_ITEM (wnck_window_is_maximized, _("maximized"));
-  if (!wnck_window_is_maximized (window))
+  PRINT_LIST_ITEM (vnck_window_is_minimized, _("minimized"));
+  PRINT_LIST_ITEM (vnck_window_is_maximized, _("maximized"));
+  if (!vnck_window_is_maximized (window))
     {
-      PRINT_LIST_ITEM (wnck_window_is_maximized_horizontally,
+      PRINT_LIST_ITEM (vnck_window_is_maximized_horizontally,
                        _("maximized horizontally"));
-      PRINT_LIST_ITEM (wnck_window_is_maximized_vertically,
+      PRINT_LIST_ITEM (vnck_window_is_maximized_vertically,
                        _("maximized vertically"));
     }
-  PRINT_LIST_ITEM (wnck_window_is_shaded, _("shaded"));
-  PRINT_LIST_ITEM (wnck_window_is_pinned, _("pinned"));
-  PRINT_LIST_ITEM (wnck_window_is_sticky, _("sticky"));
-  PRINT_LIST_ITEM (wnck_window_is_above, _("above"));
-  PRINT_LIST_ITEM (wnck_window_is_below, _("below"));
-  PRINT_LIST_ITEM (wnck_window_is_fullscreen, _("fullscreen"));
-  PRINT_LIST_ITEM (wnck_window_needs_attention, _("needs attention"));
+  PRINT_LIST_ITEM (vnck_window_is_shaded, _("shaded"));
+  PRINT_LIST_ITEM (vnck_window_is_pinned, _("pinned"));
+  PRINT_LIST_ITEM (vnck_window_is_sticky, _("sticky"));
+  PRINT_LIST_ITEM (vnck_window_is_above, _("above"));
+  PRINT_LIST_ITEM (vnck_window_is_below, _("below"));
+  PRINT_LIST_ITEM (vnck_window_is_fullscreen, _("fullscreen"));
+  PRINT_LIST_ITEM (vnck_window_needs_attention, _("needs attention"));
   /* Translators: A pager is the technical term for the workspace switcher.
    * It's a representation of all workspaces with windows inside it.
    * Please make sure that the translation is in sync with gnome-panel,
    * where this term is also used in translatable strings */
-  PRINT_LIST_ITEM (wnck_window_is_skip_pager, _("skip pager"));
+  PRINT_LIST_ITEM (vnck_window_is_skip_pager, _("skip pager"));
   /* Translators: "tasklist" is the list of running applications (the window
    * list) */
-  PRINT_LIST_ITEM (wnck_window_is_skip_tasklist, _("skip tasklist"));
+  PRINT_LIST_ITEM (vnck_window_is_skip_tasklist, _("skip tasklist"));
   if (!free_buf)
     free_buf = g_strdup (_("normal"));
   g_print (_("State: %s\n"), free_buf);
@@ -1625,7 +1625,7 @@ print_window (WnckWindow *window)
       free_buf = tmp;                                           \
     }
   free_buf = NULL;
-  actions = wnck_window_get_actions (window);
+  actions = vnck_window_get_actions (window);
   PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_MOVE, _("move"));
   PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_RESIZE, _("resize"));
   PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_SHADE, _("shade"));
@@ -1720,7 +1720,7 @@ find_managed_window (Display *display,
   int         result;
 
   if (wm_state_set (display, window))
-    return wnck_window_get (window);
+    return vnck_window_get (window);
 
   gdk_display = gdk_x11_lookup_xdisplay (display);
   g_assert (gdk_display != NULL);
@@ -1736,7 +1736,7 @@ find_managed_window (Display *display,
     {
       if (wm_state_set (display, kids [i]))
         {
-          retval = wnck_window_get (kids [i]);
+          retval = vnck_window_get (kids [i]);
           break;
         }
 
@@ -1933,13 +1933,13 @@ main (int argc, char **argv)
 
   gtk_init (&argc, &argv);
 
-  wnck_set_client_type (WNCK_CLIENT_TYPE_PAGER);
+  vnck_set_client_type (WNCK_CLIENT_TYPE_PAGER);
 
   if ((option_screen && interact_screen < 0) || !option_screen)
-    screen = wnck_screen_get_default ();
+    screen = vnck_screen_get_default ();
   else
     {
-      screen = wnck_screen_get (interact_screen);
+      screen = vnck_screen_get (interact_screen);
       if (!screen)
         {
          g_printerr (_("Cannot interact with screen %d: "
@@ -1949,16 +1949,16 @@ main (int argc, char **argv)
     }
 
   /* because we don't respond to signals at the moment */
-  wnck_screen_force_update (screen);
+  vnck_screen_force_update (screen);
 
   if (option_workspace && interact_space < 0)
     {
       WnckWorkspace *space;
-      space = wnck_screen_get_active_workspace (screen);
+      space = vnck_screen_get_active_workspace (screen);
       if (space == NULL)
         interact_space = 0;
       else
-        interact_space = wnck_workspace_get_number (space);
+        interact_space = vnck_workspace_get_number (space);
     }
 
   if (get_from_user)
@@ -1984,7 +1984,7 @@ main (int argc, char **argv)
 
       g_assert (interact_space != -1);
 
-      space = wnck_screen_get_workspace (screen, interact_space);
+      space = vnck_screen_get_workspace (screen, interact_space);
 
       if (space)
         {
@@ -2006,9 +2006,9 @@ main (int argc, char **argv)
       WnckClassGroup *class_group;
 
       if (got_from_user)
-        class_group = wnck_window_get_class_group (got_from_user);
+        class_group = vnck_window_get_class_group (got_from_user);
       else
-        class_group = wnck_class_group_get (interact_class_group);
+        class_group = vnck_class_group_get (interact_class_group);
 
       if (class_group)
         {
@@ -2031,9 +2031,9 @@ main (int argc, char **argv)
       WnckApplication *app;
 
       if (got_from_user)
-        app = wnck_window_get_application (got_from_user);
+        app = vnck_window_get_application (got_from_user);
       else
-        app = wnck_application_get (interact_app_xid);
+        app = vnck_application_get (interact_app_xid);
 
       if (app)
         {
@@ -2056,7 +2056,7 @@ main (int argc, char **argv)
       if (got_from_user)
         window = got_from_user;
       else
-        window = wnck_window_get (xid);
+        window = vnck_window_get (xid);
 
       if (window)
         {

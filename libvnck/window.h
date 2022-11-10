@@ -20,18 +20,18 @@
  */
 
 #if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
-#error "Only <libwnck/libwnck.h> can be included directly."
+#error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
 #ifndef WNCK_WINDOW_H
 #define WNCK_WINDOW_H
 
 #ifndef WNCK_I_KNOW_THIS_IS_UNSTABLE
-#error "libwnck should only be used if you understand that it's subject to frequent change, and is not supported as a fixed API/ABI or as part of the platform"
+#error "libvnck should only be used if you understand that it's subject to frequent change, and is not supported as a fixed API/ABI or as part of the platform"
 #endif
 
 #include <glib-object.h>
-#include <libwnck/screen.h>
+#include <libvnck/screen.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 G_BEGIN_DECLS
@@ -47,7 +47,7 @@ G_BEGIN_DECLS
  * @WNCK_WINDOW_STATE_SKIP_TASKLIST: the window should not be included on
  * tasklists.
  * @WNCK_WINDOW_STATE_STICKY: the window is sticky (see
- * wnck_window_is_sticky()).
+ * vnck_window_is_sticky()).
  * @WNCK_WINDOW_STATE_HIDDEN: the window is not visible on its #WnckWorkspace
  * and viewport (when minimized, for example).
  * @WNCK_WINDOW_STATE_FULLSCREEN: the window is fullscreen.
@@ -56,9 +56,9 @@ G_BEGIN_DECLS
  * example).
  * @WNCK_WINDOW_STATE_URGENT: the window requires a response from the user.
  * @WNCK_WINDOW_STATE_ABOVE: the window is above other windows (see
- * wnck_window_make_above()).
+ * vnck_window_make_above()).
  * @WNCK_WINDOW_STATE_BELOW: the window is below other windows (see
- * wnck_window_make_below()).
+ * vnck_window_make_below()).
  *
  * Type used as a bitmask to describe the state of a #WnckWindow.
  */
@@ -223,7 +223,7 @@ typedef enum
   WNCK_WINDOW_CHANGE_HEIGHT = 1 << 3
 } WnckWindowMoveResizeMask;
 
-#define WNCK_TYPE_WINDOW              (wnck_window_get_type ())
+#define WNCK_TYPE_WINDOW              (vnck_window_get_type ())
 #define WNCK_WINDOW(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_WINDOW, WnckWindow))
 #define WNCK_WINDOW_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_WINDOW, WnckWindowClass))
 #define WNCK_IS_WINDOW(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_WINDOW))
@@ -286,124 +286,124 @@ struct _WnckWindowClass
   void (* pad1) (void);
 };
 
-GType wnck_window_get_type (void) G_GNUC_CONST;
+GType vnck_window_get_type (void) G_GNUC_CONST;
 
-WnckWindow* wnck_window_get (gulong xwindow);
+WnckWindow* vnck_window_get (gulong xwindow);
 
-WnckScreen* wnck_window_get_screen    (WnckWindow *window);
+WnckScreen* vnck_window_get_screen    (WnckWindow *window);
 
-gboolean    wnck_window_has_name      (WnckWindow *window);
-const char* wnck_window_get_name      (WnckWindow *window);
-gboolean    wnck_window_has_icon_name (WnckWindow *window);
-const char* wnck_window_get_icon_name (WnckWindow *window);
+gboolean    vnck_window_has_name      (WnckWindow *window);
+const char* vnck_window_get_name      (WnckWindow *window);
+gboolean    vnck_window_has_icon_name (WnckWindow *window);
+const char* vnck_window_get_icon_name (WnckWindow *window);
 
-WnckApplication* wnck_window_get_application  (WnckWindow *window);
-WnckWindow*      wnck_window_get_transient    (WnckWindow *window);
-gulong           wnck_window_get_group_leader (WnckWindow *window);
-gulong           wnck_window_get_xid          (WnckWindow *window);
+WnckApplication* vnck_window_get_application  (WnckWindow *window);
+WnckWindow*      vnck_window_get_transient    (WnckWindow *window);
+gulong           vnck_window_get_group_leader (WnckWindow *window);
+gulong           vnck_window_get_xid          (WnckWindow *window);
 
-WnckClassGroup *wnck_window_get_class_group   (WnckWindow *window);
+WnckClassGroup *vnck_window_get_class_group   (WnckWindow *window);
 
-const char* wnck_window_get_class_group_name    (WnckWindow *window);
-const char* wnck_window_get_class_instance_name (WnckWindow *window);
+const char* vnck_window_get_class_group_name    (WnckWindow *window);
+const char* vnck_window_get_class_instance_name (WnckWindow *window);
 
-const char* wnck_window_get_session_id        (WnckWindow *window);
-const char* wnck_window_get_session_id_utf8   (WnckWindow *window);
-const char* wnck_window_get_role              (WnckWindow *window);
-int         wnck_window_get_pid               (WnckWindow *window);
-gint        wnck_window_get_sort_order        (WnckWindow *window);
-void        wnck_window_set_sort_order        (WnckWindow *window,
+const char* vnck_window_get_session_id        (WnckWindow *window);
+const char* vnck_window_get_session_id_utf8   (WnckWindow *window);
+const char* vnck_window_get_role              (WnckWindow *window);
+int         vnck_window_get_pid               (WnckWindow *window);
+gint        vnck_window_get_sort_order        (WnckWindow *window);
+void        vnck_window_set_sort_order        (WnckWindow *window,
 						gint order);
 
-WnckWindowType wnck_window_get_window_type    (WnckWindow *window);
-void           wnck_window_set_window_type    (WnckWindow *window,
+WnckWindowType vnck_window_get_window_type    (WnckWindow *window);
+void           vnck_window_set_window_type    (WnckWindow *window,
                                                WnckWindowType wintype);
 
-gboolean wnck_window_is_minimized              (WnckWindow *window);
-gboolean wnck_window_is_maximized_horizontally (WnckWindow *window);
-gboolean wnck_window_is_maximized_vertically   (WnckWindow *window);
-gboolean wnck_window_is_maximized              (WnckWindow *window);
-gboolean wnck_window_is_shaded                 (WnckWindow *window);
-gboolean wnck_window_is_above                  (WnckWindow *window);
-gboolean wnck_window_is_below                  (WnckWindow *window);
-gboolean wnck_window_is_skip_pager             (WnckWindow *window);
-gboolean wnck_window_is_skip_tasklist          (WnckWindow *window);
-gboolean wnck_window_is_fullscreen             (WnckWindow *window);
-gboolean wnck_window_is_sticky                 (WnckWindow *window);
-gboolean wnck_window_needs_attention           (WnckWindow *window);
-gboolean wnck_window_or_transient_needs_attention (WnckWindow *window);
+gboolean vnck_window_is_minimized              (WnckWindow *window);
+gboolean vnck_window_is_maximized_horizontally (WnckWindow *window);
+gboolean vnck_window_is_maximized_vertically   (WnckWindow *window);
+gboolean vnck_window_is_maximized              (WnckWindow *window);
+gboolean vnck_window_is_shaded                 (WnckWindow *window);
+gboolean vnck_window_is_above                  (WnckWindow *window);
+gboolean vnck_window_is_below                  (WnckWindow *window);
+gboolean vnck_window_is_skip_pager             (WnckWindow *window);
+gboolean vnck_window_is_skip_tasklist          (WnckWindow *window);
+gboolean vnck_window_is_fullscreen             (WnckWindow *window);
+gboolean vnck_window_is_sticky                 (WnckWindow *window);
+gboolean vnck_window_needs_attention           (WnckWindow *window);
+gboolean vnck_window_or_transient_needs_attention (WnckWindow *window);
 
-void wnck_window_set_skip_pager    (WnckWindow *window,
+void vnck_window_set_skip_pager    (WnckWindow *window,
                                     gboolean skip);
-void wnck_window_set_skip_tasklist (WnckWindow *window,
+void vnck_window_set_skip_tasklist (WnckWindow *window,
                                     gboolean skip);
-void wnck_window_set_fullscreen (WnckWindow *window,
+void vnck_window_set_fullscreen (WnckWindow *window,
                                  gboolean fullscreen);
 
-void wnck_window_close                   (WnckWindow *window,
+void vnck_window_close                   (WnckWindow *window,
                                           guint32     timestamp);
-void wnck_window_minimize                (WnckWindow *window);
-void wnck_window_unminimize              (WnckWindow *window,
+void vnck_window_minimize                (WnckWindow *window);
+void vnck_window_unminimize              (WnckWindow *window,
                                           guint32     timestamp);
-void wnck_window_maximize                (WnckWindow *window);
-void wnck_window_unmaximize              (WnckWindow *window);
-void wnck_window_maximize_horizontally   (WnckWindow *window);
-void wnck_window_unmaximize_horizontally (WnckWindow *window);
-void wnck_window_maximize_vertically     (WnckWindow *window);
-void wnck_window_unmaximize_vertically   (WnckWindow *window);
-void wnck_window_shade                   (WnckWindow *window);
-void wnck_window_unshade                 (WnckWindow *window);
-void wnck_window_make_above              (WnckWindow *window);
-void wnck_window_unmake_above            (WnckWindow *window);
-void wnck_window_make_below              (WnckWindow *window);
-void wnck_window_unmake_below            (WnckWindow *window);
-void wnck_window_stick                   (WnckWindow *window);
-void wnck_window_unstick                 (WnckWindow *window);
-void wnck_window_keyboard_move           (WnckWindow *window);
-void wnck_window_keyboard_size           (WnckWindow *window);
+void vnck_window_maximize                (WnckWindow *window);
+void vnck_window_unmaximize              (WnckWindow *window);
+void vnck_window_maximize_horizontally   (WnckWindow *window);
+void vnck_window_unmaximize_horizontally (WnckWindow *window);
+void vnck_window_maximize_vertically     (WnckWindow *window);
+void vnck_window_unmaximize_vertically   (WnckWindow *window);
+void vnck_window_shade                   (WnckWindow *window);
+void vnck_window_unshade                 (WnckWindow *window);
+void vnck_window_make_above              (WnckWindow *window);
+void vnck_window_unmake_above            (WnckWindow *window);
+void vnck_window_make_below              (WnckWindow *window);
+void vnck_window_unmake_below            (WnckWindow *window);
+void vnck_window_stick                   (WnckWindow *window);
+void vnck_window_unstick                 (WnckWindow *window);
+void vnck_window_keyboard_move           (WnckWindow *window);
+void vnck_window_keyboard_size           (WnckWindow *window);
 
-WnckWorkspace* wnck_window_get_workspace     (WnckWindow    *window);
-void           wnck_window_move_to_workspace (WnckWindow    *window,
+WnckWorkspace* vnck_window_get_workspace     (WnckWindow    *window);
+void           vnck_window_move_to_workspace (WnckWindow    *window,
                                               WnckWorkspace *space);
 
 /* pinned = on all workspaces */
-gboolean wnck_window_is_pinned (WnckWindow *window);
-void     wnck_window_pin       (WnckWindow *window);
-void     wnck_window_unpin     (WnckWindow *window);
+gboolean vnck_window_is_pinned (WnckWindow *window);
+void     vnck_window_pin       (WnckWindow *window);
+void     vnck_window_unpin     (WnckWindow *window);
 
-void     wnck_window_activate  (WnckWindow *window,
+void     vnck_window_activate  (WnckWindow *window,
                                 guint32     timestamp);
-gboolean wnck_window_is_active (WnckWindow *window);
-gboolean wnck_window_is_most_recently_activated (WnckWindow *window);
-void     wnck_window_activate_transient (WnckWindow *window,
+gboolean vnck_window_is_active (WnckWindow *window);
+gboolean vnck_window_is_most_recently_activated (WnckWindow *window);
+void     vnck_window_activate_transient (WnckWindow *window,
                                          guint32     timestamp);
-gboolean wnck_window_transient_is_most_recently_activated (WnckWindow *window);
+gboolean vnck_window_transient_is_most_recently_activated (WnckWindow *window);
 
-GdkPixbuf* wnck_window_get_icon      (WnckWindow *window);
-GdkPixbuf* wnck_window_get_mini_icon (WnckWindow *window);
+GdkPixbuf* vnck_window_get_icon      (WnckWindow *window);
+GdkPixbuf* vnck_window_get_mini_icon (WnckWindow *window);
 
-gboolean wnck_window_get_icon_is_fallback (WnckWindow *window);
+gboolean vnck_window_get_icon_is_fallback (WnckWindow *window);
 
-void wnck_window_set_icon_geometry        (WnckWindow *window,
+void vnck_window_set_icon_geometry        (WnckWindow *window,
 					   int         x,
 					   int         y,
 					   int         width,
 					   int         height);
 
-WnckWindowActions wnck_window_get_actions (WnckWindow *window);
-WnckWindowState   wnck_window_get_state   (WnckWindow *window);
+WnckWindowActions vnck_window_get_actions (WnckWindow *window);
+WnckWindowState   vnck_window_get_state   (WnckWindow *window);
 
-void wnck_window_get_client_window_geometry (WnckWindow *window,
+void vnck_window_get_client_window_geometry (WnckWindow *window,
                                              int        *xp,
                                              int        *yp,
                                              int        *widthp,
                                              int        *heightp);
-void wnck_window_get_geometry (WnckWindow *window,
+void vnck_window_get_geometry (WnckWindow *window,
                                int        *xp,
                                int        *yp,
                                int        *widthp,
                                int        *heightp);
-void wnck_window_set_geometry (WnckWindow               *window,
+void vnck_window_set_geometry (WnckWindow               *window,
                                WnckWindowGravity         gravity,
                                WnckWindowMoveResizeMask  geometry_mask,
                                int                       x,
@@ -411,11 +411,11 @@ void wnck_window_set_geometry (WnckWindow               *window,
                                int                       width,
                                int                       height);
 
-gboolean wnck_window_is_visible_on_workspace (WnckWindow    *window,
+gboolean vnck_window_is_visible_on_workspace (WnckWindow    *window,
                                               WnckWorkspace *workspace);
-gboolean wnck_window_is_on_workspace         (WnckWindow    *window,
+gboolean vnck_window_is_on_workspace         (WnckWindow    *window,
                                               WnckWorkspace *workspace);
-gboolean wnck_window_is_in_viewport          (WnckWindow    *window,
+gboolean vnck_window_is_in_viewport          (WnckWindow    *window,
                                               WnckWorkspace *workspace);
 
 G_END_DECLS

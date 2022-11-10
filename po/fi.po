@@ -1,4 +1,4 @@
-# libwnck Finnish translation
+# libvnck Finnish translation
 # Copyright (C) 2002-2009 Free Software Foundation, Inc.
 #
 # Suomennos: https://l10n.gnome.org/teams/fi/
@@ -8,7 +8,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: libwnck\n"
+"Project-Id-Version: libvnck\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-26 10:00+0300\n"
 "PO-Revision-Date: 2011-09-26 10:00+0300\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. * SECTION:application
 #. * @short_description: an object representing a group of windows of the same
 #. * application.
-#. * @see_also: wnck_window_get_application()
+#. * @see_also: vnck_window_get_application()
 #. * @stability: Unstable
 #. *
 #. * The #WnckApplication is a group of #WnckWindow that are all in the same
@@ -35,10 +35,10 @@ msgstr ""
 #. * belonging to it, and new #WnckWindow are added to a #WnckApplication if and
 #. * only if they have the group leader of the #WnckApplication.
 #. *
-#. * The #WnckApplication objects are always owned by libwnck and must not be
+#. * The #WnckApplication objects are always owned by libvnck and must not be
 #. * referenced or unreferenced.
 #.
-#: ../libwnck/application.c:51
+#: ../libvnck/application.c:51
 msgid "Untitled application"
 msgstr "Nimetön sovellus"
 
@@ -157,10 +157,10 @@ msgstr "_Sulje"
 #. * @see_also: #WnckWorkspace, #WnckApplication, #WnckClassGroup
 #. * @stability: Unstable
 #. *
-#. * The #WnckWindow objects are always owned by libwnck and must not be
+#. * The #WnckWindow objects are always owned by libvnck and must not be
 #. * referenced or unreferenced.
 #.
-#: ../libwnck/window.c:50
+#: ../libvnck/window.c:50
 msgid "Untitled window"
 msgstr "Nimeämätön ikkuna"
 
@@ -174,7 +174,7 @@ msgstr "XID"
 #. * group of windows, ie: if you have multiple windows in one
 #. * application, one window has some information about the application
 #. * (like the application name).
-#: ../libwnck/wnckprop.c:144
+#: ../libvnck/vnckprop.c:144
 msgid "X window ID of the group leader of an application to examine"
 msgstr "Tutkittavan sovelluksen ikkunaryhmän johtajan X-ikkunatunniste"
 

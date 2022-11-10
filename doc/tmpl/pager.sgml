@@ -26,7 +26,7 @@ WnckPager
 </para>
 
 
-<!-- ##### FUNCTION wnck_pager_new ##### -->
+<!-- ##### FUNCTION vnck_pager_new ##### -->
 <para>
 
 </para>
@@ -35,7 +35,7 @@ WnckPager
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_pager_set_orientation ##### -->
+<!-- ##### FUNCTION vnck_pager_set_orientation ##### -->
 <para>
 
 </para>
@@ -45,7 +45,7 @@ WnckPager
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_pager_set_n_rows ##### -->
+<!-- ##### FUNCTION vnck_pager_set_n_rows ##### -->
 <para>
 
 </para>
@@ -63,7 +63,7 @@ WnckPager
 @WNCK_PAGER_DISPLAY_NAME: 
 @WNCK_PAGER_DISPLAY_CONTENT: 
 
-<!-- ##### FUNCTION wnck_pager_set_display_mode ##### -->
+<!-- ##### FUNCTION vnck_pager_set_display_mode ##### -->
 <para>
 
 </para>
@@ -72,7 +72,7 @@ WnckPager
 @mode: 
 
 
-<!-- ##### FUNCTION wnck_pager_set_show_all ##### -->
+<!-- ##### FUNCTION vnck_pager_set_show_all ##### -->
 <para>
 
 </para>
@@ -81,7 +81,7 @@ WnckPager
 @show_all_workspaces: 
 
 
-<!-- ##### FUNCTION wnck_pager_set_shadow_type ##### -->
+<!-- ##### FUNCTION vnck_pager_set_shadow_type ##### -->
 <para>
 
 </para>

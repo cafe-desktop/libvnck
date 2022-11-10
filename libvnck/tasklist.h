@@ -20,18 +20,18 @@
  */
 
 #if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
-#error "Only <libwnck/libwnck.h> can be included directly."
+#error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
 #ifndef WNCK_TASKLIST_H
 #define WNCK_TASKLIST_H
 
 #include <gtk/gtk.h>
-#include <libwnck/screen.h>
+#include <libvnck/screen.h>
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_TASKLIST              (wnck_tasklist_get_type ())
+#define WNCK_TYPE_TASKLIST              (vnck_tasklist_get_type ())
 #define WNCK_TASKLIST(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_TASKLIST, WnckTasklist))
 #define WNCK_TASKLIST_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_TASKLIST, WnckTasklistClass))
 #define WNCK_IS_TASKLIST(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_TASKLIST))
@@ -85,29 +85,29 @@ typedef enum {
   WNCK_TASKLIST_ALWAYS_GROUP
 } WnckTasklistGroupingType;
 
-GType wnck_tasklist_get_type (void) G_GNUC_CONST;
+GType vnck_tasklist_get_type (void) G_GNUC_CONST;
 
-GtkWidget *wnck_tasklist_new (void);
-const int *wnck_tasklist_get_size_hint_list (WnckTasklist  *tasklist,
+GtkWidget *vnck_tasklist_new (void);
+const int *vnck_tasklist_get_size_hint_list (WnckTasklist  *tasklist,
 					      int           *n_elements);
 
-void wnck_tasklist_set_grouping (WnckTasklist             *tasklist,
+void vnck_tasklist_set_grouping (WnckTasklist             *tasklist,
 				 WnckTasklistGroupingType  grouping);
-void wnck_tasklist_set_switch_workspace_on_unminimize (WnckTasklist  *tasklist,
+void vnck_tasklist_set_switch_workspace_on_unminimize (WnckTasklist  *tasklist,
 						       gboolean       switch_workspace_on_unminimize);
-void wnck_tasklist_set_middle_click_close (WnckTasklist  *tasklist,
+void vnck_tasklist_set_middle_click_close (WnckTasklist  *tasklist,
 					   gboolean       middle_click_close);
-void wnck_tasklist_set_grouping_limit (WnckTasklist *tasklist,
+void vnck_tasklist_set_grouping_limit (WnckTasklist *tasklist,
 				       gint          limit);
-void wnck_tasklist_set_include_all_workspaces (WnckTasklist *tasklist,
+void vnck_tasklist_set_include_all_workspaces (WnckTasklist *tasklist,
 					       gboolean      include_all_workspaces);
-void wnck_tasklist_set_button_relief (WnckTasklist *tasklist,
+void vnck_tasklist_set_button_relief (WnckTasklist *tasklist,
                                       GtkReliefStyle relief);
-void wnck_tasklist_set_orientation (WnckTasklist *tasklist,
+void vnck_tasklist_set_orientation (WnckTasklist *tasklist,
                                     GtkOrientation orient);
-void wnck_tasklist_set_scroll_enabled (WnckTasklist *tasklist,
+void vnck_tasklist_set_scroll_enabled (WnckTasklist *tasklist,
                                        gboolean      scroll_enabled);
-gboolean wnck_tasklist_get_scroll_enabled (WnckTasklist *tasklist);
+gboolean vnck_tasklist_get_scroll_enabled (WnckTasklist *tasklist);
 
 /**
  * WnckLoadIconFunction:
@@ -118,7 +118,7 @@ gboolean wnck_tasklist_get_scroll_enabled (WnckTasklist *tasklist);
  * @data: data passed to the function, set when the #WnckLoadIconFunction has
  * been set for the #WnckTasklist.
  *
- * Specifies the type of function passed to wnck_tasklist_set_icon_loader().
+ * Specifies the type of function passed to vnck_tasklist_set_icon_loader().
  *
  * Returns: it should return a <classname>GdkPixbuf</classname> of @icon_name
  * at size @size, or %NULL if no icon for @icon_name at size @size could be
@@ -131,7 +131,7 @@ typedef GdkPixbuf* (*WnckLoadIconFunction) (const char   *icon_name,
                                             unsigned int  flags,
                                             void         *data);
 
-void wnck_tasklist_set_icon_loader (WnckTasklist         *tasklist,
+void vnck_tasklist_set_icon_loader (WnckTasklist         *tasklist,
                                     WnckLoadIconFunction  load_icon_func,
                                     void                 *data,
                                     GDestroyNotify        free_data_func);

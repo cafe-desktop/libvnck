@@ -46,7 +46,7 @@ WnckTasklist
 
 </para>
 
-<!-- ##### FUNCTION wnck_tasklist_new ##### -->
+<!-- ##### FUNCTION vnck_tasklist_new ##### -->
 <para>
 
 </para>
@@ -64,7 +64,7 @@ WnckTasklist
 @WNCK_TASKLIST_AUTO_GROUP: 
 @WNCK_TASKLIST_ALWAYS_GROUP: 
 
-<!-- ##### FUNCTION wnck_tasklist_set_grouping ##### -->
+<!-- ##### FUNCTION vnck_tasklist_set_grouping ##### -->
 <para>
 
 </para>
@@ -73,7 +73,7 @@ WnckTasklist
 @grouping: 
 
 
-<!-- ##### FUNCTION wnck_tasklist_set_grouping_limit ##### -->
+<!-- ##### FUNCTION vnck_tasklist_set_grouping_limit ##### -->
 <para>
 
 </para>
@@ -82,7 +82,7 @@ WnckTasklist
 @limit: 
 
 
-<!-- ##### FUNCTION wnck_tasklist_set_include_all_workspaces ##### -->
+<!-- ##### FUNCTION vnck_tasklist_set_include_all_workspaces ##### -->
 <para>
 
 </para>
@@ -91,7 +91,7 @@ WnckTasklist
 @include_all_workspaces: 
 
 
-<!-- ##### FUNCTION wnck_tasklist_set_switch_workspace_on_unminimize ##### -->
+<!-- ##### FUNCTION vnck_tasklist_set_switch_workspace_on_unminimize ##### -->
 <para>
 
 </para>
@@ -100,7 +100,7 @@ WnckTasklist
 @switch_workspace_on_unminimize: 
 
 
-<!-- ##### FUNCTION wnck_tasklist_set_button_relief ##### -->
+<!-- ##### FUNCTION vnck_tasklist_set_button_relief ##### -->
 <para>
 
 </para>
@@ -121,7 +121,7 @@ WnckTasklist
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_tasklist_set_icon_loader ##### -->
+<!-- ##### FUNCTION vnck_tasklist_set_icon_loader ##### -->
 <para>
 
 </para>
@@ -132,7 +132,7 @@ WnckTasklist
 @free_data_func: 
 
 
-<!-- ##### FUNCTION wnck_tasklist_get_size_hint_list ##### -->
+<!-- ##### FUNCTION vnck_tasklist_get_size_hint_list ##### -->
 <para>
 
 </para>

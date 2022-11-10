@@ -4,11 +4,11 @@ gnome.gtkdoc(meson.project_name(),
   main_sgml: meson.project_name() + '-docs.sgml',
   src_dir: join_paths(meson.source_root(), meson.project_name()),
   dependencies: declare_dependency(
-    dependencies: libwnck_dep,
-    link_with: libwnck_lib
+    dependencies: libvnck_dep,
+    link_with: libvnck_lib
   ),
   gobject_typesfile: meson.project_name() + '.types',
-  ignore_headers: ['wnck-enum-types.h', 'version.h'],
+  ignore_headers: ['vnck-enum-types.h', 'version.h'],
   scan_args: [
     '--rebuild-types',
     '--deprecated-guards=WNCK_DISABLE_DEPRECATED'

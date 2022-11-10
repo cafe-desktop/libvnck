@@ -23,23 +23,23 @@
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_IMAGE_MENU_ITEM wnck_image_menu_item_get_type ()
-G_DECLARE_FINAL_TYPE (WnckImageMenuItem, wnck_image_menu_item,
+#define WNCK_TYPE_IMAGE_MENU_ITEM vnck_image_menu_item_get_type ()
+G_DECLARE_FINAL_TYPE (WnckImageMenuItem, vnck_image_menu_item,
                       WNCK, IMAGE_MENU_ITEM, GtkMenuItem)
 
-GtkWidget *wnck_image_menu_item_new                        (void);
+GtkWidget *vnck_image_menu_item_new                        (void);
 
-GtkWidget *wnck_image_menu_item_new_with_label             (const gchar       *label);
+GtkWidget *vnck_image_menu_item_new_with_label             (const gchar       *label);
 
-void       wnck_image_menu_item_set_image_from_icon_pixbuf (WnckImageMenuItem *item,
+void       vnck_image_menu_item_set_image_from_icon_pixbuf (WnckImageMenuItem *item,
                                                             GdkPixbuf         *pixbuf);
 
-void       wnck_image_menu_item_set_image_from_window      (WnckImageMenuItem *item,
+void       vnck_image_menu_item_set_image_from_window      (WnckImageMenuItem *item,
                                                             WnckWindow        *window);
 
-void       wnck_image_menu_item_make_label_bold            (WnckImageMenuItem *item);
+void       vnck_image_menu_item_make_label_bold            (WnckImageMenuItem *item);
 
-void       wnck_image_menu_item_make_label_normal          (WnckImageMenuItem *item);
+void       vnck_image_menu_item_make_label_normal          (WnckImageMenuItem *item);
 
 G_END_DECLS
 

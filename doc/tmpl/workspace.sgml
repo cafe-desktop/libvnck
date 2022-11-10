@@ -31,9 +31,9 @@ WnckWorkspace
 
 </para>
 
-@wnckworkspace: the object which received the signal.
+@vnckworkspace: the object which received the signal.
 
-<!-- ##### FUNCTION wnck_workspace_get_screen ##### -->
+<!-- ##### FUNCTION vnck_workspace_get_screen ##### -->
 <para>
 
 </para>
@@ -42,7 +42,7 @@ WnckWorkspace
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_workspace_get_number ##### -->
+<!-- ##### FUNCTION vnck_workspace_get_number ##### -->
 <para>
 
 </para>
@@ -51,7 +51,7 @@ WnckWorkspace
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_workspace_get_name ##### -->
+<!-- ##### FUNCTION vnck_workspace_get_name ##### -->
 <para>
 
 </para>
@@ -60,7 +60,7 @@ WnckWorkspace
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_workspace_change_name ##### -->
+<!-- ##### FUNCTION vnck_workspace_change_name ##### -->
 <para>
 
 </para>
@@ -69,7 +69,7 @@ WnckWorkspace
 @name: 
 
 
-<!-- ##### FUNCTION wnck_workspace_get_width ##### -->
+<!-- ##### FUNCTION vnck_workspace_get_width ##### -->
 <para>
 
 </para>
@@ -78,7 +78,7 @@ WnckWorkspace
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_workspace_get_height ##### -->
+<!-- ##### FUNCTION vnck_workspace_get_height ##### -->
 <para>
 
 </para>
@@ -87,7 +87,7 @@ WnckWorkspace
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_workspace_get_viewport_x ##### -->
+<!-- ##### FUNCTION vnck_workspace_get_viewport_x ##### -->
 <para>
 
 </para>
@@ -96,7 +96,7 @@ WnckWorkspace
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_workspace_get_viewport_y ##### -->
+<!-- ##### FUNCTION vnck_workspace_get_viewport_y ##### -->
 <para>
 
 </para>
@@ -105,7 +105,7 @@ WnckWorkspace
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_workspace_is_virtual ##### -->
+<!-- ##### FUNCTION vnck_workspace_is_virtual ##### -->
 <para>
 
 </para>
@@ -114,7 +114,7 @@ WnckWorkspace
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_workspace_get_layout_row ##### -->
+<!-- ##### FUNCTION vnck_workspace_get_layout_row ##### -->
 <para>
 
 </para>
@@ -123,7 +123,7 @@ WnckWorkspace
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_workspace_get_layout_column ##### -->
+<!-- ##### FUNCTION vnck_workspace_get_layout_column ##### -->
 <para>
 
 </para>
@@ -142,7 +142,7 @@ WnckWorkspace
 @WNCK_MOTION_LEFT: 
 @WNCK_MOTION_RIGHT: 
 
-<!-- ##### FUNCTION wnck_workspace_get_neighbor ##### -->
+<!-- ##### FUNCTION vnck_workspace_get_neighbor ##### -->
 <para>
 
 </para>
@@ -152,7 +152,7 @@ WnckWorkspace
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_workspace_activate ##### -->
+<!-- ##### FUNCTION vnck_workspace_activate ##### -->
 <para>
 
 </para>

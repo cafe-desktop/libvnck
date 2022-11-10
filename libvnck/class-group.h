@@ -21,7 +21,7 @@
  */
 
 #if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
-#error "Only <libwnck/libwnck.h> can be included directly."
+#error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
 #ifndef WNCK_CLASS_GROUP_H
@@ -29,11 +29,11 @@
 
 #include <glib-object.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include <libwnck/screen.h>
+#include <libvnck/screen.h>
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_CLASS_GROUP              (wnck_class_group_get_type ())
+#define WNCK_TYPE_CLASS_GROUP              (vnck_class_group_get_type ())
 #define WNCK_CLASS_GROUP(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_CLASS_GROUP, WnckClassGroup))
 #define WNCK_CLASS_GROUP_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_CLASS_GROUP, WnckClassGroupClass))
 #define WNCK_IS_CLASS_GROUP(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_CLASS_GROUP))
@@ -70,21 +70,21 @@ struct _WnckClassGroupClass
   void (* pad4) (void);
 };
 
-GType wnck_class_group_get_type (void) G_GNUC_CONST;
+GType vnck_class_group_get_type (void) G_GNUC_CONST;
 
-WnckClassGroup *wnck_class_group_get (const char *id);
+WnckClassGroup *vnck_class_group_get (const char *id);
 
-GList *wnck_class_group_get_windows (WnckClassGroup *class_group);
-const char * wnck_class_group_get_id (WnckClassGroup *class_group);
+GList *vnck_class_group_get_windows (WnckClassGroup *class_group);
+const char * vnck_class_group_get_id (WnckClassGroup *class_group);
 
-const char * wnck_class_group_get_name (WnckClassGroup *class_group);
+const char * vnck_class_group_get_name (WnckClassGroup *class_group);
 
-GdkPixbuf *wnck_class_group_get_icon (WnckClassGroup *class_group);
-GdkPixbuf *wnck_class_group_get_mini_icon (WnckClassGroup *class_group);
+GdkPixbuf *vnck_class_group_get_icon (WnckClassGroup *class_group);
+GdkPixbuf *vnck_class_group_get_mini_icon (WnckClassGroup *class_group);
 
 #ifndef WNCK_DISABLE_DEPRECATED
-G_DEPRECATED_FOR(wnck_class_group_get_id)
-const char * wnck_class_group_get_res_class (WnckClassGroup *class_group);
+G_DEPRECATED_FOR(vnck_class_group_get_id)
+const char * vnck_class_group_get_res_class (WnckClassGroup *class_group);
 #endif
 
 G_END_DECLS

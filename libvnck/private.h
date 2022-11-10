@@ -38,117 +38,117 @@ G_BEGIN_DECLS
 
 #define WNCK_ACTIVATE_TIMEOUT 1
 
-WnckClientType _wnck_get_client_type (void);
+WnckClientType _vnck_get_client_type (void);
 
-gsize _wnck_get_default_icon_size (void);
-gsize _wnck_get_default_mini_icon_size (void);
+gsize _vnck_get_default_icon_size (void);
+gsize _vnck_get_default_mini_icon_size (void);
 
-void _wnck_application_process_property_notify (WnckApplication *app,
+void _vnck_application_process_property_notify (WnckApplication *app,
                                                 XEvent          *xevent);
-void _wnck_window_process_property_notify (WnckWindow *window,
+void _vnck_window_process_property_notify (WnckWindow *window,
                                            XEvent     *xevent);
 
-void _wnck_screen_process_property_notify (WnckScreen *screen,
+void _vnck_screen_process_property_notify (WnckScreen *screen,
                                            XEvent     *xevent);
-void _wnck_window_process_configure_notify (WnckWindow *window,
+void _vnck_window_process_configure_notify (WnckWindow *window,
                                             XEvent     *xevent);
-WnckWindow* _wnck_window_create  (Window      xwindow,
+WnckWindow* _vnck_window_create  (Window      xwindow,
                                   WnckScreen *screen,
                                   gint        sort_order);
-void        _wnck_window_destroy (WnckWindow *window);
+void        _vnck_window_destroy (WnckWindow *window);
 
-void        _wnck_window_load_icons (WnckWindow *window);
+void        _vnck_window_load_icons (WnckWindow *window);
 
-char*       _wnck_window_get_name_for_display (WnckWindow *window,
+char*       _vnck_window_get_name_for_display (WnckWindow *window,
                                                gboolean    use_icon_name,
                                                gboolean    use_state_decorations);
-const char* _wnck_window_get_startup_id (WnckWindow *window);
+const char* _vnck_window_get_startup_id (WnckWindow *window);
 
-time_t      _wnck_window_get_needs_attention_time (WnckWindow *window);
-time_t      _wnck_window_or_transient_get_needs_attention_time (WnckWindow *window);
+time_t      _vnck_window_get_needs_attention_time (WnckWindow *window);
+time_t      _vnck_window_or_transient_get_needs_attention_time (WnckWindow *window);
 
-void        _wnck_window_shutdown_all (void);
+void        _vnck_window_shutdown_all (void);
 
-WnckWorkspace* _wnck_workspace_create  (int            number, 
+WnckWorkspace* _vnck_workspace_create  (int            number, 
                                         WnckScreen    *screen);
-void           _wnck_workspace_destroy (WnckWorkspace *space);
+void           _vnck_workspace_destroy (WnckWorkspace *space);
 
-void _wnck_window_set_application    (WnckWindow      *window,
+void _vnck_window_set_application    (WnckWindow      *window,
                                       WnckApplication *app);
 
-void _wnck_window_set_class_group (WnckWindow     *window,
+void _vnck_window_set_class_group (WnckWindow     *window,
 				   WnckClassGroup *class_group);
 
 /* this one is in pager.c since it needs code from there to draw the icon */
-void _wnck_window_set_as_drag_icon (WnckWindow     *window,
+void _vnck_window_set_as_drag_icon (WnckWindow     *window,
                                     GdkDragContext *context,
                                     GtkWidget      *drag_source);
 
-void _wnck_application_add_window    (WnckApplication *app,
+void _vnck_application_add_window    (WnckApplication *app,
                                       WnckWindow      *window);
-void _wnck_application_remove_window (WnckApplication *app,
+void _vnck_application_remove_window (WnckApplication *app,
                                       WnckWindow      *window);
 
-WnckApplication* _wnck_application_create  (Window           xwindow,
+WnckApplication* _vnck_application_create  (Window           xwindow,
                                             WnckScreen      *screen);
-void             _wnck_application_destroy (WnckApplication *app);
-void             _wnck_application_load_icons (WnckApplication *app);
-void             _wnck_application_shutdown_all (void);
+void             _vnck_application_destroy (WnckApplication *app);
+void             _vnck_application_load_icons (WnckApplication *app);
+void             _vnck_application_shutdown_all (void);
 
-WnckClassGroup  *_wnck_class_group_create        (WnckScreen     *screen,
+WnckClassGroup  *_vnck_class_group_create        (WnckScreen     *screen,
                                                   const char     *res_class);
 
-void             _wnck_class_group_destroy       (WnckClassGroup *class_group);
-void             _wnck_class_group_add_window    (WnckClassGroup *class_group,
+void             _vnck_class_group_destroy       (WnckClassGroup *class_group);
+void             _vnck_class_group_add_window    (WnckClassGroup *class_group,
                                                   WnckWindow     *window);
-void             _wnck_class_group_remove_window (WnckClassGroup *class_group,
+void             _vnck_class_group_remove_window (WnckClassGroup *class_group,
                                                   WnckWindow     *window);
-void             _wnck_class_group_shutdown_all  (void);
+void             _vnck_class_group_shutdown_all  (void);
 
-void _wnck_workspace_update_name (WnckWorkspace *workspace,
+void _vnck_workspace_update_name (WnckWorkspace *workspace,
                                   const char    *name);
-void _wnck_screen_change_workspace_name (WnckScreen *screen,
+void _vnck_screen_change_workspace_name (WnckScreen *screen,
                                          int         number,
                                          const char *name);
 
-void _wnck_screen_shutdown_all          (void);
+void _vnck_screen_shutdown_all          (void);
 
-gboolean _wnck_workspace_set_geometry (WnckWorkspace *space, int w, int h);
-gboolean _wnck_workspace_set_viewport (WnckWorkspace *space, int x, int y);
+gboolean _vnck_workspace_set_geometry (WnckWorkspace *space, int w, int h);
+gboolean _vnck_workspace_set_viewport (WnckWorkspace *space, int x, int y);
 
-void _wnck_init (void);
-Display *_wnck_get_default_display (void);
+void _vnck_init (void);
+Display *_vnck_get_default_display (void);
 
-#define WNCK_SCREEN_XSCREEN(screen) (_wnck_screen_get_xscreen (screen))
+#define WNCK_SCREEN_XSCREEN(screen) (_vnck_screen_get_xscreen (screen))
 
-Screen    *_wnck_screen_get_xscreen    (WnckScreen *screen);
-GdkScreen *_wnck_screen_get_gdk_screen (WnckScreen *screen);
+Screen    *_vnck_screen_get_xscreen    (WnckScreen *screen);
+GdkScreen *_vnck_screen_get_gdk_screen (WnckScreen *screen);
 
 #ifdef HAVE_STARTUP_NOTIFICATION
-SnDisplay* _wnck_screen_get_sn_display (WnckScreen *screen);
+SnDisplay* _vnck_screen_get_sn_display (WnckScreen *screen);
 #endif
 
-WnckScreen* _wnck_screen_get_existing (int number);
+WnckScreen* _vnck_screen_get_existing (int number);
 
-void           _wnck_pager_activate_workspace   (WnckWorkspace *wspace,
+void           _vnck_pager_activate_workspace   (WnckWorkspace *wspace,
                                                  guint32        timestamp);
-int            _wnck_pager_get_n_workspaces     (WnckPager     *pager);
-const char*    _wnck_pager_get_workspace_name   (WnckPager     *pager,
+int            _vnck_pager_get_n_workspaces     (WnckPager     *pager);
+const char*    _vnck_pager_get_workspace_name   (WnckPager     *pager,
                                                  int            i);
-WnckWorkspace* _wnck_pager_get_active_workspace (WnckPager     *pager);
-WnckWorkspace* _wnck_pager_get_workspace        (WnckPager     *pager,
+WnckWorkspace* _vnck_pager_get_active_workspace (WnckPager     *pager);
+WnckWorkspace* _vnck_pager_get_workspace        (WnckPager     *pager,
                                                  int            i);
-void           _wnck_pager_get_workspace_rect   (WnckPager     *pager,
+void           _vnck_pager_get_workspace_rect   (WnckPager     *pager,
                                                  int            i,
                                                  GdkRectangle  *rect);
 
 void           _make_gtk_label_bold   (GtkLabel *label);
 void           _make_gtk_label_normal (GtkLabel *label);
 
-void           _wnck_selector_set_window_icon   (GtkWidget     *image,
+void           _vnck_selector_set_window_icon   (GtkWidget     *image,
                                                  WnckWindow    *window);
 
-void           _wnck_ensure_fallback_style      (void);
+void           _vnck_ensure_fallback_style      (void);
 
 G_END_DECLS
 

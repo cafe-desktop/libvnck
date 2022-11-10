@@ -1,4 +1,4 @@
-#include <libwnck/libwnck.h>
+#include <libvnck/libvnck.h>
 
 int
 main (int    argc,
@@ -10,16 +10,16 @@ main (int    argc,
 
   gdk_init (&argc, &argv);
 
-  screen = wnck_screen_get_default ();
+  screen = vnck_screen_get_default ();
 
-  wnck_screen_force_update (screen);
+  vnck_screen_force_update (screen);
 
-  active_window = wnck_screen_get_active_window (screen);
+  active_window = vnck_screen_get_active_window (screen);
 
-  for (window_l = wnck_screen_get_windows (screen); window_l != NULL; window_l = window_l->next)
+  for (window_l = vnck_screen_get_windows (screen); window_l != NULL; window_l = window_l->next)
     {
       WnckWindow *window = WNCK_WINDOW (window_l->data);
-      g_print ("%s%s\n", wnck_window_get_name (window),
+      g_print ("%s%s\n", vnck_window_get_name (window),
                          window == active_window ? " (active)" : "");
     }
 

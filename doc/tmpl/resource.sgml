@@ -38,7 +38,7 @@ Resource Usage of X Clients
 @n_cursors: 
 @n_other: 
 
-<!-- ##### FUNCTION wnck_xid_read_resource_usage ##### -->
+<!-- ##### FUNCTION vnck_xid_read_resource_usage ##### -->
 <para>
 
 </para>
@@ -48,7 +48,7 @@ Resource Usage of X Clients
 @usage: 
 
 
-<!-- ##### FUNCTION wnck_pid_read_resource_usage ##### -->
+<!-- ##### FUNCTION vnck_pid_read_resource_usage ##### -->
 <para>
 
 </para>

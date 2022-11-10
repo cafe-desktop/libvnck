@@ -27,150 +27,150 @@
 #include <X11/Xatom.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
-#include <libwnck/screen.h>
+#include <libvnck/screen.h>
 
 G_BEGIN_DECLS
 
 #define WNCK_APP_WINDOW_EVENT_MASK (PropertyChangeMask | StructureNotifyMask)
 
-gboolean _wnck_get_cardinal      (Screen *screen,
+gboolean _vnck_get_cardinal      (Screen *screen,
                                   Window  xwindow,
                                   Atom    atom,
                                   int    *val);
-int      _wnck_get_wm_state      (Screen *screen,
+int      _vnck_get_wm_state      (Screen *screen,
                                   Window  xwindow);
-gboolean _wnck_get_window        (Screen *screen,
+gboolean _vnck_get_window        (Screen *screen,
                                   Window  xwindow,
                                   Atom    atom,
                                   Window *val);
-gboolean _wnck_get_pixmap        (Screen *screen,
+gboolean _vnck_get_pixmap        (Screen *screen,
                                   Window  xwindow,
                                   Atom    atom,
                                   Pixmap *val);
-gboolean _wnck_get_atom          (Screen *screen,
+gboolean _vnck_get_atom          (Screen *screen,
                                   Window  xwindow,
                                   Atom    atom,
                                   Atom   *val);
-char*    _wnck_get_text_property (Screen *screen,
+char*    _vnck_get_text_property (Screen *screen,
                                   Window  xwindow,
                                   Atom    atom);
-char*    _wnck_get_utf8_property (Screen *screen,
+char*    _vnck_get_utf8_property (Screen *screen,
                                   Window  xwindow,
                                   Atom    atom);
-gboolean _wnck_get_window_list   (Screen  *screen,
+gboolean _vnck_get_window_list   (Screen  *screen,
                                   Window   xwindow,
                                   Atom     atom,
                                   Window **windows,
                                   int     *len);
-gboolean _wnck_get_atom_list     (Screen  *screen,
+gboolean _vnck_get_atom_list     (Screen  *screen,
                                   Window   xwindow,
                                   Atom     atom,
                                   Atom   **atoms,
                                   int     *len);
-gboolean _wnck_get_cardinal_list (Screen  *screen,
+gboolean _vnck_get_cardinal_list (Screen  *screen,
                                   Window   xwindow,
                                   Atom     atom,
                                   gulong **cardinals,
                                   int     *len);
-char**   _wnck_get_utf8_list     (Screen *screen,
+char**   _vnck_get_utf8_list     (Screen *screen,
                                   Window  xwindow,
                                   Atom    atom);
 
-void     _wnck_set_utf8_list     (Screen  *screen,
+void     _vnck_set_utf8_list     (Screen  *screen,
                                   Window   xwindow,
                                   Atom     atom,
                                   char   **list);
 
-void _wnck_error_trap_push (Display *display);
-int  _wnck_error_trap_pop  (Display *display);
+void _vnck_error_trap_push (Display *display);
+int  _vnck_error_trap_pop  (Display *display);
 
-#define _wnck_atom_get(atom_name) gdk_x11_get_xatom_by_name (atom_name)
-#define _wnck_atom_name(atom)     gdk_x11_get_xatom_name (atom)
+#define _vnck_atom_get(atom_name) gdk_x11_get_xatom_by_name (atom_name)
+#define _vnck_atom_name(atom)     gdk_x11_get_xatom_name (atom)
 
-void _wnck_event_filter_init (void);
-void _wnck_event_filter_shutdown (void);
+void _vnck_event_filter_init (void);
+void _vnck_event_filter_shutdown (void);
 
-int   _wnck_xid_equal (gconstpointer v1,
+int   _vnck_xid_equal (gconstpointer v1,
                        gconstpointer v2);
-guint _wnck_xid_hash  (gconstpointer v);
+guint _vnck_xid_hash  (gconstpointer v);
 
-void _wnck_iconify   (Screen *screen,
+void _vnck_iconify   (Screen *screen,
                       Window  xwindow);
-void _wnck_deiconify (Screen *screen,
+void _vnck_deiconify (Screen *screen,
                       Window  xwindow);
 
-void _wnck_close (WnckScreen *screen,
+void _vnck_close (WnckScreen *screen,
                   Window      xwindow,
                   Time        timestamp);
 
-void _wnck_change_state (WnckScreen *screen,
+void _vnck_change_state (WnckScreen *screen,
                          Window      xwindow,
                          gboolean    add,
                          Atom        state1,
                          Atom        state2);
 
-void _wnck_change_workspace (WnckScreen *screen,
+void _vnck_change_workspace (WnckScreen *screen,
                              Window      xwindow,
                              int         new_space);
 
-void _wnck_activate (WnckScreen *screen,
+void _vnck_activate (WnckScreen *screen,
                      Window      xwindow,
                      Time        timestamp);
 
-void _wnck_activate_workspace (Screen *screen,
+void _vnck_activate_workspace (Screen *screen,
                                int     new_active_space,
                                Time    timestamp);
-void _wnck_change_viewport (Screen *screen,
+void _vnck_change_viewport (Screen *screen,
 			    int     x,
 			    int     y);
 
-char*  _wnck_get_session_id     (Screen *screen,
+char*  _vnck_get_session_id     (Screen *screen,
                                  Window xwindow);
-int    _wnck_get_pid            (Screen *screen,
+int    _vnck_get_pid            (Screen *screen,
                                  Window  xwindow);
-char*  _wnck_get_name           (Screen *screen,
+char*  _vnck_get_name           (Screen *screen,
                                  Window  xwindow);
-char*  _wnck_get_icon_name      (Screen *screen,
+char*  _vnck_get_icon_name      (Screen *screen,
                                  Window  xwindow);
-char*  _wnck_get_res_class_utf8 (Screen *screen,
+char*  _vnck_get_res_class_utf8 (Screen *screen,
                                  Window  xwindow);
-void   _wnck_get_wmclass        (Screen *screen,
+void   _vnck_get_wmclass        (Screen *screen,
                                  Window  xwindow,
                                  char **res_class,
                                  char **res_name);
-gboolean _wnck_get_frame_extents  (Screen *screen,
+gboolean _vnck_get_frame_extents  (Screen *screen,
                                    Window  xwindow,
                                    int    *left_frame,
                                    int    *right_frame,
                                    int    *top_frame,
                                    int    *bottom_frame);
 
-int    _wnck_select_input     (Screen  *screen,
+int    _vnck_select_input     (Screen  *screen,
                                Window   xwindow,
                                int      mask,
                                gboolean update);
 
-void _wnck_keyboard_move (WnckScreen *screen,
+void _vnck_keyboard_move (WnckScreen *screen,
                           Window      xwindow);
 
-void _wnck_keyboard_size (WnckScreen *screen,
+void _vnck_keyboard_size (WnckScreen *screen,
                           Window      xwindow);
 
-void _wnck_toggle_showing_desktop (Screen  *screen,
+void _vnck_toggle_showing_desktop (Screen  *screen,
                                    gboolean show);
 
 typedef struct _WnckIconCache WnckIconCache;
 
-WnckIconCache *_wnck_icon_cache_new                  (void);
-void           _wnck_icon_cache_free                 (WnckIconCache *icon_cache);
-void           _wnck_icon_cache_property_changed     (WnckIconCache *icon_cache,
+WnckIconCache *_vnck_icon_cache_new                  (void);
+void           _vnck_icon_cache_free                 (WnckIconCache *icon_cache);
+void           _vnck_icon_cache_property_changed     (WnckIconCache *icon_cache,
                                                       Atom           atom);
-gboolean       _wnck_icon_cache_get_icon_invalidated (WnckIconCache *icon_cache);
-void           _wnck_icon_cache_set_want_fallback    (WnckIconCache *icon_cache,
+gboolean       _vnck_icon_cache_get_icon_invalidated (WnckIconCache *icon_cache);
+void           _vnck_icon_cache_set_want_fallback    (WnckIconCache *icon_cache,
                                                       gboolean       setting);
-gboolean       _wnck_icon_cache_get_is_fallback      (WnckIconCache *icon_cache);
+gboolean       _vnck_icon_cache_get_is_fallback      (WnckIconCache *icon_cache);
 
-gboolean _wnck_read_icons (WnckScreen     *screen,
+gboolean _vnck_read_icons (WnckScreen     *screen,
                            Window          xwindow,
                            WnckIconCache  *icon_cache,
                            GdkPixbuf     **iconp,
@@ -180,7 +180,7 @@ gboolean _wnck_read_icons (WnckScreen     *screen,
                            int             ideal_mini_width,
                            int             ideal_mini_height);
 
-void _wnck_get_fallback_icons (GdkPixbuf     **iconp,
+void _vnck_get_fallback_icons (GdkPixbuf     **iconp,
                                int             ideal_width,
                                int             ideal_height,
                                GdkPixbuf     **mini_iconp,
@@ -189,13 +189,13 @@ void _wnck_get_fallback_icons (GdkPixbuf     **iconp,
 
 
 
-void _wnck_get_window_geometry (Screen *screen,
+void _vnck_get_window_geometry (Screen *screen,
 				Window  xwindow,
                                 int    *xp,
                                 int    *yp,
                                 int    *widthp,
                                 int    *heightp);
-void _wnck_set_window_geometry (Screen *screen,
+void _vnck_set_window_geometry (Screen *screen,
                                 Window  xwindow,
                                 int     gravity_and_flags,
                                 int     x,
@@ -203,37 +203,37 @@ void _wnck_set_window_geometry (Screen *screen,
                                 int     width,
                                 int     height);
 
-void _wnck_get_window_position (Screen *screen,
+void _vnck_get_window_position (Screen *screen,
 				Window  xwindow,
                                 int    *xp,
                                 int    *yp);
 
-void _wnck_set_icon_geometry  (Screen *screen,
+void _vnck_set_icon_geometry  (Screen *screen,
                                Window  xwindow,
 			       int     x,
 			       int     y,
 			       int     width,
 			       int     height);
 
-void _wnck_set_desktop_layout (Screen *xscreen,
+void _vnck_set_desktop_layout (Screen *xscreen,
                                int     rows,
                                int     columns);
 
-GdkPixbuf* _wnck_gdk_pixbuf_get_from_pixmap (Screen *screen,
+GdkPixbuf* _vnck_gdk_pixbuf_get_from_pixmap (Screen *screen,
                                              Pixmap  xpixmap);
 
-GdkDisplay* _wnck_gdk_display_lookup_from_display (Display *display);
+GdkDisplay* _vnck_gdk_display_lookup_from_display (Display *display);
 
-GdkWindow* _wnck_gdk_window_lookup_from_window (Screen *screen,
+GdkWindow* _vnck_gdk_window_lookup_from_window (Screen *screen,
                                                 Window  xwindow);
 
 #define WNCK_NO_MANAGER_TOKEN 0
 
-int      _wnck_try_desktop_layout_manager           (Screen *xscreen,
+int      _vnck_try_desktop_layout_manager           (Screen *xscreen,
                                                      int     current_token);
-void     _wnck_release_desktop_layout_manager       (Screen *xscreen,
+void     _vnck_release_desktop_layout_manager       (Screen *xscreen,
                                                      int     current_token);
-gboolean _wnck_desktop_layout_manager_process_event (XEvent *xev);
+gboolean _vnck_desktop_layout_manager_process_event (XEvent *xev);
 
 G_END_DECLS
 

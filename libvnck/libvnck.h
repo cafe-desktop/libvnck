@@ -1,4 +1,4 @@
-/* libwnck header */
+/* libvnck header */
 /* vim: set sw=2 et: */
 
 /*
@@ -23,22 +23,22 @@
 
 #define __LIBWNCK_H_INSIDE__
 
-#include <libwnck/window.h>
-#include <libwnck/application.h>
-#include <libwnck/class-group.h>
-#include <libwnck/workspace.h>
-#include <libwnck/screen.h>
+#include <libvnck/window.h>
+#include <libvnck/application.h>
+#include <libvnck/class-group.h>
+#include <libvnck/workspace.h>
+#include <libvnck/screen.h>
 
-#include <libwnck/pager.h>
-#include <libwnck/tasklist.h>
-#include <libwnck/selector.h>
+#include <libvnck/pager.h>
+#include <libvnck/tasklist.h>
+#include <libvnck/selector.h>
 
-#include <libwnck/window-action-menu.h>
-#include <libwnck/util.h>
+#include <libvnck/window-action-menu.h>
+#include <libvnck/util.h>
 
-#include <libwnck/version.h>
+#include <libvnck/version.h>
 
-#include <libwnck/wnck-enum-types.h>
+#include <libvnck/vnck-enum-types.h>
 
 #undef __LIBWNCK_H_INSIDE__
 

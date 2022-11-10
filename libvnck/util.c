@@ -34,10 +34,10 @@
 /**
  * SECTION:resource
  * @short_description: reading resource usage of X clients.
- * @see_also: wnck_window_get_xid(), wnck_application_get_xid(), wnck_window_get_pid(), wnck_application_get_pid()
+ * @see_also: vnck_window_get_xid(), vnck_application_get_xid(), vnck_window_get_pid(), vnck_application_get_pid()
  * @stability: Unstable
  *
- * libwnck provides an easy-to-use interface to the XRes X server extension to
+ * libvnck provides an easy-to-use interface to the XRes X server extension to
  * read resource usage of X clients, which can be defined either by the X
  * window ID of one of their windows or by the process ID of their process.
  */
@@ -48,7 +48,7 @@
  * @stability: Unstable
  *
  * These functions are utility functions providing some additional features to
- * libwnck users.
+ * libvnck users.
  */
 
 /**
@@ -71,7 +71,7 @@ typedef enum
 #if 0
 /* useful for debugging */
 static void
-_wnck_print_resource_usage (WnckResourceUsage *usage)
+_vnck_print_resource_usage (WnckResourceUsage *usage)
 {
   if (!usage)
     return;
@@ -104,12 +104,12 @@ _wnck_print_resource_usage (WnckResourceUsage *usage)
 #endif
 
 static WnckExtStatus
-wnck_init_resource_usage (GdkDisplay *gdisplay)
+vnck_init_resource_usage (GdkDisplay *gdisplay)
 {
   WnckExtStatus status;
 
   status = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (gdisplay),
-                                               "wnck-xres-status"));
+                                               "vnck-xres-status"));
 
   if (status == WNCK_EXT_UNKNOWN)
     {
@@ -126,7 +126,7 @@ wnck_init_resource_usage (GdkDisplay *gdisplay)
 #endif
 
       g_object_set_data (G_OBJECT (gdisplay),
-                         "wnck-xres-status",
+                         "vnck-xres-status",
                          GINT_TO_POINTER (status));
     }
 
@@ -136,7 +136,7 @@ wnck_init_resource_usage (GdkDisplay *gdisplay)
 }
 
 /**
- * wnck_xid_read_resource_usage:
+ * vnck_xid_read_resource_usage:
  * @gdk_display: a <classname>GdkDisplay</classname>.
  * @xid: an X window ID.
  * @usage: return location for the X resource usage of the application owning
@@ -151,7 +151,7 @@ wnck_init_resource_usage (GdkDisplay *gdisplay)
  * Since: 2.6
  */
 void
-wnck_xid_read_resource_usage (GdkDisplay        *gdisplay,
+vnck_xid_read_resource_usage (GdkDisplay        *gdisplay,
                               gulong             xid,
                               WnckResourceUsage *usage)
 {
@@ -159,7 +159,7 @@ wnck_xid_read_resource_usage (GdkDisplay        *gdisplay,
 
   memset (usage, '\0', sizeof (*usage));
 
-  if (wnck_init_resource_usage (gdisplay) == WNCK_EXT_MISSING)
+  if (vnck_init_resource_usage (gdisplay) == WNCK_EXT_MISSING)
     return;
 
 #ifdef HAVE_XRES
@@ -185,7 +185,7 @@ wnck_xid_read_resource_usage (GdkDisplay        *gdisplay,
 
   xdisplay = GDK_DISPLAY_XDISPLAY (gdisplay);
 
-  _wnck_error_trap_push (xdisplay);
+  _vnck_error_trap_push (xdisplay);
 
   XResQueryClientResources (xdisplay,
                              xid, &n_types,
@@ -193,19 +193,19 @@ wnck_xid_read_resource_usage (GdkDisplay        *gdisplay,
 
    XResQueryClientPixmapBytes (xdisplay,
                                xid, &pixmap_bytes);
-   _wnck_error_trap_pop (xdisplay);
+   _vnck_error_trap_pop (xdisplay);
 
    usage->pixmap_bytes = pixmap_bytes;
 
-   pixmap_atom = _wnck_atom_get ("PIXMAP");
-   window_atom = _wnck_atom_get ("WINDOW");
-   gc_atom = _wnck_atom_get ("GC");
-   font_atom = _wnck_atom_get ("FONT");
-   glyphset_atom = _wnck_atom_get ("GLYPHSET");
-   picture_atom = _wnck_atom_get ("PICTURE");
-   colormap_entry_atom = _wnck_atom_get ("COLORMAP ENTRY");
-   passive_grab_atom = _wnck_atom_get ("PASSIVE GRAB");
-   cursor_atom = _wnck_atom_get ("CURSOR");
+   pixmap_atom = _vnck_atom_get ("PIXMAP");
+   window_atom = _vnck_atom_get ("WINDOW");
+   gc_atom = _vnck_atom_get ("GC");
+   font_atom = _vnck_atom_get ("FONT");
+   glyphset_atom = _vnck_atom_get ("GLYPHSET");
+   picture_atom = _vnck_atom_get ("PICTURE");
+   colormap_entry_atom = _vnck_atom_get ("COLORMAP ENTRY");
+   passive_grab_atom = _vnck_atom_get ("PASSIVE GRAB");
+   cursor_atom = _vnck_atom_get ("CURSOR");
 
    i = 0;
    while (i < n_types)
@@ -262,13 +262,13 @@ wnck_xid_read_resource_usage (GdkDisplay        *gdisplay,
 
 #ifdef HAVE_XRES
 static void
-wnck_pid_read_resource_usage_free_hash (gpointer data)
+vnck_pid_read_resource_usage_free_hash (gpointer data)
 {
   g_slice_free (gulong, data);
 }
 
 static guint
-wnck_gulong_hash (gconstpointer v)
+vnck_gulong_hash (gconstpointer v)
 {
   /* FIXME: this is obvioulsy wrong, but nearly 100% of the time, the gulong
    * only contains guint values */
@@ -276,27 +276,27 @@ wnck_gulong_hash (gconstpointer v)
 }
 
 static gboolean
-wnck_gulong_equal (gconstpointer a,
+vnck_gulong_equal (gconstpointer a,
                    gconstpointer b)
 {
   return *((const gulong *) a) == *((const gulong *) b);
 }
 
 static gulong
-wnck_check_window_for_pid (Screen *screen,
+vnck_check_window_for_pid (Screen *screen,
                            Window  win,
                            XID     match_xid,
                            XID     mask)
 {
   if ((win & ~mask) == match_xid) {
-    return _wnck_get_pid (screen, win);
+    return _vnck_get_pid (screen, win);
   }
 
   return 0;
 }
 
 static void
-wnck_find_pid_for_resource_r (Display *xdisplay,
+vnck_find_pid_for_resource_r (Display *xdisplay,
                               Screen  *screen,
                               Window   win_top,
                               XID      match_xid,
@@ -315,24 +315,24 @@ wnck_find_pid_for_resource_r (Display *xdisplay,
   while (gtk_events_pending ())
     gtk_main_iteration ();
 
-  found_pid = wnck_check_window_for_pid (screen, win_top, match_xid, mask);
+  found_pid = vnck_check_window_for_pid (screen, win_top, match_xid, mask);
   if (found_pid != 0)
     {
       *xid = win_top;
       *pid = found_pid;
     }
 
-  _wnck_error_trap_push (xdisplay);
+  _vnck_error_trap_push (xdisplay);
   qtres = XQueryTree (xdisplay, win_top, &dummy, &dummy,
                       &children, &n_children);
-  err = _wnck_error_trap_pop (xdisplay);
+  err = _vnck_error_trap_pop (xdisplay);
 
   if (!qtres || err != Success)
     return;
 
   for (i = 0; i < n_children; i++)
     {
-      wnck_find_pid_for_resource_r (xdisplay, screen, children[i],
+      vnck_find_pid_for_resource_r (xdisplay, screen, children[i],
                                     match_xid, mask, xid, pid);
 
       if (*pid != 0)
@@ -360,7 +360,7 @@ static time_t      end_update = 0;
 static guint       xres_removeid = 0;
 
 static void
-wnck_pid_read_resource_usage_xres_state_free (gpointer data)
+vnck_pid_read_resource_usage_xres_state_free (gpointer data)
 {
   struct xresclient_state *state;
 
@@ -380,7 +380,7 @@ wnck_pid_read_resource_usage_xres_state_free (gpointer data)
 }
 
 static gboolean
-wnck_pid_read_resource_usage_fill_cache (struct xresclient_state *state)
+vnck_pid_read_resource_usage_fill_cache (struct xresclient_state *state)
 {
   int    i;
   gulong pid;
@@ -417,7 +417,7 @@ wnck_pid_read_resource_usage_fill_cache (struct xresclient_state *state)
       if (root == None)
         continue;
 
-      wnck_find_pid_for_resource_r (state->xdisplay, screen, root, match_xid,
+      vnck_find_pid_for_resource_r (state->xdisplay, screen, root, match_xid,
                                     state->clients[state->next].resource_mask,
                                     &xid, &pid);
 
@@ -443,7 +443,7 @@ wnck_pid_read_resource_usage_fill_cache (struct xresclient_state *state)
 }
 
 static void
-wnck_pid_read_resource_usage_start_build_cache (GdkDisplay *gdisplay)
+vnck_pid_read_resource_usage_start_build_cache (GdkDisplay *gdisplay)
 {
   Display *xdisplay;
   int      err;
@@ -455,9 +455,9 @@ wnck_pid_read_resource_usage_start_build_cache (GdkDisplay *gdisplay)
 
   xdisplay = GDK_DISPLAY_XDISPLAY (gdisplay);
 
-  _wnck_error_trap_push (xdisplay);
+  _vnck_error_trap_push (xdisplay);
   XResQueryClients (xdisplay, &xres_state.n_clients, &xres_state.clients);
-  err = _wnck_error_trap_pop (xdisplay);
+  err = _vnck_error_trap_pop (xdisplay);
 
   if (err != Success)
     return;
@@ -465,19 +465,19 @@ wnck_pid_read_resource_usage_start_build_cache (GdkDisplay *gdisplay)
   xres_state.next = (xres_state.n_clients > 0) ? 0 : -1;
   xres_state.xdisplay = xdisplay;
   xres_state.hashtable_pid = g_hash_table_new_full (
-                                     wnck_gulong_hash,
-                                     wnck_gulong_equal,
-                                     wnck_pid_read_resource_usage_free_hash,
-                                     wnck_pid_read_resource_usage_free_hash);
+                                     vnck_gulong_hash,
+                                     vnck_gulong_equal,
+                                     vnck_pid_read_resource_usage_free_hash,
+                                     vnck_pid_read_resource_usage_free_hash);
 
   xres_idleid = g_idle_add_full (
                         G_PRIORITY_HIGH_IDLE,
-                        (GSourceFunc) wnck_pid_read_resource_usage_fill_cache,
-                        &xres_state, wnck_pid_read_resource_usage_xres_state_free);
+                        (GSourceFunc) vnck_pid_read_resource_usage_fill_cache,
+                        &xres_state, vnck_pid_read_resource_usage_xres_state_free);
 }
 
 static gboolean
-wnck_pid_read_resource_usage_destroy_hash_table (gpointer data)
+vnck_pid_read_resource_usage_destroy_hash_table (gpointer data)
 {
   xres_removeid = 0;
 
@@ -491,7 +491,7 @@ wnck_pid_read_resource_usage_destroy_hash_table (gpointer data)
 
 #define XRES_UPDATE_RATE_SEC 30
 static gboolean
-wnck_pid_read_resource_usage_from_cache (GdkDisplay        *gdisplay,
+vnck_pid_read_resource_usage_from_cache (GdkDisplay        *gdisplay,
                                          gulong             pid,
                                          WnckResourceUsage *usage)
 {
@@ -515,12 +515,12 @@ wnck_pid_read_resource_usage_from_cache (GdkDisplay        *gdisplay,
       if (xres_removeid != 0)
         g_source_remove (xres_removeid);
       xres_removeid = g_timeout_add_seconds (cache_validity * 2,
-                                             wnck_pid_read_resource_usage_destroy_hash_table,
+                                             vnck_pid_read_resource_usage_destroy_hash_table,
                                              NULL);
     }
 
   if (need_rebuild)
-    wnck_pid_read_resource_usage_start_build_cache (gdisplay);
+    vnck_pid_read_resource_usage_start_build_cache (gdisplay);
 
   if (xres_hashtable)
     xid_p = g_hash_table_lookup (xres_hashtable, &pid);
@@ -529,7 +529,7 @@ wnck_pid_read_resource_usage_from_cache (GdkDisplay        *gdisplay,
 
   if (xid_p)
     {
-      wnck_xid_read_resource_usage (gdisplay, *xid_p, usage);
+      vnck_xid_read_resource_usage (gdisplay, *xid_p, usage);
       return TRUE;
     }
 
@@ -537,7 +537,7 @@ wnck_pid_read_resource_usage_from_cache (GdkDisplay        *gdisplay,
 }
 
 static void
-wnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
+vnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
                                        gulong             pid,
                                        WnckResourceUsage *usage)
 {
@@ -553,18 +553,18 @@ wnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
       GList *windows;
       GList *tmp;
 
-      screen = wnck_screen_get (i);
+      screen = vnck_screen_get (i);
 
       g_assert (screen != NULL);
 
-      windows = wnck_screen_get_windows (screen);
+      windows = vnck_screen_get_windows (screen);
       tmp = windows;
       while (tmp != NULL)
         {
-          if (wnck_window_get_pid (tmp->data) == (int) pid)
+          if (vnck_window_get_pid (tmp->data) == (int) pid)
             {
-              wnck_xid_read_resource_usage (gdisplay,
-                                            wnck_window_get_xid (tmp->data),
+              vnck_xid_read_resource_usage (gdisplay,
+                                            vnck_window_get_xid (tmp->data),
                                             usage);
 
               /* stop on first window found */
@@ -580,7 +580,7 @@ wnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
 #endif /* HAVE_XRES */
 
 /**
- * wnck_pid_read_resource_usage:
+ * vnck_pid_read_resource_usage:
  * @gdk_display: a <classname>GdkDisplay</classname>.
  * @pid: a process ID.
  * @usage: return location for the X resource usage of the application with
@@ -591,12 +591,12 @@ wnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
  * @usage are set to 0.
  *
  * In order to find the resource usage of an application that does not have an
- * X window visible to libwnck (panel applets do not have any toplevel windows,
- * for example), wnck_pid_read_resource_usage() walks through the whole tree of
+ * X window visible to libvnck (panel applets do not have any toplevel windows,
+ * for example), vnck_pid_read_resource_usage() walks through the whole tree of
  * X windows. Since this walk is expensive in CPU, a cache is created. This
  * cache is updated in the background. This means there is a non-null
  * probability that no resource usage will be found for an application, even if
- * it is an X client. If this happens, calling wnck_pid_read_resource_usage()
+ * it is an X client. If this happens, calling vnck_pid_read_resource_usage()
  * again after a few seconds should work.
  *
  * To properly work, this function requires the XRes extension on the X server.
@@ -604,7 +604,7 @@ wnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
  * Since: 2.6
  */
 void
-wnck_pid_read_resource_usage (GdkDisplay        *gdisplay,
+vnck_pid_read_resource_usage (GdkDisplay        *gdisplay,
                               gulong             pid,
                               WnckResourceUsage *usage)
 {
@@ -612,29 +612,29 @@ wnck_pid_read_resource_usage (GdkDisplay        *gdisplay,
 
   memset (usage, '\0', sizeof (*usage));
 
-  if (wnck_init_resource_usage (gdisplay) == WNCK_EXT_MISSING)
+  if (vnck_init_resource_usage (gdisplay) == WNCK_EXT_MISSING)
     return;
 
 #ifdef HAVE_XRES
-  if (!wnck_pid_read_resource_usage_from_cache (gdisplay, pid, usage))
+  if (!vnck_pid_read_resource_usage_from_cache (gdisplay, pid, usage))
     /* the cache might not be built, might be outdated or might not contain
      * data for a new X client, so try to fallback to something else */
-    wnck_pid_read_resource_usage_no_cache (gdisplay, pid, usage);
+    vnck_pid_read_resource_usage_no_cache (gdisplay, pid, usage);
 #endif /* HAVE_XRES */
 }
 
 static WnckClientType client_type = 0;
 
 /**
- * wnck_set_client_type:
+ * vnck_set_client_type:
  * @ewmh_sourceindication_client_type: a role for the client.
  *
- * Sets the role of the libwnck user.
+ * Sets the role of the libvnck user.
  *
  * The default role is %WNCK_CLIENT_TYPE_APPLICATION. Therefore, for
  * applications providing some window management features, like pagers or
  * tasklists, it is important to set the role to %WNCK_CLIENT_TYPE_PAGER for
- * libwnck to properly work.
+ * libvnck to properly work.
  *
  * This function should only be called once per program. Additional calls
  * with the same client type will be silently ignored. An attempt to change
@@ -644,19 +644,19 @@ static WnckClientType client_type = 0;
  * Since: 2.14
  */
 void
-wnck_set_client_type (WnckClientType ewmh_sourceindication_client_type)
+vnck_set_client_type (WnckClientType ewmh_sourceindication_client_type)
 {
   /* Clients constantly switching types makes no sense; this should only be
    * set once.
    */
   if (client_type != 0 && client_type != ewmh_sourceindication_client_type)
-    g_critical ("wnck_set_client_type: changing the client type is not supported.\n");
+    g_critical ("vnck_set_client_type: changing the client type is not supported.\n");
   else
     client_type = ewmh_sourceindication_client_type;
 }
 
 WnckClientType
-_wnck_get_client_type (void)
+_vnck_get_client_type (void)
 {
   /* If the type hasn't been set yet, use the default--treat it as a
    * normal application.
@@ -670,7 +670,7 @@ _wnck_get_client_type (void)
 static gsize default_icon_size = WNCK_DEFAULT_ICON_SIZE;
 
 /**
- * wnck_set_default_icon_size:
+ * vnck_set_default_icon_size:
  * @size: the default size for windows and application standard icons.
  *
  * The default main icon size is %WNCK_DEFAULT_ICON_SIZE. This function allows
@@ -679,13 +679,13 @@ static gsize default_icon_size = WNCK_DEFAULT_ICON_SIZE;
  * Since: 2.4.6
  */
 void
-wnck_set_default_icon_size (gsize size)
+vnck_set_default_icon_size (gsize size)
 {
   default_icon_size = size;
 }
 
 gsize
-_wnck_get_default_icon_size (void)
+_vnck_get_default_icon_size (void)
 {
   return default_icon_size;
 }
@@ -693,7 +693,7 @@ _wnck_get_default_icon_size (void)
 static gsize default_mini_icon_size = WNCK_DEFAULT_MINI_ICON_SIZE;
 
 /**
- * wnck_set_default_mini_icon_size:
+ * vnck_set_default_mini_icon_size:
  * @size: the default size for windows and application mini icons.
  *
  * The default main icon size is %WNCK_DEFAULT_MINI_ICON_SIZE. This function
@@ -702,7 +702,7 @@ static gsize default_mini_icon_size = WNCK_DEFAULT_MINI_ICON_SIZE;
  * Since: 2.4.6
  */
 void
-wnck_set_default_mini_icon_size (gsize size)
+vnck_set_default_mini_icon_size (gsize size)
 {
   int default_screen;
   WnckScreen *screen;
@@ -710,27 +710,27 @@ wnck_set_default_mini_icon_size (gsize size)
 
   default_mini_icon_size = size;
 
-  default_screen = DefaultScreen (_wnck_get_default_display ());
-  screen = _wnck_screen_get_existing (default_screen);
+  default_screen = DefaultScreen (_vnck_get_default_display ());
+  screen = _vnck_screen_get_existing (default_screen);
 
   if (WNCK_IS_SCREEN (screen))
     {
       /* Make applications and icons to reload their icons */
-      for (l = wnck_screen_get_windows (screen); l; l = l->next)
+      for (l = vnck_screen_get_windows (screen); l; l = l->next)
         {
           WnckWindow *window = WNCK_WINDOW (l->data);
-          WnckApplication *application = wnck_window_get_application (window);
+          WnckApplication *application = vnck_window_get_application (window);
 
-          _wnck_window_load_icons (window);
+          _vnck_window_load_icons (window);
 
           if (WNCK_IS_APPLICATION (application))
-            _wnck_application_load_icons (application);
+            _vnck_application_load_icons (application);
         }
     }
 }
 
 gsize
-_wnck_get_default_mini_icon_size (void)
+_vnck_get_default_mini_icon_size (void)
 {
   return default_mini_icon_size;
 }
@@ -746,10 +746,10 @@ _make_gtk_label_bold (GtkLabel *label)
 {
   GtkStyleContext *context;
 
-  _wnck_ensure_fallback_style ();
+  _vnck_ensure_fallback_style ();
 
   context = gtk_widget_get_style_context (GTK_WIDGET (label));
-  gtk_style_context_add_class (context, "wnck-needs-attention");
+  gtk_style_context_add_class (context, "vnck-needs-attention");
 }
 
 void
@@ -758,12 +758,12 @@ _make_gtk_label_normal (GtkLabel *label)
   GtkStyleContext *context;
 
   context = gtk_widget_get_style_context (GTK_WIDGET (label));
-  gtk_style_context_remove_class (context, "wnck-needs-attention");
+  gtk_style_context_remove_class (context, "vnck-needs-attention");
 }
 
 #ifdef HAVE_STARTUP_NOTIFICATION
 static gboolean
-_wnck_util_sn_utf8_validator (const char *str,
+_vnck_util_sn_utf8_validator (const char *str,
                               int         max_len)
 {
   return g_utf8_validate (str, max_len, NULL);
@@ -771,7 +771,7 @@ _wnck_util_sn_utf8_validator (const char *str,
 #endif /* HAVE_STARTUP_NOTIFICATION */
 
 void
-_wnck_init (void)
+_vnck_init (void)
 {
   static gboolean done = FALSE;
 
@@ -781,7 +781,7 @@ _wnck_init (void)
       bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 
 #ifdef HAVE_STARTUP_NOTIFICATION
-      sn_set_utf8_validator (_wnck_util_sn_utf8_validator);
+      sn_set_utf8_validator (_vnck_util_sn_utf8_validator);
 #endif /* HAVE_STARTUP_NOTIFICATION */
 
       done = TRUE;
@@ -789,14 +789,14 @@ _wnck_init (void)
 }
 
 Display *
-_wnck_get_default_display (void)
+_vnck_get_default_display (void)
 {
   GdkDisplay *display = gdk_display_get_default ();
-  /* FIXME: when we fix libwnck to not use the GDK default display, we will
-   * need to fix wnckprop accordingly. */
+  /* FIXME: when we fix libvnck to not use the GDK default display, we will
+   * need to fix vnckprop accordingly. */
   if (!GDK_IS_X11_DISPLAY (display))
     {
-      g_warning ("libwnck is designed to work in X11 only, no valid display found");
+      g_warning ("libvnck is designed to work in X11 only, no valid display found");
       return NULL;
     }
 
@@ -804,10 +804,10 @@ _wnck_get_default_display (void)
 }
 
 /**
- * wnck_shutdown:
+ * vnck_shutdown:
  *
- * Makes libwnck stop listening to events and tear down all resources from
- * libwnck. This should be done if you are not going to need the state change
+ * Makes libvnck stop listening to events and tear down all resources from
+ * libvnck. This should be done if you are not going to need the state change
  * notifications for an extended period of time, to avoid wakeups with every
  * key and focus event.
  *
@@ -815,16 +815,16 @@ _wnck_get_default_display (void)
  *
  * Due to the fact that <link
  * linkend="getting-started.pitfalls.memory-management">Wnck objects are all
- * owned by libwnck</link>, users of this API through introspection should be
+ * owned by libvnck</link>, users of this API through introspection should be
  * extremely careful: they must explicitly clear variables referencing objects
  * before this call. Failure to do so might result in crashes.
  *
  * Since: 3.4
  */
 void
-wnck_shutdown (void)
+vnck_shutdown (void)
 {
-  _wnck_event_filter_shutdown ();
+  _vnck_event_filter_shutdown ();
 
   /* Warning: this is hacky :-)
    *
@@ -839,21 +839,21 @@ wnck_shutdown (void)
    * actually be done before shutting down global WnckWindow structures
    * (because the WnckScreen has a list of WnckWindow that will get mis-used
    * otherwise). */
-  _wnck_class_group_shutdown_all ();
-  _wnck_application_shutdown_all ();
-  _wnck_screen_shutdown_all ();
-  _wnck_window_shutdown_all ();
+  _vnck_class_group_shutdown_all ();
+  _vnck_application_shutdown_all ();
+  _vnck_screen_shutdown_all ();
+  _vnck_window_shutdown_all ();
 
 #ifdef HAVE_XRES
   if (xres_removeid != 0)
     g_source_remove (xres_removeid);
   xres_removeid = 0;
-  wnck_pid_read_resource_usage_destroy_hash_table (NULL);
+  vnck_pid_read_resource_usage_destroy_hash_table (NULL);
 #endif
 }
 
 void
-_wnck_ensure_fallback_style (void)
+_vnck_ensure_fallback_style (void)
 {
   static gboolean css_loaded = FALSE;
   GtkCssProvider *provider;
@@ -863,7 +863,7 @@ _wnck_ensure_fallback_style (void)
     return;
 
   provider = gtk_css_provider_new ();
-  gtk_css_provider_load_from_resource (provider, "/org/gnome/libwnck/wnck.css");
+  gtk_css_provider_load_from_resource (provider, "/org/gnome/libvnck/vnck.css");
 
   priority = GTK_STYLE_PROVIDER_PRIORITY_FALLBACK;
   gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),

@@ -28,7 +28,7 @@ Miscellaneous Functions
 @WNCK_CLIENT_TYPE_APPLICATION: 
 @WNCK_CLIENT_TYPE_PAGER: 
 
-<!-- ##### FUNCTION wnck_set_client_type ##### -->
+<!-- ##### FUNCTION vnck_set_client_type ##### -->
 <para>
 
 </para>
@@ -36,7 +36,7 @@ Miscellaneous Functions
 @ewmh_sourceindication_client_type: 
 
 
-<!-- ##### FUNCTION wnck_shutdown ##### -->
+<!-- ##### FUNCTION vnck_shutdown ##### -->
 <para>
 
 </para>

@@ -17,7 +17,7 @@ Miscellaneous Functions
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### FUNCTION wnck_gtk_window_set_dock_type ##### -->
+<!-- ##### FUNCTION vnck_gtk_window_set_dock_type ##### -->
 <para>
 
 </para>
@@ -33,7 +33,7 @@ Miscellaneous Functions
 @WNCK_CLIENT_TYPE_APPLICATION: 
 @WNCK_CLIENT_TYPE_PAGER: 
 
-<!-- ##### FUNCTION wnck_set_client_type ##### -->
+<!-- ##### FUNCTION vnck_set_client_type ##### -->
 <para>
 
 </para>
@@ -59,7 +59,7 @@ Miscellaneous Functions
 @n_cursors: 
 @n_other: 
 
-<!-- ##### FUNCTION wnck_xid_read_resource_usage ##### -->
+<!-- ##### FUNCTION vnck_xid_read_resource_usage ##### -->
 <para>
 
 </para>
@@ -69,7 +69,7 @@ Miscellaneous Functions
 @usage: 
 
 
-<!-- ##### FUNCTION wnck_pid_read_resource_usage ##### -->
+<!-- ##### FUNCTION vnck_pid_read_resource_usage ##### -->
 <para>
 
 </para>

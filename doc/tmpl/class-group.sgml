@@ -31,16 +31,16 @@ WnckClassGroup
 
 </para>
 
-@wnckclassgroup: the object which received the signal.
+@vnckclassgroup: the object which received the signal.
 
 <!-- ##### SIGNAL WnckClassGroup::name-changed ##### -->
 <para>
 
 </para>
 
-@wnckclassgroup: the object which received the signal.
+@vnckclassgroup: the object which received the signal.
 
-<!-- ##### FUNCTION wnck_class_group_get ##### -->
+<!-- ##### FUNCTION vnck_class_group_get ##### -->
 <para>
 
 </para>
@@ -49,7 +49,7 @@ WnckClassGroup
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_class_group_get_id ##### -->
+<!-- ##### FUNCTION vnck_class_group_get_id ##### -->
 <para>
 
 </para>
@@ -58,7 +58,7 @@ WnckClassGroup
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_class_group_get_res_class ##### -->
+<!-- ##### FUNCTION vnck_class_group_get_res_class ##### -->
 <para>
 
 </para>
@@ -67,7 +67,7 @@ WnckClassGroup
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_class_group_get_name ##### -->
+<!-- ##### FUNCTION vnck_class_group_get_name ##### -->
 <para>
 
 </para>
@@ -76,7 +76,7 @@ WnckClassGroup
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_class_group_get_icon ##### -->
+<!-- ##### FUNCTION vnck_class_group_get_icon ##### -->
 <para>
 
 </para>
@@ -85,7 +85,7 @@ WnckClassGroup
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_class_group_get_mini_icon ##### -->
+<!-- ##### FUNCTION vnck_class_group_get_mini_icon ##### -->
 <para>
 
 </para>
@@ -94,7 +94,7 @@ WnckClassGroup
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_class_group_get_windows ##### -->
+<!-- ##### FUNCTION vnck_class_group_get_windows ##### -->
 <para>
 
 </para>

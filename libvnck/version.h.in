@@ -22,7 +22,7 @@
  */
 
 #if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
-#error "Only <libwnck/libwnck.h> can be included directly."
+#error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
 #ifndef WNCK_VERSION_H
@@ -30,21 +30,21 @@
 
 /**
  * SECTION:version
- * @Short_description: variables and functions to check the libwnck version
+ * @Short_description: variables and functions to check the libvnck version
  * @stability: Unstable
  *
- * libwnck provides version information, primarily useful in configure checks
+ * libvnck provides version information, primarily useful in configure checks
  * for builds that have a configure script, and to write code against different
- * versions of libwnck that do not provide the same API.
+ * versions of libvnck that do not provide the same API.
  */
 
 /**
  * WNCK_MAJOR_VERSION:
  *
- * Return value: the major version number of the libwnck library, from the
+ * Return value: the major version number of the libvnck library, from the
  * headers used at application compile time, rather than from the library
  * linked against at application run time.
- * (e.g. in libwnck version 1.2.5 this is 1.)
+ * (e.g. in libvnck version 1.2.5 this is 1.)
  *
  * Since: 3.0
  */
@@ -53,10 +53,10 @@
 /**
  * WNCK_MINOR_VERSION:
  *
- * Return value: the minor version number of the libwnck library, from the
+ * Return value: the minor version number of the libvnck library, from the
  * headers used at application compile time, rather than from the library
  * linked against at application run time.
- * (e.g. in libwnck version 1.2.5 this is 2.)
+ * (e.g. in libvnck version 1.2.5 this is 2.)
  *
  * Since: 3.0
  */
@@ -65,10 +65,10 @@
 /**
  * WNCK_MICRO_VERSION:
  *
- * Return value: the micro version number of the libwnck library, from the
+ * Return value: the micro version number of the libvnck library, from the
  * headers used at application compile time, rather than from the library
  * linked against at application run time.
- * (e.g. in libwnck version 1.2.5 this is 5.)
+ * (e.g. in libvnck version 1.2.5 this is 5.)
  *
  * Since: 3.0
  */
@@ -80,7 +80,7 @@
  * @minor: minor version (e.g. 2 for version 1.2.5)
  * @micro: micro version (e.g. 5 for version 1.2.5)
  *
- * Return value: %TRUE if the version of the libwnck header files
+ * Return value: %TRUE if the version of the libvnck header files
  * is the same as or newer than the passed-in version, %FALSE
  * otherwise.
  *

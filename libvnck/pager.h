@@ -20,18 +20,18 @@
  */
 
 #if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
-#error "Only <libwnck/libwnck.h> can be included directly."
+#error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
 #ifndef WNCK_PAGER_H
 #define WNCK_PAGER_H
 
 #include <gtk/gtk.h>
-#include <libwnck/screen.h>
+#include <libvnck/screen.h>
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_PAGER              (wnck_pager_get_type ())
+#define WNCK_TYPE_PAGER              (vnck_pager_get_type ())
 #define WNCK_PAGER(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_PAGER, WnckPager))
 #define WNCK_PAGER_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_PAGER, WnckPagerClass))
 #define WNCK_IS_PAGER(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_PAGER))
@@ -96,25 +96,25 @@ typedef enum {
   WNCK_PAGER_SCROLL_1D
 } WnckPagerScrollMode;
 
-GType      wnck_pager_get_type           (void) G_GNUC_CONST;
+GType      vnck_pager_get_type           (void) G_GNUC_CONST;
 
-GtkWidget* wnck_pager_new                (void);
+GtkWidget* vnck_pager_new                (void);
 
-gboolean   wnck_pager_set_orientation    (WnckPager            *pager,
+gboolean   vnck_pager_set_orientation    (WnckPager            *pager,
                                           GtkOrientation        orientation);
-gboolean   wnck_pager_set_n_rows         (WnckPager            *pager,
+gboolean   vnck_pager_set_n_rows         (WnckPager            *pager,
                                           int                   n_rows);
-void       wnck_pager_set_display_mode   (WnckPager            *pager,
+void       vnck_pager_set_display_mode   (WnckPager            *pager,
                                           WnckPagerDisplayMode  mode);
-void       wnck_pager_set_scroll_mode    (WnckPager            *pager,
+void       vnck_pager_set_scroll_mode    (WnckPager            *pager,
                                           WnckPagerScrollMode   scroll_mode);
-void       wnck_pager_set_show_all       (WnckPager            *pager,
+void       vnck_pager_set_show_all       (WnckPager            *pager,
                                           gboolean              show_all_workspaces);
-void       wnck_pager_set_shadow_type    (WnckPager            *pager,
+void       vnck_pager_set_shadow_type    (WnckPager            *pager,
                                           GtkShadowType         shadow_type);
-void       wnck_pager_set_wrap_on_scroll (WnckPager            *pager,
+void       vnck_pager_set_wrap_on_scroll (WnckPager            *pager,
                                           gboolean              wrap_on_scroll);
-gboolean   wnck_pager_get_wrap_on_scroll (WnckPager            *pager);
+gboolean   vnck_pager_get_wrap_on_scroll (WnckPager            *pager);
 
 G_END_DECLS
 

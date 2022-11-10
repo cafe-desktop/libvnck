@@ -1,11 +1,11 @@
-# Frisian translation for libwnck
+# Frisian translation for libvnck
 # Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
-# This file is distributed under the same license as the libwnck package.
+# This file is distributed under the same license as the libvnck package.
 # Sense Hofstede <sense@ubuntu.com>, 2011.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: libwnck\n"
+"Project-Id-Version: libvnck\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-20 21:41+0100\n"
 "PO-Revision-Date: 2011-03-20 20:18+0000\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. * SECTION:application
 #. * @short_description: an object representing a group of windows of the same
 #. * application.
-#. * @see_also: wnck_window_get_application()
+#. * @see_also: vnck_window_get_application()
 #. * @stability: Unstable
 #. *
 #. * The #WnckApplication is a group of #WnckWindow that are all in the same
@@ -34,153 +34,153 @@ msgstr ""
 #. * belonging to it, and new #WnckWindow are added to a #WnckApplication if and
 #. * only if they have the group leader of the #WnckApplication.
 #. *
-#. * The #WnckApplication objects are always owned by libwnck and must not be
+#. * The #WnckApplication objects are always owned by libvnck and must not be
 #. * referenced or unreferenced.
 #.
-#: ../libwnck/application.c:51
+#: ../libvnck/application.c:51
 msgid "Untitled application"
 msgstr "Nammelease tapassing"
 
-#: ../libwnck/pager-accessible.c:342
+#: ../libvnck/pager-accessible.c:342
 msgid "Workspace Switcher"
 msgstr "Wurkromteskeakeler"
 
-#: ../libwnck/pager-accessible.c:353
+#: ../libvnck/pager-accessible.c:353
 msgid "Tool to switch between workspaces"
 msgstr "Ark om tusken wurktomtes te skeakelje"
 
-#: ../libwnck/pager-accessible.c:465
+#: ../libvnck/pager-accessible.c:465
 #, c-format
 msgid "Click this to switch to workspace %s"
 msgstr "Klik hjir om te skeakelje nei wurkromte %s"
 
-#: ../libwnck/pager.c:2214
+#: ../libvnck/pager.c:2214
 #, c-format
 msgid "Click to start dragging \"%s\""
 msgstr "Klik om te starte mei it slepe fan \"%s\""
 
-#: ../libwnck/pager.c:2217
+#: ../libvnck/pager.c:2217
 #, c-format
 msgid "Current workspace: \"%s\""
 msgstr "Hjoeddeiske wurkromte: \"%s\""
 
-#: ../libwnck/pager.c:2222
+#: ../libvnck/pager.c:2222
 #, c-format
 msgid "Click to switch to \"%s\""
 msgstr "Klik hjir om te skeakelje nei \"%s\""
 
-#: ../libwnck/selector.c:1184
+#: ../libvnck/selector.c:1184
 msgid "No Windows Open"
 msgstr "Gjin iepen finsters"
 
-#: ../libwnck/selector.c:1240
+#: ../libvnck/selector.c:1240
 msgid "Window Selector"
 msgstr "Finsterkiezer"
 
-#: ../libwnck/selector.c:1241
+#: ../libvnck/selector.c:1241
 msgid "Tool to switch between windows"
 msgstr "Ark om te skeakelje tusken finsters"
 
-#: ../libwnck/tasklist.c:673
+#: ../libvnck/tasklist.c:673
 msgid "Window List"
 msgstr "Finsterlist"
 
-#: ../libwnck/tasklist.c:674
+#: ../libvnck/tasklist.c:674
 msgid "Tool to switch between visible windows"
 msgstr "Ark om te skeakelje tusken sichtbere finsters"
 
-#: ../libwnck/tasklist.c:2889
+#: ../libvnck/tasklist.c:2889
 msgid "Mi_nimize All"
 msgstr "Alle mi_nimalisearje"
 
-#: ../libwnck/tasklist.c:2900
+#: ../libvnck/tasklist.c:2900
 msgid "Un_minimize All"
 msgstr "Alle tebek _minimalisearje"
 
-#: ../libwnck/tasklist.c:2908
+#: ../libvnck/tasklist.c:2908
 msgid "Ma_ximize All"
 msgstr "Alle maksimalisearje"
 
-#: ../libwnck/tasklist.c:2919
+#: ../libvnck/tasklist.c:2919
 msgid "_Unmaximize All"
 msgstr "Alle tebek maksimalisearje"
 
-#: ../libwnck/tasklist.c:2931
+#: ../libvnck/tasklist.c:2931
 msgid "_Close All"
 msgstr "Alle slute"
 
-#: ../libwnck/window-action-menu.c:417
+#: ../libvnck/window-action-menu.c:417
 msgid "Unmi_nimize"
 msgstr "Tebek mi_nimalisearje"
 
-#: ../libwnck/window-action-menu.c:424
+#: ../libvnck/window-action-menu.c:424
 msgid "Mi_nimize"
 msgstr "Mi_nimalisearje"
 
-#: ../libwnck/window-action-menu.c:432
+#: ../libvnck/window-action-menu.c:432
 msgid "Unma_ximize"
 msgstr "Tebek maximalisearje"
 
-#: ../libwnck/window-action-menu.c:439
+#: ../libvnck/window-action-menu.c:439
 msgid "Ma_ximize"
 msgstr "Maksimalisearje"
 
-#: ../libwnck/window-action-menu.c:746 ../libwnck/workspace.c:281
+#: ../libvnck/window-action-menu.c:746 ../libvnck/workspace.c:281
 #, c-format
 msgid "Workspace %d"
 msgstr "Wurkromte %d"
 
-#: ../libwnck/window-action-menu.c:755 ../libwnck/window-action-menu.c:902
+#: ../libvnck/window-action-menu.c:755 ../libvnck/window-action-menu.c:902
 #, c-format
 msgid "Workspace 1_0"
 msgstr "Wurkromte 1_0"
 
-#: ../libwnck/window-action-menu.c:757 ../libwnck/window-action-menu.c:904
+#: ../libvnck/window-action-menu.c:757 ../libvnck/window-action-menu.c:904
 #, c-format
 msgid "Workspace %s%d"
 msgstr "Wurkromte %s%d"
 
-#: ../libwnck/window-action-menu.c:1047
+#: ../libvnck/window-action-menu.c:1047
 msgid "_Move"
 msgstr "Ferpleatse"
 
-#: ../libwnck/window-action-menu.c:1054
+#: ../libvnck/window-action-menu.c:1054
 msgid "_Resize"
 msgstr "G_rutte feroarje"
 
-#: ../libwnck/window-action-menu.c:1063
+#: ../libvnck/window-action-menu.c:1063
 msgid "Always On _Top"
 msgstr "Altyd boppe"
 
-#: ../libwnck/window-action-menu.c:1071
+#: ../libvnck/window-action-menu.c:1071
 msgid "_Always on Visible Workspace"
 msgstr "_Altyd op sichtbere wurkromte"
 
-#: ../libwnck/window-action-menu.c:1076
+#: ../libvnck/window-action-menu.c:1076
 msgid "_Only on This Workspace"
 msgstr "Allinich op dizze wurkr_omte"
 
-#: ../libwnck/window-action-menu.c:1083
+#: ../libvnck/window-action-menu.c:1083
 msgid "Move to Workspace _Left"
 msgstr "Nei de wurkromte _loft ferpleatse"
 
-#: ../libwnck/window-action-menu.c:1089
+#: ../libvnck/window-action-menu.c:1089
 msgid "Move to Workspace R_ight"
 msgstr "Nei de wurkromte _rjochts ferpleatse"
 
-#: ../libwnck/window-action-menu.c:1095
+#: ../libvnck/window-action-menu.c:1095
 msgid "Move to Workspace _Up"
 msgstr "Nei de w_urkromte omheech ferpleatse"
 
-#: ../libwnck/window-action-menu.c:1101
+#: ../libvnck/window-action-menu.c:1101
 msgid "Move to Workspace _Down"
 msgstr "Nei _de wurkromte omleech ferpleatse"
 
-#: ../libwnck/window-action-menu.c:1104
+#: ../libvnck/window-action-menu.c:1104
 msgid "Move to Another _Workspace"
 msgstr "Nei in oare _wurkromte ferpleatse"
 
-#: ../libwnck/window-action-menu.c:1124
+#: ../libvnck/window-action-menu.c:1124
 msgid "_Close"
 msgstr "Slute"
 
@@ -190,19 +190,19 @@ msgstr "Slute"
 #. * @see_also: #WnckWorkspace, #WnckApplication, #WnckClassGroup
 #. * @stability: Unstable
 #. *
-#. * The #WnckWindow objects are always owned by libwnck and must not be
+#. * The #WnckWindow objects are always owned by libvnck and must not be
 #. * referenced or unreferenced.
 #.
-#: ../libwnck/window.c:50
+#: ../libvnck/window.c:50
 msgid "Untitled window"
 msgstr "Nammeleas finster"
 
-#: ../libwnck/wnckprop.c:138
+#: ../libvnck/vnckprop.c:138
 msgid "X window ID of the window to examine or modify"
 msgstr "X-finster-ID fan it te undersykjen of oan te passen finster"
 
-#: ../libwnck/wnckprop.c:138 ../libwnck/wnckprop.c:145
-#: ../libwnck/wnckprop.c:155
+#: ../libvnck/vnckprop.c:138 ../libvnck/vnckprop.c:145
+#: ../libvnck/vnckprop.c:155
 msgid "XID"
 msgstr "XID"
 
@@ -210,41 +210,41 @@ msgstr "XID"
 #. * group of windows, ie: if you have multiple windows in one
 #. * application, one window has some information about the application
 #. * (like the application name).
-#: ../libwnck/wnckprop.c:144
+#: ../libvnck/vnckprop.c:144
 msgid "X window ID of the group leader of an application to examine"
 msgstr "X-finster-ID fan de groeplieder fan in te ûndersykjen tapassing"
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: ../libwnck/wnckprop.c:149
+#: ../libvnck/vnckprop.c:149
 msgid "Class resource of the class group to examine"
 msgstr "Klassehelpboarne fan de te ûndersykjen klassegroep"
 
-#: ../libwnck/wnckprop.c:149
+#: ../libvnck/vnckprop.c:149
 msgid "CLASS"
 msgstr "KLASSE"
 
-#: ../libwnck/wnckprop.c:151
+#: ../libvnck/vnckprop.c:151
 msgid "NUMBER of the workspace to examine or modify"
 msgstr "NÛMER fan de wurkromte om te ûndersykje of feroarje"
 
-#: ../libwnck/wnckprop.c:151 ../libwnck/wnckprop.c:153
-#: ../libwnck/wnckprop.c:171 ../libwnck/wnckprop.c:173
-#: ../libwnck/wnckprop.c:175 ../libwnck/wnckprop.c:272
+#: ../libvnck/vnckprop.c:151 ../libvnck/vnckprop.c:153
+#: ../libvnck/vnckprop.c:171 ../libvnck/vnckprop.c:173
+#: ../libvnck/vnckprop.c:175 ../libvnck/vnckprop.c:272
 msgid "NUMBER"
 msgstr "NÛMER"
 
-#: ../libwnck/wnckprop.c:153
+#: ../libvnck/vnckprop.c:153
 msgid "NUMBER of the screen to examine or modify"
 msgstr "NÛMER fan it skerm om te ûndersykje of feroarje"
 
-#: ../libwnck/wnckprop.c:155
+#: ../libvnck/vnckprop.c:155
 msgid "Alias of --window"
 msgstr "Alias fan --window"
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: ../libwnck/wnckprop.c:163
+#: ../libvnck/vnckprop.c:163
 msgid ""
 "List windows of the application/class group/workspace/screen (output format: "
 "\"XID: Window Name\")"
@@ -252,147 +252,147 @@ msgstr ""
 "De finsters fan de tapassing/klassegroep/wurkromte/it skerm op in rige sette "
 "(útfieropmaak: \"XID: finsternamme\")"
 
-#: ../libwnck/wnckprop.c:165
+#: ../libvnck/vnckprop.c:165
 msgid ""
 "List workspaces of the screen (output format: \"Number: Workspace Name\")"
 msgstr ""
 "Wurkromtes fan it skerm op in rige sette (útfieropmaak: \"Nûmer: "
 "wurkromtenamme\")"
 
-#: ../libwnck/wnckprop.c:171
+#: ../libvnck/vnckprop.c:171
 msgid "Change the number of workspaces of the screen to NUMBER"
 msgstr "It tal wurkromten fan it skerm nei NÛMER feroarje"
 
-#: ../libwnck/wnckprop.c:173
+#: ../libvnck/vnckprop.c:173
 msgid "Change the workspace layout of the screen to use NUMBER rows"
 msgstr "De yndieling fan de wurkromtes feroarje nei it brûken fan NÛMER rigels"
 
-#: ../libwnck/wnckprop.c:175
+#: ../libvnck/vnckprop.c:175
 msgid "Change the workspace layout of the screen to use NUMBER columns"
 msgstr ""
 "De yndieling fan de wurkromtes feroarje nei it brûken fan NÛMER kolommen"
 
-#: ../libwnck/wnckprop.c:177
+#: ../libvnck/vnckprop.c:177
 msgid "Show the desktop"
 msgstr "It buroblêd sjen litte"
 
-#: ../libwnck/wnckprop.c:179
+#: ../libvnck/vnckprop.c:179
 msgid "Stop showing the desktop"
 msgstr "Stoppe mei it sjen litte fan it buroblêd"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libwnck/wnckprop.c:184
+#: ../libvnck/vnckprop.c:184
 msgid "Move the viewport of the current workspace to X coordinate X"
 msgstr "It eachweid fan de hjoeddeiske wurkromte nei X-koördinaat X"
 
-#: ../libwnck/wnckprop.c:184 ../libwnck/wnckprop.c:274
+#: ../libvnck/vnckprop.c:184 ../libvnck/vnckprop.c:274
 msgid "X"
 msgstr "X"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libwnck/wnckprop.c:189
+#: ../libvnck/vnckprop.c:189
 msgid "Move the viewport of the current workspace to Y coordinate Y"
 msgstr "It eachweid fan de hjoeddeiske wurkromte nei Y-koördinaat Y"
 
-#: ../libwnck/wnckprop.c:189 ../libwnck/wnckprop.c:276
+#: ../libvnck/vnckprop.c:189 ../libvnck/vnckprop.c:276
 msgid "Y"
 msgstr "Y"
 
-#: ../libwnck/wnckprop.c:195
+#: ../libvnck/vnckprop.c:195
 msgid "Minimize the window"
 msgstr "It finster minimalisearje"
 
-#: ../libwnck/wnckprop.c:197
+#: ../libvnck/vnckprop.c:197
 msgid "Unminimize the window"
 msgstr "It finster tebek minimalisearje"
 
-#: ../libwnck/wnckprop.c:199
+#: ../libvnck/vnckprop.c:199
 msgid "Maximize the window"
 msgstr "It finster maksimalisearje"
 
-#: ../libwnck/wnckprop.c:201
+#: ../libvnck/vnckprop.c:201
 msgid "Unmaximize the window"
 msgstr "It finster tebek maksimalisearje"
 
-#: ../libwnck/wnckprop.c:203
+#: ../libvnck/vnckprop.c:203
 msgid "Maximize horizontally the window"
 msgstr "It finster horizontaal maksimalisearje"
 
-#: ../libwnck/wnckprop.c:205
+#: ../libvnck/vnckprop.c:205
 msgid "Unmaximize horizontally the window"
 msgstr "It finster horizontaal tebek maksimalisearje"
 
-#: ../libwnck/wnckprop.c:207
+#: ../libvnck/vnckprop.c:207
 msgid "Maximize vertically the window"
 msgstr "It finster fertikaal maksimalisearje"
 
-#: ../libwnck/wnckprop.c:209
+#: ../libvnck/vnckprop.c:209
 msgid "Unmaximize vertically the window"
 msgstr "It finster fertikaal tebek maksimalisearje"
 
-#: ../libwnck/wnckprop.c:211
+#: ../libvnck/vnckprop.c:211
 msgid "Start moving the window via the keyboard"
 msgstr "Begjin mei it ferpleatsen fan it finster mei it toetseboerd"
 
-#: ../libwnck/wnckprop.c:213
+#: ../libvnck/vnckprop.c:213
 msgid "Start resizing the window via the keyboard"
 msgstr "Begjin mei it feroarje fan de grutte fan it finster mei it toetseboerd"
 
-#: ../libwnck/wnckprop.c:215
+#: ../libvnck/vnckprop.c:215
 msgid "Activate the window"
 msgstr "It finster aktyf meitsje"
 
-#: ../libwnck/wnckprop.c:217
+#: ../libvnck/vnckprop.c:217
 msgid "Close the window"
 msgstr "It finster slute"
 
-#: ../libwnck/wnckprop.c:220
+#: ../libvnck/vnckprop.c:220
 msgid "Make the window fullscreen"
 msgstr "It finster folslein skerm meitsje"
 
-#: ../libwnck/wnckprop.c:222
+#: ../libvnck/vnckprop.c:222
 msgid "Make the window quit fullscreen mode"
 msgstr "It finster folslein-skerm-modus dien meitsje litte"
 
-#: ../libwnck/wnckprop.c:224
+#: ../libvnck/vnckprop.c:224
 msgid "Make the window always on top"
 msgstr "It finster altyd boppe meitsje"
 
-#: ../libwnck/wnckprop.c:226
+#: ../libvnck/vnckprop.c:226
 msgid "Make the window not always on top"
 msgstr "It finster net altyd boppe meitsje"
 
-#: ../libwnck/wnckprop.c:228
+#: ../libvnck/vnckprop.c:228
 msgid "Make the window below other windows"
 msgstr "It finster ûnder oare finsters meitsje"
 
-#: ../libwnck/wnckprop.c:230
+#: ../libvnck/vnckprop.c:230
 msgid "Make the window not below other windows"
 msgstr "It finster net ûnder oare finsters meitsje"
 
-#: ../libwnck/wnckprop.c:232
+#: ../libvnck/vnckprop.c:232
 msgid "Shade the window"
 msgstr "It finster skaadzje"
 
-#: ../libwnck/wnckprop.c:234
+#: ../libvnck/vnckprop.c:234
 msgid "Unshade the window"
 msgstr "It finster ûntskaadzje"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libwnck/wnckprop.c:239
+#: ../libvnck/vnckprop.c:239
 msgid "Make the window have a fixed position in the viewport"
 msgstr "It finster in fêste posysje yn it eachweid jaan"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libwnck/wnckprop.c:244
+#: ../libvnck/vnckprop.c:244
 msgid "Make the window not have a fixed position in the viewport"
 msgstr "It finster net in fêste posysje yn it eachweid jaan"
 
@@ -401,7 +401,7 @@ msgstr "It finster net in fêste posysje yn it eachweid jaan"
 #. * inside it. Please make sure that the translation is in sync with
 #. * gnome-panel, where this term is also used in translatable strings
 #.
-#: ../libwnck/wnckprop.c:251
+#: ../libvnck/vnckprop.c:251
 msgid "Make the window not appear in pagers"
 msgstr "It finster net yn de wurkromteskeakeler ferskine litte"
 
@@ -410,60 +410,60 @@ msgstr "It finster net yn de wurkromteskeakeler ferskine litte"
 #. * inside it. Please make sure that the translation is in sync with
 #. * gnome-panel, where this term is also used in translatable strings
 #.
-#: ../libwnck/wnckprop.c:258
+#: ../libvnck/vnckprop.c:258
 msgid "Make the window appear in pagers"
 msgstr "It finster yn de wurkromteskeakeler ferskine litte"
 
 #. Translators: "tasklist" is the list of running applications (the
 #. * window list)
-#: ../libwnck/wnckprop.c:262
+#: ../libvnck/vnckprop.c:262
 msgid "Make the window not appear in tasklists"
 msgstr "It finster net yn taaklisten ferskine litte"
 
 #. Translators: "tasklist" is the list of running applications (the
 #. * window list)
-#: ../libwnck/wnckprop.c:266
+#: ../libvnck/vnckprop.c:266
 msgid "Make the window appear in tasklists"
 msgstr "It finster yn taaklisten ferskine litte"
 
-#: ../libwnck/wnckprop.c:268
+#: ../libvnck/vnckprop.c:268
 msgid "Make the window visible on all workspaces"
 msgstr "It finster op alle wurkromtes sichtber meitsje"
 
-#: ../libwnck/wnckprop.c:270
+#: ../libvnck/vnckprop.c:270
 msgid "Make the window visible on the current workspace only"
 msgstr "It finster allinnich sichtber meitsje op dizze wurkromte"
 
-#: ../libwnck/wnckprop.c:272
+#: ../libvnck/vnckprop.c:272
 msgid "Move the window to workspace NUMBER (first workspace is 0)"
 msgstr "It finster nei wurkromte NÛMER ferpleatse (earste wurkromte is 0)"
 
-#: ../libwnck/wnckprop.c:274
+#: ../libvnck/vnckprop.c:274
 msgid "Change the X coordinate of the window to X"
 msgstr "De X-koördinaat fan it finster nei X feroarje"
 
-#: ../libwnck/wnckprop.c:276
+#: ../libvnck/vnckprop.c:276
 msgid "Change the Y coordinate of the window to Y"
 msgstr "De Y-koördinaat fan it finster nei Y feroarje"
 
-#: ../libwnck/wnckprop.c:278
+#: ../libvnck/vnckprop.c:278
 msgid "Change the width of the window to WIDTH"
 msgstr "De breedte fan it finster nei BREEDTE feroarje"
 
-#: ../libwnck/wnckprop.c:278
+#: ../libvnck/vnckprop.c:278
 msgid "WIDTH"
 msgstr "BREEDTE"
 
-#: ../libwnck/wnckprop.c:280
+#: ../libvnck/vnckprop.c:280
 msgid "Change the height of the window to HEIGHT"
 msgstr "De hichte fan it finster nei HICHTE feroarje"
 
-#: ../libwnck/wnckprop.c:280
+#: ../libvnck/vnckprop.c:280
 msgid "HEIGHT"
 msgstr "HICHTE"
 
 #. Translators: do not translate "normal, desktop, dock..."
-#: ../libwnck/wnckprop.c:283
+#: ../libvnck/vnckprop.c:283
 msgid ""
 "Change the type of the window to TYPE (valid values: normal, desktop, dock, "
 "dialog, toolbar, menu, utility, splash)"
@@ -471,29 +471,29 @@ msgstr ""
 "De type fan it finster nei TYPE feroarje (jildige weardes: normal, desktop, "
 "dock, dialog, toolbar, menu, utility, splash)"
 
-#: ../libwnck/wnckprop.c:283
+#: ../libvnck/vnckprop.c:283
 msgid "TYPE"
 msgstr "TYPE"
 
-#: ../libwnck/wnckprop.c:289
+#: ../libvnck/vnckprop.c:289
 msgid "Change the name of the workspace to NAME"
 msgstr "De namme fan de wurkromte nei NAMME feroarje"
 
-#: ../libwnck/wnckprop.c:289
+#: ../libvnck/vnckprop.c:289
 msgid "NAME"
 msgstr "NAMME"
 
-#: ../libwnck/wnckprop.c:291
+#: ../libvnck/vnckprop.c:291
 msgid "Activate the workspace"
 msgstr "De wurkromte aktyf meitsje"
 
-#: ../libwnck/wnckprop.c:385 ../libwnck/wnckprop.c:409
-#: ../libwnck/wnckprop.c:445 ../libwnck/wnckprop.c:468
+#: ../libvnck/vnckprop.c:385 ../libvnck/vnckprop.c:409
+#: ../libvnck/vnckprop.c:445 ../libvnck/vnckprop.c:468
 #, c-format
 msgid "Invalid value \"%s\" for --%s"
 msgstr "Ûnjildige wearde \"%s\" foar --%s"
 
-#: ../libwnck/wnckprop.c:502 ../libwnck/wnckprop.c:521
+#: ../libvnck/vnckprop.c:502 ../libvnck/vnckprop.c:521
 #, c-format
 msgid ""
 "Conflicting options are present: screen %d should be interacted with, but --"
@@ -502,7 +502,7 @@ msgstr ""
 "Stridige opsjes oanwêzich: mei skerm %d soe omgean wurde, mar --%s war "
 "brûkt\n"
 
-#: ../libwnck/wnckprop.c:511
+#: ../libvnck/vnckprop.c:511
 #, c-format
 msgid ""
 "Conflicting options are present: windows or workspaces of screen %d should "
@@ -511,7 +511,7 @@ msgstr ""
 "Stridige opsjes oanwêzich: finsters of wurkromtes fan skerm %d soen op in "
 "rige set wurde, mar --%s war brûkt\n"
 
-#: ../libwnck/wnckprop.c:534 ../libwnck/wnckprop.c:554
+#: ../libvnck/vnckprop.c:534 ../libvnck/vnckprop.c:554
 #, c-format
 msgid ""
 "Conflicting options are present: workspace %d should be interacted with, but "
@@ -520,7 +520,7 @@ msgstr ""
 "Stridige opsjes oanwêzich: mei wurkromte %d soe omgean wurde, mar --%s war "
 "brûkt\n"
 
-#: ../libwnck/wnckprop.c:544
+#: ../libvnck/vnckprop.c:544
 #, c-format
 msgid ""
 "Conflicting options are present: windows of workspace %d should be listed, "
@@ -529,7 +529,7 @@ msgstr ""
 "Stridige opsjes oanwêzich: finsters fan wurkromte %d soen op in rige set "
 "wurde, mar --%s war brûkt\n"
 
-#: ../libwnck/wnckprop.c:566
+#: ../libvnck/vnckprop.c:566
 #, c-format
 msgid ""
 "Conflicting options are present: an application should be interacted with, "
@@ -538,7 +538,7 @@ msgstr ""
 "Stridige opsjes oanwêzich: mei in tapassing soe omgean wurde, mar --%s war "
 "brûkt\n"
 
-#: ../libwnck/wnckprop.c:576
+#: ../libvnck/vnckprop.c:576
 #, c-format
 msgid ""
 "Conflicting options are present: windows of an application should be listed, "
@@ -549,7 +549,7 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: ../libwnck/wnckprop.c:590
+#: ../libvnck/vnckprop.c:590
 #, c-format
 msgid ""
 "Conflicting options are present: class group \"%s\" should be interacted "
@@ -560,7 +560,7 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: ../libwnck/wnckprop.c:602
+#: ../libvnck/vnckprop.c:602
 #, c-format
 msgid ""
 "Conflicting options are present: windows of class group \"%s\" should be "
@@ -569,7 +569,7 @@ msgstr ""
 "Stridige opsjes oanwêzich: finsters fan klassegroep \"%s\" soen op in rige "
 "set wurde, mar --%s war brûkt\n"
 
-#: ../libwnck/wnckprop.c:614 ../libwnck/wnckprop.c:623
+#: ../libvnck/vnckprop.c:614 ../libvnck/vnckprop.c:623
 #, c-format
 msgid ""
 "Conflicting options are present: a window should be interacted with, but --"
@@ -578,35 +578,35 @@ msgstr ""
 "Stridige opsjes oanwêzich: mei in finster soe omgean wurde, mar --%s war "
 "brûkt\n"
 
-#: ../libwnck/wnckprop.c:642 ../libwnck/wnckprop.c:723
-#: ../libwnck/wnckprop.c:770
+#: ../libvnck/vnckprop.c:642 ../libvnck/vnckprop.c:723
+#: ../libvnck/vnckprop.c:770
 #, c-format
 msgid "Conflicting options are present: --%s and --%s\n"
 msgstr "Stridige opsjes oanwêzich: --%s en --%s\n"
 
-#: ../libwnck/wnckprop.c:681
+#: ../libvnck/vnckprop.c:681
 #, c-format
 msgid ""
 "Invalid argument \"%d\" for --%s: the argument must be strictly positive\n"
 msgstr ""
 "Ûnjildich argumint \"%d\" foar --%s: it argumint moat folslein posityf wêze\n"
 
-#: ../libwnck/wnckprop.c:694
+#: ../libvnck/vnckprop.c:694
 #, c-format
 msgid "Invalid argument \"%d\" for --%s: the argument must be positive\n"
 msgstr "Ûnjildich argumint \"%d\" foar --%s: it argumint moat posityf wêze\n"
 
-#: ../libwnck/wnckprop.c:789
+#: ../libvnck/vnckprop.c:789
 #, c-format
 msgid "Conflicting options are present: --%s or --%s, and --%s\n"
 msgstr "Stridige opsjes oanwêzich: --%s of --%s, en --%s\n"
 
-#: ../libwnck/wnckprop.c:821
+#: ../libvnck/vnckprop.c:821
 #, c-format
 msgid "Invalid argument \"%s\" for --%s, valid values are: %s\n"
 msgstr "Ûnjildich argumint \"%s\" foar --%s, jildige wearden binne: %s\n"
 
-#: ../libwnck/wnckprop.c:864
+#: ../libvnck/vnckprop.c:864
 #, c-format
 msgid ""
 "Cannot change the workspace layout on the screen: the layout is already "
@@ -618,7 +618,7 @@ msgstr ""
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libwnck/wnckprop.c:899
+#: ../libvnck/vnckprop.c:899
 #, c-format
 msgid ""
 "Viewport cannot be moved: the current workspace does not contain a viewport\n"
@@ -629,141 +629,141 @@ msgstr ""
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libwnck/wnckprop.c:906
+#: ../libvnck/vnckprop.c:906
 #, c-format
 msgid "Viewport cannot be moved: there is no current workspace\n"
 msgstr "Eachweid kin net ferpleatst wurde: er is gjin hjoeddeiske wurkromte\n"
 
 #. FIXME: why do we have dual & boolean API. This is not consistent!
-#: ../libwnck/wnckprop.c:942 ../libwnck/wnckprop.c:951
-#: ../libwnck/wnckprop.c:960 ../libwnck/wnckprop.c:967
-#: ../libwnck/wnckprop.c:977 ../libwnck/wnckprop.c:984
-#: ../libwnck/wnckprop.c:993 ../libwnck/wnckprop.c:1042
+#: ../libvnck/vnckprop.c:942 ../libvnck/vnckprop.c:951
+#: ../libvnck/vnckprop.c:960 ../libvnck/vnckprop.c:967
+#: ../libvnck/vnckprop.c:977 ../libvnck/vnckprop.c:984
+#: ../libvnck/vnckprop.c:993 ../libvnck/vnckprop.c:1042
 #, c-format
 msgid "Action not allowed\n"
 msgstr "Aksje net tastean\n"
 
-#: ../libwnck/wnckprop.c:1038
+#: ../libvnck/vnckprop.c:1038
 #, c-format
 msgid "Window cannot be moved to workspace %d: the workspace does not exist\n"
 msgstr ""
 "Finster kin net ferpleatst wurde nei wurkromte %d: de wurkromte bestiet net\n"
 
 #. Translators: 'unset' in the sense of "something has not been set".
-#: ../libwnck/wnckprop.c:1102 ../libwnck/wnckprop.c:1234
+#: ../libvnck/vnckprop.c:1102 ../libvnck/vnckprop.c:1234
 msgid "<name unset>"
 msgstr "<namme net set>"
 
 #. Translators: %lu is a window number and %s a window name
-#: ../libwnck/wnckprop.c:1105
+#: ../libvnck/vnckprop.c:1105
 #, c-format
 msgid "%lu: %s\n"
 msgstr "%lu: %s\n"
 
 #. Translators: %d is a workspace number and %s a workspace name
-#: ../libwnck/wnckprop.c:1125
+#: ../libvnck/vnckprop.c:1125
 #, c-format
 msgid "%d: %s\n"
 msgstr "%d: %s\n"
 
-#: ../libwnck/wnckprop.c:1188
+#: ../libvnck/vnckprop.c:1188
 #, c-format
 msgid "Screen Number: %d\n"
 msgstr "Skermnûmer: %d\n"
 
-#: ../libwnck/wnckprop.c:1190 ../libwnck/wnckprop.c:1271
+#: ../libvnck/vnckprop.c:1190 ../libvnck/vnckprop.c:1271
 #, c-format
 msgid "Geometry (width, height): %d, %d\n"
 msgstr "Geometry (breedte, hichte): %d, %d\n"
 
-#: ../libwnck/wnckprop.c:1194
+#: ../libvnck/vnckprop.c:1194
 #, c-format
 msgid "Number of Workspaces: %d\n"
 msgstr "Tal wurkromten: %d\n"
 
-#: ../libwnck/wnckprop.c:1200
+#: ../libvnck/vnckprop.c:1200
 #, c-format
 msgid "Workspace Layout (rows, columns, orientation): %d, %d, %s\n"
 msgstr ""
 "Yndieling fan wurkromtes (rigen, kolommen, oriïntearring): %d, %d, %s\n"
 
-#: ../libwnck/wnckprop.c:1210 ../libwnck/wnckprop.c:1267
-#: ../libwnck/wnckprop.c:1461
+#: ../libvnck/vnckprop.c:1210 ../libvnck/vnckprop.c:1267
+#: ../libvnck/vnckprop.c:1461
 msgid "<no EWMH-compliant window manager>"
 msgstr "<gjin EWMH-neikommende finsterbehearder>"
 
-#: ../libwnck/wnckprop.c:1211
+#: ../libvnck/vnckprop.c:1211
 #, c-format
 msgid "Window Manager: %s\n"
 msgstr "Finsterbehearder %s\n"
 
 #. Translators: %d is a workspace number and %s a workspace name
-#: ../libwnck/wnckprop.c:1216 ../libwnck/wnckprop.c:1297
-#: ../libwnck/wnckprop.c:1309 ../libwnck/wnckprop.c:1321
-#: ../libwnck/wnckprop.c:1333 ../libwnck/wnckprop.c:1446
+#: ../libvnck/vnckprop.c:1216 ../libvnck/vnckprop.c:1297
+#: ../libvnck/vnckprop.c:1309 ../libvnck/vnckprop.c:1321
+#: ../libvnck/vnckprop.c:1333 ../libvnck/vnckprop.c:1446
 #, c-format
 msgid "%d (\"%s\")"
 msgstr "%d (\"%s\")"
 
 #. Translators: "none" here means "no workspace"
-#: ../libwnck/wnckprop.c:1221 ../libwnck/wnckprop.c:1302
-#: ../libwnck/wnckprop.c:1314 ../libwnck/wnckprop.c:1326
-#: ../libwnck/wnckprop.c:1338 ../libwnck/wnckprop.c:1453
+#: ../libvnck/vnckprop.c:1221 ../libvnck/vnckprop.c:1302
+#: ../libvnck/vnckprop.c:1314 ../libvnck/vnckprop.c:1326
+#: ../libvnck/vnckprop.c:1338 ../libvnck/vnckprop.c:1453
 msgctxt "workspace"
 msgid "none"
 msgstr "gjin"
 
-#: ../libwnck/wnckprop.c:1222
+#: ../libvnck/vnckprop.c:1222
 #, c-format
 msgid "Active Workspace: %s\n"
 msgstr "Aktive wurkromte: %s\n"
 
-#: ../libwnck/wnckprop.c:1231
+#: ../libvnck/vnckprop.c:1231
 #, c-format
 msgid "\"%s\""
 msgstr "\"%s\""
 
 #. Translators: %lu is a window identifier (number) and %s a window name
-#: ../libwnck/wnckprop.c:1237
+#: ../libvnck/vnckprop.c:1237
 #, c-format
 msgid "%lu (%s)"
 msgstr "%lu (%s)"
 
 #. Translators: "none" here means "no window"
-#: ../libwnck/wnckprop.c:1243
+#: ../libvnck/vnckprop.c:1243
 msgctxt "window"
 msgid "none"
 msgstr "gjin"
 
-#: ../libwnck/wnckprop.c:1244
+#: ../libvnck/vnckprop.c:1244
 #, c-format
 msgid "Active Window: %s\n"
 msgstr "Aktyf finster: %s\n"
 
-#: ../libwnck/wnckprop.c:1247
+#: ../libvnck/vnckprop.c:1247
 #, c-format
 msgid "Showing the desktop: %s\n"
 msgstr "Dwaande mei sjen litte fan it buroblêd: %s\n"
 
-#: ../libwnck/wnckprop.c:1249
+#: ../libvnck/vnckprop.c:1249
 msgid "true"
 msgstr "wier"
 
-#: ../libwnck/wnckprop.c:1249
+#: ../libvnck/vnckprop.c:1249
 msgid "false"
 msgstr "net wier"
 
-#: ../libwnck/wnckprop.c:1260
+#: ../libvnck/vnckprop.c:1260
 #, c-format
 msgid "Workspace Name: %s\n"
 msgstr "Namme fan wurkromte: %s\n"
 
-#: ../libwnck/wnckprop.c:1261
+#: ../libvnck/vnckprop.c:1261
 #, c-format
 msgid "Workspace Number: %d\n"
 msgstr "Nûmer fan wurkromte: %d\n"
 
-#: ../libwnck/wnckprop.c:1268 ../libwnck/wnckprop.c:1462
+#: ../libvnck/vnckprop.c:1268 ../libvnck/vnckprop.c:1462
 #, c-format
 msgid "On Screen: %d (Window Manager: %s)\n"
 msgstr "Op skerm: %d (finsterbehearder: %s)\n"
@@ -771,172 +771,172 @@ msgstr "Op skerm: %d (finsterbehearder: %s)\n"
 #. Translators: 'viewport' is kind of the viewable area. A viewport can be
 #. * used to implement workspaces (e.g. compiz is an example); however it is
 #. * not just the current workspace.
-#: ../libwnck/wnckprop.c:1283
+#: ../libvnck/vnckprop.c:1283
 msgid "<no viewport>"
 msgstr "<gjin eachweid>"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport can be
 #. * used to implement workspaces (e.g. compiz is an example); however it is
 #. * not just the current workspace.
-#: ../libwnck/wnckprop.c:1287
+#: ../libvnck/vnckprop.c:1287
 #, c-format
 msgid "Viewport position (x, y): %s\n"
 msgstr "Posysje fan eachweid (x, y): %s\n"
 
-#: ../libwnck/wnckprop.c:1290
+#: ../libvnck/vnckprop.c:1290
 #, c-format
 msgid "Position in Layout (row, column): %d, %d\n"
 msgstr "Posysje yn yndieling (rige, kolom): %d, %d\n"
 
-#: ../libwnck/wnckprop.c:1303
+#: ../libvnck/vnckprop.c:1303
 #, c-format
 msgid "Left Neighbor: %s\n"
 msgstr "Lofter buorman: %s\n"
 
-#: ../libwnck/wnckprop.c:1315
+#: ../libvnck/vnckprop.c:1315
 #, c-format
 msgid "Right Neighbor: %s\n"
 msgstr "Rjochter buorman: %s\n"
 
-#: ../libwnck/wnckprop.c:1327
+#: ../libvnck/vnckprop.c:1327
 #, c-format
 msgid "Top Neighbor: %s\n"
 msgstr "Boppenbuorman: %s\n"
 
-#: ../libwnck/wnckprop.c:1339
+#: ../libvnck/vnckprop.c:1339
 #, c-format
 msgid "Bottom Neighbor: %s\n"
 msgstr "Ûnderbuorman: %s\n"
 
 #. Translators: Resource class is the name to identify a class.
-#: ../libwnck/wnckprop.c:1351
+#: ../libvnck/vnckprop.c:1351
 #, c-format
 msgid "Resource Class: %s\n"
 msgstr "Helpboarneklasse: %s\n"
 
-#: ../libwnck/wnckprop.c:1353
+#: ../libvnck/vnckprop.c:1353
 #, c-format
 msgid "Group Name: %s\n"
 msgstr "Groepnamme: %s\n"
 
 #. Translators: 'set' in the sense of "something has been set".
-#: ../libwnck/wnckprop.c:1359 ../libwnck/wnckprop.c:1383
-#: ../libwnck/wnckprop.c:1437
+#: ../libvnck/vnckprop.c:1359 ../libvnck/vnckprop.c:1383
+#: ../libvnck/vnckprop.c:1437
 msgid "set"
 msgstr "stelt"
 
 #. Translators: 'unset' in the sense of "something has not been set".
-#: ../libwnck/wnckprop.c:1362 ../libwnck/wnckprop.c:1386
-#: ../libwnck/wnckprop.c:1393 ../libwnck/wnckprop.c:1423
-#: ../libwnck/wnckprop.c:1430 ../libwnck/wnckprop.c:1440
-#: ../libwnck/wnckprop.c:1505 ../libwnck/wnckprop.c:1516
-#: ../libwnck/wnckprop.c:1524
+#: ../libvnck/vnckprop.c:1362 ../libvnck/vnckprop.c:1386
+#: ../libvnck/vnckprop.c:1393 ../libvnck/vnckprop.c:1423
+#: ../libvnck/vnckprop.c:1430 ../libvnck/vnckprop.c:1440
+#: ../libvnck/vnckprop.c:1505 ../libvnck/vnckprop.c:1516
+#: ../libvnck/vnckprop.c:1524
 msgid "<unset>"
 msgstr "<net stelt>"
 
-#: ../libwnck/wnckprop.c:1363 ../libwnck/wnckprop.c:1387
-#: ../libwnck/wnckprop.c:1441
+#: ../libvnck/vnckprop.c:1363 ../libvnck/vnckprop.c:1387
+#: ../libvnck/vnckprop.c:1441
 #, c-format
 msgid "Icons: %s\n"
 msgstr "Ikoanen: %s\n"
 
-#: ../libwnck/wnckprop.c:1366 ../libwnck/wnckprop.c:1404
+#: ../libvnck/vnckprop.c:1366 ../libvnck/vnckprop.c:1404
 #, c-format
 msgid "Number of Windows: %d\n"
 msgstr "Tal finsters: %d\n"
 
-#: ../libwnck/wnckprop.c:1378 ../libwnck/wnckprop.c:1424
+#: ../libvnck/vnckprop.c:1378 ../libvnck/vnckprop.c:1424
 #, c-format
 msgid "Name: %s\n"
 msgstr "Namme: %s\n"
 
 #. Translators: note that "Icon" here has a specific window
 #. * management-related meaning. It means minimized.
-#: ../libwnck/wnckprop.c:1379 ../libwnck/wnckprop.c:1433
+#: ../libvnck/vnckprop.c:1379 ../libvnck/vnckprop.c:1433
 #, c-format
 msgid "Icon Name: %s\n"
 msgstr "Ikoannamme: %s\n"
 
-#: ../libwnck/wnckprop.c:1394 ../libwnck/wnckprop.c:1517
+#: ../libvnck/vnckprop.c:1394 ../libvnck/vnckprop.c:1517
 #, c-format
 msgid "PID: %s\n"
 msgstr "PID: %s\n"
 
 #. Translators: "none" here means "no startup ID"
-#: ../libwnck/wnckprop.c:1401
+#: ../libvnck/vnckprop.c:1401
 msgctxt "startupID"
 msgid "none"
 msgstr "gjin"
 
-#: ../libwnck/wnckprop.c:1402
+#: ../libvnck/vnckprop.c:1402
 #, c-format
 msgid "Startup ID: %s\n"
 msgstr "Opstart-ID: %s\n"
 
-#: ../libwnck/wnckprop.c:1450
+#: ../libvnck/vnckprop.c:1450
 msgid "all workspaces"
 msgstr "alle wurkromten"
 
-#: ../libwnck/wnckprop.c:1454
+#: ../libvnck/vnckprop.c:1454
 #, c-format
 msgid "On Workspace: %s\n"
 msgstr "Op wurkromte: %s\n"
 
-#: ../libwnck/wnckprop.c:1469
+#: ../libvnck/vnckprop.c:1469
 msgid "normal window"
 msgstr "normaal finster"
 
-#: ../libwnck/wnckprop.c:1472
+#: ../libvnck/vnckprop.c:1472
 msgid "desktop"
 msgstr "buroblêd"
 
-#: ../libwnck/wnckprop.c:1475
+#: ../libvnck/vnckprop.c:1475
 msgid "dock or panel"
 msgstr "dock of paniel"
 
-#: ../libwnck/wnckprop.c:1478
+#: ../libvnck/vnckprop.c:1478
 msgid "dialog window"
 msgstr "dialoochfinster"
 
-#: ../libwnck/wnckprop.c:1481
+#: ../libvnck/vnckprop.c:1481
 msgid "tearoff toolbar"
 msgstr "ôfskuor-arkbalk"
 
-#: ../libwnck/wnckprop.c:1484
+#: ../libvnck/vnckprop.c:1484
 msgid "tearoff menu"
 msgstr "ôfskuor-menu"
 
-#: ../libwnck/wnckprop.c:1487
+#: ../libvnck/vnckprop.c:1487
 msgid "utility window"
 msgstr "arkfinster"
 
-#: ../libwnck/wnckprop.c:1490
+#: ../libvnck/vnckprop.c:1490
 msgid "splash screen"
 msgstr "opstartskerm"
 
-#: ../libwnck/wnckprop.c:1495
+#: ../libvnck/vnckprop.c:1495
 #, c-format
 msgid "Window Type: %s\n"
 msgstr "Finstertype: %s\n"
 
-#: ../libwnck/wnckprop.c:1498
+#: ../libvnck/vnckprop.c:1498
 #, c-format
 msgid "Geometry (x, y, width, height): %d, %d, %d, %d\n"
 msgstr "Geometry (x, y, breedte, hichte): %d, %d, %d, %d\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are of the
 #. * same class.
-#: ../libwnck/wnckprop.c:1508
+#: ../libvnck/vnckprop.c:1508
 #, c-format
 msgid "Class Group: %s\n"
 msgstr "Klassegroep: %s\n"
 
-#: ../libwnck/wnckprop.c:1510
+#: ../libvnck/vnckprop.c:1510
 #, c-format
 msgid "XID: %lu\n"
 msgstr "XID: %lu\n"
 
-#: ../libwnck/wnckprop.c:1525
+#: ../libvnck/vnckprop.c:1525
 #, c-format
 msgid "Session ID: %s\n"
 msgstr "Sesje-ID: %s\n"
@@ -945,14 +945,14 @@ msgstr "Sesje-ID: %s\n"
 #. * of windows, ie: if you have multiple windows in one application, one
 #. * window has some information about the application (like the application
 #. * name).
-#: ../libwnck/wnckprop.c:1532
+#: ../libvnck/vnckprop.c:1532
 #, c-format
 msgid "Group Leader: %lu\n"
 msgstr "Groeplieder: %lu\n"
 
 #. Translators: A window can be transient for another window: it means it's
 #. * on top of it
-#: ../libwnck/wnckprop.c:1538
+#: ../libvnck/vnckprop.c:1538
 #, c-format
 msgid "Transient for: %lu\n"
 msgstr "Tydlik foar: %lu\n"
@@ -960,57 +960,57 @@ msgstr "Tydlik foar: %lu\n"
 #. FIXME: else print something?
 #. Translators: we're building a list of items here.             * For example, the result is "a, b".                            * In this case, the first string is "a", the second             * string is ", " and the third string is "b".                   * We can then use this information here to also                 * recursively build longer lists, like "a, b, c, d"
 #. Translators: we're building a list of items here.             * The end result is something like "a, b, c"                    * In this case, the first string is "a, b", the second          * string is ", " and the third string is "c"
-#: ../libwnck/wnckprop.c:1553 ../libwnck/wnckprop.c:1601
+#: ../libvnck/vnckprop.c:1553 ../libvnck/vnckprop.c:1601
 #, c-format
 msgid "%1$s%2$s%3$s"
 msgstr "%1$s%2$s%3$s"
 
 #. Translators: see comment for "%1$s%2$s%3$s" in order          * to properly translate this
-#: ../libwnck/wnckprop.c:1557 ../libwnck/wnckprop.c:1603
+#: ../libvnck/vnckprop.c:1557 ../libvnck/vnckprop.c:1603
 msgid ", "
 msgstr ", "
 
-#: ../libwnck/wnckprop.c:1563
+#: ../libvnck/vnckprop.c:1563
 msgid "minimized"
 msgstr "minimalisearre"
 
-#: ../libwnck/wnckprop.c:1564
+#: ../libvnck/vnckprop.c:1564
 msgid "maximized"
 msgstr "maksimalisearre"
 
-#: ../libwnck/wnckprop.c:1568
+#: ../libvnck/vnckprop.c:1568
 msgid "maximized horizontally"
 msgstr "horizontaal maksimalisearre"
 
-#: ../libwnck/wnckprop.c:1570
+#: ../libvnck/vnckprop.c:1570
 msgid "maximized vertically"
 msgstr "fertikaal maksimalisearre"
 
-#: ../libwnck/wnckprop.c:1572
+#: ../libvnck/vnckprop.c:1572
 msgid "shaded"
 msgstr "skaad"
 
-#: ../libwnck/wnckprop.c:1573
+#: ../libvnck/vnckprop.c:1573
 msgid "pinned"
 msgstr "fêstset"
 
-#: ../libwnck/wnckprop.c:1574
+#: ../libvnck/vnckprop.c:1574
 msgid "sticky"
 msgstr "kleve"
 
-#: ../libwnck/wnckprop.c:1575
+#: ../libvnck/vnckprop.c:1575
 msgid "above"
 msgstr "boppe"
 
-#: ../libwnck/wnckprop.c:1576
+#: ../libvnck/vnckprop.c:1576
 msgid "below"
 msgstr "ûnder"
 
-#: ../libwnck/wnckprop.c:1577
+#: ../libvnck/vnckprop.c:1577
 msgid "fullscreen"
 msgstr "folslein skerm"
 
-#: ../libwnck/wnckprop.c:1578
+#: ../libvnck/vnckprop.c:1578
 msgid "needs attention"
 msgstr "moat omtinken"
 
@@ -1018,127 +1018,127 @@ msgstr "moat omtinken"
 #. * It's a representation of all workspaces with windows inside it.
 #. * Please make sure that the translation is in sync with gnome-panel,
 #. * where this term is also used in translatable strings
-#: ../libwnck/wnckprop.c:1583
+#: ../libvnck/vnckprop.c:1583
 msgid "skip pager"
 msgstr "wurktomeskeakeler oerslaan"
 
 #. Translators: "tasklist" is the list of running applications (the window
 #. * list)
-#: ../libwnck/wnckprop.c:1586
+#: ../libvnck/vnckprop.c:1586
 msgid "skip tasklist"
 msgstr "taaklist oerslaan"
 
-#: ../libwnck/wnckprop.c:1588
+#: ../libvnck/vnckprop.c:1588
 msgid "normal"
 msgstr "normaal"
 
-#: ../libwnck/wnckprop.c:1589
+#: ../libvnck/vnckprop.c:1589
 #, c-format
 msgid "State: %s\n"
 msgstr "Steat: %s\n"
 
-#: ../libwnck/wnckprop.c:1610
+#: ../libvnck/vnckprop.c:1610
 msgid "move"
 msgstr "ferpleatse"
 
-#: ../libwnck/wnckprop.c:1611
+#: ../libvnck/vnckprop.c:1611
 msgid "resize"
 msgstr "grutte feroarje"
 
-#: ../libwnck/wnckprop.c:1612
+#: ../libvnck/vnckprop.c:1612
 msgid "shade"
 msgstr "skaadzje"
 
-#: ../libwnck/wnckprop.c:1613
+#: ../libvnck/vnckprop.c:1613
 msgid "unshade"
 msgstr "ûntskaadzje"
 
-#: ../libwnck/wnckprop.c:1614
+#: ../libvnck/vnckprop.c:1614
 msgid "stick"
 msgstr "kleve"
 
-#: ../libwnck/wnckprop.c:1615
+#: ../libvnck/vnckprop.c:1615
 msgid "unstick"
 msgstr "net kleve"
 
-#: ../libwnck/wnckprop.c:1617
+#: ../libvnck/vnckprop.c:1617
 msgid "maximize horizontally"
 msgstr "horizontaal maksimalisearje"
 
-#: ../libwnck/wnckprop.c:1619
+#: ../libvnck/vnckprop.c:1619
 msgid "unmaximize horizontally"
 msgstr "horizontaal tebek maksimalisearje"
 
-#: ../libwnck/wnckprop.c:1621
+#: ../libvnck/vnckprop.c:1621
 msgid "maximize vertically"
 msgstr "fertikaal maksimalisearje"
 
-#: ../libwnck/wnckprop.c:1623
+#: ../libvnck/vnckprop.c:1623
 msgid "unmaximize vertically"
 msgstr "fertikaal tebek maksimalisearje"
 
-#: ../libwnck/wnckprop.c:1626
+#: ../libvnck/vnckprop.c:1626
 msgid "change workspace"
 msgstr "wurkromte feroarje"
 
-#: ../libwnck/wnckprop.c:1628
+#: ../libvnck/vnckprop.c:1628
 msgid "pin"
 msgstr "fêstsette"
 
-#: ../libwnck/wnckprop.c:1630
+#: ../libvnck/vnckprop.c:1630
 msgid "unpin"
 msgstr "net fêstsette"
 
-#: ../libwnck/wnckprop.c:1631
+#: ../libvnck/vnckprop.c:1631
 msgid "minimize"
 msgstr "minimalisearje"
 
-#: ../libwnck/wnckprop.c:1632
+#: ../libvnck/vnckprop.c:1632
 msgid "unminimize"
 msgstr "tebek minimalisearje"
 
-#: ../libwnck/wnckprop.c:1633
+#: ../libvnck/vnckprop.c:1633
 msgid "maximize"
 msgstr "maksimalisearje"
 
-#: ../libwnck/wnckprop.c:1634
+#: ../libvnck/vnckprop.c:1634
 msgid "unmaximize"
 msgstr "tebek maksimalisearje"
 
-#: ../libwnck/wnckprop.c:1636
+#: ../libvnck/vnckprop.c:1636
 msgid "change fullscreen mode"
 msgstr "folslein skerm feroarje"
 
-#: ../libwnck/wnckprop.c:1637
+#: ../libvnck/vnckprop.c:1637
 msgid "close"
 msgstr "slute"
 
-#: ../libwnck/wnckprop.c:1639
+#: ../libvnck/vnckprop.c:1639
 msgid "make above"
 msgstr "boppe meitsje"
 
-#: ../libwnck/wnckprop.c:1641
+#: ../libvnck/vnckprop.c:1641
 msgid "unmake above"
 msgstr "net boppe meitsje"
 
-#: ../libwnck/wnckprop.c:1643
+#: ../libvnck/vnckprop.c:1643
 msgid "make below"
 msgstr "ûnder meitsje"
 
-#: ../libwnck/wnckprop.c:1645
+#: ../libvnck/vnckprop.c:1645
 msgid "unmake below"
 msgstr "net ûnder meitsje"
 
-#: ../libwnck/wnckprop.c:1647
+#: ../libvnck/vnckprop.c:1647
 msgid "no action possible"
 msgstr "gjin aksje mooglik"
 
-#: ../libwnck/wnckprop.c:1648
+#: ../libvnck/vnckprop.c:1648
 #, c-format
 msgid "Possible Actions: %s\n"
 msgstr "Mooglike aksjes: %s\n"
 
-#: ../libwnck/wnckprop.c:1829
+#: ../libvnck/vnckprop.c:1829
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1150,63 +1150,63 @@ msgstr ""
 "Foar mear ynformaasje oer dizze spesifikaasje, sjoch:\n"
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: ../libwnck/wnckprop.c:1839
+#: ../libvnck/vnckprop.c:1839
 msgid "Options to list windows or workspaces"
 msgstr "Opsjes foar it op in rige sette fan finsters of wurkromtes"
 
-#: ../libwnck/wnckprop.c:1840
+#: ../libvnck/vnckprop.c:1840
 msgid "Show options to list windows or workspaces"
 msgstr "Opsjes foar it op in rige sette fan finsters of wurkromtes sjen litte"
 
-#: ../libwnck/wnckprop.c:1847
+#: ../libvnck/vnckprop.c:1847
 msgid "Options to modify properties of a window"
 msgstr "Opsjes foar it oanpasse fan finstereigenskippen"
 
-#: ../libwnck/wnckprop.c:1848
+#: ../libvnck/vnckprop.c:1848
 msgid "Show options to modify properties of a window"
 msgstr "Opsjes foar it oanpasse fan finstereigenskippen sjen litte"
 
-#: ../libwnck/wnckprop.c:1855
+#: ../libvnck/vnckprop.c:1855
 msgid "Options to modify properties of a workspace"
 msgstr "Opsjes foar it oanpasse fan wurkromte-eigenskippen"
 
-#: ../libwnck/wnckprop.c:1856
+#: ../libvnck/vnckprop.c:1856
 msgid "Show options to modify properties of a workspace"
 msgstr "Opsjes foar it oanpasse fan wurkromte-eigenskippen sjen litte"
 
-#: ../libwnck/wnckprop.c:1863
+#: ../libvnck/vnckprop.c:1863
 msgid "Options to modify properties of a screen"
 msgstr "Opsjes foar it oanpasse fan skermeigenskippen"
 
-#: ../libwnck/wnckprop.c:1864
+#: ../libvnck/vnckprop.c:1864
 msgid "Show options to modify properties of a screen"
 msgstr "Opsjes foar it oanpasse fan skermeigenskippen sjen litte"
 
-#: ../libwnck/wnckprop.c:1875
+#: ../libvnck/vnckprop.c:1875
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "Flater ûnder it ûntlede fan arguminten: %s\n"
 
-#: ../libwnck/wnckprop.c:1898
+#: ../libvnck/vnckprop.c:1898
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "Kin net omgean mei skerm %d: it skerm bestiet net\n"
 
-#: ../libwnck/wnckprop.c:1954
+#: ../libvnck/vnckprop.c:1954
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr "Kin net omgean mei wurkromte %d: de wurkromte kin net fûn wurde\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: ../libwnck/wnckprop.c:1978
+#: ../libvnck/vnckprop.c:1978
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
 msgstr ""
 "Kin net omgean mei klassegroep \"%s\": de klassegroep kin net fûn wurde\n"
 
-#: ../libwnck/wnckprop.c:2001
+#: ../libvnck/vnckprop.c:2001
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
@@ -1215,7 +1215,7 @@ msgstr ""
 "Kin net omgean mei tapassing hokker groeplieder XID %lu hat: de tapassing "
 "kin net fûn wurde\n"
 
-#: ../libwnck/wnckprop.c:2024
+#: ../libvnck/vnckprop.c:2024
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr "Kin net omgean mei finster mei XID %lu: it finster kin net fûn wurde\n"

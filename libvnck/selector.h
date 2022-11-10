@@ -20,7 +20,7 @@
  */
 
 #if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
-#error "Only <libwnck/libwnck.h> can be included directly."
+#error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
 #ifndef WNCK_SELECTOR_H
@@ -29,7 +29,7 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
-#define WNCK_TYPE_SELECTOR              (wnck_selector_get_type ())
+#define WNCK_TYPE_SELECTOR              (vnck_selector_get_type ())
 #define WNCK_SELECTOR(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_SELECTOR, WnckSelector))
 #define WNCK_SELECTOR_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_SELECTOR, WnckSelectorClass))
 #define WNCK_IS_SELECTOR(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_SELECTOR))
@@ -62,8 +62,8 @@ struct _WnckSelectorClass
   void (* pad4) (void);
 };
 
-GtkWidget *wnck_selector_new      (void);
-GType      wnck_selector_get_type (void) G_GNUC_CONST;
+GtkWidget *vnck_selector_new      (void);
+GType      vnck_selector_get_type (void) G_GNUC_CONST;
 
 G_END_DECLS
 

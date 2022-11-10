@@ -20,18 +20,18 @@
  */
 
 #if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
-#error "Only <libwnck/libwnck.h> can be included directly."
+#error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
 #ifndef WNCK_WINDOW_ACTION_MENU_H
 #define WNCK_WINDOW_ACTION_MENU_H
 
-#include <libwnck/window.h>
+#include <libvnck/window.h>
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_ACTION_MENU              (wnck_action_menu_get_type ())
+#define WNCK_TYPE_ACTION_MENU              (vnck_action_menu_get_type ())
 #define WNCK_ACTION_MENU(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_ACTION_MENU, WnckActionMenu))
 #define WNCK_ACTION_MENU_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_ACTION_MENU, WnckActionMenuClass))
 #define WNCK_IS_ACTION_MENU(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_ACTION_MENU))
@@ -66,9 +66,9 @@ struct _WnckActionMenuClass
   void (* pad4) (void);
 };
 
-GType wnck_action_menu_get_type (void) G_GNUC_CONST;
+GType vnck_action_menu_get_type (void) G_GNUC_CONST;
 
-GtkWidget* wnck_action_menu_new (WnckWindow *window);
+GtkWidget* vnck_action_menu_new (WnckWindow *window);
 
 G_END_DECLS
 

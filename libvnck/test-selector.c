@@ -1,6 +1,6 @@
 /* vim: set sw=2 et: */
 
-#include <libwnck/libwnck.h>
+#include <libvnck/libvnck.h>
 #include <gtk/gtk.h>
 
 static gboolean skip_tasklist = FALSE;
@@ -30,15 +30,15 @@ main (int argc, char **argv)
 
   gtk_init (&argc, &argv);
 
-  screen = wnck_screen_get_default ();
+  screen = vnck_screen_get_default ();
 
   /* because the pager doesn't respond to signals at the moment */
-  wnck_screen_force_update (screen);
+  vnck_screen_force_update (screen);
 
   win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_default_size (GTK_WINDOW (win), 200, 32);
   gtk_window_stick (GTK_WINDOW (win));
-  /*   wnck_gtk_window_set_dock_type (GTK_WINDOW (win)); */
+  /*   vnck_gtk_window_set_dock_type (GTK_WINDOW (win)); */
 
   gtk_window_set_title (GTK_WINDOW (win), "Window Selector");
   gtk_window_set_resizable (GTK_WINDOW (win), TRUE);
@@ -48,7 +48,7 @@ main (int argc, char **argv)
                     G_CALLBACK (gtk_main_quit),
                     NULL);
 
-  selector = wnck_selector_new ();
+  selector = vnck_selector_new ();
 
   frame = gtk_frame_new (NULL);
   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);

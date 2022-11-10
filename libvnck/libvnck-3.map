@@ -1,6 +1,6 @@
 {
 global:
-    wnck_*;
+    vnck_*;
 local:
     *;
 };

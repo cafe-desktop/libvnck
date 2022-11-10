@@ -31,7 +31,7 @@ WnckScreen
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 @arg1: 
 
 <!-- ##### SIGNAL WnckScreen::active-workspace-changed ##### -->
@@ -39,7 +39,7 @@ WnckScreen
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 @arg1: 
 
 <!-- ##### SIGNAL WnckScreen::application-closed ##### -->
@@ -47,7 +47,7 @@ WnckScreen
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 @arg1: 
 
 <!-- ##### SIGNAL WnckScreen::application-opened ##### -->
@@ -55,7 +55,7 @@ WnckScreen
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 @arg1: 
 
 <!-- ##### SIGNAL WnckScreen::background-changed ##### -->
@@ -63,14 +63,14 @@ WnckScreen
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 
 <!-- ##### SIGNAL WnckScreen::class-group-closed ##### -->
 <para>
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 @arg1: 
 
 <!-- ##### SIGNAL WnckScreen::class-group-opened ##### -->
@@ -78,7 +78,7 @@ WnckScreen
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 @arg1: 
 
 <!-- ##### SIGNAL WnckScreen::showing-desktop-changed ##### -->
@@ -86,21 +86,21 @@ WnckScreen
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 
 <!-- ##### SIGNAL WnckScreen::viewports-changed ##### -->
 <para>
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 
 <!-- ##### SIGNAL WnckScreen::window-closed ##### -->
 <para>
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 @arg1: 
 
 <!-- ##### SIGNAL WnckScreen::window-manager-changed ##### -->
@@ -108,14 +108,14 @@ WnckScreen
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 
 <!-- ##### SIGNAL WnckScreen::window-opened ##### -->
 <para>
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 @arg1: 
 
 <!-- ##### SIGNAL WnckScreen::window-stacking-changed ##### -->
@@ -123,14 +123,14 @@ WnckScreen
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 
 <!-- ##### SIGNAL WnckScreen::workspace-created ##### -->
 <para>
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 @arg1: 
 
 <!-- ##### SIGNAL WnckScreen::workspace-destroyed ##### -->
@@ -138,10 +138,10 @@ WnckScreen
 
 </para>
 
-@wnckscreen: the object which received the signal.
+@vnckscreen: the object which received the signal.
 @arg1: 
 
-<!-- ##### FUNCTION wnck_screen_get_default ##### -->
+<!-- ##### FUNCTION vnck_screen_get_default ##### -->
 <para>
 
 </para>
@@ -150,7 +150,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get ##### -->
+<!-- ##### FUNCTION vnck_screen_get ##### -->
 <para>
 
 </para>
@@ -159,7 +159,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_for_root ##### -->
+<!-- ##### FUNCTION vnck_screen_get_for_root ##### -->
 <para>
 
 </para>
@@ -168,7 +168,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_number ##### -->
+<!-- ##### FUNCTION vnck_screen_get_number ##### -->
 <para>
 
 </para>
@@ -177,7 +177,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_width ##### -->
+<!-- ##### FUNCTION vnck_screen_get_width ##### -->
 <para>
 
 </para>
@@ -186,7 +186,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_height ##### -->
+<!-- ##### FUNCTION vnck_screen_get_height ##### -->
 <para>
 
 </para>
@@ -195,7 +195,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_force_update ##### -->
+<!-- ##### FUNCTION vnck_screen_force_update ##### -->
 <para>
 
 </para>
@@ -203,7 +203,7 @@ WnckScreen
 @screen: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_window_manager_name ##### -->
+<!-- ##### FUNCTION vnck_screen_get_window_manager_name ##### -->
 <para>
 
 </para>
@@ -212,7 +212,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_net_wm_supports ##### -->
+<!-- ##### FUNCTION vnck_screen_net_wm_supports ##### -->
 <para>
 
 </para>
@@ -222,7 +222,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_active_window ##### -->
+<!-- ##### FUNCTION vnck_screen_get_active_window ##### -->
 <para>
 
 </para>
@@ -231,7 +231,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_previously_active_window ##### -->
+<!-- ##### FUNCTION vnck_screen_get_previously_active_window ##### -->
 <para>
 
 </para>
@@ -240,7 +240,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_windows ##### -->
+<!-- ##### FUNCTION vnck_screen_get_windows ##### -->
 <para>
 
 </para>
@@ -249,7 +249,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_windows_stacked ##### -->
+<!-- ##### FUNCTION vnck_screen_get_windows_stacked ##### -->
 <para>
 
 </para>
@@ -258,7 +258,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_active_workspace ##### -->
+<!-- ##### FUNCTION vnck_screen_get_active_workspace ##### -->
 <para>
 
 </para>
@@ -267,7 +267,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_workspaces ##### -->
+<!-- ##### FUNCTION vnck_screen_get_workspaces ##### -->
 <para>
 
 </para>
@@ -276,7 +276,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_workspace ##### -->
+<!-- ##### FUNCTION vnck_screen_get_workspace ##### -->
 <para>
 
 </para>
@@ -286,7 +286,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_workspace_count ##### -->
+<!-- ##### FUNCTION vnck_screen_get_workspace_count ##### -->
 <para>
 
 </para>
@@ -295,7 +295,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_change_workspace_count ##### -->
+<!-- ##### FUNCTION vnck_screen_change_workspace_count ##### -->
 <para>
 
 </para>
@@ -304,7 +304,7 @@ WnckScreen
 @count: 
 
 
-<!-- ##### FUNCTION wnck_screen_try_set_workspace_layout ##### -->
+<!-- ##### FUNCTION vnck_screen_try_set_workspace_layout ##### -->
 <para>
 
 </para>
@@ -316,7 +316,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_release_workspace_layout ##### -->
+<!-- ##### FUNCTION vnck_screen_release_workspace_layout ##### -->
 <para>
 
 </para>
@@ -337,7 +337,7 @@ WnckScreen
 @current_row: 
 @current_col: 
 
-<!-- ##### FUNCTION wnck_screen_calc_workspace_layout ##### -->
+<!-- ##### FUNCTION vnck_screen_calc_workspace_layout ##### -->
 <para>
 
 </para>
@@ -348,7 +348,7 @@ WnckScreen
 @layout: 
 
 
-<!-- ##### FUNCTION wnck_screen_free_workspace_layout ##### -->
+<!-- ##### FUNCTION vnck_screen_free_workspace_layout ##### -->
 <para>
 
 </para>
@@ -356,7 +356,7 @@ WnckScreen
 @layout: 
 
 
-<!-- ##### FUNCTION wnck_screen_move_viewport ##### -->
+<!-- ##### FUNCTION vnck_screen_move_viewport ##### -->
 <para>
 
 </para>
@@ -366,7 +366,7 @@ WnckScreen
 @y: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_background_pixmap ##### -->
+<!-- ##### FUNCTION vnck_screen_get_background_pixmap ##### -->
 <para>
 
 </para>
@@ -375,7 +375,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_get_showing_desktop ##### -->
+<!-- ##### FUNCTION vnck_screen_get_showing_desktop ##### -->
 <para>
 
 </para>
@@ -384,7 +384,7 @@ WnckScreen
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_screen_toggle_showing_desktop ##### -->
+<!-- ##### FUNCTION vnck_screen_toggle_showing_desktop ##### -->
 <para>
 
 </para>

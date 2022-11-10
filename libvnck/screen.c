@@ -46,14 +46,14 @@
  *
  * The #WnckScreen represents a physical screen. A screen may consist of
  * multiple monitors which are merged to form a large screen area. The
- * #WnckScreen is at the bottom of the libwnck stack of objects: #WnckWorkspace
+ * #WnckScreen is at the bottom of the libvnck stack of objects: #WnckWorkspace
  * objects exist a #WnckScreen and #WnckWindow objects are displayed on a
  * #WnckWorkspace.
  *
  * The #WnckScreen corresponds to the notion of
  * <classname>GdkScreen</classname> in GDK.
  *
- * The #WnckScreen objects are always owned by libwnck and must not be
+ * The #WnckScreen objects are always owned by libvnck and must not be
  * referenced or unreferenced.
  */
 
@@ -83,7 +83,7 @@ struct _WnckScreenPrivate
   GList *workspaces;
 
   /* previously_active_window is used in tandem with active_window to
-   * determine return status of wnck_window_is_most_recently_actived().
+   * determine return status of vnck_window_is_most_recently_actived().
    * These are usually shared for all screens, although this is not guaranteed
    * to be true.
    */
@@ -129,7 +129,7 @@ struct _WnckScreenPrivate
   guint need_update_wm : 1;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (WnckScreen, wnck_screen, G_TYPE_OBJECT);
+G_DEFINE_TYPE_WITH_PRIVATE (WnckScreen, vnck_screen, G_TYPE_OBJECT);
 
 enum {
   ACTIVE_WINDOW_CHANGED,
@@ -150,7 +150,7 @@ enum {
   LAST_SIGNAL
 };
 
-static void wnck_screen_finalize    (GObject         *object);
+static void vnck_screen_finalize    (GObject         *object);
 
 static void update_client_list        (WnckScreen      *screen);
 static void update_workspace_list     (WnckScreen      *screen);
@@ -193,9 +193,9 @@ static void emit_wm_changed               (WnckScreen *screen);
 static guint signals[LAST_SIGNAL] = { 0 };
 
 static void
-wnck_screen_init (WnckScreen *screen)
+vnck_screen_init (WnckScreen *screen)
 {
-  screen->priv = wnck_screen_get_instance_private (screen);
+  screen->priv = vnck_screen_get_instance_private (screen);
 
   screen->priv->number = -1;
   screen->priv->starting_corner = WNCK_LAYOUT_CORNER_TOPLEFT;
@@ -204,13 +204,13 @@ wnck_screen_init (WnckScreen *screen)
 }
 
 static void
-wnck_screen_class_init (WnckScreenClass *klass)
+vnck_screen_class_init (WnckScreenClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  _wnck_init ();
+  _vnck_init ();
 
-  object_class->finalize = wnck_screen_finalize;
+  object_class->finalize = vnck_screen_finalize;
 
   /**
    * WnckScreen::active-window-changed:
@@ -447,7 +447,7 @@ wnck_screen_class_init (WnckScreenClass *klass)
 }
 
 static void
-wnck_screen_finalize (GObject *object)
+vnck_screen_finalize (GObject *object)
 {
   WnckScreen *screen;
   GList *tmp;
@@ -455,7 +455,7 @@ wnck_screen_finalize (GObject *object)
 
   screen = WNCK_SCREEN (object);
 
-  _wnck_select_input (screen->priv->xscreen,
+  _vnck_select_input (screen->priv->xscreen,
                       screen->priv->xroot,
                       screen->priv->orig_event_mask,
                       FALSE);
@@ -466,11 +466,11 @@ wnck_screen_finalize (GObject *object)
     {
       screen->priv->mapped_windows = g_list_remove (screen->priv->mapped_windows,
                                                     tmp->data);
-      _wnck_window_destroy (WNCK_WINDOW (tmp->data));
+      _vnck_window_destroy (WNCK_WINDOW (tmp->data));
     }
 
   for (tmp = screen->priv->mapped_windows; tmp; tmp = tmp->next)
-    _wnck_window_destroy (WNCK_WINDOW (tmp->data));
+    _vnck_window_destroy (WNCK_WINDOW (tmp->data));
 
   for (tmp = screen->priv->workspaces; tmp; tmp = tmp->next)
     g_object_unref (tmp->data);
@@ -505,7 +505,7 @@ wnck_screen_finalize (GObject *object)
   screen->priv->sn_display = NULL;
 #endif
 
-  G_OBJECT_CLASS (wnck_screen_parent_class)->finalize (object);
+  G_OBJECT_CLASS (vnck_screen_parent_class)->finalize (object);
 }
 
 #ifdef HAVE_STARTUP_NOTIFICATION
@@ -513,19 +513,19 @@ static void
 sn_error_trap_push (SnDisplay *display,
                     Display   *xdisplay)
 {
-  _wnck_error_trap_push (xdisplay);
+  _vnck_error_trap_push (xdisplay);
 }
 
 static void
 sn_error_trap_pop (SnDisplay *display,
                    Display   *xdisplay)
 {
-  _wnck_error_trap_pop (xdisplay);
+  _vnck_error_trap_pop (xdisplay);
 }
 #endif /* HAVE_STARTUP_NOTIFICATION */
 
 static void
-wnck_screen_construct (Display    *display,
+vnck_screen_construct (Display    *display,
                        WnckScreen *screen,
                        int         number)
 {
@@ -542,7 +542,7 @@ wnck_screen_construct (Display    *display,
 
   screen->priv->bg_pixmap = None;
 
-  screen->priv->orig_event_mask = _wnck_select_input (screen->priv->xscreen,
+  screen->priv->orig_event_mask = _vnck_select_input (screen->priv->xscreen,
                                                       screen->priv->xroot,
                                                       PropertyChangeMask,
                                                       TRUE);
@@ -562,21 +562,21 @@ wnck_screen_construct (Display    *display,
 }
 
 /**
- * wnck_screen_get:
+ * vnck_screen_get:
  * @index: screen number, starting from 0.
  *
  * Gets the #WnckScreen for a given screen on the default display.
  *
  * Return value: (transfer none): the #WnckScreen for screen @index, or %NULL
- * if no such screen exists. The returned #WnckScreen is owned by libwnck and
+ * if no such screen exists. The returned #WnckScreen is owned by libvnck and
  * must not be referenced or unreferenced.
  **/
 WnckScreen*
-wnck_screen_get (int index)
+vnck_screen_get (int index)
 {
   Display *display;
 
-  display = _wnck_get_default_display ();
+  display = _vnck_get_default_display ();
 
   g_return_val_if_fail (display != NULL, NULL);
 
@@ -586,25 +586,25 @@ wnck_screen_get (int index)
   if (screens == NULL)
     {
       screens = g_new0 (WnckScreen*, ScreenCount (display));
-      _wnck_event_filter_init ();
+      _vnck_event_filter_init ();
     }
 
   if (screens[index] == NULL)
     {
       screens[index] = g_object_new (WNCK_TYPE_SCREEN, NULL);
 
-      wnck_screen_construct (display, screens[index], index);
+      vnck_screen_construct (display, screens[index], index);
     }
 
   return screens[index];
 }
 
 WnckScreen*
-_wnck_screen_get_existing (int number)
+_vnck_screen_get_existing (int number)
 {
   Display *display;
 
-  display = _wnck_get_default_display ();
+  display = _vnck_get_default_display ();
 
   g_return_val_if_fail (display != NULL, NULL);
   g_return_val_if_fail (number < ScreenCount (display), NULL);
@@ -616,44 +616,44 @@ _wnck_screen_get_existing (int number)
 }
 
 /**
- * wnck_screen_get_default:
+ * vnck_screen_get_default:
  *
  * Gets the default #WnckScreen on the default display.
  *
  * Return value: (transfer none) (nullable): the default #WnckScreen. The returned
- * #WnckScreen is owned by libwnck and must not be referenced or unreferenced. This
+ * #WnckScreen is owned by libvnck and must not be referenced or unreferenced. This
  * can return %NULL if not on X11.
  **/
 WnckScreen*
-wnck_screen_get_default (void)
+vnck_screen_get_default (void)
 {
   int default_screen;
-  Display *default_display = _wnck_get_default_display ();
+  Display *default_display = _vnck_get_default_display ();
 
   if (default_display == NULL)
     return NULL;
 
   default_screen = DefaultScreen (default_display);
 
-  return wnck_screen_get (default_screen);
+  return vnck_screen_get (default_screen);
 }
 
 /**
- * wnck_screen_get_for_root:
+ * vnck_screen_get_for_root:
  * @root_window_id: an X window ID.
  *
  * Gets the #WnckScreen for the root window at @root_window_id, or
  * %NULL if no #WnckScreen exists for this root window.
  *
- * This function does not work if wnck_screen_get() was not called for the
+ * This function does not work if vnck_screen_get() was not called for the
  * sought #WnckScreen before, and returns %NULL.
  *
  * Return value: (transfer none): the #WnckScreen for the root window at
- * @root_window_id, or %NULL. The returned #WnckScreen is owned by libwnck and
+ * @root_window_id, or %NULL. The returned #WnckScreen is owned by libvnck and
  * must not be referenced or unreferenced.
  **/
 WnckScreen*
-wnck_screen_get_for_root (gulong root_window_id)
+vnck_screen_get_for_root (gulong root_window_id)
 {
   int i;
   Display *display;
@@ -662,7 +662,7 @@ wnck_screen_get_for_root (gulong root_window_id)
     return NULL;
 
   i = 0;
-  display = _wnck_get_default_display ();
+  display = _vnck_get_default_display ();
 
   while (i < ScreenCount (display))
     {
@@ -676,7 +676,7 @@ wnck_screen_get_for_root (gulong root_window_id)
 }
 
 /**
- * wnck_screen_get_number:
+ * vnck_screen_get_number:
  * @screen: a #WnckScreen.
  *
  * Gets the index of @screen on the display to which it belongs. The first
@@ -687,7 +687,7 @@ wnck_screen_get_for_root (gulong root_window_id)
  * Since: 2.20
  **/
 int
-wnck_screen_get_number (WnckScreen *screen)
+vnck_screen_get_number (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), -1);
 
@@ -695,7 +695,7 @@ wnck_screen_get_number (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_get_workspaces:
+ * vnck_screen_get_workspaces:
  * @screen: a #WnckScreen.
  *
  * Gets the list of #WnckWorkspace on @screen. The list is ordered: the
@@ -708,7 +708,7 @@ wnck_screen_get_number (WnckScreen *screen)
  * Since: 2.20
  **/
 GList*
-wnck_screen_get_workspaces (WnckScreen *screen)
+vnck_screen_get_workspaces (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), NULL);
 
@@ -716,7 +716,7 @@ wnck_screen_get_workspaces (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_get_workspace:
+ * vnck_screen_get_workspace:
  * @screen: a #WnckScreen.
  * @workspace: a workspace index, starting from 0.
  *
@@ -724,10 +724,10 @@ wnck_screen_get_workspaces (WnckScreen *screen)
  *
  * Return value: (transfer none): the #WnckWorkspace numbered @workspace on
  * @screen, or %NULL if no such workspace exists. The returned #WnckWorkspace
- * is owned by libwnck and must not be referenced or unreferenced.
+ * is owned by libvnck and must not be referenced or unreferenced.
  **/
 WnckWorkspace*
-wnck_screen_get_workspace (WnckScreen *screen,
+vnck_screen_get_workspace (WnckScreen *screen,
 			   int         workspace)
 {
   GList *list;
@@ -746,19 +746,19 @@ wnck_screen_get_workspace (WnckScreen *screen,
 }
 
 /**
- * wnck_screen_get_active_workspace:
+ * vnck_screen_get_active_workspace:
  * @screen: a #WnckScreen.
  *
  * Gets the active #WnckWorkspace on @screen. May return %NULL sometimes,
- * if libwnck is in a weird state due to the asynchronous nature of the
+ * if libvnck is in a weird state due to the asynchronous nature of the
  * interaction with the window manager.
  *
  * Return value: (transfer none): the active #WnckWorkspace on @screen, or
- * %NULL. The returned #WnckWorkspace is owned by libwnck and must not be
+ * %NULL. The returned #WnckWorkspace is owned by libvnck and must not be
  * referenced or unreferenced.
  **/
 WnckWorkspace*
-wnck_screen_get_active_workspace (WnckScreen *screen)
+vnck_screen_get_active_workspace (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), NULL);
 
@@ -766,18 +766,18 @@ wnck_screen_get_active_workspace (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_get_active_window:
+ * vnck_screen_get_active_window:
  * @screen: a #WnckScreen.
  *
  * Gets the active #WnckWindow on @screen. May return %NULL sometimes, since
  * not all window managers guarantee that a window is always active.
  *
  * Return value: (transfer none): the active #WnckWindow on @screen, or %NULL.
- * The returned #WnckWindow is owned by libwnck and must not be referenced or
+ * The returned #WnckWindow is owned by libvnck and must not be referenced or
  * unreferenced.
  **/
 WnckWindow*
-wnck_screen_get_active_window (WnckScreen *screen)
+vnck_screen_get_active_window (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), NULL);
 
@@ -785,7 +785,7 @@ wnck_screen_get_active_window (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_get_previously_active_window:
+ * vnck_screen_get_previously_active_window:
  * @screen: a #WnckScreen.
  *
  * Gets the previously active #WnckWindow on @screen. May return %NULL
@@ -793,13 +793,13 @@ wnck_screen_get_active_window (WnckScreen *screen)
  * active.
  *
  * Return value: (transfer none): the previously active #WnckWindow on @screen,
- * or %NULL. The returned #WnckWindow is owned by libwnck and must not be
+ * or %NULL. The returned #WnckWindow is owned by libvnck and must not be
  * referenced or unreferenced.
  *
  * Since: 2.8
  **/
 WnckWindow*
-wnck_screen_get_previously_active_window (WnckScreen *screen)
+vnck_screen_get_previously_active_window (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), NULL);
 
@@ -807,20 +807,20 @@ wnck_screen_get_previously_active_window (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_get_windows:
+ * vnck_screen_get_windows:
  * @screen: a #WnckScreen.
  *
  * Gets the list of #WnckWindow on @screen. The list is not in a defined
  * order, but should be "stable" (windows should not be reordered in it).
  * However, the stability of the list is established by the window manager, so
- * don't blame libwnck if it breaks down.
+ * don't blame libvnck if it breaks down.
  *
  * Return value: (element-type WnckWindow) (transfer none): the list of
  * #WnckWindow on @screen, or %NULL if there is no window on @screen. The list
  * should not be modified nor freed, as it is owned by @screen.
  **/
 GList*
-wnck_screen_get_windows (WnckScreen *screen)
+vnck_screen_get_windows (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), NULL);
 
@@ -828,7 +828,7 @@ wnck_screen_get_windows (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_get_windows_stacked:
+ * vnck_screen_get_windows_stacked:
  * @screen: a #WnckScreen.
  *
  * Gets the list of #WnckWindow on @screen in bottom-to-top order.
@@ -839,7 +839,7 @@ wnck_screen_get_windows (WnckScreen *screen)
  * @screen.
  **/
 GList*
-wnck_screen_get_windows_stacked (WnckScreen *screen)
+vnck_screen_get_windows_stacked (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), NULL);
 
@@ -847,7 +847,7 @@ wnck_screen_get_windows_stacked (WnckScreen *screen)
 }
 
 /**
- * _wnck_screen_get_gdk_screen:
+ * _vnck_screen_get_gdk_screen:
  * @screen: a #WnckScreen.
  *
  * Gets the <classname>GdkScreen</classname referring to the same screen as
@@ -857,7 +857,7 @@ wnck_screen_get_windows_stacked (WnckScreen *screen)
  * screen as @screen.
  **/
 GdkScreen *
-_wnck_screen_get_gdk_screen (WnckScreen *screen)
+_vnck_screen_get_gdk_screen (WnckScreen *screen)
 {
   Display    *display;
   GdkDisplay *gdkdisplay;
@@ -865,7 +865,7 @@ _wnck_screen_get_gdk_screen (WnckScreen *screen)
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), NULL);
 
   display = DisplayOfScreen (screen->priv->xscreen);
-  gdkdisplay = _wnck_gdk_display_lookup_from_display (display);
+  gdkdisplay = _vnck_gdk_display_lookup_from_display (display);
   if (!gdkdisplay)
     return NULL;
 
@@ -876,7 +876,7 @@ _wnck_screen_get_gdk_screen (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_force_update:
+ * vnck_screen_force_update:
  * @screen: a #WnckScreen.
  *
  * Synchronously and immediately updates the list of #WnckWindow on @screen.
@@ -889,7 +889,7 @@ _wnck_screen_get_gdk_screen (WnckScreen *screen)
  * small applications that just do something and then exit.
  **/
 void
-wnck_screen_force_update (WnckScreen *screen)
+vnck_screen_force_update (WnckScreen *screen)
 {
   g_return_if_fail (WNCK_IS_SCREEN (screen));
 
@@ -897,7 +897,7 @@ wnck_screen_force_update (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_get_workspace_count:
+ * vnck_screen_get_workspace_count:
  * @screen: a #WnckScreen.
  *
  * Gets the number of #WnckWorkspace on @screen.
@@ -905,7 +905,7 @@ wnck_screen_force_update (WnckScreen *screen)
  * Return value: the number of #WnckWorkspace on @screen.
  **/
 int
-wnck_screen_get_workspace_count (WnckScreen *screen)
+vnck_screen_get_workspace_count (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), 0);
 
@@ -913,7 +913,7 @@ wnck_screen_get_workspace_count (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_change_workspace_count:
+ * vnck_screen_change_workspace_count:
  * @screen: a #WnckScreen.
  * @count: the number of #WnckWorkspace to request.
  *
@@ -922,7 +922,7 @@ wnck_screen_get_workspace_count (WnckScreen *screen)
  * Since: 2.2
  **/
 void
-wnck_screen_change_workspace_count (WnckScreen *screen,
+vnck_screen_change_workspace_count (WnckScreen *screen,
                                     int         count)
 {
   Display *display;
@@ -938,88 +938,88 @@ wnck_screen_change_workspace_count (WnckScreen *screen,
   xev.xclient.window = screen->priv->xroot;
   xev.xclient.send_event = True;
   xev.xclient.display = display;
-  xev.xclient.message_type = _wnck_atom_get ("_NET_NUMBER_OF_DESKTOPS");
+  xev.xclient.message_type = _vnck_atom_get ("_NET_NUMBER_OF_DESKTOPS");
   xev.xclient.format = 32;
   xev.xclient.data.l[0] = count;
 
-  _wnck_error_trap_push (display);
+  _vnck_error_trap_push (display);
   XSendEvent (display,
               screen->priv->xroot,
               False,
               SubstructureRedirectMask | SubstructureNotifyMask,
               &xev);
-  _wnck_error_trap_pop (display);
+  _vnck_error_trap_pop (display);
 }
 
 void
-_wnck_screen_process_property_notify (WnckScreen *screen,
+_vnck_screen_process_property_notify (WnckScreen *screen,
                                       XEvent     *xevent)
 {
   /* most frequently-changed properties first */
   if (xevent->xproperty.atom ==
-      _wnck_atom_get ("_NET_ACTIVE_WINDOW"))
+      _vnck_atom_get ("_NET_ACTIVE_WINDOW"))
     {
       screen->priv->need_update_active_window = TRUE;
       queue_update (screen);
     }
   else if (xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_CURRENT_DESKTOP"))
+           _vnck_atom_get ("_NET_CURRENT_DESKTOP"))
     {
       screen->priv->need_update_active_workspace = TRUE;
       queue_update (screen);
     }
   else if (xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_CLIENT_LIST_STACKING") ||
+           _vnck_atom_get ("_NET_CLIENT_LIST_STACKING") ||
            xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_CLIENT_LIST"))
+           _vnck_atom_get ("_NET_CLIENT_LIST"))
     {
       screen->priv->need_update_stack_list = TRUE;
       queue_update (screen);
     }
   else if (xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_DESKTOP_VIEWPORT"))
+           _vnck_atom_get ("_NET_DESKTOP_VIEWPORT"))
     {
       screen->priv->need_update_viewport_settings = TRUE;
       queue_update (screen);
     }
   else if (xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_DESKTOP_GEOMETRY"))
+           _vnck_atom_get ("_NET_DESKTOP_GEOMETRY"))
     {
       screen->priv->need_update_viewport_settings = TRUE;
       queue_update (screen);
     }
   else if (xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_NUMBER_OF_DESKTOPS"))
+           _vnck_atom_get ("_NET_NUMBER_OF_DESKTOPS"))
     {
       screen->priv->need_update_workspace_list = TRUE;
       queue_update (screen);
     }
   else if (xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_DESKTOP_LAYOUT"))
+           _vnck_atom_get ("_NET_DESKTOP_LAYOUT"))
     {
       screen->priv->need_update_workspace_layout = TRUE;
       queue_update (screen);
     }
   else if (xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_DESKTOP_NAMES"))
+           _vnck_atom_get ("_NET_DESKTOP_NAMES"))
     {
       screen->priv->need_update_workspace_names = TRUE;
       queue_update (screen);
     }
   else if (xevent->xproperty.atom ==
-           _wnck_atom_get ("_XROOTPMAP_ID"))
+           _vnck_atom_get ("_XROOTPMAP_ID"))
     {
       screen->priv->need_update_bg_pixmap = TRUE;
       queue_update (screen);
     }
   else if (xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_SHOWING_DESKTOP"))
+           _vnck_atom_get ("_NET_SHOWING_DESKTOP"))
     {
       screen->priv->need_update_showing_desktop = TRUE;
       queue_update (screen);
     }
   else if (xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_SUPPORTING_WM_CHECK"))
+           _vnck_atom_get ("_NET_SUPPORTING_WM_CHECK"))
     {
       screen->priv->need_update_wm = TRUE;
       queue_update (screen);
@@ -1027,10 +1027,10 @@ _wnck_screen_process_property_notify (WnckScreen *screen,
 }
 
 /**
- * wnck_screen_calc_workspace_layout:
+ * vnck_screen_calc_workspace_layout:
  * @screen: a #WnckScreen.
  * @num_workspaces: the number of #WnckWorkspace on @screen, or -1 to let
- * wnck_screen_calc_workspace_layout() find this number.
+ * vnck_screen_calc_workspace_layout() find this number.
  * @space_index: the index of a #WnckWorkspace.
  * @layout: return location for the layout of #WnckWorkspace with additional
  * information.
@@ -1044,7 +1044,7 @@ _wnck_screen_process_property_notify (WnckScreen *screen,
 /* TODO: when we make this private, remove num_workspaces since we can get it
  * from screen! */
 void
-wnck_screen_calc_workspace_layout (WnckScreen          *screen,
+vnck_screen_calc_workspace_layout (WnckScreen          *screen,
                                    int                  num_workspaces,
                                    int                  space_index,
                                    WnckWorkspaceLayout *layout)
@@ -1059,7 +1059,7 @@ wnck_screen_calc_workspace_layout (WnckScreen          *screen,
   g_return_if_fail (layout != NULL);
 
   if (num_workspaces < 0)
-    num_workspaces = wnck_screen_get_workspace_count (screen);
+    num_workspaces = vnck_screen_get_workspace_count (screen);
 
   rows = screen->priv->rows_of_workspaces;
   cols = screen->priv->columns_of_workspaces;
@@ -1253,7 +1253,7 @@ wnck_screen_calc_workspace_layout (WnckScreen          *screen,
 }
 
 /**
- * wnck_screen_free_workspace_layout:
+ * vnck_screen_free_workspace_layout:
  * @layout: a #WnckWorkspaceLayout.
  *
  * Frees the content of @layout. This does not free @layout itself, so you
@@ -1263,7 +1263,7 @@ wnck_screen_calc_workspace_layout (WnckScreen          *screen,
  * Deprecated:2.20:
  */
 void
-wnck_screen_free_workspace_layout (WnckWorkspaceLayout *layout)
+vnck_screen_free_workspace_layout (WnckWorkspaceLayout *layout)
 {
   g_return_if_fail (layout != NULL);
 
@@ -1419,17 +1419,17 @@ update_client_list (WnckScreen *screen)
 
   stack = NULL;
   stack_length = 0;
-  _wnck_get_window_list (screen->priv->xscreen,
+  _vnck_get_window_list (screen->priv->xscreen,
                          screen->priv->xroot,
-                         _wnck_atom_get ("_NET_CLIENT_LIST_STACKING"),
+                         _vnck_atom_get ("_NET_CLIENT_LIST_STACKING"),
                          &stack,
                          &stack_length);
 
   mapping = NULL;
   mapping_length = 0;
-  _wnck_get_window_list (screen->priv->xscreen,
+  _vnck_get_window_list (screen->priv->xscreen,
                          screen->priv->xroot,
-                         _wnck_atom_get ("_NET_CLIENT_LIST"),
+                         _vnck_atom_get ("_NET_CLIENT_LIST"),
                          &mapping,
                          &mapping_length);
 
@@ -1458,7 +1458,7 @@ update_client_list (WnckScreen *screen)
     {
       WnckWindow *window;
 
-      window = wnck_window_get (mapping[i]);
+      window = vnck_window_get (mapping[i]);
 
       if (window == NULL)
         {
@@ -1467,7 +1467,7 @@ update_client_list (WnckScreen *screen)
 	  const char *res_class;
 	  WnckClassGroup *class_group;
 
-          window = _wnck_window_create (mapping[i],
+          window = _vnck_window_create (mapping[i],
                                         screen,
                                         screen->priv->window_order++);
 
@@ -1475,29 +1475,29 @@ update_client_list (WnckScreen *screen)
 
 	  /* Application */
 
-          leader = wnck_window_get_group_leader (window);
+          leader = vnck_window_get_group_leader (window);
 
-          app = wnck_application_get (leader);
+          app = vnck_application_get (leader);
           if (app == NULL)
             {
-              app = _wnck_application_create (leader, screen);
+              app = _vnck_application_create (leader, screen);
               created_apps = g_list_prepend (created_apps, app);
             }
 
-          _wnck_application_add_window (app, window);
+          _vnck_application_add_window (app, window);
 
 	  /* Class group */
 
-	  res_class = wnck_window_get_class_group_name (window);
+	  res_class = vnck_window_get_class_group_name (window);
 
-	  class_group = wnck_class_group_get (res_class);
+	  class_group = vnck_class_group_get (res_class);
 	  if (class_group == NULL)
 	    {
-	      class_group = _wnck_class_group_create (screen, res_class);
+	      class_group = _vnck_class_group_create (screen, res_class);
 	      created_class_groups = g_list_prepend (created_class_groups, class_group);
 	    }
 
-	  _wnck_class_group_add_window (class_group, window);
+	  _vnck_class_group_add_window (class_group, window);
         }
 
       new_list = g_list_prepend (new_list, window);
@@ -1527,18 +1527,18 @@ update_client_list (WnckScreen *screen)
 
 	  /* Remove from the app */
 
-          app = wnck_window_get_application (window);
-          _wnck_application_remove_window (app, window);
+          app = vnck_window_get_application (window);
+          _vnck_application_remove_window (app, window);
 
-          if (wnck_application_get_windows (app) == NULL)
+          if (vnck_application_get_windows (app) == NULL)
             closed_apps = g_list_prepend (closed_apps, app);
 
 	  /* Remove from the class group */
 
-          class_group = wnck_window_get_class_group (window);
-          _wnck_class_group_remove_window (class_group, window);
+          class_group = vnck_window_get_class_group (window);
+          _vnck_class_group_remove_window (class_group, window);
 
-          if (wnck_class_group_get_windows (class_group) == NULL)
+          if (vnck_class_group_get_windows (class_group) == NULL)
             closed_class_groups = g_list_prepend (closed_class_groups, class_group);
         }
 
@@ -1554,7 +1554,7 @@ update_client_list (WnckScreen *screen)
     {
       WnckWindow *window;
 
-      window = wnck_window_get (stack[i]);
+      window = vnck_window_get (stack[i]);
 
       g_assert (window != NULL);
 
@@ -1651,15 +1651,15 @@ update_client_list (WnckScreen *screen)
 
   /* Now free the closed windows */
   for (tmp = closed; tmp; tmp = tmp->next)
-    _wnck_window_destroy (WNCK_WINDOW (tmp->data));
+    _vnck_window_destroy (WNCK_WINDOW (tmp->data));
 
   /* Free the closed apps */
   for (tmp = closed_apps; tmp; tmp = tmp->next)
-    _wnck_application_destroy (WNCK_APPLICATION (tmp->data));
+    _vnck_application_destroy (WNCK_APPLICATION (tmp->data));
 
   /* Free the closed class groups */
   for (tmp = closed_class_groups; tmp; tmp = tmp->next)
-    _wnck_class_group_destroy (WNCK_CLASS_GROUP (tmp->data));
+    _vnck_class_group_destroy (WNCK_CLASS_GROUP (tmp->data));
 
   g_list_free (closed);
   g_list_free (created);
@@ -1698,9 +1698,9 @@ update_workspace_list (WnckScreen *screen)
   ++reentrancy_guard;
 
   n_spaces = 0;
-  if (!_wnck_get_cardinal (screen->priv->xscreen,
+  if (!_vnck_get_cardinal (screen->priv->xscreen,
                            screen->priv->xroot,
-                           _wnck_atom_get ("_NET_NUMBER_OF_DESKTOPS"),
+                           _vnck_atom_get ("_NET_NUMBER_OF_DESKTOPS"),
                            &n_spaces))
     n_spaces = 1;
 
@@ -1743,7 +1743,7 @@ update_workspace_list (WnckScreen *screen)
         {
           WnckWorkspace *space;
 
-          space = _wnck_workspace_create (old_n_spaces + i, screen);
+          space = _vnck_workspace_create (old_n_spaces + i, screen);
 
           screen->priv->workspaces = g_list_append (screen->priv->workspaces,
                                                     space);
@@ -1823,17 +1823,17 @@ update_viewport_settings (WnckScreen *screen)
 
   do_update = FALSE;
 
-  n_spaces = wnck_screen_get_workspace_count (screen);
+  n_spaces = vnck_screen_get_workspace_count (screen);
 
   /* If no property, use the screen's size */
-  space_width = wnck_screen_get_width (screen);
-  space_height = wnck_screen_get_height (screen);
+  space_width = vnck_screen_get_width (screen);
+  space_height = vnck_screen_get_height (screen);
 
   p_coord = NULL;
   n_coord = 0;
-  if (_wnck_get_cardinal_list (screen->priv->xscreen,
+  if (_vnck_get_cardinal_list (screen->priv->xscreen,
                                screen->priv->xroot,
-			       _wnck_atom_get ("_NET_DESKTOP_GEOMETRY"),
+			       _vnck_atom_get ("_NET_DESKTOP_GEOMETRY"),
                                &p_coord, &n_coord) &&
       p_coord != NULL)
     {
@@ -1842,11 +1842,11 @@ update_viewport_settings (WnckScreen *screen)
           space_width = p_coord[0];
           space_height = p_coord[1];
 
-          if (space_width < wnck_screen_get_width (screen))
-            space_width = wnck_screen_get_width (screen);
+          if (space_width < vnck_screen_get_width (screen))
+            space_width = vnck_screen_get_width (screen);
 
-          if (space_height < wnck_screen_get_height (screen))
-            space_height = wnck_screen_get_height (screen);
+          if (space_height < vnck_screen_get_height (screen))
+            space_height = vnck_screen_get_height (screen);
 	}
 
       g_free (p_coord);
@@ -1854,10 +1854,10 @@ update_viewport_settings (WnckScreen *screen)
 
   for (i = 0; i < n_spaces; i++)
     {
-      space = wnck_screen_get_workspace (screen, i);
+      space = vnck_screen_get_workspace (screen, i);
       g_assert (space != NULL);
 
-      if (_wnck_workspace_set_geometry (space, space_width, space_height))
+      if (_vnck_workspace_set_geometry (space, space_width, space_height))
         do_update = TRUE;
     }
 
@@ -1865,9 +1865,9 @@ update_viewport_settings (WnckScreen *screen)
 
   p_coord = NULL;
   n_coord = 0;
-  if (_wnck_get_cardinal_list (screen->priv->xscreen,
+  if (_vnck_get_cardinal_list (screen->priv->xscreen,
                                screen->priv->xroot,
-                               _wnck_atom_get ("_NET_DESKTOP_VIEWPORT"),
+                               _vnck_atom_get ("_NET_DESKTOP_VIEWPORT"),
                                &p_coord, &n_coord) &&
       p_coord != NULL)
     {
@@ -1877,15 +1877,15 @@ update_viewport_settings (WnckScreen *screen)
 
           got_viewport_prop = TRUE;
 
-          screen_width = wnck_screen_get_width (screen);
-          screen_height = wnck_screen_get_height (screen);
+          screen_width = vnck_screen_get_width (screen);
+          screen_height = vnck_screen_get_height (screen);
 
 	  for (i = 0; i < n_spaces; i++)
 	    {
               int x = 2 * i;
               int y = 2 * i + 1;
 
-              space = wnck_screen_get_workspace (screen, i);
+              space = vnck_screen_get_workspace (screen, i);
               g_assert (space != NULL);
 
               /* p_coord[x] is unsigned, and thus >= 0 */
@@ -1896,7 +1896,7 @@ update_viewport_settings (WnckScreen *screen)
               if ((int) p_coord[y] > space_height - screen_height)
                 p_coord[y] = space_height - screen_height;
 
-	      if (_wnck_workspace_set_viewport (space,
+	      if (_vnck_workspace_set_viewport (space,
                                                 p_coord[x], p_coord[y]))
                 do_update = TRUE;
 	    }
@@ -1909,10 +1909,10 @@ update_viewport_settings (WnckScreen *screen)
     {
       for (i = 0; i < n_spaces; i++)
         {
-          space = wnck_screen_get_workspace (screen, i);
+          space = vnck_screen_get_workspace (screen, i);
           g_assert (space != NULL);
 
-          if (_wnck_workspace_set_viewport (space, 0, 0))
+          if (_vnck_workspace_set_viewport (space, 0, 0))
             do_update = TRUE;
         }
     }
@@ -1934,13 +1934,13 @@ update_active_workspace (WnckScreen *screen)
   screen->priv->need_update_active_workspace = FALSE;
 
   number = 0;
-  if (!_wnck_get_cardinal (screen->priv->xscreen,
+  if (!_vnck_get_cardinal (screen->priv->xscreen,
                            screen->priv->xroot,
-                           _wnck_atom_get ("_NET_CURRENT_DESKTOP"),
+                           _vnck_atom_get ("_NET_CURRENT_DESKTOP"),
                            &number))
     number = -1;
 
-  space = wnck_screen_get_workspace (screen, number);
+  space = vnck_screen_get_workspace (screen, number);
 
   if (space == screen->priv->active_workspace)
     return;
@@ -1963,12 +1963,12 @@ update_active_window (WnckScreen *screen)
   screen->priv->need_update_active_window = FALSE;
 
   xwindow = None;
-  _wnck_get_window (screen->priv->xscreen,
+  _vnck_get_window (screen->priv->xscreen,
                     screen->priv->xroot,
-                    _wnck_atom_get ("_NET_ACTIVE_WINDOW"),
+                    _vnck_atom_get ("_NET_ACTIVE_WINDOW"),
                     &xwindow);
 
-  window = wnck_window_get (xwindow);
+  window = vnck_window_get (xwindow);
 
   if (window == screen->priv->active_window)
     return;
@@ -1992,9 +1992,9 @@ update_workspace_layout (WnckScreen *screen)
 
   list = NULL;
   n_items = 0;
-  if (_wnck_get_cardinal_list (screen->priv->xscreen,
+  if (_vnck_get_cardinal_list (screen->priv->xscreen,
                                screen->priv->xroot,
-                               _wnck_atom_get ("_NET_DESKTOP_LAYOUT"),
+                               _vnck_atom_get ("_NET_DESKTOP_LAYOUT"),
                                &list,
                                &n_items))
     {
@@ -2026,7 +2026,7 @@ update_workspace_layout (WnckScreen *screen)
             {
               int num_workspaces;
 
-              num_workspaces = wnck_screen_get_workspace_count (screen);
+              num_workspaces = vnck_screen_get_workspace_count (screen);
 
               if (rows > 0)
                 screen->priv->rows_of_workspaces = rows;
@@ -2087,9 +2087,9 @@ update_workspace_names (WnckScreen *screen)
 
   screen->priv->need_update_workspace_names = FALSE;
 
-  names = _wnck_get_utf8_list (screen->priv->xscreen,
+  names = _vnck_get_utf8_list (screen->priv->xscreen,
                                screen->priv->xroot,
-                               _wnck_atom_get ("_NET_DESKTOP_NAMES"));
+                               _vnck_atom_get ("_NET_DESKTOP_NAMES"));
 
   copy = g_list_copy (screen->priv->workspaces);
 
@@ -2099,11 +2099,11 @@ update_workspace_names (WnckScreen *screen)
     {
       if (names && names[i])
         {
-          _wnck_workspace_update_name (tmp->data, names[i]);
+          _vnck_workspace_update_name (tmp->data, names[i]);
           ++i;
         }
       else
-        _wnck_workspace_update_name (tmp->data, NULL);
+        _vnck_workspace_update_name (tmp->data, NULL);
 
       tmp = tmp->next;
     }
@@ -2124,9 +2124,9 @@ update_bg_pixmap (WnckScreen *screen)
   screen->priv->need_update_bg_pixmap = FALSE;
 
   p = None;
-  _wnck_get_pixmap (screen->priv->xscreen,
+  _vnck_get_pixmap (screen->priv->xscreen,
                     screen->priv->xroot,
-                    _wnck_atom_get ("_XROOTPMAP_ID"),
+                    _vnck_atom_get ("_XROOTPMAP_ID"),
                     &p);
   /* may have failed, so p may still be None */
 
@@ -2146,9 +2146,9 @@ update_showing_desktop (WnckScreen *screen)
   screen->priv->need_update_showing_desktop = FALSE;
 
   showing_desktop = FALSE;
-  _wnck_get_cardinal (screen->priv->xscreen,
+  _vnck_get_cardinal (screen->priv->xscreen,
                       screen->priv->xroot,
-                      _wnck_atom_get ("_NET_SHOWING_DESKTOP"),
+                      _vnck_atom_get ("_NET_SHOWING_DESKTOP"),
                       &showing_desktop);
 
   screen->priv->showing_desktop = showing_desktop != 0;
@@ -2167,17 +2167,17 @@ update_wm (WnckScreen *screen)
   screen->priv->need_update_wm = FALSE;
 
   wm_window = None;
-  _wnck_get_window (screen->priv->xscreen,
+  _vnck_get_window (screen->priv->xscreen,
                     screen->priv->xroot,
-                    _wnck_atom_get ("_NET_SUPPORTING_WM_CHECK"),
+                    _vnck_atom_get ("_NET_SUPPORTING_WM_CHECK"),
                     &wm_window);
 
   g_free (screen->priv->wm_name);
 
   if (wm_window != None)
-    screen->priv->wm_name = _wnck_get_utf8_property (screen->priv->xscreen,
+    screen->priv->wm_name = _vnck_get_utf8_property (screen->priv->xscreen,
                                                      wm_window,
-                                                     _wnck_atom_get ("_NET_WM_NAME"));
+                                                     _vnck_atom_get ("_NET_WM_NAME"));
   else
     screen->priv->wm_name = NULL;
 
@@ -2383,7 +2383,7 @@ emit_wm_changed (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_get_window_manager_name:
+ * vnck_screen_get_window_manager_name:
  * @screen: a #WnckScreen.
  *
  * Gets the name of the window manager.
@@ -2396,7 +2396,7 @@ emit_wm_changed (WnckScreen *screen)
  * Since: 2.20
  */
 const char *
-wnck_screen_get_window_manager_name (WnckScreen *screen)
+vnck_screen_get_window_manager_name (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), NULL);
 
@@ -2404,7 +2404,7 @@ wnck_screen_get_window_manager_name (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_net_wm_supports:
+ * vnck_screen_net_wm_supports:
  * @screen: a #WnckScreen.
  * @atom: a property atom.
  *
@@ -2417,7 +2417,7 @@ wnck_screen_get_window_manager_name (WnckScreen *screen)
  * over time; so you should not use this function in a way that impacts
  * persistent application state. A common bug is that your application can
  * start up before the window manager does when the user logs in, and before
- * the window manager starts wnck_screen_net_wm_supports() will return %FALSE
+ * the window manager starts vnck_screen_net_wm_supports() will return %FALSE
  * for every property.
  *
  * See also gdk_x11_screen_supports_net_wm_hint() in GDK.
@@ -2426,17 +2426,17 @@ wnck_screen_get_window_manager_name (WnckScreen *screen)
  * hint, %FALSE otherwise.
  */
 gboolean
-wnck_screen_net_wm_supports (WnckScreen *screen,
+vnck_screen_net_wm_supports (WnckScreen *screen,
                              const char *atom)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), FALSE);
 
-  return gdk_x11_screen_supports_net_wm_hint (_wnck_screen_get_gdk_screen (screen),
+  return gdk_x11_screen_supports_net_wm_hint (_vnck_screen_get_gdk_screen (screen),
                                               gdk_atom_intern (atom, FALSE));
 }
 
 /**
- * wnck_screen_get_background_pixmap:
+ * vnck_screen_get_background_pixmap:
  * @screen: a #WnckScreen.
  *
  * Gets the X window ID of the background pixmap of @screen.
@@ -2444,7 +2444,7 @@ wnck_screen_net_wm_supports (WnckScreen *screen,
  * Returns: the X window ID of the background pixmap of @screen.
  */
 gulong
-wnck_screen_get_background_pixmap (WnckScreen *screen)
+vnck_screen_get_background_pixmap (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), None);
 
@@ -2452,7 +2452,7 @@ wnck_screen_get_background_pixmap (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_get_width:
+ * vnck_screen_get_width:
  * @screen: a #WnckScreen.
  *
  * Gets the width of @screen.
@@ -2460,7 +2460,7 @@ wnck_screen_get_background_pixmap (WnckScreen *screen)
  * Returns: the width of @screen.
  */
 int
-wnck_screen_get_width (WnckScreen *screen)
+vnck_screen_get_width (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), 0);
 
@@ -2468,7 +2468,7 @@ wnck_screen_get_width (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_get_height:
+ * vnck_screen_get_height:
  * @screen: a #WnckScreen.
  *
  * Gets the height of @screen.
@@ -2476,7 +2476,7 @@ wnck_screen_get_width (WnckScreen *screen)
  * Returns: the height of @screen.
  */
 int
-wnck_screen_get_height (WnckScreen *screen)
+vnck_screen_get_height (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), 0);
 
@@ -2484,16 +2484,16 @@ wnck_screen_get_height (WnckScreen *screen)
 }
 
 Screen *
-_wnck_screen_get_xscreen (WnckScreen *screen)
+_vnck_screen_get_xscreen (WnckScreen *screen)
 {
   return screen->priv->xscreen;
 }
 
 /**
- * wnck_screen_get_workspace_layout:
+ * vnck_screen_get_workspace_layout:
  * @screen: a #WnckScreen.
  * @orientation: return location for the orientation used in the #WnckWorkspace
- * layout. See wnck_pager_set_orientation() for more information.
+ * layout. See vnck_pager_set_orientation() for more information.
  * @rows: return location for the number of rows in the #WnckWorkspace layout.
  * @columns: return location for the number of columns in the #WnckWorkspace
  * layout.
@@ -2507,7 +2507,7 @@ _wnck_screen_get_xscreen (WnckScreen *screen)
  * to make it really better, use a WnckScreenLayout struct. We might also want
  * to wait for deprecation of WnckWorkspaceLayout. */
 void
-_wnck_screen_get_workspace_layout (WnckScreen             *screen,
+_vnck_screen_get_workspace_layout (WnckScreen             *screen,
                                    _WnckLayoutOrientation *orientation,
                                    int                    *rows,
                                    int                    *columns,
@@ -2531,10 +2531,10 @@ _wnck_screen_get_workspace_layout (WnckScreen             *screen,
 }
 
 /**
- * wnck_screen_try_set_workspace_layout:
+ * vnck_screen_try_set_workspace_layout:
  * @screen: a #WnckScreen.
  * @current_token: a token. Use 0 if you do not called
- * wnck_screen_try_set_workspace_layout() before, or if you did not keep the
+ * vnck_screen_try_set_workspace_layout() before, or if you did not keep the
  * old token.
  * @rows: the number of rows to use for the #WnckWorkspace layout.
  * @columns: the number of columns to use for the #WnckWorkspace layout.
@@ -2552,14 +2552,14 @@ _wnck_screen_get_workspace_layout (WnckScreen             *screen,
  * #WnckWorkspace. @rows and @columns must not be 0 at the same time.
  *
  * You have to release the ownership of the layout with
- * wnck_screen_release_workspace_layout() when you do not need it anymore.
+ * vnck_screen_release_workspace_layout() when you do not need it anymore.
  *
  * Return value: a token to use for future calls to
- * wnck_screen_try_set_workspace_layout() and to
- * wnck_screen_release_workspace_layout(), or 0 if the layout could not be set.
+ * vnck_screen_try_set_workspace_layout() and to
+ * vnck_screen_release_workspace_layout(), or 0 if the layout could not be set.
  */
 int
-wnck_screen_try_set_workspace_layout (WnckScreen *screen,
+vnck_screen_try_set_workspace_layout (WnckScreen *screen,
                                       int         current_token,
                                       int         rows,
                                       int         columns)
@@ -2571,39 +2571,39 @@ wnck_screen_try_set_workspace_layout (WnckScreen *screen,
   g_return_val_if_fail (rows != 0 || columns != 0,
                         WNCK_NO_MANAGER_TOKEN);
 
-  retval = _wnck_try_desktop_layout_manager (screen->priv->xscreen, current_token);
+  retval = _vnck_try_desktop_layout_manager (screen->priv->xscreen, current_token);
 
   if (retval != WNCK_NO_MANAGER_TOKEN)
     {
-      _wnck_set_desktop_layout (screen->priv->xscreen, rows, columns);
+      _vnck_set_desktop_layout (screen->priv->xscreen, rows, columns);
     }
 
   return retval;
 }
 
 /**
- * wnck_screen_release_workspace_layout:
+ * vnck_screen_release_workspace_layout:
  * @screen: a #WnckScreen.
  * @current_token: the token obtained through
- * wnck_screen_try_set_workspace_layout().
+ * vnck_screen_try_set_workspace_layout().
  *
  * Releases the ownership of the layout of #WnckWorkspace on @screen.
  * @current_token is used to verify that the caller is the owner of the layout.
  * If the verification fails, nothing happens.
  */
 void
-wnck_screen_release_workspace_layout (WnckScreen *screen,
+vnck_screen_release_workspace_layout (WnckScreen *screen,
                                       int         current_token)
 {
   g_return_if_fail (WNCK_IS_SCREEN (screen));
 
-  _wnck_release_desktop_layout_manager (screen->priv->xscreen,
+  _vnck_release_desktop_layout_manager (screen->priv->xscreen,
                                         current_token);
 
 }
 
 /**
- * wnck_screen_get_showing_desktop:
+ * vnck_screen_get_showing_desktop:
  * @screen: a #WnckScreen.
  *
  * Gets whether @screen is in the "showing the desktop" mode. This mode is
@@ -2614,7 +2614,7 @@ wnck_screen_release_workspace_layout (WnckScreen *screen,
  * Since: 2.2
  **/
 gboolean
-wnck_screen_get_showing_desktop (WnckScreen *screen)
+vnck_screen_get_showing_desktop (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), FALSE);
 
@@ -2622,7 +2622,7 @@ wnck_screen_get_showing_desktop (WnckScreen *screen)
 }
 
 /**
- * wnck_screen_toggle_showing_desktop:
+ * vnck_screen_toggle_showing_desktop:
  * @screen: a #WnckScreen.
  * @show: whether to activate the "showing the desktop" mode on @screen.
  *
@@ -2632,18 +2632,18 @@ wnck_screen_get_showing_desktop (WnckScreen *screen)
  * Since: 2.2
  **/
 void
-wnck_screen_toggle_showing_desktop (WnckScreen *screen,
+vnck_screen_toggle_showing_desktop (WnckScreen *screen,
                                     gboolean    show)
 {
   g_return_if_fail (WNCK_IS_SCREEN (screen));
 
-  _wnck_toggle_showing_desktop (screen->priv->xscreen,
+  _vnck_toggle_showing_desktop (screen->priv->xscreen,
                                 show);
 }
 
 
 /**
- * wnck_screen_move_viewport:
+ * vnck_screen_move_viewport:
  * @screen: a #WnckScreen.
  * @x: X offset in pixels of viewport.
  * @y: Y offset in pixels of viewport.
@@ -2654,7 +2654,7 @@ wnck_screen_toggle_showing_desktop (WnckScreen *screen,
  * Since: 2.4
  */
 void
-wnck_screen_move_viewport (WnckScreen *screen,
+vnck_screen_move_viewport (WnckScreen *screen,
                            int         x,
                            int         y)
 {
@@ -2662,12 +2662,12 @@ wnck_screen_move_viewport (WnckScreen *screen,
   g_return_if_fail (x >= 0);
   g_return_if_fail (y >= 0);
 
-  _wnck_change_viewport (screen->priv->xscreen, x, y);
+  _vnck_change_viewport (screen->priv->xscreen, x, y);
 }
 
 #ifdef HAVE_STARTUP_NOTIFICATION
 SnDisplay*
-_wnck_screen_get_sn_display (WnckScreen *screen)
+_vnck_screen_get_sn_display (WnckScreen *screen)
 {
   g_return_val_if_fail (WNCK_IS_SCREEN (screen), NULL);
 
@@ -2676,7 +2676,7 @@ _wnck_screen_get_sn_display (WnckScreen *screen)
 #endif /* HAVE_STARTUP_NOTIFICATION */
 
 void
-_wnck_screen_change_workspace_name (WnckScreen *screen,
+_vnck_screen_change_workspace_name (WnckScreen *screen,
                                     int         number,
                                     const char *name)
 {
@@ -2684,7 +2684,7 @@ _wnck_screen_change_workspace_name (WnckScreen *screen,
   char **names;
   int i;
 
-  n_spaces = wnck_screen_get_workspace_count (screen);
+  n_spaces = vnck_screen_get_workspace_count (screen);
 
   names = g_new0 (char*, n_spaces + 1);
 
@@ -2696,9 +2696,9 @@ _wnck_screen_change_workspace_name (WnckScreen *screen,
       else
         {
           WnckWorkspace *workspace;
-          workspace = wnck_screen_get_workspace (screen, i);
+          workspace = vnck_screen_get_workspace (screen, i);
           if (workspace)
-            names[i] = (char*) wnck_workspace_get_name (workspace);
+            names[i] = (char*) vnck_workspace_get_name (workspace);
           else
             names[i] = (char*) ""; /* maybe this should be a g_warning() */
         }
@@ -2706,16 +2706,16 @@ _wnck_screen_change_workspace_name (WnckScreen *screen,
       ++i;
     }
 
-  _wnck_set_utf8_list (screen->priv->xscreen,
+  _vnck_set_utf8_list (screen->priv->xscreen,
                        screen->priv->xroot,
-                       _wnck_atom_get ("_NET_DESKTOP_NAMES"),
+                       _vnck_atom_get ("_NET_DESKTOP_NAMES"),
                        names);
 
   g_free (names);
 }
 
 void
-_wnck_screen_shutdown_all (void)
+_vnck_screen_shutdown_all (void)
 {
   int i;
   Display *display;
@@ -2723,7 +2723,7 @@ _wnck_screen_shutdown_all (void)
   if (screens == NULL)
     return;
 
-  display = _wnck_get_default_display ();
+  display = _vnck_get_default_display ();
 
   for (i = 0; i < ScreenCount (display); ++i)
     {

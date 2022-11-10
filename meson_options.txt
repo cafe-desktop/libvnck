@@ -5,7 +5,7 @@ option('deprecation_flags',
 option('install_tools',
   type: 'boolean',
   value: true,
-  description: 'Install wnck-based tools')
+  description: 'Install vnck-based tools')
 option('startup_notification',
   type: 'feature',
   value: 'auto',

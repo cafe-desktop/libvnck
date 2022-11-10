@@ -26,7 +26,7 @@
 
 G_BEGIN_DECLS
 
-#define WNCK_WORKSPACE_TYPE_ACCESSIBLE                     (wnck_workspace_accessible_get_type ())
+#define WNCK_WORKSPACE_TYPE_ACCESSIBLE                     (vnck_workspace_accessible_get_type ())
 #define WNCK_WORKSPACE_ACCESSIBLE(obj)                     (G_TYPE_CHECK_INSTANCE_CAST ((obj), WNCK_WORKSPACE_TYPE_ACCESSIBLE, WnckWorkspaceAccessible))
 #define WNCK_WORKSPACE_ACCESSIBLE_CLASS(klass)             (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_WORKSPACE_TYPE_ACCESSIBLE, WnckWorkspaceAccessibleClass))
 #define WNCK_IS_WORKSPACE_ACCESSIBLE(obj)                  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), WNCK_WORKSPACE_TYPE_ACCESSIBLE))
@@ -48,9 +48,9 @@ struct _WnckWorkspaceAccessibleClass
   AtkGObjectAccessibleClass parent_class;
 };
 
-GType wnck_workspace_accessible_get_type (void) G_GNUC_CONST;
+GType vnck_workspace_accessible_get_type (void) G_GNUC_CONST;
 
-AtkObject* wnck_workspace_accessible_new (GObject *obj); 
+AtkObject* vnck_workspace_accessible_new (GObject *obj); 
 
 G_END_DECLS
 

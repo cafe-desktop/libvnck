@@ -1,6 +1,6 @@
 /* vim: set sw=2 et: */
 
-#include <libwnck/libwnck.h>
+#include <libvnck/libvnck.h>
 #include <gtk/gtk.h>
 
 static int n_rows = 1;
@@ -37,7 +37,7 @@ create_pager_window (GtkOrientation       orientation,
 
   gtk_window_stick (GTK_WINDOW (win));
 #if 0
-  wnck_gtk_window_set_dock_type (GTK_WINDOW (win));
+  vnck_gtk_window_set_dock_type (GTK_WINDOW (win));
 #endif
 
   gtk_window_set_title (GTK_WINDOW (win), "Pager");
@@ -50,15 +50,15 @@ create_pager_window (GtkOrientation       orientation,
                     G_CALLBACK (gtk_main_quit),
                     NULL);
 
-  pager = wnck_pager_new ();
+  pager = vnck_pager_new ();
 
-  wnck_pager_set_show_all (WNCK_PAGER (pager), show_all);
-  wnck_pager_set_display_mode (WNCK_PAGER (pager), mode);
-  wnck_pager_set_scroll_mode (WNCK_PAGER (pager), scroll_mode);
-  wnck_pager_set_orientation (WNCK_PAGER (pager), orientation);
-  wnck_pager_set_n_rows (WNCK_PAGER (pager), rows);
-  wnck_pager_set_shadow_type (WNCK_PAGER (pager), GTK_SHADOW_IN);
-  wnck_pager_set_wrap_on_scroll (WNCK_PAGER (pager), wrap);
+  vnck_pager_set_show_all (WNCK_PAGER (pager), show_all);
+  vnck_pager_set_display_mode (WNCK_PAGER (pager), mode);
+  vnck_pager_set_scroll_mode (WNCK_PAGER (pager), scroll_mode);
+  vnck_pager_set_orientation (WNCK_PAGER (pager), orientation);
+  vnck_pager_set_n_rows (WNCK_PAGER (pager), rows);
+  vnck_pager_set_shadow_type (WNCK_PAGER (pager), GTK_SHADOW_IN);
+  vnck_pager_set_wrap_on_scroll (WNCK_PAGER (pager), wrap);
 
   gtk_container_add (GTK_CONTAINER (win), pager);
 
@@ -86,10 +86,10 @@ main (int argc, char **argv)
   if (rtl)
     gtk_widget_set_default_direction (GTK_TEXT_DIR_RTL);
 
-  screen = wnck_screen_get_default ();
+  screen = vnck_screen_get_default ();
 
   /* because the pager doesn't respond to signals at the moment */
-  wnck_screen_force_update (screen);
+  vnck_screen_force_update (screen);
 
   if (vertical)
 	  orientation = GTK_ORIENTATION_VERTICAL;

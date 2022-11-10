@@ -26,7 +26,7 @@
 
 #include <gtk/gtk.h>
 
-#include <libwnck/libwnck.h>
+#include <libvnck/libvnck.h>
 
 static void
 status_icon_activated (GtkStatusIcon *icon,
@@ -42,17 +42,17 @@ status_icon_activated (GtkStatusIcon *icon,
    * http://mail.gnome.org/archives/wm-spec-list/2005-July/msg00032.html
    * There should only be *one* activate call.
    */
-  workspace = wnck_window_get_workspace (window);
+  workspace = vnck_window_get_workspace (window);
   if (workspace)
-    wnck_workspace_activate (workspace, timestamp);
+    vnck_workspace_activate (workspace, timestamp);
 
-  wnck_window_activate (window, timestamp);
+  vnck_window_activate (window, timestamp);
 }
 
 static GtkStatusIcon *
 status_icon_get (WnckWindow *window)
 {
-  return g_object_get_data (G_OBJECT (window), "wnck-urgency-icon");
+  return g_object_get_data (G_OBJECT (window), "vnck-urgency-icon");
 }
 
 static void
@@ -68,17 +68,17 @@ status_icon_update (WnckWindow *window)
     }
 
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-  if (wnck_window_get_icon_is_fallback (window))
+  if (vnck_window_get_icon_is_fallback (window))
     {
       gtk_status_icon_set_from_icon_name (icon, "dialog-information");
     }
   else
     {
       gtk_status_icon_set_from_pixbuf (icon,
-                                       wnck_window_get_mini_icon (window));
+                                       vnck_window_get_mini_icon (window));
     }
 
-  gtk_status_icon_set_tooltip_text (icon, wnck_window_get_name (window));
+  gtk_status_icon_set_tooltip_text (icon, vnck_window_get_name (window));
   G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
@@ -91,7 +91,7 @@ status_icon_create (WnckWindow *window)
   icon = gtk_status_icon_new ();
   G_GNUC_END_IGNORE_DEPRECATIONS
 
-  g_object_set_data (G_OBJECT (window), "wnck-urgency-icon", icon);
+  g_object_set_data (G_OBJECT (window), "vnck-urgency-icon", icon);
 
   g_signal_connect (icon, "activate",
                     G_CALLBACK (status_icon_activated), window);
@@ -112,7 +112,7 @@ status_icon_remove (WnckWindow *window)
       G_GNUC_END_IGNORE_DEPRECATIONS
 
       g_object_unref (icon);
-      g_object_set_data (G_OBJECT (window), "wnck-urgency-icon", NULL);
+      g_object_set_data (G_OBJECT (window), "vnck-urgency-icon", NULL);
     }
 }
 
@@ -132,7 +132,7 @@ window_state_changed (WnckWindow      *window,
 
   icon = status_icon_get (window);
 
-  if (wnck_window_or_transient_needs_attention (window))
+  if (vnck_window_or_transient_needs_attention (window))
     {
       if (icon == NULL)
         {
@@ -163,7 +163,7 @@ static void
 connect_to_window (WnckScreen *screen,
                    WnckWindow *window)
 {
-  if (wnck_window_or_transient_needs_attention (window))
+  if (vnck_window_or_transient_needs_attention (window))
     {
       status_icon_create (window);
     }
@@ -210,9 +210,9 @@ main (int argc, char **argv)
 
   gtk_init (&argc, &argv);
 
-  wnck_set_client_type (WNCK_CLIENT_TYPE_PAGER);
+  vnck_set_client_type (WNCK_CLIENT_TYPE_PAGER);
 
-  screen = wnck_screen_get_default ();
+  screen = vnck_screen_get_default ();
   g_signal_connect (screen, "window_opened",
                     G_CALLBACK (connect_to_window), NULL);
   g_signal_connect (screen, "window_closed",

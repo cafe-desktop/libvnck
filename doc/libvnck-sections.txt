@@ -1,95 +1,95 @@
-<INCLUDE>libwnck/libwnck.h</INCLUDE>
+<INCLUDE>libvnck/libvnck.h</INCLUDE>
 # Core
 
 <SECTION>
 <FILE>window</FILE>
 <TITLE>WnckWindow</TITLE>
 WnckWindow
-wnck_window_get
-wnck_window_get_screen
-wnck_window_has_name
-wnck_window_get_name
-wnck_window_has_icon_name
-wnck_window_get_icon_name
-wnck_window_get_icon_is_fallback
-wnck_window_get_icon
-wnck_window_get_mini_icon
-wnck_window_get_application
-wnck_window_get_transient
-wnck_window_get_group_leader
-wnck_window_get_xid
-wnck_window_get_class_group
-wnck_window_get_class_group_name
-wnck_window_get_class_instance_name
-wnck_window_get_session_id
-wnck_window_get_session_id_utf8
-wnck_window_get_pid
-wnck_window_get_sort_order
-wnck_window_set_sort_order
+vnck_window_get
+vnck_window_get_screen
+vnck_window_has_name
+vnck_window_get_name
+vnck_window_has_icon_name
+vnck_window_get_icon_name
+vnck_window_get_icon_is_fallback
+vnck_window_get_icon
+vnck_window_get_mini_icon
+vnck_window_get_application
+vnck_window_get_transient
+vnck_window_get_group_leader
+vnck_window_get_xid
+vnck_window_get_class_group
+vnck_window_get_class_group_name
+vnck_window_get_class_instance_name
+vnck_window_get_session_id
+vnck_window_get_session_id_utf8
+vnck_window_get_pid
+vnck_window_get_sort_order
+vnck_window_set_sort_order
 WnckWindowType
-wnck_window_get_window_type
-wnck_window_set_window_type
+vnck_window_get_window_type
+vnck_window_set_window_type
 WnckWindowState
-wnck_window_get_state
-wnck_window_is_minimized
-wnck_window_is_maximized_horizontally
-wnck_window_is_maximized_vertically
-wnck_window_is_maximized
-wnck_window_is_shaded
-wnck_window_is_pinned
-wnck_window_is_sticky
-wnck_window_is_above
-wnck_window_is_below
-wnck_window_is_skip_pager
-wnck_window_is_skip_tasklist
-wnck_window_is_fullscreen
-wnck_window_needs_attention
-wnck_window_or_transient_needs_attention
+vnck_window_get_state
+vnck_window_is_minimized
+vnck_window_is_maximized_horizontally
+vnck_window_is_maximized_vertically
+vnck_window_is_maximized
+vnck_window_is_shaded
+vnck_window_is_pinned
+vnck_window_is_sticky
+vnck_window_is_above
+vnck_window_is_below
+vnck_window_is_skip_pager
+vnck_window_is_skip_tasklist
+vnck_window_is_fullscreen
+vnck_window_needs_attention
+vnck_window_or_transient_needs_attention
 WnckWindowActions
-wnck_window_get_actions
-wnck_window_minimize
-wnck_window_unminimize
-wnck_window_maximize_horizontally
-wnck_window_unmaximize_horizontally
-wnck_window_maximize_vertically
-wnck_window_unmaximize_vertically
-wnck_window_maximize
-wnck_window_unmaximize
-wnck_window_shade
-wnck_window_unshade
-wnck_window_pin
-wnck_window_unpin
-wnck_window_stick
-wnck_window_unstick
-wnck_window_make_above
-wnck_window_unmake_above
-wnck_window_make_below
-wnck_window_unmake_below
-wnck_window_set_skip_pager
-wnck_window_set_skip_tasklist
-wnck_window_set_fullscreen
-wnck_window_close
-wnck_window_get_workspace
-wnck_window_is_on_workspace
-wnck_window_is_visible_on_workspace
-wnck_window_move_to_workspace
-wnck_window_is_in_viewport
-wnck_window_activate
-wnck_window_is_active
-wnck_window_is_most_recently_activated
-wnck_window_activate_transient
-wnck_window_transient_is_most_recently_activated
-wnck_window_set_icon_geometry
+vnck_window_get_actions
+vnck_window_minimize
+vnck_window_unminimize
+vnck_window_maximize_horizontally
+vnck_window_unmaximize_horizontally
+vnck_window_maximize_vertically
+vnck_window_unmaximize_vertically
+vnck_window_maximize
+vnck_window_unmaximize
+vnck_window_shade
+vnck_window_unshade
+vnck_window_pin
+vnck_window_unpin
+vnck_window_stick
+vnck_window_unstick
+vnck_window_make_above
+vnck_window_unmake_above
+vnck_window_make_below
+vnck_window_unmake_below
+vnck_window_set_skip_pager
+vnck_window_set_skip_tasklist
+vnck_window_set_fullscreen
+vnck_window_close
+vnck_window_get_workspace
+vnck_window_is_on_workspace
+vnck_window_is_visible_on_workspace
+vnck_window_move_to_workspace
+vnck_window_is_in_viewport
+vnck_window_activate
+vnck_window_is_active
+vnck_window_is_most_recently_activated
+vnck_window_activate_transient
+vnck_window_transient_is_most_recently_activated
+vnck_window_set_icon_geometry
 WnckWindowGravity
 WnckWindowMoveResizeMask
-wnck_window_get_client_window_geometry
-wnck_window_get_geometry
-wnck_window_set_geometry
-wnck_window_keyboard_move
-wnck_window_keyboard_size
+vnck_window_get_client_window_geometry
+vnck_window_get_geometry
+vnck_window_set_geometry
+vnck_window_keyboard_move
+vnck_window_keyboard_size
 <SUBSECTION Private>
 WnckWindowPrivate
-wnck_window_get_type
+vnck_window_get_type
 <SUBSECTION Standard>
 WNCK_WINDOW
 WNCK_IS_WINDOW
@@ -104,16 +104,16 @@ WnckWindowClass
 <FILE>class-group</FILE>
 <TITLE>WnckClassGroup</TITLE>
 WnckClassGroup
-wnck_class_group_get
-wnck_class_group_get_id
-wnck_class_group_get_res_class
-wnck_class_group_get_name
-wnck_class_group_get_icon
-wnck_class_group_get_mini_icon
-wnck_class_group_get_windows
+vnck_class_group_get
+vnck_class_group_get_id
+vnck_class_group_get_res_class
+vnck_class_group_get_name
+vnck_class_group_get_icon
+vnck_class_group_get_mini_icon
+vnck_class_group_get_windows
 <SUBSECTION Private>
 WnckClassGroupPrivate
-wnck_class_group_get_type
+vnck_class_group_get_type
 <SUBSECTION Standard>
 WNCK_CLASS_GROUP
 WNCK_IS_CLASS_GROUP
@@ -128,20 +128,20 @@ WnckClassGroupClass
 <FILE>application</FILE>
 <TITLE>WnckApplication</TITLE>
 WnckApplication
-wnck_application_get
-wnck_application_get_xid
-wnck_application_get_name
-wnck_application_get_icon_name
-wnck_application_get_pid
-wnck_application_get_icon_is_fallback
-wnck_application_get_icon
-wnck_application_get_mini_icon
-wnck_application_get_startup_id
-wnck_application_get_windows
-wnck_application_get_n_windows
+vnck_application_get
+vnck_application_get_xid
+vnck_application_get_name
+vnck_application_get_icon_name
+vnck_application_get_pid
+vnck_application_get_icon_is_fallback
+vnck_application_get_icon
+vnck_application_get_mini_icon
+vnck_application_get_startup_id
+vnck_application_get_windows
+vnck_application_get_n_windows
 <SUBSECTION Private>
 WnckApplicationPrivate
-wnck_application_get_type
+vnck_application_get_type
 <SUBSECTION Standard>
 WNCK_APPLICATION
 WNCK_IS_APPLICATION
@@ -156,23 +156,23 @@ WnckApplicationClass
 <FILE>workspace</FILE>
 <TITLE>WnckWorkspace</TITLE>
 WnckWorkspace
-wnck_workspace_get_screen
-wnck_workspace_get_number
-wnck_workspace_get_name
-wnck_workspace_change_name
-wnck_workspace_get_width
-wnck_workspace_get_height
-wnck_workspace_get_viewport_x
-wnck_workspace_get_viewport_y
-wnck_workspace_is_virtual
-wnck_workspace_get_layout_row
-wnck_workspace_get_layout_column
+vnck_workspace_get_screen
+vnck_workspace_get_number
+vnck_workspace_get_name
+vnck_workspace_change_name
+vnck_workspace_get_width
+vnck_workspace_get_height
+vnck_workspace_get_viewport_x
+vnck_workspace_get_viewport_y
+vnck_workspace_is_virtual
+vnck_workspace_get_layout_row
+vnck_workspace_get_layout_column
 WnckMotionDirection
-wnck_workspace_get_neighbor
-wnck_workspace_activate
+vnck_workspace_get_neighbor
+vnck_workspace_activate
 <SUBSECTION Private>
 WnckWorkspacePrivate
-wnck_workspace_get_type
+vnck_workspace_get_type
 <SUBSECTION Standard>
 WNCK_WORKSPACE
 WNCK_IS_WORKSPACE
@@ -187,38 +187,38 @@ WnckWorkspaceClass
 <FILE>screen</FILE>
 <TITLE>WnckScreen</TITLE>
 WnckScreen
-wnck_screen_get_default
-wnck_screen_get
-wnck_screen_get_for_root
-wnck_screen_get_number
-wnck_screen_get_width
-wnck_screen_get_height
-wnck_screen_force_update
-wnck_screen_get_window_manager_name
-wnck_screen_net_wm_supports
-wnck_screen_get_active_window
-wnck_screen_get_previously_active_window
-wnck_screen_get_windows
-wnck_screen_get_windows_stacked
-wnck_screen_get_active_workspace
-wnck_screen_get_workspaces
-wnck_screen_get_workspace
-wnck_screen_get_workspace_count
-wnck_screen_change_workspace_count
-wnck_screen_try_set_workspace_layout
-wnck_screen_release_workspace_layout
+vnck_screen_get_default
+vnck_screen_get
+vnck_screen_get_for_root
+vnck_screen_get_number
+vnck_screen_get_width
+vnck_screen_get_height
+vnck_screen_force_update
+vnck_screen_get_window_manager_name
+vnck_screen_net_wm_supports
+vnck_screen_get_active_window
+vnck_screen_get_previously_active_window
+vnck_screen_get_windows
+vnck_screen_get_windows_stacked
+vnck_screen_get_active_workspace
+vnck_screen_get_workspaces
+vnck_screen_get_workspace
+vnck_screen_get_workspace_count
+vnck_screen_change_workspace_count
+vnck_screen_try_set_workspace_layout
+vnck_screen_release_workspace_layout
 WnckWorkspaceLayout
-wnck_screen_calc_workspace_layout
-wnck_screen_free_workspace_layout
-wnck_screen_move_viewport
-wnck_screen_get_background_pixmap
-wnck_screen_get_showing_desktop
-wnck_screen_toggle_showing_desktop
+vnck_screen_calc_workspace_layout
+vnck_screen_free_workspace_layout
+vnck_screen_move_viewport
+vnck_screen_get_background_pixmap
+vnck_screen_get_showing_desktop
+vnck_screen_toggle_showing_desktop
 <SUBSECTION Private>
 WnckScreenPrivate
-wnck_screen_get_type
+vnck_screen_get_type
 # FIXME: the first two WNCK_TYPE_ are dummy stuff gtk-doc generates, the other
-# two should be added when _wnck_screen_get_workspace_layout becomes public
+# two should be added when _vnck_screen_get_workspace_layout becomes public
 WNCK_TYPE___WNCK_LAYOUT_CORNER
 WNCK_TYPE___WNCK_LAYOUT_ORIENTATION
 _WnckLayoutCorner
@@ -239,18 +239,18 @@ WnckScreenClass
 <FILE>pager</FILE>
 <TITLE>WnckPager</TITLE>
 WnckPager
-wnck_pager_new
-wnck_pager_set_orientation
-wnck_pager_set_n_rows
+vnck_pager_new
+vnck_pager_set_orientation
+vnck_pager_set_n_rows
 WnckPagerDisplayMode
-wnck_pager_set_display_mode
+vnck_pager_set_display_mode
 WnckPagerScrollMode
-wnck_pager_set_scroll_mode
-wnck_pager_set_show_all
-wnck_pager_set_shadow_type
+vnck_pager_set_scroll_mode
+vnck_pager_set_show_all
+vnck_pager_set_shadow_type
 <SUBSECTION Private>
 WnckPagerPrivate
-wnck_pager_get_type
+vnck_pager_get_type
 <SUBSECTION Standard>
 WNCK_PAGER
 WNCK_IS_PAGER
@@ -265,10 +265,10 @@ WnckPagerClass
 <FILE>selector</FILE>
 <TITLE>WnckSelector</TITLE>
 WnckSelector
-wnck_selector_new
+vnck_selector_new
 <SUBSECTION Private>
 WnckSelectorPrivate
-wnck_selector_get_type
+vnck_selector_get_type
 <SUBSECTION Standard>
 WNCK_SELECTOR
 WNCK_IS_SELECTOR
@@ -283,19 +283,19 @@ WnckSelectorClass
 <FILE>tasklist</FILE>
 <TITLE>WnckTasklist</TITLE>
 WnckTasklist
-wnck_tasklist_new
+vnck_tasklist_new
 WnckTasklistGroupingType
-wnck_tasklist_set_grouping
-wnck_tasklist_set_grouping_limit
-wnck_tasklist_set_include_all_workspaces
-wnck_tasklist_set_switch_workspace_on_unminimize
-wnck_tasklist_set_button_relief
+vnck_tasklist_set_grouping
+vnck_tasklist_set_grouping_limit
+vnck_tasklist_set_include_all_workspaces
+vnck_tasklist_set_switch_workspace_on_unminimize
+vnck_tasklist_set_button_relief
 WnckLoadIconFunction
-wnck_tasklist_set_icon_loader
-wnck_tasklist_get_size_hint_list
+vnck_tasklist_set_icon_loader
+vnck_tasklist_get_size_hint_list
 <SUBSECTION Private>
 WnckTasklistPrivate
-wnck_tasklist_get_type
+vnck_tasklist_get_type
 <SUBSECTION Standard>
 WNCK_TASKLIST
 WNCK_IS_TASKLIST
@@ -312,10 +312,10 @@ WnckTasklistClass
 <FILE>window-action-menu</FILE>
 <TITLE>Window Action Menu</TITLE>
 WnckActionMenu
-wnck_action_menu_new
+vnck_action_menu_new
 <SUBSECTION Private>
 WnckActionMenuPrivate
-wnck_action_menu_get_type
+vnck_action_menu_get_type
 <SUBSECTION Standard>
 WNCK_ACTION_MENU
 WNCK_IS_ACTION_MENU
@@ -330,8 +330,8 @@ WnckActionMenuClass
 <FILE>resource</FILE>
 <TITLE>Resource Usage of X Clients</TITLE>
 WnckResourceUsage
-wnck_xid_read_resource_usage
-wnck_pid_read_resource_usage
+vnck_xid_read_resource_usage
+vnck_pid_read_resource_usage
 </SECTION>
 
 <SECTION>
@@ -339,16 +339,16 @@ wnck_pid_read_resource_usage
 <TITLE>Icons Functions</TITLE>
 WNCK_DEFAULT_ICON_SIZE
 WNCK_DEFAULT_MINI_ICON_SIZE
-wnck_set_default_icon_size
-wnck_set_default_mini_icon_size
+vnck_set_default_icon_size
+vnck_set_default_mini_icon_size
 </SECTION>
 
 <SECTION>
 <FILE>misc</FILE>
 <TITLE>Miscellaneous Functions</TITLE>
 WnckClientType
-wnck_set_client_type
-wnck_shutdown
+vnck_set_client_type
+vnck_shutdown
 </SECTION>
 
 <SECTION>
@@ -367,9 +367,9 @@ WNCK_CHECK_VERSION
 #<FILE>pager-accessible-factory</FILE>
 #<TITLE>WnckPagerAccessibleFactory</TITLE>
 WnckPagerAccessibleFactory
-wnck_pager_accessible_factory_new
+vnck_pager_accessible_factory_new
 <SUBSECTION Private>
-wnck_pager_accessible_factory_get_type
+vnck_pager_accessible_factory_get_type
 #<SUBSECTION Standard>
 WNCK_PAGER_ACCESSIBLE_FACTORY
 WNCK_IS_PAGER_ACCESSIBLE_FACTORY
@@ -384,9 +384,9 @@ WnckPagerAccessibleFactoryClass
 #<FILE>pager-accessible</FILE>
 #<TITLE>WnckPagerAccessible</TITLE>
 WnckPagerAccessible
-wnck_pager_accessible_new
+vnck_pager_accessible_new
 <SUBSECTION Private>
-wnck_pager_accessible_get_type
+vnck_pager_accessible_get_type
 #<SUBSECTION Standard>
 WNCK_PAGER_ACCESSIBLE
 WNCK_PAGER_IS_ACCESSIBLE
@@ -401,9 +401,9 @@ WnckPagerAccessibleClass
 #<FILE>workspace-accessible-factory</FILE>
 #<TITLE>WnckWorkspaceAccessibleFactory</TITLE>
 WnckWorkspaceAccessibleFactory
-wnck_workspace_accessible_factory_new
+vnck_workspace_accessible_factory_new
 <SUBSECTION Private>
-wnck_workspace_accessible_factory_get_type
+vnck_workspace_accessible_factory_get_type
 #<SUBSECTION Standard>
 WNCK_WORKSPACE_ACCESSIBLE_FACTORY
 WNCK_IS_WORKSPACE_ACCESSIBLE_FACTORY
@@ -418,9 +418,9 @@ WnckWorkspaceAccessibleFactoryClass
 #<FILE>workspace-accessible</FILE>
 #<TITLE>WnckWorkspaceAccessible</TITLE>
 WnckWorkspaceAccessible
-wnck_workspace_accessible_new
+vnck_workspace_accessible_new
 <SUBSECTION Private>
-wnck_workspace_accessible_get_type
+vnck_workspace_accessible_get_type
 #<SUBSECTION Standard>
 WNCK_WORKSPACE_ACCESSIBLE
 WNCK_IS_WORKSPACE_ACCESSIBLE
@@ -447,24 +447,24 @@ WNCK_NO_MANAGER_TOKEN
 #</SECTION>
 #
 #<SECTION>
-#<FILE>wnck-enum-types</FILE>
+#<FILE>vnck-enum-types</FILE>
 <SUBSECTION Private>
-wnck_client_type_get_type
+vnck_client_type_get_type
 WNCK_TYPE_CLIENT_TYPE
-wnck_motion_direction_get_type
+vnck_motion_direction_get_type
 WNCK_TYPE_MOTION_DIRECTION
-wnck_pager_display_mode_get_type
+vnck_pager_display_mode_get_type
 WNCK_TYPE_PAGER_DISPLAY_MODE
-wnck_tasklist_grouping_type_get_type
+vnck_tasklist_grouping_type_get_type
 WNCK_TYPE_TASKLIST_GROUPING_TYPE
-wnck_window_state_get_type
+vnck_window_state_get_type
 WNCK_TYPE_WINDOW_STATE
-wnck_window_actions_get_type
+vnck_window_actions_get_type
 WNCK_TYPE_WINDOW_ACTIONS
-wnck_window_gravity_get_type
+vnck_window_gravity_get_type
 WNCK_TYPE_WINDOW_GRAVITY
-wnck_window_move_resize_mask_get_type
+vnck_window_move_resize_mask_get_type
 WNCK_TYPE_WINDOW_MOVE_RESIZE_MASK
-wnck_window_type_get_type
+vnck_window_type_get_type
 WNCK_TYPE_WINDOW_TYPE
 </SECTION>

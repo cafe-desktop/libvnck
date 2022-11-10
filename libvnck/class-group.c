@@ -31,7 +31,7 @@
  * SECTION:class-group
  * @short_description: an object representing a group of windows of the same
  * class.
- * @see_also: wnck_window_get_class_group()
+ * @see_also: vnck_window_get_class_group()
  * @stability: Unstable
  *
  * The #WnckClassGroup is a group of #WnckWindow that are all in the same
@@ -44,7 +44,7 @@
  * section (section 4.1.2.5) of the <ulink
  * url="http://tronche.com/gui/x/icccm/">ICCCM</ulink>.
  *
- * The #WnckClassGroup objects are always owned by libwnck and must not be
+ * The #WnckClassGroup objects are always owned by libvnck and must not be
  * referenced or unreferenced.
  */
 
@@ -62,12 +62,12 @@ struct _WnckClassGroupPrivate {
   GdkPixbuf *mini_icon;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (WnckClassGroup, wnck_class_group, G_TYPE_OBJECT);
+G_DEFINE_TYPE_WITH_PRIVATE (WnckClassGroup, vnck_class_group, G_TYPE_OBJECT);
 
 /* Hash table that maps res_class strings -> WnckClassGroup instances */
 static GHashTable *class_group_hash = NULL;
 
-static void wnck_class_group_finalize    (GObject             *object);
+static void vnck_class_group_finalize    (GObject             *object);
 
 enum {
   NAME_CHANGED,
@@ -78,7 +78,7 @@ enum {
 static guint signals[LAST_SIGNAL] = { 0 };
 
 void
-_wnck_class_group_shutdown_all (void)
+_vnck_class_group_shutdown_all (void)
 {
   if (class_group_hash != NULL)
     {
@@ -88,11 +88,11 @@ _wnck_class_group_shutdown_all (void)
 }
 
 static void
-wnck_class_group_class_init (WnckClassGroupClass *class)
+vnck_class_group_class_init (WnckClassGroupClass *class)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (class);
 
-  gobject_class->finalize = wnck_class_group_finalize;
+  gobject_class->finalize = vnck_class_group_finalize;
 
   /**
    * WnckClassGroup::name-changed:
@@ -123,9 +123,9 @@ wnck_class_group_class_init (WnckClassGroupClass *class)
 }
 
 static void
-wnck_class_group_init (WnckClassGroup *class_group)
+vnck_class_group_init (WnckClassGroup *class_group)
 {
-  class_group->priv = wnck_class_group_get_instance_private (class_group);
+  class_group->priv = vnck_class_group_get_instance_private (class_group);
   class_group->priv->window_icon_handlers = g_hash_table_new (g_direct_hash,
                                                               g_direct_equal);
   class_group->priv->window_name_handlers = g_hash_table_new (g_direct_hash,
@@ -141,7 +141,7 @@ remove_signal_handler (gpointer key,
 }
 
 static void
-wnck_class_group_finalize (GObject *object)
+vnck_class_group_finalize (GObject *object)
 {
   WnckClassGroup *class_group;
 
@@ -195,24 +195,24 @@ wnck_class_group_finalize (GObject *object)
       class_group->priv->mini_icon = NULL;
     }
 
-  G_OBJECT_CLASS (wnck_class_group_parent_class)->finalize (object);
+  G_OBJECT_CLASS (vnck_class_group_parent_class)->finalize (object);
 }
 
 /**
- * wnck_class_group_get:
+ * vnck_class_group_get:
  * @id: identifier name of the sought resource class.
  *
  * Gets the #WnckClassGroup corresponding to @id.
  *
  * Return value: (transfer none): the #WnckClassGroup corresponding to
  * @id, or %NULL if there is no #WnckClassGroup with the specified
- * @id. The returned #WnckClassGroup is owned by libwnck and must not be
+ * @id. The returned #WnckClassGroup is owned by libvnck and must not be
  * referenced or unreferenced.
  *
  * Since: 2.2
  **/
 WnckClassGroup *
-wnck_class_group_get (const char *id)
+vnck_class_group_get (const char *id)
 {
   if (!class_group_hash)
     return NULL;
@@ -221,7 +221,7 @@ wnck_class_group_get (const char *id)
 }
 
 /**
- * _wnck_class_group_create:
+ * _vnck_class_group_create:
  * @screen: a #WnckScreen.
  * @res_class: name of the resource class for the group.
  *
@@ -233,7 +233,7 @@ wnck_class_group_get (const char *id)
  * matches the @res_class.
  **/
 WnckClassGroup *
-_wnck_class_group_create (WnckScreen *screen,
+_vnck_class_group_create (WnckScreen *screen,
                           const char *res_class)
 {
   WnckClassGroup *class_group;
@@ -258,13 +258,13 @@ _wnck_class_group_create (WnckScreen *screen,
 }
 
 /**
- * _wnck_class_group_destroy:
+ * _vnck_class_group_destroy:
  * @class_group: a #WnckClassGroup.
  *
  * Destroys the specified @class_group.
  **/
 void
-_wnck_class_group_destroy (WnckClassGroup *class_group)
+_vnck_class_group_destroy (WnckClassGroup *class_group)
 {
   g_return_if_fail (WNCK_IS_CLASS_GROUP (class_group));
 
@@ -291,16 +291,16 @@ get_name_from_applications (WnckClassGroup *class_group)
       WnckApplication *app;
 
       w = WNCK_WINDOW (l->data);
-      app = wnck_window_get_application (w);
+      app = vnck_window_get_application (w);
 
       if (!first_name)
 	{
 	  if (app)
-	    first_name = wnck_application_get_name (app);
+	    first_name = vnck_application_get_name (app);
 	}
       else
 	{
-	  if (!app || strcmp (first_name, wnck_application_get_name (app)) != 0)
+	  if (!app || strcmp (first_name, vnck_application_get_name (app)) != 0)
 	    break;
 	}
     }
@@ -333,9 +333,9 @@ get_name_from_windows (WnckClassGroup *class_group)
       window = WNCK_WINDOW (l->data);
 
       if (!first_name)
-	first_name = wnck_window_get_name (window);
+	first_name = vnck_window_get_name (window);
       else
-	if (strcmp (first_name, wnck_window_get_name (window)) != 0)
+	if (strcmp (first_name, vnck_window_get_name (window)) != 0)
 	  break;
     }
 
@@ -394,11 +394,11 @@ get_icons_from_applications (WnckClassGroup *class_group, GdkPixbuf **icon, GdkP
       WnckApplication *app;
 
       window = WNCK_WINDOW (l->data);
-      app = wnck_window_get_application (window);
+      app = vnck_window_get_application (window);
       if (app)
 	{
-	  *icon = wnck_application_get_icon (app);
-	  *mini_icon = wnck_application_get_mini_icon (app);
+	  *icon = vnck_application_get_icon (app);
+	  *mini_icon = vnck_application_get_mini_icon (app);
 
 	  if (*icon && *mini_icon)
 	    return;
@@ -426,8 +426,8 @@ get_icons_from_windows (WnckClassGroup *class_group, GdkPixbuf **icon, GdkPixbuf
 
       window = WNCK_WINDOW (l->data);
 
-      *icon = wnck_window_get_icon (window);
-      *mini_icon = wnck_window_get_mini_icon (window);
+      *icon = vnck_window_get_icon (window);
+      *mini_icon = vnck_window_get_mini_icon (window);
 
       if (*icon && *mini_icon)
 	return;
@@ -455,12 +455,12 @@ set_icon (WnckClassGroup *class_group)
 
   if (!icon || !mini_icon)
     {
-      _wnck_get_fallback_icons (&icon,
-                                _wnck_get_default_icon_size (),
-                                _wnck_get_default_icon_size (),
+      _vnck_get_fallback_icons (&icon,
+                                _vnck_get_default_icon_size (),
+                                _vnck_get_default_icon_size (),
                                 &mini_icon,
-                                _wnck_get_default_mini_icon_size (),
-                                _wnck_get_default_mini_icon_size ());
+                                _vnck_get_default_mini_icon_size (),
+                                _vnck_get_default_mini_icon_size ());
       icons_reffed = TRUE;
     }
 
@@ -516,7 +516,7 @@ window_weak_notify_cb (gpointer  data,
 }
 
 /**
- * _wnck_class_group_add_window:
+ * _vnck_class_group_add_window:
  * @class_group: a #WnckClassGroup.
  * @window: a #WnckWindow.
  *
@@ -524,18 +524,18 @@ window_weak_notify_cb (gpointer  data,
  * class of the window matches the @class_group<!-- -->'s.
  **/
 void
-_wnck_class_group_add_window (WnckClassGroup *class_group,
+_vnck_class_group_add_window (WnckClassGroup *class_group,
                               WnckWindow     *window)
 {
   gulong signal_id;
 
   g_return_if_fail (WNCK_IS_CLASS_GROUP (class_group));
   g_return_if_fail (WNCK_IS_WINDOW (window));
-  g_return_if_fail (wnck_window_get_class_group (window) == NULL);
+  g_return_if_fail (vnck_window_get_class_group (window) == NULL);
 
   class_group->priv->windows = g_list_prepend (class_group->priv->windows,
                                                window);
-  _wnck_window_set_class_group (window, class_group);
+  _vnck_window_set_class_group (window, class_group);
 
   signal_id = g_signal_connect (window,
                                 "icon-changed",
@@ -564,7 +564,7 @@ _wnck_class_group_add_window (WnckClassGroup *class_group,
 }
 
 /**
- * _wnck_class_group_remove_window:
+ * _vnck_class_group_remove_window:
  * @class_group: a #WnckClassGroup.
  * @window: a #WnckWindow.
  *
@@ -572,18 +572,18 @@ _wnck_class_group_add_window (WnckClassGroup *class_group,
  * specified @class_group.
  **/
 void
-_wnck_class_group_remove_window (WnckClassGroup *class_group,
+_vnck_class_group_remove_window (WnckClassGroup *class_group,
 				 WnckWindow     *window)
 {
   gulong icon_handler, name_handler;
 
   g_return_if_fail (WNCK_IS_CLASS_GROUP (class_group));
   g_return_if_fail (WNCK_IS_WINDOW (window));
-  g_return_if_fail (wnck_window_get_class_group (window) == class_group);
+  g_return_if_fail (vnck_window_get_class_group (window) == class_group);
 
   class_group->priv->windows = g_list_remove (class_group->priv->windows,
                                               window);
-  _wnck_window_set_class_group (window, NULL);
+  _vnck_window_set_class_group (window, NULL);
   icon_handler = (gulong) g_hash_table_lookup (class_group->priv->window_icon_handlers,
                                                window);
   if (icon_handler != 0)
@@ -608,7 +608,7 @@ _wnck_class_group_remove_window (WnckClassGroup *class_group,
 }
 
 /**
- * wnck_class_group_get_windows:
+ * vnck_class_group_get_windows:
  * @class_group: a #WnckClassGroup.
  *
  * Gets the list of #WnckWindow that are grouped in @class_group.
@@ -621,7 +621,7 @@ _wnck_class_group_remove_window (WnckClassGroup *class_group,
  * Since: 2.2
  **/
 GList *
-wnck_class_group_get_windows (WnckClassGroup *class_group)
+vnck_class_group_get_windows (WnckClassGroup *class_group)
 {
   g_return_val_if_fail (class_group != NULL, NULL);
 
@@ -629,7 +629,7 @@ wnck_class_group_get_windows (WnckClassGroup *class_group)
 }
 
 /**
- * wnck_class_group_get_id:
+ * vnck_class_group_get_id:
  * @class_group: a #WnckClassGroup.
  *
  * Gets the identifier name for @class_group. This is the resource class for
@@ -641,7 +641,7 @@ wnck_class_group_get_windows (WnckClassGroup *class_group)
  * Since: 3.2
  **/
 const char *
-wnck_class_group_get_id (WnckClassGroup *class_group)
+vnck_class_group_get_id (WnckClassGroup *class_group)
 {
   g_return_val_if_fail (class_group != NULL, NULL);
 
@@ -649,7 +649,7 @@ wnck_class_group_get_id (WnckClassGroup *class_group)
 }
 
 /**
- * wnck_class_group_get_res_class:
+ * vnck_class_group_get_res_class:
  * @class_group: a #WnckClassGroup.
  *
  * Gets the resource class name for @class_group.
@@ -658,10 +658,10 @@ wnck_class_group_get_id (WnckClassGroup *class_group)
  * empty string if the group has no resource class name.
  *
  * Since: 2.2
- * Deprecated:3.2: Use wnck_class_group_get_id() instead.
+ * Deprecated:3.2: Use vnck_class_group_get_id() instead.
  **/
 const char *
-wnck_class_group_get_res_class (WnckClassGroup *class_group)
+vnck_class_group_get_res_class (WnckClassGroup *class_group)
 {
   g_return_val_if_fail (class_group != NULL, NULL);
 
@@ -669,7 +669,7 @@ wnck_class_group_get_res_class (WnckClassGroup *class_group)
 }
 
 /**
- * wnck_class_group_get_name:
+ * vnck_class_group_get_name:
  * @class_group: a #WnckClassGroup.
  *
  * Gets an human-readable name for @class_group. Since there is no way to
@@ -685,7 +685,7 @@ wnck_class_group_get_res_class (WnckClassGroup *class_group)
  * Since: 2.2
  **/
 const char *
-wnck_class_group_get_name (WnckClassGroup *class_group)
+vnck_class_group_get_name (WnckClassGroup *class_group)
 {
   g_return_val_if_fail (class_group != NULL, NULL);
 
@@ -693,7 +693,7 @@ wnck_class_group_get_name (WnckClassGroup *class_group)
 }
 
 /**
- * wnck_class_group_get_icon:
+ * vnck_class_group_get_icon:
  * @class_group: a #WnckClassGroup.
  *
  * Gets the icon to be used for @class_group. Since there is no way to
@@ -709,7 +709,7 @@ wnck_class_group_get_name (WnckClassGroup *class_group)
  * Since: 2.2
  **/
 GdkPixbuf *
-wnck_class_group_get_icon (WnckClassGroup *class_group)
+vnck_class_group_get_icon (WnckClassGroup *class_group)
 {
   g_return_val_if_fail (class_group != NULL, NULL);
 
@@ -717,12 +717,12 @@ wnck_class_group_get_icon (WnckClassGroup *class_group)
 }
 
 /**
- * wnck_class_group_get_mini_icon:
+ * vnck_class_group_get_mini_icon:
  * @class_group: a #WnckClassGroup.
  *
  * Gets the mini-icon to be used for @class_group. Since there is no way to
  * properly find the mini-icon, the same suboptimal heuristic as the one for
- * wnck_class_group_get_icon() is used to find it.
+ * vnck_class_group_get_icon() is used to find it.
  *
  * Return value: (transfer none): the mini-icon for @class_group. The caller
  * should reference the returned <classname>GdkPixbuf</classname> if it needs
@@ -731,7 +731,7 @@ wnck_class_group_get_icon (WnckClassGroup *class_group)
  * Since: 2.2
  **/
 GdkPixbuf *
-wnck_class_group_get_mini_icon (WnckClassGroup *class_group)
+vnck_class_group_get_mini_icon (WnckClassGroup *class_group)
 {
   g_return_val_if_fail (class_group != NULL, NULL);
 

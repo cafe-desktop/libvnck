@@ -20,18 +20,18 @@
  */
 
 #if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
-#error "Only <libwnck/libwnck.h> can be included directly."
+#error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
 #ifndef WNCK_WORKSPACE_H
 #define WNCK_WORKSPACE_H
 
 #include <glib-object.h>
-#include <libwnck/screen.h>
+#include <libvnck/screen.h>
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_WORKSPACE              (wnck_workspace_get_type ())
+#define WNCK_TYPE_WORKSPACE              (vnck_workspace_get_type ())
 #define WNCK_WORKSPACE(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_WORKSPACE, WnckWorkspace))
 #define WNCK_WORKSPACE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_WORKSPACE, WnckWorkspaceClass))
 #define WNCK_IS_WORKSPACE(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_WORKSPACE))
@@ -90,25 +90,25 @@ typedef enum
   WNCK_MOTION_RIGHT = -4
 } WnckMotionDirection;
 
-GType wnck_workspace_get_type (void) G_GNUC_CONST;
+GType vnck_workspace_get_type (void) G_GNUC_CONST;
 
-int         wnck_workspace_get_number     (WnckWorkspace *space);
-const char* wnck_workspace_get_name       (WnckWorkspace *space);
-void        wnck_workspace_change_name    (WnckWorkspace *space,
+int         vnck_workspace_get_number     (WnckWorkspace *space);
+const char* vnck_workspace_get_name       (WnckWorkspace *space);
+void        vnck_workspace_change_name    (WnckWorkspace *space,
                                            const char    *name);
-WnckScreen* wnck_workspace_get_screen     (WnckWorkspace *space);
-void        wnck_workspace_activate       (WnckWorkspace *space,
+WnckScreen* vnck_workspace_get_screen     (WnckWorkspace *space);
+void        vnck_workspace_activate       (WnckWorkspace *space,
                                            guint32        timestamp);
-int         wnck_workspace_get_width      (WnckWorkspace *space);
-int         wnck_workspace_get_height     (WnckWorkspace *space);
-int         wnck_workspace_get_viewport_x (WnckWorkspace *space);
-int         wnck_workspace_get_viewport_y (WnckWorkspace *space);
-gboolean    wnck_workspace_is_virtual     (WnckWorkspace *space);
+int         vnck_workspace_get_width      (WnckWorkspace *space);
+int         vnck_workspace_get_height     (WnckWorkspace *space);
+int         vnck_workspace_get_viewport_x (WnckWorkspace *space);
+int         vnck_workspace_get_viewport_y (WnckWorkspace *space);
+gboolean    vnck_workspace_is_virtual     (WnckWorkspace *space);
 
 
-int wnck_workspace_get_layout_row          (WnckWorkspace       *space);
-int wnck_workspace_get_layout_column       (WnckWorkspace       *space);
-WnckWorkspace* wnck_workspace_get_neighbor (WnckWorkspace       *space,
+int vnck_workspace_get_layout_row          (WnckWorkspace       *space);
+int vnck_workspace_get_layout_column       (WnckWorkspace       *space);
+WnckWorkspace* vnck_workspace_get_neighbor (WnckWorkspace       *space,
                                             WnckMotionDirection  direction);
 
 G_END_DECLS

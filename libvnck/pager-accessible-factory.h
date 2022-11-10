@@ -23,7 +23,7 @@
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_PAGER_ACCESSIBLE_FACTORY               (wnck_pager_accessible_factory_get_type())
+#define WNCK_TYPE_PAGER_ACCESSIBLE_FACTORY               (vnck_pager_accessible_factory_get_type())
 #define WNCK_PAGER_ACCESSIBLE_FACTORY(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), WNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, WnckpagerAccessibleFactory))
 #define WNCK_PAGER_ACCESSIBLE_FACTORY_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, WnckPagerAccessibleFactoryClass))
 #define WNCK_IS_PAGER_ACCESSIBLE_FACTORY(obj)            (G_TYPE_CHECK_INSTANCE_TYPE ((obj), WNCK_TYPE_PAGER_ACCESSIBLE_FACTORY))
@@ -43,9 +43,9 @@ struct _WnckPagerAccessibleFactoryClass
   AtkObjectFactoryClass parent_class;
 };
 
-GType wnck_pager_accessible_factory_get_type (void) G_GNUC_CONST;
+GType vnck_pager_accessible_factory_get_type (void) G_GNUC_CONST;
 
-AtkObjectFactory* wnck_pager_accessible_factory_new (void);
+AtkObjectFactory* vnck_pager_accessible_factory_new (void);
 
 G_END_DECLS
 

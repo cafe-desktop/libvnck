@@ -1,6 +1,6 @@
 gnome = import('gnome')
 
-libwnck_includedir = join_paths(PACKAGE_NAME, meson.project_name())
+libvnck_includedir = join_paths(PACKAGE_NAME, meson.project_name())
 
 version_data = configuration_data()
 version_array = meson.project_version().split('.')
@@ -9,7 +9,7 @@ version_data.set('WNCK_MINOR_VERSION', version_array[1])
 version_data.set('WNCK_MICRO_VERSION', version_array[2])
 
 headers = [
-  'libwnck.h',
+  'libvnck.h',
   'pager.h',
   'application.h',
   'class-group.h',
@@ -37,8 +37,8 @@ sources = [
   'util.c',
   'window-action-menu.c',
   'window.c',
-  'wnck-image-menu-item-private.h',
-  'wnck-image-menu-item.c',
+  'vnck-image-menu-item-private.h',
+  'vnck-image-menu-item.c',
   'workspace.c',
   'xutils.c',
 ]
@@ -54,20 +54,20 @@ a11y_sources = [
   'workspace-accessible-factory.h',
 ]
 
-enum_types = gnome.mkenums_simple('wnck-enum-types',
+enum_types = gnome.mkenums_simple('vnck-enum-types',
   sources : headers,
   install_header: true,
-  install_dir: join_paths(includedir, libwnck_includedir)
+  install_dir: join_paths(includedir, libvnck_includedir)
 )
 
 resources = gnome.compile_resources(
   '@0@-resources'.format(meson.project_name()),
-  'wnck.gresource.xml',
+  'vnck.gresource.xml',
   source_dir: '.',
   c_name: meson.project_name()
 )
 
-libwnck_cflags = [
+libvnck_cflags = [
   '-DG_LOG_DOMAIN="Wnck"',
   '-DWNCK_I_KNOW_THIS_IS_UNSTABLE',
   '-DWNCK_LOCALEDIR="@0@"'.format(localedir),
@@ -76,26 +76,26 @@ libwnck_cflags = [
 ]
 
 mapfile = MODULE_NAME + '.map'
-libwnck_ldflags = [
+libvnck_ldflags = [
   '-Wl,--version-script,@0@/@1@'.format(meson.current_source_dir(), mapfile),
 ]
 
 if get_option('deprecation_flags')
   foreach domain: ['G', 'ATK', 'GDK', 'GDK_PIXBUF', 'GTK', 'WNCK']
-    libwnck_cflags += '-D@0@_DISABLE_DEPRECATED'.format(domain)
+    libvnck_cflags += '-D@0@_DISABLE_DEPRECATED'.format(domain)
   endforeach
 endif
 
-libwnck_dep = declare_dependency(
+libvnck_dep = declare_dependency(
   include_directories: default_includes,
   dependencies: LIBWNCK_DEPS,
-  compile_args: libwnck_cflags,
+  compile_args: libvnck_cflags,
   sources: headers + [enum_types[1]],
-  link_args: libwnck_ldflags,
+  link_args: libvnck_ldflags,
 )
 
-libwnck_lib = shared_library(LIBNAME,
-  dependencies: libwnck_dep,
+libvnck_lib = shared_library(LIBNAME,
+  dependencies: libvnck_dep,
   sources: sources + a11y_sources + enum_types + resources,
   version: '@0@.@1@.@2@'.format(LIBWNCK_SOVERSION, LIBWNCK_CURRENT, LIBWNCK_REVISION),
   soversion: LIBWNCK_SOVERSION,
@@ -106,7 +106,7 @@ libwnck_lib = shared_library(LIBNAME,
 introspection = get_option('introspection')
 if not introspection.disabled()
   find_program('g-ir-scanner', required: introspection.enabled())
-  gnome.generate_gir(libwnck_lib,
+  gnome.generate_gir(libvnck_lib,
     sources: headers + sources + enum_types,
     namespace: 'Wnck',
     nsversion: MODULE_VERSION,
@@ -117,18 +117,18 @@ if not introspection.disabled()
   )
 endif
 
-install_headers(headers, subdir: libwnck_includedir)
+install_headers(headers, subdir: libvnck_includedir)
 
 progs = [
-  'wnckprop',
+  'vnckprop',
 ]
 
 if not get_option('deprecation_flags')
-  progs += 'wnck-urgency-monitor'
+  progs += 'vnck-urgency-monitor'
 endif
 
 test_progs = [
-  'test-wnck',
+  'test-vnck',
   'test-tasklist',
   'test-selector',
   'test-pager',
@@ -139,8 +139,8 @@ test_progs = [
 foreach prog: progs + test_progs
   executable(prog, [prog + '.c'],
     include_directories: default_includes,
-    dependencies: libwnck_dep,
-    link_with: libwnck_lib,
+    dependencies: libvnck_dep,
+    link_with: libvnck_lib,
     install: progs.contains(prog) and get_option('install_tools'),
     install_dir: bindir)
 endforeach

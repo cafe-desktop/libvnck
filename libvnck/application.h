@@ -20,7 +20,7 @@
  */
 
 #if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
-#error "Only <libwnck/libwnck.h> can be included directly."
+#error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
 #ifndef WNCK_APPLICATION_H
@@ -28,11 +28,11 @@
 
 #include <glib-object.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include <libwnck/screen.h>
+#include <libvnck/screen.h>
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_APPLICATION              (wnck_application_get_type ())
+#define WNCK_TYPE_APPLICATION              (vnck_application_get_type ())
 #define WNCK_APPLICATION(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_APPLICATION, WnckApplication))
 #define WNCK_APPLICATION_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_APPLICATION, WnckApplicationClass))
 #define WNCK_IS_APPLICATION(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_APPLICATION))
@@ -72,27 +72,27 @@ struct _WnckApplicationClass
   void (* pad4) (void);
 };
 
-GType wnck_application_get_type (void) G_GNUC_CONST;
+GType vnck_application_get_type (void) G_GNUC_CONST;
 
-WnckApplication* wnck_application_get (gulong xwindow);
+WnckApplication* vnck_application_get (gulong xwindow);
 
-gulong wnck_application_get_xid (WnckApplication *app);
+gulong vnck_application_get_xid (WnckApplication *app);
 
-GList* wnck_application_get_windows   (WnckApplication *app);
-int    wnck_application_get_n_windows (WnckApplication *app);
+GList* vnck_application_get_windows   (WnckApplication *app);
+int    vnck_application_get_n_windows (WnckApplication *app);
 
 /* application_get_name, application_get_pid, etc.; prefer to read
  * properties straight off the group leader, and failing that, if the
  * prop is the same for all windows in the app, return the values for
  * the window. Failing that, they make stuff up.
  */
-const char* wnck_application_get_name      (WnckApplication *app);
-const char* wnck_application_get_icon_name (WnckApplication *app);
-int         wnck_application_get_pid       (WnckApplication *app);
-GdkPixbuf*  wnck_application_get_icon      (WnckApplication *app);
-GdkPixbuf*  wnck_application_get_mini_icon (WnckApplication *app);
-gboolean    wnck_application_get_icon_is_fallback (WnckApplication *app);
-const char* wnck_application_get_startup_id (WnckApplication *app);
+const char* vnck_application_get_name      (WnckApplication *app);
+const char* vnck_application_get_icon_name (WnckApplication *app);
+int         vnck_application_get_pid       (WnckApplication *app);
+GdkPixbuf*  vnck_application_get_icon      (WnckApplication *app);
+GdkPixbuf*  vnck_application_get_mini_icon (WnckApplication *app);
+gboolean    vnck_application_get_icon_is_fallback (WnckApplication *app);
+const char* vnck_application_get_startup_id (WnckApplication *app);
 
 G_END_DECLS
 

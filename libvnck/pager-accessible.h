@@ -26,7 +26,7 @@
 
 G_BEGIN_DECLS
 
-#define WNCK_PAGER_TYPE_ACCESSIBLE                     (wnck_pager_accessible_get_type ())
+#define WNCK_PAGER_TYPE_ACCESSIBLE                     (vnck_pager_accessible_get_type ())
 #define WNCK_PAGER_ACCESSIBLE(obj)                     (G_TYPE_CHECK_INSTANCE_CAST ((obj), WNCK_PAGER_TYPE_ACCESSIBLE, WnckPagerAccessible))
 #define WNCK_PAGER_ACCESSIBLE_CLASS(klass)             (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_PAGER_TYPE_ACCESSIBLE, WnckPagerAccessibleClass))
 #define WNCK_PAGER_IS_ACCESSIBLE(obj)                  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), WNCK_PAGER_TYPE_ACCESSIBLE))
@@ -46,9 +46,9 @@ struct _WnckPagerAccessibleClass
   GtkAccessibleClass parent_class;
 };
 
-GType wnck_pager_accessible_get_type (void) G_GNUC_CONST;
+GType vnck_pager_accessible_get_type (void) G_GNUC_CONST;
 
-AtkObject* wnck_pager_accessible_new (GtkWidget *widget); 
+AtkObject* vnck_pager_accessible_new (GtkWidget *widget); 
 
 G_END_DECLS
 

@@ -1,11 +1,11 @@
-project('libwnck',
+project('libvnck',
   'c',
   version: '3.36.0',
   meson_version: '>= 0.50.0')
 
 LIBWNCK_SOVERSION = 0
 
-# libtool versioning for libwnck
+# libtool versioning for libvnck
 # increment if the interface has additions, changes, removals.
 LIBWNCK_CURRENT = 3
 
@@ -92,7 +92,7 @@ foreach pc: [PACKAGE_NAME, PACKAGE_NAME + '-uninstalled']
   )
 endforeach
 
-subdir('libwnck')
+subdir('libvnck')
 subdir('po')
 
 if get_option('gtk_doc')

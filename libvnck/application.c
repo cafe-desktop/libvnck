@@ -30,7 +30,7 @@
  * SECTION:application
  * @short_description: an object representing a group of windows of the same
  * application.
- * @see_also: wnck_window_get_application()
+ * @see_also: vnck_window_get_application()
  * @stability: Unstable
  *
  * The #WnckApplication is a group of #WnckWindow that are all in the same
@@ -42,7 +42,7 @@
  * belonging to it, and new #WnckWindow are added to a #WnckApplication if and
  * only if they have the group leader of the #WnckApplication.
  *
- * The #WnckApplication objects are always owned by libwnck and must not be
+ * The #WnckApplication objects are always owned by libvnck and must not be
  * referenced or unreferenced.
  */
 
@@ -77,7 +77,7 @@ struct _WnckApplicationPrivate
   guint need_emit_icon_changed : 1;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (WnckApplication, wnck_application, G_TYPE_OBJECT);
+G_DEFINE_TYPE_WITH_PRIVATE (WnckApplication, vnck_application, G_TYPE_OBJECT);
 
 enum {
   NAME_CHANGED,
@@ -91,12 +91,12 @@ static void emit_icon_changed (WnckApplication *app);
 static void reset_name  (WnckApplication *app);
 static void update_name (WnckApplication *app);
 
-static void wnck_application_finalize    (GObject        *object);
+static void vnck_application_finalize    (GObject        *object);
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
 void
-_wnck_application_shutdown_all (void)
+_vnck_application_shutdown_all (void)
 {
   if (app_hash != NULL)
     {
@@ -106,20 +106,20 @@ _wnck_application_shutdown_all (void)
 }
 
 static void
-wnck_application_init (WnckApplication *application)
+vnck_application_init (WnckApplication *application)
 {
-  application->priv = wnck_application_get_instance_private (application);
+  application->priv = vnck_application_get_instance_private (application);
 
-  application->priv->icon_cache = _wnck_icon_cache_new ();
-  _wnck_icon_cache_set_want_fallback (application->priv->icon_cache, FALSE);
+  application->priv->icon_cache = _vnck_icon_cache_new ();
+  _vnck_icon_cache_set_want_fallback (application->priv->icon_cache, FALSE);
 }
 
 static void
-wnck_application_class_init (WnckApplicationClass *klass)
+vnck_application_class_init (WnckApplicationClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  object_class->finalize = wnck_application_finalize;
+  object_class->finalize = vnck_application_finalize;
 
   /**
    * WnckApplication::name-changed:
@@ -151,13 +151,13 @@ wnck_application_class_init (WnckApplicationClass *klass)
 }
 
 static void
-wnck_application_finalize (GObject *object)
+vnck_application_finalize (GObject *object)
 {
   WnckApplication *application;
 
   application = WNCK_APPLICATION (object);
 
-  _wnck_select_input (WNCK_SCREEN_XSCREEN (application->priv->screen),
+  _vnck_select_input (WNCK_SCREEN_XSCREEN (application->priv->screen),
                       application->priv->xwindow,
                       application->priv->orig_event_mask,
                       FALSE);
@@ -178,17 +178,17 @@ wnck_application_finalize (GObject *object)
     g_object_unref (G_OBJECT (application->priv->mini_icon));
   application->priv->mini_icon = NULL;
 
-  _wnck_icon_cache_free (application->priv->icon_cache);
+  _vnck_icon_cache_free (application->priv->icon_cache);
   application->priv->icon_cache = NULL;
 
   g_free (application->priv->startup_id);
   application->priv->startup_id = NULL;
 
-  G_OBJECT_CLASS (wnck_application_parent_class)->finalize (object);
+  G_OBJECT_CLASS (vnck_application_parent_class)->finalize (object);
 }
 
 /**
- * wnck_application_get:
+ * vnck_application_get:
  * @xwindow: the X window ID of a group leader.
  *
  * Gets the #WnckApplication corresponding to the group leader with @xwindow
@@ -196,11 +196,11 @@ wnck_application_finalize (GObject *object)
  *
  * Return value: (transfer none): the #WnckApplication corresponding to
  * @xwindow, or %NULL if there no such #WnckApplication could be found. The
- * returned #WnckApplication is owned by libwnck and must not be referenced or
+ * returned #WnckApplication is owned by libvnck and must not be referenced or
  * unreferenced.
  */
 WnckApplication*
-wnck_application_get (gulong xwindow)
+vnck_application_get (gulong xwindow)
 {
   if (app_hash == NULL)
     return NULL;
@@ -209,7 +209,7 @@ wnck_application_get (gulong xwindow)
 }
 
 /**
- * wnck_application_get_xid:
+ * vnck_application_get_xid:
  * @app: a #WnckApplication.
  *
  * Gets the X window ID of the group leader window for @app.
@@ -217,7 +217,7 @@ wnck_application_get (gulong xwindow)
  * Return value: the X window ID of the group leader window for @app.
  **/
 gulong
-wnck_application_get_xid (WnckApplication *app)
+vnck_application_get_xid (WnckApplication *app)
 {
   g_return_val_if_fail (WNCK_IS_APPLICATION (app), 0);
 
@@ -225,7 +225,7 @@ wnck_application_get_xid (WnckApplication *app)
 }
 
 /**
- * wnck_application_get_windows:
+ * vnck_application_get_windows:
  * @app: a #WnckApplication.
  *
  * Gets the list of #WnckWindow belonging to @app.
@@ -235,7 +235,7 @@ wnck_application_get_xid (WnckApplication *app)
  * window. The list should not be modified nor freed, as it is owned by @app.
  **/
 GList*
-wnck_application_get_windows (WnckApplication *app)
+vnck_application_get_windows (WnckApplication *app)
 {
   g_return_val_if_fail (WNCK_IS_APPLICATION (app), NULL);
 
@@ -243,7 +243,7 @@ wnck_application_get_windows (WnckApplication *app)
 }
 
 /**
- * wnck_application_get_n_windows:
+ * vnck_application_get_n_windows:
  * @app: a #WnckApplication.
  *
  * Gets the number of #WnckWindow belonging to @app.
@@ -251,7 +251,7 @@ wnck_application_get_windows (WnckApplication *app)
  * Return value: the number of #WnckWindow belonging to @app.
  **/
 int
-wnck_application_get_n_windows (WnckApplication *app)
+vnck_application_get_n_windows (WnckApplication *app)
 {
   g_return_val_if_fail (WNCK_IS_APPLICATION (app), 0);
 
@@ -259,7 +259,7 @@ wnck_application_get_n_windows (WnckApplication *app)
 }
 
 /**
- * wnck_application_get_name:
+ * vnck_application_get_name:
  * @app: a #WnckApplication.
  *
  * Gets the name of @app. Since there is no way to properly find this name,
@@ -272,7 +272,7 @@ wnck_application_get_n_windows (WnckApplication *app)
  * Return value: the name of @app, or a fallback name if no name is available.
  **/
 const char*
-wnck_application_get_name (WnckApplication *app)
+vnck_application_get_name (WnckApplication *app)
 {
   g_return_val_if_fail (WNCK_IS_APPLICATION (app), NULL);
 
@@ -283,7 +283,7 @@ wnck_application_get_name (WnckApplication *app)
 }
 
 /**
- * wnck_application_get_icon_name:
+ * vnck_application_get_icon_name:
  * @app: a #WnckApplication
  *
  * Gets the icon name of @app (to be used when @app is minimized). Since
@@ -294,7 +294,7 @@ wnck_application_get_name (WnckApplication *app)
  * is available.
  **/
 const char*
-wnck_application_get_icon_name (WnckApplication *app)
+vnck_application_get_icon_name (WnckApplication *app)
 {
   g_return_val_if_fail (WNCK_IS_APPLICATION (app), NULL);
 
@@ -309,7 +309,7 @@ wnck_application_get_icon_name (WnckApplication *app)
 }
 
 /**
- * wnck_application_get_pid:
+ * vnck_application_get_pid:
  * @app: a #WnckApplication.
  *
  * Gets the process ID of @app.
@@ -317,7 +317,7 @@ wnck_application_get_icon_name (WnckApplication *app)
  * Return value: the process ID of @app, or 0 if none is available.
  **/
 int
-wnck_application_get_pid (WnckApplication *app)
+vnck_application_get_pid (WnckApplication *app)
 {
   g_return_val_if_fail (WNCK_IS_APPLICATION (app), 0);
 
@@ -334,10 +334,10 @@ get_icons (WnckApplication *app)
 
   icon = NULL;
   mini_icon = NULL;
-  normal_size = _wnck_get_default_icon_size ();
-  mini_size = _wnck_get_default_mini_icon_size ();
+  normal_size = _vnck_get_default_icon_size ();
+  mini_size = _vnck_get_default_mini_icon_size ();
 
-  if (_wnck_read_icons (app->priv->screen,
+  if (_vnck_read_icons (app->priv->screen,
                         app->priv->xwindow,
                         app->priv->icon_cache,
                         &icon, normal_size, normal_size,
@@ -367,7 +367,7 @@ get_icons (WnckApplication *app)
 }
 
 void
-_wnck_application_load_icons (WnckApplication *app)
+_vnck_application_load_icons (WnckApplication *app)
 {
   g_return_if_fail (WNCK_IS_APPLICATION (app));
 
@@ -387,7 +387,7 @@ find_icon_window (WnckApplication *app)
     {
       WnckWindow *w = tmp->data;
 
-      if (wnck_window_get_window_type (w) == WNCK_WINDOW_NORMAL)
+      if (vnck_window_get_window_type (w) == WNCK_WINDOW_NORMAL)
         return w;
 
       tmp = tmp->next;
@@ -400,7 +400,7 @@ find_icon_window (WnckApplication *app)
 }
 
 /**
- * wnck_application_get_icon:
+ * vnck_application_get_icon:
  * @app: a #WnckApplication.
  *
  * Gets the icon to be used for @app. If no icon is set for @app, a
@@ -412,11 +412,11 @@ find_icon_window (WnckApplication *app)
  * the icon around.
  **/
 GdkPixbuf*
-wnck_application_get_icon (WnckApplication *app)
+vnck_application_get_icon (WnckApplication *app)
 {
   g_return_val_if_fail (WNCK_IS_APPLICATION (app), NULL);
 
-  _wnck_application_load_icons (app);
+  _vnck_application_load_icons (app);
 
   if (app->priv->icon)
     return app->priv->icon;
@@ -424,14 +424,14 @@ wnck_application_get_icon (WnckApplication *app)
     {
       WnckWindow *w = find_icon_window (app);
       if (w)
-        return wnck_window_get_icon (w);
+        return vnck_window_get_icon (w);
       else
         return NULL;
     }
 }
 
 /**
- * wnck_application_get_mini_icon:
+ * vnck_application_get_mini_icon:
  * @app: a #WnckApplication.
  *
  * Gets the mini-icon to be used for @app. If no mini-icon is set for @app,
@@ -443,11 +443,11 @@ wnck_application_get_icon (WnckApplication *app)
  * the mini-icon around.
  **/
 GdkPixbuf*
-wnck_application_get_mini_icon (WnckApplication *app)
+vnck_application_get_mini_icon (WnckApplication *app)
 {
   g_return_val_if_fail (WNCK_IS_APPLICATION (app), NULL);
 
-  _wnck_application_load_icons (app);
+  _vnck_application_load_icons (app);
 
   if (app->priv->mini_icon)
     return app->priv->mini_icon;
@@ -455,14 +455,14 @@ wnck_application_get_mini_icon (WnckApplication *app)
     {
       WnckWindow *w = find_icon_window (app);
       if (w)
-        return wnck_window_get_mini_icon (w);
+        return vnck_window_get_mini_icon (w);
       else
         return NULL;
     }
 }
 
 /**
- * wnck_application_get_icon_is_fallback:
+ * vnck_application_get_icon_is_fallback:
  * @app: a #WnckApplication
  *
  * Gets whether a default fallback icon is used for @app (because none
@@ -471,7 +471,7 @@ wnck_application_get_mini_icon (WnckApplication *app)
  * Return value: %TRUE if the icon for @app is a fallback, %FALSE otherwise.
  **/
 gboolean
-wnck_application_get_icon_is_fallback (WnckApplication *app)
+vnck_application_get_icon_is_fallback (WnckApplication *app)
 {
   g_return_val_if_fail (WNCK_IS_APPLICATION (app), FALSE);
 
@@ -481,14 +481,14 @@ wnck_application_get_icon_is_fallback (WnckApplication *app)
     {
       WnckWindow *w = find_icon_window (app);
       if (w)
-        return wnck_window_get_icon_is_fallback (w);
+        return vnck_window_get_icon_is_fallback (w);
       else
         return TRUE;
     }
 }
 
 /**
- * wnck_application_get_startup_id:
+ * vnck_application_get_startup_id:
  * @app: a #WnckApplication.
  *
  * Gets the startup sequence ID used for startup notification of @app.
@@ -499,7 +499,7 @@ wnck_application_get_icon_is_fallback (WnckApplication *app)
  * Since: 2.2
  */
 const char*
-wnck_application_get_startup_id (WnckApplication *app)
+vnck_application_get_startup_id (WnckApplication *app)
 {
   g_return_val_if_fail (WNCK_IS_APPLICATION (app), NULL);
 
@@ -508,14 +508,14 @@ wnck_application_get_startup_id (WnckApplication *app)
 
 /* xwindow is a group leader */
 WnckApplication*
-_wnck_application_create (Window      xwindow,
+_vnck_application_create (Window      xwindow,
                           WnckScreen *screen)
 {
   WnckApplication *application;
   Screen          *xscreen;
 
   if (app_hash == NULL)
-    app_hash = g_hash_table_new_full (_wnck_xid_hash, _wnck_xid_equal,
+    app_hash = g_hash_table_new_full (_vnck_xid_hash, _vnck_xid_equal,
                                       NULL, g_object_unref);
 
   g_return_val_if_fail (g_hash_table_lookup (app_hash, &xwindow) == NULL,
@@ -527,20 +527,20 @@ _wnck_application_create (Window      xwindow,
   application->priv->xwindow = xwindow;
   application->priv->screen = screen;
 
-  application->priv->name = _wnck_get_name (xscreen, xwindow);
+  application->priv->name = _vnck_get_name (xscreen, xwindow);
 
   if (application->priv->name == NULL)
-    application->priv->name = _wnck_get_res_class_utf8 (xscreen, xwindow);
+    application->priv->name = _vnck_get_res_class_utf8 (xscreen, xwindow);
 
   if (application->priv->name)
     application->priv->name_from_leader = TRUE;
 
-  application->priv->pid = _wnck_get_pid (xscreen,
+  application->priv->pid = _vnck_get_pid (xscreen,
                                           application->priv->xwindow);
 
-  application->priv->startup_id = _wnck_get_utf8_property (xscreen,
+  application->priv->startup_id = _vnck_get_utf8_property (xscreen,
                                                            application->priv->xwindow,
-                                                           _wnck_atom_get ("_NET_STARTUP_ID"));
+                                                           _vnck_atom_get ("_NET_STARTUP_ID"));
 
   g_hash_table_insert (app_hash, &application->priv->xwindow, application);
 
@@ -549,7 +549,7 @@ _wnck_application_create (Window      xwindow,
   /* Note that xwindow may correspond to a WnckWindow's xwindow,
    * so we select events needed by either
    */
-  application->priv->orig_event_mask = _wnck_select_input (xscreen,
+  application->priv->orig_event_mask = _vnck_select_input (xscreen,
                                                            application->priv->xwindow,
                                                            WNCK_APP_WINDOW_EVENT_MASK,
                                                            TRUE);
@@ -558,17 +558,17 @@ _wnck_application_create (Window      xwindow,
 }
 
 void
-_wnck_application_destroy (WnckApplication *application)
+_vnck_application_destroy (WnckApplication *application)
 {
   Window xwindow = application->priv->xwindow;
 
-  g_return_if_fail (wnck_application_get (xwindow) == application);
+  g_return_if_fail (vnck_application_get (xwindow) == application);
 
   g_hash_table_remove (app_hash, &xwindow);
 
   /* Removing from hash also removes the only ref WnckApplication had */
 
-  g_return_if_fail (wnck_application_get (xwindow) == NULL);
+  g_return_if_fail (vnck_application_get (xwindow) == NULL);
 }
 
 static void
@@ -583,15 +583,15 @@ window_name_changed (WnckWindow      *window,
 }
 
 void
-_wnck_application_add_window (WnckApplication *app,
+_vnck_application_add_window (WnckApplication *app,
                               WnckWindow      *window)
 {
   g_return_if_fail (WNCK_IS_APPLICATION (app));
   g_return_if_fail (WNCK_IS_WINDOW (window));
-  g_return_if_fail (wnck_window_get_application (window) == NULL);
+  g_return_if_fail (vnck_window_get_application (window) == NULL);
 
   app->priv->windows = g_list_prepend (app->priv->windows, window);
-  _wnck_window_set_application (window, app);
+  _vnck_window_set_application (window, app);
 
   g_signal_connect (G_OBJECT (window), "name_changed",
                     G_CALLBACK (window_name_changed), app);
@@ -607,15 +607,15 @@ _wnck_application_add_window (WnckApplication *app,
 }
 
 void
-_wnck_application_remove_window (WnckApplication *app,
+_vnck_application_remove_window (WnckApplication *app,
                                  WnckWindow      *window)
 {
   g_return_if_fail (WNCK_IS_APPLICATION (app));
   g_return_if_fail (WNCK_IS_WINDOW (window));
-  g_return_if_fail (wnck_window_get_application (window) == app);
+  g_return_if_fail (vnck_window_get_application (window) == app);
 
   app->priv->windows = g_list_remove (app->priv->windows, window);
-  _wnck_window_set_application (window, NULL);
+  _vnck_window_set_application (window, NULL);
 
   g_signal_handlers_disconnect_by_func (G_OBJECT (window),
                                         window_name_changed, app);
@@ -631,41 +631,41 @@ _wnck_application_remove_window (WnckApplication *app,
 }
 
 void
-_wnck_application_process_property_notify (WnckApplication *app,
+_vnck_application_process_property_notify (WnckApplication *app,
                                            XEvent          *xevent)
 {
   /* This prop notify is on the leader window */
 
   if (xevent->xproperty.atom == XA_WM_NAME ||
       xevent->xproperty.atom ==
-      _wnck_atom_get ("_NET_WM_NAME") ||
+      _vnck_atom_get ("_NET_WM_NAME") ||
       xevent->xproperty.atom ==
-      _wnck_atom_get ("_NET_WM_VISIBLE_NAME"))
+      _vnck_atom_get ("_NET_WM_VISIBLE_NAME"))
     {
       /* FIXME should change the name */
     }
   else if (xevent->xproperty.atom ==
            XA_WM_ICON_NAME ||
            xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_WM_ICON_NAME") ||
+           _vnck_atom_get ("_NET_WM_ICON_NAME") ||
            xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_WM_VISIBLE_ICON_NAME"))
+           _vnck_atom_get ("_NET_WM_VISIBLE_ICON_NAME"))
     {
       /* FIXME */
     }
   else if (xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_WM_ICON") ||
+           _vnck_atom_get ("_NET_WM_ICON") ||
            xevent->xproperty.atom ==
-           _wnck_atom_get ("KWM_WIN_ICON") ||
+           _vnck_atom_get ("KWM_WIN_ICON") ||
            xevent->xproperty.atom ==
-           _wnck_atom_get ("WM_NORMAL_HINTS"))
+           _vnck_atom_get ("WM_NORMAL_HINTS"))
     {
-      _wnck_icon_cache_property_changed (app->priv->icon_cache,
+      _vnck_icon_cache_property_changed (app->priv->icon_cache,
                                          xevent->xproperty.atom);
       emit_icon_changed (app);
     }
   else if (xevent->xproperty.atom ==
-           _wnck_atom_get ("_NET_STARTUP_ID"))
+           _vnck_atom_get ("_NET_STARTUP_ID"))
     {
       /* FIXME update startup id */
     }
@@ -715,7 +715,7 @@ update_name (WnckApplication *app)
           app->priv->windows->next == NULL)
         {
           app->priv->name =
-            g_strdup (wnck_window_get_name (app->priv->windows->data));
+            g_strdup (vnck_window_get_name (app->priv->windows->data));
           app->priv->name_window = app->priv->windows->data;
           emit_name_changed (app);
         }
@@ -723,8 +723,8 @@ update_name (WnckApplication *app)
         {
           /* more than one */
           app->priv->name =
-            _wnck_get_res_class_utf8 (WNCK_SCREEN_XSCREEN (app->priv->screen),
-                                      wnck_window_get_xid (app->priv->windows->data));
+            _vnck_get_res_class_utf8 (WNCK_SCREEN_XSCREEN (app->priv->screen),
+                                      vnck_window_get_xid (app->priv->windows->data));
           if (app->priv->name)
             {
               app->priv->name_window = app->priv->windows->data;

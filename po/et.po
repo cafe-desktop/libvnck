@@ -1,9 +1,9 @@
-# libwnck eesti keele tõlge.
-# Estonian translation of libwnck.
+# libvnck eesti keele tõlge.
+# Estonian translation of libvnck.
 #
 # Copyright (C) 2002, 2003, 2005-2007 The Free Software Foundation
 # Copyright (C) 2009, 2010 The GNOME Project.
-# This file is distributed under the same license as the libwnck package.
+# This file is distributed under the same license as the libvnck package.
 #
 # Ilmar Kerm <ikerm@hot.ee>, 2002.
 # Tõivo Leedjärv <toivo@linux.ee>, 2002, 2003.
@@ -13,9 +13,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: libwnck MASTER\n"
+"Project-Id-Version: libvnck MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=libwnck&keywords=I18N+L10N&component=general\n"
+"product=libvnck&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2012-02-22 14:11+0000\n"
 "PO-Revision-Date: 2012-03-01 12:55+0200\n"
 "Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
@@ -30,7 +30,7 @@ msgstr ""
 #. * SECTION:application
 #. * @short_description: an object representing a group of windows of the same
 #. * application.
-#. * @see_also: wnck_window_get_application()
+#. * @see_also: vnck_window_get_application()
 #. * @stability: Unstable
 #. *
 #. * The #WnckApplication is a group of #WnckWindow that are all in the same
@@ -42,7 +42,7 @@ msgstr ""
 #. * belonging to it, and new #WnckWindow are added to a #WnckApplication if and
 #. * only if they have the group leader of the #WnckApplication.
 #. *
-#. * The #WnckApplication objects are always owned by libwnck and must not be
+#. * The #WnckApplication objects are always owned by libvnck and must not be
 #. * referenced or unreferenced.
 #.
 msgid "Untitled application"
@@ -163,7 +163,7 @@ msgstr "_Sulge"
 #. * @see_also: #WnckWorkspace, #WnckApplication, #WnckClassGroup
 #. * @stability: Unstable
 #. *
-#. * The #WnckWindow objects are always owned by libwnck and must not be
+#. * The #WnckWindow objects are always owned by libvnck and must not be
 #. * referenced or unreferenced.
 #.
 msgid "Untitled window"

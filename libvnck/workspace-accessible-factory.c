@@ -21,28 +21,28 @@
 #include "workspace-accessible.h"
 
 G_DEFINE_TYPE (WnckWorkspaceAccessibleFactory,
-               wnck_workspace_accessible_factory, ATK_TYPE_OBJECT_FACTORY);
+               vnck_workspace_accessible_factory, ATK_TYPE_OBJECT_FACTORY);
 
-static AtkObject* wnck_workspace_accessible_factory_create_accessible (GObject *obj);
+static AtkObject* vnck_workspace_accessible_factory_create_accessible (GObject *obj);
 
-static GType wnck_workspace_accessible_factory_get_accessible_type (void);
+static GType vnck_workspace_accessible_factory_get_accessible_type (void);
 
 static void
-wnck_workspace_accessible_factory_class_init (WnckWorkspaceAccessibleFactoryClass *klass)
+vnck_workspace_accessible_factory_class_init (WnckWorkspaceAccessibleFactoryClass *klass)
 {
   AtkObjectFactoryClass *class = ATK_OBJECT_FACTORY_CLASS (klass);
 
-  class->create_accessible = wnck_workspace_accessible_factory_create_accessible;
-  class->get_accessible_type = wnck_workspace_accessible_factory_get_accessible_type;
+  class->create_accessible = vnck_workspace_accessible_factory_create_accessible;
+  class->get_accessible_type = vnck_workspace_accessible_factory_get_accessible_type;
 }
 
 static void
-wnck_workspace_accessible_factory_init (WnckWorkspaceAccessibleFactory *factory)
+vnck_workspace_accessible_factory_init (WnckWorkspaceAccessibleFactory *factory)
 {
 }
 
 AtkObjectFactory*
-wnck_workspace_accessible_factory_new (void)
+vnck_workspace_accessible_factory_new (void)
 {
   GObject *factory;
   factory = g_object_new (WNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, NULL);
@@ -50,13 +50,13 @@ wnck_workspace_accessible_factory_new (void)
 }
 
 static AtkObject*
-wnck_workspace_accessible_factory_create_accessible (GObject *obj)
+vnck_workspace_accessible_factory_create_accessible (GObject *obj)
 {
-  return wnck_workspace_accessible_new (obj);
+  return vnck_workspace_accessible_new (obj);
 }
 
 static GType
-wnck_workspace_accessible_factory_get_accessible_type (void)
+vnck_workspace_accessible_factory_get_accessible_type (void)
 {
   return WNCK_WORKSPACE_TYPE_ACCESSIBLE;
 }

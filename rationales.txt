@@ -33,7 +33,7 @@ Menus
 Drag-and-drop
   http://bugzilla.gnome.org/show_bug.cgi?id=155908 
 
-Metacity-Libwnck Interaction
+Metacity-Libvnck Interaction
   http://bugzilla.gnome.org/show_bug.cgi?id=155909 
 
 Action bugs other than Drag-And-Drop

@@ -1,6 +1,6 @@
 /* vim: set sw=2 et: */
 
-#include <libwnck/libwnck.h>
+#include <libvnck/libvnck.h>
 #include <gtk/gtk.h>
 
 static gboolean display_all = FALSE;
@@ -72,16 +72,16 @@ main (int argc, char **argv)
   if (rtl)
     gtk_widget_set_default_direction (GTK_TEXT_DIR_RTL);
 
-  wnck_set_default_mini_icon_size (icon_size);
-  screen = wnck_screen_get_default ();
+  vnck_set_default_mini_icon_size (icon_size);
+  screen = vnck_screen_get_default ();
 
   /* because the pager doesn't respond to signals at the moment */
-  wnck_screen_force_update (screen);
+  vnck_screen_force_update (screen);
 
   win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_default_size (GTK_WINDOW (win), 200, 100);
   gtk_window_stick (GTK_WINDOW (win));
-  /*   wnck_gtk_window_set_dock_type (GTK_WINDOW (win)); */
+  /*   vnck_gtk_window_set_dock_type (GTK_WINDOW (win)); */
 
   gtk_window_set_title (GTK_WINDOW (win), "Task List");
   gtk_window_set_resizable (GTK_WINDOW (win), TRUE);
@@ -91,24 +91,24 @@ main (int argc, char **argv)
                     G_CALLBACK (gtk_main_quit),
                     NULL);
 
-  tasklist = wnck_tasklist_new ();
+  tasklist = vnck_tasklist_new ();
 
-  wnck_tasklist_set_include_all_workspaces (WNCK_TASKLIST (tasklist), display_all);
+  vnck_tasklist_set_include_all_workspaces (WNCK_TASKLIST (tasklist), display_all);
   if (always_group)
-    wnck_tasklist_set_grouping (WNCK_TASKLIST (tasklist),
+    vnck_tasklist_set_grouping (WNCK_TASKLIST (tasklist),
                                 WNCK_TASKLIST_ALWAYS_GROUP);
   else if (never_group)
-    wnck_tasklist_set_grouping (WNCK_TASKLIST (tasklist),
+    vnck_tasklist_set_grouping (WNCK_TASKLIST (tasklist),
                                 WNCK_TASKLIST_NEVER_GROUP);
   else
-    wnck_tasklist_set_grouping (WNCK_TASKLIST (tasklist),
+    vnck_tasklist_set_grouping (WNCK_TASKLIST (tasklist),
                                 WNCK_TASKLIST_AUTO_GROUP);
 
-  wnck_tasklist_set_scroll_enabled (WNCK_TASKLIST (tasklist), enable_scroll);
+  vnck_tasklist_set_scroll_enabled (WNCK_TASKLIST (tasklist), enable_scroll);
 
-  wnck_tasklist_set_middle_click_close (WNCK_TASKLIST (tasklist), TRUE);
+  vnck_tasklist_set_middle_click_close (WNCK_TASKLIST (tasklist), TRUE);
 
-  wnck_tasklist_set_orientation (WNCK_TASKLIST (tasklist),
+  vnck_tasklist_set_orientation (WNCK_TASKLIST (tasklist),
                                  (vertical ? GTK_ORIENTATION_VERTICAL :
                                              GTK_ORIENTATION_HORIZONTAL));
 
@@ -136,7 +136,7 @@ main (int argc, char **argv)
           window_composited_changed (win, NULL);
         }
 
-        wnck_tasklist_set_button_relief (WNCK_TASKLIST (tasklist),
+        vnck_tasklist_set_button_relief (WNCK_TASKLIST (tasklist),
                                          GTK_RELIEF_NONE);
     }
 

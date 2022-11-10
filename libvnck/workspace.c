@@ -50,15 +50,15 @@
  * url="http://standards.freedesktop.org/wm-spec/wm-spec-latest.html">EWMH</ulink>.
  * The notion of workspaces and viewports are quite similar, and generally both
  * are not used at the same time: there are generally either multiple
- * workspaces with no viewport, or one workspace with a viewport. libwnck
+ * workspaces with no viewport, or one workspace with a viewport. libvnck
  * supports all situations, even multiple workspaces with viewports.
  *
  * Workspaces are organized according to a layout set on the #WnckScreen. See
- * wnck_screen_try_set_workspace_layout() and
- * wnck_screen_release_workspace_layout() for more information about the
+ * vnck_screen_try_set_workspace_layout() and
+ * vnck_screen_release_workspace_layout() for more information about the
  * layout.
  *
- * The #WnckWorkspace objects are always owned by libwnck and must not be
+ * The #WnckWorkspace objects are always owned by libvnck and must not be
  * referenced or unreferenced.
  */
 
@@ -72,33 +72,33 @@ struct _WnckWorkspacePrivate
   gboolean is_virtual;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (WnckWorkspace, wnck_workspace, G_TYPE_OBJECT);
+G_DEFINE_TYPE_WITH_PRIVATE (WnckWorkspace, vnck_workspace, G_TYPE_OBJECT);
 
 enum {
   NAME_CHANGED,
   LAST_SIGNAL
 };
 
-static void wnck_workspace_finalize    (GObject        *object);
+static void vnck_workspace_finalize    (GObject        *object);
 
 static void emit_name_changed (WnckWorkspace *space);
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
 static void
-wnck_workspace_init (WnckWorkspace *workspace)
+vnck_workspace_init (WnckWorkspace *workspace)
 {
-  workspace->priv = wnck_workspace_get_instance_private (workspace);
+  workspace->priv = vnck_workspace_get_instance_private (workspace);
 
   workspace->priv->number = -1;
 }
 
 static void
-wnck_workspace_class_init (WnckWorkspaceClass *klass)
+vnck_workspace_class_init (WnckWorkspaceClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  object_class->finalize = wnck_workspace_finalize;
+  object_class->finalize = vnck_workspace_finalize;
 
   /**
    * WnckWorkspace::name-changed:
@@ -116,7 +116,7 @@ wnck_workspace_class_init (WnckWorkspaceClass *klass)
 }
 
 static void
-wnck_workspace_finalize (GObject *object)
+vnck_workspace_finalize (GObject *object)
 {
   WnckWorkspace *workspace;
 
@@ -125,11 +125,11 @@ wnck_workspace_finalize (GObject *object)
   g_free (workspace->priv->name);
   workspace->priv->name = NULL;
 
-  G_OBJECT_CLASS (wnck_workspace_parent_class)->finalize (object);
+  G_OBJECT_CLASS (vnck_workspace_parent_class)->finalize (object);
 }
 
 /**
- * wnck_workspace_get_number:
+ * vnck_workspace_get_number:
  * @space: a #WnckWorkspace.
  *
  * Gets the index of @space on the #WnckScreen to which it belongs. The
@@ -138,7 +138,7 @@ wnck_workspace_finalize (GObject *object)
  * Return value: the index of @space on its #WnckScreen, or -1 on errors.
  **/
 int
-wnck_workspace_get_number (WnckWorkspace *space)
+vnck_workspace_get_number (WnckWorkspace *space)
 {
   g_return_val_if_fail (WNCK_IS_WORKSPACE (space), -1);
 
@@ -146,7 +146,7 @@ wnck_workspace_get_number (WnckWorkspace *space)
 }
 
 /**
- * wnck_workspace_get_name:
+ * vnck_workspace_get_name:
  * @space: a #WnckWorkspace.
  *
  * Gets the human-readable name that should be used to refer to @space. If
@@ -156,7 +156,7 @@ wnck_workspace_get_number (WnckWorkspace *space)
  * Return value: the name of @space.
  **/
 const char*
-wnck_workspace_get_name (WnckWorkspace *space)
+vnck_workspace_get_name (WnckWorkspace *space)
 {
   g_return_val_if_fail (WNCK_IS_WORKSPACE (space), NULL);
 
@@ -164,7 +164,7 @@ wnck_workspace_get_name (WnckWorkspace *space)
 }
 
 /**
- * wnck_workspace_change_name:
+ * vnck_workspace_change_name:
  * @space: a #WnckWorkspace.
  * @name: new name for @space.
  *
@@ -173,28 +173,28 @@ wnck_workspace_get_name (WnckWorkspace *space)
  * Since: 2.2
  **/
 void
-wnck_workspace_change_name (WnckWorkspace *space,
+vnck_workspace_change_name (WnckWorkspace *space,
                             const char    *name)
 {
   g_return_if_fail (WNCK_IS_WORKSPACE (space));
   g_return_if_fail (name != NULL);
 
-  _wnck_screen_change_workspace_name (space->priv->screen,
+  _vnck_screen_change_workspace_name (space->priv->screen,
                                       space->priv->number,
                                       name);
 }
 
 /**
- * wnck_workspace_get_screen:
+ * vnck_workspace_get_screen:
  * @space: a #WnckWorkspace.
  *
  * Gets the #WnckScreen @space is on.
  *
  * Return value: (transfer none): the #WnckScreen @space is on. The returned
- * #WnckScreen is owned by libwnck and must not be referenced or unreferenced.
+ * #WnckScreen is owned by libvnck and must not be referenced or unreferenced.
  **/
 WnckScreen*
-wnck_workspace_get_screen (WnckWorkspace *space)
+vnck_workspace_get_screen (WnckWorkspace *space)
 {
   g_return_val_if_fail (WNCK_IS_WORKSPACE (space), NULL);
 
@@ -202,7 +202,7 @@ wnck_workspace_get_screen (WnckWorkspace *space)
 }
 
 /**
- * wnck_workspace_activate:
+ * vnck_workspace_activate:
  * @space: a #WnckWorkspace.
  * @timestamp: the X server timestamp of the user interaction event that caused
  * this call to occur.
@@ -217,18 +217,18 @@ wnck_workspace_get_screen (WnckWorkspace *space)
  * Since: 2.10
  **/
 void
-wnck_workspace_activate (WnckWorkspace *space,
+vnck_workspace_activate (WnckWorkspace *space,
                          guint32        timestamp)
 {
   g_return_if_fail (WNCK_IS_WORKSPACE (space));
 
-  _wnck_activate_workspace (WNCK_SCREEN_XSCREEN (space->priv->screen),
+  _vnck_activate_workspace (WNCK_SCREEN_XSCREEN (space->priv->screen),
                             space->priv->number,
                             timestamp);
 }
 
 WnckWorkspace*
-_wnck_workspace_create (int number, WnckScreen *screen)
+_vnck_workspace_create (int number, WnckScreen *screen)
 {
   WnckWorkspace *space;
 
@@ -237,11 +237,11 @@ _wnck_workspace_create (int number, WnckScreen *screen)
   space->priv->name = NULL;
   space->priv->screen = screen;
 
-  _wnck_workspace_update_name (space, NULL);
+  _vnck_workspace_update_name (space, NULL);
 
   /* Just set reasonable defaults */
-  space->priv->width = wnck_screen_get_width (screen);
-  space->priv->height = wnck_screen_get_height (screen);
+  space->priv->width = vnck_screen_get_width (screen);
+  space->priv->height = vnck_screen_get_height (screen);
   space->priv->is_virtual = FALSE;
 
   space->priv->viewport_x = 0;
@@ -251,7 +251,7 @@ _wnck_workspace_create (int number, WnckScreen *screen)
 }
 
 void
-_wnck_workspace_update_name (WnckWorkspace *space,
+_vnck_workspace_update_name (WnckWorkspace *space,
                              const char    *name)
 {
   char *old;
@@ -282,7 +282,7 @@ emit_name_changed (WnckWorkspace *space)
 }
 
 gboolean
-_wnck_workspace_set_geometry (WnckWorkspace *space,
+_vnck_workspace_set_geometry (WnckWorkspace *space,
                               int            w,
                               int            h)
 {
@@ -291,8 +291,8 @@ _wnck_workspace_set_geometry (WnckWorkspace *space,
       space->priv->width = w;
       space->priv->height = h;
 
-      space->priv->is_virtual = w > wnck_screen_get_width (space->priv->screen) ||
-				h > wnck_screen_get_height (space->priv->screen);
+      space->priv->is_virtual = w > vnck_screen_get_width (space->priv->screen) ||
+				h > vnck_screen_get_height (space->priv->screen);
 
       return TRUE;  /* change was made */
     }
@@ -301,7 +301,7 @@ _wnck_workspace_set_geometry (WnckWorkspace *space,
 }
 
 gboolean
-_wnck_workspace_set_viewport (WnckWorkspace *space,
+_vnck_workspace_set_viewport (WnckWorkspace *space,
                               int            x,
                               int            y)
 {
@@ -317,7 +317,7 @@ _wnck_workspace_set_viewport (WnckWorkspace *space,
 }
 
 /**
- * wnck_workspace_get_width:
+ * vnck_workspace_get_width:
  * @space: a #WnckWorkspace.
  *
  * Gets the width of @space.
@@ -327,7 +327,7 @@ _wnck_workspace_set_viewport (WnckWorkspace *space,
  * Since: 2.4
  */
 int
-wnck_workspace_get_width (WnckWorkspace *space)
+vnck_workspace_get_width (WnckWorkspace *space)
 {
   g_return_val_if_fail (WNCK_IS_WORKSPACE (space), 0);
 
@@ -335,7 +335,7 @@ wnck_workspace_get_width (WnckWorkspace *space)
 }
 
 /**
- * wnck_workspace_get_height:
+ * vnck_workspace_get_height:
  * @space: a #WnckWorkspace.
  *
  * Gets the height of @space.
@@ -345,7 +345,7 @@ wnck_workspace_get_width (WnckWorkspace *space)
  * Since: 2.4
  */
 int
-wnck_workspace_get_height (WnckWorkspace *space)
+vnck_workspace_get_height (WnckWorkspace *space)
 {
   g_return_val_if_fail (WNCK_IS_WORKSPACE (space), 0);
 
@@ -353,7 +353,7 @@ wnck_workspace_get_height (WnckWorkspace *space)
 }
 
 /**
- * wnck_workspace_get_viewport_x:
+ * vnck_workspace_get_viewport_x:
  * @space: a #WnckWorkspace.
  *
  * Gets the X coordinate of the viewport in @space.
@@ -364,7 +364,7 @@ wnck_workspace_get_height (WnckWorkspace *space)
  * Since: 2.4
  */
 int
-wnck_workspace_get_viewport_x (WnckWorkspace *space)
+vnck_workspace_get_viewport_x (WnckWorkspace *space)
 {
   g_return_val_if_fail (WNCK_IS_WORKSPACE (space), 0);
 
@@ -372,7 +372,7 @@ wnck_workspace_get_viewport_x (WnckWorkspace *space)
 }
 
 /**
- * wnck_workspace_get_viewport_y:
+ * vnck_workspace_get_viewport_y:
  * @space: a #WnckWorkspace.
  *
  * Gets the Y coordinate of the viewport in @space.
@@ -383,7 +383,7 @@ wnck_workspace_get_viewport_x (WnckWorkspace *space)
  * Since: 2.4
  */
 int
-wnck_workspace_get_viewport_y (WnckWorkspace *space)
+vnck_workspace_get_viewport_y (WnckWorkspace *space)
 {
   g_return_val_if_fail (WNCK_IS_WORKSPACE (space), 0);
 
@@ -391,7 +391,7 @@ wnck_workspace_get_viewport_y (WnckWorkspace *space)
 }
 
 /**
- * wnck_workspace_is_virtual:
+ * vnck_workspace_is_virtual:
  * @space: a #WnckWorkspace.
  *
  * Gets whether @space contains a viewport.
@@ -401,7 +401,7 @@ wnck_workspace_get_viewport_y (WnckWorkspace *space)
  * Since: 2.4
  */
 gboolean
-wnck_workspace_is_virtual (WnckWorkspace *space)
+vnck_workspace_is_virtual (WnckWorkspace *space)
 {
   g_return_val_if_fail (WNCK_IS_WORKSPACE (space), FALSE);
 
@@ -409,7 +409,7 @@ wnck_workspace_is_virtual (WnckWorkspace *space)
 }
 
 /**
- * wnck_workspace_get_layout_row:
+ * vnck_workspace_get_layout_row:
  * @space: a #WnckWorkspace.
  *
  * Gets the row of @space in the #WnckWorkspace layout. The first row has an
@@ -422,7 +422,7 @@ wnck_workspace_is_virtual (WnckWorkspace *space)
  * Since: 2.20
  **/
 int
-wnck_workspace_get_layout_row (WnckWorkspace *space)
+vnck_workspace_get_layout_row (WnckWorkspace *space)
 {
   _WnckLayoutOrientation orientation;
   _WnckLayoutCorner corner;
@@ -432,7 +432,7 @@ wnck_workspace_get_layout_row (WnckWorkspace *space)
 
   g_return_val_if_fail (WNCK_IS_WORKSPACE (space), -1);
 
-  _wnck_screen_get_workspace_layout (space->priv->screen,
+  _vnck_screen_get_workspace_layout (space->priv->screen,
                                      &orientation, &n_rows, &n_cols, &corner);
 
   if (orientation == WNCK_LAYOUT_ORIENTATION_HORIZONTAL)
@@ -448,7 +448,7 @@ wnck_workspace_get_layout_row (WnckWorkspace *space)
 }
 
 /**
- * wnck_workspace_get_layout_column:
+ * vnck_workspace_get_layout_column:
  * @space: a #WnckWorkspace.
  *
  * Gets the column of @space in the #WnckWorkspace layout. The first column
@@ -462,7 +462,7 @@ wnck_workspace_get_layout_row (WnckWorkspace *space)
  * Since: 2.20
  **/
 int
-wnck_workspace_get_layout_column (WnckWorkspace *space)
+vnck_workspace_get_layout_column (WnckWorkspace *space)
 {
   _WnckLayoutOrientation orientation;
   _WnckLayoutCorner corner;
@@ -472,7 +472,7 @@ wnck_workspace_get_layout_column (WnckWorkspace *space)
 
   g_return_val_if_fail (WNCK_IS_WORKSPACE (space), -1);
 
-  _wnck_screen_get_workspace_layout (space->priv->screen,
+  _vnck_screen_get_workspace_layout (space->priv->screen,
                                      &orientation, &n_rows, &n_cols, &corner);
 
   if (orientation == WNCK_LAYOUT_ORIENTATION_HORIZONTAL)
@@ -488,7 +488,7 @@ wnck_workspace_get_layout_column (WnckWorkspace *space)
 }
 
 /**
- * wnck_workspace_get_neighbor:
+ * vnck_workspace_get_neighbor:
  * @space: a #WnckWorkspace.
  * @direction: direction in which to search the neighbor.
  *
@@ -496,13 +496,13 @@ wnck_workspace_get_layout_column (WnckWorkspace *space)
  *
  * Return value: (transfer none): the neighbor #WnckWorkspace of @space in the
  * @direction direction, or %NULL if no such neighbor #WnckWorkspace exists.
- * The returned #WnckWorkspace is owned by libwnck and must not be referenced
+ * The returned #WnckWorkspace is owned by libvnck and must not be referenced
  * or unreferenced.
  *
  * Since: 2.20
  **/
 WnckWorkspace*
-wnck_workspace_get_neighbor (WnckWorkspace       *space,
+vnck_workspace_get_neighbor (WnckWorkspace       *space,
                              WnckMotionDirection  direction)
 {
   _WnckLayoutOrientation orientation;
@@ -516,11 +516,11 @@ wnck_workspace_get_neighbor (WnckWorkspace       *space,
 
   g_return_val_if_fail (WNCK_IS_WORKSPACE (space), NULL);
 
-  _wnck_screen_get_workspace_layout (space->priv->screen,
+  _vnck_screen_get_workspace_layout (space->priv->screen,
                                      &orientation, &n_rows, &n_cols, &corner);
 
-  row = wnck_workspace_get_layout_row (space);
-  col = wnck_workspace_get_layout_column (space);
+  row = vnck_workspace_get_layout_row (space);
+  col = vnck_workspace_get_layout_column (space);
 
   index = space->priv->number;
 
@@ -597,5 +597,5 @@ wnck_workspace_get_neighbor (WnckWorkspace       *space,
   if (index == space->priv->number)
     return NULL;
 
-  return wnck_screen_get_workspace (space->priv->screen, index);
+  return vnck_screen_get_workspace (space->priv->screen, index);
 }

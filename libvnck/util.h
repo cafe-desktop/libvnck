@@ -21,7 +21,7 @@
  */
 
 #if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
-#error "Only <libwnck/libwnck.h> can be included directly."
+#error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
 #ifndef WNCK_UTIL_H
@@ -87,11 +87,11 @@ struct _WnckResourceUsage
 
 /**
  * WnckClientType:
- * @WNCK_CLIENT_TYPE_APPLICATION: the libwnck user is a normal application.
- * @WNCK_CLIENT_TYPE_PAGER: the libwnck user is an utility application dealing
+ * @WNCK_CLIENT_TYPE_APPLICATION: the libvnck user is a normal application.
+ * @WNCK_CLIENT_TYPE_PAGER: the libvnck user is an utility application dealing
  * with window management, like pagers and taskbars.
  *
- * Type describing the role of the libwnck user.
+ * Type describing the role of the libvnck user.
  *
  * Since: 2.14
  */
@@ -100,21 +100,21 @@ typedef enum {
   WNCK_CLIENT_TYPE_PAGER = 2
 } WnckClientType;
 
-void wnck_set_client_type (WnckClientType ewmh_sourceindication_client_type);
+void vnck_set_client_type (WnckClientType ewmh_sourceindication_client_type);
 
 #define WNCK_DEFAULT_ICON_SIZE 32
 #define WNCK_DEFAULT_MINI_ICON_SIZE 16
 
-void wnck_set_default_icon_size      (gsize size);
-void wnck_set_default_mini_icon_size (gsize size);
+void vnck_set_default_icon_size      (gsize size);
+void vnck_set_default_mini_icon_size (gsize size);
 
-void wnck_shutdown        (void);
+void vnck_shutdown        (void);
 
-void wnck_xid_read_resource_usage (GdkDisplay        *gdk_display,
+void vnck_xid_read_resource_usage (GdkDisplay        *gdk_display,
                                    gulong             xid,
                                    WnckResourceUsage *usage);
 
-void wnck_pid_read_resource_usage (GdkDisplay        *gdk_display,
+void vnck_pid_read_resource_usage (GdkDisplay        *gdk_display,
                                    gulong             pid,
                                    WnckResourceUsage *usage);
 

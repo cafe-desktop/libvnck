@@ -31,16 +31,16 @@ WnckApplication
 
 </para>
 
-@wnckapplication: the object which received the signal.
+@vnckapplication: the object which received the signal.
 
 <!-- ##### SIGNAL WnckApplication::name-changed ##### -->
 <para>
 
 </para>
 
-@wnckapplication: the object which received the signal.
+@vnckapplication: the object which received the signal.
 
-<!-- ##### FUNCTION wnck_application_get ##### -->
+<!-- ##### FUNCTION vnck_application_get ##### -->
 <para>
 
 </para>
@@ -49,7 +49,7 @@ WnckApplication
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_application_get_xid ##### -->
+<!-- ##### FUNCTION vnck_application_get_xid ##### -->
 <para>
 
 </para>
@@ -58,7 +58,7 @@ WnckApplication
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_application_get_name ##### -->
+<!-- ##### FUNCTION vnck_application_get_name ##### -->
 <para>
 
 </para>
@@ -67,7 +67,7 @@ WnckApplication
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_application_get_icon_name ##### -->
+<!-- ##### FUNCTION vnck_application_get_icon_name ##### -->
 <para>
 
 </para>
@@ -76,7 +76,7 @@ WnckApplication
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_application_get_pid ##### -->
+<!-- ##### FUNCTION vnck_application_get_pid ##### -->
 <para>
 
 </para>
@@ -85,7 +85,7 @@ WnckApplication
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_application_get_icon_is_fallback ##### -->
+<!-- ##### FUNCTION vnck_application_get_icon_is_fallback ##### -->
 <para>
 
 </para>
@@ -94,7 +94,7 @@ WnckApplication
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_application_get_icon ##### -->
+<!-- ##### FUNCTION vnck_application_get_icon ##### -->
 <para>
 
 </para>
@@ -103,7 +103,7 @@ WnckApplication
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_application_get_mini_icon ##### -->
+<!-- ##### FUNCTION vnck_application_get_mini_icon ##### -->
 <para>
 
 </para>
@@ -112,7 +112,7 @@ WnckApplication
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_application_get_startup_id ##### -->
+<!-- ##### FUNCTION vnck_application_get_startup_id ##### -->
 <para>
 
 </para>
@@ -121,7 +121,7 @@ WnckApplication
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_application_get_windows ##### -->
+<!-- ##### FUNCTION vnck_application_get_windows ##### -->
 <para>
 
 </para>
@@ -130,7 +130,7 @@ WnckApplication
 @Returns: 
 
 
-<!-- ##### FUNCTION wnck_application_get_n_windows ##### -->
+<!-- ##### FUNCTION vnck_application_get_n_windows ##### -->
 <para>
 
 </para>

@@ -1,6 +1,6 @@
 /* vim: set sw=2 et: */
 
-#include <libwnck/libwnck.h>
+#include <libvnck/libvnck.h>
 
 static void
 on_active_window_changed (WnckScreen *screen,
@@ -9,10 +9,10 @@ on_active_window_changed (WnckScreen *screen,
 {
   WnckWindow *active_window;
 
-  active_window = wnck_screen_get_active_window (screen);
+  active_window = vnck_screen_get_active_window (screen);
 
   if (active_window)
-    g_print ("active: %s\n", wnck_window_get_name (active_window));
+    g_print ("active: %s\n", vnck_window_get_name (active_window));
   else
     g_print ("no active window\n");
 }
@@ -39,20 +39,20 @@ main (int    argc,
 
   while (TRUE)
     {
-      screen = wnck_screen_get_default ();
+      screen = vnck_screen_get_default ();
 
-      g_print ("libwnck is active for 5 seconds; change the active window to get notifications\n");
+      g_print ("libvnck is active for 5 seconds; change the active window to get notifications\n");
       g_signal_connect (screen, "active-window-changed",
                         G_CALLBACK (on_active_window_changed), NULL);
       g_timeout_add_seconds (5, quit_loop, loop);
       g_main_loop_run (loop);
 
-      g_print ("libwnck is shutting down for 5 seconds; no notification will happen anymore\n");
-      wnck_shutdown ();
+      g_print ("libvnck is shutting down for 5 seconds; no notification will happen anymore\n");
+      vnck_shutdown ();
       g_timeout_add_seconds (5, quit_loop, loop);
       g_main_loop_run (loop);
 
-      g_print ("libwnck is getting reinitialized...\n");
+      g_print ("libvnck is getting reinitialized...\n");
     }
 
   g_main_loop_unref (loop);

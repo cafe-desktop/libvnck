@@ -35,4 +35,4 @@ build_scripts:
   - ./after-build
 
 after_scripts:
-  - ./gen-index -l 20 -i https://github.com/cafe-desktop/libvnck/raw/master/libwnck/default_icon.png
+  - ./gen-index -l 20 -i https://github.com/cafe-desktop/libvnck/raw/master/libvnck/default_icon.png

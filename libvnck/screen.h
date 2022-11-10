@@ -20,7 +20,7 @@
  */
 
 #if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
-#error "Only <libwnck/libwnck.h> can be included directly."
+#error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
 #ifndef WNCK_SCREEN_H
@@ -38,7 +38,7 @@ typedef struct _WnckWorkspace   WnckWorkspace;
 
 /* Screen */
 
-#define WNCK_TYPE_SCREEN              (wnck_screen_get_type ())
+#define WNCK_TYPE_SCREEN              (vnck_screen_get_type ())
 #define WNCK_SCREEN(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_SCREEN, WnckScreen))
 #define WNCK_SCREEN_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_SCREEN, WnckScreenClass))
 #define WNCK_IS_SCREEN(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_SCREEN))
@@ -161,7 +161,7 @@ struct _WnckWorkspaceLayout
  * columns, with the first #WnckWorkspace in the defined #WnckLayoutCorner.
  *
  * Type defining the orientation of the layout of #WnckWorkspace. See
- * wnck_pager_set_orientation() for more information.
+ * vnck_pager_set_orientation() for more information.
  */
 typedef enum
 {
@@ -191,55 +191,55 @@ typedef enum
   WNCK_LAYOUT_CORNER_BOTTOMLEFT
 } _WnckLayoutCorner;
 
-GType wnck_screen_get_type (void) G_GNUC_CONST;
+GType vnck_screen_get_type (void) G_GNUC_CONST;
 
-WnckScreen*    wnck_screen_get_default              (void);
-WnckScreen*    wnck_screen_get                      (int         index);
-WnckScreen*    wnck_screen_get_for_root             (gulong      root_window_id);
-int            wnck_screen_get_number               (WnckScreen *screen);
-WnckWorkspace* wnck_screen_get_workspace            (WnckScreen *screen,
+WnckScreen*    vnck_screen_get_default              (void);
+WnckScreen*    vnck_screen_get                      (int         index);
+WnckScreen*    vnck_screen_get_for_root             (gulong      root_window_id);
+int            vnck_screen_get_number               (WnckScreen *screen);
+WnckWorkspace* vnck_screen_get_workspace            (WnckScreen *screen,
                                                      int         workspace);
-WnckWorkspace* wnck_screen_get_active_workspace     (WnckScreen *screen);
-GList*         wnck_screen_get_workspaces           (WnckScreen *screen);
-WnckWindow*    wnck_screen_get_active_window        (WnckScreen *screen);
-WnckWindow*    wnck_screen_get_previously_active_window (WnckScreen *screen);
-GList*         wnck_screen_get_windows              (WnckScreen *screen);
-GList*         wnck_screen_get_windows_stacked      (WnckScreen *screen);
-void           wnck_screen_force_update             (WnckScreen *screen);
-int            wnck_screen_get_workspace_count      (WnckScreen *screen);
-void           wnck_screen_change_workspace_count   (WnckScreen *screen,
+WnckWorkspace* vnck_screen_get_active_workspace     (WnckScreen *screen);
+GList*         vnck_screen_get_workspaces           (WnckScreen *screen);
+WnckWindow*    vnck_screen_get_active_window        (WnckScreen *screen);
+WnckWindow*    vnck_screen_get_previously_active_window (WnckScreen *screen);
+GList*         vnck_screen_get_windows              (WnckScreen *screen);
+GList*         vnck_screen_get_windows_stacked      (WnckScreen *screen);
+void           vnck_screen_force_update             (WnckScreen *screen);
+int            vnck_screen_get_workspace_count      (WnckScreen *screen);
+void           vnck_screen_change_workspace_count   (WnckScreen *screen,
                                                      int         count);
-const char*    wnck_screen_get_window_manager_name  (WnckScreen *screen);
-gboolean       wnck_screen_net_wm_supports          (WnckScreen *screen,
+const char*    vnck_screen_get_window_manager_name  (WnckScreen *screen);
+gboolean       vnck_screen_net_wm_supports          (WnckScreen *screen,
                                                      const char *atom);
-gulong         wnck_screen_get_background_pixmap    (WnckScreen *screen);
-int            wnck_screen_get_width                (WnckScreen *screen);
-int            wnck_screen_get_height               (WnckScreen *screen);
-gboolean       wnck_screen_get_showing_desktop      (WnckScreen *screen);
-void           wnck_screen_toggle_showing_desktop   (WnckScreen *screen,
+gulong         vnck_screen_get_background_pixmap    (WnckScreen *screen);
+int            vnck_screen_get_width                (WnckScreen *screen);
+int            vnck_screen_get_height               (WnckScreen *screen);
+gboolean       vnck_screen_get_showing_desktop      (WnckScreen *screen);
+void           vnck_screen_toggle_showing_desktop   (WnckScreen *screen,
                                                      gboolean    show);
-void           wnck_screen_move_viewport            (WnckScreen *screen,
+void           vnck_screen_move_viewport            (WnckScreen *screen,
                                                      int         x,
                                                      int         y);
-void           _wnck_screen_get_workspace_layout     (WnckScreen             *screen,
+void           _vnck_screen_get_workspace_layout     (WnckScreen             *screen,
                                                       _WnckLayoutOrientation *orientation,
                                                       int                    *rows,
                                                       int                    *columns,
                                                       _WnckLayoutCorner      *starting_corner);
-int            wnck_screen_try_set_workspace_layout (WnckScreen *screen,
+int            vnck_screen_try_set_workspace_layout (WnckScreen *screen,
                                                      int         current_token,
                                                      int         rows,
                                                      int         columns);
-void           wnck_screen_release_workspace_layout (WnckScreen *screen,
+void           vnck_screen_release_workspace_layout (WnckScreen *screen,
                                                      int         current_token);
 #ifndef WNCK_DISABLE_DEPRECATED
 G_DEPRECATED
-void           wnck_screen_calc_workspace_layout    (WnckScreen          *screen,
+void           vnck_screen_calc_workspace_layout    (WnckScreen          *screen,
                                                      int                  num_workspaces,
                                                      int                  space_index,
                                                      WnckWorkspaceLayout *layout);
 G_DEPRECATED
-void           wnck_screen_free_workspace_layout (WnckWorkspaceLayout *layout);
+void           vnck_screen_free_workspace_layout (WnckWorkspaceLayout *layout);
 #endif /* WNCK_DISABLE_DEPRECATED */
 
 

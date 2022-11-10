@@ -5,10 +5,10 @@ Version 3.36.0
   Fixes
 
   * Add a weak reference callback to window to disconnect obsolete signal
-    handlers (Alberts Muktupāvels) [GNOME/libwnck#141]
-  * pager: Add scroll modes [GNOME/libwnck#134]
+    handlers (Alberts Muktupāvels) [GNOME/libvnck#141]
+  * pager: Add scroll modes [GNOME/libvnck#134]
   * meson build fixes (Jan Alexander Steffens, Jan Tojnar, Victor Kareh)
-    [GNOME/libwnck#139]
+    [GNOME/libvnck#139]
 
 
 ==============
@@ -18,7 +18,7 @@ Version 3.32.0
   Features
 
   * Add signals for enter and leave notify events in task list
-    (Victor Kareh) [GNOME/libwnck!6]
+    (Victor Kareh) [GNOME/libvnck!6]
 
   Fixes
 
@@ -34,7 +34,7 @@ Version 3.31.4
   * Meson: cleanups to the dependencies and fixed docs quotes (Marco Trevisan)
   * Wnckprop: force it working under x11, so that it will work in Wayland for
     X11 clients (Marco Trevisan)
-  * Update class group icon when window icon has changed (Xu Zhen) [GNOME/libwnck#135]
+  * Update class group icon when window icon has changed (Xu Zhen) [GNOME/libvnck#135]
 
 
 ==============
@@ -43,7 +43,7 @@ Version 3.31.1
 
   Features
 
-  * Add support to build using meson (Marco Trevisan) [GNOME/libwnck!4]
+  * Add support to build using meson (Marco Trevisan) [GNOME/libvnck!4]
 
 ==============
 Version 3.30.0
@@ -54,7 +54,7 @@ Version 3.30.0
   * Use single precision floats to double (Emmanuele Bassi)
   * Allow setting the same client type (Sebastian Geiger) [#792304]
   * Remove usage of various deprecated functions and modernize code (Alberts Muktupāvels)
-  * Add gitlab-ci pipeline [GNOME/libwnck!3]
+  * Add gitlab-ci pipeline [GNOME/libvnck!3]
 
   Translators
 
@@ -82,7 +82,7 @@ Version 3.24.0
   * Various refactoring to remove deprecated code (Alberts Muktupāvel)
   * Add an option to disable the tasklist scroll event (Moritz Bruder)
   * Add wrap-on-scroll option for WnckPager widget (Moritz Bruder)
-  * wnck-image-menu-item: fix memory leak (Alberts Muktupāvel)
+  * vnck-image-menu-item: fix memory leak (Alberts Muktupāvel)
 
   Translators
 
@@ -103,8 +103,8 @@ Version 3.20.1
     (Alberts Muktupāvels)
   * tasklist: don't use deprecated GtkMisc (Alberts Muktupāvels)
   * selector: don't use deprecated GtkMisc (Alberts Muktupāvels)
-  * wnckprop: don't use deprecated gdk_cursor_new (Alberts Muktupāvels)
-  * test-wnck: don't use deprecated gtk_tree_view_set_rules_hint (Alberts
+  * vnckprop: don't use deprecated gdk_cursor_new (Alberts Muktupāvels)
+  * test-vnck: don't use deprecated gtk_tree_view_set_rules_hint (Alberts
     Muktupāvels)
 
 ==============
@@ -209,7 +209,7 @@ Version 3.4.7
 
   Features
 
-  * Add wnck_set_default_icon_size and wnck_set_default_mini_icon_size functions
+  * Add vnck_set_default_icon_size and vnck_set_default_mini_icon_size functions
     to allow clients to define the size of the icons to be used for windows
     and applications.
 
@@ -263,7 +263,7 @@ Version 3.4.5
   Fixes
 
 	* Remove deprecated APIs for device grabbing (Marco Trevisan)
-	* Fix wnckprop hang, that made the system unusable (Marco Trevisan)
+	* Fix vnckprop hang, that made the system unusable (Marco Trevisan)
 	* Fix build with recent automake (Nuno Araujo)
 	* Use a little less power using g_timeout_add_seconds (B.Prathibha)
 
@@ -342,7 +342,7 @@ Version 3.3.5
 
  Features
 
-	* Add wnck_shutdown() API (Martin Pitt, Vincent)
+	* Add vnck_shutdown() API (Martin Pitt, Vincent)
 
   Fixes
 
@@ -442,11 +442,11 @@ Version 3.1.5
  Features
 
   - Add API to get WM_CLASS group name & instance name of a WnckWindow:
-    wnck_window_get_class_group_name(), wnck_window_get_class_instance_name()
+    vnck_window_get_class_group_name(), vnck_window_get_class_instance_name()
     (Marco Trevisan)
   - Change WnckClassGroup to talk about identifier instead of resource class.
-    This includes deprecating wnck_class_group_get_res_class() in favor of
-    wnck_class_group_get_id() (Vincent)
+    This includes deprecating vnck_class_group_get_res_class() in favor of
+    vnck_class_group_get_id() (Vincent)
 
  Fixes
 
@@ -522,8 +522,8 @@ Version 2.91.90
 Version 2.91.6
 ==============
 
-This is the first version of libwnck, ported to GTK+ 3. It should be
-parallel-installable with the GTK+ 2 version of libwnck. Some API changes
+This is the first version of libvnck, ported to GTK+ 3. It should be
+parallel-installable with the GTK+ 2 version of libvnck. Some API changes
 might still happen until 3.0, but the libtool versioning won't change.
 There might be some issues left after the GTK+ 3 port, so please report any
 unusual behavior with the library.
@@ -531,23 +531,23 @@ unusual behavior with the library.
  Major changes
 
   - Port to GTK+ 3 (Benjamin Otte, Christian Persch, David Ronis, Vincent)
-  - Enforce single include for libwnck (Vincent)
-  - Add macros to determine libwnck version at build time: WNCK_CHECK_VERSION,
+  - Enforce single include for libvnck (Vincent)
+  - Add macros to determine libvnck version at build time: WNCK_CHECK_VERSION,
     WNCK_MAJOR_VERSION, WNCK_MINOR_VERSION, WNCK_MICRO_VERSION (Vincent)
 
  API Changes
 
-  - Drop previously deprecated API: wnck_screen_get_workspace_index,
-    wnck_screen_get_workspace_neighbor, wnck_pager_set_screen,
-    wnck_tasklist_set_minimum_width, wnck_tasklist_get_minimum_width,
-    wnck_tasklist_set_minimum_height, wnck_tasklist_get_minimum_height,
-    wnck_tasklist_set_screen, wnck_gtk_window_set_dock_type,
-    wnck_create_window_action_menu (Vincent)
-  - Remove screen argument from wnck_pager_new and wnck_tasklist_new (Vincent)
+  - Drop previously deprecated API: vnck_screen_get_workspace_index,
+    vnck_screen_get_workspace_neighbor, vnck_pager_set_screen,
+    vnck_tasklist_set_minimum_width, vnck_tasklist_get_minimum_width,
+    vnck_tasklist_set_minimum_height, vnck_tasklist_get_minimum_height,
+    vnck_tasklist_set_screen, vnck_gtk_window_set_dock_type,
+    vnck_create_window_action_menu (Vincent)
+  - Remove screen argument from vnck_pager_new and vnck_tasklist_new (Vincent)
 
  Fixes
 
-  - Fix link errors for wnckprop (Diego Escalante Urrelo)
+  - Fix link errors for vnckprop (Diego Escalante Urrelo)
   - Start removing assumptions where default display was used (Vincent)
   - Add missing introspectio annotation (Vincent)
   - Plug a leak (Lampersperger Andreas)
@@ -689,7 +689,7 @@ Version 2.29.92
 
  Misc
 
-  - Small documentation improvement for wnck_window_move_to_workspace() to
+  - Small documentation improvement for vnck_window_move_to_workspace() to
     specify what happens to pinned windows (Vincent)
   - Fix build when building out of source tree (Theppitak Karoonboonyanan)
 
@@ -717,7 +717,7 @@ Version 2.29.6
 
  Fixes
 
-  - Fix generation of wnck-enum-types.c to not break bindings (Arun Raghavan)
+  - Fix generation of vnck-enum-types.c to not break bindings (Arun Raghavan)
 
  Misc
 
@@ -775,7 +775,7 @@ Version 2.27.5
 
  Features
 
-  - New wnck-urgency-monitor utility to monitor windows with urgent hint
+  - New vnck-urgency-monitor utility to monitor windows with urgent hint
     (Vincent)
 
  Misc
@@ -788,7 +788,7 @@ Version 2.27.4
 
  Fixes
 
-  - Fix wnck_application_get_icon_is_fallback() to actually work (Vincent)
+  - Fix vnck_application_get_icon_is_fallback() to actually work (Vincent)
   - Fix gtk-doc warning (Vincent)
   - Code cleanup (Vincent)
   - Always show icons in selector menu (Vincent)
@@ -890,7 +890,7 @@ Version 2.27.4
 
  Fixes
 
-  - Make libwnck compile with gnome-common DEPRECATED variables (Vincent)
+  - Make libvnck compile with gnome-common DEPRECATED variables (Vincent)
   - Use C_() instead of Q_() (Matthias Clasen)
 
  Translators
@@ -982,7 +982,7 @@ Version 2.27.4
 
  Fixes
 
-  - Fix a bug where when the last window disappears, libwnck internals don't
+  - Fix a bug where when the last window disappears, libvnck internals don't
     get updated and you still have a window in the window list, eg.  (Malebria)
 
  Misc
@@ -1019,8 +1019,8 @@ Fixes
 
 Fixes
 
-  - Properly translate --help output of wnckprop (Vincent) [#518070]
-  - Fix wnck_window_set_geometry() to work as intended, ie including
+  - Properly translate --help output of vnckprop (Vincent) [#518070]
+  - Fix vnck_window_set_geometry() to work as intended, ie including
     decorations (Mikkel Kamstrup Erlandsen, Elijah, Vincent) [#518606]
 
  Translators
@@ -1041,7 +1041,7 @@ Fixes
 
 Fixes
 
-  - Fix wnck_window_set_geometry() not working without a main loop
+  - Fix vnck_window_set_geometry() not working without a main loop
 
  Translators
 
@@ -1191,7 +1191,7 @@ Fixes
 
  Fixes
 
-  - Add translator comments for wnckprop (Andre Klapper) [#468320]
+  - Add translator comments for vnckprop (Andre Klapper) [#468320]
 
  Translators
 
@@ -1228,7 +1228,7 @@ Fixes
 
   - Make the window action menu work with viewport (Vincent) [#352383]
   - Correctly draw workspaces with viewport in the pager (Vincent)
-  - Fix typo in a string of wnckprop (Theppitak Karoonboonyanan)
+  - Fix typo in a string of vnckprop (Theppitak Karoonboonyanan)
 
  Misc
 
@@ -1250,27 +1250,27 @@ Fixes
 
  Features
 
-  - Install wnckprop utility (Vincent)
+  - Install vnckprop utility (Vincent)
   - Add tooltips for workspaces in the pager (Vincent) [#125644]
-  - New wnck_screen_get_workspaces() API (Vincent)
-  - New wnck_workspace_get_layout_row(), wnck_workspace_get_layout_column() and
-    wnck_workspace_get_neighbor() API, to get layout information about a
+  - New vnck_screen_get_workspaces() API (Vincent)
+  - New vnck_workspace_get_layout_row(), vnck_workspace_get_layout_column() and
+    vnck_workspace_get_neighbor() API, to get layout information about a
     workspace (Vincent)
-  - New wnck_workspace_get_screen() API (Vincent)
-  - New wnck_window_is_below(), wnck_window_make_below() and
-    wnck_window_unmake_below() API (Vincent) [#453982]
+  - New vnck_workspace_get_screen() API (Vincent)
+  - New vnck_window_is_below(), vnck_window_make_below() and
+    vnck_window_unmake_below() API (Vincent) [#453982]
 
  Deprecations
 
-  - Deprecate wnck_screen_get_workspace_index(). wnck_workspace_get_number()
+  - Deprecate vnck_screen_get_workspace_index(). vnck_workspace_get_number()
     should be used (Vincent)
-  - Deprecate wnck_screen_calc_workspace_layout(),
-    wnck_screen_free_workspace_layout() and WnckWorkspaceLayout (Vincent)
-  - Deprecate wnck_screen_get_workspace_neighbor().
-    wnck_workspace_get_neighbor() should be used (Vincent)
-  - Deprecate wnck_tasklist_set_minimum_width(),
-    wnck_tasklist_get_minimum_width(), wnck_tasklist_set_minimum_height(),
-    wnck_tasklist_get_minimum_height(). They are useless with the new sizing
+  - Deprecate vnck_screen_calc_workspace_layout(),
+    vnck_screen_free_workspace_layout() and WnckWorkspaceLayout (Vincent)
+  - Deprecate vnck_screen_get_workspace_neighbor().
+    vnck_workspace_get_neighbor() should be used (Vincent)
+  - Deprecate vnck_tasklist_set_minimum_width(),
+    vnck_tasklist_get_minimum_width(), vnck_tasklist_set_minimum_height(),
+    vnck_tasklist_get_minimum_height(). They are useless with the new sizing
     algorithm (Vincent)
 
  Fixes
@@ -1284,7 +1284,7 @@ Fixes
     (Vincent)
   - Do not put state indicators in the tooltip text of tasklist buttons
     (Vincent)
-  - Fix compilation of wnckprop (Vincent) [#449186]
+  - Fix compilation of vnckprop (Vincent) [#449186]
   - Import minor fixes from the XFCE fork (small leak, and safety checks)
     (Vincent)
   - Code cleanups (Vincent)
@@ -1292,8 +1292,8 @@ Fixes
   - Use GSlice when it makes sense (Vincent)
   - Probable fix to show windows needing attention not shown in the viewport
     (Vincent)
-  - Make wnckprop able to change properties of windows and screens (Vincent)
-  - Make wnckprop translatable (Vincent)
+  - Make vnckprop able to change properties of windows and screens (Vincent)
+  - Make vnckprop translatable (Vincent)
   - Redraw a workspace in the pager when the state of a window changes and is
     relevant (Vincent)
   - Stop the glowing effect in the tasklist for urgent windows after a while
@@ -1309,12 +1309,12 @@ Fixes
     (Vincent)
   - Never group together in the tasklist windows without a class (Vincent)
     [#165075]
-  - Add new mode to wnckprop to interact with a workspace (Vincent)
-  - Add new modes to wnckprop to interact with a class group or an application
+  - Add new mode to vnckprop to interact with a workspace (Vincent)
+  - Add new modes to vnckprop to interact with a class group or an application
     (Vincent)
-  - Improve wnckprop command line arguments (Vincent)
-  - Add some XSync calls where needed in libwnck for wnckprop to work (Vincent)
-  - Make wnckprop use the real X server timestamp when needed (Vincent)
+  - Improve vnckprop command line arguments (Vincent)
+  - Add some XSync calls where needed in libvnck for vnckprop to work (Vincent)
+  - Make vnckprop use the real X server timestamp when needed (Vincent)
   - Fix size of buttons in tasklist changing with the text. This should be an
     important usability improvement. (Vincent) [#310809]
   - Fix image of tasklist buttons floating outside of the buttons when buttons
@@ -1344,25 +1344,25 @@ Fixes
 
   - Show workspace names in the window selector (Vincent) [#354667]
   - Add support for _NET_FRAME_EXTENTS.
-    wnck_window_get_client_window_geometry() is a new API and
-    wnck_window_get_geometry() now returns the geometry including the window
+    vnck_window_get_client_window_geometry() is a new API and
+    vnck_window_get_geometry() now returns the geometry including the window
     manager decorations (Vincent) [#351055]
-  - Add wnck_screen_get_number() API (Vincent) [#169590]
-  - Add wnck_screen_get_window_manager_name() API and window-manager-changed
+  - Add vnck_screen_get_number() API (Vincent) [#169590]
+  - Add vnck_screen_get_window_manager_name() API and window-manager-changed
     signal (Vincent) [#448043]
 
  Deprecations
 
-  - Deprecate wnck_gtk_window_set_dock_type() (Vincent)
-  - Deprecate wnck_pager_set_screen() (Vincent)
-  - Deprecate wnck_tasklist_set_screen() (Vincent)
-  - Deprecate the screen argument of wnck_pager_new() and of
-    wnck_tasklist_new() (Vincent)
+  - Deprecate vnck_gtk_window_set_dock_type() (Vincent)
+  - Deprecate vnck_pager_set_screen() (Vincent)
+  - Deprecate vnck_tasklist_set_screen() (Vincent)
+  - Deprecate the screen argument of vnck_pager_new() and of
+    vnck_tasklist_new() (Vincent)
 
  Fixes
 
   - Code cleanups (Vincent)
-  - Make wnck_screen_net_wm_supports() work on all screens (Vincent)
+  - Make vnck_screen_net_wm_supports() work on all screens (Vincent)
   - Do not forget about the "Make below" action for the default possible
     actions (Vincent)
   - Rework selection ownership for the desktop layout: do not steal it and
@@ -1376,7 +1376,7 @@ Fixes
   - Add some safety guards to the public API (Vincent)
   - Improve position of the drag icon when dragging a window (Vincent)
     [#446531]
-  - Make wnck_pid_read_resource_usage() work for more X clients (Vincent)
+  - Make vnck_pid_read_resource_usage() work for more X clients (Vincent)
     [#150153]
   - Fix a crash happening sometimes when a tasklist is destroyed (Vincent)
   - Be more solid against invalid values for _NET_NUMBER_OF_DESKTOPS (Vincent)
@@ -1392,7 +1392,7 @@ Fixes
  Misc
 
   - Totally rework API documentation (Vincent)
-  - New wnckprop utility, not installed by default (Vincent)
+  - New vnckprop utility, not installed by default (Vincent)
   - Require glib 2.13.0 (Vincent)
   - Require GTK+ 2.11.3 (Vincent)
 
@@ -1443,7 +1443,7 @@ Fixes
   - Fix vertical pager in RTL environments (Vincent) [#431461]
   - Move the Close mneu item at the bottom of the action menu (Vincent)
     [#104026]
-  - Change API for wnck_selector_new(): we don't need the screen argument
+  - Change API for vnck_selector_new(): we don't need the screen argument
     (Vincent) [#164474]
   - Code cleanups, especially in the selector (Vincent)
   - Put pinned windows in the current workspace in the selector (Vincent)
@@ -1671,8 +1671,8 @@ Fixes
 
   - restart activation timeout when the mouse moves to a different
     workspace (Benjamin)
-  - new methods to test if the names returned by wnck_window_get_name
-    and wnck_window_get_icon_name are real or just FALLBACK_NAME (Dan)
+  - new methods to test if the names returned by vnck_window_get_name
+    and vnck_window_get_icon_name are real or just FALLBACK_NAME (Dan)
     [#342577]
 
  Misc
@@ -1933,7 +1933,7 @@ Fixes
     [#140175, #310829]
   - Fix builds that don't disable docs, get make distcheck to work
     (Matthias Clasen) [#302231]
-  - Add wnck_window_set_window_type() function (Olivier Andrieu)
+  - Add vnck_window_set_window_type() function (Olivier Andrieu)
     [#133306]
   - Add API for allowing the button relief to be set to
     GTK_RELIEF_NONE for transparent panels (Ryan Lortie) [#167932]
@@ -2159,7 +2159,7 @@ Fixes
 
   - Don't activate windows when clicking on the pager (Elijah Newren)
   - Only show windows which are on the same monitor as the tasklist (Juerg Billeter)
-  - Add missing prototype - wnck_window_set_fullscreen() (Ross Burton)
+  - Add missing prototype - vnck_window_set_fullscreen() (Ross Burton)
   - Fix runtime warning spew (Mark)
 
  Translators
@@ -2269,7 +2269,7 @@ Fixes
 Thanks to Laszlo Peter, Leena Gunda Padraig O'Briain for fixes in
 this release
 
-  - allow building against an uninstalled libwnck build
+  - allow building against an uninstalled libvnck build
   - add "Move to Workspace" menu
   - fix crash with updated allowed actions hint
 

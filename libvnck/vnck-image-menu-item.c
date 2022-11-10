@@ -17,7 +17,7 @@
 
 #include "config.h"
 
-#include "wnck-image-menu-item-private.h"
+#include "vnck-image-menu-item-private.h"
 #include "private.h"
 
 #define SPACING 6
@@ -33,10 +33,10 @@ struct _WnckImageMenuItem
   gchar       *label;
 };
 
-G_DEFINE_TYPE (WnckImageMenuItem, wnck_image_menu_item, GTK_TYPE_MENU_ITEM)
+G_DEFINE_TYPE (WnckImageMenuItem, vnck_image_menu_item, GTK_TYPE_MENU_ITEM)
 
 static void
-wnck_image_menu_item_finalize (GObject *object)
+vnck_image_menu_item_finalize (GObject *object)
 {
   WnckImageMenuItem *item;
 
@@ -44,11 +44,11 @@ wnck_image_menu_item_finalize (GObject *object)
 
   g_clear_pointer (&item->label, g_free);
 
-  G_OBJECT_CLASS (wnck_image_menu_item_parent_class)->finalize (object);
+  G_OBJECT_CLASS (vnck_image_menu_item_parent_class)->finalize (object);
 }
 
 static void
-wnck_image_menu_item_get_preferred_width (GtkWidget *widget,
+vnck_image_menu_item_get_preferred_width (GtkWidget *widget,
                                           gint      *minimum,
                                           gint      *natural)
 {
@@ -56,7 +56,7 @@ wnck_image_menu_item_get_preferred_width (GtkWidget *widget,
   WnckImageMenuItem *item;
   GtkRequisition image_requisition;
 
-  widget_class = GTK_WIDGET_CLASS (wnck_image_menu_item_parent_class);
+  widget_class = GTK_WIDGET_CLASS (vnck_image_menu_item_parent_class);
   item = WNCK_IMAGE_MENU_ITEM (widget);
 
   widget_class->get_preferred_width (widget, minimum, natural);
@@ -74,7 +74,7 @@ wnck_image_menu_item_get_preferred_width (GtkWidget *widget,
 }
 
 static void
-wnck_image_menu_item_size_allocate (GtkWidget     *widget,
+vnck_image_menu_item_size_allocate (GtkWidget     *widget,
                                     GtkAllocation *allocation)
 {
   GtkWidgetClass *widget_class;
@@ -82,7 +82,7 @@ wnck_image_menu_item_size_allocate (GtkWidget     *widget,
   GtkRequisition image_requisition;
   GtkAllocation box_allocation;
 
-  widget_class = GTK_WIDGET_CLASS (wnck_image_menu_item_parent_class);
+  widget_class = GTK_WIDGET_CLASS (vnck_image_menu_item_parent_class);
   item = WNCK_IMAGE_MENU_ITEM (widget);
 
   widget_class->size_allocate (widget, allocation);
@@ -108,7 +108,7 @@ wnck_image_menu_item_size_allocate (GtkWidget     *widget,
 }
 
 static const gchar *
-wnck_image_menu_item_get_label (GtkMenuItem *menu_item)
+vnck_image_menu_item_get_label (GtkMenuItem *menu_item)
 {
   WnckImageMenuItem *item;
 
@@ -118,7 +118,7 @@ wnck_image_menu_item_get_label (GtkMenuItem *menu_item)
 }
 
 static void
-wnck_image_menu_item_toggle_size_request (GtkMenuItem *menu_item,
+vnck_image_menu_item_toggle_size_request (GtkMenuItem *menu_item,
                                           gint        *requisition)
 {
   WnckImageMenuItem *item;
@@ -138,7 +138,7 @@ wnck_image_menu_item_toggle_size_request (GtkMenuItem *menu_item,
 }
 
 static void
-wnck_image_menu_item_set_label (GtkMenuItem *menu_item,
+vnck_image_menu_item_set_label (GtkMenuItem *menu_item,
                                 const gchar *label)
 {
   WnckImageMenuItem *item;
@@ -156,7 +156,7 @@ wnck_image_menu_item_set_label (GtkMenuItem *menu_item,
 }
 
 static void
-wnck_image_menu_item_class_init (WnckImageMenuItemClass *item_class)
+vnck_image_menu_item_class_init (WnckImageMenuItemClass *item_class)
 {
   GObjectClass *object_class;
   GtkWidgetClass *widget_class;
@@ -166,18 +166,18 @@ wnck_image_menu_item_class_init (WnckImageMenuItemClass *item_class)
   widget_class = GTK_WIDGET_CLASS (item_class);
   menu_item_class = GTK_MENU_ITEM_CLASS (item_class);
 
-  object_class->finalize = wnck_image_menu_item_finalize;
+  object_class->finalize = vnck_image_menu_item_finalize;
 
-  widget_class->get_preferred_width = wnck_image_menu_item_get_preferred_width;
-  widget_class->size_allocate = wnck_image_menu_item_size_allocate;
+  widget_class->get_preferred_width = vnck_image_menu_item_get_preferred_width;
+  widget_class->size_allocate = vnck_image_menu_item_size_allocate;
 
-  menu_item_class->get_label = wnck_image_menu_item_get_label;
-  menu_item_class->toggle_size_request = wnck_image_menu_item_toggle_size_request;
-  menu_item_class->set_label = wnck_image_menu_item_set_label;
+  menu_item_class->get_label = vnck_image_menu_item_get_label;
+  menu_item_class->toggle_size_request = vnck_image_menu_item_toggle_size_request;
+  menu_item_class->set_label = vnck_image_menu_item_set_label;
 }
 
 static void
-wnck_image_menu_item_init (WnckImageMenuItem *item)
+vnck_image_menu_item_init (WnckImageMenuItem *item)
 {
   GtkAccelLabel *accel_label;
 
@@ -200,19 +200,19 @@ wnck_image_menu_item_init (WnckImageMenuItem *item)
 }
 
 GtkWidget *
-wnck_image_menu_item_new (void)
+vnck_image_menu_item_new (void)
 {
   return g_object_new (WNCK_TYPE_IMAGE_MENU_ITEM, NULL);
 }
 
 GtkWidget *
-wnck_image_menu_item_new_with_label (const gchar *label)
+vnck_image_menu_item_new_with_label (const gchar *label)
 {
   return g_object_new (WNCK_TYPE_IMAGE_MENU_ITEM, "label", label, NULL);
 }
 
 void
-wnck_image_menu_item_set_image_from_icon_pixbuf (WnckImageMenuItem *item,
+vnck_image_menu_item_set_image_from_icon_pixbuf (WnckImageMenuItem *item,
                                                  GdkPixbuf         *pixbuf)
 {
   gtk_image_set_from_pixbuf (GTK_IMAGE (item->image), pixbuf);
@@ -220,21 +220,21 @@ wnck_image_menu_item_set_image_from_icon_pixbuf (WnckImageMenuItem *item,
 }
 
 void
-wnck_image_menu_item_set_image_from_window (WnckImageMenuItem *item,
+vnck_image_menu_item_set_image_from_window (WnckImageMenuItem *item,
                                             WnckWindow        *window)
 {
-  _wnck_selector_set_window_icon (item->image, window);
+  _vnck_selector_set_window_icon (item->image, window);
   gtk_widget_show (item->image);
 }
 
 void
-wnck_image_menu_item_make_label_bold (WnckImageMenuItem *item)
+vnck_image_menu_item_make_label_bold (WnckImageMenuItem *item)
 {
   _make_gtk_label_bold (GTK_LABEL (item->accel_label));
 }
 
 void
-wnck_image_menu_item_make_label_normal (WnckImageMenuItem *item)
+vnck_image_menu_item_make_label_normal (WnckImageMenuItem *item)
 {
   _make_gtk_label_normal (GTK_LABEL (item->accel_label));
 }
