@@ -52,13 +52,13 @@ create_pager_window (GtkOrientation       orientation,
 
   pager = vnck_pager_new ();
 
-  vnck_pager_set_show_all (WNCK_PAGER (pager), show_all);
-  vnck_pager_set_display_mode (WNCK_PAGER (pager), mode);
-  vnck_pager_set_scroll_mode (WNCK_PAGER (pager), scroll_mode);
-  vnck_pager_set_orientation (WNCK_PAGER (pager), orientation);
-  vnck_pager_set_n_rows (WNCK_PAGER (pager), rows);
-  vnck_pager_set_shadow_type (WNCK_PAGER (pager), GTK_SHADOW_IN);
-  vnck_pager_set_wrap_on_scroll (WNCK_PAGER (pager), wrap);
+  vnck_pager_set_show_all (VNCK_PAGER (pager), show_all);
+  vnck_pager_set_display_mode (VNCK_PAGER (pager), mode);
+  vnck_pager_set_scroll_mode (VNCK_PAGER (pager), scroll_mode);
+  vnck_pager_set_orientation (VNCK_PAGER (pager), orientation);
+  vnck_pager_set_n_rows (VNCK_PAGER (pager), rows);
+  vnck_pager_set_shadow_type (VNCK_PAGER (pager), GTK_SHADOW_IN);
+  vnck_pager_set_wrap_on_scroll (VNCK_PAGER (pager), wrap);
 
   gtk_container_add (GTK_CONTAINER (win), pager);
 
@@ -97,14 +97,14 @@ main (int argc, char **argv)
 	  orientation = GTK_ORIENTATION_HORIZONTAL;
 
   if (show_name)
-	  mode = WNCK_PAGER_DISPLAY_NAME;
+	  mode = VNCK_PAGER_DISPLAY_NAME;
   else
-	  mode = WNCK_PAGER_DISPLAY_CONTENT;
+	  mode = VNCK_PAGER_DISPLAY_CONTENT;
 
   if (simple_scrolling)
-	  scroll_mode = WNCK_PAGER_SCROLL_1D;
+	  scroll_mode = VNCK_PAGER_SCROLL_1D;
   else
-	  scroll_mode = WNCK_PAGER_SCROLL_2D;
+	  scroll_mode = VNCK_PAGER_SCROLL_2D;
 
   create_pager_window (orientation, !only_current, mode, scroll_mode, n_rows, wrap_on_scroll);
 

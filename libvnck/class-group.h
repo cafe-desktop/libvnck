@@ -20,12 +20,12 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
+#if !defined (__LIBVNCK_H_INSIDE__) && !defined (VNCK_COMPILATION)
 #error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
-#ifndef WNCK_CLASS_GROUP_H
-#define WNCK_CLASS_GROUP_H
+#ifndef VNCK_CLASS_GROUP_H
+#define VNCK_CLASS_GROUP_H
 
 #include <glib-object.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
@@ -33,12 +33,12 @@
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_CLASS_GROUP              (vnck_class_group_get_type ())
-#define WNCK_CLASS_GROUP(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_CLASS_GROUP, WnckClassGroup))
-#define WNCK_CLASS_GROUP_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_CLASS_GROUP, WnckClassGroupClass))
-#define WNCK_IS_CLASS_GROUP(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_CLASS_GROUP))
-#define WNCK_IS_CLASS_GROUP_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), WNCK_TYPE_CLASS_GROUP))
-#define WNCK_CLASS_GROUP_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), WNCK_TYPE_CLASS_GROUP, WnckClassGroupClass))
+#define VNCK_TYPE_CLASS_GROUP              (vnck_class_group_get_type ())
+#define VNCK_CLASS_GROUP(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_CLASS_GROUP, WnckClassGroup))
+#define VNCK_CLASS_GROUP_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_CLASS_GROUP, WnckClassGroupClass))
+#define VNCK_IS_CLASS_GROUP(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_CLASS_GROUP))
+#define VNCK_IS_CLASS_GROUP_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_CLASS_GROUP))
+#define VNCK_CLASS_GROUP_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_CLASS_GROUP, WnckClassGroupClass))
 
 typedef struct _WnckClassGroupClass   WnckClassGroupClass;
 typedef struct _WnckClassGroupPrivate WnckClassGroupPrivate;
@@ -82,11 +82,11 @@ const char * vnck_class_group_get_name (WnckClassGroup *class_group);
 GdkPixbuf *vnck_class_group_get_icon (WnckClassGroup *class_group);
 GdkPixbuf *vnck_class_group_get_mini_icon (WnckClassGroup *class_group);
 
-#ifndef WNCK_DISABLE_DEPRECATED
+#ifndef VNCK_DISABLE_DEPRECATED
 G_DEPRECATED_FOR(vnck_class_group_get_id)
 const char * vnck_class_group_get_res_class (WnckClassGroup *class_group);
 #endif
 
 G_END_DECLS
 
-#endif /* WNCK_CLASS_GROUP_H */
+#endif /* VNCK_CLASS_GROUP_H */

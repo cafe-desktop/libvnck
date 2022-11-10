@@ -16,19 +16,19 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __WNCK_PAGER_ACCESSIBLE_FACTORY_H__
+#ifndef __VNCK_PAGER_ACCESSIBLE_FACTORY_H__
 #define __WBCK_PAGER_ACCESSIBLE_FACTORY_H__
 
 #include <atk/atk.h>
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_PAGER_ACCESSIBLE_FACTORY               (vnck_pager_accessible_factory_get_type())
-#define WNCK_PAGER_ACCESSIBLE_FACTORY(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), WNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, WnckpagerAccessibleFactory))
-#define WNCK_PAGER_ACCESSIBLE_FACTORY_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, WnckPagerAccessibleFactoryClass))
-#define WNCK_IS_PAGER_ACCESSIBLE_FACTORY(obj)            (G_TYPE_CHECK_INSTANCE_TYPE ((obj), WNCK_TYPE_PAGER_ACCESSIBLE_FACTORY))
-#define WNCK_IS_PAGER_ACCESSIBLE_FACTORY_CLASS(klass)    (G_TYPE_CHECK_CLASS_TYPE ((klass), WNCK_TYPE_PAGER_ACCESSIBLE_FACTORY))
-#define WNCK_PAGER_ACCESSIBLE_FACTORY_GET_CLASS(obj)     (G_TYPE_INSTANCE_GET_CLASS ((obj), WNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, WnckPagerAccessibleFactoryClass))
+#define VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY               (vnck_pager_accessible_factory_get_type())
+#define VNCK_PAGER_ACCESSIBLE_FACTORY(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, WnckpagerAccessibleFactory))
+#define VNCK_PAGER_ACCESSIBLE_FACTORY_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, WnckPagerAccessibleFactoryClass))
+#define VNCK_IS_PAGER_ACCESSIBLE_FACTORY(obj)            (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY))
+#define VNCK_IS_PAGER_ACCESSIBLE_FACTORY_CLASS(klass)    (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY))
+#define VNCK_PAGER_ACCESSIBLE_FACTORY_GET_CLASS(obj)     (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, WnckPagerAccessibleFactoryClass))
 
 typedef struct _WnckPagerAccessibleFactory       WnckPagerAccessibleFactory;
 typedef struct _WnckPagerAccessibleFactoryClass  WnckPagerAccessibleFactoryClass;
@@ -49,4 +49,4 @@ AtkObjectFactory* vnck_pager_accessible_factory_new (void);
 
 G_END_DECLS
 
-#endif /* __WNCK_PAGER_ACCESSIBLE_FACTORY_H__ */
+#endif /* __VNCK_PAGER_ACCESSIBLE_FACTORY_H__ */

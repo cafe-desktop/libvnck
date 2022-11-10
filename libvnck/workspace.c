@@ -120,7 +120,7 @@ vnck_workspace_finalize (GObject *object)
 {
   WnckWorkspace *workspace;
 
-  workspace = WNCK_WORKSPACE (object);
+  workspace = VNCK_WORKSPACE (object);
 
   g_free (workspace->priv->name);
   workspace->priv->name = NULL;
@@ -140,7 +140,7 @@ vnck_workspace_finalize (GObject *object)
 int
 vnck_workspace_get_number (WnckWorkspace *space)
 {
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (space), -1);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (space), -1);
 
   return space->priv->number;
 }
@@ -158,7 +158,7 @@ vnck_workspace_get_number (WnckWorkspace *space)
 const char*
 vnck_workspace_get_name (WnckWorkspace *space)
 {
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (space), NULL);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (space), NULL);
 
   return space->priv->name;
 }
@@ -176,7 +176,7 @@ void
 vnck_workspace_change_name (WnckWorkspace *space,
                             const char    *name)
 {
-  g_return_if_fail (WNCK_IS_WORKSPACE (space));
+  g_return_if_fail (VNCK_IS_WORKSPACE (space));
   g_return_if_fail (name != NULL);
 
   _vnck_screen_change_workspace_name (space->priv->screen,
@@ -196,7 +196,7 @@ vnck_workspace_change_name (WnckWorkspace *space,
 WnckScreen*
 vnck_workspace_get_screen (WnckWorkspace *space)
 {
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (space), NULL);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (space), NULL);
 
   return space->priv->screen;
 }
@@ -220,9 +220,9 @@ void
 vnck_workspace_activate (WnckWorkspace *space,
                          guint32        timestamp)
 {
-  g_return_if_fail (WNCK_IS_WORKSPACE (space));
+  g_return_if_fail (VNCK_IS_WORKSPACE (space));
 
-  _vnck_activate_workspace (WNCK_SCREEN_XSCREEN (space->priv->screen),
+  _vnck_activate_workspace (VNCK_SCREEN_XSCREEN (space->priv->screen),
                             space->priv->number,
                             timestamp);
 }
@@ -232,7 +232,7 @@ _vnck_workspace_create (int number, WnckScreen *screen)
 {
   WnckWorkspace *space;
 
-  space = g_object_new (WNCK_TYPE_WORKSPACE, NULL);
+  space = g_object_new (VNCK_TYPE_WORKSPACE, NULL);
   space->priv->number = number;
   space->priv->name = NULL;
   space->priv->screen = screen;
@@ -256,7 +256,7 @@ _vnck_workspace_update_name (WnckWorkspace *space,
 {
   char *old;
 
-  g_return_if_fail (WNCK_IS_WORKSPACE (space));
+  g_return_if_fail (VNCK_IS_WORKSPACE (space));
 
   old = space->priv->name;
   space->priv->name = g_strdup (name);
@@ -329,7 +329,7 @@ _vnck_workspace_set_viewport (WnckWorkspace *space,
 int
 vnck_workspace_get_width (WnckWorkspace *space)
 {
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (space), 0);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (space), 0);
 
   return space->priv->width;
 }
@@ -347,7 +347,7 @@ vnck_workspace_get_width (WnckWorkspace *space)
 int
 vnck_workspace_get_height (WnckWorkspace *space)
 {
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (space), 0);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (space), 0);
 
   return space->priv->height;
 }
@@ -366,7 +366,7 @@ vnck_workspace_get_height (WnckWorkspace *space)
 int
 vnck_workspace_get_viewport_x (WnckWorkspace *space)
 {
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (space), 0);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (space), 0);
 
   return space->priv->viewport_x;
 }
@@ -385,7 +385,7 @@ vnck_workspace_get_viewport_x (WnckWorkspace *space)
 int
 vnck_workspace_get_viewport_y (WnckWorkspace *space)
 {
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (space), 0);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (space), 0);
 
   return space->priv->viewport_y;
 }
@@ -403,7 +403,7 @@ vnck_workspace_get_viewport_y (WnckWorkspace *space)
 gboolean
 vnck_workspace_is_virtual (WnckWorkspace *space)
 {
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (space), FALSE);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (space), FALSE);
 
   return space->priv->is_virtual;
 }
@@ -430,18 +430,18 @@ vnck_workspace_get_layout_row (WnckWorkspace *space)
   int n_cols;
   int row;
 
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (space), -1);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (space), -1);
 
   _vnck_screen_get_workspace_layout (space->priv->screen,
                                      &orientation, &n_rows, &n_cols, &corner);
 
-  if (orientation == WNCK_LAYOUT_ORIENTATION_HORIZONTAL)
+  if (orientation == VNCK_LAYOUT_ORIENTATION_HORIZONTAL)
     row = space->priv->number / n_cols;
   else
     row = space->priv->number % n_rows;
 
-  if (corner == WNCK_LAYOUT_CORNER_BOTTOMRIGHT ||
-      corner == WNCK_LAYOUT_CORNER_BOTTOMLEFT)
+  if (corner == VNCK_LAYOUT_CORNER_BOTTOMRIGHT ||
+      corner == VNCK_LAYOUT_CORNER_BOTTOMLEFT)
     row = n_rows - row;
 
   return row;
@@ -470,18 +470,18 @@ vnck_workspace_get_layout_column (WnckWorkspace *space)
   int n_cols;
   int col;
 
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (space), -1);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (space), -1);
 
   _vnck_screen_get_workspace_layout (space->priv->screen,
                                      &orientation, &n_rows, &n_cols, &corner);
 
-  if (orientation == WNCK_LAYOUT_ORIENTATION_HORIZONTAL)
+  if (orientation == VNCK_LAYOUT_ORIENTATION_HORIZONTAL)
     col = space->priv->number % n_cols;
   else
     col = space->priv->number / n_rows;
 
-  if (corner == WNCK_LAYOUT_CORNER_TOPRIGHT ||
-      corner == WNCK_LAYOUT_CORNER_BOTTOMRIGHT)
+  if (corner == VNCK_LAYOUT_CORNER_TOPRIGHT ||
+      corner == VNCK_LAYOUT_CORNER_BOTTOMRIGHT)
     col = n_cols - col;
 
   return col;
@@ -514,7 +514,7 @@ vnck_workspace_get_neighbor (WnckWorkspace       *space,
   int add;
   int index;
 
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (space), NULL);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (space), NULL);
 
   _vnck_screen_get_workspace_layout (space->priv->screen,
                                      &orientation, &n_rows, &n_cols, &corner);
@@ -526,65 +526,65 @@ vnck_workspace_get_neighbor (WnckWorkspace       *space,
 
   switch (direction)
     {
-    case WNCK_MOTION_LEFT:
+    case VNCK_MOTION_LEFT:
       if (col == 0)
         return NULL;
 
-      if (orientation == WNCK_LAYOUT_ORIENTATION_HORIZONTAL)
+      if (orientation == VNCK_LAYOUT_ORIENTATION_HORIZONTAL)
         add = 1;
       else
         add = n_rows;
 
-      if (corner == WNCK_LAYOUT_CORNER_TOPRIGHT ||
-          corner == WNCK_LAYOUT_CORNER_BOTTOMRIGHT)
+      if (corner == VNCK_LAYOUT_CORNER_TOPRIGHT ||
+          corner == VNCK_LAYOUT_CORNER_BOTTOMRIGHT)
         index += add;
       else
         index -= add;
       break;
 
-    case WNCK_MOTION_RIGHT:
+    case VNCK_MOTION_RIGHT:
       if (col == n_cols - 1)
         return NULL;
 
-      if (orientation == WNCK_LAYOUT_ORIENTATION_HORIZONTAL)
+      if (orientation == VNCK_LAYOUT_ORIENTATION_HORIZONTAL)
         add = 1;
       else
         add = n_rows;
 
-      if (corner == WNCK_LAYOUT_CORNER_TOPRIGHT ||
-          corner == WNCK_LAYOUT_CORNER_BOTTOMRIGHT)
+      if (corner == VNCK_LAYOUT_CORNER_TOPRIGHT ||
+          corner == VNCK_LAYOUT_CORNER_BOTTOMRIGHT)
         index -= add;
       else
         index += add;
       break;
 
-    case WNCK_MOTION_UP:
+    case VNCK_MOTION_UP:
       if (row == 0)
         return NULL;
 
-      if (orientation == WNCK_LAYOUT_ORIENTATION_HORIZONTAL)
+      if (orientation == VNCK_LAYOUT_ORIENTATION_HORIZONTAL)
         add = n_cols;
       else
         add = 1;
 
-      if (corner == WNCK_LAYOUT_CORNER_BOTTOMLEFT ||
-          corner == WNCK_LAYOUT_CORNER_BOTTOMRIGHT)
+      if (corner == VNCK_LAYOUT_CORNER_BOTTOMLEFT ||
+          corner == VNCK_LAYOUT_CORNER_BOTTOMRIGHT)
         index += add;
       else
         index -= add;
       break;
 
-    case WNCK_MOTION_DOWN:
+    case VNCK_MOTION_DOWN:
       if (row == n_rows - 1)
         return NULL;
 
-      if (orientation == WNCK_LAYOUT_ORIENTATION_HORIZONTAL)
+      if (orientation == VNCK_LAYOUT_ORIENTATION_HORIZONTAL)
         add = n_cols;
       else
         add = 1;
 
-      if (corner == WNCK_LAYOUT_CORNER_BOTTOMLEFT ||
-          corner == WNCK_LAYOUT_CORNER_BOTTOMRIGHT)
+      if (corner == VNCK_LAYOUT_CORNER_BOTTOMLEFT ||
+          corner == VNCK_LAYOUT_CORNER_BOTTOMRIGHT)
         index -= add;
       else
         index += add;

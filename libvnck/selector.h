@@ -19,22 +19,22 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
+#if !defined (__LIBVNCK_H_INSIDE__) && !defined (VNCK_COMPILATION)
 #error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
-#ifndef WNCK_SELECTOR_H
-#define WNCK_SELECTOR_H
+#ifndef VNCK_SELECTOR_H
+#define VNCK_SELECTOR_H
 
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
-#define WNCK_TYPE_SELECTOR              (vnck_selector_get_type ())
-#define WNCK_SELECTOR(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_SELECTOR, WnckSelector))
-#define WNCK_SELECTOR_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_SELECTOR, WnckSelectorClass))
-#define WNCK_IS_SELECTOR(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_SELECTOR))
-#define WNCK_IS_SELECTOR_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), WNCK_TYPE_SELECTOR))
-#define WNCK_SELECTOR_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), WNCK_TYPE_SELECTOR, WnckSelectorClass))
+#define VNCK_TYPE_SELECTOR              (vnck_selector_get_type ())
+#define VNCK_SELECTOR(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_SELECTOR, WnckSelector))
+#define VNCK_SELECTOR_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_SELECTOR, WnckSelectorClass))
+#define VNCK_IS_SELECTOR(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_SELECTOR))
+#define VNCK_IS_SELECTOR_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_SELECTOR))
+#define VNCK_SELECTOR_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_SELECTOR, WnckSelectorClass))
 typedef struct _WnckSelector WnckSelector;
 typedef struct _WnckSelectorClass WnckSelectorClass;
 typedef struct _WnckSelectorPrivate WnckSelectorPrivate;
@@ -67,4 +67,4 @@ GType      vnck_selector_get_type (void) G_GNUC_CONST;
 
 G_END_DECLS
 
-#endif /* WNCK_SELECTOR_H */
+#endif /* VNCK_SELECTOR_H */

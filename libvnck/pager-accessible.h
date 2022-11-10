@@ -16,8 +16,8 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __WNCK_PAGER_ACCESSIBLE_H__
-#define __WNCK_PAGER_ACCESSIBLE_H__
+#ifndef __VNCK_PAGER_ACCESSIBLE_H__
+#define __VNCK_PAGER_ACCESSIBLE_H__
 
 #include <gtk/gtk.h>
 #include <atk/atk.h>
@@ -26,12 +26,12 @@
 
 G_BEGIN_DECLS
 
-#define WNCK_PAGER_TYPE_ACCESSIBLE                     (vnck_pager_accessible_get_type ())
-#define WNCK_PAGER_ACCESSIBLE(obj)                     (G_TYPE_CHECK_INSTANCE_CAST ((obj), WNCK_PAGER_TYPE_ACCESSIBLE, WnckPagerAccessible))
-#define WNCK_PAGER_ACCESSIBLE_CLASS(klass)             (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_PAGER_TYPE_ACCESSIBLE, WnckPagerAccessibleClass))
-#define WNCK_PAGER_IS_ACCESSIBLE(obj)                  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), WNCK_PAGER_TYPE_ACCESSIBLE))
-#define WNCK_PAGER_IS_ACCESSIBLE_CLASS(klass)          (G_TYPE_CHECK_CLASS_TYPE ((klass), WnckPagerAccessible))
-#define WNCK_PAGER_ACCESSIBLE_GET_CLASS(obj)           (G_TYPE_INSTANCE_GET_CLASS ((obj), WNCK_PAGER_TYPE_ACCESSIBLE, WnckPagerAccessibleClass)) 
+#define VNCK_PAGER_TYPE_ACCESSIBLE                     (vnck_pager_accessible_get_type ())
+#define VNCK_PAGER_ACCESSIBLE(obj)                     (G_TYPE_CHECK_INSTANCE_CAST ((obj), VNCK_PAGER_TYPE_ACCESSIBLE, WnckPagerAccessible))
+#define VNCK_PAGER_ACCESSIBLE_CLASS(klass)             (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_PAGER_TYPE_ACCESSIBLE, WnckPagerAccessibleClass))
+#define VNCK_PAGER_IS_ACCESSIBLE(obj)                  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VNCK_PAGER_TYPE_ACCESSIBLE))
+#define VNCK_PAGER_IS_ACCESSIBLE_CLASS(klass)          (G_TYPE_CHECK_CLASS_TYPE ((klass), WnckPagerAccessible))
+#define VNCK_PAGER_ACCESSIBLE_GET_CLASS(obj)           (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_PAGER_TYPE_ACCESSIBLE, WnckPagerAccessibleClass)) 
 
 typedef struct _WnckPagerAccessible WnckPagerAccessible;
 typedef struct _WnckPagerAccessibleClass WnckPagerAccessibleClass;
@@ -52,4 +52,4 @@ AtkObject* vnck_pager_accessible_new (GtkWidget *widget);
 
 G_END_DECLS
 
-#endif /* __WNCK_PAGER_ACCESSIBLE_H__ */
+#endif /* __VNCK_PAGER_ACCESSIBLE_H__ */

@@ -78,12 +78,12 @@
  */
 
 
-#define WNCK_TYPE_TASK              (vnck_task_get_type ())
-#define WNCK_TASK(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_TASK, WnckTask))
-#define WNCK_TASK_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_TASK, WnckTaskClass))
-#define WNCK_IS_TASK(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_TASK))
-#define WNCK_IS_TASK_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), WNCK_TYPE_TASK))
-#define WNCK_TASK_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), WNCK_TYPE_TASK, WnckTaskClass))
+#define VNCK_TYPE_TASK              (vnck_task_get_type ())
+#define VNCK_TASK(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_TASK, WnckTask))
+#define VNCK_TASK_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_TASK, WnckTaskClass))
+#define VNCK_IS_TASK(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_TASK))
+#define VNCK_IS_TASK_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_TASK))
+#define VNCK_TASK_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_TASK, WnckTaskClass))
 
 typedef struct _WnckTask        WnckTask;
 typedef struct _WnckTaskClass   WnckTaskClass;
@@ -104,9 +104,9 @@ typedef struct _WnckTaskClass   WnckTaskClass;
 
 typedef enum
 {
-  WNCK_TASK_CLASS_GROUP,
-  WNCK_TASK_WINDOW,
-  WNCK_TASK_STARTUP_SEQUENCE
+  VNCK_TASK_CLASS_GROUP,
+  VNCK_TASK_WINDOW,
+  VNCK_TASK_STARTUP_SEQUENCE
 } WnckTaskType;
 
 struct _WnckTask
@@ -366,7 +366,7 @@ static GSList *tasklist_instances;
 static void
 vnck_task_init (WnckTask *task)
 {
-  task->type = WNCK_TASK_WINDOW;
+  task->type = VNCK_TASK_WINDOW;
   task->resize_idle_id = 0;
 }
 
@@ -469,7 +469,7 @@ vnck_task_finalize (GObject *object)
 {
   WnckTask *task;
 
-  task = WNCK_TASK (object);
+  task = VNCK_TASK (object);
 
   if (task->tasklist->priv->active_task == task)
     vnck_tasklist_change_active_task (task->tasklist, NULL);
@@ -590,7 +590,7 @@ vnck_tasklist_init (WnckTasklist *tasklist)
   tasklist->priv->class_group_hash = g_hash_table_new (NULL, NULL);
   tasklist->priv->win_hash = g_hash_table_new (NULL, NULL);
 
-  tasklist->priv->grouping = WNCK_TASKLIST_AUTO_GROUP;
+  tasklist->priv->grouping = VNCK_TASKLIST_AUTO_GROUP;
   tasklist->priv->grouping_limit = DEFAULT_GROUPING_LIMIT;
 
   tasklist->priv->monitor = NULL;
@@ -755,7 +755,7 @@ vnck_tasklist_finalize (GObject *object)
 {
   WnckTasklist *tasklist;
 
-  tasklist = WNCK_TASKLIST (object);
+  tasklist = VNCK_TASKLIST (object);
 
   /* Tasks should have gone away due to removing their
    * buttons in container destruction
@@ -813,7 +813,7 @@ void
 vnck_tasklist_set_grouping (WnckTasklist            *tasklist,
 			    WnckTasklistGroupingType grouping)
 {
-  g_return_if_fail (WNCK_IS_TASKLIST (tasklist));
+  g_return_if_fail (VNCK_IS_TASKLIST (tasklist));
 
   if (tasklist->priv->grouping == grouping)
     return;
@@ -846,7 +846,7 @@ vnck_tasklist_set_button_relief (WnckTasklist *tasklist, GtkReliefStyle relief)
 {
   GList *walk;
 
-  g_return_if_fail (WNCK_IS_TASKLIST (tasklist));
+  g_return_if_fail (VNCK_IS_TASKLIST (tasklist));
 
   if (relief == tasklist->priv->relief)
     return;
@@ -857,7 +857,7 @@ vnck_tasklist_set_button_relief (WnckTasklist *tasklist, GtkReliefStyle relief)
                         (GHFunc) vnck_tasklist_set_relief_callback,
                         tasklist);
   for (walk = tasklist->priv->class_groups; walk; walk = g_list_next (walk))
-    gtk_button_set_relief (GTK_BUTTON (WNCK_TASK (walk->data)->button), relief);
+    gtk_button_set_relief (GTK_BUTTON (VNCK_TASK (walk->data)->button), relief);
 }
 
 /**
@@ -875,7 +875,7 @@ void
 vnck_tasklist_set_middle_click_close (WnckTasklist  *tasklist,
 				      gboolean       middle_click_close)
 {
-  g_return_if_fail (WNCK_IS_TASKLIST (tasklist));
+  g_return_if_fail (VNCK_IS_TASKLIST (tasklist));
 
   tasklist->priv->middle_click_close = middle_click_close;
 }
@@ -893,7 +893,7 @@ vnck_tasklist_set_middle_click_close (WnckTasklist  *tasklist,
 void vnck_tasklist_set_orientation (WnckTasklist *tasklist,
 				    GtkOrientation orient)
 {
-  g_return_if_fail (WNCK_IS_TASKLIST (tasklist));
+  g_return_if_fail (VNCK_IS_TASKLIST (tasklist));
 
   tasklist->priv->orientation = orient;
 }
@@ -912,7 +912,7 @@ void
 vnck_tasklist_set_scroll_enabled (WnckTasklist *tasklist,
                                   gboolean      scroll_enabled)
 {
-  g_return_if_fail (WNCK_IS_TASKLIST (tasklist));
+  g_return_if_fail (VNCK_IS_TASKLIST (tasklist));
 
   tasklist->priv->scroll_enabled = scroll_enabled;
 }
@@ -928,7 +928,7 @@ vnck_tasklist_set_scroll_enabled (WnckTasklist *tasklist,
 gboolean
 vnck_tasklist_get_scroll_enabled (WnckTasklist *tasklist)
 {
-  g_return_val_if_fail (WNCK_IS_TASKLIST (tasklist), TRUE);
+  g_return_val_if_fail (VNCK_IS_TASKLIST (tasklist), TRUE);
 
   return tasklist->priv->scroll_enabled;
 }
@@ -948,7 +948,7 @@ void
 vnck_tasklist_set_switch_workspace_on_unminimize (WnckTasklist  *tasklist,
 						  gboolean       switch_workspace_on_unminimize)
 {
-  g_return_if_fail (WNCK_IS_TASKLIST (tasklist));
+  g_return_if_fail (VNCK_IS_TASKLIST (tasklist));
 
   tasklist->priv->switch_workspace_on_unminimize = switch_workspace_on_unminimize;
 }
@@ -975,7 +975,7 @@ void
 vnck_tasklist_set_include_all_workspaces (WnckTasklist *tasklist,
 					  gboolean      include_all_workspaces)
 {
-  g_return_if_fail (WNCK_IS_TASKLIST (tasklist));
+  g_return_if_fail (VNCK_IS_TASKLIST (tasklist));
 
   include_all_workspaces = (include_all_workspaces != 0);
 
@@ -995,13 +995,13 @@ vnck_tasklist_set_include_all_workspaces (WnckTasklist *tasklist,
  * Sets the maximum size of buttons in @tasklist before @tasklist tries to
  * group #WnckWindow in the same #WnckApplication in only one button. This
  * limit is valid only when the grouping policy of @tasklist is
- * %WNCK_TASKLIST_AUTO_GROUP.
+ * %VNCK_TASKLIST_AUTO_GROUP.
  */
 void
 vnck_tasklist_set_grouping_limit (WnckTasklist *tasklist,
 				  gint          limit)
 {
-  g_return_if_fail (WNCK_IS_TASKLIST (tasklist));
+  g_return_if_fail (VNCK_IS_TASKLIST (tasklist));
 
   if (tasklist->priv->grouping_limit == limit)
     return;
@@ -1027,7 +1027,7 @@ vnck_tasklist_set_icon_loader (WnckTasklist         *tasklist,
                                void                 *data,
                                GDestroyNotify        free_data_func)
 {
-  g_return_if_fail (WNCK_IS_TASKLIST (tasklist));
+  g_return_if_fail (VNCK_IS_TASKLIST (tasklist));
 
   if (tasklist->priv->free_icon_loader_data != NULL)
     (* tasklist->priv->free_icon_loader_data) (tasklist->priv->icon_loader_data);
@@ -1114,7 +1114,7 @@ vnck_tasklist_score_groups (WnckTasklist *tasklist,
   l = ungrouped_class_groups;
   while (l != NULL)
     {
-      class_group_task = WNCK_TASK (l->data);
+      class_group_task = VNCK_TASK (l->data);
 
       n_windows = g_list_length (class_group_task->windows);
 
@@ -1122,7 +1122,7 @@ vnck_tasklist_score_groups (WnckTasklist *tasklist,
       w = class_group_task->windows;
       while (w != NULL)
 	{
-	  win_task = WNCK_TASK (w->data);
+	  win_task = VNCK_TASK (w->data);
 
 	  if (first_name == NULL)
 	    {
@@ -1171,7 +1171,7 @@ vnck_task_get_highest_scored (GList     *ungrouped_class_groups,
   l = ungrouped_class_groups;
   while (l != NULL)
     {
-      class_group_task = WNCK_TASK (l->data);
+      class_group_task = VNCK_TASK (l->data);
 
       if (class_group_task->grouping_score >= max_score)
 	{
@@ -1241,14 +1241,14 @@ vnck_tasklist_size_request  (GtkWidget      *widget,
   int lowest_range;
   int grouping_limit;
 
-  tasklist = WNCK_TASKLIST (widget);
+  tasklist = VNCK_TASKLIST (widget);
 
   /* Calculate max needed height and width of the buttons */
 #define GET_MAX_WIDTH_HEIGHT_FROM_BUTTONS(list)                 \
   l = list;                                                     \
   while (l != NULL)                                             \
     {                                                           \
-      WnckTask *task = WNCK_TASK (l->data);                     \
+      WnckTask *task = VNCK_TASK (l->data);                     \
                                                                 \
       gtk_widget_get_preferred_size (task->button,              \
                                      &child_req, NULL);         \
@@ -1302,7 +1302,7 @@ vnck_tasklist_size_request  (GtkWidget      *widget,
 
   last_n_cols = G_MAXINT;
   lowest_range = G_MAXINT;
-  if (tasklist->priv->grouping != WNCK_TASKLIST_ALWAYS_GROUP)
+  if (tasklist->priv->grouping != VNCK_TASKLIST_ALWAYS_GROUP)
     {
       if (tasklist->priv->orientation == GTK_ORIENTATION_HORIZONTAL)
         {
@@ -1327,7 +1327,7 @@ vnck_tasklist_size_request  (GtkWidget      *widget,
     }
 
   while (ungrouped_class_groups != NULL &&
-	 tasklist->priv->grouping != WNCK_TASKLIST_NEVER_GROUP)
+	 tasklist->priv->grouping != VNCK_TASKLIST_NEVER_GROUP)
     {
       if (!score_set)
         {
@@ -1349,7 +1349,7 @@ vnck_tasklist_size_request  (GtkWidget      *widget,
       if (tasklist->priv->orientation == GTK_ORIENTATION_HORIZONTAL)
         {
           if (n_cols != last_n_cols &&
-              (tasklist->priv->grouping == WNCK_TASKLIST_AUTO_GROUP ||
+              (tasklist->priv->grouping == VNCK_TASKLIST_AUTO_GROUP ||
                ungrouped_class_groups == NULL))
             {
               val = n_cols * tasklist->priv->max_button_width;
@@ -1375,7 +1375,7 @@ vnck_tasklist_size_request  (GtkWidget      *widget,
       else
         {
           if (n_rows != last_n_cols &&
-              (tasklist->priv->grouping == WNCK_TASKLIST_AUTO_GROUP ||
+              (tasklist->priv->grouping == VNCK_TASKLIST_AUTO_GROUP ||
                ungrouped_class_groups == NULL))
             {
               val = n_rows * tasklist->priv->max_button_height;
@@ -1476,7 +1476,7 @@ const int *
 vnck_tasklist_get_size_hint_list (WnckTasklist  *tasklist,
 				  int           *n_elements)
 {
-  g_return_val_if_fail (WNCK_IS_TASKLIST (tasklist), NULL);
+  g_return_val_if_fail (VNCK_IS_TASKLIST (tasklist), NULL);
   g_return_val_if_fail (n_elements != NULL, NULL);
 
   *n_elements = tasklist->priv->size_hints_len;
@@ -1486,7 +1486,7 @@ vnck_tasklist_get_size_hint_list (WnckTasklist  *tasklist,
 static gboolean
 task_button_queue_resize (gpointer user_data)
 {
-  WnckTask *task = WNCK_TASK (user_data);
+  WnckTask *task = VNCK_TASK (user_data);
 
   gtk_widget_queue_resize (task->button);
   task->resize_idle_id = 0;
@@ -1499,7 +1499,7 @@ vnck_task_size_allocated (GtkWidget     *widget,
                           GtkAllocation *allocation,
                           gpointer       data)
 {
-  WnckTask        *task = WNCK_TASK (data);
+  WnckTask        *task = VNCK_TASK (data);
   GtkStyleContext *context;
   GtkStateFlags    state;
   GtkBorder        padding;
@@ -1566,7 +1566,7 @@ vnck_tasklist_size_allocate (GtkWidget      *widget,
       return;
     }
 
-  tasklist = WNCK_TASKLIST (widget);
+  tasklist = VNCK_TASKLIST (widget);
 
   n_windows = g_list_length (tasklist->priv->windows);
   n_startup_sequences = g_list_length (tasklist->priv->startup_sequences);
@@ -1585,8 +1585,8 @@ vnck_tasklist_size_allocate (GtkWidget      *widget,
 				       tasklist->priv->orientation,
 				       &n_cols, &n_rows);
   while (ungrouped_class_groups != NULL &&
-	 ((tasklist->priv->grouping == WNCK_TASKLIST_ALWAYS_GROUP) ||
-	  ((tasklist->priv->grouping == WNCK_TASKLIST_AUTO_GROUP) &&
+	 ((tasklist->priv->grouping == VNCK_TASKLIST_ALWAYS_GROUP) ||
+	  ((tasklist->priv->grouping == VNCK_TASKLIST_AUTO_GROUP) &&
 	   (button_width < grouping_limit))))
     {
       if (!score_set)
@@ -1611,7 +1611,7 @@ vnck_tasklist_size_allocate (GtkWidget      *widget,
 	  l = class_group_task->windows;
 	  while (l != NULL)
 	    {
-	      win_task = WNCK_TASK (l->data);
+	      win_task = VNCK_TASK (l->data);
 
 	      gtk_widget_set_child_visible (GTK_WIDGET (win_task->button), FALSE);
 
@@ -1636,7 +1636,7 @@ vnck_tasklist_size_allocate (GtkWidget      *widget,
   l = ungrouped_class_groups;
   while (l != NULL)
     {
-      class_group_task = WNCK_TASK (l->data);
+      class_group_task = VNCK_TASK (l->data);
 
       visible_tasks = g_list_concat (visible_tasks, g_list_copy (class_group_task->windows));
       gtk_widget_set_child_visible (GTK_WIDGET (class_group_task->button), FALSE);
@@ -1651,7 +1651,7 @@ vnck_tasklist_size_allocate (GtkWidget      *widget,
     {
       WnckTask *task;
 
-      task = WNCK_TASK (l->data);
+      task = VNCK_TASK (l->data);
       visible_tasks = g_list_append (visible_tasks, task);
 
       l = l->next;
@@ -1674,7 +1674,7 @@ vnck_tasklist_size_allocate (GtkWidget      *widget,
   total_width = allocation->width;
   while (l != NULL)
     {
-      WnckTask *task = WNCK_TASK (l->data);
+      WnckTask *task = VNCK_TASK (l->data);
       int row = i % n_rows;
       int col = i / n_rows;
 
@@ -1691,7 +1691,7 @@ vnck_tasklist_size_allocate (GtkWidget      *widget,
       gtk_widget_size_allocate (task->button, &child_allocation);
       gtk_widget_set_child_visible (GTK_WIDGET (task->button), TRUE);
 
-      if (task->type != WNCK_TASK_STARTUP_SEQUENCE)
+      if (task->type != VNCK_TASK_STARTUP_SEQUENCE)
         {
           GList *ll;
 
@@ -1705,8 +1705,8 @@ vnck_tasklist_size_allocate (GtkWidget      *widget,
           task->col = col;
           for (ll = task->windows; ll; ll = ll->next)
             {
-              WNCK_TASK (ll->data)->row = row;
-              WNCK_TASK (ll->data)->col = col;
+              VNCK_TASK (ll->data)->row = row;
+              VNCK_TASK (ll->data)->col = col;
             }
         }
       i++;
@@ -1738,7 +1738,7 @@ vnck_tasklist_realize (GtkWidget *widget)
   WnckTasklist *tasklist;
   GdkScreen *gdkscreen;
 
-  tasklist = WNCK_TASKLIST (widget);
+  tasklist = VNCK_TASKLIST (widget);
 
   gdkscreen = gtk_widget_get_screen (widget);
   tasklist->priv->screen = vnck_screen_get (gdk_x11_screen_get_screen_number (gdkscreen));
@@ -1768,7 +1768,7 @@ vnck_tasklist_unrealize (GtkWidget *widget)
 {
   WnckTasklist *tasklist;
 
-  tasklist = WNCK_TASKLIST (widget);
+  tasklist = VNCK_TASKLIST (widget);
 
   vnck_tasklist_disconnect_screen (tasklist);
   tasklist->priv->screen = NULL;
@@ -1793,12 +1793,12 @@ vnck_tasklist_forall (GtkContainer *container,
   WnckTasklist *tasklist;
   GList *tmp;
 
-  tasklist = WNCK_TASKLIST (container);
+  tasklist = VNCK_TASKLIST (container);
 
   tmp = tasklist->priv->windows;
   while (tmp != NULL)
     {
-      WnckTask *task = WNCK_TASK (tmp->data);
+      WnckTask *task = VNCK_TASK (tmp->data);
       tmp = tmp->next;
 
       (* callback) (task->button, callback_data);
@@ -1807,7 +1807,7 @@ vnck_tasklist_forall (GtkContainer *container,
   tmp = tasklist->priv->class_groups;
   while (tmp != NULL)
     {
-      WnckTask *task = WNCK_TASK (tmp->data);
+      WnckTask *task = VNCK_TASK (tmp->data);
       tmp = tmp->next;
 
       (* callback) (task->button, callback_data);
@@ -1816,7 +1816,7 @@ vnck_tasklist_forall (GtkContainer *container,
   tmp = tasklist->priv->startup_sequences;
   while (tmp != NULL)
     {
-      WnckTask *task = WNCK_TASK (tmp->data);
+      WnckTask *task = VNCK_TASK (tmp->data);
       tmp = tmp->next;
 
       (* callback) (task->button, callback_data);
@@ -1830,16 +1830,16 @@ vnck_tasklist_remove (GtkContainer   *container,
   WnckTasklist *tasklist;
   GList *tmp;
 
-  g_return_if_fail (WNCK_IS_TASKLIST (container));
+  g_return_if_fail (VNCK_IS_TASKLIST (container));
   g_return_if_fail (widget != NULL);
 
-  tasklist = WNCK_TASKLIST (container);
+  tasklist = VNCK_TASKLIST (container);
 
   /* it's safer to handle windows_without_class_group before windows */
   tmp = tasklist->priv->windows_without_class_group;
   while (tmp != NULL)
     {
-      WnckTask *task = WNCK_TASK (tmp->data);
+      WnckTask *task = VNCK_TASK (tmp->data);
       tmp = tmp->next;
 
       if (task->button == widget)
@@ -1855,7 +1855,7 @@ vnck_tasklist_remove (GtkContainer   *container,
   tmp = tasklist->priv->windows;
   while (tmp != NULL)
     {
-      WnckTask *task = WNCK_TASK (tmp->data);
+      WnckTask *task = VNCK_TASK (tmp->data);
       tmp = tmp->next;
 
       if (task->button == widget)
@@ -1875,7 +1875,7 @@ vnck_tasklist_remove (GtkContainer   *container,
   tmp = tasklist->priv->class_groups;
   while (tmp != NULL)
     {
-      WnckTask *task = WNCK_TASK (tmp->data);
+      WnckTask *task = VNCK_TASK (tmp->data);
       tmp = tmp->next;
 
       if (task->button == widget)
@@ -1895,7 +1895,7 @@ vnck_tasklist_remove (GtkContainer   *container,
   tmp = tasklist->priv->startup_sequences;
   while (tmp != NULL)
     {
-      WnckTask *task = WNCK_TASK (tmp->data);
+      WnckTask *task = VNCK_TASK (tmp->data);
       tmp = tmp->next;
 
       if (task->button == widget)
@@ -2003,7 +2003,7 @@ vnck_tasklist_scroll_event (GtkWidget      *widget,
   gint row = 0;
   gint col = 0;
 
-  tasklist = WNCK_TASKLIST (widget);
+  tasklist = VNCK_TASKLIST (widget);
 
   if (!tasklist->priv->scroll_enabled)
     return FALSE;
@@ -2012,8 +2012,8 @@ vnck_tasklist_scroll_event (GtkWidget      *widget,
                         tasklist->priv->active_task);
   if (window)
     {
-      row = WNCK_TASK (window->data)->row;
-      col = WNCK_TASK (window->data)->col;
+      row = VNCK_TASK (window->data)->row;
+      col = VNCK_TASK (window->data)->col;
     }
   else
     if (tasklist->priv->activate_timeout_id)
@@ -2065,14 +2065,14 @@ vnck_tasklist_scroll_event (GtkWidget      *widget,
             /* Search the first window on the previous colomn at same row */
             if (ltr)
               {
-                while (window && (WNCK_TASK(window->data)->row != row ||
-                                  WNCK_TASK(window->data)->col != col-1))
+                while (window && (VNCK_TASK(window->data)->row != row ||
+                                  VNCK_TASK(window->data)->col != col-1))
                   window = window->prev;
               }
             else
               {
-                while (window && (WNCK_TASK(window->data)->row != row ||
-                                  WNCK_TASK(window->data)->col != col-1))
+                while (window && (VNCK_TASK(window->data)->row != row ||
+                                  VNCK_TASK(window->data)->col != col-1))
                   window = window->next;
               }
             /* If no window found, select the top/bottom left one */
@@ -2089,14 +2089,14 @@ vnck_tasklist_scroll_event (GtkWidget      *widget,
             /* Search the first window on the next colomn at same row */
             if (ltr)
               {
-                while (window && (WNCK_TASK(window->data)->row != row ||
-                                  WNCK_TASK(window->data)->col != col+1))
+                while (window && (VNCK_TASK(window->data)->row != row ||
+                                  VNCK_TASK(window->data)->col != col+1))
                   window = window->next;
               }
             else
               {
-                while (window && (WNCK_TASK(window->data)->row != row ||
-                                  WNCK_TASK(window->data)->col != col+1))
+                while (window && (VNCK_TASK(window->data)->row != row ||
+                                  VNCK_TASK(window->data)->col != col+1))
                   window = window->prev;
               }
             /* If no window found, select the top/bottom right one */
@@ -2135,7 +2135,7 @@ vnck_tasklist_new (void)
 {
   WnckTasklist *tasklist;
 
-  tasklist = g_object_new (WNCK_TYPE_TASKLIST, NULL);
+  tasklist = g_object_new (VNCK_TYPE_TASKLIST, NULL);
 
   return GTK_WIDGET (tasklist);
 }
@@ -2153,7 +2153,7 @@ vnck_tasklist_free_tasks (WnckTasklist *tasklist)
       l = tasklist->priv->windows;
       while (l != NULL)
 	{
-	  WnckTask *task = WNCK_TASK (l->data);
+	  WnckTask *task = VNCK_TASK (l->data);
 	  l = l->next;
           /* if we just unref the task it means we lose our ref to the
            * task before we unparent the button, which breaks stuff.
@@ -2170,7 +2170,7 @@ vnck_tasklist_free_tasks (WnckTasklist *tasklist)
       l = tasklist->priv->class_groups;
       while (l != NULL)
 	{
-	  WnckTask *task = WNCK_TASK (l->data);
+	  WnckTask *task = VNCK_TASK (l->data);
 	  l = l->next;
           /* if we just unref the task it means we lose our ref to the
            * task before we unparent the button, which breaks stuff.
@@ -2202,7 +2202,7 @@ tasklist_include_window_impl (WnckTasklist *tasklist,
   int x, y, w, h;
 
   if (!check_for_skipped_list &&
-      vnck_window_get_state (win) & WNCK_WINDOW_STATE_SKIP_TASKLIST)
+      vnck_window_get_state (win) & VNCK_WINDOW_STATE_SKIP_TASKLIST)
     return FALSE;
 
   if (tasklist->priv->monitor != NULL)
@@ -2312,7 +2312,7 @@ vnck_tasklist_update_lists (WnckTasklist *tasklist)
   l = windows = vnck_screen_get_windows (tasklist->priv->screen);
   while (l != NULL)
     {
-      win = WNCK_WINDOW (l->data);
+      win = VNCK_WINDOW (l->data);
 
       if (vnck_tasklist_include_window (tasklist, win))
 	{
@@ -2381,7 +2381,7 @@ vnck_tasklist_update_lists (WnckTasklist *tasklist)
   l = tasklist->priv->class_groups;
   while (l)
     {
-      class_group_task = WNCK_TASK (l->data);
+      class_group_task = VNCK_TASK (l->data);
 
       class_group_task->windows = g_list_sort (class_group_task->windows, vnck_task_compare);
 
@@ -2407,7 +2407,7 @@ vnck_tasklist_change_active_task (WnckTasklist *tasklist, WnckTask *active_task)
     return;
 
   g_assert (active_task == NULL ||
-            active_task->type != WNCK_TASK_STARTUP_SEQUENCE);
+            active_task->type != VNCK_TASK_STARTUP_SEQUENCE);
 
   if (tasklist->priv->active_task)
     {
@@ -2464,7 +2464,7 @@ vnck_tasklist_update_icon_geometries (WnckTasklist *tasklist,
 	GList *l1;
 
 	for (l1 = visible_tasks; l1; l1 = l1->next) {
-		WnckTask *task = WNCK_TASK (l1->data);
+		WnckTask *task = VNCK_TASK (l1->data);
                 GtkAllocation allocation;
 
 		if (!gtk_widget_get_realized (task->button))
@@ -2492,7 +2492,7 @@ vnck_tasklist_update_icon_geometries (WnckTasklist *tasklist,
 			GList *l2;
 
 			for (l2 = task->windows; l2; l2 = l2->next) {
-				WnckTask *win_task = WNCK_TASK (l2->data);
+				WnckTask *win_task = VNCK_TASK (l2->data);
 
 				g_assert (win_task->window);
 
@@ -2562,7 +2562,7 @@ vnck_tasklist_window_changed_workspace (WnckWindow   *window,
     {
       WnckTask *task = l->data;
 
-      if (task->type == WNCK_TASK_WINDOW &&
+      if (task->type == VNCK_TASK_WINDOW &&
           task->window == window)
         need_update = TRUE;
 
@@ -2579,7 +2579,7 @@ vnck_tasklist_window_changed_workspace (WnckWindow   *window,
 static gboolean
 do_vnck_tasklist_update_lists (gpointer data)
 {
-  WnckTasklist *tasklist = WNCK_TASKLIST (data);
+  WnckTasklist *tasklist = VNCK_TASKLIST (data);
 
   tasklist->priv->idle_callback_tag = 0;
 
@@ -2610,7 +2610,7 @@ vnck_tasklist_window_changed_geometry (WnckWindow   *window,
    */
   monitor_changed = FALSE;
   if (tasklist->priv->monitor != NULL &&
-      (vnck_window_get_state (window) & WNCK_WINDOW_STATE_SKIP_TASKLIST) &&
+      (vnck_window_get_state (window) & VNCK_WINDOW_STATE_SKIP_TASKLIST) &&
       tasklist_window != NULL)
     {
       /* Do the extra check only if there is a suspect of a monitor change (= this window is off monitor) */
@@ -2704,7 +2704,7 @@ vnck_tasklist_viewports_changed (WnckScreen   *screen,
 static gboolean
 vnck_tasklist_change_active_timeout (gpointer data)
 {
-  WnckTasklist *tasklist = WNCK_TASKLIST (data);
+  WnckTasklist *tasklist = VNCK_TASKLIST (data);
 
   tasklist->priv->activate_timeout_id = 0;
 
@@ -2717,7 +2717,7 @@ static void
 vnck_task_menu_activated (GtkMenuItem *menu_item,
 			  gpointer     data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
 
   /* This is an "activate" callback function so gtk_get_current_event_time()
    * will suffice.
@@ -2741,7 +2741,7 @@ vnck_tasklist_activate_next_in_class_group (WnckTask *task,
     {
       WnckTask *tmp;
 
-      tmp = WNCK_TASK (l->data);
+      tmp = VNCK_TASK (l->data);
 
       if (vnck_window_is_most_recently_activated (tmp->window))
         activate_next = TRUE;
@@ -2757,7 +2757,7 @@ vnck_tasklist_activate_next_in_class_group (WnckTask *task,
   /* no task in this group is active, or only the last one => activate
    * the first task */
   if (!activate_task && task->windows)
-    activate_task = WNCK_TASK (task->windows->data);
+    activate_task = VNCK_TASK (task->windows->data);
 
   if (activate_task)
     {
@@ -2785,7 +2785,7 @@ vnck_tasklist_activate_task_window (WnckTask *task,
   active_ws = vnck_screen_get_active_workspace (tasklist->priv->screen);
   window_ws = vnck_window_get_workspace (task->window);
 
-  if (state & WNCK_WINDOW_STATE_MINIMIZED)
+  if (state & VNCK_WINDOW_STATE_MINIMIZED)
     {
       if (window_ws &&
           active_ws != window_ws &&
@@ -2831,13 +2831,13 @@ static void
 vnck_task_close_all (GtkMenuItem *menu_item,
  		     gpointer     data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
   GList *l;
 
   l = task->windows;
   while (l)
     {
-      WnckTask *child = WNCK_TASK (l->data);
+      WnckTask *child = VNCK_TASK (l->data);
       vnck_window_close (child->window, gtk_get_current_event_time ());
       l = l->next;
     }
@@ -2847,13 +2847,13 @@ static void
 vnck_task_unminimize_all (GtkMenuItem *menu_item,
 		          gpointer     data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
   GList *l;
 
   l = task->windows;
   while (l)
     {
-      WnckTask *child = WNCK_TASK (l->data);
+      WnckTask *child = VNCK_TASK (l->data);
       /* This is inside an activate callback, so gtk_get_current_event_time()
        * will work.
        */
@@ -2866,13 +2866,13 @@ static void
 vnck_task_minimize_all (GtkMenuItem *menu_item,
   		        gpointer     data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
   GList *l;
 
   l = task->windows;
   while (l)
     {
-      WnckTask *child = WNCK_TASK (l->data);
+      WnckTask *child = VNCK_TASK (l->data);
       vnck_window_minimize (child->window);
       l = l->next;
     }
@@ -2882,13 +2882,13 @@ static void
 vnck_task_unmaximize_all (GtkMenuItem *menu_item,
   		        gpointer     data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
   GList *l;
 
   l = task->windows;
   while (l)
     {
-      WnckTask *child = WNCK_TASK (l->data);
+      WnckTask *child = VNCK_TASK (l->data);
       vnck_window_unmaximize (child->window);
       l = l->next;
     }
@@ -2898,13 +2898,13 @@ static void
 vnck_task_maximize_all (GtkMenuItem *menu_item,
   		        gpointer     data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
   GList *l;
 
   l = task->windows;
   while (l)
     {
-      WnckTask *child = WNCK_TASK (l->data);
+      WnckTask *child = VNCK_TASK (l->data);
       vnck_window_maximize (child->window);
       l = l->next;
     }
@@ -2921,7 +2921,7 @@ vnck_task_popup_menu (WnckTask *task,
   GtkWidget *menu_item;
   GList *l, *list;
 
-  g_return_if_fail (task->type == WNCK_TASK_CLASS_GROUP);
+  g_return_if_fail (task->type == VNCK_TASK_CLASS_GROUP);
 
   if (task->class_group == NULL)
     return;
@@ -2948,7 +2948,7 @@ vnck_task_popup_menu (WnckTask *task,
   l = task->windows;
   while (l)
     {
-      win_task = WNCK_TASK (l->data);
+      win_task = VNCK_TASK (l->data);
 
       text = vnck_task_get_text (win_task, TRUE, TRUE);
       menu_item = vnck_image_menu_item_new_with_label (text);
@@ -2966,7 +2966,7 @@ vnck_task_popup_menu (WnckTask *task,
         {
           WnckImageMenuItem *item;
 
-          item = WNCK_IMAGE_MENU_ITEM (menu_item);
+          item = VNCK_IMAGE_MENU_ITEM (menu_item);
 
           vnck_image_menu_item_set_image_from_icon_pixbuf (item, pixbuf);
           g_object_unref (pixbuf);
@@ -3090,10 +3090,10 @@ vnck_task_button_toggled (GtkButton *button,
 
   switch (task->type)
     {
-    case WNCK_TASK_CLASS_GROUP:
+    case VNCK_TASK_CLASS_GROUP:
       vnck_task_popup_menu (task, FALSE);
       break;
-    case WNCK_TASK_WINDOW:
+    case VNCK_TASK_WINDOW:
       if (task->window == NULL)
 	return;
 
@@ -3102,7 +3102,7 @@ vnck_task_button_toggled (GtkButton *button,
        */
       vnck_tasklist_activate_task_window (task, gtk_get_current_event_time ());
       break;
-    case WNCK_TASK_STARTUP_SEQUENCE:
+    case VNCK_TASK_STARTUP_SEQUENCE:
       break;
     default:
       break;
@@ -3118,7 +3118,7 @@ vnck_task_get_text (WnckTask *task,
 
   switch (task->type)
     {
-    case WNCK_TASK_CLASS_GROUP:
+    case VNCK_TASK_CLASS_GROUP:
       name = vnck_class_group_get_name (task->class_group);
       if (name[0] != 0)
 	return g_strdup_printf ("%s (%d)",
@@ -3128,12 +3128,12 @@ vnck_task_get_text (WnckTask *task,
 	return g_strdup_printf ("(%d)",
 				g_list_length (task->windows));
 
-    case WNCK_TASK_WINDOW:
+    case VNCK_TASK_WINDOW:
       return _vnck_window_get_name_for_display (task->window,
                                                 icon_text, include_state);
       break;
 
-    case WNCK_TASK_STARTUP_SEQUENCE:
+    case VNCK_TASK_STARTUP_SEQUENCE:
 #ifdef HAVE_STARTUP_NOTIFICATION
       name = sn_startup_sequence_get_description (task->startup_sequence);
       if (name == NULL)
@@ -3250,19 +3250,19 @@ vnck_task_get_icon (WnckTask *task)
 
   switch (task->type)
     {
-    case WNCK_TASK_CLASS_GROUP:
+    case VNCK_TASK_CLASS_GROUP:
       pixbuf = vnck_task_scale_icon (vnck_class_group_get_mini_icon (task->class_group),
 				     FALSE);
       break;
 
-    case WNCK_TASK_WINDOW:
+    case VNCK_TASK_WINDOW:
       state = vnck_window_get_state (task->window);
 
       pixbuf =  vnck_task_scale_icon (vnck_window_get_mini_icon (task->window),
-				      state & WNCK_WINDOW_STATE_MINIMIZED);
+				      state & VNCK_WINDOW_STATE_MINIMIZED);
       break;
 
-    case WNCK_TASK_STARTUP_SEQUENCE:
+    case VNCK_TASK_STARTUP_SEQUENCE:
 #ifdef HAVE_STARTUP_NOTIFICATION
       if (task->tasklist->priv->icon_loader != NULL)
         {
@@ -3312,12 +3312,12 @@ vnck_task_get_needs_attention (WnckTask *task)
 
   switch (task->type)
     {
-    case WNCK_TASK_CLASS_GROUP:
+    case VNCK_TASK_CLASS_GROUP:
       task->start_needs_attention = 0;
       l = task->windows;
       while (l)
 	{
-	  win_task = WNCK_TASK (l->data);
+	  win_task = VNCK_TASK (l->data);
 
 	  if (vnck_window_or_transient_needs_attention (win_task->window))
 	    {
@@ -3330,13 +3330,13 @@ vnck_task_get_needs_attention (WnckTask *task)
 	}
       break;
 
-    case WNCK_TASK_WINDOW:
+    case VNCK_TASK_WINDOW:
       needs_attention =
 	vnck_window_or_transient_needs_attention (task->window);
       task->start_needs_attention = _vnck_window_or_transient_get_needs_attention_time (task->window);
       break;
 
-    case WNCK_TASK_STARTUP_SEQUENCE:
+    case VNCK_TASK_STARTUP_SEQUENCE:
     default:
       break;
     }
@@ -3388,17 +3388,17 @@ vnck_task_state_changed (WnckWindow     *window,
 			 WnckWindowState new_state,
 			 gpointer        data)
 {
-  WnckTasklist *tasklist = WNCK_TASKLIST (data);
+  WnckTasklist *tasklist = VNCK_TASKLIST (data);
 
-  if (changed_mask & WNCK_WINDOW_STATE_SKIP_TASKLIST)
+  if (changed_mask & VNCK_WINDOW_STATE_SKIP_TASKLIST)
     {
       vnck_tasklist_update_lists  (tasklist);
       gtk_widget_queue_resize (GTK_WIDGET (tasklist));
       return;
     }
 
-  if ((changed_mask & WNCK_WINDOW_STATE_DEMANDS_ATTENTION) ||
-      (changed_mask & WNCK_WINDOW_STATE_URGENT))
+  if ((changed_mask & VNCK_WINDOW_STATE_DEMANDS_ATTENTION) ||
+      (changed_mask & VNCK_WINDOW_STATE_URGENT))
     {
       WnckWorkspace *active_workspace =
         vnck_screen_get_active_workspace (tasklist->priv->screen);
@@ -3413,9 +3413,9 @@ vnck_task_state_changed (WnckWindow     *window,
         }
     }
 
-  if ((changed_mask & WNCK_WINDOW_STATE_MINIMIZED)         ||
-      (changed_mask & WNCK_WINDOW_STATE_DEMANDS_ATTENTION) ||
-      (changed_mask & WNCK_WINDOW_STATE_URGENT))
+  if ((changed_mask & VNCK_WINDOW_STATE_MINIMIZED)         ||
+      (changed_mask & VNCK_WINDOW_STATE_DEMANDS_ATTENTION) ||
+      (changed_mask & VNCK_WINDOW_STATE_URGENT))
     {
       WnckTask *win_task = NULL;
 
@@ -3444,7 +3444,7 @@ static void
 vnck_task_icon_changed (WnckWindow *window,
 			gpointer    data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
 
   if (task)
     vnck_task_update_visible_state (task);
@@ -3454,7 +3454,7 @@ static void
 vnck_task_name_changed (WnckWindow *window,
 			gpointer    data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
 
   if (task)
     vnck_task_update_visible_state (task);
@@ -3464,7 +3464,7 @@ static void
 vnck_task_class_name_changed (WnckClassGroup *class_group,
 			      gpointer        data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
 
   if (task)
     vnck_task_update_visible_state (task);
@@ -3474,7 +3474,7 @@ static void
 vnck_task_class_icon_changed (WnckClassGroup *class_group,
 			      gpointer        data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
 
   if (task)
     vnck_task_update_visible_state (task);
@@ -3484,7 +3484,7 @@ static gboolean
 vnck_task_motion_timeout (gpointer data)
 {
   WnckWorkspace *ws;
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
 
   task->button_activate = 0;
 
@@ -3536,9 +3536,9 @@ vnck_task_drag_motion (GtkWidget          *widget,
     {
       task->dnd_timestamp = time;
 
-      if (task->button_activate == 0 && task->type == WNCK_TASK_WINDOW)
+      if (task->button_activate == 0 && task->type == VNCK_TASK_WINDOW)
         {
-           task->button_activate = g_timeout_add_seconds (WNCK_ACTIVATE_TIMEOUT,
+           task->button_activate = g_timeout_add_seconds (VNCK_ACTIVATE_TIMEOUT,
                                                           vnck_task_motion_timeout,
                                                           task);
         }
@@ -3615,7 +3615,7 @@ vnck_task_drag_data_received (GtkWidget          *widget,
 
   for (l = windows; l; l = l->next)
     {
-       window = WNCK_WINDOW (l->data);
+       window = VNCK_WINDOW (l->data);
        if (vnck_window_get_xid (window) == *xid)
          {
             old_order = vnck_window_get_sort_order (window);
@@ -3650,7 +3650,7 @@ vnck_task_drag_data_received (GtkWidget          *widget,
     {
        for (l = windows; l; l = l->next)
          {
-            window = WNCK_WINDOW (l->data);
+            window = VNCK_WINDOW (l->data);
             order = vnck_window_get_sort_order (window);
             if (order >= new_order)
               vnck_window_set_sort_order (window, order + 1);
@@ -3676,11 +3676,11 @@ vnck_task_button_press_event (GtkWidget	      *widget,
 			      GdkEventButton  *event,
 			      gpointer         data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
 
   switch (task->type)
     {
-    case WNCK_TASK_CLASS_GROUP:
+    case VNCK_TASK_CLASS_GROUP:
       if (event->button == 2)
         vnck_tasklist_activate_next_in_class_group (task, event->time);
       else
@@ -3688,7 +3688,7 @@ vnck_task_button_press_event (GtkWidget	      *widget,
                               event->button == 3);
       return TRUE;
 
-    case WNCK_TASK_WINDOW:
+    case VNCK_TASK_WINDOW:
       if (event->button == 1)
         {
           /* is_most_recently_activated == is_active for click &
@@ -3742,7 +3742,7 @@ vnck_task_button_press_event (GtkWidget	      *widget,
         }
       break;
 
-    case WNCK_TASK_STARTUP_SEQUENCE:
+    case VNCK_TASK_STARTUP_SEQUENCE:
     default:
       break;
     }
@@ -3765,7 +3765,7 @@ vnck_task_extract_windows (WnckTask *task)
   /* Add any grouped windows available in the task */
   for (l = task->windows; l != NULL; l = l->next)
     {
-      WnckTask *t = WNCK_TASK (l->data);
+      WnckTask *t = VNCK_TASK (l->data);
       windows = g_list_prepend (windows, t->window);
     }
 
@@ -3777,7 +3777,7 @@ vnck_task_enter_notify_event (GtkWidget *widget,
                               GdkEvent  *event,
                               gpointer   data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
   GList *windows = vnck_task_extract_windows (task);
 
   g_signal_emit (G_OBJECT (task->tasklist),
@@ -3794,7 +3794,7 @@ vnck_task_leave_notify_event (GtkWidget *widget,
                               GdkEvent  *event,
                               gpointer   data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
   GList *windows = vnck_task_extract_windows (task);
 
   g_signal_emit (G_OBJECT (task->tasklist),
@@ -3811,7 +3811,7 @@ vnck_task_scroll_event (GtkWidget *widget,
 			GdkEvent  *event,
 			gpointer   data)
 {
-  WnckTask *task = WNCK_TASK (data);
+  WnckTask *task = VNCK_TASK (data);
 
   return vnck_tasklist_scroll_event (GTK_WIDGET (task->tasklist), (GdkEventScroll *) event);
 }
@@ -3831,7 +3831,7 @@ vnck_task_create_widgets (WnckTask *task, GtkReliefStyle relief)
     { (gchar *) "application/x-vnck-window-id", 0, 0 }
   };
 
-  if (task->type == WNCK_TASK_STARTUP_SEQUENCE)
+  if (task->type == VNCK_TASK_STARTUP_SEQUENCE)
     task->button = gtk_button_new ();
   else
     task->button = gtk_toggle_button_new ();
@@ -3845,7 +3845,7 @@ vnck_task_create_widgets (WnckTask *task, GtkReliefStyle relief)
   gtk_widget_set_name (task->button,
 		       "tasklist-button");
 
-  if (task->type == WNCK_TASK_WINDOW)
+  if (task->type == VNCK_TASK_WINDOW)
     {
       gtk_drag_source_set (GTK_WIDGET (task->button),
                            GDK_BUTTON1_MASK,
@@ -3936,7 +3936,7 @@ vnck_task_create_widgets (WnckTask *task, GtkReliefStyle relief)
                            G_OBJECT (task),
                            0);
 
-  if (task->type == WNCK_TASK_WINDOW)
+  if (task->type == VNCK_TASK_WINDOW)
     {
       g_signal_connect_object (G_OBJECT (task->button), "drag_data_received",
                                G_CALLBACK (vnck_task_drag_data_received),
@@ -3950,7 +3950,7 @@ vnck_task_create_widgets (WnckTask *task, GtkReliefStyle relief)
                            G_OBJECT (task),
                            0);
 
-  if (task->type == WNCK_TASK_WINDOW) {
+  if (task->type == VNCK_TASK_WINDOW) {
       g_signal_connect_object (G_OBJECT(task->button), "drag_data_get",
                                G_CALLBACK (vnck_task_drag_data_get),
                                G_OBJECT (task),
@@ -3969,14 +3969,14 @@ vnck_task_create_widgets (WnckTask *task, GtkReliefStyle relief)
 
   switch (task->type)
     {
-    case WNCK_TASK_CLASS_GROUP:
+    case VNCK_TASK_CLASS_GROUP:
       task->class_name_changed_tag = g_signal_connect (G_OBJECT (task->class_group), "name_changed",
 						       G_CALLBACK (vnck_task_class_name_changed), task);
       task->class_icon_changed_tag = g_signal_connect (G_OBJECT (task->class_group), "icon_changed",
 						       G_CALLBACK (vnck_task_class_icon_changed), task);
       break;
 
-    case WNCK_TASK_WINDOW:
+    case VNCK_TASK_WINDOW:
       task->state_changed_tag = g_signal_connect (G_OBJECT (task->window), "state_changed",
                                                   G_CALLBACK (vnck_task_state_changed), task->tasklist);
       task->icon_changed_tag = g_signal_connect (G_OBJECT (task->window), "icon_changed",
@@ -3985,7 +3985,7 @@ vnck_task_create_widgets (WnckTask *task, GtkReliefStyle relief)
 						 G_CALLBACK (vnck_task_name_changed), task);
       break;
 
-    case WNCK_TASK_STARTUP_SEQUENCE:
+    case VNCK_TASK_STARTUP_SEQUENCE:
       break;
 
     default:
@@ -4019,11 +4019,11 @@ vnck_task_draw (GtkWidget *widget,
   gint arrow_height;
   GdkRGBA color;
 
-  task = WNCK_TASK (data);
+  task = VNCK_TASK (data);
 
   switch (task->type)
     {
-    case WNCK_TASK_CLASS_GROUP:
+    case VNCK_TASK_CLASS_GROUP:
       context = gtk_widget_get_style_context (widget);
 
       state = gtk_style_context_get_state (context);
@@ -4068,8 +4068,8 @@ vnck_task_draw (GtkWidget *widget,
 
       break;
 
-    case WNCK_TASK_WINDOW:
-    case WNCK_TASK_STARTUP_SEQUENCE:
+    case VNCK_TASK_WINDOW:
+    case VNCK_TASK_STARTUP_SEQUENCE:
     default:
       break;
     }
@@ -4132,8 +4132,8 @@ vnck_task_compare_alphabetically (gconstpointer a,
   char *text2;
   gint  result;
 
-  text1 = vnck_task_get_text (WNCK_TASK (a), TRUE, FALSE);
-  text2 = vnck_task_get_text (WNCK_TASK (b), TRUE, FALSE);
+  text1 = vnck_task_get_text (VNCK_TASK (a), TRUE, FALSE);
+  text2 = vnck_task_get_text (VNCK_TASK (b), TRUE, FALSE);
 
   result= g_utf8_collate (text1, text2);
 
@@ -4158,24 +4158,24 @@ static gint
 vnck_task_compare (gconstpointer  a,
 		   gconstpointer  b)
 {
-  WnckTask *task1 = WNCK_TASK (a);
-  WnckTask *task2 = WNCK_TASK (b);
+  WnckTask *task1 = VNCK_TASK (a);
+  WnckTask *task2 = VNCK_TASK (b);
   gint pos1, pos2;
 
   pos1 = pos2 = 0;  /* silence the compiler */
 
   switch (task1->type)
     {
-    case WNCK_TASK_CLASS_GROUP:
-      if (task2->type == WNCK_TASK_CLASS_GROUP)
+    case VNCK_TASK_CLASS_GROUP:
+      if (task2->type == VNCK_TASK_CLASS_GROUP)
 	return compare_class_group_tasks (task1, task2);
       else
 	return -1; /* Sort groups before everything else */
 
-    case WNCK_TASK_WINDOW:
+    case VNCK_TASK_WINDOW:
       pos1 = vnck_window_get_sort_order (task1->window);
       break;
-    case WNCK_TASK_STARTUP_SEQUENCE:
+    case VNCK_TASK_STARTUP_SEQUENCE:
       pos1 = G_MAXINT; /* startup sequences are sorted at the end. */
       break;           /* Changing this will break scrolling.      */
 
@@ -4185,16 +4185,16 @@ vnck_task_compare (gconstpointer  a,
 
   switch (task2->type)
     {
-    case WNCK_TASK_CLASS_GROUP:
-      if (task1->type == WNCK_TASK_CLASS_GROUP)
+    case VNCK_TASK_CLASS_GROUP:
+      if (task1->type == VNCK_TASK_CLASS_GROUP)
 	return compare_class_group_tasks (task1, task2);
       else
 	return 1; /* Sort groups before everything else */
 
-    case WNCK_TASK_WINDOW:
+    case VNCK_TASK_WINDOW:
       pos2 = vnck_window_get_sort_order (task2->window);
       break;
-    case WNCK_TASK_STARTUP_SEQUENCE:
+    case VNCK_TASK_STARTUP_SEQUENCE:
       pos2 = G_MAXINT;
       break;
 
@@ -4230,7 +4230,7 @@ remove_startup_sequences_for_window (WnckTasklist *tasklist,
       GList *next = tmp->next;
       const char *task_id;
 
-      g_assert (task->type == WNCK_TASK_STARTUP_SEQUENCE);
+      g_assert (task->type == VNCK_TASK_STARTUP_SEQUENCE);
 
       task_id = sn_startup_sequence_get_id (task->startup_sequence);
 
@@ -4250,8 +4250,8 @@ vnck_task_new_from_window (WnckTasklist *tasklist,
 {
   WnckTask *task;
 
-  task = g_object_new (WNCK_TYPE_TASK, NULL);
-  task->type = WNCK_TASK_WINDOW;
+  task = g_object_new (VNCK_TYPE_TASK, NULL);
+  task->type = VNCK_TASK_WINDOW;
   task->window = g_object_ref (window);
   task->class_group = g_object_ref (vnck_window_get_class_group (window));
   task->tasklist = tasklist;
@@ -4269,9 +4269,9 @@ vnck_task_new_from_class_group (WnckTasklist   *tasklist,
 {
   WnckTask *task;
 
-  task = g_object_new (WNCK_TYPE_TASK, NULL);
+  task = g_object_new (VNCK_TYPE_TASK, NULL);
 
-  task->type = WNCK_TASK_CLASS_GROUP;
+  task->type = VNCK_TASK_CLASS_GROUP;
   task->window = NULL;
   task->class_group = g_object_ref (class_group);
   task->tasklist = tasklist;
@@ -4288,9 +4288,9 @@ vnck_task_new_from_startup_sequence (WnckTasklist      *tasklist,
 {
   WnckTask *task;
 
-  task = g_object_new (WNCK_TYPE_TASK, NULL);
+  task = g_object_new (VNCK_TYPE_TASK, NULL);
 
-  task->type = WNCK_TASK_STARTUP_SEQUENCE;
+  task->type = VNCK_TASK_STARTUP_SEQUENCE;
   task->window = NULL;
   task->class_group = NULL;
   task->startup_sequence = sequence;
@@ -4324,7 +4324,7 @@ sequence_timeout_callback (void *user_data)
   tmp = tasklist->priv->startup_sequences;
   while (tmp != NULL)
     {
-      WnckTask *task = WNCK_TASK (tmp->data);
+      WnckTask *task = VNCK_TASK (tmp->data);
 
       sn_startup_sequence_get_last_active_time (task->startup_sequence,
                                                 &tv_sec, &tv_usec);
@@ -4360,7 +4360,7 @@ vnck_tasklist_sn_event (SnMonitorEvent *event,
 {
   WnckTasklist *tasklist;
 
-  tasklist = WNCK_TASKLIST (user_data);
+  tasklist = VNCK_TASKLIST (user_data);
 
   switch (sn_monitor_event_get_type (event))
     {
@@ -4395,7 +4395,7 @@ vnck_tasklist_sn_event (SnMonitorEvent *event,
         tmp = tasklist->priv->startup_sequences;
         while (tmp != NULL)
           {
-            WnckTask *task = WNCK_TASK (tmp->data);
+            WnckTask *task = VNCK_TASK (tmp->data);
 
             if (task->startup_sequence ==
                 sn_monitor_event_get_startup_sequence (event))
@@ -4449,7 +4449,7 @@ vnck_tasklist_check_end_sequence (WnckTasklist   *tasklist,
   tmp = tasklist->priv->startup_sequences;
   while (tmp != NULL)
     {
-      WnckTask *task = WNCK_TASK (tmp->data);
+      WnckTask *task = VNCK_TASK (tmp->data);
       const char *wmclass;
 
       wmclass = sn_startup_sequence_get_wmclass (task->startup_sequence);

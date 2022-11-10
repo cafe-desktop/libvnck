@@ -20,28 +20,28 @@ Version Information
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### MACRO WNCK_MAJOR_VERSION ##### -->
+<!-- ##### MACRO VNCK_MAJOR_VERSION ##### -->
 <para>
 
 </para>
 
 
 
-<!-- ##### MACRO WNCK_MINOR_VERSION ##### -->
+<!-- ##### MACRO VNCK_MINOR_VERSION ##### -->
 <para>
 
 </para>
 
 
 
-<!-- ##### MACRO WNCK_MICRO_VERSION ##### -->
+<!-- ##### MACRO VNCK_MICRO_VERSION ##### -->
 <para>
 
 </para>
 
 
 
-<!-- ##### MACRO WNCK_CHECK_VERSION ##### -->
+<!-- ##### MACRO VNCK_CHECK_VERSION ##### -->
 <para>
 
 </para>

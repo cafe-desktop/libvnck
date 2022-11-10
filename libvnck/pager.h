@@ -19,24 +19,24 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
+#if !defined (__LIBVNCK_H_INSIDE__) && !defined (VNCK_COMPILATION)
 #error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
-#ifndef WNCK_PAGER_H
-#define WNCK_PAGER_H
+#ifndef VNCK_PAGER_H
+#define VNCK_PAGER_H
 
 #include <gtk/gtk.h>
 #include <libvnck/screen.h>
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_PAGER              (vnck_pager_get_type ())
-#define WNCK_PAGER(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_PAGER, WnckPager))
-#define WNCK_PAGER_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_PAGER, WnckPagerClass))
-#define WNCK_IS_PAGER(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_PAGER))
-#define WNCK_IS_PAGER_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), WNCK_TYPE_PAGER))
-#define WNCK_PAGER_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), WNCK_TYPE_PAGER, WnckPagerClass))
+#define VNCK_TYPE_PAGER              (vnck_pager_get_type ())
+#define VNCK_PAGER(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_PAGER, WnckPager))
+#define VNCK_PAGER_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_PAGER, WnckPagerClass))
+#define VNCK_IS_PAGER(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_PAGER))
+#define VNCK_IS_PAGER_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_PAGER))
+#define VNCK_PAGER_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_PAGER, WnckPagerClass))
 
 typedef struct _WnckPager        WnckPager;
 typedef struct _WnckPagerClass   WnckPagerClass;
@@ -68,32 +68,32 @@ struct _WnckPagerClass
 
 /**
  * WnckPagerDisplayMode:
- * @WNCK_PAGER_DISPLAY_NAME: the #WnckPager will only display the names of the
+ * @VNCK_PAGER_DISPLAY_NAME: the #WnckPager will only display the names of the
  * workspaces.
- * @WNCK_PAGER_DISPLAY_CONTENT: the #WnckPager will display a representation
+ * @VNCK_PAGER_DISPLAY_CONTENT: the #WnckPager will display a representation
  * for each window in the workspaces.
  *
  * Mode defining what a #WnckPager will display.
  */
 typedef enum {
-  WNCK_PAGER_DISPLAY_NAME,
-  WNCK_PAGER_DISPLAY_CONTENT
+  VNCK_PAGER_DISPLAY_NAME,
+  VNCK_PAGER_DISPLAY_CONTENT
 } WnckPagerDisplayMode;
 
 /**
  * WnckPagerScrollMode:
- * @WNCK_PAGER_SCROLL_2D: given that the workspaces are set up in multiple rows,
+ * @VNCK_PAGER_SCROLL_2D: given that the workspaces are set up in multiple rows,
  * scrolling on the #WnckPager will cycle through the workspaces as if on a
  * 2-dimensional map. Example cycling order with 2 rows and 4 workspaces: 1 3 2 4.
- * @WNCK_PAGER_SCROLL_1D: the #WnckPager will always cycle workspaces in a linear
+ * @VNCK_PAGER_SCROLL_1D: the #WnckPager will always cycle workspaces in a linear
  * manner, irrespective of how many rows are configured. (Hint: Better for mice)
  * Example cycling order with 2 rows and 4 workspaces: 1 2 3 4.
  *
  * Mode defining in which order scrolling on a #WnckPager will cycle through workspaces.
  */
 typedef enum {
-  WNCK_PAGER_SCROLL_2D,
-  WNCK_PAGER_SCROLL_1D
+  VNCK_PAGER_SCROLL_2D,
+  VNCK_PAGER_SCROLL_1D
 } WnckPagerScrollMode;
 
 GType      vnck_pager_get_type           (void) G_GNUC_CONST;
@@ -118,4 +118,4 @@ gboolean   vnck_pager_get_wrap_on_scroll (WnckPager            *pager);
 
 G_END_DECLS
 
-#endif /* WNCK_PAGER_H */
+#endif /* VNCK_PAGER_H */

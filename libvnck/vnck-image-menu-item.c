@@ -40,7 +40,7 @@ vnck_image_menu_item_finalize (GObject *object)
 {
   WnckImageMenuItem *item;
 
-  item = WNCK_IMAGE_MENU_ITEM (object);
+  item = VNCK_IMAGE_MENU_ITEM (object);
 
   g_clear_pointer (&item->label, g_free);
 
@@ -57,7 +57,7 @@ vnck_image_menu_item_get_preferred_width (GtkWidget *widget,
   GtkRequisition image_requisition;
 
   widget_class = GTK_WIDGET_CLASS (vnck_image_menu_item_parent_class);
-  item = WNCK_IMAGE_MENU_ITEM (widget);
+  item = VNCK_IMAGE_MENU_ITEM (widget);
 
   widget_class->get_preferred_width (widget, minimum, natural);
 
@@ -83,7 +83,7 @@ vnck_image_menu_item_size_allocate (GtkWidget     *widget,
   GtkAllocation box_allocation;
 
   widget_class = GTK_WIDGET_CLASS (vnck_image_menu_item_parent_class);
-  item = WNCK_IMAGE_MENU_ITEM (widget);
+  item = VNCK_IMAGE_MENU_ITEM (widget);
 
   widget_class->size_allocate (widget, allocation);
 
@@ -112,7 +112,7 @@ vnck_image_menu_item_get_label (GtkMenuItem *menu_item)
 {
   WnckImageMenuItem *item;
 
-  item = WNCK_IMAGE_MENU_ITEM (menu_item);
+  item = VNCK_IMAGE_MENU_ITEM (menu_item);
 
   return item->label;
 }
@@ -124,7 +124,7 @@ vnck_image_menu_item_toggle_size_request (GtkMenuItem *menu_item,
   WnckImageMenuItem *item;
   GtkRequisition image_requisition;
 
-  item = WNCK_IMAGE_MENU_ITEM (menu_item);
+  item = VNCK_IMAGE_MENU_ITEM (menu_item);
 
   *requisition = 0;
 
@@ -143,7 +143,7 @@ vnck_image_menu_item_set_label (GtkMenuItem *menu_item,
 {
   WnckImageMenuItem *item;
 
-  item = WNCK_IMAGE_MENU_ITEM (menu_item);
+  item = VNCK_IMAGE_MENU_ITEM (menu_item);
 
   if (g_strcmp0 (item->label, label) != 0)
     {
@@ -202,13 +202,13 @@ vnck_image_menu_item_init (WnckImageMenuItem *item)
 GtkWidget *
 vnck_image_menu_item_new (void)
 {
-  return g_object_new (WNCK_TYPE_IMAGE_MENU_ITEM, NULL);
+  return g_object_new (VNCK_TYPE_IMAGE_MENU_ITEM, NULL);
 }
 
 GtkWidget *
 vnck_image_menu_item_new_with_label (const gchar *label)
 {
-  return g_object_new (WNCK_TYPE_IMAGE_MENU_ITEM, "label", label, NULL);
+  return g_object_new (VNCK_TYPE_IMAGE_MENU_ITEM, "label", label, NULL);
 }
 
 void

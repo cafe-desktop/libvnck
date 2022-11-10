@@ -18,10 +18,10 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WNCK_LIB_H
-#define WNCK_LIB_H
+#ifndef VNCK_LIB_H
+#define VNCK_LIB_H
 
-#define __LIBWNCK_H_INSIDE__
+#define __LIBVNCK_H_INSIDE__
 
 #include <libvnck/window.h>
 #include <libvnck/application.h>
@@ -40,6 +40,6 @@
 
 #include <libvnck/vnck-enum-types.h>
 
-#undef __LIBWNCK_H_INSIDE__
+#undef __LIBVNCK_H_INSIDE__
 
-#endif /* WNCK_LIB_H */
+#endif /* VNCK_LIB_H */

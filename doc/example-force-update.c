@@ -18,7 +18,7 @@ main (int    argc,
 
   for (window_l = vnck_screen_get_windows (screen); window_l != NULL; window_l = window_l->next)
     {
-      WnckWindow *window = WNCK_WINDOW (window_l->data);
+      WnckWindow *window = VNCK_WINDOW (window_l->data);
       g_print ("%s%s\n", vnck_window_get_name (window),
                          window == active_window ? " (active)" : "");
     }

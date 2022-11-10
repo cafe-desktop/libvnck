@@ -16,19 +16,19 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __WNCK_WORKSPACE_ACCESSIBLE_FACTORY_H__
+#ifndef __VNCK_WORKSPACE_ACCESSIBLE_FACTORY_H__
 #define __WBCK_WORKSPACE_ACCESSIBLE_FACTORY_H__
 
 #include <atk/atk.h>
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY               (vnck_workspace_accessible_factory_get_type())
-#define WNCK_WORKSPACE_ACCESSIBLE_FACTORY(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), WNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, WnckWorkspaceAccessibleFactory))
-#define WNCK_WORKSPACE_ACCESSIBLE_FACTORY_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, WnckWorkspaceAccessibleFactoryClass))
-#define WNCK_IS_WORKSPACE_ACCESSIBLE_FACTORY(obj)            (G_TYPE_CHECK_INSTANCE_TYPE ((obj), WNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY))
-#define WNCK_IS_WORKSPACE_ACCESSIBLE_FACTORY_CLASS(klass)    (G_TYPE_CHECK_CLASS_TYPE ((klass), WNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY))
-#define WNCK_WORKSPACE_ACCESSIBLE_FACTORY_GET_CLASS(obj)     (G_TYPE_INSTANCE_GET_CLASS ((obj), WNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, WnckWorkspaceAccessibleFactoryClass))
+#define VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY               (vnck_workspace_accessible_factory_get_type())
+#define VNCK_WORKSPACE_ACCESSIBLE_FACTORY(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, WnckWorkspaceAccessibleFactory))
+#define VNCK_WORKSPACE_ACCESSIBLE_FACTORY_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, WnckWorkspaceAccessibleFactoryClass))
+#define VNCK_IS_WORKSPACE_ACCESSIBLE_FACTORY(obj)            (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY))
+#define VNCK_IS_WORKSPACE_ACCESSIBLE_FACTORY_CLASS(klass)    (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY))
+#define VNCK_WORKSPACE_ACCESSIBLE_FACTORY_GET_CLASS(obj)     (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, WnckWorkspaceAccessibleFactoryClass))
 
 typedef struct _WnckWorkspaceAccessibleFactory       WnckWorkspaceAccessibleFactory;
 typedef struct _WnckWorkspaceAccessibleFactoryClass  WnckWorkspaceAccessibleFactoryClass;
@@ -49,4 +49,4 @@ AtkObjectFactory* vnck_workspace_accessible_factory_new (void);
 
 G_END_DECLS
 
-#endif /* __WNCK_WORKSPACE_ACCESSIBLE_FACTORY_H__ */
+#endif /* __VNCK_WORKSPACE_ACCESSIBLE_FACTORY_H__ */

@@ -58,7 +58,7 @@ static void          update_window     (GtkTreeModel *model,
                                         WnckWindow   *window);
 static void          queue_refill_model (void);
 
-static gint icon_size = WNCK_DEFAULT_MINI_ICON_SIZE;
+static gint icon_size = VNCK_DEFAULT_MINI_ICON_SIZE;
 
 static GOptionEntry entries[] = {
   {"icon-size", 'i', 0, G_OPTION_ARG_INT, &icon_size, "Icon size for tasklist", NULL},
@@ -287,43 +287,43 @@ window_state_changed_callback (WnckWindow     *window,
   g_print ("State changed on window '%s'\n",
            vnck_window_get_name (window));
 
-  if (changed & WNCK_WINDOW_STATE_MINIMIZED)
+  if (changed & VNCK_WINDOW_STATE_MINIMIZED)
     g_print (" minimized = %d\n", vnck_window_is_minimized (window));
 
-  if (changed & WNCK_WINDOW_STATE_MAXIMIZED_HORIZONTALLY)
+  if (changed & VNCK_WINDOW_STATE_MAXIMIZED_HORIZONTALLY)
     g_print (" maximized horiz = %d\n", vnck_window_is_maximized_horizontally (window));
 
-  if (changed & WNCK_WINDOW_STATE_MAXIMIZED_VERTICALLY)
+  if (changed & VNCK_WINDOW_STATE_MAXIMIZED_VERTICALLY)
     g_print (" maximized vert = %d\n", vnck_window_is_maximized_vertically (window));
 
-  if (changed & WNCK_WINDOW_STATE_SHADED)
+  if (changed & VNCK_WINDOW_STATE_SHADED)
     g_print (" shaded = %d\n", vnck_window_is_shaded (window));
 
-  if (changed & WNCK_WINDOW_STATE_SKIP_PAGER)
+  if (changed & VNCK_WINDOW_STATE_SKIP_PAGER)
     g_print (" skip pager = %d\n", vnck_window_is_skip_pager (window));
 
-  if (changed & WNCK_WINDOW_STATE_SKIP_TASKLIST)
+  if (changed & VNCK_WINDOW_STATE_SKIP_TASKLIST)
     g_print (" skip tasklist = %d\n", vnck_window_is_skip_tasklist (window));
 
-  if (changed & WNCK_WINDOW_STATE_STICKY)
+  if (changed & VNCK_WINDOW_STATE_STICKY)
     g_print (" sticky = %d\n", vnck_window_is_sticky (window));
 
-  if (changed & WNCK_WINDOW_STATE_FULLSCREEN)
+  if (changed & VNCK_WINDOW_STATE_FULLSCREEN)
     g_print (" fullscreen = %d\n", vnck_window_is_fullscreen (window));
 
-  g_assert ( ((new & WNCK_WINDOW_STATE_MINIMIZED) != 0) ==
+  g_assert ( ((new & VNCK_WINDOW_STATE_MINIMIZED) != 0) ==
              vnck_window_is_minimized (window) );
-  g_assert ( ((new & WNCK_WINDOW_STATE_MAXIMIZED_HORIZONTALLY) != 0) ==
+  g_assert ( ((new & VNCK_WINDOW_STATE_MAXIMIZED_HORIZONTALLY) != 0) ==
              vnck_window_is_maximized_horizontally (window) );
-  g_assert ( ((new & WNCK_WINDOW_STATE_MAXIMIZED_VERTICALLY) != 0) ==
+  g_assert ( ((new & VNCK_WINDOW_STATE_MAXIMIZED_VERTICALLY) != 0) ==
              vnck_window_is_maximized_vertically (window) );
-  g_assert ( ((new & WNCK_WINDOW_STATE_SHADED) != 0) ==
+  g_assert ( ((new & VNCK_WINDOW_STATE_SHADED) != 0) ==
              vnck_window_is_shaded (window) );
-  g_assert ( ((new & WNCK_WINDOW_STATE_SKIP_PAGER) != 0) ==
+  g_assert ( ((new & VNCK_WINDOW_STATE_SKIP_PAGER) != 0) ==
              vnck_window_is_skip_pager (window) );
-  g_assert ( ((new & WNCK_WINDOW_STATE_SKIP_TASKLIST) != 0) ==
+  g_assert ( ((new & VNCK_WINDOW_STATE_SKIP_TASKLIST) != 0) ==
              vnck_window_is_skip_tasklist (window) );
-  g_assert ( ((new & WNCK_WINDOW_STATE_STICKY) != 0) ==
+  g_assert ( ((new & VNCK_WINDOW_STATE_STICKY) != 0) ==
              vnck_window_is_sticky (window) );
 
   update_window (global_tree_model, window);
@@ -401,7 +401,7 @@ create_tree_model (void)
 {
   GtkListStore *store;
   
-  store = gtk_list_store_new (1, WNCK_TYPE_WINDOW);
+  store = gtk_list_store_new (1, VNCK_TYPE_WINDOW);
 
   return GTK_TREE_MODEL (store);
 }

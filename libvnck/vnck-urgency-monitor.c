@@ -126,8 +126,8 @@ window_state_changed (WnckWindow      *window,
 
   if (!
       (changed_mask &
-       (WNCK_WINDOW_STATE_DEMANDS_ATTENTION |
-        WNCK_WINDOW_STATE_URGENT)))
+       (VNCK_WINDOW_STATE_DEMANDS_ATTENTION |
+        VNCK_WINDOW_STATE_URGENT)))
     return;
 
   icon = status_icon_get (window);
@@ -210,7 +210,7 @@ main (int argc, char **argv)
 
   gtk_init (&argc, &argv);
 
-  vnck_set_client_type (WNCK_CLIENT_TYPE_PAGER);
+  vnck_set_client_type (VNCK_CLIENT_TYPE_PAGER);
 
   screen = vnck_screen_get_default ();
   g_signal_connect (screen, "window_opened",

@@ -111,7 +111,7 @@ static void
 window_weak_notify (gpointer data,
                     GObject *window)
 {
-  WNCK_ACTION_MENU(data)->priv->window = NULL;
+  VNCK_ACTION_MENU(data)->priv->window = NULL;
   gtk_widget_destroy (GTK_WIDGET (data));
 }
 
@@ -122,8 +122,8 @@ get_action_menu (GtkWidget *widget)
     if (GTK_IS_MENU_ITEM (widget))
       widget = gtk_widget_get_parent (widget);
 
-    if (WNCK_IS_ACTION_MENU (widget))
-      return WNCK_ACTION_MENU (widget);
+    if (VNCK_IS_ACTION_MENU (widget))
+      return VNCK_ACTION_MENU (widget);
 
     widget = gtk_menu_get_attach_widget (GTK_MENU (widget));
     if (widget == NULL)
@@ -203,7 +203,7 @@ item_activated_callback (GtkWidget *menu_item,
         {
           WnckWorkspace *workspace;
           workspace = vnck_workspace_get_neighbor (vnck_window_get_workspace (window),
-                                                   WNCK_MOTION_LEFT);
+                                                   VNCK_MOTION_LEFT);
           vnck_window_move_to_workspace (window, workspace);
         }
       else
@@ -214,7 +214,7 @@ item_activated_callback (GtkWidget *menu_item,
           vnck_window_get_geometry (window, &xw, &yw, &ww, &hw);
           vnck_window_unstick (window);
           vnck_window_set_geometry (window, 0,
-                                    WNCK_WINDOW_CHANGE_X | WNCK_WINDOW_CHANGE_Y,
+                                    VNCK_WINDOW_CHANGE_X | VNCK_WINDOW_CHANGE_Y,
                                     xw - width, yw,
                                     ww, hw);
         }
@@ -224,7 +224,7 @@ item_activated_callback (GtkWidget *menu_item,
         {
           WnckWorkspace *workspace;
           workspace = vnck_workspace_get_neighbor (vnck_window_get_workspace (window),
-                                                   WNCK_MOTION_RIGHT);
+                                                   VNCK_MOTION_RIGHT);
           vnck_window_move_to_workspace (window, workspace);
         }
       else
@@ -235,7 +235,7 @@ item_activated_callback (GtkWidget *menu_item,
           vnck_window_get_geometry (window, &xw, &yw, &ww, &hw);
           vnck_window_unstick (window);
           vnck_window_set_geometry (window, 0,
-                                    WNCK_WINDOW_CHANGE_X | WNCK_WINDOW_CHANGE_Y,
+                                    VNCK_WINDOW_CHANGE_X | VNCK_WINDOW_CHANGE_Y,
                                     xw + width, yw,
                                     ww, hw);
         }
@@ -245,7 +245,7 @@ item_activated_callback (GtkWidget *menu_item,
         {
           WnckWorkspace *workspace;
           workspace = vnck_workspace_get_neighbor (vnck_window_get_workspace (window),
-                                                   WNCK_MOTION_UP);
+                                                   VNCK_MOTION_UP);
           vnck_window_move_to_workspace (window, workspace);
         }
       else
@@ -256,7 +256,7 @@ item_activated_callback (GtkWidget *menu_item,
           vnck_window_get_geometry (window, &xw, &yw, &ww, &hw);
           vnck_window_unstick (window);
           vnck_window_set_geometry (window, 0,
-                                    WNCK_WINDOW_CHANGE_X | WNCK_WINDOW_CHANGE_Y,
+                                    VNCK_WINDOW_CHANGE_X | VNCK_WINDOW_CHANGE_Y,
                                     xw, yw - height,
                                     ww, hw);
         }
@@ -266,7 +266,7 @@ item_activated_callback (GtkWidget *menu_item,
         {
           WnckWorkspace *workspace;
           workspace = vnck_workspace_get_neighbor (vnck_window_get_workspace (window),
-                                                   WNCK_MOTION_DOWN);
+                                                   VNCK_MOTION_DOWN);
           vnck_window_move_to_workspace (window, workspace);
         }
       else
@@ -277,7 +277,7 @@ item_activated_callback (GtkWidget *menu_item,
           vnck_window_get_geometry (window, &xw, &yw, &ww, &hw);
           vnck_window_unstick (window);
           vnck_window_set_geometry (window, 0,
-                                    WNCK_WINDOW_CHANGE_X | WNCK_WINDOW_CHANGE_Y,
+                                    VNCK_WINDOW_CHANGE_X | VNCK_WINDOW_CHANGE_Y,
                                     xw, yw + height,
                                     ww, hw);
         }
@@ -317,7 +317,7 @@ item_activated_callback (GtkWidget *menu_item,
 
           vnck_window_unstick (window);
           vnck_window_set_geometry (window, 0,
-                                    WNCK_WINDOW_CHANGE_X | WNCK_WINDOW_CHANGE_Y,
+                                    VNCK_WINDOW_CHANGE_X | VNCK_WINDOW_CHANGE_Y,
                                     xw + new_viewport_x - viewport_x,
                                     yw + new_viewport_y - viewport_y,
                                     ww, hw);
@@ -360,32 +360,32 @@ update_menu_state (WnckActionMenu *menu)
                   vnck_workspace_is_virtual (vnck_screen_get_workspace (screen,
                                                                         0));
   move_workspace_sensitive = viewport_mode ||
-                             (actions & WNCK_WINDOW_ACTION_CHANGE_WORKSPACE) != 0;
+                             (actions & VNCK_WINDOW_ACTION_CHANGE_WORKSPACE) != 0;
 
   if (vnck_window_is_minimized (priv->window))
     {
       set_item_text (priv->minimize_item, _("Unmi_nimize"));
       gtk_widget_set_sensitive (priv->minimize_item,
-                                (actions & WNCK_WINDOW_ACTION_UNMINIMIZE) != 0);
+                                (actions & VNCK_WINDOW_ACTION_UNMINIMIZE) != 0);
     }
   else
     {
       set_item_text (priv->minimize_item, _("Mi_nimize"));
       gtk_widget_set_sensitive (priv->minimize_item,
-                                (actions & WNCK_WINDOW_ACTION_MINIMIZE) != 0);
+                                (actions & VNCK_WINDOW_ACTION_MINIMIZE) != 0);
     }
 
   if (vnck_window_is_maximized (priv->window))
     {
       set_item_text (priv->maximize_item, _("Unma_ximize"));
       gtk_widget_set_sensitive (priv->maximize_item,
-                                (actions & WNCK_WINDOW_ACTION_UNMAXIMIZE) != 0);
+                                (actions & VNCK_WINDOW_ACTION_UNMAXIMIZE) != 0);
     }
   else
     {
       set_item_text (priv->maximize_item, _("Ma_ximize"));
       gtk_widget_set_sensitive (priv->maximize_item,
-                                (actions & WNCK_WINDOW_ACTION_MAXIMIZE) != 0);
+                                (actions & VNCK_WINDOW_ACTION_MAXIMIZE) != 0);
     }
 
   g_signal_handlers_block_by_func (G_OBJECT (priv->above_item),
@@ -398,7 +398,7 @@ update_menu_state (WnckActionMenu *menu)
                                      GINT_TO_POINTER (ABOVE));
 
   gtk_widget_set_sensitive (priv->above_item,
-                            (actions & WNCK_WINDOW_ACTION_ABOVE) != 0);
+                            (actions & VNCK_WINDOW_ACTION_ABOVE) != 0);
 
   g_signal_handlers_block_by_func (G_OBJECT (priv->pin_item),
                                    item_activated_callback,
@@ -427,13 +427,13 @@ update_menu_state (WnckActionMenu *menu)
                             move_workspace_sensitive);
 
   gtk_widget_set_sensitive (priv->close_item,
-                            (actions & WNCK_WINDOW_ACTION_CLOSE) != 0);
+                            (actions & VNCK_WINDOW_ACTION_CLOSE) != 0);
 
   gtk_widget_set_sensitive (priv->move_item,
-                            (actions & WNCK_WINDOW_ACTION_MOVE) != 0);
+                            (actions & VNCK_WINDOW_ACTION_MOVE) != 0);
 
   gtk_widget_set_sensitive (priv->resize_item,
-                            (actions & WNCK_WINDOW_ACTION_RESIZE) != 0);
+                            (actions & VNCK_WINDOW_ACTION_RESIZE) != 0);
 
   gtk_widget_set_sensitive (priv->workspace_item,
                             move_workspace_sensitive);
@@ -495,22 +495,22 @@ update_menu_state (WnckActionMenu *menu)
     }
   else if (!viewport_mode && workspace && !vnck_window_is_pinned (priv->window))
     {
-      if (vnck_workspace_get_neighbor (workspace, WNCK_MOTION_LEFT))
+      if (vnck_workspace_get_neighbor (workspace, VNCK_MOTION_LEFT))
         gtk_widget_show (priv->left_item);
       else
         gtk_widget_hide (priv->left_item);
 
-      if (vnck_workspace_get_neighbor (workspace, WNCK_MOTION_RIGHT))
+      if (vnck_workspace_get_neighbor (workspace, VNCK_MOTION_RIGHT))
         gtk_widget_show (priv->right_item);
       else
         gtk_widget_hide (priv->right_item);
 
-      if (vnck_workspace_get_neighbor (workspace, WNCK_MOTION_UP))
+      if (vnck_workspace_get_neighbor (workspace, VNCK_MOTION_UP))
         gtk_widget_show (priv->up_item);
       else
         gtk_widget_hide (priv->up_item);
 
-      if (vnck_workspace_get_neighbor (workspace, WNCK_MOTION_DOWN))
+      if (vnck_workspace_get_neighbor (workspace, VNCK_MOTION_DOWN))
         gtk_widget_show (priv->down_item);
       else
         gtk_widget_hide (priv->down_item);
@@ -585,7 +585,7 @@ state_changed_callback (WnckWindow     *window,
                         WnckWindowState new_state,
                         gpointer        data)
 {
-  queue_update (WNCK_ACTION_MENU (data));
+  queue_update (VNCK_ACTION_MENU (data));
 }
 
 static void
@@ -594,14 +594,14 @@ actions_changed_callback (WnckWindow       *window,
                           WnckWindowActions new_actions,
                           gpointer          data)
 {
-  queue_update (WNCK_ACTION_MENU (data));
+  queue_update (VNCK_ACTION_MENU (data));
 }
 
 static void
 workspace_changed_callback (WnckWindow *window,
                             gpointer    data)
 {
-  queue_update (WNCK_ACTION_MENU (data));
+  queue_update (VNCK_ACTION_MENU (data));
 }
 
 static void
@@ -609,14 +609,14 @@ screen_workspace_callback (WnckWindow    *window,
                            WnckWorkspace *space,
                            gpointer       data)
 {
-  queue_update (WNCK_ACTION_MENU (data));
+  queue_update (VNCK_ACTION_MENU (data));
 }
 
 static void
 viewports_changed_callback (WnckWindow *window,
                             gpointer    data)
 {
-  queue_update (WNCK_ACTION_MENU (data));
+  queue_update (VNCK_ACTION_MENU (data));
 }
 
 static GtkWidget*
@@ -879,9 +879,9 @@ vnck_action_menu_get_property (GObject    *object,
 {
   WnckActionMenu *menu;
 
-  g_return_if_fail (WNCK_IS_ACTION_MENU (object));
+  g_return_if_fail (VNCK_IS_ACTION_MENU (object));
 
-  menu = WNCK_ACTION_MENU (object);
+  menu = VNCK_ACTION_MENU (object);
 
   switch (prop_id)
     {
@@ -903,14 +903,14 @@ vnck_action_menu_set_property (GObject      *object,
 {
   WnckActionMenu *menu;
 
-  g_return_if_fail (WNCK_IS_ACTION_MENU (object));
+  g_return_if_fail (VNCK_IS_ACTION_MENU (object));
 
-  menu = WNCK_ACTION_MENU (object);
+  menu = VNCK_ACTION_MENU (object);
 
   switch (prop_id)
     {
       case PROP_WINDOW:
-        g_return_if_fail (WNCK_IS_WINDOW (g_value_get_pointer (value)));
+        g_return_if_fail (VNCK_IS_WINDOW (g_value_get_pointer (value)));
 
         menu->priv->window = g_value_get_pointer (value);
         g_object_notify (G_OBJECT (menu), "window");
@@ -962,7 +962,7 @@ vnck_action_menu_constructor (GType                  type,
                                                                      n_construct_properties,
                                                                      construct_properties);
 
-  menu = WNCK_ACTION_MENU (obj);
+  menu = VNCK_ACTION_MENU (obj);
   priv = menu->priv;
 
   if (priv->window == NULL)
@@ -1126,7 +1126,7 @@ vnck_action_menu_dispose (GObject *object)
 {
   WnckActionMenu *menu;
 
-  menu = WNCK_ACTION_MENU (object);
+  menu = VNCK_ACTION_MENU (object);
 
   if (menu->priv->idle_handler)
     {
@@ -1134,7 +1134,7 @@ vnck_action_menu_dispose (GObject *object)
       menu->priv->idle_handler = 0;
     }
 
-  if (WNCK_IS_WINDOW (menu->priv->window))
+  if (VNCK_IS_WINDOW (menu->priv->window))
     {
       WnckScreen *screen;
 
@@ -1164,9 +1164,9 @@ vnck_action_menu_dispose (GObject *object)
 GtkWidget*
 vnck_action_menu_new (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
-  return g_object_new (WNCK_TYPE_ACTION_MENU,
+  return g_object_new (VNCK_TYPE_ACTION_MENU,
                        "window", window,
                        NULL);
 }

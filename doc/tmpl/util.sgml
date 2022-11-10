@@ -30,8 +30,8 @@ Miscellaneous Functions
 
 </para>
 
-@WNCK_CLIENT_TYPE_APPLICATION: 
-@WNCK_CLIENT_TYPE_PAGER: 
+@VNCK_CLIENT_TYPE_APPLICATION: 
+@VNCK_CLIENT_TYPE_PAGER: 
 
 <!-- ##### FUNCTION vnck_set_client_type ##### -->
 <para>

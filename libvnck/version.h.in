@@ -21,12 +21,12 @@
  *      Vincent Untz <vuntz@gnome.org>
  */
 
-#if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
+#if !defined (__LIBVNCK_H_INSIDE__) && !defined (VNCK_COMPILATION)
 #error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
-#ifndef WNCK_VERSION_H
-#define WNCK_VERSION_H
+#ifndef VNCK_VERSION_H
+#define VNCK_VERSION_H
 
 /**
  * SECTION:version
@@ -39,7 +39,7 @@
  */
 
 /**
- * WNCK_MAJOR_VERSION:
+ * VNCK_MAJOR_VERSION:
  *
  * Return value: the major version number of the libvnck library, from the
  * headers used at application compile time, rather than from the library
@@ -48,10 +48,10 @@
  *
  * Since: 3.0
  */
-#define WNCK_MAJOR_VERSION (@WNCK_MAJOR_VERSION@)
+#define VNCK_MAJOR_VERSION (@VNCK_MAJOR_VERSION@)
 
 /**
- * WNCK_MINOR_VERSION:
+ * VNCK_MINOR_VERSION:
  *
  * Return value: the minor version number of the libvnck library, from the
  * headers used at application compile time, rather than from the library
@@ -60,10 +60,10 @@
  *
  * Since: 3.0
  */
-#define WNCK_MINOR_VERSION (@WNCK_MINOR_VERSION@)
+#define VNCK_MINOR_VERSION (@VNCK_MINOR_VERSION@)
 
 /**
- * WNCK_MICRO_VERSION:
+ * VNCK_MICRO_VERSION:
  *
  * Return value: the micro version number of the libvnck library, from the
  * headers used at application compile time, rather than from the library
@@ -72,10 +72,10 @@
  *
  * Since: 3.0
  */
-#define WNCK_MICRO_VERSION (@WNCK_MICRO_VERSION@)
+#define VNCK_MICRO_VERSION (@VNCK_MICRO_VERSION@)
 
 /**
- * WNCK_CHECK_VERSION:
+ * VNCK_CHECK_VERSION:
  * @major: major version (e.g. 1 for version 1.2.5)
  * @minor: minor version (e.g. 2 for version 1.2.5)
  * @micro: micro version (e.g. 5 for version 1.2.5)
@@ -86,10 +86,10 @@
  *
  * Since: 3.0
  */
-#define WNCK_CHECK_VERSION(major,minor,micro)                           \
-    (WNCK_MAJOR_VERSION > (major) ||                                    \
-     (WNCK_MAJOR_VERSION == (major) && WNCK_MINOR_VERSION > (minor)) || \
-     (WNCK_MAJOR_VERSION == (major) && WNCK_MINOR_VERSION == (minor) && \
-      WNCK_MICRO_VERSION >= (micro)))
+#define VNCK_CHECK_VERSION(major,minor,micro)                           \
+    (VNCK_MAJOR_VERSION > (major) ||                                    \
+     (VNCK_MAJOR_VERSION == (major) && VNCK_MINOR_VERSION > (minor)) || \
+     (VNCK_MAJOR_VERSION == (major) && VNCK_MINOR_VERSION == (minor) && \
+      VNCK_MICRO_VERSION >= (micro)))
 
-#endif /* WNCK_VERSION_H */
+#endif /* VNCK_VERSION_H */

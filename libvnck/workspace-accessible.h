@@ -16,8 +16,8 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __WNCK_WORKSPACE_ACCESSIBLE_H__
-#define __WNCK_WORKSPACE_ACCESSIBLE_H__
+#ifndef __VNCK_WORKSPACE_ACCESSIBLE_H__
+#define __VNCK_WORKSPACE_ACCESSIBLE_H__
 
 #include <gtk/gtk.h>
 #include <atk/atk.h>
@@ -26,12 +26,12 @@
 
 G_BEGIN_DECLS
 
-#define WNCK_WORKSPACE_TYPE_ACCESSIBLE                     (vnck_workspace_accessible_get_type ())
-#define WNCK_WORKSPACE_ACCESSIBLE(obj)                     (G_TYPE_CHECK_INSTANCE_CAST ((obj), WNCK_WORKSPACE_TYPE_ACCESSIBLE, WnckWorkspaceAccessible))
-#define WNCK_WORKSPACE_ACCESSIBLE_CLASS(klass)             (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_WORKSPACE_TYPE_ACCESSIBLE, WnckWorkspaceAccessibleClass))
-#define WNCK_IS_WORKSPACE_ACCESSIBLE(obj)                  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), WNCK_WORKSPACE_TYPE_ACCESSIBLE))
-#define WNCK_IS_WORKSPACE_ACCESSIBLE_CLASS(klass)          (G_TYPE_CHECK_CLASS_TYPE ((klass), WnckWorkspaceAccessible))
-#define WNCK_WORKSPACE_ACCESSIBLE_GET_CLASS(obj)           (G_TYPE_INSTANCE_GET_CLASS ((obj), WNCK_WORKSPACE_TYPE_ACCESSIBLE, WnckWorkspaceAccessibleClass)) 
+#define VNCK_WORKSPACE_TYPE_ACCESSIBLE                     (vnck_workspace_accessible_get_type ())
+#define VNCK_WORKSPACE_ACCESSIBLE(obj)                     (G_TYPE_CHECK_INSTANCE_CAST ((obj), VNCK_WORKSPACE_TYPE_ACCESSIBLE, WnckWorkspaceAccessible))
+#define VNCK_WORKSPACE_ACCESSIBLE_CLASS(klass)             (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_WORKSPACE_TYPE_ACCESSIBLE, WnckWorkspaceAccessibleClass))
+#define VNCK_IS_WORKSPACE_ACCESSIBLE(obj)                  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VNCK_WORKSPACE_TYPE_ACCESSIBLE))
+#define VNCK_IS_WORKSPACE_ACCESSIBLE_CLASS(klass)          (G_TYPE_CHECK_CLASS_TYPE ((klass), WnckWorkspaceAccessible))
+#define VNCK_WORKSPACE_ACCESSIBLE_GET_CLASS(obj)           (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_WORKSPACE_TYPE_ACCESSIBLE, WnckWorkspaceAccessibleClass)) 
 
 typedef struct _WnckWorkspaceAccessible WnckWorkspaceAccessible;
 typedef struct _WnckWorkspaceAccessibleClass WnckWorkspaceAccessibleClass;
@@ -54,4 +54,4 @@ AtkObject* vnck_workspace_accessible_new (GObject *obj);
 
 G_END_DECLS
 
-#endif /* __WNCK_WORKSPACE_ACCESSIBLE_H__ */
+#endif /* __VNCK_WORKSPACE_ACCESSIBLE_H__ */

@@ -1,4 +1,4 @@
-# Latvian translation for LibWNCK.
+# Latvian translation for LibVNCK.
 # Copyright © 2006 Gnome i18n Project for Latvian.
 #
 # Raivis Dejus <orvils@gmail.com>, 2006, 2010.

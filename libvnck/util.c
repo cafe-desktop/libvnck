@@ -62,9 +62,9 @@
 
 typedef enum
 {
-  WNCK_EXT_UNKNOWN = 0,
-  WNCK_EXT_FOUND = 1,
-  WNCK_EXT_MISSING = 2
+  VNCK_EXT_UNKNOWN = 0,
+  VNCK_EXT_FOUND = 1,
+  VNCK_EXT_MISSING = 2
 } WnckExtStatus;
 
 
@@ -111,18 +111,18 @@ vnck_init_resource_usage (GdkDisplay *gdisplay)
   status = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (gdisplay),
                                                "vnck-xres-status"));
 
-  if (status == WNCK_EXT_UNKNOWN)
+  if (status == VNCK_EXT_UNKNOWN)
     {
 #ifdef HAVE_XRES
       Display *xdisplay = GDK_DISPLAY_XDISPLAY (gdisplay);
       int event, error;
 
       if (!XResQueryExtension (xdisplay, &event, &error))
-        status = WNCK_EXT_MISSING;
+        status = VNCK_EXT_MISSING;
       else
-        status = WNCK_EXT_FOUND;
+        status = VNCK_EXT_FOUND;
 #else
-      status = WNCK_EXT_MISSING;
+      status = VNCK_EXT_MISSING;
 #endif
 
       g_object_set_data (G_OBJECT (gdisplay),
@@ -130,7 +130,7 @@ vnck_init_resource_usage (GdkDisplay *gdisplay)
                          GINT_TO_POINTER (status));
     }
 
-  g_assert (status != WNCK_EXT_UNKNOWN);
+  g_assert (status != VNCK_EXT_UNKNOWN);
 
   return status;
 }
@@ -159,7 +159,7 @@ vnck_xid_read_resource_usage (GdkDisplay        *gdisplay,
 
   memset (usage, '\0', sizeof (*usage));
 
-  if (vnck_init_resource_usage (gdisplay) == WNCK_EXT_MISSING)
+  if (vnck_init_resource_usage (gdisplay) == VNCK_EXT_MISSING)
     return;
 
 #ifdef HAVE_XRES
@@ -612,7 +612,7 @@ vnck_pid_read_resource_usage (GdkDisplay        *gdisplay,
 
   memset (usage, '\0', sizeof (*usage));
 
-  if (vnck_init_resource_usage (gdisplay) == WNCK_EXT_MISSING)
+  if (vnck_init_resource_usage (gdisplay) == VNCK_EXT_MISSING)
     return;
 
 #ifdef HAVE_XRES
@@ -631,9 +631,9 @@ static WnckClientType client_type = 0;
  *
  * Sets the role of the libvnck user.
  *
- * The default role is %WNCK_CLIENT_TYPE_APPLICATION. Therefore, for
+ * The default role is %VNCK_CLIENT_TYPE_APPLICATION. Therefore, for
  * applications providing some window management features, like pagers or
- * tasklists, it is important to set the role to %WNCK_CLIENT_TYPE_PAGER for
+ * tasklists, it is important to set the role to %VNCK_CLIENT_TYPE_PAGER for
  * libvnck to properly work.
  *
  * This function should only be called once per program. Additional calls
@@ -662,18 +662,18 @@ _vnck_get_client_type (void)
    * normal application.
    */
   if (client_type == 0)
-    client_type = WNCK_CLIENT_TYPE_APPLICATION;
+    client_type = VNCK_CLIENT_TYPE_APPLICATION;
 
   return client_type;
 }
 
-static gsize default_icon_size = WNCK_DEFAULT_ICON_SIZE;
+static gsize default_icon_size = VNCK_DEFAULT_ICON_SIZE;
 
 /**
  * vnck_set_default_icon_size:
  * @size: the default size for windows and application standard icons.
  *
- * The default main icon size is %WNCK_DEFAULT_ICON_SIZE. This function allows
+ * The default main icon size is %VNCK_DEFAULT_ICON_SIZE. This function allows
  * to change this value.
  *
  * Since: 2.4.6
@@ -690,13 +690,13 @@ _vnck_get_default_icon_size (void)
   return default_icon_size;
 }
 
-static gsize default_mini_icon_size = WNCK_DEFAULT_MINI_ICON_SIZE;
+static gsize default_mini_icon_size = VNCK_DEFAULT_MINI_ICON_SIZE;
 
 /**
  * vnck_set_default_mini_icon_size:
  * @size: the default size for windows and application mini icons.
  *
- * The default main icon size is %WNCK_DEFAULT_MINI_ICON_SIZE. This function
+ * The default main icon size is %VNCK_DEFAULT_MINI_ICON_SIZE. This function
  * allows to change this value.
  *
  * Since: 2.4.6
@@ -713,17 +713,17 @@ vnck_set_default_mini_icon_size (gsize size)
   default_screen = DefaultScreen (_vnck_get_default_display ());
   screen = _vnck_screen_get_existing (default_screen);
 
-  if (WNCK_IS_SCREEN (screen))
+  if (VNCK_IS_SCREEN (screen))
     {
       /* Make applications and icons to reload their icons */
       for (l = vnck_screen_get_windows (screen); l; l = l->next)
         {
-          WnckWindow *window = WNCK_WINDOW (l->data);
+          WnckWindow *window = VNCK_WINDOW (l->data);
           WnckApplication *application = vnck_window_get_application (window);
 
           _vnck_window_load_icons (window);
 
-          if (WNCK_IS_APPLICATION (application))
+          if (VNCK_IS_APPLICATION (application))
             _vnck_application_load_icons (application);
         }
     }
@@ -777,7 +777,7 @@ _vnck_init (void)
 
   if (!done)
     {
-      bindtextdomain (GETTEXT_PACKAGE, WNCK_LOCALEDIR);
+      bindtextdomain (GETTEXT_PACKAGE, VNCK_LOCALEDIR);
       bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 
 #ifdef HAVE_STARTUP_NOTIFICATION

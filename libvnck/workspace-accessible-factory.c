@@ -45,7 +45,7 @@ AtkObjectFactory*
 vnck_workspace_accessible_factory_new (void)
 {
   GObject *factory;
-  factory = g_object_new (WNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, NULL);
+  factory = g_object_new (VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, NULL);
   return ATK_OBJECT_FACTORY (factory);
 }
 
@@ -58,5 +58,5 @@ vnck_workspace_accessible_factory_create_accessible (GObject *obj)
 static GType
 vnck_workspace_accessible_factory_get_accessible_type (void)
 {
-  return WNCK_WORKSPACE_TYPE_ACCESSIBLE;
+  return VNCK_WORKSPACE_TYPE_ACCESSIBLE;
 }

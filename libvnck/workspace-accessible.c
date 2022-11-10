@@ -78,14 +78,14 @@ vnck_workspace_accessible_get_extents (AtkComponent *component,
   GObject *g_obj;
   int px, py;
 
-  g_return_if_fail (WNCK_IS_WORKSPACE_ACCESSIBLE (component));
+  g_return_if_fail (VNCK_IS_WORKSPACE_ACCESSIBLE (component));
 
   atk_gobj = ATK_GOBJECT_ACCESSIBLE (component);
   g_obj = atk_gobject_accessible_get_object (atk_gobj);
   if (g_obj == NULL)
     return;
 
-  g_return_if_fail (WNCK_IS_WORKSPACE (g_obj));
+  g_return_if_fail (VNCK_IS_WORKSPACE (g_obj));
 
   parent = atk_object_get_parent (ATK_OBJECT(component));
   widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (parent));
@@ -98,14 +98,14 @@ vnck_workspace_accessible_get_extents (AtkComponent *component,
       return;
     }
 
-  g_return_if_fail (WNCK_IS_PAGER (widget));
-  pager = WNCK_PAGER (widget);
+  g_return_if_fail (VNCK_IS_PAGER (widget));
+  pager = VNCK_PAGER (widget);
 
-  g_return_if_fail (WNCK_IS_PAGER (pager));
+  g_return_if_fail (VNCK_IS_PAGER (pager));
 
   atk_component_get_extents (ATK_COMPONENT (parent), &px, &py, NULL, NULL, coords);
 
-  _vnck_pager_get_workspace_rect (pager, WNCK_WORKSPACE_ACCESSIBLE (component)->index, &rect);
+  _vnck_pager_get_workspace_rect (pager, VNCK_WORKSPACE_ACCESSIBLE (component)->index, &rect);
 
   *x = rect.x + px;
   *y = rect.y + py;
@@ -176,16 +176,16 @@ vnck_workspace_accessible_new (GObject *obj)
   GObject *object;
   AtkObject *atk_object;
 
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (obj), NULL);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (obj), NULL);
 
-  object = g_object_new (WNCK_WORKSPACE_TYPE_ACCESSIBLE, NULL);
+  object = g_object_new (VNCK_WORKSPACE_TYPE_ACCESSIBLE, NULL);
   atk_object = ATK_OBJECT (object);
   atk_object_initialize (atk_object, obj);
 
   g_return_val_if_fail (ATK_IS_OBJECT (atk_object), NULL);
 
-  WNCK_WORKSPACE_ACCESSIBLE (atk_object)->index =
-    vnck_workspace_get_number (WNCK_WORKSPACE (obj));
+  VNCK_WORKSPACE_ACCESSIBLE (atk_object)->index =
+    vnck_workspace_get_number (VNCK_WORKSPACE (obj));
 
   return atk_object;
 }
@@ -193,7 +193,7 @@ vnck_workspace_accessible_new (GObject *obj)
 static const char*
 vnck_workspace_accessible_get_name (AtkObject *obj)
 {
-  g_return_val_if_fail (WNCK_IS_WORKSPACE_ACCESSIBLE (obj), NULL);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE_ACCESSIBLE (obj), NULL);
 
   if (obj->name != NULL)
     {
@@ -206,7 +206,7 @@ vnck_workspace_accessible_get_name (AtkObject *obj)
 static const char*
 vnck_workspace_accessible_get_description (AtkObject *obj)
 {
-  g_return_val_if_fail (WNCK_IS_WORKSPACE_ACCESSIBLE (obj), NULL);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE_ACCESSIBLE (obj), NULL);
 
   if (obj->description != NULL)
     {
@@ -219,7 +219,7 @@ vnck_workspace_accessible_get_description (AtkObject *obj)
 static gint
 vnck_workspace_accessible_get_index_in_parent (AtkObject *obj)
 {
-  g_return_val_if_fail (WNCK_IS_WORKSPACE_ACCESSIBLE (obj), -1);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE_ACCESSIBLE (obj), -1);
 
-  return WNCK_WORKSPACE_ACCESSIBLE (obj)->index;
+  return VNCK_WORKSPACE_ACCESSIBLE (obj)->index;
 }

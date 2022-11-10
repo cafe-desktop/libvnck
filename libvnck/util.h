@@ -20,12 +20,12 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
+#if !defined (__LIBVNCK_H_INSIDE__) && !defined (VNCK_COMPILATION)
 #error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
-#ifndef WNCK_UTIL_H
-#define WNCK_UTIL_H
+#ifndef VNCK_UTIL_H
+#define VNCK_UTIL_H
 
 #include <gtk/gtk.h>
 
@@ -87,8 +87,8 @@ struct _WnckResourceUsage
 
 /**
  * WnckClientType:
- * @WNCK_CLIENT_TYPE_APPLICATION: the libvnck user is a normal application.
- * @WNCK_CLIENT_TYPE_PAGER: the libvnck user is an utility application dealing
+ * @VNCK_CLIENT_TYPE_APPLICATION: the libvnck user is a normal application.
+ * @VNCK_CLIENT_TYPE_PAGER: the libvnck user is an utility application dealing
  * with window management, like pagers and taskbars.
  *
  * Type describing the role of the libvnck user.
@@ -96,14 +96,14 @@ struct _WnckResourceUsage
  * Since: 2.14
  */
 typedef enum {
-  WNCK_CLIENT_TYPE_APPLICATION = 1,
-  WNCK_CLIENT_TYPE_PAGER = 2
+  VNCK_CLIENT_TYPE_APPLICATION = 1,
+  VNCK_CLIENT_TYPE_PAGER = 2
 } WnckClientType;
 
 void vnck_set_client_type (WnckClientType ewmh_sourceindication_client_type);
 
-#define WNCK_DEFAULT_ICON_SIZE 32
-#define WNCK_DEFAULT_MINI_ICON_SIZE 16
+#define VNCK_DEFAULT_ICON_SIZE 32
+#define VNCK_DEFAULT_MINI_ICON_SIZE 16
 
 void vnck_set_default_icon_size      (gsize size);
 void vnck_set_default_mini_icon_size (gsize size);
@@ -120,4 +120,4 @@ void vnck_pid_read_resource_usage (GdkDisplay        *gdk_display,
 
 G_END_DECLS
 
-#endif /* WNCK_UTIL_H */
+#endif /* VNCK_UTIL_H */

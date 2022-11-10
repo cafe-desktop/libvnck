@@ -124,7 +124,7 @@ int      set_y = G_MAXINT;
 int      set_width = -1;
 int      set_height = -1;
 char     *set_window_type = NULL;
-WnckWindowType set_window_type_t = WNCK_WINDOW_NORMAL;
+WnckWindowType set_window_type_t = VNCK_WINDOW_NORMAL;
 
 static gboolean
 option_parse (const char  *option_name,
@@ -800,21 +800,21 @@ validate_options (void)
   if (set_window_type != NULL)
     {
       if (strcmp (set_window_type, "normal") == 0)
-        set_window_type_t = WNCK_WINDOW_NORMAL;
+        set_window_type_t = VNCK_WINDOW_NORMAL;
       else if (strcmp (set_window_type, "desktop") == 0)
-        set_window_type_t = WNCK_WINDOW_DESKTOP;
+        set_window_type_t = VNCK_WINDOW_DESKTOP;
       else if (strcmp (set_window_type, "dock") == 0)
-        set_window_type_t = WNCK_WINDOW_DOCK;
+        set_window_type_t = VNCK_WINDOW_DOCK;
       else if (strcmp (set_window_type, "dialog") == 0)
-        set_window_type_t = WNCK_WINDOW_DIALOG;
+        set_window_type_t = VNCK_WINDOW_DIALOG;
       else if (strcmp (set_window_type, "toolbar") == 0)
-        set_window_type_t = WNCK_WINDOW_TOOLBAR;
+        set_window_type_t = VNCK_WINDOW_TOOLBAR;
       else if (strcmp (set_window_type, "menu") == 0)
-        set_window_type_t = WNCK_WINDOW_MENU;
+        set_window_type_t = VNCK_WINDOW_MENU;
       else if (strcmp (set_window_type, "utility") == 0)
-        set_window_type_t = WNCK_WINDOW_UTILITY;
+        set_window_type_t = VNCK_WINDOW_UTILITY;
       else if (strcmp (set_window_type, "splash") == 0)
-        set_window_type_t = WNCK_WINDOW_SPLASHSCREEN;
+        set_window_type_t = VNCK_WINDOW_SPLASHSCREEN;
       else
         {
           g_printerr (_("Invalid argument \"%s\" for --%s, valid values are: "
@@ -992,39 +992,39 @@ update_window (WnckWindow *window)
         g_printerr (_("Action not allowed\n"));                         \
     }
 
-  SET_PROPERTY (minimize, WNCK_WINDOW_ACTION_MINIMIZE)
-  SET_PROPERTY_TIMESTAMP (unminimize, WNCK_WINDOW_ACTION_UNMINIMIZE)
+  SET_PROPERTY (minimize, VNCK_WINDOW_ACTION_MINIMIZE)
+  SET_PROPERTY_TIMESTAMP (unminimize, VNCK_WINDOW_ACTION_UNMINIMIZE)
 
   SET_PROPERTY_DUAL (maximize,
-                     WNCK_WINDOW_ACTION_MAXIMIZE,
-                     WNCK_WINDOW_ACTION_UNMAXIMIZE)
+                     VNCK_WINDOW_ACTION_MAXIMIZE,
+                     VNCK_WINDOW_ACTION_UNMAXIMIZE)
   SET_PROPERTY_DUAL (maximize_horizontally,
-                     WNCK_WINDOW_ACTION_MAXIMIZE_HORIZONTALLY,
-                     WNCK_WINDOW_ACTION_UNMAXIMIZE_HORIZONTALLY)
+                     VNCK_WINDOW_ACTION_MAXIMIZE_HORIZONTALLY,
+                     VNCK_WINDOW_ACTION_UNMAXIMIZE_HORIZONTALLY)
   SET_PROPERTY_DUAL (maximize_vertically,
-                     WNCK_WINDOW_ACTION_MAXIMIZE_VERTICALLY,
-                     WNCK_WINDOW_ACTION_UNMAXIMIZE_VERTICALLY)
+                     VNCK_WINDOW_ACTION_MAXIMIZE_VERTICALLY,
+                     VNCK_WINDOW_ACTION_UNMAXIMIZE_VERTICALLY)
 
   SET_PROPERTY_BOOLEAN (fullscreen,
-                        WNCK_WINDOW_ACTION_FULLSCREEN,
-                        WNCK_WINDOW_ACTION_FULLSCREEN)
+                        VNCK_WINDOW_ACTION_FULLSCREEN,
+                        VNCK_WINDOW_ACTION_FULLSCREEN)
   SET_PROPERTY_DUAL (make_above,
-                     WNCK_WINDOW_ACTION_ABOVE, WNCK_WINDOW_ACTION_ABOVE)
+                     VNCK_WINDOW_ACTION_ABOVE, VNCK_WINDOW_ACTION_ABOVE)
   SET_PROPERTY_DUAL (make_below,
-                     WNCK_WINDOW_ACTION_BELOW, WNCK_WINDOW_ACTION_BELOW)
+                     VNCK_WINDOW_ACTION_BELOW, VNCK_WINDOW_ACTION_BELOW)
   SET_PROPERTY_DUAL (shade,
-                     WNCK_WINDOW_ACTION_SHADE, WNCK_WINDOW_ACTION_UNSHADE)
+                     VNCK_WINDOW_ACTION_SHADE, VNCK_WINDOW_ACTION_UNSHADE)
   SET_PROPERTY_DUAL (stick,
-                     WNCK_WINDOW_ACTION_STICK, WNCK_WINDOW_ACTION_UNSTICK)
+                     VNCK_WINDOW_ACTION_STICK, VNCK_WINDOW_ACTION_UNSTICK)
   SET_PROPERTY_BOOLEAN (skip_pager, actions, actions)
   SET_PROPERTY_BOOLEAN (skip_tasklist, actions, actions)
   SET_PROPERTY_DUAL (pin,
-                     WNCK_WINDOW_ACTION_CHANGE_WORKSPACE,
-                     WNCK_WINDOW_ACTION_CHANGE_WORKSPACE)
+                     VNCK_WINDOW_ACTION_CHANGE_WORKSPACE,
+                     VNCK_WINDOW_ACTION_CHANGE_WORKSPACE)
 
   if (set_workspace != -1)
     {
-      if (actions & WNCK_WINDOW_ACTION_CHANGE_WORKSPACE)
+      if (actions & VNCK_WINDOW_ACTION_CHANGE_WORKSPACE)
         {
            WnckScreen    *screen;
            WnckWorkspace *space;
@@ -1062,25 +1062,25 @@ update_window (WnckWindow *window)
     }
 
   geometry_mask = 0;
-  SET_GEOMETRY (x, G_MAXINT, WNCK_WINDOW_ACTION_MOVE, WNCK_WINDOW_CHANGE_X)
-  SET_GEOMETRY (y, G_MAXINT, WNCK_WINDOW_ACTION_MOVE, WNCK_WINDOW_CHANGE_Y)
-  SET_GEOMETRY (width, -1, WNCK_WINDOW_ACTION_RESIZE, WNCK_WINDOW_CHANGE_WIDTH)
-  SET_GEOMETRY (height, -1, WNCK_WINDOW_ACTION_RESIZE, WNCK_WINDOW_CHANGE_HEIGHT)
+  SET_GEOMETRY (x, G_MAXINT, VNCK_WINDOW_ACTION_MOVE, VNCK_WINDOW_CHANGE_X)
+  SET_GEOMETRY (y, G_MAXINT, VNCK_WINDOW_ACTION_MOVE, VNCK_WINDOW_CHANGE_Y)
+  SET_GEOMETRY (width, -1, VNCK_WINDOW_ACTION_RESIZE, VNCK_WINDOW_CHANGE_WIDTH)
+  SET_GEOMETRY (height, -1, VNCK_WINDOW_ACTION_RESIZE, VNCK_WINDOW_CHANGE_HEIGHT)
 
   if (geometry_mask != 0)
     vnck_window_set_geometry (window,
-                              WNCK_WINDOW_GRAVITY_CURRENT, geometry_mask,
+                              VNCK_WINDOW_GRAVITY_CURRENT, geometry_mask,
                               set_x, set_y, set_width, set_height);
 
   if (set_window_type != NULL)
     vnck_window_set_window_type (window, set_window_type_t);
 
   /* interactive actions at the end */
-  SET_PROPERTY (keyboard_move, WNCK_WINDOW_ACTION_MOVE)
+  SET_PROPERTY (keyboard_move, VNCK_WINDOW_ACTION_MOVE)
   /* FIXME: hack: we should rename the API */
   #define vnck_window_keyboard_resize vnck_window_keyboard_size
-  SET_PROPERTY (keyboard_resize, WNCK_WINDOW_ACTION_RESIZE)
-  SET_PROPERTY_TIMESTAMP (close, WNCK_WINDOW_ACTION_CLOSE)
+  SET_PROPERTY (keyboard_resize, VNCK_WINDOW_ACTION_RESIZE)
+  SET_PROPERTY_TIMESTAMP (close, VNCK_WINDOW_ACTION_CLOSE)
 }
 
 static void
@@ -1092,7 +1092,7 @@ list_windows (GList *windows)
 
   for (l = windows; l; l = l->next)
     {
-      window = WNCK_WINDOW (l->data);
+      window = VNCK_WINDOW (l->data);
 
       if (vnck_window_has_name (window))
         buf = vnck_window_get_name (window);
@@ -1118,7 +1118,7 @@ list_screen (WnckScreen *screen)
 
       for (l = spaces; l; l = l->next)
         {
-          space = WNCK_WORKSPACE (l->data);
+          space = VNCK_WORKSPACE (l->data);
 
           /* Translators: %d is a workspace number and %s a workspace name */
           g_print (_("%d: %s\n"),
@@ -1143,7 +1143,7 @@ list_workspace (WnckWorkspace *space)
 
   for (l = all_windows; l; l = l->next)
     {
-      window = WNCK_WINDOW (l->data);
+      window = VNCK_WINDOW (l->data);
 
       if (vnck_window_get_workspace (window) != NULL &&
           vnck_window_get_workspace (window) != space)
@@ -1199,7 +1199,7 @@ print_screen (WnckScreen *screen)
   g_print (_("Workspace Layout (rows, columns, orientation): "
              "%d, %d, %s\n"),
            rows, columns,
-           orientation == WNCK_LAYOUT_ORIENTATION_VERTICAL ? "vertical" :
+           orientation == VNCK_LAYOUT_ORIENTATION_VERTICAL ? "vertical" :
                                                              "horizontal");
 #endif
 
@@ -1290,7 +1290,7 @@ print_workspace (WnckWorkspace *space)
            vnck_workspace_get_layout_row (space),
            vnck_workspace_get_layout_column (space));
 
-  neighbor = vnck_workspace_get_neighbor (space, WNCK_MOTION_LEFT);
+  neighbor = vnck_workspace_get_neighbor (space, VNCK_MOTION_LEFT);
   if (neighbor)
     /* Translators: %d is a workspace number and %s a workspace name */
     free_buf = g_strdup_printf (_("%d (\"%s\")"),
@@ -1302,7 +1302,7 @@ print_workspace (WnckWorkspace *space)
   g_print (_("Left Neighbor: %s\n"), free_buf);
   g_free (free_buf);
 
-  neighbor = vnck_workspace_get_neighbor (space, WNCK_MOTION_RIGHT);
+  neighbor = vnck_workspace_get_neighbor (space, VNCK_MOTION_RIGHT);
   if (neighbor)
     /* Translators: %d is a workspace number and %s a workspace name */
     free_buf = g_strdup_printf (_("%d (\"%s\")"),
@@ -1314,7 +1314,7 @@ print_workspace (WnckWorkspace *space)
   g_print (_("Right Neighbor: %s\n"), free_buf);
   g_free (free_buf);
 
-  neighbor = vnck_workspace_get_neighbor (space, WNCK_MOTION_UP);
+  neighbor = vnck_workspace_get_neighbor (space, VNCK_MOTION_UP);
   if (neighbor)
     /* Translators: %d is a workspace number and %s a workspace name */
     free_buf = g_strdup_printf (_("%d (\"%s\")"),
@@ -1326,7 +1326,7 @@ print_workspace (WnckWorkspace *space)
   g_print (_("Top Neighbor: %s\n"), free_buf);
   g_free (free_buf);
 
-  neighbor = vnck_workspace_get_neighbor (space, WNCK_MOTION_DOWN);
+  neighbor = vnck_workspace_get_neighbor (space, VNCK_MOTION_DOWN);
   if (neighbor)
     /* Translators: %d is a workspace number and %s a workspace name */
     free_buf = g_strdup_printf (_("%d (\"%s\")"),
@@ -1467,28 +1467,28 @@ print_window (WnckWindow *window)
   type = vnck_window_get_window_type (window);
   switch (type)
     {
-      case WNCK_WINDOW_NORMAL:
+      case VNCK_WINDOW_NORMAL:
         buf = _("normal window");
         break;
-      case WNCK_WINDOW_DESKTOP:
+      case VNCK_WINDOW_DESKTOP:
         buf = _("desktop");
         break;
-      case WNCK_WINDOW_DOCK:
+      case VNCK_WINDOW_DOCK:
         buf = _("dock or panel");
         break;
-      case WNCK_WINDOW_DIALOG:
+      case VNCK_WINDOW_DIALOG:
         buf = _("dialog window");
         break;
-      case WNCK_WINDOW_TOOLBAR:
+      case VNCK_WINDOW_TOOLBAR:
         buf = _("tearoff toolbar");
         break;
-      case WNCK_WINDOW_MENU:
+      case VNCK_WINDOW_MENU:
         buf = _("tearoff menu");
         break;
-      case WNCK_WINDOW_UTILITY:
+      case VNCK_WINDOW_UTILITY:
         buf = _("utility window");
         break;
-      case WNCK_WINDOW_SPLASHSCREEN:
+      case VNCK_WINDOW_SPLASHSCREEN:
         buf = _("splash screen");
         break;
       default:
@@ -1626,41 +1626,41 @@ print_window (WnckWindow *window)
     }
   free_buf = NULL;
   actions = vnck_window_get_actions (window);
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_MOVE, _("move"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_RESIZE, _("resize"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_SHADE, _("shade"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_UNSHADE, _("unshade"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_STICK, _("stick"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_UNSTICK, _("unstick"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_MAXIMIZE_HORIZONTALLY,
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_MOVE, _("move"));
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_RESIZE, _("resize"));
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_SHADE, _("shade"));
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_UNSHADE, _("unshade"));
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_STICK, _("stick"));
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_UNSTICK, _("unstick"));
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_MAXIMIZE_HORIZONTALLY,
                     _("maximize horizontally"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_UNMAXIMIZE_HORIZONTALLY,
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_UNMAXIMIZE_HORIZONTALLY,
                     _("unmaximize horizontally"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_MAXIMIZE_VERTICALLY,
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_MAXIMIZE_VERTICALLY,
                     _("maximize vertically"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_UNMAXIMIZE_VERTICALLY,
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_UNMAXIMIZE_VERTICALLY,
                     _("unmaximize vertically"));
   /* we're calling PRINT_FLAGS_ITEM() three times for l10n reasons */
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_CHANGE_WORKSPACE,
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_CHANGE_WORKSPACE,
                     _("change workspace"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_CHANGE_WORKSPACE,
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_CHANGE_WORKSPACE,
                     _("pin"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_CHANGE_WORKSPACE,
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_CHANGE_WORKSPACE,
                     _("unpin"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_MINIMIZE, _("minimize"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_UNMINIMIZE, _("unminimize"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_MAXIMIZE, _("maximize"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_UNMAXIMIZE, _("unmaximize"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_FULLSCREEN,
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_MINIMIZE, _("minimize"));
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_UNMINIMIZE, _("unminimize"));
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_MAXIMIZE, _("maximize"));
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_UNMAXIMIZE, _("unmaximize"));
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_FULLSCREEN,
                     _("change fullscreen mode"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_CLOSE, _("close"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_ABOVE,
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_CLOSE, _("close"));
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_ABOVE,
                     _("make above"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_ABOVE,
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_ABOVE,
                     _("unmake above"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_BELOW,
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_BELOW,
                     _("make below"));
-  PRINT_FLAGS_ITEM (actions, WNCK_WINDOW_ACTION_BELOW,
+  PRINT_FLAGS_ITEM (actions, VNCK_WINDOW_ACTION_BELOW,
                     _("unmake below"));
   if (!free_buf)
     free_buf = g_strdup (_("no action possible"));
@@ -1863,7 +1863,7 @@ main (int argc, char **argv)
   GError         *error;
   WnckScreen     *screen;
 
-  bindtextdomain (GETTEXT_PACKAGE, WNCK_LOCALEDIR);
+  bindtextdomain (GETTEXT_PACKAGE, VNCK_LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
@@ -1933,7 +1933,7 @@ main (int argc, char **argv)
 
   gtk_init (&argc, &argv);
 
-  vnck_set_client_type (WNCK_CLIENT_TYPE_PAGER);
+  vnck_set_client_type (VNCK_CLIENT_TYPE_PAGER);
 
   if ((option_screen && interact_screen < 0) || !option_screen)
     screen = vnck_screen_get_default ();

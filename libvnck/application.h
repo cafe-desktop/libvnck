@@ -19,12 +19,12 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
+#if !defined (__LIBVNCK_H_INSIDE__) && !defined (VNCK_COMPILATION)
 #error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
-#ifndef WNCK_APPLICATION_H
-#define WNCK_APPLICATION_H
+#ifndef VNCK_APPLICATION_H
+#define VNCK_APPLICATION_H
 
 #include <glib-object.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
@@ -32,12 +32,12 @@
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_APPLICATION              (vnck_application_get_type ())
-#define WNCK_APPLICATION(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_APPLICATION, WnckApplication))
-#define WNCK_APPLICATION_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_APPLICATION, WnckApplicationClass))
-#define WNCK_IS_APPLICATION(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_APPLICATION))
-#define WNCK_IS_APPLICATION_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), WNCK_TYPE_APPLICATION))
-#define WNCK_APPLICATION_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), WNCK_TYPE_APPLICATION, WnckApplicationClass))
+#define VNCK_TYPE_APPLICATION              (vnck_application_get_type ())
+#define VNCK_APPLICATION(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_APPLICATION, WnckApplication))
+#define VNCK_APPLICATION_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_APPLICATION, WnckApplicationClass))
+#define VNCK_IS_APPLICATION(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_APPLICATION))
+#define VNCK_IS_APPLICATION_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_APPLICATION))
+#define VNCK_APPLICATION_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_APPLICATION, WnckApplicationClass))
 
 typedef struct _WnckApplicationClass   WnckApplicationClass;
 typedef struct _WnckApplicationPrivate WnckApplicationPrivate;
@@ -96,4 +96,4 @@ const char* vnck_application_get_startup_id (WnckApplication *app);
 
 G_END_DECLS
 
-#endif /* WNCK_APPLICATION_H */
+#endif /* VNCK_APPLICATION_H */

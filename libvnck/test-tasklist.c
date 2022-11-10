@@ -10,7 +10,7 @@ static gboolean rtl = FALSE;
 static gboolean skip_tasklist = FALSE;
 static gboolean transparent = FALSE;
 static gboolean vertical = FALSE;
-static gint icon_size = WNCK_DEFAULT_MINI_ICON_SIZE;
+static gint icon_size = VNCK_DEFAULT_MINI_ICON_SIZE;
 static gboolean enable_scroll = TRUE;
 
 static GOptionEntry entries[] = {
@@ -93,22 +93,22 @@ main (int argc, char **argv)
 
   tasklist = vnck_tasklist_new ();
 
-  vnck_tasklist_set_include_all_workspaces (WNCK_TASKLIST (tasklist), display_all);
+  vnck_tasklist_set_include_all_workspaces (VNCK_TASKLIST (tasklist), display_all);
   if (always_group)
-    vnck_tasklist_set_grouping (WNCK_TASKLIST (tasklist),
-                                WNCK_TASKLIST_ALWAYS_GROUP);
+    vnck_tasklist_set_grouping (VNCK_TASKLIST (tasklist),
+                                VNCK_TASKLIST_ALWAYS_GROUP);
   else if (never_group)
-    vnck_tasklist_set_grouping (WNCK_TASKLIST (tasklist),
-                                WNCK_TASKLIST_NEVER_GROUP);
+    vnck_tasklist_set_grouping (VNCK_TASKLIST (tasklist),
+                                VNCK_TASKLIST_NEVER_GROUP);
   else
-    vnck_tasklist_set_grouping (WNCK_TASKLIST (tasklist),
-                                WNCK_TASKLIST_AUTO_GROUP);
+    vnck_tasklist_set_grouping (VNCK_TASKLIST (tasklist),
+                                VNCK_TASKLIST_AUTO_GROUP);
 
-  vnck_tasklist_set_scroll_enabled (WNCK_TASKLIST (tasklist), enable_scroll);
+  vnck_tasklist_set_scroll_enabled (VNCK_TASKLIST (tasklist), enable_scroll);
 
-  vnck_tasklist_set_middle_click_close (WNCK_TASKLIST (tasklist), TRUE);
+  vnck_tasklist_set_middle_click_close (VNCK_TASKLIST (tasklist), TRUE);
 
-  vnck_tasklist_set_orientation (WNCK_TASKLIST (tasklist),
+  vnck_tasklist_set_orientation (VNCK_TASKLIST (tasklist),
                                  (vertical ? GTK_ORIENTATION_VERTICAL :
                                              GTK_ORIENTATION_HORIZONTAL));
 
@@ -136,7 +136,7 @@ main (int argc, char **argv)
           window_composited_changed (win, NULL);
         }
 
-        vnck_tasklist_set_button_relief (WNCK_TASKLIST (tasklist),
+        vnck_tasklist_set_button_relief (VNCK_TASKLIST (tasklist),
                                          GTK_RELIEF_NONE);
     }
 

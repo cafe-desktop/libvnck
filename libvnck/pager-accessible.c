@@ -108,7 +108,7 @@ vnck_pager_add_selection (AtkSelection *selection,
       return FALSE;
     }
 
-  pager = WNCK_PAGER (widget);
+  pager = VNCK_PAGER (widget);
   n_spaces = _vnck_pager_get_n_workspaces (pager);
 
   if (i < 0 || i >= n_spaces)
@@ -148,9 +148,9 @@ vnck_pager_ref_selection (AtkSelection *selection,
        */
       return NULL;
     }
-  pager = WNCK_PAGER (widget);
+  pager = VNCK_PAGER (widget);
 
-  active_wspace = WNCK_WORKSPACE (_vnck_pager_get_active_workspace (pager));
+  active_wspace = VNCK_WORKSPACE (_vnck_pager_get_active_workspace (pager));
   wsno = vnck_workspace_get_number (active_wspace);
 
   accessible = ATK_OBJECT (vnck_pager_accessible_ref_child (ATK_OBJECT (selection), wsno));
@@ -205,7 +205,7 @@ vnck_pager_is_child_selected (AtkSelection *selection,
       return FALSE;
     }
 
-  pager = WNCK_PAGER (widget);
+  pager = VNCK_PAGER (widget);
   active_wspace = _vnck_pager_get_active_workspace (pager);
 
   wsno = vnck_workspace_get_number (active_wspace);
@@ -220,7 +220,7 @@ vnck_pager_accessible_new (GtkWidget *widget)
   AtkObject *aobj_pager;
   GtkAccessible *gtk_accessible;
 
-  object = g_object_new (WNCK_PAGER_TYPE_ACCESSIBLE, NULL);
+  object = g_object_new (VNCK_PAGER_TYPE_ACCESSIBLE, NULL);
 
   aobj_pager = ATK_OBJECT (object);
 
@@ -239,7 +239,7 @@ vnck_pager_accessible_finalize (GObject *gobject)
   WnckPagerAccessible *accessible;
   WnckPagerAccessiblePrivate *priv;
 
-  accessible = WNCK_PAGER_ACCESSIBLE (gobject);
+  accessible = VNCK_PAGER_ACCESSIBLE (gobject);
   priv = vnck_pager_accessible_get_instance_private (accessible);
 
   if (priv)
@@ -257,7 +257,7 @@ vnck_pager_accessible_finalize (GObject *gobject)
 static const char*
 vnck_pager_accessible_get_name (AtkObject *obj)
 {
-  g_return_val_if_fail (WNCK_PAGER_IS_ACCESSIBLE (obj), NULL);
+  g_return_val_if_fail (VNCK_PAGER_IS_ACCESSIBLE (obj), NULL);
 
   if (obj->name == NULL)
     obj->name = g_strdup (_("Workspace Switcher"));
@@ -268,7 +268,7 @@ vnck_pager_accessible_get_name (AtkObject *obj)
 static const char*
 vnck_pager_accessible_get_description (AtkObject *obj)
 {
-  g_return_val_if_fail (WNCK_PAGER_IS_ACCESSIBLE (obj), NULL);
+  g_return_val_if_fail (VNCK_PAGER_IS_ACCESSIBLE (obj), NULL);
 
   if (obj->description == NULL)
     obj->description = g_strdup (_("Tool to switch between workspaces"));
@@ -286,7 +286,7 @@ vnck_pager_accessible_get_n_children (AtkObject* obj)
   GtkWidget *widget;
   WnckPager *pager;
 
-  g_return_val_if_fail (WNCK_PAGER_IS_ACCESSIBLE (obj), 0);
+  g_return_val_if_fail (VNCK_PAGER_IS_ACCESSIBLE (obj), 0);
 
   accessible = GTK_ACCESSIBLE (obj);
   widget = gtk_accessible_get_widget (accessible);
@@ -295,7 +295,7 @@ vnck_pager_accessible_get_n_children (AtkObject* obj)
     /* State is defunct */
     return 0;
 
-  pager = WNCK_PAGER (widget);
+  pager = VNCK_PAGER (widget);
 
   return _vnck_pager_get_n_workspaces (pager);
 }
@@ -316,7 +316,7 @@ vnck_pager_accessible_ref_child (AtkObject *obj,
   WnckPagerAccessiblePrivate *priv;
   AtkObject *ret;
 
-  g_return_val_if_fail (WNCK_PAGER_IS_ACCESSIBLE (obj), NULL);
+  g_return_val_if_fail (VNCK_PAGER_IS_ACCESSIBLE (obj), NULL);
   g_return_val_if_fail (ATK_IS_OBJECT (obj), NULL);
 
   accessible = GTK_ACCESSIBLE (obj);
@@ -326,8 +326,8 @@ vnck_pager_accessible_ref_child (AtkObject *obj,
     /* State is defunct */
     return NULL;
 
-  pager = WNCK_PAGER (widget);
-  pager_accessible = WNCK_PAGER_ACCESSIBLE (obj);
+  pager = VNCK_PAGER (widget);
+  pager_accessible = VNCK_PAGER_ACCESSIBLE (obj);
   priv = vnck_pager_accessible_get_instance_private (pager_accessible);
 
   len = g_slist_length (priv->children);
@@ -348,10 +348,10 @@ vnck_pager_accessible_ref_child (AtkObject *obj,
 
       default_registry = atk_get_default_registry ();
       factory = atk_registry_get_factory (default_registry,
-                                          WNCK_TYPE_WORKSPACE);
+                                          VNCK_TYPE_WORKSPACE);
 
       wspace = _vnck_pager_get_workspace (pager, len);
-      space_accessible = WNCK_WORKSPACE_ACCESSIBLE (atk_object_factory_create_accessible (factory,
+      space_accessible = VNCK_WORKSPACE_ACCESSIBLE (atk_object_factory_create_accessible (factory,
                                                                                           G_OBJECT (wspace)));
       atk_object_set_parent (ATK_OBJECT (space_accessible), obj);
 

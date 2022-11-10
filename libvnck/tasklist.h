@@ -19,24 +19,24 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
+#if !defined (__LIBVNCK_H_INSIDE__) && !defined (VNCK_COMPILATION)
 #error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
-#ifndef WNCK_TASKLIST_H
-#define WNCK_TASKLIST_H
+#ifndef VNCK_TASKLIST_H
+#define VNCK_TASKLIST_H
 
 #include <gtk/gtk.h>
 #include <libvnck/screen.h>
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_TASKLIST              (vnck_tasklist_get_type ())
-#define WNCK_TASKLIST(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_TASKLIST, WnckTasklist))
-#define WNCK_TASKLIST_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_TASKLIST, WnckTasklistClass))
-#define WNCK_IS_TASKLIST(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_TASKLIST))
-#define WNCK_IS_TASKLIST_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), WNCK_TYPE_TASKLIST))
-#define WNCK_TASKLIST_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), WNCK_TYPE_TASKLIST, WnckTasklistClass))
+#define VNCK_TYPE_TASKLIST              (vnck_tasklist_get_type ())
+#define VNCK_TASKLIST(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_TASKLIST, WnckTasklist))
+#define VNCK_TASKLIST_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_TASKLIST, WnckTasklistClass))
+#define VNCK_IS_TASKLIST(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_TASKLIST))
+#define VNCK_IS_TASKLIST_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_TASKLIST))
+#define VNCK_TASKLIST_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_TASKLIST, WnckTasklistClass))
 
 typedef struct _WnckTasklist        WnckTasklist;
 typedef struct _WnckTasklistClass   WnckTasklistClass;
@@ -68,21 +68,21 @@ struct _WnckTasklistClass
 
 /**
  * WnckTasklistGroupingType:
- * @WNCK_TASKLIST_NEVER_GROUP: never group multiple #WnckWindow of the same
+ * @VNCK_TASKLIST_NEVER_GROUP: never group multiple #WnckWindow of the same
  * #WnckApplication.
- * @WNCK_TASKLIST_AUTO_GROUP: group multiple #WnckWindow of the same
+ * @VNCK_TASKLIST_AUTO_GROUP: group multiple #WnckWindow of the same
  * #WnckApplication for some #WnckApplication, when there is not enough place
  * to have a good-looking list of all #WnckWindow.
- * @WNCK_TASKLIST_ALWAYS_GROUP: always group multiple #WnckWindow of the same
+ * @VNCK_TASKLIST_ALWAYS_GROUP: always group multiple #WnckWindow of the same
  * #WnckApplication, for all #WnckApplication.
  *
  * Type defining the policy of the #WnckTasklist for grouping multiple
  * #WnckWindow of the same #WnckApplication.
  */
 typedef enum {
-  WNCK_TASKLIST_NEVER_GROUP,
-  WNCK_TASKLIST_AUTO_GROUP,
-  WNCK_TASKLIST_ALWAYS_GROUP
+  VNCK_TASKLIST_NEVER_GROUP,
+  VNCK_TASKLIST_AUTO_GROUP,
+  VNCK_TASKLIST_ALWAYS_GROUP
 } WnckTasklistGroupingType;
 
 GType vnck_tasklist_get_type (void) G_GNUC_CONST;
@@ -138,4 +138,4 @@ void vnck_tasklist_set_icon_loader (WnckTasklist         *tasklist,
 
 G_END_DECLS
 
-#endif /* WNCK_TASKLIST_H */
+#endif /* VNCK_TASKLIST_H */

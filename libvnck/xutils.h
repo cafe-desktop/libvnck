@@ -19,8 +19,8 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WNCK_XUTILS_H
-#define WNCK_XUTILS_H
+#ifndef VNCK_XUTILS_H
+#define VNCK_XUTILS_H
 
 #include <glib.h>
 #include <X11/Xlib.h>
@@ -31,7 +31,7 @@
 
 G_BEGIN_DECLS
 
-#define WNCK_APP_WINDOW_EVENT_MASK (PropertyChangeMask | StructureNotifyMask)
+#define VNCK_APP_WINDOW_EVENT_MASK (PropertyChangeMask | StructureNotifyMask)
 
 gboolean _vnck_get_cardinal      (Screen *screen,
                                   Window  xwindow,
@@ -227,7 +227,7 @@ GdkDisplay* _vnck_gdk_display_lookup_from_display (Display *display);
 GdkWindow* _vnck_gdk_window_lookup_from_window (Screen *screen,
                                                 Window  xwindow);
 
-#define WNCK_NO_MANAGER_TOKEN 0
+#define VNCK_NO_MANAGER_TOKEN 0
 
 int      _vnck_try_desktop_layout_manager           (Screen *xscreen,
                                                      int     current_token);
@@ -237,4 +237,4 @@ gboolean _vnck_desktop_layout_manager_process_event (XEvent *xev);
 
 G_END_DECLS
 
-#endif /* WNCK_XUTILS_H */
+#endif /* VNCK_XUTILS_H */

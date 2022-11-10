@@ -15,17 +15,17 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WNCK_IMAGE_MENU_ITEM_PRIVATE_H
-#define WNCK_IMAGE_MENU_ITEM_PRIVATE_H
+#ifndef VNCK_IMAGE_MENU_ITEM_PRIVATE_H
+#define VNCK_IMAGE_MENU_ITEM_PRIVATE_H
 
 #include <gtk/gtk.h>
 #include "window.h"
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_IMAGE_MENU_ITEM vnck_image_menu_item_get_type ()
+#define VNCK_TYPE_IMAGE_MENU_ITEM vnck_image_menu_item_get_type ()
 G_DECLARE_FINAL_TYPE (WnckImageMenuItem, vnck_image_menu_item,
-                      WNCK, IMAGE_MENU_ITEM, GtkMenuItem)
+                      VNCK, IMAGE_MENU_ITEM, GtkMenuItem)
 
 GtkWidget *vnck_image_menu_item_new                        (void);
 

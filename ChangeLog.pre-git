@@ -58,7 +58,7 @@
 	* libvnck/screen.c:
 	* libvnck/tasklist.c:
 	* libvnck/util.c:
-	* libvnck/window-action-menu.c: undef WNCK_DISABLE_DEPRECATED, since
+	* libvnck/window-action-menu.c: undef VNCK_DISABLE_DEPRECATED, since
 	that's internal code.
 
 2008-12-14  Vincent Untz  <vuntz@gnome.org>
@@ -1357,7 +1357,7 @@
 	* doc/Makefile.am:
 	* libvnck/pager.h:
 	* libvnck/tasklist.h:
-	* libvnck/util.h: add WNCK_DISABLE_DEPRECATED
+	* libvnck/util.h: add VNCK_DISABLE_DEPRECATED
 
 2007-06-14  Vincent Untz  <vuntz@gnome.org>
 
@@ -1564,7 +1564,7 @@
 
 2007-06-10  Vincent Untz  <vuntz@gnome.org>
 
-	* libvnck/window.c: (update_actions): add WNCK_WINDOW_ACTION_BELOW to
+	* libvnck/window.c: (update_actions): add VNCK_WINDOW_ACTION_BELOW to
 	the available actions if we couldn't get the list of available actions.
 
 2007-06-10  Vincent Untz  <vuntz@gnome.org>
@@ -1773,8 +1773,8 @@
 	Fix bug #124332.
 
 	* libvnck/window.c: (vnck_window_set_window_type), (update_state),
-	(update_wintype): don't handle the WNCK_WINDOW_MODAL_DIALOG cases
-	* libvnck/window.h: remove WNCK_WINDOW_MODAL_DIALOG
+	(update_wintype): don't handle the VNCK_WINDOW_MODAL_DIALOG cases
+	* libvnck/window.h: remove VNCK_WINDOW_MODAL_DIALOG
 
 2007-05-19  Vincent Untz  <vuntz@gnome.org>
 
@@ -1911,7 +1911,7 @@
 	(vnck_selector_on_show), (vnck_selector_fill),
 	(vnck_selector_init), (vnck_selector_finalize),
 	(vnck_selector_destroy): use selector->priv insteaf of
-	WNCK_SELECTOR_GET_PRIVATE() everywhere
+	VNCK_SELECTOR_GET_PRIVATE() everywhere
 
 2007-05-18  Vincent Untz  <vuntz@gnome.org>
 
@@ -2107,7 +2107,7 @@
 	_NET_WM_ACTION_(ABOVE|BELOW).
 
 	* libvnck/window.h (enum WnckWindowActions): add
-	WNCK_WINDOW_ACTION_ABOVE and WNCK_WINDOW_ACTION_BELOW.
+	VNCK_WINDOW_ACTION_ABOVE and VNCK_WINDOW_ACTION_BELOW.
 
 2007-04-10  Matthias Clasen  <mclasen@redhat.com>
 
@@ -2118,7 +2118,7 @@
 2007-04-09  Elijah Newren  <newren gmail com>
 
 	* libvnck/window.h (enum WnckWindowGravity): add
-	WNCK_WINDOW_GRAVITY_STATIC.  (See #344521; this extra defined
+	VNCK_WINDOW_GRAVITY_STATIC.  (See #344521; this extra defined
 	constant should have been added as part of #342899)
 
 2007-03-12  Vincent Untz  <vuntz@gnome.org>
@@ -3248,7 +3248,7 @@
 	instead of vnck_window_is_active().
 
 	* configure.in:
-	bump LIBWNCK_CURRENT due to function rename
+	bump LIBVNCK_CURRENT due to function rename
 
 2005-07-17  Elijah Newren  <newren@gmail.com>
 
@@ -3325,7 +3325,7 @@
 	* libvnck/tasklist.c (vnck_task_state_changed):
 	* libvnck/window.h (enum WnckWindowState):
 
-	add WNCK_WINDOW_STATE_URGENT and checks for it
+	add VNCK_WINDOW_STATE_URGENT and checks for it
 
 	* libvnck/window.c (COMPRESS_STATE macro): add
 	(window)->priv->is_urgent, (struct _WnckWindowPrivate): add
@@ -3504,7 +3504,7 @@
 	vnck_window_activate() is needed now.
 
 	* configure.in:
-	Increment LIBWNCK_CURRENT because of the API changes.
+	Increment LIBVNCK_CURRENT because of the API changes.
 
 2005-02-12  Elijah Newren  <newren@gmail.com>
 
@@ -3727,7 +3727,7 @@
 	Modified patch from Fernando Villacis Postigo
 	<fvillacis@csnat.unt.edu.ar> in bug #95614
 
-	* libvnck/private.h: defined WNCK_ACTIVATE_TIMEOUT
+	* libvnck/private.h: defined VNCK_ACTIVATE_TIMEOUT
 	* libvnck/tasklist.c: use it instead of 
 	TIMEOUT_ACTIVATE
 	* libvnck/pager.c: Implemented switching workspaces
@@ -4007,7 +4007,7 @@
 	state
 
 	* libvnck/window.h (WnckWindowState): Add
-	WNCK_WINDOW_STATE_DEMANDS_ATTENTION
+	VNCK_WINDOW_STATE_DEMANDS_ATTENTION
 	(vnck_window_demands_attention): add prototype for new API
 	function
 
@@ -4203,7 +4203,7 @@
 
 2003-11-22  Federico Mena Quintero  <federico@ximian.com>
 
-	* libvnck/tasklist.c (WnckTaskType): Added a WNCK_TASK_CLASS_GROUP
+	* libvnck/tasklist.c (WnckTaskType): Added a VNCK_TASK_CLASS_GROUP
 	type.
 	(struct _WnckTask): Added a class_group field, analogous to the
 	application and window fields.
@@ -4243,7 +4243,7 @@
 	(vnck_task_get_text): Use a window's name rather than its icon
 	name.  They seem to be the same for most windows, and Emacs screws
 	up the icon name, setting it to "emacs" only --- it's useless.
-	(WnckTaskType): Removed WNCK_TASK_APPLICATION.
+	(WnckTaskType): Removed VNCK_TASK_APPLICATION.
 	(struct _WnckTask): Removed the application-related fields.
 	(struct _WnckTasklistPrivate): Likewise.
 	(vnck_task_finalize): Likewise.
@@ -4285,7 +4285,7 @@
 	* libvnck/test-tasklist.c (main): Set a default size so I don't
 	have to resize the test window every time.
 
-	* configure.in: Increment LIBWNCK_CURRENT and LIBWNCK_AGE.
+	* configure.in: Increment LIBVNCK_CURRENT and LIBVNCK_AGE.
 
 2003-11-17  Padraig O'Briain  <padraigobriain@sun.com>
 
@@ -4702,7 +4702,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 	* libvnck/window.c (update_state): rework to update HIDDEN state
 	(vnck_window_is_visible_on_workspace): use state HIDDEN
 
-	* libvnck/window.h (WnckWindowState): add WNCK_WINDOW_STATE_HIDDEN
+	* libvnck/window.h (WnckWindowState): add VNCK_WINDOW_STATE_HIDDEN
 
 2002-09-27  Havoc Pennington  <hp@redhat.com>
 
@@ -4781,7 +4781,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 
 2002-09-16  Mark McLoughlin  <mark@skynet.ie>
 
-	* configure.in: LIBWNCK_CURRENT++, LIBWNCK_AGE++.
+	* configure.in: LIBVNCK_CURRENT++, LIBVNCK_AGE++.
 
 2002-09-16  Mark McLoughlin  <mark@skynet.ie>
 
@@ -5199,7 +5199,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 	be called when we create the main objects, and 
 	bindtextdomain() in here. #74026
 
-	* libvnck/Makefile.am (INCLUDES): define WNCK_LOCALEDIR
+	* libvnck/Makefile.am (INCLUDES): define VNCK_LOCALEDIR
 
 	* configure.in (vncklocaledir): set up vncklocaledir variable
 
@@ -5403,7 +5403,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 
 2002-01-11  Havoc Pennington  <hp@pobox.com>
 
-	* configure.in (LIBWNCK_CURRENT): bump soname
+	* configure.in (LIBVNCK_CURRENT): bump soname
 
 	* libvnck/window.c (vnck_window_get_icon_is_fallback): add this
 	(vnck_window_set_create_fallback_icon): to replace this broken 

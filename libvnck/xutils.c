@@ -2720,14 +2720,14 @@ _vnck_try_desktop_layout_manager (Screen *xscreen,
                 }
             }
           else
-            return WNCK_NO_MANAGER_TOKEN; /* someone else has it */
+            return VNCK_NO_MANAGER_TOKEN; /* someone else has it */
         }
 
       tmp = tmp->next;
     }
 
   if (owner != None)
-    return WNCK_NO_MANAGER_TOKEN; /* someone else has the selection */
+    return VNCK_NO_MANAGER_TOKEN; /* someone else has the selection */
 
   /* No one has the selection at the moment */
 
@@ -2763,7 +2763,7 @@ _vnck_try_desktop_layout_manager (Screen *xscreen,
       lm->window)
     {
       g_free (lm);
-      return WNCK_NO_MANAGER_TOKEN;
+      return VNCK_NO_MANAGER_TOKEN;
     }
 
   xev.type = ClientMessage;

@@ -87,8 +87,8 @@ vnck_selector_windows_compare (gconstpointer  a,
   int posa;
   int posb;
 
-  posa = vnck_window_get_sort_order (WNCK_WINDOW (a));
-  posb = vnck_window_get_sort_order (WNCK_WINDOW (b));
+  posa = vnck_window_get_sort_order (VNCK_WINDOW (a));
+  posb = vnck_window_get_sort_order (VNCK_WINDOW (b));
 
   return (posa - posb);
 }
@@ -338,7 +338,7 @@ vnck_selector_window_icon_changed (WnckWindow *window,
   item = g_hash_table_lookup (selector->priv->window_hash, window);
   if (item != NULL)
     {
-      vnck_image_menu_item_set_image_from_window (WNCK_IMAGE_MENU_ITEM (item),
+      vnck_image_menu_item_set_image_from_window (VNCK_IMAGE_MENU_ITEM (item),
                                                   window);
     }
 }
@@ -373,10 +373,10 @@ vnck_selector_window_state_changed (WnckWindow *window,
 
   if (!
       (changed_mask &
-       (WNCK_WINDOW_STATE_MINIMIZED | WNCK_WINDOW_STATE_SHADED |
-        WNCK_WINDOW_STATE_SKIP_TASKLIST |
-        WNCK_WINDOW_STATE_DEMANDS_ATTENTION |
-        WNCK_WINDOW_STATE_URGENT)))
+       (VNCK_WINDOW_STATE_MINIMIZED | VNCK_WINDOW_STATE_SHADED |
+        VNCK_WINDOW_STATE_SKIP_TASKLIST |
+        VNCK_WINDOW_STATE_DEMANDS_ATTENTION |
+        VNCK_WINDOW_STATE_URGENT)))
     return;
 
   if (!selector->priv->window_hash)
@@ -386,7 +386,7 @@ vnck_selector_window_state_changed (WnckWindow *window,
   if (item == NULL)
     return;
 
-  if (changed_mask & WNCK_WINDOW_STATE_SKIP_TASKLIST)
+  if (changed_mask & VNCK_WINDOW_STATE_SKIP_TASKLIST)
     {
       if (vnck_window_is_skip_tasklist (window))
         gtk_widget_hide (item);
@@ -399,16 +399,16 @@ vnck_selector_window_state_changed (WnckWindow *window,
     }
 
   if (changed_mask &
-      (WNCK_WINDOW_STATE_DEMANDS_ATTENTION | WNCK_WINDOW_STATE_URGENT))
+      (VNCK_WINDOW_STATE_DEMANDS_ATTENTION | VNCK_WINDOW_STATE_URGENT))
     {
       if (vnck_window_or_transient_needs_attention (window))
-        vnck_image_menu_item_make_label_bold (WNCK_IMAGE_MENU_ITEM (item));
+        vnck_image_menu_item_make_label_bold (VNCK_IMAGE_MENU_ITEM (item));
       else
-        vnck_image_menu_item_make_label_normal (WNCK_IMAGE_MENU_ITEM (item));
+        vnck_image_menu_item_make_label_normal (VNCK_IMAGE_MENU_ITEM (item));
     }
 
   if (changed_mask &
-      (WNCK_WINDOW_STATE_MINIMIZED | WNCK_WINDOW_STATE_SHADED))
+      (VNCK_WINDOW_STATE_MINIMIZED | VNCK_WINDOW_STATE_SHADED))
     {
       window_name = _vnck_window_get_name_for_display (window, FALSE, TRUE);
       gtk_menu_item_set_label (GTK_MENU_ITEM (item), window_name);
@@ -482,7 +482,7 @@ vnck_selector_drag_begin (GtkWidget          *widget,
 {
   while (widget)
     {
-      if (WNCK_IS_SELECTOR (widget))
+      if (VNCK_IS_SELECTOR (widget))
         break;
 
       if (GTK_IS_MENU (widget))
@@ -526,7 +526,7 @@ vnck_selector_item_new (WnckSelector *selector,
     {
       /* if window demands attention, bold the label */
       if (vnck_window_or_transient_needs_attention (window))
-        vnck_image_menu_item_make_label_bold (WNCK_IMAGE_MENU_ITEM (item));
+        vnck_image_menu_item_make_label_bold (VNCK_IMAGE_MENU_ITEM (item));
 
       g_hash_table_insert (selector->priv->window_hash, window, item);
     }
@@ -632,7 +632,7 @@ vnck_selector_create_window (WnckSelector *selector, WnckWindow *window)
   item = vnck_selector_item_new (selector, name, window);
   g_free (name);
 
-  vnck_image_menu_item_set_image_from_window (WNCK_IMAGE_MENU_ITEM (item),
+  vnck_image_menu_item_set_image_from_window (VNCK_IMAGE_MENU_ITEM (item),
                                               window);
 
   g_signal_connect_swapped (item, "activate",
@@ -940,7 +940,7 @@ vnck_selector_scroll_event (GtkWidget      *widget,
   WnckWindow *previous_window;
   gboolean should_activate_next_window;
 
-  selector = WNCK_SELECTOR (widget);
+  selector = VNCK_SELECTOR (widget);
 
   screen = vnck_selector_get_screen (selector);
   workspace = vnck_screen_get_active_workspace (screen);
@@ -956,7 +956,7 @@ vnck_selector_scroll_event (GtkWidget      *widget,
   should_activate_next_window = FALSE;
   for (l = windows_list; l; l = l->next)
     {
-      window = WNCK_WINDOW (l->data);
+      window = VNCK_WINDOW (l->data);
 
       if (vnck_window_is_skip_tasklist (window))
         continue;
@@ -1181,7 +1181,7 @@ vnck_selector_constructor (GType                  type,
                                                       n_construct_properties,
                                                       construct_properties);
 
-  vnck_selector_fill (WNCK_SELECTOR (obj));
+  vnck_selector_fill (VNCK_SELECTOR (obj));
 
   return obj;
 }
@@ -1191,7 +1191,7 @@ vnck_selector_finalize (GObject *object)
 {
   WnckSelector *selector;
 
-  selector = WNCK_SELECTOR (object);
+  selector = VNCK_SELECTOR (object);
 
   if (selector->priv->window_hash)
     g_hash_table_destroy (selector->priv->window_hash);
@@ -1205,7 +1205,7 @@ vnck_selector_dispose (GObject *object)
 {
   WnckSelector *selector;
 
-  selector = WNCK_SELECTOR (object);
+  selector = VNCK_SELECTOR (object);
 
   if (selector->priv->menu)
     gtk_widget_destroy (selector->priv->menu);
@@ -1227,7 +1227,7 @@ vnck_selector_realize (GtkWidget *widget)
 
   GTK_WIDGET_CLASS (vnck_selector_parent_class)->realize (widget);
 
-  selector = WNCK_SELECTOR (widget);
+  selector = VNCK_SELECTOR (widget);
   screen = vnck_selector_get_screen (selector);
 
   window = vnck_screen_get_active_window (screen);
@@ -1246,7 +1246,7 @@ vnck_selector_unrealize (GtkWidget *widget)
   WnckScreen   *screen;
   GList        *l;
 
-  selector = WNCK_SELECTOR (widget);
+  selector = VNCK_SELECTOR (widget);
   screen = vnck_selector_get_screen (selector);
 
   vnck_selector_disconnect_from_screen (selector, screen);
@@ -1272,7 +1272,7 @@ vnck_selector_new (void)
 {
   WnckSelector *selector;
 
-  selector = g_object_new (WNCK_TYPE_SELECTOR, NULL);
+  selector = g_object_new (VNCK_TYPE_SELECTOR, NULL);
 
   return GTK_WIDGET (selector);
 }

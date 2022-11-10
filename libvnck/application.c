@@ -155,9 +155,9 @@ vnck_application_finalize (GObject *object)
 {
   WnckApplication *application;
 
-  application = WNCK_APPLICATION (object);
+  application = VNCK_APPLICATION (object);
 
-  _vnck_select_input (WNCK_SCREEN_XSCREEN (application->priv->screen),
+  _vnck_select_input (VNCK_SCREEN_XSCREEN (application->priv->screen),
                       application->priv->xwindow,
                       application->priv->orig_event_mask,
                       FALSE);
@@ -219,7 +219,7 @@ vnck_application_get (gulong xwindow)
 gulong
 vnck_application_get_xid (WnckApplication *app)
 {
-  g_return_val_if_fail (WNCK_IS_APPLICATION (app), 0);
+  g_return_val_if_fail (VNCK_IS_APPLICATION (app), 0);
 
   return app->priv->xwindow;
 }
@@ -237,7 +237,7 @@ vnck_application_get_xid (WnckApplication *app)
 GList*
 vnck_application_get_windows (WnckApplication *app)
 {
-  g_return_val_if_fail (WNCK_IS_APPLICATION (app), NULL);
+  g_return_val_if_fail (VNCK_IS_APPLICATION (app), NULL);
 
   return app->priv->windows;
 }
@@ -253,7 +253,7 @@ vnck_application_get_windows (WnckApplication *app)
 int
 vnck_application_get_n_windows (WnckApplication *app)
 {
-  g_return_val_if_fail (WNCK_IS_APPLICATION (app), 0);
+  g_return_val_if_fail (VNCK_IS_APPLICATION (app), 0);
 
   return g_list_length (app->priv->windows);
 }
@@ -274,7 +274,7 @@ vnck_application_get_n_windows (WnckApplication *app)
 const char*
 vnck_application_get_name (WnckApplication *app)
 {
-  g_return_val_if_fail (WNCK_IS_APPLICATION (app), NULL);
+  g_return_val_if_fail (VNCK_IS_APPLICATION (app), NULL);
 
   if (app->priv->name)
     return app->priv->name;
@@ -296,7 +296,7 @@ vnck_application_get_name (WnckApplication *app)
 const char*
 vnck_application_get_icon_name (WnckApplication *app)
 {
-  g_return_val_if_fail (WNCK_IS_APPLICATION (app), NULL);
+  g_return_val_if_fail (VNCK_IS_APPLICATION (app), NULL);
 
   /* FIXME this isn't actually implemented, should be different
    * from regular name
@@ -319,7 +319,7 @@ vnck_application_get_icon_name (WnckApplication *app)
 int
 vnck_application_get_pid (WnckApplication *app)
 {
-  g_return_val_if_fail (WNCK_IS_APPLICATION (app), 0);
+  g_return_val_if_fail (VNCK_IS_APPLICATION (app), 0);
 
   return app->priv->pid;
 }
@@ -369,7 +369,7 @@ get_icons (WnckApplication *app)
 void
 _vnck_application_load_icons (WnckApplication *app)
 {
-  g_return_if_fail (WNCK_IS_APPLICATION (app));
+  g_return_if_fail (VNCK_IS_APPLICATION (app));
 
   get_icons (app);
   if (app->priv->need_emit_icon_changed)
@@ -387,7 +387,7 @@ find_icon_window (WnckApplication *app)
     {
       WnckWindow *w = tmp->data;
 
-      if (vnck_window_get_window_type (w) == WNCK_WINDOW_NORMAL)
+      if (vnck_window_get_window_type (w) == VNCK_WINDOW_NORMAL)
         return w;
 
       tmp = tmp->next;
@@ -414,7 +414,7 @@ find_icon_window (WnckApplication *app)
 GdkPixbuf*
 vnck_application_get_icon (WnckApplication *app)
 {
-  g_return_val_if_fail (WNCK_IS_APPLICATION (app), NULL);
+  g_return_val_if_fail (VNCK_IS_APPLICATION (app), NULL);
 
   _vnck_application_load_icons (app);
 
@@ -445,7 +445,7 @@ vnck_application_get_icon (WnckApplication *app)
 GdkPixbuf*
 vnck_application_get_mini_icon (WnckApplication *app)
 {
-  g_return_val_if_fail (WNCK_IS_APPLICATION (app), NULL);
+  g_return_val_if_fail (VNCK_IS_APPLICATION (app), NULL);
 
   _vnck_application_load_icons (app);
 
@@ -473,7 +473,7 @@ vnck_application_get_mini_icon (WnckApplication *app)
 gboolean
 vnck_application_get_icon_is_fallback (WnckApplication *app)
 {
-  g_return_val_if_fail (WNCK_IS_APPLICATION (app), FALSE);
+  g_return_val_if_fail (VNCK_IS_APPLICATION (app), FALSE);
 
   if (app->priv->icon)
     return FALSE;
@@ -501,7 +501,7 @@ vnck_application_get_icon_is_fallback (WnckApplication *app)
 const char*
 vnck_application_get_startup_id (WnckApplication *app)
 {
-  g_return_val_if_fail (WNCK_IS_APPLICATION (app), NULL);
+  g_return_val_if_fail (VNCK_IS_APPLICATION (app), NULL);
 
   return app->priv->startup_id;
 }
@@ -521,9 +521,9 @@ _vnck_application_create (Window      xwindow,
   g_return_val_if_fail (g_hash_table_lookup (app_hash, &xwindow) == NULL,
                         NULL);
 
-  xscreen = WNCK_SCREEN_XSCREEN (screen);
+  xscreen = VNCK_SCREEN_XSCREEN (screen);
 
-  application = g_object_new (WNCK_TYPE_APPLICATION, NULL);
+  application = g_object_new (VNCK_TYPE_APPLICATION, NULL);
   application->priv->xwindow = xwindow;
   application->priv->screen = screen;
 
@@ -551,7 +551,7 @@ _vnck_application_create (Window      xwindow,
    */
   application->priv->orig_event_mask = _vnck_select_input (xscreen,
                                                            application->priv->xwindow,
-                                                           WNCK_APP_WINDOW_EVENT_MASK,
+                                                           VNCK_APP_WINDOW_EVENT_MASK,
                                                            TRUE);
 
   return application;
@@ -586,8 +586,8 @@ void
 _vnck_application_add_window (WnckApplication *app,
                               WnckWindow      *window)
 {
-  g_return_if_fail (WNCK_IS_APPLICATION (app));
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_APPLICATION (app));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
   g_return_if_fail (vnck_window_get_application (window) == NULL);
 
   app->priv->windows = g_list_prepend (app->priv->windows, window);
@@ -610,8 +610,8 @@ void
 _vnck_application_remove_window (WnckApplication *app,
                                  WnckWindow      *window)
 {
-  g_return_if_fail (WNCK_IS_APPLICATION (app));
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_APPLICATION (app));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
   g_return_if_fail (vnck_window_get_application (window) == app);
 
   app->priv->windows = g_list_remove (app->priv->windows, window);
@@ -723,7 +723,7 @@ update_name (WnckApplication *app)
         {
           /* more than one */
           app->priv->name =
-            _vnck_get_res_class_utf8 (WNCK_SCREEN_XSCREEN (app->priv->screen),
+            _vnck_get_res_class_utf8 (VNCK_SCREEN_XSCREEN (app->priv->screen),
                                       vnck_window_get_xid (app->priv->windows->data));
           if (app->priv->name)
             {

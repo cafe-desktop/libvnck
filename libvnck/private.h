@@ -19,8 +19,8 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WNCK_PRIVATE_H
-#define WNCK_PRIVATE_H
+#ifndef VNCK_PRIVATE_H
+#define VNCK_PRIVATE_H
 
 #include <config.h>
 #include "screen.h"
@@ -36,7 +36,7 @@
 
 G_BEGIN_DECLS
 
-#define WNCK_ACTIVATE_TIMEOUT 1
+#define VNCK_ACTIVATE_TIMEOUT 1
 
 WnckClientType _vnck_get_client_type (void);
 
@@ -119,7 +119,7 @@ gboolean _vnck_workspace_set_viewport (WnckWorkspace *space, int x, int y);
 void _vnck_init (void);
 Display *_vnck_get_default_display (void);
 
-#define WNCK_SCREEN_XSCREEN(screen) (_vnck_screen_get_xscreen (screen))
+#define VNCK_SCREEN_XSCREEN(screen) (_vnck_screen_get_xscreen (screen))
 
 Screen    *_vnck_screen_get_xscreen    (WnckScreen *screen);
 GdkScreen *_vnck_screen_get_gdk_screen (WnckScreen *screen);
@@ -152,4 +152,4 @@ void           _vnck_ensure_fallback_style      (void);
 
 G_END_DECLS
 
-#endif /* WNCK_PRIVATE_H */
+#endif /* VNCK_PRIVATE_H */

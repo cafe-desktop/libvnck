@@ -19,12 +19,12 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
+#if !defined (__LIBVNCK_H_INSIDE__) && !defined (VNCK_COMPILATION)
 #error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
-#ifndef WNCK_SCREEN_H
-#define WNCK_SCREEN_H
+#ifndef VNCK_SCREEN_H
+#define VNCK_SCREEN_H
 
 #include <glib-object.h>
 
@@ -38,12 +38,12 @@ typedef struct _WnckWorkspace   WnckWorkspace;
 
 /* Screen */
 
-#define WNCK_TYPE_SCREEN              (vnck_screen_get_type ())
-#define WNCK_SCREEN(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_SCREEN, WnckScreen))
-#define WNCK_SCREEN_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_SCREEN, WnckScreenClass))
-#define WNCK_IS_SCREEN(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_SCREEN))
-#define WNCK_IS_SCREEN_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), WNCK_TYPE_SCREEN))
-#define WNCK_SCREEN_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), WNCK_TYPE_SCREEN, WnckScreenClass))
+#define VNCK_TYPE_SCREEN              (vnck_screen_get_type ())
+#define VNCK_SCREEN(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_SCREEN, WnckScreen))
+#define VNCK_SCREEN_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_SCREEN, WnckScreenClass))
+#define VNCK_IS_SCREEN(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_SCREEN))
+#define VNCK_IS_SCREEN_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_SCREEN))
+#define VNCK_SCREEN_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_SCREEN, WnckScreenClass))
 
 typedef struct _WnckScreen        WnckScreen;
 typedef struct _WnckScreenClass   WnckScreenClass;
@@ -119,7 +119,7 @@ struct _WnckScreenClass
   void (* pad6) (void);
 };
 
-#ifndef WNCK_DISABLE_DEPRECATED
+#ifndef VNCK_DISABLE_DEPRECATED
 typedef struct _WnckWorkspaceLayout WnckWorkspaceLayout;
 
 /**
@@ -151,13 +151,13 @@ struct _WnckWorkspaceLayout
   int current_row;
   int current_col;
 };
-#endif /* WNCK_DISABLE_DEPRECATED */
+#endif /* VNCK_DISABLE_DEPRECATED */
 
 /**
  * WnckLayoutOrientation:
- * @WNCK_LAYOUT_ORIENTATION_HORIZONTAL: the #WnckWorkspace are laid out in
+ * @VNCK_LAYOUT_ORIENTATION_HORIZONTAL: the #WnckWorkspace are laid out in
  * rows, with the first #WnckWorkspace in the defined #WnckLayoutCorner.
- * @WNCK_LAYOUT_ORIENTATION_VERTICAL: the #WnckWorkspace are laid out in
+ * @VNCK_LAYOUT_ORIENTATION_VERTICAL: the #WnckWorkspace are laid out in
  * columns, with the first #WnckWorkspace in the defined #WnckLayoutCorner.
  *
  * Type defining the orientation of the layout of #WnckWorkspace. See
@@ -165,19 +165,19 @@ struct _WnckWorkspaceLayout
  */
 typedef enum
 {
-  WNCK_LAYOUT_ORIENTATION_HORIZONTAL,
-  WNCK_LAYOUT_ORIENTATION_VERTICAL
+  VNCK_LAYOUT_ORIENTATION_HORIZONTAL,
+  VNCK_LAYOUT_ORIENTATION_VERTICAL
 } _WnckLayoutOrientation;
 
 /**
  * WnckLayoutCorner:
- * @WNCK_LAYOUT_CORNER_TOPLEFT: the first #WnckWorkspace is in the top left
+ * @VNCK_LAYOUT_CORNER_TOPLEFT: the first #WnckWorkspace is in the top left
  * corner of the layout.
- * @WNCK_LAYOUT_CORNER_TOPRIGHT: the first #WnckWorkspace is in the top right
+ * @VNCK_LAYOUT_CORNER_TOPRIGHT: the first #WnckWorkspace is in the top right
  * corner of the layout.
- * @WNCK_LAYOUT_CORNER_BOTTOMRIGHT: the first #WnckWorkspace is in the bottom
+ * @VNCK_LAYOUT_CORNER_BOTTOMRIGHT: the first #WnckWorkspace is in the bottom
  * right corner of the layout.
- * @WNCK_LAYOUT_CORNER_BOTTOMLEFT: the first #WnckWorkspace is in the bottom
+ * @VNCK_LAYOUT_CORNER_BOTTOMLEFT: the first #WnckWorkspace is in the bottom
  * left corner of the layout.
  *
  * Type defining the starting corner of the layout of #WnckWorkspace, i.e. the
@@ -185,10 +185,10 @@ typedef enum
  */
 typedef enum
 {
-  WNCK_LAYOUT_CORNER_TOPLEFT,
-  WNCK_LAYOUT_CORNER_TOPRIGHT,
-  WNCK_LAYOUT_CORNER_BOTTOMRIGHT,
-  WNCK_LAYOUT_CORNER_BOTTOMLEFT
+  VNCK_LAYOUT_CORNER_TOPLEFT,
+  VNCK_LAYOUT_CORNER_TOPRIGHT,
+  VNCK_LAYOUT_CORNER_BOTTOMRIGHT,
+  VNCK_LAYOUT_CORNER_BOTTOMLEFT
 } _WnckLayoutCorner;
 
 GType vnck_screen_get_type (void) G_GNUC_CONST;
@@ -232,7 +232,7 @@ int            vnck_screen_try_set_workspace_layout (WnckScreen *screen,
                                                      int         columns);
 void           vnck_screen_release_workspace_layout (WnckScreen *screen,
                                                      int         current_token);
-#ifndef WNCK_DISABLE_DEPRECATED
+#ifndef VNCK_DISABLE_DEPRECATED
 G_DEPRECATED
 void           vnck_screen_calc_workspace_layout    (WnckScreen          *screen,
                                                      int                  num_workspaces,
@@ -240,9 +240,9 @@ void           vnck_screen_calc_workspace_layout    (WnckScreen          *screen
                                                      WnckWorkspaceLayout *layout);
 G_DEPRECATED
 void           vnck_screen_free_workspace_layout (WnckWorkspaceLayout *layout);
-#endif /* WNCK_DISABLE_DEPRECATED */
+#endif /* VNCK_DISABLE_DEPRECATED */
 
 
 G_END_DECLS
 
-#endif /* WNCK_SCREEN_H */
+#endif /* VNCK_SCREEN_H */

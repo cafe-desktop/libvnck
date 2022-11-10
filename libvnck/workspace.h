@@ -19,24 +19,24 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#if !defined (__LIBWNCK_H_INSIDE__) && !defined (WNCK_COMPILATION)
+#if !defined (__LIBVNCK_H_INSIDE__) && !defined (VNCK_COMPILATION)
 #error "Only <libvnck/libvnck.h> can be included directly."
 #endif
 
-#ifndef WNCK_WORKSPACE_H
-#define WNCK_WORKSPACE_H
+#ifndef VNCK_WORKSPACE_H
+#define VNCK_WORKSPACE_H
 
 #include <glib-object.h>
 #include <libvnck/screen.h>
 
 G_BEGIN_DECLS
 
-#define WNCK_TYPE_WORKSPACE              (vnck_workspace_get_type ())
-#define WNCK_WORKSPACE(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WNCK_TYPE_WORKSPACE, WnckWorkspace))
-#define WNCK_WORKSPACE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), WNCK_TYPE_WORKSPACE, WnckWorkspaceClass))
-#define WNCK_IS_WORKSPACE(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WNCK_TYPE_WORKSPACE))
-#define WNCK_IS_WORKSPACE_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), WNCK_TYPE_WORKSPACE))
-#define WNCK_WORKSPACE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), WNCK_TYPE_WORKSPACE, WnckWorkspaceClass))
+#define VNCK_TYPE_WORKSPACE              (vnck_workspace_get_type ())
+#define VNCK_WORKSPACE(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_WORKSPACE, WnckWorkspace))
+#define VNCK_WORKSPACE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_WORKSPACE, WnckWorkspaceClass))
+#define VNCK_IS_WORKSPACE(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_WORKSPACE))
+#define VNCK_IS_WORKSPACE_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_WORKSPACE))
+#define VNCK_WORKSPACE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_WORKSPACE, WnckWorkspaceClass))
 
 typedef struct _WnckWorkspaceClass   WnckWorkspaceClass;
 typedef struct _WnckWorkspacePrivate WnckWorkspacePrivate;
@@ -69,13 +69,13 @@ struct _WnckWorkspaceClass
 
 /**
  * WnckMotionDirection:
- * @WNCK_MOTION_UP: search a neighbor #WnckWorkspace above another
+ * @VNCK_MOTION_UP: search a neighbor #WnckWorkspace above another
  * #WnckWorkspace. 
- * @WNCK_MOTION_DOWN: search a neighbor #WnckWorkspace below another
+ * @VNCK_MOTION_DOWN: search a neighbor #WnckWorkspace below another
  * #WnckWorkspace.
- * @WNCK_MOTION_LEFT: search a neighbor #WnckWorkspace at the left of another
+ * @VNCK_MOTION_LEFT: search a neighbor #WnckWorkspace at the left of another
  * #WnckWorkspace.
- * @WNCK_MOTION_RIGHT: search a neighbor #WnckWorkspace at the right of another
+ * @VNCK_MOTION_RIGHT: search a neighbor #WnckWorkspace at the right of another
  * #WnckWorkspace.
  *
  * Type defining a direction in which to search a neighbor #WnckWorkspace.
@@ -84,10 +84,10 @@ struct _WnckWorkspaceClass
  */
 typedef enum
 {
-  WNCK_MOTION_UP = -1,
-  WNCK_MOTION_DOWN = -2,
-  WNCK_MOTION_LEFT = -3,
-  WNCK_MOTION_RIGHT = -4
+  VNCK_MOTION_UP = -1,
+  VNCK_MOTION_DOWN = -2,
+  VNCK_MOTION_LEFT = -3,
+  VNCK_MOTION_RIGHT = -4
 } WnckMotionDirection;
 
 GType vnck_workspace_get_type (void) G_GNUC_CONST;
@@ -113,4 +113,4 @@ WnckWorkspace* vnck_workspace_get_neighbor (WnckWorkspace       *space,
 
 G_END_DECLS
 
-#endif /* WNCK_WORKSPACE_H */
+#endif /* VNCK_WORKSPACE_H */

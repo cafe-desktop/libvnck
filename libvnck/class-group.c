@@ -20,7 +20,7 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#undef WNCK_DISABLE_DEPRECATED
+#undef VNCK_DISABLE_DEPRECATED
 
 #include <string.h>
 #include "class-group.h"
@@ -145,7 +145,7 @@ vnck_class_group_finalize (GObject *object)
 {
   WnckClassGroup *class_group;
 
-  class_group = WNCK_CLASS_GROUP (object);
+  class_group = VNCK_CLASS_GROUP (object);
 
   if (class_group->priv->res_class)
     {
@@ -245,7 +245,7 @@ _vnck_class_group_create (WnckScreen *screen,
   g_return_val_if_fail (g_hash_table_lookup (class_group_hash, res_class ? res_class : "") == NULL,
 			NULL);
 
-  class_group = g_object_new (WNCK_TYPE_CLASS_GROUP, NULL);
+  class_group = g_object_new (VNCK_TYPE_CLASS_GROUP, NULL);
   class_group->priv->screen = screen;
 
   class_group->priv->res_class = g_strdup (res_class ? res_class : "");
@@ -266,7 +266,7 @@ _vnck_class_group_create (WnckScreen *screen,
 void
 _vnck_class_group_destroy (WnckClassGroup *class_group)
 {
-  g_return_if_fail (WNCK_IS_CLASS_GROUP (class_group));
+  g_return_if_fail (VNCK_IS_CLASS_GROUP (class_group));
 
   g_hash_table_remove (class_group_hash, class_group->priv->res_class);
 
@@ -290,7 +290,7 @@ get_name_from_applications (WnckClassGroup *class_group)
       WnckWindow *w;
       WnckApplication *app;
 
-      w = WNCK_WINDOW (l->data);
+      w = VNCK_WINDOW (l->data);
       app = vnck_window_get_application (w);
 
       if (!first_name)
@@ -330,7 +330,7 @@ get_name_from_windows (WnckClassGroup *class_group)
     {
       WnckWindow *window;
 
-      window = WNCK_WINDOW (l->data);
+      window = VNCK_WINDOW (l->data);
 
       if (!first_name)
 	first_name = vnck_window_get_name (window);
@@ -393,7 +393,7 @@ get_icons_from_applications (WnckClassGroup *class_group, GdkPixbuf **icon, GdkP
       WnckWindow *window;
       WnckApplication *app;
 
-      window = WNCK_WINDOW (l->data);
+      window = VNCK_WINDOW (l->data);
       app = vnck_window_get_application (window);
       if (app)
 	{
@@ -424,7 +424,7 @@ get_icons_from_windows (WnckClassGroup *class_group, GdkPixbuf **icon, GdkPixbuf
     {
       WnckWindow *window;
 
-      window = WNCK_WINDOW (l->data);
+      window = VNCK_WINDOW (l->data);
 
       *icon = vnck_window_get_icon (window);
       *mini_icon = vnck_window_get_mini_icon (window);
@@ -508,7 +508,7 @@ window_weak_notify_cb (gpointer  data,
   WnckClassGroup *class_group;
   WnckClassGroupPrivate *priv;
 
-  class_group = WNCK_CLASS_GROUP (data);
+  class_group = VNCK_CLASS_GROUP (data);
   priv = class_group->priv;
 
   g_hash_table_remove (priv->window_icon_handlers, where_the_window_was);
@@ -529,8 +529,8 @@ _vnck_class_group_add_window (WnckClassGroup *class_group,
 {
   gulong signal_id;
 
-  g_return_if_fail (WNCK_IS_CLASS_GROUP (class_group));
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_CLASS_GROUP (class_group));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
   g_return_if_fail (vnck_window_get_class_group (window) == NULL);
 
   class_group->priv->windows = g_list_prepend (class_group->priv->windows,
@@ -577,8 +577,8 @@ _vnck_class_group_remove_window (WnckClassGroup *class_group,
 {
   gulong icon_handler, name_handler;
 
-  g_return_if_fail (WNCK_IS_CLASS_GROUP (class_group));
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_CLASS_GROUP (class_group));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
   g_return_if_fail (vnck_window_get_class_group (window) == class_group);
 
   class_group->priv->windows = g_list_remove (class_group->priv->windows,

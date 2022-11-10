@@ -4,9 +4,9 @@ libvnck_includedir = join_paths(PACKAGE_NAME, meson.project_name())
 
 version_data = configuration_data()
 version_array = meson.project_version().split('.')
-version_data.set('WNCK_MAJOR_VERSION', version_array[0])
-version_data.set('WNCK_MINOR_VERSION', version_array[1])
-version_data.set('WNCK_MICRO_VERSION', version_array[2])
+version_data.set('VNCK_MAJOR_VERSION', version_array[0])
+version_data.set('VNCK_MINOR_VERSION', version_array[1])
+version_data.set('VNCK_MICRO_VERSION', version_array[2])
 
 headers = [
   'libvnck.h',
@@ -69,9 +69,9 @@ resources = gnome.compile_resources(
 
 libvnck_cflags = [
   '-DG_LOG_DOMAIN="Wnck"',
-  '-DWNCK_I_KNOW_THIS_IS_UNSTABLE',
-  '-DWNCK_LOCALEDIR="@0@"'.format(localedir),
-  '-DWNCK_COMPILATION',
+  '-DVNCK_I_KNOW_THIS_IS_UNSTABLE',
+  '-DVNCK_LOCALEDIR="@0@"'.format(localedir),
+  '-DVNCK_COMPILATION',
   '-DSN_API_NOT_YET_FROZEN=1'
 ]
 
@@ -81,14 +81,14 @@ libvnck_ldflags = [
 ]
 
 if get_option('deprecation_flags')
-  foreach domain: ['G', 'ATK', 'GDK', 'GDK_PIXBUF', 'GTK', 'WNCK']
+  foreach domain: ['G', 'ATK', 'GDK', 'GDK_PIXBUF', 'GTK', 'VNCK']
     libvnck_cflags += '-D@0@_DISABLE_DEPRECATED'.format(domain)
   endforeach
 endif
 
 libvnck_dep = declare_dependency(
   include_directories: default_includes,
-  dependencies: LIBWNCK_DEPS,
+  dependencies: LIBVNCK_DEPS,
   compile_args: libvnck_cflags,
   sources: headers + [enum_types[1]],
   link_args: libvnck_ldflags,
@@ -97,8 +97,8 @@ libvnck_dep = declare_dependency(
 libvnck_lib = shared_library(LIBNAME,
   dependencies: libvnck_dep,
   sources: sources + a11y_sources + enum_types + resources,
-  version: '@0@.@1@.@2@'.format(LIBWNCK_SOVERSION, LIBWNCK_CURRENT, LIBWNCK_REVISION),
-  soversion: LIBWNCK_SOVERSION,
+  version: '@0@.@1@.@2@'.format(LIBVNCK_SOVERSION, LIBVNCK_CURRENT, LIBVNCK_REVISION),
+  soversion: LIBVNCK_SOVERSION,
   link_depends: mapfile,
   install: true,
 )

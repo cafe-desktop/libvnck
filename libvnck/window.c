@@ -239,7 +239,7 @@ vnck_window_init (WnckWindow *window)
   window->priv->sort_order = G_MAXINT;
 
   /* FIXME: should we have an invalid window type for this? */
-  window->priv->wintype = WNCK_WINDOW_NORMAL;
+  window->priv->wintype = VNCK_WINDOW_NORMAL;
 }
 
 static void
@@ -282,7 +282,7 @@ vnck_window_class_init (WnckWindowClass *klass)
                   G_STRUCT_OFFSET (WnckWindowClass, state_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 2,
-                  WNCK_TYPE_WINDOW_STATE, WNCK_TYPE_WINDOW_STATE);
+                  VNCK_TYPE_WINDOW_STATE, VNCK_TYPE_WINDOW_STATE);
 
   /**
    * WnckWindow::workspace-changed:
@@ -329,8 +329,8 @@ vnck_window_class_init (WnckWindowClass *klass)
                   G_STRUCT_OFFSET (WnckWindowClass, actions_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 2,
-                  WNCK_TYPE_WINDOW_ACTIONS,
-                  WNCK_TYPE_WINDOW_ACTIONS);
+                  VNCK_TYPE_WINDOW_ACTIONS,
+                  VNCK_TYPE_WINDOW_ACTIONS);
 
   /**
    * WnckWindow::geometry-changed:
@@ -396,9 +396,9 @@ vnck_window_finalize (GObject *object)
 {
   WnckWindow *window;
 
-  window = WNCK_WINDOW (object);
+  window = VNCK_WINDOW (object);
 
-  _vnck_select_input (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  _vnck_select_input (VNCK_SCREEN_XSCREEN (window->priv->screen),
                       window->priv->xwindow,
                       window->priv->orig_event_mask,
                       FALSE);
@@ -477,7 +477,7 @@ vnck_window_get (gulong xwindow)
 WnckScreen*
 vnck_window_get_screen (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   return window->priv->screen;
 }
@@ -497,9 +497,9 @@ _vnck_window_create (Window      xwindow,
   g_return_val_if_fail (g_hash_table_lookup (window_hash, &xwindow) == NULL,
                         NULL);
 
-  xscreen = WNCK_SCREEN_XSCREEN (screen);
+  xscreen = VNCK_SCREEN_XSCREEN (screen);
 
-  window = g_object_new (WNCK_TYPE_WINDOW, NULL);
+  window = g_object_new (VNCK_TYPE_WINDOW, NULL);
   window->priv->xwindow = xwindow;
   window->priv->screen = screen;
 
@@ -513,7 +513,7 @@ _vnck_window_create (Window      xwindow,
    */
   window->priv->orig_event_mask =_vnck_select_input (xscreen,
                                                      window->priv->xwindow,
-                                                     WNCK_APP_WINDOW_EVENT_MASK,
+                                                     VNCK_APP_WINDOW_EVENT_MASK,
                                                      TRUE);
 
   /* Default the group leader to the window itself; it is set in
@@ -568,7 +568,7 @@ _vnck_window_destroy (WnckWindow *window)
 {
   Window xwindow = window->priv->xwindow;
 
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   g_return_if_fail (vnck_window_get (xwindow) == window);
 
@@ -582,7 +582,7 @@ _vnck_window_destroy (WnckWindow *window)
 static Display *
 _vnck_window_get_display (WnckWindow *window)
 {
-  return DisplayOfScreen (WNCK_SCREEN_XSCREEN (window->priv->screen));
+  return DisplayOfScreen (VNCK_SCREEN_XSCREEN (window->priv->screen));
 }
 
 /**
@@ -604,7 +604,7 @@ _vnck_window_get_display (WnckWindow *window)
 gboolean
 vnck_window_has_name (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->name != NULL;
 }
@@ -626,7 +626,7 @@ vnck_window_has_name (WnckWindow *window)
 const char*
 vnck_window_get_name (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   if (window->priv->name)
     return window->priv->name;
@@ -657,7 +657,7 @@ vnck_window_get_name (WnckWindow *window)
 gboolean
 vnck_window_has_icon_name (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->icon_name != NULL;
 }
@@ -680,7 +680,7 @@ vnck_window_has_icon_name (WnckWindow *window)
 const char*
 vnck_window_get_icon_name (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   if (window->priv->icon_name)
     return window->priv->icon_name;
@@ -697,7 +697,7 @@ _vnck_window_get_name_for_display (WnckWindow *window,
 {
   const char *name;
 
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   if (use_icon_name && vnck_window_has_icon_name (window))
     name = vnck_window_get_icon_name (window);
@@ -731,7 +731,7 @@ _vnck_window_get_name_for_display (WnckWindow *window,
 WnckApplication*
 vnck_window_get_application  (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   return window->priv->app;
 }
@@ -752,7 +752,7 @@ vnck_window_get_application  (WnckWindow *window)
 WnckWindow*
 vnck_window_get_transient (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   return vnck_window_get (window->priv->transient_for);
 }
@@ -770,7 +770,7 @@ vnck_window_get_transient (WnckWindow *window)
 gulong
 vnck_window_get_group_leader (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), None);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), None);
 
   return window->priv->group_leader;
 }
@@ -786,7 +786,7 @@ vnck_window_get_group_leader (WnckWindow *window)
 gulong
 vnck_window_get_xid (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), None);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), None);
 
   return window->priv->xwindow;
 }
@@ -806,7 +806,7 @@ vnck_window_get_xid (WnckWindow *window)
 WnckClassGroup *
 vnck_window_get_class_group (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   return window->priv->class_group;
 }
@@ -826,7 +826,7 @@ vnck_window_get_class_group (WnckWindow *window)
 const char*
 vnck_window_get_session_id (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   return window->priv->session_id;
 }
@@ -846,7 +846,7 @@ vnck_window_get_session_id (WnckWindow *window)
 const char*
 vnck_window_get_session_id_utf8 (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   if (window->priv->session_id_utf8 == NULL &&
       window->priv->session_id != NULL)
@@ -882,7 +882,7 @@ vnck_window_get_session_id_utf8 (WnckWindow *window)
 const char*
 vnck_window_get_role (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   return window->priv->role;
 }
@@ -898,7 +898,7 @@ vnck_window_get_role (WnckWindow *window)
 int
 vnck_window_get_pid (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), 0);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), 0);
 
   return window->priv->pid;
 }
@@ -918,7 +918,7 @@ vnck_window_get_pid (WnckWindow *window)
 gint
 vnck_window_get_sort_order (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), G_MAXINT);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), G_MAXINT);
 
   return window->priv->sort_order;
 }
@@ -936,7 +936,7 @@ vnck_window_get_sort_order (WnckWindow *window)
 void        vnck_window_set_sort_order        (WnckWindow *window,
 					       gint order)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   window->priv->sort_order = order;
   return;
@@ -954,7 +954,7 @@ WnckWindowType
 vnck_window_get_window_type (WnckWindow *window)
 {
   /* FIXME: should we have an invalid window type for this? */
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), 0);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), 0);
 
   return window->priv->wintype;
 }
@@ -974,31 +974,31 @@ vnck_window_set_window_type (WnckWindow *window, WnckWindowType wintype)
   Atom atom;
   Display *display;
 
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   switch (wintype) {
-  case WNCK_WINDOW_NORMAL:
+  case VNCK_WINDOW_NORMAL:
     atom = _vnck_atom_get ("_NET_WM_WINDOW_TYPE_NORMAL");
     break;
-  case WNCK_WINDOW_DESKTOP:
+  case VNCK_WINDOW_DESKTOP:
     atom = _vnck_atom_get ("_NET_WM_WINDOW_TYPE_DESKTOP");
     break;
-  case WNCK_WINDOW_DOCK:
+  case VNCK_WINDOW_DOCK:
     atom = _vnck_atom_get ("_NET_WM_WINDOW_TYPE_DOCK");
     break;
-  case WNCK_WINDOW_DIALOG:
+  case VNCK_WINDOW_DIALOG:
     atom = _vnck_atom_get ("_NET_WM_WINDOW_TYPE_DIALOG");
     break;
-  case WNCK_WINDOW_TOOLBAR:
+  case VNCK_WINDOW_TOOLBAR:
     atom = _vnck_atom_get ("_NET_WM_WINDOW_TYPE_TOOLBAR");
     break;
-  case WNCK_WINDOW_MENU:
+  case VNCK_WINDOW_MENU:
     atom = _vnck_atom_get ("_NET_WM_WINDOW_TYPE_MENU");
     break;
-  case WNCK_WINDOW_UTILITY:
+  case VNCK_WINDOW_UTILITY:
     atom = _vnck_atom_get ("_NET_WM_WINDOW_TYPE_UTILITY");
     break;
-  case WNCK_WINDOW_SPLASHSCREEN:
+  case VNCK_WINDOW_SPLASHSCREEN:
     atom = _vnck_atom_get ("_NET_WM_WINDOW_TYPE_SPLASH");
     break;
   default:
@@ -1032,7 +1032,7 @@ vnck_window_set_window_type (WnckWindow *window, WnckWindowType wintype)
 gboolean
 vnck_window_is_minimized (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->is_minimized;
 }
@@ -1054,7 +1054,7 @@ vnck_window_is_minimized (WnckWindow *window)
 gboolean
 vnck_window_needs_attention (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->demands_attention || window->priv->is_urgent;
 }
@@ -1062,7 +1062,7 @@ vnck_window_needs_attention (WnckWindow *window)
 time_t
 _vnck_window_get_needs_attention_time (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), 0);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), 0);
 
   return window->priv->needs_attention_time;
 }
@@ -1074,7 +1074,7 @@ transient_needs_attention (WnckWindow *window)
   GList *windows;
   WnckWindow *transient;
 
-  if (!WNCK_IS_WINDOW (window))
+  if (!VNCK_IS_WINDOW (window))
     return NULL;
 
   windows = vnck_screen_get_windows_stacked (window->priv->screen);
@@ -1096,7 +1096,7 @@ transient_needs_attention (WnckWindow *window)
 time_t
 _vnck_window_or_transient_get_needs_attention_time (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), 0);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), 0);
 
   if (_vnck_window_get_needs_attention_time (window) == 0)
     {
@@ -1143,7 +1143,7 @@ vnck_window_or_transient_needs_attention (WnckWindow *window)
 gboolean
 vnck_window_is_maximized_horizontally (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->is_maximized_horz;
 }
@@ -1160,7 +1160,7 @@ vnck_window_is_maximized_horizontally (WnckWindow *window)
 gboolean
 vnck_window_is_maximized_vertically   (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->is_maximized_vert;
 }
@@ -1168,7 +1168,7 @@ vnck_window_is_maximized_vertically   (WnckWindow *window)
 const char*
 _vnck_window_get_startup_id (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   if (window->priv->startup_id == NULL &&
       window->priv->group_leader != None)
@@ -1205,7 +1205,7 @@ _vnck_window_get_startup_id (WnckWindow *window)
 const char*
 vnck_window_get_class_group_name (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   return window->priv->res_class;
 }
@@ -1227,7 +1227,7 @@ vnck_window_get_class_group_name (WnckWindow *window)
 const char*
 vnck_window_get_class_instance_name (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   return window->priv->res_name;
 }
@@ -1249,7 +1249,7 @@ vnck_window_get_class_instance_name (WnckWindow *window)
 gboolean
 vnck_window_is_maximized (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return
     window->priv->is_maximized_horz &&
@@ -1268,7 +1268,7 @@ vnck_window_is_maximized (WnckWindow *window)
 gboolean
 vnck_window_is_shaded                 (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->is_shaded;
 }
@@ -1289,7 +1289,7 @@ vnck_window_is_shaded                 (WnckWindow *window)
 gboolean
 vnck_window_is_above                  (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->is_above;
 }
@@ -1310,7 +1310,7 @@ vnck_window_is_above                  (WnckWindow *window)
 gboolean
 vnck_window_is_below                  (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->is_below;
 }
@@ -1327,7 +1327,7 @@ vnck_window_is_below                  (WnckWindow *window)
 gboolean
 vnck_window_is_skip_pager             (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->skip_pager;
 }
@@ -1343,7 +1343,7 @@ void
 vnck_window_set_skip_pager (WnckWindow *window,
                             gboolean    skip)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1364,7 +1364,7 @@ vnck_window_set_skip_pager (WnckWindow *window,
 gboolean
 vnck_window_is_skip_tasklist          (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->skip_taskbar;
 }
@@ -1383,7 +1383,7 @@ vnck_window_is_skip_tasklist          (WnckWindow *window)
 gboolean
 vnck_window_is_fullscreen                 (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->is_fullscreen;
 }
@@ -1400,7 +1400,7 @@ void
 vnck_window_set_skip_tasklist (WnckWindow *window,
                                gboolean    skip)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1423,7 +1423,7 @@ void
 vnck_window_set_fullscreen (WnckWindow *window,
                             gboolean    fullscreen)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1449,7 +1449,7 @@ vnck_window_set_fullscreen (WnckWindow *window,
 gboolean
 vnck_window_is_sticky                 (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->is_sticky;
 }
@@ -1471,7 +1471,7 @@ void
 vnck_window_close (WnckWindow *window,
                    guint32     timestamp)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_close (window->priv->screen, window->priv->xwindow, timestamp);
 }
@@ -1485,9 +1485,9 @@ vnck_window_close (WnckWindow *window,
 void
 vnck_window_minimize                (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
-  _vnck_iconify (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  _vnck_iconify (VNCK_SCREEN_XSCREEN (window->priv->screen),
                  window->priv->xwindow);
 }
 
@@ -1504,7 +1504,7 @@ void
 vnck_window_unminimize              (WnckWindow *window,
                                      guint32     timestamp)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   vnck_window_activate_transient (window, timestamp);
 }
@@ -1518,7 +1518,7 @@ vnck_window_unminimize              (WnckWindow *window,
 void
 vnck_window_maximize (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1536,7 +1536,7 @@ vnck_window_maximize (WnckWindow *window)
 void
 vnck_window_unmaximize (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1554,7 +1554,7 @@ vnck_window_unmaximize (WnckWindow *window)
 void
 vnck_window_maximize_horizontally (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1572,7 +1572,7 @@ vnck_window_maximize_horizontally (WnckWindow *window)
 void
 vnck_window_unmaximize_horizontally (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1590,7 +1590,7 @@ vnck_window_unmaximize_horizontally (WnckWindow *window)
 void
 vnck_window_maximize_vertically (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1608,7 +1608,7 @@ vnck_window_maximize_vertically (WnckWindow *window)
 void
 vnck_window_unmaximize_vertically (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1626,7 +1626,7 @@ vnck_window_unmaximize_vertically (WnckWindow *window)
 void
 vnck_window_shade (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1644,7 +1644,7 @@ vnck_window_shade (WnckWindow *window)
 void
 vnck_window_unshade (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1666,7 +1666,7 @@ vnck_window_unshade (WnckWindow *window)
 void
 vnck_window_make_above (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1687,7 +1687,7 @@ vnck_window_make_above (WnckWindow *window)
 void
 vnck_window_unmake_above (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1707,7 +1707,7 @@ vnck_window_unmake_above (WnckWindow *window)
 void
 vnck_window_make_below (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1728,7 +1728,7 @@ vnck_window_make_below (WnckWindow *window)
 void
 vnck_window_unmake_below (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1747,7 +1747,7 @@ vnck_window_unmake_below (WnckWindow *window)
 void
 vnck_window_stick (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1766,7 +1766,7 @@ vnck_window_stick (WnckWindow *window)
 void
 vnck_window_unstick (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_state (window->priv->screen,
                       window->priv->xwindow,
@@ -1784,7 +1784,7 @@ vnck_window_unstick (WnckWindow *window)
 void
 vnck_window_keyboard_move (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_keyboard_move (window->priv->screen,
                        window->priv->xwindow);
@@ -1799,7 +1799,7 @@ vnck_window_keyboard_move (WnckWindow *window)
 void
 vnck_window_keyboard_size (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_keyboard_size (window->priv->screen,
                        window->priv->xwindow);
@@ -1819,7 +1819,7 @@ vnck_window_keyboard_size (WnckWindow *window)
 WnckWorkspace*
 vnck_window_get_workspace (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   if (window->priv->workspace == ALL_WORKSPACES)
     return NULL;
@@ -1839,8 +1839,8 @@ void
 vnck_window_move_to_workspace (WnckWindow    *window,
                                WnckWorkspace *space)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
-  g_return_if_fail (WNCK_IS_WORKSPACE (space));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WORKSPACE (space));
 
   _vnck_change_workspace (window->priv->screen,
                           window->priv->xwindow,
@@ -1860,7 +1860,7 @@ vnck_window_move_to_workspace (WnckWindow    *window,
 gboolean
 vnck_window_is_pinned (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window->priv->workspace == ALL_WORKSPACES;
 }
@@ -1874,7 +1874,7 @@ vnck_window_is_pinned (WnckWindow *window)
 void
 vnck_window_pin (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_change_workspace (window->priv->screen,
                           window->priv->xwindow,
@@ -1896,7 +1896,7 @@ vnck_window_unpin (WnckWindow *window)
 {
   WnckWorkspace *active;
 
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   if (window->priv->workspace != ALL_WORKSPACES)
     return;
@@ -1928,7 +1928,7 @@ void
 vnck_window_activate (WnckWindow *window,
                       guint32     timestamp)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   _vnck_activate (window->priv->screen,
                   window->priv->xwindow,
@@ -1947,7 +1947,7 @@ vnck_window_activate (WnckWindow *window,
 gboolean
 vnck_window_is_active (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return window == vnck_screen_get_active_window (window->priv->screen);
 }
@@ -1976,7 +1976,7 @@ vnck_window_is_most_recently_activated (WnckWindow *window)
   WnckWindow * previous;
   WnckWindow * most_recently_activated_window;
 
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   current  = vnck_screen_get_active_window (window->priv->screen);
   previous = vnck_screen_get_previously_active_window (window->priv->screen);
@@ -2006,7 +2006,7 @@ find_last_transient_for (GList *windows,
       WnckWindow *w = tmp->data;
 
       if (w->priv->transient_for == xwindow &&
-	  w->priv->wintype != WNCK_WINDOW_UTILITY)
+	  w->priv->wintype != VNCK_WINDOW_UTILITY)
         retval = w;
 
       tmp = tmp->next;
@@ -2041,7 +2041,7 @@ vnck_window_activate_transient (WnckWindow *window,
   WnckWindow *transient;
   WnckWindow *next;
 
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   windows = vnck_screen_get_windows_stacked (window->priv->screen);
 
@@ -2094,7 +2094,7 @@ vnck_window_transient_is_most_recently_activated (WnckWindow *window)
   GList *windows;
   WnckWindow *transient;
 
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   windows = vnck_screen_get_windows_stacked (window->priv->screen);
 
@@ -2150,7 +2150,7 @@ get_icons (WnckWindow *window)
 void
 _vnck_window_load_icons (WnckWindow *window)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   get_icons (window);
   if (window->priv->need_emit_icon_changed)
@@ -2174,7 +2174,7 @@ _vnck_window_load_icons (WnckWindow *window)
 GdkPixbuf*
 vnck_window_get_icon (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   _vnck_window_load_icons (window);
 
@@ -2196,7 +2196,7 @@ vnck_window_get_icon (WnckWindow *window)
 GdkPixbuf*
 vnck_window_get_mini_icon (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   _vnck_window_load_icons (window);
 
@@ -2215,7 +2215,7 @@ vnck_window_get_mini_icon (WnckWindow *window)
 gboolean
 vnck_window_get_icon_is_fallback (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
   return _vnck_icon_cache_get_is_fallback (window->priv->icon_cache);
 }
@@ -2231,7 +2231,7 @@ vnck_window_get_icon_is_fallback (WnckWindow *window)
 WnckWindowActions
 vnck_window_get_actions (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), 0);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), 0);
 
   return window->priv->actions;
 }
@@ -2248,7 +2248,7 @@ vnck_window_get_actions (WnckWindow *window)
 WnckWindowState
 vnck_window_get_state (WnckWindow *window)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), 0);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), 0);
 
   return COMPRESS_STATE (window);
 }
@@ -2279,7 +2279,7 @@ vnck_window_get_client_window_geometry (WnckWindow *window,
 					int        *widthp,
 					int        *heightp)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   if (xp)
     *xp = window->priv->x;
@@ -2316,7 +2316,7 @@ vnck_window_get_geometry (WnckWindow *window,
                           int        *widthp,
                           int        *heightp)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   if (xp)
     *xp = window->priv->x - window->priv->left_frame;
@@ -2362,7 +2362,7 @@ vnck_window_set_geometry (WnckWindow               *window,
   int gravity_and_flags;
   int source;
 
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   source = _vnck_get_client_type();
   gravity_and_flags = gravity;
@@ -2374,7 +2374,7 @@ vnck_window_set_geometry (WnckWindow               *window,
   width -= window->priv->left_frame + window->priv->right_frame;
   height -= window->priv->top_frame + window->priv->bottom_frame;
 
-  _vnck_set_window_geometry (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  _vnck_set_window_geometry (VNCK_SCREEN_XSCREEN (window->priv->screen),
                              window->priv->xwindow,
                              gravity_and_flags, x, y, width, height);
 }
@@ -2396,12 +2396,12 @@ vnck_window_is_visible_on_workspace (WnckWindow    *window,
 {
   WnckWindowState state;
 
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (workspace), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (workspace), FALSE);
 
   state = vnck_window_get_state (window);
 
-  if (state & WNCK_WINDOW_STATE_HIDDEN)
+  if (state & VNCK_WINDOW_STATE_HIDDEN)
     return FALSE; /* not visible */
 
   return vnck_window_is_on_workspace (window, workspace);
@@ -2425,7 +2425,7 @@ vnck_window_set_icon_geometry (WnckWindow *window,
 			       int         width,
 			       int         height)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
 
   if (window->priv->icon_geometry.x == x &&
       window->priv->icon_geometry.y == y &&
@@ -2438,7 +2438,7 @@ vnck_window_set_icon_geometry (WnckWindow *window,
   window->priv->icon_geometry.width = width;
   window->priv->icon_geometry.height = height;
 
-  _vnck_set_icon_geometry (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  _vnck_set_icon_geometry (VNCK_SCREEN_XSCREEN (window->priv->screen),
                            window->priv->xwindow,
                            x, y, width, height);
 }
@@ -2456,8 +2456,8 @@ gboolean
 vnck_window_is_on_workspace (WnckWindow    *window,
                              WnckWorkspace *workspace)
 {
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (workspace), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (workspace), FALSE);
 
   return vnck_window_is_pinned (window) ||
     vnck_window_get_workspace (window) == workspace;
@@ -2482,8 +2482,8 @@ vnck_window_is_in_viewport (WnckWindow    *window,
   GdkRectangle window_rect;
   GdkRectangle viewport_rect;
 
-  g_return_val_if_fail (WNCK_IS_WINDOW (window), FALSE);
-  g_return_val_if_fail (WNCK_IS_WORKSPACE (workspace), FALSE);
+  g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
+  g_return_val_if_fail (VNCK_IS_WORKSPACE (workspace), FALSE);
 
   if (vnck_window_is_pinned (window) )
     return TRUE;
@@ -2508,8 +2508,8 @@ void
 _vnck_window_set_application (WnckWindow      *window,
                               WnckApplication *app)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
-  g_return_if_fail (app == NULL || WNCK_IS_APPLICATION (app));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
+  g_return_if_fail (app == NULL || VNCK_IS_APPLICATION (app));
 
   if (app)
     g_object_ref (G_OBJECT (app));
@@ -2522,8 +2522,8 @@ void
 _vnck_window_set_class_group (WnckWindow     *window,
 			      WnckClassGroup *class_group)
 {
-  g_return_if_fail (WNCK_IS_WINDOW (window));
-  g_return_if_fail (class_group == NULL || WNCK_IS_CLASS_GROUP (class_group));
+  g_return_if_fail (VNCK_IS_WINDOW (window));
+  g_return_if_fail (class_group == NULL || VNCK_IS_CLASS_GROUP (class_group));
 
   if (class_group)
     g_object_ref (G_OBJECT (class_group));
@@ -2646,7 +2646,7 @@ _vnck_window_process_configure_notify (WnckWindow *window,
     }
   else
     {
-      _vnck_get_window_position (WNCK_SCREEN_XSCREEN (window->priv->screen),
+      _vnck_get_window_position (VNCK_SCREEN_XSCREEN (window->priv->screen),
 				 window->priv->xwindow,
                                  &window->priv->x,
                                  &window->priv->y);
@@ -2670,7 +2670,7 @@ update_wm_state (WnckWindow *window)
 
   window->priv->wm_state_iconic = FALSE;
 
-  state = _vnck_get_wm_state (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  state = _vnck_get_wm_state (VNCK_SCREEN_XSCREEN (window->priv->screen),
                               window->priv->xwindow);
 
   if (state == IconicState)
@@ -2716,7 +2716,7 @@ update_state (WnckWindow *window)
 
       atoms = NULL;
       n_atoms = 0;
-      _vnck_get_atom_list (WNCK_SCREEN_XSCREEN (window->priv->screen),
+      _vnck_get_atom_list (VNCK_SCREEN_XSCREEN (window->priv->screen),
                            window->priv->xwindow,
                            _vnck_atom_get ("_NET_WM_STATE"),
                            &atoms, &n_atoms);
@@ -2763,16 +2763,16 @@ update_state (WnckWindow *window)
 
   switch (window->priv->wintype)
     {
-    case WNCK_WINDOW_DESKTOP:
-    case WNCK_WINDOW_DOCK:
-    case WNCK_WINDOW_SPLASHSCREEN:
+    case VNCK_WINDOW_DESKTOP:
+    case VNCK_WINDOW_DOCK:
+    case VNCK_WINDOW_SPLASHSCREEN:
       window->priv->skip_taskbar = TRUE;
       break;
 
-    case WNCK_WINDOW_TOOLBAR:
-    case WNCK_WINDOW_MENU:
-    case WNCK_WINDOW_UTILITY:
-    case WNCK_WINDOW_DIALOG:
+    case VNCK_WINDOW_TOOLBAR:
+    case VNCK_WINDOW_MENU:
+    case VNCK_WINDOW_UTILITY:
+    case VNCK_WINDOW_DIALOG:
       /* Skip taskbar if the window is transient
        * for some main application window
        */
@@ -2781,7 +2781,7 @@ update_state (WnckWindow *window)
         window->priv->skip_taskbar = TRUE;
       break;
 
-    case WNCK_WINDOW_NORMAL:
+    case VNCK_WINDOW_NORMAL:
     default:
       break;
     }
@@ -2791,17 +2791,17 @@ update_state (WnckWindow *window)
    */
   switch (window->priv->wintype)
     {
-    case WNCK_WINDOW_DESKTOP:
-    case WNCK_WINDOW_DOCK:
-    case WNCK_WINDOW_TOOLBAR:
-    case WNCK_WINDOW_MENU:
-    case WNCK_WINDOW_SPLASHSCREEN:
+    case VNCK_WINDOW_DESKTOP:
+    case VNCK_WINDOW_DOCK:
+    case VNCK_WINDOW_TOOLBAR:
+    case VNCK_WINDOW_MENU:
+    case VNCK_WINDOW_SPLASHSCREEN:
       window->priv->skip_pager = TRUE;
       break;
 
-    case WNCK_WINDOW_NORMAL:
-    case WNCK_WINDOW_DIALOG:
-    case WNCK_WINDOW_UTILITY:
+    case VNCK_WINDOW_NORMAL:
+    case VNCK_WINDOW_DIALOG:
+    case VNCK_WINDOW_UTILITY:
     default:
       break;
     }
@@ -2836,7 +2836,7 @@ update_name (WnckWindow *window)
 
   window->priv->need_update_name = FALSE;
 
-  new_name = _vnck_get_name (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  new_name = _vnck_get_name (VNCK_SCREEN_XSCREEN (window->priv->screen),
                              window->priv->xwindow);
 
   if (g_strcmp0 (window->priv->name, new_name) != 0)
@@ -2856,7 +2856,7 @@ update_icon_name (WnckWindow *window)
 
   window->priv->need_update_icon_name = FALSE;
 
-  new_name = _vnck_get_icon_name (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  new_name = _vnck_get_icon_name (VNCK_SCREEN_XSCREEN (window->priv->screen),
                                   window->priv->xwindow);
 
   if (g_strcmp0 (window->priv->icon_name, new_name) != 0)
@@ -2880,7 +2880,7 @@ update_workspace (WnckWindow *window)
   old = window->priv->workspace;
 
   val = ALL_WORKSPACES;
-  _vnck_get_cardinal (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  _vnck_get_cardinal (VNCK_SCREEN_XSCREEN (window->priv->screen),
                       window->priv->xwindow,
                       _vnck_atom_get ("_NET_WM_DESKTOP"),
                       &val);
@@ -2907,32 +2907,32 @@ update_actions (WnckWindow *window)
 
   atoms = NULL;
   n_atoms = 0;
-  if (!_vnck_get_atom_list (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  if (!_vnck_get_atom_list (VNCK_SCREEN_XSCREEN (window->priv->screen),
                             window->priv->xwindow,
                             _vnck_atom_get ("_NET_WM_ALLOWED_ACTIONS"),
                             &atoms,
                             &n_atoms))
     {
       window->priv->actions =
-                WNCK_WINDOW_ACTION_MOVE                    |
-                WNCK_WINDOW_ACTION_RESIZE                  |
-                WNCK_WINDOW_ACTION_SHADE                   |
-                WNCK_WINDOW_ACTION_STICK                   |
-                WNCK_WINDOW_ACTION_MAXIMIZE_HORIZONTALLY   |
-                WNCK_WINDOW_ACTION_MAXIMIZE_VERTICALLY     |
-                WNCK_WINDOW_ACTION_CHANGE_WORKSPACE        |
-                WNCK_WINDOW_ACTION_CLOSE                   |
-                WNCK_WINDOW_ACTION_UNMAXIMIZE_HORIZONTALLY |
-                WNCK_WINDOW_ACTION_UNMAXIMIZE_VERTICALLY   |
-                WNCK_WINDOW_ACTION_UNSHADE                 |
-                WNCK_WINDOW_ACTION_UNSTICK                 |
-                WNCK_WINDOW_ACTION_MINIMIZE                |
-                WNCK_WINDOW_ACTION_UNMINIMIZE              |
-                WNCK_WINDOW_ACTION_MAXIMIZE                |
-                WNCK_WINDOW_ACTION_UNMAXIMIZE              |
-                WNCK_WINDOW_ACTION_FULLSCREEN              |
-                WNCK_WINDOW_ACTION_ABOVE                   |
-                WNCK_WINDOW_ACTION_BELOW;
+                VNCK_WINDOW_ACTION_MOVE                    |
+                VNCK_WINDOW_ACTION_RESIZE                  |
+                VNCK_WINDOW_ACTION_SHADE                   |
+                VNCK_WINDOW_ACTION_STICK                   |
+                VNCK_WINDOW_ACTION_MAXIMIZE_HORIZONTALLY   |
+                VNCK_WINDOW_ACTION_MAXIMIZE_VERTICALLY     |
+                VNCK_WINDOW_ACTION_CHANGE_WORKSPACE        |
+                VNCK_WINDOW_ACTION_CLOSE                   |
+                VNCK_WINDOW_ACTION_UNMAXIMIZE_HORIZONTALLY |
+                VNCK_WINDOW_ACTION_UNMAXIMIZE_VERTICALLY   |
+                VNCK_WINDOW_ACTION_UNSHADE                 |
+                VNCK_WINDOW_ACTION_UNSTICK                 |
+                VNCK_WINDOW_ACTION_MINIMIZE                |
+                VNCK_WINDOW_ACTION_UNMINIMIZE              |
+                VNCK_WINDOW_ACTION_MAXIMIZE                |
+                VNCK_WINDOW_ACTION_UNMAXIMIZE              |
+                VNCK_WINDOW_ACTION_FULLSCREEN              |
+                VNCK_WINDOW_ACTION_ABOVE                   |
+                VNCK_WINDOW_ACTION_BELOW;
       return;
     }
 
@@ -2940,45 +2940,45 @@ update_actions (WnckWindow *window)
   while (i < n_atoms)
     {
       if (atoms[i] == _vnck_atom_get ("_NET_WM_ACTION_MOVE"))
-        window->priv->actions |= WNCK_WINDOW_ACTION_MOVE;
+        window->priv->actions |= VNCK_WINDOW_ACTION_MOVE;
 
       else if (atoms[i] == _vnck_atom_get ("_NET_WM_ACTION_RESIZE"))
-        window->priv->actions |= WNCK_WINDOW_ACTION_RESIZE;
+        window->priv->actions |= VNCK_WINDOW_ACTION_RESIZE;
 
       else if (atoms[i] == _vnck_atom_get ("_NET_WM_ACTION_SHADE"))
-        window->priv->actions |= WNCK_WINDOW_ACTION_SHADE |
-                                 WNCK_WINDOW_ACTION_UNSHADE;
+        window->priv->actions |= VNCK_WINDOW_ACTION_SHADE |
+                                 VNCK_WINDOW_ACTION_UNSHADE;
 
       else if (atoms[i] == _vnck_atom_get ("_NET_WM_ACTION_STICK"))
-        window->priv->actions |= WNCK_WINDOW_ACTION_STICK |
-                                 WNCK_WINDOW_ACTION_UNSTICK;
+        window->priv->actions |= VNCK_WINDOW_ACTION_STICK |
+                                 VNCK_WINDOW_ACTION_UNSTICK;
 
       else if (atoms[i] == _vnck_atom_get ("_NET_WM_ACTION_MINIMIZE"))
-	window->priv->actions |= WNCK_WINDOW_ACTION_MINIMIZE   |
-	                         WNCK_WINDOW_ACTION_UNMINIMIZE;
+	window->priv->actions |= VNCK_WINDOW_ACTION_MINIMIZE   |
+	                         VNCK_WINDOW_ACTION_UNMINIMIZE;
 
       else if (atoms[i] == _vnck_atom_get ("_NET_WM_ACTION_MAXIMIZE_HORZ"))
-        window->priv->actions |= WNCK_WINDOW_ACTION_MAXIMIZE_HORIZONTALLY |
-                                 WNCK_WINDOW_ACTION_UNMAXIMIZE_HORIZONTALLY;
+        window->priv->actions |= VNCK_WINDOW_ACTION_MAXIMIZE_HORIZONTALLY |
+                                 VNCK_WINDOW_ACTION_UNMAXIMIZE_HORIZONTALLY;
 
       else if (atoms[i] == _vnck_atom_get ("_NET_WM_ACTION_MAXIMIZE_VERT"))
-        window->priv->actions |= WNCK_WINDOW_ACTION_MAXIMIZE_VERTICALLY |
-                                 WNCK_WINDOW_ACTION_UNMAXIMIZE_VERTICALLY;
+        window->priv->actions |= VNCK_WINDOW_ACTION_MAXIMIZE_VERTICALLY |
+                                 VNCK_WINDOW_ACTION_UNMAXIMIZE_VERTICALLY;
 
       else if (atoms[i] == _vnck_atom_get ("_NET_WM_ACTION_CHANGE_DESKTOP"))
-        window->priv->actions |= WNCK_WINDOW_ACTION_CHANGE_WORKSPACE;
+        window->priv->actions |= VNCK_WINDOW_ACTION_CHANGE_WORKSPACE;
 
       else if (atoms[i] == _vnck_atom_get ("_NET_WM_ACTION_CLOSE"))
-        window->priv->actions |= WNCK_WINDOW_ACTION_CLOSE;
+        window->priv->actions |= VNCK_WINDOW_ACTION_CLOSE;
 
       else if (atoms[i] == _vnck_atom_get ("_NET_WM_ACTION_FULLSCREEN"))
-        window->priv->actions |= WNCK_WINDOW_ACTION_FULLSCREEN;
+        window->priv->actions |= VNCK_WINDOW_ACTION_FULLSCREEN;
 
       else if (atoms[i] == _vnck_atom_get ("_NET_WM_ACTION_ABOVE"))
-        window->priv->actions |= WNCK_WINDOW_ACTION_ABOVE;
+        window->priv->actions |= VNCK_WINDOW_ACTION_ABOVE;
 
       else if (atoms[i] == _vnck_atom_get ("_NET_WM_ACTION_BELOW"))
-        window->priv->actions |= WNCK_WINDOW_ACTION_BELOW;
+        window->priv->actions |= VNCK_WINDOW_ACTION_BELOW;
 
       else
         {
@@ -2993,11 +2993,11 @@ update_actions (WnckWindow *window)
 
   g_free (atoms);
 
-  if ((window->priv->actions & WNCK_WINDOW_ACTION_MAXIMIZE_HORIZONTALLY) &&
-      (window->priv->actions & WNCK_WINDOW_ACTION_MAXIMIZE_VERTICALLY))
+  if ((window->priv->actions & VNCK_WINDOW_ACTION_MAXIMIZE_HORIZONTALLY) &&
+      (window->priv->actions & VNCK_WINDOW_ACTION_MAXIMIZE_VERTICALLY))
     window->priv->actions |=
-        WNCK_WINDOW_ACTION_MAXIMIZE   |
-        WNCK_WINDOW_ACTION_UNMAXIMIZE;
+        VNCK_WINDOW_ACTION_MAXIMIZE   |
+        VNCK_WINDOW_ACTION_UNMAXIMIZE;
 }
 
 static void
@@ -3014,11 +3014,11 @@ update_wintype (WnckWindow *window)
   window->priv->need_update_wintype = FALSE;
 
   found_type = FALSE;
-  type = WNCK_WINDOW_NORMAL;
+  type = VNCK_WINDOW_NORMAL;
 
   atoms = NULL;
   n_atoms = 0;
-  if (_vnck_get_atom_list (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  if (_vnck_get_atom_list (VNCK_SCREEN_XSCREEN (window->priv->screen),
                            window->priv->xwindow,
                            _vnck_atom_get ("_NET_WM_WINDOW_TYPE"),
                            &atoms,
@@ -3034,21 +3034,21 @@ update_wintype (WnckWindow *window)
            */
           found_type = TRUE;
           if (atoms[i] == _vnck_atom_get ("_NET_WM_WINDOW_TYPE_DESKTOP"))
-            type = WNCK_WINDOW_DESKTOP;
+            type = VNCK_WINDOW_DESKTOP;
           else if (atoms[i] == _vnck_atom_get ("_NET_WM_WINDOW_TYPE_DOCK"))
-            type = WNCK_WINDOW_DOCK;
+            type = VNCK_WINDOW_DOCK;
           else if (atoms[i] == _vnck_atom_get ("_NET_WM_WINDOW_TYPE_TOOLBAR"))
-            type = WNCK_WINDOW_TOOLBAR;
+            type = VNCK_WINDOW_TOOLBAR;
           else if (atoms[i] == _vnck_atom_get ("_NET_WM_WINDOW_TYPE_MENU"))
-            type = WNCK_WINDOW_MENU;
+            type = VNCK_WINDOW_MENU;
           else if (atoms[i] == _vnck_atom_get ("_NET_WM_WINDOW_TYPE_DIALOG"))
-            type = WNCK_WINDOW_DIALOG;
+            type = VNCK_WINDOW_DIALOG;
           else if (atoms[i] == _vnck_atom_get ("_NET_WM_WINDOW_TYPE_NORMAL"))
-            type = WNCK_WINDOW_NORMAL;
+            type = VNCK_WINDOW_NORMAL;
           else if (atoms[i] == _vnck_atom_get ("_NET_WM_WINDOW_TYPE_UTILITY"))
-            type = WNCK_WINDOW_UTILITY;
+            type = VNCK_WINDOW_UTILITY;
           else if (atoms[i] == _vnck_atom_get ("_NET_WM_WINDOW_TYPE_SPLASH"))
-            type = WNCK_WINDOW_SPLASHSCREEN;
+            type = VNCK_WINDOW_SPLASHSCREEN;
           else
             found_type = FALSE;
 
@@ -3062,11 +3062,11 @@ update_wintype (WnckWindow *window)
     {
       if (window->priv->transient_for != None)
         {
-          type = WNCK_WINDOW_DIALOG;
+          type = VNCK_WINDOW_DIALOG;
         }
       else
         {
-          type = WNCK_WINDOW_NORMAL;
+          type = VNCK_WINDOW_NORMAL;
         }
       found_type = TRUE;
     }
@@ -3089,7 +3089,7 @@ update_transient_for (WnckWindow *window)
   window->priv->need_update_transient_for = FALSE;
 
   parent = None;
-  if (_vnck_get_window (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  if (_vnck_get_window (VNCK_SCREEN_XSCREEN (window->priv->screen),
                         window->priv->xwindow,
                         _vnck_atom_get ("WM_TRANSIENT_FOR"),
                         &parent) &&
@@ -3119,7 +3119,7 @@ update_startup_id (WnckWindow *window)
 
   g_free (window->priv->startup_id);
   window->priv->startup_id =
-    _vnck_get_utf8_property (WNCK_SCREEN_XSCREEN (window->priv->screen),
+    _vnck_get_utf8_property (VNCK_SCREEN_XSCREEN (window->priv->screen),
                              window->priv->xwindow,
                              _vnck_atom_get ("_NET_STARTUP_ID"));
 }
@@ -3135,7 +3135,7 @@ update_wmclass (WnckWindow *window)
 
   window->priv->need_update_wmclass = FALSE;
 
-  _vnck_get_wmclass (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  _vnck_get_wmclass (VNCK_SCREEN_XSCREEN (window->priv->screen),
                      window->priv->xwindow,
                      &new_res_class,
                      &new_res_name);
@@ -3213,7 +3213,7 @@ update_frame_extents (WnckWindow *window)
 
   left = right = top = bottom = 0;
 
-  if (!_vnck_get_frame_extents (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  if (!_vnck_get_frame_extents (VNCK_SCREEN_XSCREEN (window->priv->screen),
                                 window->priv->xwindow,
                                 &left, &right, &top, &bottom))
     return;
@@ -3242,7 +3242,7 @@ update_role (WnckWindow *window)
 
   window->priv->need_update_role = FALSE;
 
-  new_role = _vnck_get_text_property (WNCK_SCREEN_XSCREEN (window->priv->screen),
+  new_role = _vnck_get_text_property (VNCK_SCREEN_XSCREEN (window->priv->screen),
                                       window->priv->xwindow,
                                       _vnck_atom_get ("WM_WINDOW_ROLE"));
 
@@ -3325,7 +3325,7 @@ force_update_now (WnckWindow *window)
 static gboolean
 update_idle (gpointer data)
 {
-  WnckWindow *window = WNCK_WINDOW (data);
+  WnckWindow *window = VNCK_WINDOW (data);
 
   window->priv->update_handler = 0;
   force_update_now (window);

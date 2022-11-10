@@ -532,8 +532,8 @@ unusual behavior with the library.
 
   - Port to GTK+ 3 (Benjamin Otte, Christian Persch, David Ronis, Vincent)
   - Enforce single include for libvnck (Vincent)
-  - Add macros to determine libvnck version at build time: WNCK_CHECK_VERSION,
-    WNCK_MAJOR_VERSION, WNCK_MINOR_VERSION, WNCK_MICRO_VERSION (Vincent)
+  - Add macros to determine libvnck version at build time: VNCK_CHECK_VERSION,
+    VNCK_MAJOR_VERSION, VNCK_MINOR_VERSION, VNCK_MICRO_VERSION (Vincent)
 
  API Changes
 
