@@ -31,7 +31,7 @@ before_scripts:
 
 build_scripts:
   - ./before-build
-  - ./make-scanbuild meson
+  - ./make-scanbuild meson '-Dgtk_doc=true'
   - ./after-build
 
 after_scripts:
