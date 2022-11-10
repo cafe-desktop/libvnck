@@ -32,7 +32,7 @@ Version 3.31.4
   Fixes
 
   * Meson: cleanups to the dependencies and fixed docs quotes (Marco Trevisan)
-  * Wnckprop: force it working under x11, so that it will work in Wayland for
+  * Vnckprop: force it working under x11, so that it will work in Wayland for
     X11 clients (Marco Trevisan)
   * Update class group icon when window icon has changed (Xu Zhen) [GNOME/libvnck#135]
 
@@ -81,7 +81,7 @@ Version 3.24.0
   * bump GTK+ required version to 3.22.0
   * Various refactoring to remove deprecated code (Alberts Muktupāvel)
   * Add an option to disable the tasklist scroll event (Moritz Bruder)
-  * Add wrap-on-scroll option for WnckPager widget (Moritz Bruder)
+  * Add wrap-on-scroll option for VnckPager widget (Moritz Bruder)
   * vnck-image-menu-item: fix memory leak (Alberts Muktupāvel)
 
   Translators
@@ -133,7 +133,7 @@ Version 3.18.0
 
   Fixes
 
-  * WnckWindow: Add a new 'type-changed' signal (Sebastian Geiger)
+  * VnckWindow: Add a new 'type-changed' signal (Sebastian Geiger)
   * don't use deprecated style properties (Alberts Muktupāvels)
   * pager: use correct state flags (Alberts Muktupāvels)
   * selector: avoid warnings from GtkStyleContext (Alberts Muktupāvels)
@@ -441,10 +441,10 @@ Version 3.1.5
 
  Features
 
-  - Add API to get WM_CLASS group name & instance name of a WnckWindow:
+  - Add API to get WM_CLASS group name & instance name of a VnckWindow:
     vnck_window_get_class_group_name(), vnck_window_get_class_instance_name()
     (Marco Trevisan)
-  - Change WnckClassGroup to talk about identifier instead of resource class.
+  - Change VnckClassGroup to talk about identifier instead of resource class.
     This includes deprecating vnck_class_group_get_res_class() in favor of
     vnck_class_group_get_id() (Vincent)
 
@@ -503,8 +503,8 @@ Version 2.91.90
  Fixes
 
   - Port widgets to GtkStyleContext (Carlos Garcia Campos)
-  - Improve geometry management of WnckPager (Vincent)
-  - Add switching workspace on scroll events to WnckPager (Vincent)
+  - Improve geometry management of VnckPager (Vincent)
+  - Add switching workspace on scroll events to VnckPager (Vincent)
   - Fix crash when fetching some icons (Vincent)
   - Make most of the code not assume the display is the default one (Vincent)
   - Code cleanups (Vincent)
@@ -1123,7 +1123,7 @@ Fixes
 ======
 
  Features
-  - Make the window action menu a WnckActionMenu widget (Vincent)
+  - Make the window action menu a VnckActionMenu widget (Vincent)
 
  Fixes
 
@@ -1265,7 +1265,7 @@ Fixes
   - Deprecate vnck_screen_get_workspace_index(). vnck_workspace_get_number()
     should be used (Vincent)
   - Deprecate vnck_screen_calc_workspace_layout(),
-    vnck_screen_free_workspace_layout() and WnckWorkspaceLayout (Vincent)
+    vnck_screen_free_workspace_layout() and VnckWorkspaceLayout (Vincent)
   - Deprecate vnck_screen_get_workspace_neighbor().
     vnck_workspace_get_neighbor() should be used (Vincent)
   - Deprecate vnck_tasklist_set_minimum_width(),
@@ -1384,7 +1384,7 @@ Fixes
     for don't exist (Vincent)
   - Fix a crash when dragging a window to somewhere like another
     workspace/viewport (Vincent) [#420713]
-  - Make WnckSelector and WnckTasklist correctly work from bindings (Vincent)
+  - Make VnckSelector and VnckTasklist correctly work from bindings (Vincent)
   - Fix crash on multihead setups introduced in 2.19.3 (Vincent)
   - Fix potential invalidity of the previously active window when there are
     multiple screens (Vincent)
@@ -1412,7 +1412,7 @@ Fixes
  Features
 
   - The active-window-changed and active-workspace-changed signals for
-    WnckScreen now provides the previously active window/workspace (Vincent)
+    VnckScreen now provides the previously active window/workspace (Vincent)
 
  Fixes
 
@@ -1449,7 +1449,7 @@ Fixes
   - Put pinned windows in the current workspace in the selector (Vincent)
   - Fix selector when the last window disappears while the selector is opened,
     and handle other similar issues (Vincent) [#156918]
-  - Add missing signals for WnckScreen (Vincent)
+  - Add missing signals for VnckScreen (Vincent)
   - Sort the windows in the window selector (Vincent)
   - Fix potential crash when a window disappears from the tasklist and its
     context menu was opened (Vincent)
@@ -2048,14 +2048,14 @@ Fixes
 
  Features
 
-  - New WnckSelector widget, using code from gnome-panel (Vincent Noel)
+  - New VnckSelector widget, using code from gnome-panel (Vincent Noel)
 
  Fixes
 
   - Correct misleading and inaccurate wording (Elijah)
   - Make the tasklist window menu popup appear near the mouse pointer
     (Vincent Noel)
-  - Fix warnings in WnckSelector (Vincent)
+  - Fix warnings in VnckSelector (Vincent)
 
  Misc
 

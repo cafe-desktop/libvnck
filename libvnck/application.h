@@ -33,37 +33,37 @@
 G_BEGIN_DECLS
 
 #define VNCK_TYPE_APPLICATION              (vnck_application_get_type ())
-#define VNCK_APPLICATION(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_APPLICATION, WnckApplication))
-#define VNCK_APPLICATION_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_APPLICATION, WnckApplicationClass))
+#define VNCK_APPLICATION(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_APPLICATION, VnckApplication))
+#define VNCK_APPLICATION_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_APPLICATION, VnckApplicationClass))
 #define VNCK_IS_APPLICATION(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_APPLICATION))
 #define VNCK_IS_APPLICATION_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_APPLICATION))
-#define VNCK_APPLICATION_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_APPLICATION, WnckApplicationClass))
+#define VNCK_APPLICATION_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_APPLICATION, VnckApplicationClass))
 
-typedef struct _WnckApplicationClass   WnckApplicationClass;
-typedef struct _WnckApplicationPrivate WnckApplicationPrivate;
+typedef struct _VnckApplicationClass   VnckApplicationClass;
+typedef struct _VnckApplicationPrivate VnckApplicationPrivate;
 
 /**
- * WnckApplication:
+ * VnckApplication:
  *
- * The #WnckApplication struct contains only private fields and should not be
+ * The #VnckApplication struct contains only private fields and should not be
  * directly accessed.
  */
-struct _WnckApplication
+struct _VnckApplication
 {
   GObject parent_instance;
 
-  WnckApplicationPrivate *priv;
+  VnckApplicationPrivate *priv;
 };
 
-struct _WnckApplicationClass
+struct _VnckApplicationClass
 {
   GObjectClass parent_class;
 
   /* app name or icon name changed */
-  void (* name_changed) (WnckApplication *app);
+  void (* name_changed) (VnckApplication *app);
 
   /* icon changed */
-  void (* icon_changed) (WnckApplication *app);
+  void (* icon_changed) (VnckApplication *app);
   
   /* Padding for future expansion */
   void (* pad1) (void);
@@ -74,25 +74,25 @@ struct _WnckApplicationClass
 
 GType vnck_application_get_type (void) G_GNUC_CONST;
 
-WnckApplication* vnck_application_get (gulong xwindow);
+VnckApplication* vnck_application_get (gulong xwindow);
 
-gulong vnck_application_get_xid (WnckApplication *app);
+gulong vnck_application_get_xid (VnckApplication *app);
 
-GList* vnck_application_get_windows   (WnckApplication *app);
-int    vnck_application_get_n_windows (WnckApplication *app);
+GList* vnck_application_get_windows   (VnckApplication *app);
+int    vnck_application_get_n_windows (VnckApplication *app);
 
 /* application_get_name, application_get_pid, etc.; prefer to read
  * properties straight off the group leader, and failing that, if the
  * prop is the same for all windows in the app, return the values for
  * the window. Failing that, they make stuff up.
  */
-const char* vnck_application_get_name      (WnckApplication *app);
-const char* vnck_application_get_icon_name (WnckApplication *app);
-int         vnck_application_get_pid       (WnckApplication *app);
-GdkPixbuf*  vnck_application_get_icon      (WnckApplication *app);
-GdkPixbuf*  vnck_application_get_mini_icon (WnckApplication *app);
-gboolean    vnck_application_get_icon_is_fallback (WnckApplication *app);
-const char* vnck_application_get_startup_id (WnckApplication *app);
+const char* vnck_application_get_name      (VnckApplication *app);
+const char* vnck_application_get_icon_name (VnckApplication *app);
+int         vnck_application_get_pid       (VnckApplication *app);
+GdkPixbuf*  vnck_application_get_icon      (VnckApplication *app);
+GdkPixbuf*  vnck_application_get_mini_icon (VnckApplication *app);
+gboolean    vnck_application_get_icon_is_fallback (VnckApplication *app);
+const char* vnck_application_get_startup_id (VnckApplication *app);
 
 G_END_DECLS
 

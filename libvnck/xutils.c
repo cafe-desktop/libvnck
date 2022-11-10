@@ -734,15 +734,15 @@ filter_func (GdkXEvent  *gdkxevent,
     {
     case PropertyNotify:
       {
-        WnckScreen *screen;
+        VnckScreen *screen;
 
         screen = vnck_screen_get_for_root (xevent->xany.window);
         if (screen != NULL)
           _vnck_screen_process_property_notify (screen, xevent);
         else
           {
-            WnckWindow *window;
-            WnckApplication *app;
+            VnckWindow *window;
+            VnckApplication *app;
 
             window = vnck_window_get (xevent->xany.window);
             app = vnck_application_get (xevent->xany.window);
@@ -758,7 +758,7 @@ filter_func (GdkXEvent  *gdkxevent,
 
     case ConfigureNotify:
       {
-        WnckWindow *window;
+        VnckWindow *window;
 
         window = vnck_window_get (xevent->xconfigure.window);
 
@@ -783,7 +783,7 @@ filter_func (GdkXEvent  *gdkxevent,
 
       while (i < ScreenCount (display))
         {
-          WnckScreen *s;
+          VnckScreen *s;
 
           s = _vnck_screen_get_existing (i);
           if (s != NULL)
@@ -882,7 +882,7 @@ _vnck_deiconify (Screen *screen,
 }
 
 void
-_vnck_close (WnckScreen *screen,
+_vnck_close (VnckScreen *screen,
              Window      xwindow,
              Time        timestamp)
 {
@@ -930,7 +930,7 @@ _vnck_close (WnckScreen *screen,
 #define _NET_WM_MOVERESIZE_MOVE_KEYBOARD    10
 
 void
-_vnck_keyboard_move (WnckScreen *screen,
+_vnck_keyboard_move (VnckScreen *screen,
                      Window      xwindow)
 {
   Screen *xscreen;
@@ -965,7 +965,7 @@ _vnck_keyboard_move (WnckScreen *screen,
 }
 
 void
-_vnck_keyboard_size (WnckScreen *screen,
+_vnck_keyboard_size (VnckScreen *screen,
                      Window      xwindow)
 {
   Screen *xscreen;
@@ -1000,7 +1000,7 @@ _vnck_keyboard_size (WnckScreen *screen,
 }
 
 void
-_vnck_change_state (WnckScreen *screen,
+_vnck_change_state (VnckScreen *screen,
                     Window      xwindow,
                     gboolean    add,
                     Atom        state1,
@@ -1042,7 +1042,7 @@ _vnck_change_state (WnckScreen *screen,
 }
 
 void
-_vnck_change_workspace (WnckScreen *screen,
+_vnck_change_workspace (VnckScreen *screen,
                         Window      xwindow,
                         int         new_space)
 {
@@ -1078,7 +1078,7 @@ _vnck_change_workspace (WnckScreen *screen,
 }
 
 void
-_vnck_activate (WnckScreen *screen,
+_vnck_activate (VnckScreen *screen,
                 Window      xwindow,
                 Time        timestamp)
 {
@@ -1961,7 +1961,7 @@ typedef enum
   USING_NET_WM_ICON
 } IconOrigin;
 
-struct _WnckIconCache
+struct _VnckIconCache
 {
   IconOrigin origin;
   Pixmap prev_pixmap;
@@ -1979,12 +1979,12 @@ struct _WnckIconCache
   guint net_wm_icon_dirty : 1;
 };
 
-WnckIconCache*
+VnckIconCache*
 _vnck_icon_cache_new (void)
 {
-  WnckIconCache *icon_cache;
+  VnckIconCache *icon_cache;
 
-  icon_cache = g_slice_new0 (WnckIconCache);
+  icon_cache = g_slice_new0 (VnckIconCache);
 
   icon_cache->origin = USING_NO_ICON;
   icon_cache->prev_pixmap = None;
@@ -2003,7 +2003,7 @@ _vnck_icon_cache_new (void)
 }
 
 static void
-clear_icon_cache (WnckIconCache *icon_cache,
+clear_icon_cache (VnckIconCache *icon_cache,
                   gboolean       dirty_all)
 {
   if (icon_cache->icon)
@@ -2025,15 +2025,15 @@ clear_icon_cache (WnckIconCache *icon_cache,
 }
 
 void
-_vnck_icon_cache_free (WnckIconCache *icon_cache)
+_vnck_icon_cache_free (VnckIconCache *icon_cache)
 {
   clear_icon_cache (icon_cache, FALSE);
 
-  g_slice_free (WnckIconCache, icon_cache);
+  g_slice_free (VnckIconCache, icon_cache);
 }
 
 void
-_vnck_icon_cache_property_changed (WnckIconCache *icon_cache,
+_vnck_icon_cache_property_changed (VnckIconCache *icon_cache,
                                    Atom           atom)
 {
   if (atom == _vnck_atom_get ("_NET_WM_ICON"))
@@ -2045,7 +2045,7 @@ _vnck_icon_cache_property_changed (WnckIconCache *icon_cache,
 }
 
 gboolean
-_vnck_icon_cache_get_icon_invalidated (WnckIconCache *icon_cache)
+_vnck_icon_cache_get_icon_invalidated (VnckIconCache *icon_cache)
 {
   if (icon_cache->origin <= USING_KWM_WIN_ICON &&
       icon_cache->kwm_win_icon_dirty)
@@ -2069,20 +2069,20 @@ _vnck_icon_cache_get_icon_invalidated (WnckIconCache *icon_cache)
 }
 
 void
-_vnck_icon_cache_set_want_fallback (WnckIconCache *icon_cache,
+_vnck_icon_cache_set_want_fallback (VnckIconCache *icon_cache,
                                     gboolean       setting)
 {
   icon_cache->want_fallback = setting;
 }
 
 gboolean
-_vnck_icon_cache_get_is_fallback (WnckIconCache *icon_cache)
+_vnck_icon_cache_get_is_fallback (VnckIconCache *icon_cache)
 {
   return icon_cache->origin == USING_FALLBACK_ICON;
 }
 
 static void
-replace_cache (WnckIconCache *icon_cache,
+replace_cache (VnckIconCache *icon_cache,
                IconOrigin     origin,
                GdkPixbuf     *new_icon,
                GdkPixbuf     *new_mini_icon)
@@ -2159,9 +2159,9 @@ scaled_from_pixdata (guchar *pixdata,
 }
 
 gboolean
-_vnck_read_icons (WnckScreen     *screen,
+_vnck_read_icons (VnckScreen     *screen,
                   Window          xwindow,
-                  WnckIconCache  *icon_cache,
+                  VnckIconCache  *icon_cache,
                   GdkPixbuf     **iconp,
                   int             ideal_width,
                   int             ideal_height,

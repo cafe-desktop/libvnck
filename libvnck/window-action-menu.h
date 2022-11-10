@@ -32,30 +32,30 @@
 G_BEGIN_DECLS
 
 #define VNCK_TYPE_ACTION_MENU              (vnck_action_menu_get_type ())
-#define VNCK_ACTION_MENU(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_ACTION_MENU, WnckActionMenu))
-#define VNCK_ACTION_MENU_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_ACTION_MENU, WnckActionMenuClass))
+#define VNCK_ACTION_MENU(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_ACTION_MENU, VnckActionMenu))
+#define VNCK_ACTION_MENU_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_ACTION_MENU, VnckActionMenuClass))
 #define VNCK_IS_ACTION_MENU(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_ACTION_MENU))
 #define VNCK_IS_ACTION_MENU_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_ACTION_MENU))
-#define VNCK_ACTION_MENU_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_ACTION_MENU, WnckActionMenuClass))
+#define VNCK_ACTION_MENU_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_ACTION_MENU, VnckActionMenuClass))
 
-typedef struct _WnckActionMenu        WnckActionMenu;
-typedef struct _WnckActionMenuClass   WnckActionMenuClass;
-typedef struct _WnckActionMenuPrivate WnckActionMenuPrivate;
+typedef struct _VnckActionMenu        VnckActionMenu;
+typedef struct _VnckActionMenuClass   VnckActionMenuClass;
+typedef struct _VnckActionMenuPrivate VnckActionMenuPrivate;
 
 /**
- * WnckActionMenu:
+ * VnckActionMenu:
  *
- * The #WnckActionMenu struct contains only private fields and should not be
+ * The #VnckActionMenu struct contains only private fields and should not be
  * directly accessed.
  */
-struct _WnckActionMenu
+struct _VnckActionMenu
 {
   GtkMenu parent_instance;
 
-  WnckActionMenuPrivate *priv;
+  VnckActionMenuPrivate *priv;
 };
 
-struct _WnckActionMenuClass
+struct _VnckActionMenuClass
 {
   GtkMenuClass parent_class;
 
@@ -68,7 +68,7 @@ struct _WnckActionMenuClass
 
 GType vnck_action_menu_get_type (void) G_GNUC_CONST;
 
-GtkWidget* vnck_action_menu_new (WnckWindow *window);
+GtkWidget* vnck_action_menu_new (VnckWindow *window);
 
 G_END_DECLS
 

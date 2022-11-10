@@ -25,8 +25,8 @@ static GOptionEntry entries[] = {
 static void
 create_pager_window (GtkOrientation       orientation,
                      gboolean             show_all,
-                     WnckPagerDisplayMode mode,
-                     WnckPagerScrollMode  scroll_mode,
+                     VnckPagerDisplayMode mode,
+                     VnckPagerScrollMode  scroll_mode,
                      int                  rows,
                      gboolean             wrap)
 {
@@ -70,9 +70,9 @@ main (int argc, char **argv)
 {
   GOptionContext *ctxt;
   GtkOrientation  orientation;
-  WnckPagerDisplayMode mode;
-  WnckPagerScrollMode scroll_mode;
-  WnckScreen *screen;
+  VnckPagerDisplayMode mode;
+  VnckPagerScrollMode scroll_mode;
+  VnckScreen *screen;
 
   ctxt = g_option_context_new ("");
   g_option_context_add_main_entries (ctxt, entries, NULL);

@@ -32,30 +32,30 @@
 G_BEGIN_DECLS
 
 #define VNCK_TYPE_TASKLIST              (vnck_tasklist_get_type ())
-#define VNCK_TASKLIST(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_TASKLIST, WnckTasklist))
-#define VNCK_TASKLIST_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_TASKLIST, WnckTasklistClass))
+#define VNCK_TASKLIST(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_TASKLIST, VnckTasklist))
+#define VNCK_TASKLIST_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_TASKLIST, VnckTasklistClass))
 #define VNCK_IS_TASKLIST(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_TASKLIST))
 #define VNCK_IS_TASKLIST_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_TASKLIST))
-#define VNCK_TASKLIST_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_TASKLIST, WnckTasklistClass))
+#define VNCK_TASKLIST_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_TASKLIST, VnckTasklistClass))
 
-typedef struct _WnckTasklist        WnckTasklist;
-typedef struct _WnckTasklistClass   WnckTasklistClass;
-typedef struct _WnckTasklistPrivate WnckTasklistPrivate;
+typedef struct _VnckTasklist        VnckTasklist;
+typedef struct _VnckTasklistClass   VnckTasklistClass;
+typedef struct _VnckTasklistPrivate VnckTasklistPrivate;
 
 /**
- * WnckTasklist:
+ * VnckTasklist:
  *
- * The #WnckTasklist struct contains only private fields and should not be
+ * The #VnckTasklist struct contains only private fields and should not be
  * directly accessed.
  */
-struct _WnckTasklist
+struct _VnckTasklist
 {
   GtkContainer parent_instance;
 
-  WnckTasklistPrivate *priv;
+  VnckTasklistPrivate *priv;
 };
 
-struct _WnckTasklistClass
+struct _VnckTasklistClass
 {
   GtkContainerClass parent_class;
   
@@ -67,56 +67,56 @@ struct _WnckTasklistClass
 };
 
 /**
- * WnckTasklistGroupingType:
- * @VNCK_TASKLIST_NEVER_GROUP: never group multiple #WnckWindow of the same
- * #WnckApplication.
- * @VNCK_TASKLIST_AUTO_GROUP: group multiple #WnckWindow of the same
- * #WnckApplication for some #WnckApplication, when there is not enough place
- * to have a good-looking list of all #WnckWindow.
- * @VNCK_TASKLIST_ALWAYS_GROUP: always group multiple #WnckWindow of the same
- * #WnckApplication, for all #WnckApplication.
+ * VnckTasklistGroupingType:
+ * @VNCK_TASKLIST_NEVER_GROUP: never group multiple #VnckWindow of the same
+ * #VnckApplication.
+ * @VNCK_TASKLIST_AUTO_GROUP: group multiple #VnckWindow of the same
+ * #VnckApplication for some #VnckApplication, when there is not enough place
+ * to have a good-looking list of all #VnckWindow.
+ * @VNCK_TASKLIST_ALWAYS_GROUP: always group multiple #VnckWindow of the same
+ * #VnckApplication, for all #VnckApplication.
  *
- * Type defining the policy of the #WnckTasklist for grouping multiple
- * #WnckWindow of the same #WnckApplication.
+ * Type defining the policy of the #VnckTasklist for grouping multiple
+ * #VnckWindow of the same #VnckApplication.
  */
 typedef enum {
   VNCK_TASKLIST_NEVER_GROUP,
   VNCK_TASKLIST_AUTO_GROUP,
   VNCK_TASKLIST_ALWAYS_GROUP
-} WnckTasklistGroupingType;
+} VnckTasklistGroupingType;
 
 GType vnck_tasklist_get_type (void) G_GNUC_CONST;
 
 GtkWidget *vnck_tasklist_new (void);
-const int *vnck_tasklist_get_size_hint_list (WnckTasklist  *tasklist,
+const int *vnck_tasklist_get_size_hint_list (VnckTasklist  *tasklist,
 					      int           *n_elements);
 
-void vnck_tasklist_set_grouping (WnckTasklist             *tasklist,
-				 WnckTasklistGroupingType  grouping);
-void vnck_tasklist_set_switch_workspace_on_unminimize (WnckTasklist  *tasklist,
+void vnck_tasklist_set_grouping (VnckTasklist             *tasklist,
+				 VnckTasklistGroupingType  grouping);
+void vnck_tasklist_set_switch_workspace_on_unminimize (VnckTasklist  *tasklist,
 						       gboolean       switch_workspace_on_unminimize);
-void vnck_tasklist_set_middle_click_close (WnckTasklist  *tasklist,
+void vnck_tasklist_set_middle_click_close (VnckTasklist  *tasklist,
 					   gboolean       middle_click_close);
-void vnck_tasklist_set_grouping_limit (WnckTasklist *tasklist,
+void vnck_tasklist_set_grouping_limit (VnckTasklist *tasklist,
 				       gint          limit);
-void vnck_tasklist_set_include_all_workspaces (WnckTasklist *tasklist,
+void vnck_tasklist_set_include_all_workspaces (VnckTasklist *tasklist,
 					       gboolean      include_all_workspaces);
-void vnck_tasklist_set_button_relief (WnckTasklist *tasklist,
+void vnck_tasklist_set_button_relief (VnckTasklist *tasklist,
                                       GtkReliefStyle relief);
-void vnck_tasklist_set_orientation (WnckTasklist *tasklist,
+void vnck_tasklist_set_orientation (VnckTasklist *tasklist,
                                     GtkOrientation orient);
-void vnck_tasklist_set_scroll_enabled (WnckTasklist *tasklist,
+void vnck_tasklist_set_scroll_enabled (VnckTasklist *tasklist,
                                        gboolean      scroll_enabled);
-gboolean vnck_tasklist_get_scroll_enabled (WnckTasklist *tasklist);
+gboolean vnck_tasklist_get_scroll_enabled (VnckTasklist *tasklist);
 
 /**
- * WnckLoadIconFunction:
+ * VnckLoadIconFunction:
  * @icon_name: an icon name as in the Icon field in a .desktop file for the
  * icon to load.
  * @size: the desired icon size.
  * @flags: not defined to do anything yet.
- * @data: data passed to the function, set when the #WnckLoadIconFunction has
- * been set for the #WnckTasklist.
+ * @data: data passed to the function, set when the #VnckLoadIconFunction has
+ * been set for the #VnckTasklist.
  *
  * Specifies the type of function passed to vnck_tasklist_set_icon_loader().
  *
@@ -126,13 +126,13 @@ gboolean vnck_tasklist_get_scroll_enabled (WnckTasklist *tasklist);
  *
  * Since: 2.2
  */
-typedef GdkPixbuf* (*WnckLoadIconFunction) (const char   *icon_name,
+typedef GdkPixbuf* (*VnckLoadIconFunction) (const char   *icon_name,
                                             int           size,
                                             unsigned int  flags,
                                             void         *data);
 
-void vnck_tasklist_set_icon_loader (WnckTasklist         *tasklist,
-                                    WnckLoadIconFunction  load_icon_func,
+void vnck_tasklist_set_icon_loader (VnckTasklist         *tasklist,
+                                    VnckLoadIconFunction  load_icon_func,
                                     void                 *data,
                                     GDestroyNotify        free_data_func);
 

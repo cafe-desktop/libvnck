@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-WnckWorkspace
+VnckWorkspace
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -20,13 +20,13 @@ WnckWorkspace
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### STRUCT WnckWorkspace ##### -->
+<!-- ##### STRUCT VnckWorkspace ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### SIGNAL WnckWorkspace::name-changed ##### -->
+<!-- ##### SIGNAL VnckWorkspace::name-changed ##### -->
 <para>
 
 </para>
@@ -132,7 +132,7 @@ WnckWorkspace
 @Returns: 
 
 
-<!-- ##### ENUM WnckMotionDirection ##### -->
+<!-- ##### ENUM VnckMotionDirection ##### -->
 <para>
 
 </para>

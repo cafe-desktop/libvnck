@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-WnckWindow
+VnckWindow
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -20,57 +20,13 @@ WnckWindow
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### STRUCT WnckWindow ##### -->
+<!-- ##### STRUCT VnckWindow ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### SIGNAL WnckWindow::actions-changed ##### -->
-<para>
-
-</para>
-
-@vnckwindow: the object which received the signal.
-@arg1: 
-@arg2: 
-
-<!-- ##### SIGNAL WnckWindow::class-changed ##### -->
-<para>
-
-</para>
-
-@vnckwindow: the object which received the signal.
-
-<!-- ##### SIGNAL WnckWindow::geometry-changed ##### -->
-<para>
-
-</para>
-
-@vnckwindow: the object which received the signal.
-
-<!-- ##### SIGNAL WnckWindow::icon-changed ##### -->
-<para>
-
-</para>
-
-@vnckwindow: the object which received the signal.
-
-<!-- ##### SIGNAL WnckWindow::name-changed ##### -->
-<para>
-
-</para>
-
-@vnckwindow: the object which received the signal.
-
-<!-- ##### SIGNAL WnckWindow::role-changed ##### -->
-<para>
-
-</para>
-
-@vnckwindow: the object which received the signal.
-
-<!-- ##### SIGNAL WnckWindow::state-changed ##### -->
+<!-- ##### SIGNAL VnckWindow::actions-changed ##### -->
 <para>
 
 </para>
@@ -79,14 +35,58 @@ WnckWindow
 @arg1: 
 @arg2: 
 
-<!-- ##### SIGNAL WnckWindow::type-changed ##### -->
+<!-- ##### SIGNAL VnckWindow::class-changed ##### -->
 <para>
 
 </para>
 
 @vnckwindow: the object which received the signal.
 
-<!-- ##### SIGNAL WnckWindow::workspace-changed ##### -->
+<!-- ##### SIGNAL VnckWindow::geometry-changed ##### -->
+<para>
+
+</para>
+
+@vnckwindow: the object which received the signal.
+
+<!-- ##### SIGNAL VnckWindow::icon-changed ##### -->
+<para>
+
+</para>
+
+@vnckwindow: the object which received the signal.
+
+<!-- ##### SIGNAL VnckWindow::name-changed ##### -->
+<para>
+
+</para>
+
+@vnckwindow: the object which received the signal.
+
+<!-- ##### SIGNAL VnckWindow::role-changed ##### -->
+<para>
+
+</para>
+
+@vnckwindow: the object which received the signal.
+
+<!-- ##### SIGNAL VnckWindow::state-changed ##### -->
+<para>
+
+</para>
+
+@vnckwindow: the object which received the signal.
+@arg1: 
+@arg2: 
+
+<!-- ##### SIGNAL VnckWindow::type-changed ##### -->
+<para>
+
+</para>
+
+@vnckwindow: the object which received the signal.
+
+<!-- ##### SIGNAL VnckWindow::workspace-changed ##### -->
 <para>
 
 </para>
@@ -282,7 +282,7 @@ WnckWindow
 @order: 
 
 
-<!-- ##### ENUM WnckWindowType ##### -->
+<!-- ##### ENUM VnckWindowType ##### -->
 <para>
 
 </para>
@@ -314,7 +314,7 @@ WnckWindow
 @wintype: 
 
 
-<!-- ##### ENUM WnckWindowState ##### -->
+<!-- ##### ENUM VnckWindowState ##### -->
 <para>
 
 </para>
@@ -468,7 +468,7 @@ WnckWindow
 @Returns: 
 
 
-<!-- ##### ENUM WnckWindowActions ##### -->
+<!-- ##### ENUM VnckWindowActions ##### -->
 <para>
 
 </para>
@@ -788,7 +788,7 @@ WnckWindow
 @height: 
 
 
-<!-- ##### ENUM WnckWindowGravity ##### -->
+<!-- ##### ENUM VnckWindowGravity ##### -->
 <para>
 
 </para>
@@ -805,7 +805,7 @@ WnckWindow
 @VNCK_WINDOW_GRAVITY_SOUTHEAST: 
 @VNCK_WINDOW_GRAVITY_STATIC: 
 
-<!-- ##### ENUM WnckWindowMoveResizeMask ##### -->
+<!-- ##### ENUM VnckWindowMoveResizeMask ##### -->
 <para>
 
 </para>

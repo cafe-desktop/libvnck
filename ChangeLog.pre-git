@@ -410,11 +410,11 @@
 
 2007-11-11  Vincent Untz  <vuntz@gnome.org>
 
-	Be more paranoid about the fact that the window of the WnckActionMenu
+	Be more paranoid about the fact that the window of the VnckActionMenu
 	might have been not set. This case can probably happen in bindings...
 
 	* libvnck/window-action-menu.c: (vnck_action_menu_set_property): check
-	that the window is really a WnckWindow
+	that the window is really a VnckWindow
 	(vnck_action_menu_constructor): handle the case and print a warning
 	when the window has not been set
 
@@ -429,7 +429,7 @@
 
 2007-11-11  Vincent Untz  <vuntz@gnome.org>
 
-	Objectify window-action-menu.c so that we have a real WnckActionMenu
+	Objectify window-action-menu.c so that we have a real VnckActionMenu
 	widget.
 
 	* doc/libvnck-docs.sgml:
@@ -853,7 +853,7 @@
 2007-06-24  Vincent Untz  <vuntz@gnome.org>
 
 	* libvnck/class-group.h:
-	* libvnck/private.h: move private WnckClassGroup functions to
+	* libvnck/private.h: move private VnckClassGroup functions to
 	private.h
 
 2007-06-24  Vincent Untz  <vuntz@gnome.org>
@@ -871,7 +871,7 @@
 
 2007-06-24  Vincent Untz  <vuntz@gnome.org>
 
-	Cleanups and deprecate some WnckScreen functions that shouldn't have
+	Cleanups and deprecate some VnckScreen functions that shouldn't have
 	been made public when they were added.
 
 	* doc/tmpl/tasklist.sgml:
@@ -886,7 +886,7 @@
 	* libvnck/screen.[ch]: deprecate vnck_screen_get_workspace_index() (we
 	have vnck_workspace_get_number()),
 	vnck_screen_calc_workspace_layout(),
-	vnck_screen_free_workspace_layout() and WnckWorkspaceLayout
+	vnck_screen_free_workspace_layout() and VnckWorkspaceLayout
 	* libvnck/util.c: remove useless TODO (since the function is already
 	deprecated)
 	* libvnck/workspace.c: update doc to not refer to
@@ -947,12 +947,12 @@
 	stops. If set to 0, then the effect is nearly disabled. This is
 	hopefully okay for bug #356452.
 
-	This also adds a needs_attention_time field to WnckWindow. This could
+	This also adds a needs_attention_time field to VnckWindow. This could
 	be useful for other stuff, but it's private for now.
 
 	* libvnck/window.c: (vnck_window_init): init new field
 	(_vnck_window_get_needs_attention_time): new
-	(transient_needs_attention): changed to return a WnckWindow
+	(transient_needs_attention): changed to return a VnckWindow
 	(_vnck_window_or_transient_get_needs_attention_time): new
 	(vnck_window_or_transient_needs_attention): updated
 	(update_state): correctly set needs_attention_time
@@ -1097,7 +1097,7 @@
 	name of the window
 	* libvnck/private.h: updated
 	* libvnck/util.c: (_vnck_window_get_name_for_display): new, since this
-	is something that WnckSelector and WnckTasklist are both doing
+	is something that VnckSelector and VnckTasklist are both doing
 	* libvnck/selector.c: (vnck_selector_get_window_name): kill
 	(vnck_selector_window_name_changed),
 	(vnck_selector_window_state_changed),
@@ -1208,9 +1208,9 @@
 	(_vnck_window_set_as_drag_icon): connect to the finalization for
 	drag_source. This way, we're more solid.
 	* libvnck/selector.c: (vnck_selector_drag_begin): use a more long-lived
-	widget for setting up the drag icon, ie the WnckSelector
+	widget for setting up the drag icon, ie the VnckSelector
 	* libvnck/tasklist.c: (vnck_task_drag_begin): use a more long-lived
-	widget for setting up the drag icon, ie the WnckTasklist
+	widget for setting up the drag icon, ie the VnckTasklist
 
 2007-06-18  Vincent Untz  <vuntz@gnome.org>
 
@@ -1424,7 +1424,7 @@
 
 2007-06-11  Vincent Untz  <vuntz@gnome.org>
 
-	Make WnckPager and WnckTasklist always display the screen they're on.
+	Make VnckPager and VnckTasklist always display the screen they're on.
 	This deprecates vnck_pager_set_screen() and
 	vnck_tasklist_set_screen(), and also makes the screen argument of
 	vnck_pager_new() and of vnck_tasklist_new() useless.
@@ -1480,14 +1480,14 @@
 	if it failed, gets the actual layout from the screen
 	(vnck_pager_new): call vnck_pager_set_screen() instead of
 	vnck_pager_connect_screen()
-	* libvnck/screen.[ch]: change WnckScreen to use WnckLayoutCorner
+	* libvnck/screen.[ch]: change VnckScreen to use VnckLayoutCorner
 	instead of ScreenCorner
 	(vnck_screen_construct): ditto
 	(vnck_screen_calc_workspace_layout): ditto, and mention that we should
 	remove this from the API next time we break API
 	(vnck_screen_free_workspace_layout): add comment to mention that we
 	should remove this API
-	(update_workspace_layout): use WnckLayoutCorner instead of ScreenCorner
+	(update_workspace_layout): use VnckLayoutCorner instead of ScreenCorner
 	(_vnck_screen_get_workspace_layout): new private function to get the
 	layout on the screen. Should probably be public in the future.
 	(vnck_screen_try_set_workspace_layout): update a bit the doc, and add
@@ -1575,7 +1575,7 @@
 
 	* libvnck/libvnck/vnckprop.c:
 	* libvnck/Makefile.am: add a vnckprop utility, similar to xprop, but
-	giving information about a WnckWindow. The output is nicer, although
+	giving information about a VnckWindow. The output is nicer, although
 	we can't show as much information as xprop. This will hopefully be
 	useful for debugging. It's not installed when running "make install",
 	but maybe we want to do this?
@@ -1726,7 +1726,7 @@
 2007-06-05  Vincent Untz  <vuntz@gnome.org>
 
 	Add previous window/workspace to signal handlers for
-	active-window-changed and active-workspace-changed WnckScreen signals.
+	active-window-changed and active-workspace-changed VnckScreen signals.
 	Fix bug #136858.
 
 	* libvnck/pager.c: (active_window_changed_callback): updated for
@@ -2106,7 +2106,7 @@
 	* libvnck/window.c (update_actions): check for
 	_NET_WM_ACTION_(ABOVE|BELOW).
 
-	* libvnck/window.h (enum WnckWindowActions): add
+	* libvnck/window.h (enum VnckWindowActions): add
 	VNCK_WINDOW_ACTION_ABOVE and VNCK_WINDOW_ACTION_BELOW.
 
 2007-04-10  Matthias Clasen  <mclasen@redhat.com>
@@ -2117,7 +2117,7 @@
 
 2007-04-09  Elijah Newren  <newren gmail com>
 
-	* libvnck/window.h (enum WnckWindowGravity): add
+	* libvnck/window.h (enum VnckWindowGravity): add
 	VNCK_WINDOW_GRAVITY_STATIC.  (See #344521; this extra defined
 	constant should have been added as part of #342899)
 
@@ -2282,11 +2282,11 @@
 	- g_object_ref_sink the menu after creating it
 
 	* libvnck/window-action-menu.c: (vnck_create_window_action_menu):
-	- free the WnckWorkspaceLayout
+	- free the VnckWorkspaceLayout
 
 2006-09-11  Ryan Lortie  <desrt@desrt.ca>
 
-	* libvnck/window.c (WnckWindowPrivate, vnck_window_init,
+	* libvnck/window.c (VnckWindowPrivate, vnck_window_init,
 	vnck_window_set_icon_geometry): Avoid sending spurious icon geometry
 	updates. (Fixes #355523)
 
@@ -2710,7 +2710,7 @@
 	vnck_application_get_icon_is_fallback
 	* libvnck/screen.c: fix the doc for vnck_screen_get_workspace
 
-	* libvnck/screen.h: mark the WnckWorkspaceLayout as private
+	* libvnck/screen.h: mark the VnckWorkspaceLayout as private
 
 	Don't define _ in libvnck and use glib for this.
 	Fix bug #328621.
@@ -2803,7 +2803,7 @@
 	the workspace at left/right/up/down.
 
 	* libvnck/screen.h :
-	Added the WnckWorkspaceLayout and WnckMotionDirection structure.
+	Added the VnckWorkspaceLayout and VnckMotionDirection structure.
 
 	* libvnck/window-action-menu.c :
 	(vnck_screen_get_workspace_index): Get the index of the
@@ -2888,11 +2888,11 @@
 	EWMH) apps to register as such to get this right.  Fixes #325556.
 
 	* libvnck/private.h (_vnck_get_client_type): 
-	* libvnck/util.h (enum WnckClientType, vnck_set_client_type):
+	* libvnck/util.h (enum VnckClientType, vnck_set_client_type):
 	* libvnck/util.c (vnck_set_client_type, _vnck_get_client_type):
 	New functions and an accompanying enum
 
-	* libvnck/util.c (static WnckClientType client_type):
+	* libvnck/util.c (static VnckClientType client_type):
 	static var for tracking what the client type is
 	
 	* libvnck/xutils.c (_vnck_close, _vnck_keyboard_move,
@@ -3035,7 +3035,7 @@
 	Fixes #163293.
 
 	* libvnck/tasklist.c (struct skipped_window): new struct, (struct
-	WnckTasklistPrivate): include a list of skipped windows,
+	VnckTasklistPrivate): include a list of skipped windows,
 	(vnck_task_state_changed): need to provide a prototype early on
 	because we want to call it earlier in the code,
 	(vnck_tasklist_init): initialize skipped_windows,
@@ -3323,12 +3323,12 @@
 
 	* libvnck/selector.c (vnck_selector_window_state_changed):
 	* libvnck/tasklist.c (vnck_task_state_changed):
-	* libvnck/window.h (enum WnckWindowState):
+	* libvnck/window.h (enum VnckWindowState):
 
 	add VNCK_WINDOW_STATE_URGENT and checks for it
 
 	* libvnck/window.c (COMPRESS_STATE macro): add
-	(window)->priv->is_urgent, (struct _WnckWindowPrivate): add
+	(window)->priv->is_urgent, (struct _VnckWindowPrivate): add
 	is_urgent_field and need_update_wmhints field),
 	(_vnck_window_create): provide default group leader but have
 	update_wmhints() do the actual setting if there is a different one
@@ -3360,7 +3360,7 @@
 	Make windows that demand attention more noticeable by
 	glowing their tasklist buttons (bug 120439).
 
-	* libvnck/tasklist.c (struct _WnckTask): add some new
+	* libvnck/tasklist.c (struct _VnckTask): add some new
 	fields to track glowing start time, screenshot,
 	(vnck_task_init): initialize new fields
 	(glow_pixbuf): new function to uniformly luminate a
@@ -3655,7 +3655,7 @@
 	* libvnck/private.h: (_vnck_window_create): take a sort_order
 	parameter
 
-	* libvnck/screen.c: (struct _WnckScreenPrivate): keep a
+	* libvnck/screen.c: (struct _VnckScreenPrivate): keep a
 	window_order parameter that increments as new windows are created,
 	(vnck_screen_construct): initialize window_order too,
 	(update_client_list): add new windows in mapping order instead of
@@ -3668,7 +3668,7 @@
 	the xid of the window's group leader and the xid of the window to
 	compare how to sort windows
 
-	* libvnck/window.c: (struct _WnckWindowPrivate): add a sort_order
+	* libvnck/window.c: (struct _VnckWindowPrivate): add a sort_order
 	flag, (_vnck_window_create): take a sort_order flag and use it to
 	set window->priv->sort_order, (vnck_window_get_sort_order): new
 	function to return the window's sort order
@@ -3948,7 +3948,7 @@
 	Fix window activation vs. minimization for mouse focus. (fixes
 	#136581)
 
-	* libvnck/screen.c (struct _WnckScreenPrivate): add a
+	* libvnck/screen.c (struct _VnckScreenPrivate): add a
 	previously_active_window field,
 	(vnck_screen_get_previously_active_window): new function,
 	(update_client_list): update the previously_active_window as well,
@@ -4006,7 +4006,7 @@
 	(update_state): include demands attention in the list of updated
 	state
 
-	* libvnck/window.h (WnckWindowState): Add
+	* libvnck/window.h (VnckWindowState): Add
 	VNCK_WINDOW_STATE_DEMANDS_ATTENTION
 	(vnck_window_demands_attention): add prototype for new API
 	function
@@ -4203,16 +4203,16 @@
 
 2003-11-22  Federico Mena Quintero  <federico@ximian.com>
 
-	* libvnck/tasklist.c (WnckTaskType): Added a VNCK_TASK_CLASS_GROUP
+	* libvnck/tasklist.c (VnckTaskType): Added a VNCK_TASK_CLASS_GROUP
 	type.
-	(struct _WnckTask): Added a class_group field, analogous to the
+	(struct _VnckTask): Added a class_group field, analogous to the
 	application and window fields.
-	(struct _WnckTasklistPrivate): Added class_groups and
+	(struct _VnckTasklistPrivate): Added class_groups and
 	class_group_hash fields.  Replaced the active_app field with an
 	active_class_group field.
 	(vnck_task_new_from_window): Set the class_group of the task from
 	the window.
-	(vnck_tasklist_update_lists): Create a WnckClassGroup if
+	(vnck_tasklist_update_lists): Create a VnckClassGroup if
 	necessary; do not use widgets for applications.
 	(vnck_task_new_from_class_group): New function.
 	(vnck_task_new_from_application): Set the class_group of the task
@@ -4243,9 +4243,9 @@
 	(vnck_task_get_text): Use a window's name rather than its icon
 	name.  They seem to be the same for most windows, and Emacs screws
 	up the icon name, setting it to "emacs" only --- it's useless.
-	(WnckTaskType): Removed VNCK_TASK_APPLICATION.
-	(struct _WnckTask): Removed the application-related fields.
-	(struct _WnckTasklistPrivate): Likewise.
+	(VnckTaskType): Removed VNCK_TASK_APPLICATION.
+	(struct _VnckTask): Removed the application-related fields.
+	(struct _VnckTasklistPrivate): Likewise.
 	(vnck_task_finalize): Likewise.
 	(vnck_tasklist_finalize): Likewise.
 	(vnck_tasklist_free_tasks): Likewise.
@@ -4263,7 +4263,7 @@
 	(vnck_task_new_from_application): Removed.
 	(vnck_task_class_group_expose): Renamed from vnck_task_app_expose().
 
-	* libvnck/screen.h (struct _WnckScreenClass): Added
+	* libvnck/screen.h (struct _VnckScreenClass): Added
 	::class_group_opened() and ::class_group_closed() signals.
 
 	* libvnck/screen.c (update_client_list): Handle class groups by
@@ -4272,7 +4272,7 @@
 	(emit_application_closed): New function.
 	(vnck_screen_class_init): Create the new signals.
 
-	* libvnck/window.c (struct _WnckWindowPrivate): Added a
+	* libvnck/window.c (struct _VnckWindowPrivate): Added a
 	class_group field.
 	(vnck_window_get_class_group): New function.
 	(_vnck_window_set_class_group): New function.
@@ -4608,7 +4608,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 2002-11-03  Havoc Pennington  <hp@pobox.com>
 
 	* libvnck/window.c (vnck_window_activate_transient): don't pass 
-	WnckWindow when expecting an X window
+	VnckWindow when expecting an X window
 
 	* configure.in: 2.1.3, and bump libtool versioning for new API
 
@@ -4702,7 +4702,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 	* libvnck/window.c (update_state): rework to update HIDDEN state
 	(vnck_window_is_visible_on_workspace): use state HIDDEN
 
-	* libvnck/window.h (WnckWindowState): add VNCK_WINDOW_STATE_HIDDEN
+	* libvnck/window.h (VnckWindowState): add VNCK_WINDOW_STATE_HIDDEN
 
 2002-09-27  Havoc Pennington  <hp@redhat.com>
 
@@ -4812,11 +4812,11 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 2002-08-20  Padraig O'Briain  <padraigobriain@sun.com>
 
 	* linvnck/pager-accessible.[ch]: Remove children data item from
-	WnckpagerAccessibleClass data structure. Define WnckPagerAccessiblePriv
+	VnckpagerAccessibleClass data structure. Define VnckPagerAccessiblePriv
 	data structure and put children data item in that data structure.
 	(get_private_data) New function to create or retrieve an accessible's
-	WnckPagerAccessiblePriv data structure.
-	(vnck_pager_accessible_finalize): Free WnckPagerAccessiblePriv and 
+	VnckPagerAccessiblePriv data structure.
+	(vnck_pager_accessible_finalize): Free VnckPagerAccessiblePriv and 
 	its contents.
 	(vnck_pager_accessible_ref_child): Use get_private_data() to access
 	children. (Bug #90307)
@@ -4848,7 +4848,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 
 2002-08-10  Havoc Pennington  <hp@pobox.com>
 
-	* libvnck/tasklist.c (struct _WnckTask): bundle all the booleans 
+	* libvnck/tasklist.c (struct _VnckTask): bundle all the booleans 
 	into a bitfield at the end to save a little memory
 	(vnck_task_button_press_event): patch from Arvind to let you 
 	minimize by clicking the active task.
@@ -5338,7 +5338,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 
 2002-02-08  Havoc Pennington  <hp@pobox.com>
 
-	* libvnck/application.c (struct _WnckApplicationPrivate): fix some
+	* libvnck/application.c (struct _VnckApplicationPrivate): fix some
 	bad comments that said client leader instead of group leader
 	(though the code in screen.c does correctly pass in the group leader)
 
@@ -5415,7 +5415,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 	(vnck_application_get_mini_icon): implement
 
 	* libvnck/xutils.c (filter_func): pass property notifies
-	to WnckApplication
+	to VnckApplication
 
 	* libvnck/window.c (update_name): use _vnck_get_name
 	(vnck_window_set_icon_size): delete, this global 

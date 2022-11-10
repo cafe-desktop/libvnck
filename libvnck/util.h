@@ -31,10 +31,10 @@
 
 G_BEGIN_DECLS
 
-typedef struct _WnckResourceUsage WnckResourceUsage;
+typedef struct _VnckResourceUsage VnckResourceUsage;
 
 /**
- * WnckResourceUsage:
+ * VnckResourceUsage:
  * @total_bytes_estimate: estimation of the total number of bytes allocated in
  * the X server.
  * @pixmap_bytes: number of bytes allocated in the X server for resources of
@@ -50,13 +50,13 @@ typedef struct _WnckResourceUsage WnckResourceUsage;
  * @n_cursors: number of Cursor resources allocated.
  * @n_other: number of other resources allocated.
  *
- * The #WnckResourceUsage struct contains information about the total resource
+ * The #VnckResourceUsage struct contains information about the total resource
  * usage of an X client, and the number of resources allocated for each
  * resource type.
  *
  * Since: 2.6
  */
-struct _WnckResourceUsage
+struct _VnckResourceUsage
 {
   gulong        total_bytes_estimate;
   
@@ -86,7 +86,7 @@ struct _WnckResourceUsage
 };
 
 /**
- * WnckClientType:
+ * VnckClientType:
  * @VNCK_CLIENT_TYPE_APPLICATION: the libvnck user is a normal application.
  * @VNCK_CLIENT_TYPE_PAGER: the libvnck user is an utility application dealing
  * with window management, like pagers and taskbars.
@@ -98,9 +98,9 @@ struct _WnckResourceUsage
 typedef enum {
   VNCK_CLIENT_TYPE_APPLICATION = 1,
   VNCK_CLIENT_TYPE_PAGER = 2
-} WnckClientType;
+} VnckClientType;
 
-void vnck_set_client_type (WnckClientType ewmh_sourceindication_client_type);
+void vnck_set_client_type (VnckClientType ewmh_sourceindication_client_type);
 
 #define VNCK_DEFAULT_ICON_SIZE 32
 #define VNCK_DEFAULT_MINI_ICON_SIZE 16
@@ -112,11 +112,11 @@ void vnck_shutdown        (void);
 
 void vnck_xid_read_resource_usage (GdkDisplay        *gdk_display,
                                    gulong             xid,
-                                   WnckResourceUsage *usage);
+                                   VnckResourceUsage *usage);
 
 void vnck_pid_read_resource_usage (GdkDisplay        *gdk_display,
                                    gulong             pid,
-                                   WnckResourceUsage *usage);
+                                   VnckResourceUsage *usage);
 
 G_END_DECLS
 

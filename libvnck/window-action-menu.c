@@ -31,23 +31,23 @@
 /**
  * SECTION:window-action-menu
  * @short_description: a menu widget, used to manipulate a window.
- * @see_also: #WnckWindow
+ * @see_also: #VnckWindow
  * @stability: Unstable
  *
- * A #WnckActionMenu is a menu containing items to manipulate a window.
+ * A #VnckActionMenu is a menu containing items to manipulate a window.
  * Relevant actions are displayed in the menu, and updated if the window state
  * changes. The content of this menu is synchronized with the similar menu
  * available in Metacity.
  *
  * <note>
  *  <para>
- * If there is only one workspace with a viewport, the #WnckActionMenu will
+ * If there is only one workspace with a viewport, the #VnckActionMenu will
  * contain items to move the window in the viewport as if the viewport feature
  * was used to create workspaces. This is useful since viewport is generally
  * used as an alternative way to create virtual desktops.
  *  </para>
  *  <para>
- * The #WnckActionMenu does not support moving the window in the viewport if
+ * The #VnckActionMenu does not support moving the window in the viewport if
  * there are multiple workspaces on the screen: those two notions are so
  * similar that having both at the same time would result in a menu which would
  * be confusing to the user.
@@ -72,9 +72,9 @@ typedef enum
   MOVE_TO_WORKSPACE
 } WindowAction;
 
-struct _WnckActionMenuPrivate
+struct _VnckActionMenuPrivate
 {
-  WnckWindow *window;
+  VnckWindow *window;
   GtkWidget *minimize_item;
   GtkWidget *maximize_item;
   GtkWidget *above_item;
@@ -97,15 +97,15 @@ enum {
 	PROP_WINDOW
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (WnckActionMenu, vnck_action_menu, GTK_TYPE_MENU);
+G_DEFINE_TYPE_WITH_PRIVATE (VnckActionMenu, vnck_action_menu, GTK_TYPE_MENU);
 
 static void vnck_action_menu_dispose (GObject *object);
 
 static void window_weak_notify (gpointer data,
                                 GObject *window);
 
-static void refill_submenu_workspace (WnckActionMenu *menu);
-static void refill_submenu_viewport (WnckActionMenu *menu);
+static void refill_submenu_workspace (VnckActionMenu *menu);
+static void refill_submenu_viewport (VnckActionMenu *menu);
 
 static void
 window_weak_notify (gpointer data,
@@ -115,7 +115,7 @@ window_weak_notify (gpointer data,
   gtk_widget_destroy (GTK_WIDGET (data));
 }
 
-static WnckActionMenu*
+static VnckActionMenu*
 get_action_menu (GtkWidget *widget)
 {
   while (widget) {
@@ -137,10 +137,10 @@ static void
 item_activated_callback (GtkWidget *menu_item,
                          gpointer   data)
 {
-  WnckActionMenu *menu;
-  WnckWindow *window;
+  VnckActionMenu *menu;
+  VnckWindow *window;
   WindowAction action = GPOINTER_TO_INT (data);
-  WnckScreen *screen;
+  VnckScreen *screen;
   gboolean viewport_mode;
 
   menu = get_action_menu (menu_item);
@@ -201,7 +201,7 @@ item_activated_callback (GtkWidget *menu_item,
     case LEFT:
       if (!viewport_mode)
         {
-          WnckWorkspace *workspace;
+          VnckWorkspace *workspace;
           workspace = vnck_workspace_get_neighbor (vnck_window_get_workspace (window),
                                                    VNCK_MOTION_LEFT);
           vnck_window_move_to_workspace (window, workspace);
@@ -222,7 +222,7 @@ item_activated_callback (GtkWidget *menu_item,
     case RIGHT:
       if (!viewport_mode)
         {
-          WnckWorkspace *workspace;
+          VnckWorkspace *workspace;
           workspace = vnck_workspace_get_neighbor (vnck_window_get_workspace (window),
                                                    VNCK_MOTION_RIGHT);
           vnck_window_move_to_workspace (window, workspace);
@@ -243,7 +243,7 @@ item_activated_callback (GtkWidget *menu_item,
     case UP:
       if (!viewport_mode)
         {
-          WnckWorkspace *workspace;
+          VnckWorkspace *workspace;
           workspace = vnck_workspace_get_neighbor (vnck_window_get_workspace (window),
                                                    VNCK_MOTION_UP);
           vnck_window_move_to_workspace (window, workspace);
@@ -264,7 +264,7 @@ item_activated_callback (GtkWidget *menu_item,
     case DOWN:
       if (!viewport_mode)
         {
-          WnckWorkspace *workspace;
+          VnckWorkspace *workspace;
           workspace = vnck_workspace_get_neighbor (vnck_window_get_workspace (window),
                                                    VNCK_MOTION_DOWN);
           vnck_window_move_to_workspace (window, workspace);
@@ -286,7 +286,7 @@ item_activated_callback (GtkWidget *menu_item,
       if (!viewport_mode)
         {
           int workspace_index;
-          WnckWorkspace *workspace;
+          VnckWorkspace *workspace;
 
           workspace_index = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (menu_item),
                                                                 "workspace"));
@@ -296,7 +296,7 @@ item_activated_callback (GtkWidget *menu_item,
         }
       else
         {
-          WnckWorkspace *workspace;
+          VnckWorkspace *workspace;
           int new_viewport_x, new_viewport_y;
           int xw, yw, ww, hw;
           int viewport_x, viewport_y;
@@ -340,12 +340,12 @@ set_item_text (GtkWidget  *mi,
 }
 
 static gboolean
-update_menu_state (WnckActionMenu *menu)
+update_menu_state (VnckActionMenu *menu)
 {
-  WnckActionMenuPrivate *priv;
-  WnckWindowActions      actions;
-  WnckScreen            *screen;
-  WnckWorkspace         *workspace;
+  VnckActionMenuPrivate *priv;
+  VnckWindowActions      actions;
+  VnckScreen            *screen;
+  VnckWorkspace         *workspace;
   gboolean               viewport_mode;
   gboolean               move_workspace_sensitive;
 
@@ -572,7 +572,7 @@ update_menu_state (WnckActionMenu *menu)
 }
 
 static void
-queue_update (WnckActionMenu *menu)
+queue_update (VnckActionMenu *menu)
 {
   if (menu->priv->idle_handler == 0)
     menu->priv->idle_handler = g_idle_add ((GSourceFunc)update_menu_state,
@@ -580,40 +580,40 @@ queue_update (WnckActionMenu *menu)
 }
 
 static void
-state_changed_callback (WnckWindow     *window,
-                        WnckWindowState changed_mask,
-                        WnckWindowState new_state,
+state_changed_callback (VnckWindow     *window,
+                        VnckWindowState changed_mask,
+                        VnckWindowState new_state,
                         gpointer        data)
 {
   queue_update (VNCK_ACTION_MENU (data));
 }
 
 static void
-actions_changed_callback (WnckWindow       *window,
-                          WnckWindowActions changed_mask,
-                          WnckWindowActions new_actions,
+actions_changed_callback (VnckWindow       *window,
+                          VnckWindowActions changed_mask,
+                          VnckWindowActions new_actions,
                           gpointer          data)
 {
   queue_update (VNCK_ACTION_MENU (data));
 }
 
 static void
-workspace_changed_callback (WnckWindow *window,
+workspace_changed_callback (VnckWindow *window,
                             gpointer    data)
 {
   queue_update (VNCK_ACTION_MENU (data));
 }
 
 static void
-screen_workspace_callback (WnckWindow    *window,
-                           WnckWorkspace *space,
+screen_workspace_callback (VnckWindow    *window,
+                           VnckWorkspace *space,
                            gpointer       data)
 {
   queue_update (VNCK_ACTION_MENU (data));
 }
 
 static void
-viewports_changed_callback (WnckWindow *window,
+viewports_changed_callback (VnckWindow *window,
                             gpointer    data)
 {
   queue_update (VNCK_ACTION_MENU (data));
@@ -672,7 +672,7 @@ make_menu_item (WindowAction action)
 }
 
 static char *
-get_workspace_name_with_accel (WnckWindow *window,
+get_workspace_name_with_accel (VnckWindow *window,
 			       int index)
 {
   const char *name;
@@ -745,13 +745,13 @@ get_workspace_name_with_accel (WnckWindow *window,
 }
 
 static void
-refill_submenu_workspace (WnckActionMenu *menu)
+refill_submenu_workspace (VnckActionMenu *menu)
 {
   GtkWidget *submenu;
   GList *children;
   GList *l;
   int num_workspaces, window_space, i;
-  WnckWorkspace *workspace;
+  VnckWorkspace *workspace;
 
   submenu = gtk_menu_item_get_submenu (GTK_MENU_ITEM (menu->priv->workspace_item));
 
@@ -793,13 +793,13 @@ refill_submenu_workspace (WnckActionMenu *menu)
 }
 
 static void
-refill_submenu_viewport (WnckActionMenu *menu)
+refill_submenu_viewport (VnckActionMenu *menu)
 {
   GtkWidget *submenu;
   GList *children;
   GList *l;
-  WnckScreen *screen;
-  WnckWorkspace *workspace;
+  VnckScreen *screen;
+  VnckWorkspace *workspace;
   int window_x, window_y;
   int viewport_x, viewport_y;
   int viewport_width, viewport_height;
@@ -877,7 +877,7 @@ vnck_action_menu_get_property (GObject    *object,
                                GValue     *value,
                                GParamSpec *pspec)
 {
-  WnckActionMenu *menu;
+  VnckActionMenu *menu;
 
   g_return_if_fail (VNCK_IS_ACTION_MENU (object));
 
@@ -901,7 +901,7 @@ vnck_action_menu_set_property (GObject      *object,
                                const GValue *value,
                                GParamSpec   *pspec)
 {
-  WnckActionMenu *menu;
+  VnckActionMenu *menu;
 
   g_return_if_fail (VNCK_IS_ACTION_MENU (object));
 
@@ -922,7 +922,7 @@ vnck_action_menu_set_property (GObject      *object,
 }
 
 static void
-vnck_action_menu_init (WnckActionMenu *menu)
+vnck_action_menu_init (VnckActionMenu *menu)
 {
   menu->priv = vnck_action_menu_get_instance_private (menu);
 
@@ -950,12 +950,12 @@ vnck_action_menu_constructor (GType                  type,
                               GObjectConstructParam *construct_properties)
 {
   GObject               *obj;
-  WnckActionMenu        *menu;
-  WnckActionMenuPrivate *priv;
+  VnckActionMenu        *menu;
+  VnckActionMenuPrivate *priv;
   GtkWidget             *submenu;
   GtkWidget             *separator;
   GSList                *pin_group;
-  WnckScreen            *screen;
+  VnckScreen            *screen;
 
 
   obj = G_OBJECT_CLASS (vnck_action_menu_parent_class)->constructor (type,
@@ -1104,7 +1104,7 @@ vnck_action_menu_constructor (GType                  type,
 }
 
 static void
-vnck_action_menu_class_init (WnckActionMenuClass *klass)
+vnck_action_menu_class_init (VnckActionMenuClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -1124,7 +1124,7 @@ vnck_action_menu_class_init (WnckActionMenuClass *klass)
 static void
 vnck_action_menu_dispose (GObject *object)
 {
-  WnckActionMenu *menu;
+  VnckActionMenu *menu;
 
   menu = VNCK_ACTION_MENU (object);
 
@@ -1136,7 +1136,7 @@ vnck_action_menu_dispose (GObject *object)
 
   if (VNCK_IS_WINDOW (menu->priv->window))
     {
-      WnckScreen *screen;
+      VnckScreen *screen;
 
       g_object_weak_unref (G_OBJECT (menu->priv->window), window_weak_notify, menu);
       g_signal_handlers_disconnect_by_data (menu->priv->window, menu);
@@ -1152,17 +1152,17 @@ vnck_action_menu_dispose (GObject *object)
 
 /**
  * vnck_action_menu_new:
- * @window: the #WnckWindow for which a menu will be created.
+ * @window: the #VnckWindow for which a menu will be created.
  *
- * Creates a new #WnckActionMenu. The #WnckActionMenu will be filled with menu
+ * Creates a new #VnckActionMenu. The #VnckActionMenu will be filled with menu
  * items for window operations on @window.
  *
- * Return value: a newly created #WnckActionMenu.
+ * Return value: a newly created #VnckActionMenu.
  *
  * Since: 2.22
  **/
 GtkWidget*
-vnck_action_menu_new (WnckWindow *window)
+vnck_action_menu_new (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 

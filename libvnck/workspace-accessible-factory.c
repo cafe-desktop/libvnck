@@ -20,7 +20,7 @@
 #include "workspace-accessible-factory.h"
 #include "workspace-accessible.h"
 
-G_DEFINE_TYPE (WnckWorkspaceAccessibleFactory,
+G_DEFINE_TYPE (VnckWorkspaceAccessibleFactory,
                vnck_workspace_accessible_factory, ATK_TYPE_OBJECT_FACTORY);
 
 static AtkObject* vnck_workspace_accessible_factory_create_accessible (GObject *obj);
@@ -28,7 +28,7 @@ static AtkObject* vnck_workspace_accessible_factory_create_accessible (GObject *
 static GType vnck_workspace_accessible_factory_get_accessible_type (void);
 
 static void
-vnck_workspace_accessible_factory_class_init (WnckWorkspaceAccessibleFactoryClass *klass)
+vnck_workspace_accessible_factory_class_init (VnckWorkspaceAccessibleFactoryClass *klass)
 {
   AtkObjectFactoryClass *class = ATK_OBJECT_FACTORY_CLASS (klass);
 
@@ -37,7 +37,7 @@ vnck_workspace_accessible_factory_class_init (WnckWorkspaceAccessibleFactoryClas
 }
 
 static void
-vnck_workspace_accessible_factory_init (WnckWorkspaceAccessibleFactory *factory)
+vnck_workspace_accessible_factory_init (VnckWorkspaceAccessibleFactory *factory)
 {
 }
 

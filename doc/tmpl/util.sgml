@@ -25,7 +25,7 @@ Miscellaneous Functions
 @window: 
 
 
-<!-- ##### ENUM WnckClientType ##### -->
+<!-- ##### ENUM VnckClientType ##### -->
 <para>
 
 </para>
@@ -41,7 +41,7 @@ Miscellaneous Functions
 @ewmh_sourceindication_client_type: 
 
 
-<!-- ##### STRUCT WnckResourceUsage ##### -->
+<!-- ##### STRUCT VnckResourceUsage ##### -->
 <para>
 
 </para>

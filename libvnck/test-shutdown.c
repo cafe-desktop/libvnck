@@ -3,11 +3,11 @@
 #include <libvnck/libvnck.h>
 
 static void
-on_active_window_changed (WnckScreen *screen,
-                          WnckWindow *previously_active_window,
+on_active_window_changed (VnckScreen *screen,
+                          VnckWindow *previously_active_window,
                           gpointer    data)
 {
-  WnckWindow *active_window;
+  VnckWindow *active_window;
 
   active_window = vnck_screen_get_active_window (screen);
 
@@ -31,7 +31,7 @@ main (int    argc,
       char **argv)
 {
   GMainLoop *loop;
-  WnckScreen *screen;
+  VnckScreen *screen;
 
   gdk_init (&argc, &argv);
 

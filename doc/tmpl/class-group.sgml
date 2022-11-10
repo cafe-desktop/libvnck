@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-WnckClassGroup
+VnckClassGroup
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -20,20 +20,20 @@ WnckClassGroup
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### STRUCT WnckClassGroup ##### -->
+<!-- ##### STRUCT VnckClassGroup ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### SIGNAL WnckClassGroup::icon-changed ##### -->
+<!-- ##### SIGNAL VnckClassGroup::icon-changed ##### -->
 <para>
 
 </para>
 
 @vnckclassgroup: the object which received the signal.
 
-<!-- ##### SIGNAL WnckClassGroup::name-changed ##### -->
+<!-- ##### SIGNAL VnckClassGroup::name-changed ##### -->
 <para>
 
 </para>

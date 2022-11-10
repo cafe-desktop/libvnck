@@ -99,21 +99,21 @@ void _vnck_iconify   (Screen *screen,
 void _vnck_deiconify (Screen *screen,
                       Window  xwindow);
 
-void _vnck_close (WnckScreen *screen,
+void _vnck_close (VnckScreen *screen,
                   Window      xwindow,
                   Time        timestamp);
 
-void _vnck_change_state (WnckScreen *screen,
+void _vnck_change_state (VnckScreen *screen,
                          Window      xwindow,
                          gboolean    add,
                          Atom        state1,
                          Atom        state2);
 
-void _vnck_change_workspace (WnckScreen *screen,
+void _vnck_change_workspace (VnckScreen *screen,
                              Window      xwindow,
                              int         new_space);
 
-void _vnck_activate (WnckScreen *screen,
+void _vnck_activate (VnckScreen *screen,
                      Window      xwindow,
                      Time        timestamp);
 
@@ -150,29 +150,29 @@ int    _vnck_select_input     (Screen  *screen,
                                int      mask,
                                gboolean update);
 
-void _vnck_keyboard_move (WnckScreen *screen,
+void _vnck_keyboard_move (VnckScreen *screen,
                           Window      xwindow);
 
-void _vnck_keyboard_size (WnckScreen *screen,
+void _vnck_keyboard_size (VnckScreen *screen,
                           Window      xwindow);
 
 void _vnck_toggle_showing_desktop (Screen  *screen,
                                    gboolean show);
 
-typedef struct _WnckIconCache WnckIconCache;
+typedef struct _VnckIconCache VnckIconCache;
 
-WnckIconCache *_vnck_icon_cache_new                  (void);
-void           _vnck_icon_cache_free                 (WnckIconCache *icon_cache);
-void           _vnck_icon_cache_property_changed     (WnckIconCache *icon_cache,
+VnckIconCache *_vnck_icon_cache_new                  (void);
+void           _vnck_icon_cache_free                 (VnckIconCache *icon_cache);
+void           _vnck_icon_cache_property_changed     (VnckIconCache *icon_cache,
                                                       Atom           atom);
-gboolean       _vnck_icon_cache_get_icon_invalidated (WnckIconCache *icon_cache);
-void           _vnck_icon_cache_set_want_fallback    (WnckIconCache *icon_cache,
+gboolean       _vnck_icon_cache_get_icon_invalidated (VnckIconCache *icon_cache);
+void           _vnck_icon_cache_set_want_fallback    (VnckIconCache *icon_cache,
                                                       gboolean       setting);
-gboolean       _vnck_icon_cache_get_is_fallback      (WnckIconCache *icon_cache);
+gboolean       _vnck_icon_cache_get_is_fallback      (VnckIconCache *icon_cache);
 
-gboolean _vnck_read_icons (WnckScreen     *screen,
+gboolean _vnck_read_icons (VnckScreen     *screen,
                            Window          xwindow,
-                           WnckIconCache  *icon_cache,
+                           VnckIconCache  *icon_cache,
                            GdkPixbuf     **iconp,
                            int             ideal_width,
                            int             ideal_height,

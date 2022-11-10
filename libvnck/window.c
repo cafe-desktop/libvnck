@@ -37,10 +37,10 @@
 /**
  * SECTION:window
  * @short_description: an object representing a window.
- * @see_also: #WnckWorkspace, #WnckApplication, #WnckClassGroup
+ * @see_also: #VnckWorkspace, #VnckApplication, #VnckClassGroup
  * @stability: Unstable
  *
- * The #WnckWindow objects are always owned by libvnck and must not be
+ * The #VnckWindow objects are always owned by libvnck and must not be
  * referenced or unreferenced.
  */
 
@@ -67,12 +67,12 @@ static GHashTable *window_hash = NULL;
     ((window)->priv->is_above            << 11)|        \
     ((window)->priv->is_below            << 12))
 
-struct _WnckWindowPrivate
+struct _VnckWindowPrivate
 {
   Window xwindow;
-  WnckScreen *screen;
-  WnckApplication *app;
-  WnckClassGroup *class_group;
+  VnckScreen *screen;
+  VnckApplication *app;
+  VnckClassGroup *class_group;
   Window group_leader;
   Window transient_for;
   int orig_event_mask;
@@ -86,14 +86,14 @@ struct _WnckWindowPrivate
   int workspace;
   gint sort_order;
 
-  WnckWindowType wintype;
+  VnckWindowType wintype;
 
   GdkPixbuf *icon;
   GdkPixbuf *mini_icon;
 
-  WnckIconCache *icon_cache;
+  VnckIconCache *icon_cache;
 
-  WnckWindowActions actions;
+  VnckWindowActions actions;
 
   int x;
   int y;
@@ -166,7 +166,7 @@ struct _WnckWindowPrivate
   guint need_emit_type_changed : 1;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (WnckWindow, vnck_window, G_TYPE_OBJECT);
+G_DEFINE_TYPE_WITH_PRIVATE (VnckWindow, vnck_window, G_TYPE_OBJECT);
 
 enum {
   NAME_CHANGED,
@@ -183,37 +183,37 @@ enum {
 
 static void vnck_window_finalize    (GObject        *object);
 
-static void emit_name_changed      (WnckWindow      *window);
-static void emit_state_changed     (WnckWindow      *window,
-                                    WnckWindowState  changed_mask,
-                                    WnckWindowState  new_state);
-static void emit_workspace_changed (WnckWindow      *window);
-static void emit_icon_changed      (WnckWindow      *window);
-static void emit_actions_changed   (WnckWindow       *window,
-                                    WnckWindowActions changed_mask,
-                                    WnckWindowActions new_actions);
-static void emit_geometry_changed  (WnckWindow      *window);
-static void emit_class_changed     (WnckWindow      *window);
-static void emit_role_changed      (WnckWindow      *window);
-static void emit_type_changed      (WnckWindow      *window);
+static void emit_name_changed      (VnckWindow      *window);
+static void emit_state_changed     (VnckWindow      *window,
+                                    VnckWindowState  changed_mask,
+                                    VnckWindowState  new_state);
+static void emit_workspace_changed (VnckWindow      *window);
+static void emit_icon_changed      (VnckWindow      *window);
+static void emit_actions_changed   (VnckWindow       *window,
+                                    VnckWindowActions changed_mask,
+                                    VnckWindowActions new_actions);
+static void emit_geometry_changed  (VnckWindow      *window);
+static void emit_class_changed     (VnckWindow      *window);
+static void emit_role_changed      (VnckWindow      *window);
+static void emit_type_changed      (VnckWindow      *window);
 
-static void update_name      (WnckWindow *window);
-static void update_state     (WnckWindow *window);
-static void update_wm_state  (WnckWindow *window);
-static void update_icon_name (WnckWindow *window);
-static void update_workspace (WnckWindow *window);
-static void update_actions   (WnckWindow *window);
-static void update_wintype   (WnckWindow *window);
-static void update_transient_for (WnckWindow *window);
-static void update_startup_id (WnckWindow *window);
-static void update_wmclass   (WnckWindow *window);
-static void update_frame_extents (WnckWindow *window);
-static void update_role      (WnckWindow *window);
-static void unqueue_update   (WnckWindow *window);
-static void queue_update     (WnckWindow *window);
-static void force_update_now (WnckWindow *window);
+static void update_name      (VnckWindow *window);
+static void update_state     (VnckWindow *window);
+static void update_wm_state  (VnckWindow *window);
+static void update_icon_name (VnckWindow *window);
+static void update_workspace (VnckWindow *window);
+static void update_actions   (VnckWindow *window);
+static void update_wintype   (VnckWindow *window);
+static void update_transient_for (VnckWindow *window);
+static void update_startup_id (VnckWindow *window);
+static void update_wmclass   (VnckWindow *window);
+static void update_frame_extents (VnckWindow *window);
+static void update_role      (VnckWindow *window);
+static void unqueue_update   (VnckWindow *window);
+static void queue_update     (VnckWindow *window);
+static void force_update_now (VnckWindow *window);
 
-static WnckWindow* find_last_transient_for (GList *windows,
+static VnckWindow* find_last_transient_for (GList *windows,
                                             Window xwindow);
 
 static guint signals[LAST_SIGNAL] = { 0 };
@@ -229,7 +229,7 @@ _vnck_window_shutdown_all (void)
 }
 
 static void
-vnck_window_init (WnckWindow *window)
+vnck_window_init (VnckWindow *window)
 {
   window->priv = vnck_window_get_instance_private (window);
 
@@ -243,15 +243,15 @@ vnck_window_init (WnckWindow *window)
 }
 
 static void
-vnck_window_class_init (WnckWindowClass *klass)
+vnck_window_class_init (VnckWindowClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   object_class->finalize = vnck_window_finalize;
 
   /**
-   * WnckWindow::name-changed:
-   * @window: the #WnckWindow which emitted the signal.
+   * VnckWindow::name-changed:
+   * @window: the #VnckWindow which emitted the signal.
    *
    * Emitted when the name of @window changes.
    */
@@ -259,13 +259,13 @@ vnck_window_class_init (WnckWindowClass *klass)
     g_signal_new ("name_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckWindowClass, name_changed),
+                  G_STRUCT_OFFSET (VnckWindowClass, name_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 0);
 
   /**
-   * WnckWindow::state-changed:
-   * @window: the #WnckWindow which emitted the signal.
+   * VnckWindow::state-changed:
+   * @window: the #VnckWindow which emitted the signal.
    * @changed_mask: the bitmask containing bits set for all states of @window
    * that have changed.
    * @new_state: the new state of @window.
@@ -273,20 +273,20 @@ vnck_window_class_init (WnckWindowClass *klass)
    * Emitted when the state of @window changes. This can happen when @window is
    * (un)minimized, (un)maximized, (un)sticked, (un)shaded, (un)made above,
    * (un)made below, (un)set fullscreen, when it needs attention, etc. See
-   * #WnckWindowState for the complete list of states that might have changed.
+   * #VnckWindowState for the complete list of states that might have changed.
    */
   signals[STATE_CHANGED] =
     g_signal_new ("state_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckWindowClass, state_changed),
+                  G_STRUCT_OFFSET (VnckWindowClass, state_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 2,
                   VNCK_TYPE_WINDOW_STATE, VNCK_TYPE_WINDOW_STATE);
 
   /**
-   * WnckWindow::workspace-changed:
-   * @window: the #WnckWindow which emitted the signal.
+   * VnckWindow::workspace-changed:
+   * @window: the #VnckWindow which emitted the signal.
    *
    * Emitted when the current workspace of @window changes, or if @window has
    * been pinned or unpinned.
@@ -295,13 +295,13 @@ vnck_window_class_init (WnckWindowClass *klass)
     g_signal_new ("workspace_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckWindowClass, workspace_changed),
+                  G_STRUCT_OFFSET (VnckWindowClass, workspace_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 0);
 
   /**
-   * WnckWindow::icon-changed:
-   * @window: the #WnckWindow which emitted the signal.
+   * VnckWindow::icon-changed:
+   * @window: the #VnckWindow which emitted the signal.
    *
    * Emitted when the icon of @window changes.
    */
@@ -309,13 +309,13 @@ vnck_window_class_init (WnckWindowClass *klass)
     g_signal_new ("icon_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckWindowClass, icon_changed),
+                  G_STRUCT_OFFSET (VnckWindowClass, icon_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 0);
 
   /**
-   * WnckWindow::actions-changed:
-   * @window: the #WnckWindow which emitted the signal.
+   * VnckWindow::actions-changed:
+   * @window: the #VnckWindow which emitted the signal.
    * @changed_mask: the bitmask containing bits set for all actions
    * availabilities for @window that have changed.
    * @new_state: the new actions availabilities for @window.
@@ -326,15 +326,15 @@ vnck_window_class_init (WnckWindowClass *klass)
     g_signal_new ("actions_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckWindowClass, actions_changed),
+                  G_STRUCT_OFFSET (VnckWindowClass, actions_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 2,
                   VNCK_TYPE_WINDOW_ACTIONS,
                   VNCK_TYPE_WINDOW_ACTIONS);
 
   /**
-   * WnckWindow::geometry-changed:
-   * @window: the #WnckWindow which emitted the signal.
+   * VnckWindow::geometry-changed:
+   * @window: the #VnckWindow which emitted the signal.
    *
    * Emitted when the geometry of @window changes.
    */
@@ -342,13 +342,13 @@ vnck_window_class_init (WnckWindowClass *klass)
     g_signal_new ("geometry_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckWindowClass, geometry_changed),
+                  G_STRUCT_OFFSET (VnckWindowClass, geometry_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 0);
 
   /**
-   * WnckWindow::class-changed:
-   * @window: the #WnckWindow which emitted the signal.
+   * VnckWindow::class-changed:
+   * @window: the #VnckWindow which emitted the signal.
    *
    * Emitted when the class name or instance name of @window changes.
    */
@@ -356,13 +356,13 @@ vnck_window_class_init (WnckWindowClass *klass)
     g_signal_new ("class_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckWindowClass, class_changed),
+                  G_STRUCT_OFFSET (VnckWindowClass, class_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 0);
 
   /**
-   * WnckWindow::role-changed:
-   * @window: the #WnckWindow which emitted the signal.
+   * VnckWindow::role-changed:
+   * @window: the #VnckWindow which emitted the signal.
    *
    * Emitted when the role of @window changes.
    */
@@ -370,13 +370,13 @@ vnck_window_class_init (WnckWindowClass *klass)
     g_signal_new ("role_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckWindowClass, role_changed),
+                  G_STRUCT_OFFSET (VnckWindowClass, role_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 0);
 
   /**
-   * WnckWindow::type-changed:
-   * @window: the #WnckWindow which emitted the signal.
+   * VnckWindow::type-changed:
+   * @window: the #VnckWindow which emitted the signal.
    *
    * Emitted when the EWMH type hint of the window changes.
    *
@@ -386,7 +386,7 @@ vnck_window_class_init (WnckWindowClass *klass)
     g_signal_new ("type_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckWindowClass, type_changed),
+                  G_STRUCT_OFFSET (VnckWindowClass, type_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 0);
 }
@@ -394,7 +394,7 @@ vnck_window_class_init (WnckWindowClass *klass)
 static void
 vnck_window_finalize (GObject *object)
 {
-  WnckWindow *window;
+  VnckWindow *window;
 
   window = VNCK_WINDOW (object);
 
@@ -449,14 +449,14 @@ vnck_window_finalize (GObject *object)
  * vnck_window_get:
  * @xwindow: an X window ID.
  *
- * Gets a preexisting #WnckWindow for the X window @xwindow. This will not
- * create a #WnckWindow if none exists. The function is robust against bogus
+ * Gets a preexisting #VnckWindow for the X window @xwindow. This will not
+ * create a #VnckWindow if none exists. The function is robust against bogus
  * window IDs.
  *
- * Return value: (transfer none): the #WnckWindow for @xwindow. The returned
- * #WnckWindow is owned by libvnck and must not be referenced or unreferenced.
+ * Return value: (transfer none): the #VnckWindow for @xwindow. The returned
+ * #VnckWindow is owned by libvnck and must not be referenced or unreferenced.
  **/
-WnckWindow*
+VnckWindow*
 vnck_window_get (gulong xwindow)
 {
   if (window_hash == NULL)
@@ -467,27 +467,27 @@ vnck_window_get (gulong xwindow)
 
 /**
  * vnck_window_get_screen:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
- * Gets the #WnckScreen @window is on.
+ * Gets the #VnckScreen @window is on.
  *
- * Return value: (transfer none): the #WnckScreen @window is on. The returned
- * #WnckScreen is owned by libvnck and must not be referenced or unreferenced.
+ * Return value: (transfer none): the #VnckScreen @window is on. The returned
+ * #VnckScreen is owned by libvnck and must not be referenced or unreferenced.
  **/
-WnckScreen*
-vnck_window_get_screen (WnckWindow *window)
+VnckScreen*
+vnck_window_get_screen (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   return window->priv->screen;
 }
 
-WnckWindow*
+VnckWindow*
 _vnck_window_create (Window      xwindow,
-                     WnckScreen *screen,
+                     VnckScreen *screen,
                      gint        sort_order)
 {
-  WnckWindow *window;
+  VnckWindow *window;
   Screen     *xscreen;
 
   if (window_hash == NULL)
@@ -507,7 +507,7 @@ _vnck_window_create (Window      xwindow,
 
   /* Hash now owns one ref, caller gets none */
 
-  /* Note that xwindow may correspond to a WnckApplication's xwindow,
+  /* Note that xwindow may correspond to a VnckApplication's xwindow,
    * that's why we select the union of the mask we want for Application
    * and the one we want for window
    */
@@ -564,7 +564,7 @@ _vnck_window_create (Window      xwindow,
 }
 
 void
-_vnck_window_destroy (WnckWindow *window)
+_vnck_window_destroy (VnckWindow *window)
 {
   Window xwindow = window->priv->xwindow;
 
@@ -574,20 +574,20 @@ _vnck_window_destroy (WnckWindow *window)
 
   g_hash_table_remove (window_hash, &xwindow);
 
-  /* Removing from hash also removes the only ref WnckWindow had */
+  /* Removing from hash also removes the only ref VnckWindow had */
 
   g_return_if_fail (vnck_window_get (xwindow) == NULL);
 }
 
 static Display *
-_vnck_window_get_display (WnckWindow *window)
+_vnck_window_get_display (VnckWindow *window)
 {
   return DisplayOfScreen (VNCK_SCREEN_XSCREEN (window->priv->screen));
 }
 
 /**
  * vnck_window_has_name:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Checks whether or not @window has a name. vnck_window_get_name()
  * will always return some value, even if @window has no name set;
@@ -602,7 +602,7 @@ _vnck_window_get_display (WnckWindow *window)
  * Since: 2.16
  **/
 gboolean
-vnck_window_has_name (WnckWindow *window)
+vnck_window_has_name (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -611,7 +611,7 @@ vnck_window_has_name (WnckWindow *window)
 
 /**
  * vnck_window_get_name:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the name of @window, as it should be displayed in a pager
  * or tasklist. Always returns some value, even if @window has no name
@@ -624,7 +624,7 @@ vnck_window_has_name (WnckWindow *window)
  * available.
  **/
 const char*
-vnck_window_get_name (WnckWindow *window)
+vnck_window_get_name (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
@@ -636,7 +636,7 @@ vnck_window_get_name (WnckWindow *window)
 
 /**
  * vnck_window_has_icon_name:
- * @window: a #WnckWindow
+ * @window: a #VnckWindow
  *
  * Checks whether or not @window has an icon name.
  * vnck_window_get_icon_name() will always return some value, even if
@@ -655,7 +655,7 @@ vnck_window_get_name (WnckWindow *window)
  * Since: 2.16
  **/
 gboolean
-vnck_window_has_icon_name (WnckWindow *window)
+vnck_window_has_icon_name (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -664,7 +664,7 @@ vnck_window_has_icon_name (WnckWindow *window)
 
 /**
  * vnck_window_get_icon_name:
- * @window: a #WnckWindow
+ * @window: a #VnckWindow
  *
  * Gets the icon name of @window, as it should be displayed for an icon
  * (minimized state). Always returns some value, even if @window has no icon
@@ -678,7 +678,7 @@ vnck_window_has_icon_name (WnckWindow *window)
  * name is available.
  **/
 const char*
-vnck_window_get_icon_name (WnckWindow *window)
+vnck_window_get_icon_name (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
@@ -691,7 +691,7 @@ vnck_window_get_icon_name (WnckWindow *window)
 }
 
 char *
-_vnck_window_get_name_for_display (WnckWindow *window,
+_vnck_window_get_name_for_display (VnckWindow *window,
                                    gboolean    use_icon_name,
                                    gboolean    use_state_decorations)
 {
@@ -720,16 +720,16 @@ _vnck_window_get_name_for_display (WnckWindow *window,
 
 /**
  * vnck_window_get_application:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
- * Gets the #WnckApplication to which @window belongs.
+ * Gets the #VnckApplication to which @window belongs.
  *
- * Return value: (transfer none): the #WnckApplication to which @window belongs.
- * The returned #WnckApplication is owned by libvnck and must not be referenced
+ * Return value: (transfer none): the #VnckApplication to which @window belongs.
+ * The returned #VnckApplication is owned by libvnck and must not be referenced
  * or unreferenced.
  **/
-WnckApplication*
-vnck_window_get_application  (WnckWindow *window)
+VnckApplication*
+vnck_window_get_application  (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
@@ -738,19 +738,19 @@ vnck_window_get_application  (WnckWindow *window)
 
 /**
  * vnck_window_get_transient:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
- * Gets the #WnckWindow for which @window is transient.
+ * Gets the #VnckWindow for which @window is transient.
  *
- * Return value: (transfer none): the #WnckWindow for which @window is
- * transient, or %NULL if @window is not transient for any #WnckWindow.
- * The returned #WnckWindow is owned by libvnck and must not be referenced or
+ * Return value: (transfer none): the #VnckWindow for which @window is
+ * transient, or %NULL if @window is not transient for any #VnckWindow.
+ * The returned #VnckWindow is owned by libvnck and must not be referenced or
  * unreferenced.
  *
  * Since: 2.12
  **/
-WnckWindow*
-vnck_window_get_transient (WnckWindow *window)
+VnckWindow*
+vnck_window_get_transient (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
@@ -759,7 +759,7 @@ vnck_window_get_transient (WnckWindow *window)
 
 /**
  * vnck_window_get_group_leader:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the group leader of the group of windows to which @window belongs.
  *
@@ -768,7 +768,7 @@ vnck_window_get_transient (WnckWindow *window)
  * group.
  **/
 gulong
-vnck_window_get_group_leader (WnckWindow *window)
+vnck_window_get_group_leader (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), None);
 
@@ -777,14 +777,14 @@ vnck_window_get_group_leader (WnckWindow *window)
 
 /**
  * vnck_window_get_xid:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the X window ID of @window.
  *
  * Return value: the X window ID of @window.
  **/
 gulong
-vnck_window_get_xid (WnckWindow *window)
+vnck_window_get_xid (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), None);
 
@@ -793,18 +793,18 @@ vnck_window_get_xid (WnckWindow *window)
 
 /**
  * vnck_window_get_class_group:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
- * Gets the #WnckClassGroup to which @window belongs.
+ * Gets the #VnckClassGroup to which @window belongs.
  *
- * Return value: (transfer none): the #WnckClassGroup to which @window belongs.
- * The returned #WnckClassGroup is owned by libvnck and must not be referenced
+ * Return value: (transfer none): the #VnckClassGroup to which @window belongs.
+ * The returned #VnckClassGroup is owned by libvnck and must not be referenced
  * or unreferenced.
  *
  * Since: 2.2
  **/
-WnckClassGroup *
-vnck_window_get_class_group (WnckWindow *window)
+VnckClassGroup *
+vnck_window_get_class_group (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
@@ -813,7 +813,7 @@ vnck_window_get_class_group (WnckWindow *window)
 
 /**
  * vnck_window_get_session_id:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the session ID for @window in Latin-1 encoding.
  * NOTE: this is invalid UTF-8. You can't display this
@@ -824,7 +824,7 @@ vnck_window_get_class_group (WnckWindow *window)
  * no session ID.
  **/
 const char*
-vnck_window_get_session_id (WnckWindow *window)
+vnck_window_get_session_id (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
@@ -833,7 +833,7 @@ vnck_window_get_session_id (WnckWindow *window)
 
 /**
  * vnck_window_get_session_id_utf8:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the session ID for @window in UTF-8 encoding.
  * The session ID should be in Latin-1 encoding, so the conversion should work,
@@ -844,7 +844,7 @@ vnck_window_get_session_id (WnckWindow *window)
  * no session ID.
  **/
 const char*
-vnck_window_get_session_id_utf8 (WnckWindow *window)
+vnck_window_get_session_id_utf8 (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
@@ -871,7 +871,7 @@ vnck_window_get_session_id_utf8 (WnckWindow *window)
 
 /**
  * vnck_window_get_role:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the role for @window.
  * The role uniquely identifies a window among all windows that have the same
@@ -880,7 +880,7 @@ vnck_window_get_session_id_utf8 (WnckWindow *window)
  * Return value: role for @window, or %NULL if @window has no role.
  **/
 const char*
-vnck_window_get_role (WnckWindow *window)
+vnck_window_get_role (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
@@ -889,14 +889,14 @@ vnck_window_get_role (WnckWindow *window)
 
 /**
  * vnck_window_get_pid:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the process ID of @window.
  *
  * Return value: the process ID of @window, or 0 if none is available.
  **/
 int
-vnck_window_get_pid (WnckWindow *window)
+vnck_window_get_pid (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), 0);
 
@@ -905,10 +905,10 @@ vnck_window_get_pid (WnckWindow *window)
 
 /**
  * vnck_window_get_sort_order:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the sort order of @window, used for ordering of @window in
- * #WnckSelector and #WnckTasklist. The sort order is an internal state in
+ * #VnckSelector and #VnckTasklist. The sort order is an internal state in
  * libvnck. The initial value is defined when the window is created.
  *
  * Return value: the sort order of @window, or G_MAXINT if none is available.
@@ -916,7 +916,7 @@ vnck_window_get_pid (WnckWindow *window)
  * Since: 2.10
  **/
 gint
-vnck_window_get_sort_order (WnckWindow *window)
+vnck_window_get_sort_order (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), G_MAXINT);
 
@@ -925,15 +925,15 @@ vnck_window_get_sort_order (WnckWindow *window)
 
 /**
  * vnck_window_set_sort_order:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  * @order: new sort order for @window.
  *
  * Sets the sort order of @window. The sort order is used for ordering of
- * @window in #WnckSelector and #WnckTasklist.
+ * @window in #VnckSelector and #VnckTasklist.
  *
  * Since: 2.20
  **/
-void        vnck_window_set_sort_order        (WnckWindow *window,
+void        vnck_window_set_sort_order        (VnckWindow *window,
 					       gint order)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
@@ -944,14 +944,14 @@ void        vnck_window_set_sort_order        (WnckWindow *window,
 
 /**
  * vnck_window_get_window_type:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the semantic type of @window.
  *
  * Return value: the semantic type of @window.
  **/
-WnckWindowType
-vnck_window_get_window_type (WnckWindow *window)
+VnckWindowType
+vnck_window_get_window_type (VnckWindow *window)
 {
   /* FIXME: should we have an invalid window type for this? */
   g_return_val_if_fail (VNCK_IS_WINDOW (window), 0);
@@ -961,7 +961,7 @@ vnck_window_get_window_type (WnckWindow *window)
 
 /**
  * vnck_window_set_window_type:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  * @wintype: a semantic type.
  *
  * Sets the semantic type of @window to @wintype.
@@ -969,7 +969,7 @@ vnck_window_get_window_type (WnckWindow *window)
  * Since: 2.12
  **/
 void
-vnck_window_set_window_type (WnckWindow *window, WnckWindowType wintype)
+vnck_window_set_window_type (VnckWindow *window, VnckWindowType wintype)
 {
   Atom atom;
   Display *display;
@@ -1022,15 +1022,15 @@ vnck_window_set_window_type (WnckWindow *window, WnckWindowType wintype)
 
 /**
  * vnck_window_is_minimized:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window is minimized. Minimization state may change anytime
- * a #WnckWindow::state-changed signal gets emitted.
+ * a #VnckWindow::state-changed signal gets emitted.
  *
  * Return value: %TRUE if @window is minimized, %FALSE otherwise.
  **/
 gboolean
-vnck_window_is_minimized (WnckWindow *window)
+vnck_window_is_minimized (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1039,10 +1039,10 @@ vnck_window_is_minimized (WnckWindow *window)
 
 /**
  * vnck_window_needs_attention:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window needs attention. This state may change anytime
- * a #WnckWindow::state-changed signal gets emitted.
+ * a #VnckWindow::state-changed signal gets emitted.
  *
  * This state depends on flags such as the demands_attention and is_urgent
  * hints.
@@ -1052,7 +1052,7 @@ vnck_window_is_minimized (WnckWindow *window)
  * Since: 2.12
  **/
 gboolean
-vnck_window_needs_attention (WnckWindow *window)
+vnck_window_needs_attention (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1060,7 +1060,7 @@ vnck_window_needs_attention (WnckWindow *window)
 }
 
 time_t
-_vnck_window_get_needs_attention_time (WnckWindow *window)
+_vnck_window_get_needs_attention_time (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), 0);
 
@@ -1068,11 +1068,11 @@ _vnck_window_get_needs_attention_time (WnckWindow *window)
 }
 
 /* Return whether the transient of @window needs attention */
-static WnckWindow *
-transient_needs_attention (WnckWindow *window)
+static VnckWindow *
+transient_needs_attention (VnckWindow *window)
 {
   GList *windows;
-  WnckWindow *transient;
+  VnckWindow *transient;
 
   if (!VNCK_IS_WINDOW (window))
     return NULL;
@@ -1094,13 +1094,13 @@ transient_needs_attention (WnckWindow *window)
 }
 
 time_t
-_vnck_window_or_transient_get_needs_attention_time (WnckWindow *window)
+_vnck_window_or_transient_get_needs_attention_time (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), 0);
 
   if (_vnck_window_get_needs_attention_time (window) == 0)
     {
-      WnckWindow *transient;
+      VnckWindow *transient;
 
       transient = transient_needs_attention (window);
       if (transient)
@@ -1114,10 +1114,10 @@ _vnck_window_or_transient_get_needs_attention_time (WnckWindow *window)
 
 /**
  * vnck_window_or_transient_needs_attention:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window or one of its transients needs attention. This state
- * may change anytime a #WnckWindow::state-changed signal gets emitted.
+ * may change anytime a #VnckWindow::state-changed signal gets emitted.
  *
  * Return value: %TRUE if @window or one of its transients needs attention,
  * %FALSE otherwise.
@@ -1125,7 +1125,7 @@ _vnck_window_or_transient_get_needs_attention_time (WnckWindow *window)
  * Since: 2.12
  **/
 gboolean
-vnck_window_or_transient_needs_attention (WnckWindow *window)
+vnck_window_or_transient_needs_attention (VnckWindow *window)
 {
   return vnck_window_needs_attention (window) ||
          transient_needs_attention (window) != NULL;
@@ -1133,15 +1133,15 @@ vnck_window_or_transient_needs_attention (WnckWindow *window)
 
 /**
  * vnck_window_is_maximized_horizontally:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window is maximized horizontally. Horizontal maximization
- * state may change anytime a #WnckWindow::state-changed signal gets emitted.
+ * state may change anytime a #VnckWindow::state-changed signal gets emitted.
  *
  * Return value: %TRUE if @window is maximized horizontally, %FALSE otherwise.
  **/
 gboolean
-vnck_window_is_maximized_horizontally (WnckWindow *window)
+vnck_window_is_maximized_horizontally (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1150,15 +1150,15 @@ vnck_window_is_maximized_horizontally (WnckWindow *window)
 
 /**
  * vnck_window_is_maximized_vertically:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window is maximized vertically. vertiVal maximization
- * state may change anytime a #WnckWindow::state-changed signal gets emitted.
+ * state may change anytime a #VnckWindow::state-changed signal gets emitted.
  *
  * Return value: %TRUE if @window is maximized vertically, %FALSE otherwise.
  **/
 gboolean
-vnck_window_is_maximized_vertically   (WnckWindow *window)
+vnck_window_is_maximized_vertically   (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1166,14 +1166,14 @@ vnck_window_is_maximized_vertically   (WnckWindow *window)
 }
 
 const char*
-_vnck_window_get_startup_id (WnckWindow *window)
+_vnck_window_get_startup_id (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
   if (window->priv->startup_id == NULL &&
       window->priv->group_leader != None)
     {
-      WnckApplication *app;
+      VnckApplication *app;
 
       /* Fall back to group leader property */
 
@@ -1190,20 +1190,20 @@ _vnck_window_get_startup_id (WnckWindow *window)
 
 /**
  * vnck_window_get_class_group_name:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the class group name from the <ulink
  * url="http://tronche.com/gui/x/icccm/sec-4.html&num;WM_CLASS">WM_CLASS Property</ulink>
  * for @window.
  *
- * The class group name is also the identifier name of the #WnckClassGroup to
+ * The class group name is also the identifier name of the #VnckClassGroup to
  * which @window belongs.
  *
  * Return value: the class group name for @window, or %NULL if @window belongs
  * to no class group.
  **/
 const char*
-vnck_window_get_class_group_name (WnckWindow *window)
+vnck_window_get_class_group_name (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
@@ -1212,7 +1212,7 @@ vnck_window_get_class_group_name (WnckWindow *window)
 
 /**
  * vnck_window_get_class_instance_name:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the class instance name from the <ulink
  * url="http://tronche.com/gui/x/icccm/sec-4.html&num;WM_CLASS">WM_CLASS Property</ulink>
@@ -1225,7 +1225,7 @@ vnck_window_get_class_group_name (WnckWindow *window)
  * no class instance.
  **/
 const char*
-vnck_window_get_class_instance_name (WnckWindow *window)
+vnck_window_get_class_instance_name (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
@@ -1234,10 +1234,10 @@ vnck_window_get_class_instance_name (WnckWindow *window)
 
 /**
  * vnck_window_is_maximized:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window is maximized. Maximization state may change
- * anytime a #WnckWindow::state-changed signal gets emitted.
+ * anytime a #VnckWindow::state-changed signal gets emitted.
  *
  * As for GDK, "maximized" means both vertically and horizontally. If @window
  * is maximized in only one direction, then @window is not considered
@@ -1247,7 +1247,7 @@ vnck_window_get_class_instance_name (WnckWindow *window)
  * otherwise.
  **/
 gboolean
-vnck_window_is_maximized (WnckWindow *window)
+vnck_window_is_maximized (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1258,15 +1258,15 @@ vnck_window_is_maximized (WnckWindow *window)
 
 /**
  * vnck_window_is_shaded:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window is shaded. Shade state may change anytime
- * a #WnckWindow::state-changed signal gets emitted.
+ * a #VnckWindow::state-changed signal gets emitted.
  *
  * Return value: %TRUE if @window is shaded, %FALSE otherwise.
  **/
 gboolean
-vnck_window_is_shaded                 (WnckWindow *window)
+vnck_window_is_shaded                 (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1275,10 +1275,10 @@ vnck_window_is_shaded                 (WnckWindow *window)
 
 /**
  * vnck_window_is_above:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window is above other windows. This state may change
- * anytime a #WnckWindow::state-changed signal gets emitted.
+ * anytime a #VnckWindow::state-changed signal gets emitted.
  *
  * See vnck_window_make_above() for more details on this state.
  *
@@ -1287,7 +1287,7 @@ vnck_window_is_shaded                 (WnckWindow *window)
  * Since: 2.14
  **/
 gboolean
-vnck_window_is_above                  (WnckWindow *window)
+vnck_window_is_above                  (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1296,10 +1296,10 @@ vnck_window_is_above                  (WnckWindow *window)
 
 /**
  * vnck_window_is_below:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window is below other windows. This state may change
- * anytime a #WnckWindow::state-changed signal gets emitted.
+ * anytime a #VnckWindow::state-changed signal gets emitted.
  *
  * See vnck_window_make_below() for more details on this state.
  *
@@ -1308,7 +1308,7 @@ vnck_window_is_above                  (WnckWindow *window)
  * Since: 2.20
  **/
 gboolean
-vnck_window_is_below                  (WnckWindow *window)
+vnck_window_is_below                  (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1317,15 +1317,15 @@ vnck_window_is_below                  (WnckWindow *window)
 
 /**
  * vnck_window_is_skip_pager:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window is included on pagers. This state may change
- * anytime a #WnckWindow::state-changed signal gets emitted.
+ * anytime a #VnckWindow::state-changed signal gets emitted.
  *
  * Return value: %TRUE if @window is included on pagers, %FALSE otherwise.
  **/
 gboolean
-vnck_window_is_skip_pager             (WnckWindow *window)
+vnck_window_is_skip_pager             (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1334,13 +1334,13 @@ vnck_window_is_skip_pager             (WnckWindow *window)
 
 /**
  * vnck_window_set_skip_pager:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  * @skip: whether @window should be included on pagers.
  *
  * Asks the window manager to make @window included or not included on pagers.
  **/
 void
-vnck_window_set_skip_pager (WnckWindow *window,
+vnck_window_set_skip_pager (VnckWindow *window,
                             gboolean    skip)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
@@ -1354,15 +1354,15 @@ vnck_window_set_skip_pager (WnckWindow *window,
 
 /**
  * vnck_window_is_skip_tasklist:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window is included on tasklists. This state may change
- * anytime a #WnckWindow::state-changed signal gets emitted.
+ * anytime a #VnckWindow::state-changed signal gets emitted.
  *
  * Return value: %TRUE if @window is included on tasklists, %FALSE otherwise.
  **/
 gboolean
-vnck_window_is_skip_tasklist          (WnckWindow *window)
+vnck_window_is_skip_tasklist          (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1371,17 +1371,17 @@ vnck_window_is_skip_tasklist          (WnckWindow *window)
 
 /**
  * vnck_window_is_fullscreen:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window is fullscreen. Fullscreen state may change
- * anytime a #WnckWindow::state-changed signal gets emitted.
+ * anytime a #VnckWindow::state-changed signal gets emitted.
  *
  * Return value: %TRUE if @window is fullscreen, %FALSE otherwise.
  *
  * Since: 2.8
  **/
 gboolean
-vnck_window_is_fullscreen                 (WnckWindow *window)
+vnck_window_is_fullscreen                 (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1390,14 +1390,14 @@ vnck_window_is_fullscreen                 (WnckWindow *window)
 
 /**
  * vnck_window_set_skip_tasklist:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  * @skip: whether @window should be included on tasklists.
  *
  * Asks the window manager to make @window included or not included on
  * tasklists.
  **/
 void
-vnck_window_set_skip_tasklist (WnckWindow *window,
+vnck_window_set_skip_tasklist (VnckWindow *window,
                                gboolean    skip)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
@@ -1411,7 +1411,7 @@ vnck_window_set_skip_tasklist (WnckWindow *window,
 
 /**
  * vnck_window_set_fullscreen:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  * @fullscreen: whether to make @window fullscreen.
  *
  * Asks the window manager to set the fullscreen state of @window according to
@@ -1420,7 +1420,7 @@ vnck_window_set_skip_tasklist (WnckWindow *window,
  * Since: 2.8
  **/
 void
-vnck_window_set_fullscreen (WnckWindow *window,
+vnck_window_set_fullscreen (VnckWindow *window,
                             gboolean    fullscreen)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
@@ -1434,10 +1434,10 @@ vnck_window_set_fullscreen (WnckWindow *window,
 
 /**
  * vnck_window_is_sticky:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window is sticky. Sticky state may change
- * anytime a #WnckWindow::state-changed signal gets emitted.
+ * anytime a #VnckWindow::state-changed signal gets emitted.
  *
  * Sticky here means "stuck to the glass", i.e. does not scroll with the
  * viewport. In GDK/GTK+ (e.g. gdk_window_stick()/gtk_window_stick()), sticky
@@ -1447,7 +1447,7 @@ vnck_window_set_fullscreen (WnckWindow *window,
  * Return value: %TRUE if @window is "stuck to the glass", %FALSE otherwise.
  **/
 gboolean
-vnck_window_is_sticky                 (WnckWindow *window)
+vnck_window_is_sticky                 (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1456,7 +1456,7 @@ vnck_window_is_sticky                 (WnckWindow *window)
 
 /**
  * vnck_window_close:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  * @timestamp: the X server timestamp of the user interaction event that caused
  * this call to occur.
  *
@@ -1468,7 +1468,7 @@ vnck_window_is_sticky                 (WnckWindow *window)
  * Since: 2.6
  **/
 void
-vnck_window_close (WnckWindow *window,
+vnck_window_close (VnckWindow *window,
                    guint32     timestamp)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
@@ -1478,12 +1478,12 @@ vnck_window_close (WnckWindow *window,
 
 /**
  * vnck_window_minimize:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Minimizes @window.
  **/
 void
-vnck_window_minimize                (WnckWindow *window)
+vnck_window_minimize                (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1493,7 +1493,7 @@ vnck_window_minimize                (WnckWindow *window)
 
 /**
  * vnck_window_unminimize:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  * @timestamp: the X server timestamp of the user interaction event that caused
  * this call to occur.
  *
@@ -1501,7 +1501,7 @@ vnck_window_minimize                (WnckWindow *window)
  * vnck_window_activate_transient() for details on how the activation is done.
  **/
 void
-vnck_window_unminimize              (WnckWindow *window,
+vnck_window_unminimize              (VnckWindow *window,
                                      guint32     timestamp)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
@@ -1511,12 +1511,12 @@ vnck_window_unminimize              (WnckWindow *window,
 
 /**
  * vnck_window_maximize:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to maximize @window.
  **/
 void
-vnck_window_maximize (WnckWindow *window)
+vnck_window_maximize (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1529,12 +1529,12 @@ vnck_window_maximize (WnckWindow *window)
 
 /**
  * vnck_window_unmaximize:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to unmaximize @window.
  **/
 void
-vnck_window_unmaximize (WnckWindow *window)
+vnck_window_unmaximize (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1547,12 +1547,12 @@ vnck_window_unmaximize (WnckWindow *window)
 
 /**
  * vnck_window_maximize_horizontally:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to maximize horizontally @window.
  **/
 void
-vnck_window_maximize_horizontally (WnckWindow *window)
+vnck_window_maximize_horizontally (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1565,12 +1565,12 @@ vnck_window_maximize_horizontally (WnckWindow *window)
 
 /**
  * vnck_window_unmaximize_horizontally:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to unmaximize horizontally @window.
  **/
 void
-vnck_window_unmaximize_horizontally (WnckWindow *window)
+vnck_window_unmaximize_horizontally (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1583,12 +1583,12 @@ vnck_window_unmaximize_horizontally (WnckWindow *window)
 
 /**
  * vnck_window_maximize_vertically:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to maximize vertically @window.
  **/
 void
-vnck_window_maximize_vertically (WnckWindow *window)
+vnck_window_maximize_vertically (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1601,12 +1601,12 @@ vnck_window_maximize_vertically (WnckWindow *window)
 
 /**
  * vnck_window_unmaximize_vertically:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to unmaximize vertically @window.
  **/
 void
-vnck_window_unmaximize_vertically (WnckWindow *window)
+vnck_window_unmaximize_vertically (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1619,12 +1619,12 @@ vnck_window_unmaximize_vertically (WnckWindow *window)
 
 /**
  * vnck_window_shade:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to shade @window.
  **/
 void
-vnck_window_shade (WnckWindow *window)
+vnck_window_shade (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1637,12 +1637,12 @@ vnck_window_shade (WnckWindow *window)
 
 /**
  * vnck_window_unshade:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to unshade @window.
  **/
 void
-vnck_window_unshade (WnckWindow *window)
+vnck_window_unshade (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1655,7 +1655,7 @@ vnck_window_unshade (WnckWindow *window)
 
 /**
  * vnck_window_make_above:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to put @window on top of most windows (@window will
  * not be on top of focused fullscreen windows, of other windows with this
@@ -1664,7 +1664,7 @@ vnck_window_unshade (WnckWindow *window)
  * Since: 2.14
  **/
 void
-vnck_window_make_above (WnckWindow *window)
+vnck_window_make_above (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1677,7 +1677,7 @@ vnck_window_make_above (WnckWindow *window)
 
 /**
  * vnck_window_unmake_above:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to not put @window on top of most windows, and to
  * put it again in the stack with other windows.
@@ -1685,7 +1685,7 @@ vnck_window_make_above (WnckWindow *window)
  * Since: 2.14
  **/
 void
-vnck_window_unmake_above (WnckWindow *window)
+vnck_window_unmake_above (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1698,14 +1698,14 @@ vnck_window_unmake_above (WnckWindow *window)
 
 /**
  * vnck_window_make_below:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to put @window below most windows.
  *
  * Since: 2.20
  **/
 void
-vnck_window_make_below (WnckWindow *window)
+vnck_window_make_below (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1718,7 +1718,7 @@ vnck_window_make_below (WnckWindow *window)
 
 /**
  * vnck_window_unmake_below:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to not put @window below most windows, and to
  * put it again in the stack with other windows.
@@ -1726,7 +1726,7 @@ vnck_window_make_below (WnckWindow *window)
  * Since: 2.20
  **/
 void
-vnck_window_unmake_below (WnckWindow *window)
+vnck_window_unmake_below (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1739,13 +1739,13 @@ vnck_window_unmake_below (WnckWindow *window)
 
 /**
  * vnck_window_stick:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to keep the @window<!-- -->'s position fixed on the
  * screen, even when the workspace or viewport scrolls.
  **/
 void
-vnck_window_stick (WnckWindow *window)
+vnck_window_stick (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1758,13 +1758,13 @@ vnck_window_stick (WnckWindow *window)
 
 /**
  * vnck_window_unstick:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to not have @window<!-- -->'s position fixed on the
  * screen when the workspace or viewport scrolls.
  **/
 void
-vnck_window_unstick (WnckWindow *window)
+vnck_window_unstick (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1777,12 +1777,12 @@ vnck_window_unstick (WnckWindow *window)
 
 /**
  * vnck_window_keyboard_move:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to start moving @window via the keyboard.
  **/
 void
-vnck_window_keyboard_move (WnckWindow *window)
+vnck_window_keyboard_move (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1792,12 +1792,12 @@ vnck_window_keyboard_move (WnckWindow *window)
 
 /**
  * vnck_window_keyboard_size:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to start resizing @window via the keyboard.
  **/
 void
-vnck_window_keyboard_size (WnckWindow *window)
+vnck_window_keyboard_size (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1807,17 +1807,17 @@ vnck_window_keyboard_size (WnckWindow *window)
 
 /**
  * vnck_window_get_workspace:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the current workspace @window is on. If the window is pinned (on all
  * workspaces), or not on any workspaces, %NULL may be returned.
  *
  * Return value: (transfer none): the single current workspace @window is on, or
- * %NULL. The returned #WnckWorkspace is owned by libvnck and must not be
+ * %NULL. The returned #VnckWorkspace is owned by libvnck and must not be
  * referenced or unreferenced.
  **/
-WnckWorkspace*
-vnck_window_get_workspace (WnckWindow *window)
+VnckWorkspace*
+vnck_window_get_workspace (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
@@ -1829,15 +1829,15 @@ vnck_window_get_workspace (WnckWindow *window)
 
 /**
  * vnck_window_move_to_workspace:
- * @window: a #WnckWindow.
- * @space: a #WnckWorkspace.
+ * @window: a #VnckWindow.
+ * @space: a #VnckWorkspace.
  *
  * Asks the window manager to move @window to @space. If @window was pinned, it
  * will also result in @window being visible only on @space.
  **/
 void
-vnck_window_move_to_workspace (WnckWindow    *window,
-                               WnckWorkspace *space)
+vnck_window_move_to_workspace (VnckWindow    *window,
+                               VnckWorkspace *space)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
   g_return_if_fail (VNCK_IS_WORKSPACE (space));
@@ -1849,16 +1849,16 @@ vnck_window_move_to_workspace (WnckWindow    *window,
 
 /**
  * vnck_window_is_pinned:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window is on all workspace. Pinned state may change
- * anytime a #WnckWindow::workspace-changed signal gets emitted, but not when
- * a #WnckWindow::state-changed gets emitted.
+ * anytime a #VnckWindow::workspace-changed signal gets emitted, but not when
+ * a #VnckWindow::state-changed gets emitted.
  *
  * Return value: %TRUE if @window is on all workspaces, %FALSE otherwise.
  **/
 gboolean
-vnck_window_is_pinned (WnckWindow *window)
+vnck_window_is_pinned (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1867,12 +1867,12 @@ vnck_window_is_pinned (WnckWindow *window)
 
 /**
  * vnck_window_pin:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to put @window on all workspaces.
  **/
 void
-vnck_window_pin (WnckWindow *window)
+vnck_window_pin (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1883,7 +1883,7 @@ vnck_window_pin (WnckWindow *window)
 
 /**
  * vnck_window_unpin:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Asks the window manager to put @window only in the currently active
  * workspace, if @window was previously pinned. If @window was not pinned,
@@ -1892,9 +1892,9 @@ vnck_window_pin (WnckWindow *window)
  * @window<!-- -->'s workspace to the first workspace.
  **/
 void
-vnck_window_unpin (WnckWindow *window)
+vnck_window_unpin (VnckWindow *window)
 {
-  WnckWorkspace *active;
+  VnckWorkspace *active;
 
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -1910,7 +1910,7 @@ vnck_window_unpin (WnckWindow *window)
 
 /**
  * vnck_window_activate:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  * @timestamp: the X server timestamp of the user interaction event that caused
  * this call to occur.
  *
@@ -1925,7 +1925,7 @@ vnck_window_unpin (WnckWindow *window)
  * Since: 2.10
  **/
 void
-vnck_window_activate (WnckWindow *window,
+vnck_window_activate (VnckWindow *window,
                       guint32     timestamp)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
@@ -1937,15 +1937,15 @@ vnck_window_activate (WnckWindow *window,
 
 /**
  * vnck_window_is_active:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
- * Gets whether @window is the active window on its #WnckScreen.
+ * Gets whether @window is the active window on its #VnckScreen.
  *
- * Return value: %TRUE if @window is the active window on its #WnckScreen,
+ * Return value: %TRUE if @window is the active window on its #VnckScreen,
  * %FALSE otherwise.
  **/
 gboolean
-vnck_window_is_active (WnckWindow *window)
+vnck_window_is_active (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1954,10 +1954,10 @@ vnck_window_is_active (WnckWindow *window)
 
 /**
  * vnck_window_is_most_recently_activated:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether @window is the most recently activated window on its
- * #WnckScreen.
+ * #VnckScreen.
  *
  * The most recently activated window is identical to the active
  * window for click and sloppy focus methods (since a window is always
@@ -1965,16 +1965,16 @@ vnck_window_is_active (WnckWindow *window)
  * there often is no active window.
  *
  * Return value: %TRUE if @window was the most recently activated window on its
- * #WnckScreen, %FALSE otherwise.
+ * #VnckScreen, %FALSE otherwise.
  *
  * Since: 2.8
  **/
 gboolean
-vnck_window_is_most_recently_activated (WnckWindow *window)
+vnck_window_is_most_recently_activated (VnckWindow *window)
 {
-  WnckWindow * current;
-  WnckWindow * previous;
-  WnckWindow * most_recently_activated_window;
+  VnckWindow * current;
+  VnckWindow * previous;
+  VnckWindow * most_recently_activated_window;
 
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -1989,12 +1989,12 @@ vnck_window_is_most_recently_activated (WnckWindow *window)
   return (window == most_recently_activated_window);
 }
 
-static WnckWindow*
+static VnckWindow*
 find_last_transient_for (GList *windows,
                          Window xwindow)
 {
   GList *tmp;
-  WnckWindow *retval;
+  VnckWindow *retval;
 
   /* find _last_ transient for xwindow in the list */
 
@@ -2003,7 +2003,7 @@ find_last_transient_for (GList *windows,
   tmp = windows;
   while (tmp != NULL)
     {
-      WnckWindow *w = tmp->data;
+      VnckWindow *w = tmp->data;
 
       if (w->priv->transient_for == xwindow &&
 	  w->priv->wintype != VNCK_WINDOW_UTILITY)
@@ -2017,7 +2017,7 @@ find_last_transient_for (GList *windows,
 
 /**
  * vnck_window_activate_transient:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  * @timestamp: the X server timestamp of the user interaction event that caused
  * this call to occur.
  *
@@ -2034,12 +2034,12 @@ find_last_transient_for (GList *windows,
  * Since: 2.10
  **/
 void
-vnck_window_activate_transient (WnckWindow *window,
+vnck_window_activate_transient (VnckWindow *window,
                                 guint32     timestamp)
 {
   GList *windows;
-  WnckWindow *transient;
-  WnckWindow *next;
+  VnckWindow *transient;
+  VnckWindow *next;
 
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -2070,18 +2070,18 @@ vnck_window_activate_transient (WnckWindow *window,
 
 /**
  * vnck_window_transient_is_most_recently_activated:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether one of the transients of @window is the most
  * recently activated window. See
  * vnck_window_is_most_recently_activated() for a more complete
  * description of what is meant by most recently activated.  This
- * function is needed because clicking on a #WnckTasklist once will
+ * function is needed because clicking on a #VnckTasklist once will
  * activate a transient instead of @window itself
  * (vnck_window_activate_transient), and clicking again should
  * minimize @window and its transients.  (Not doing this can be
  * especially annoying in the case of modal dialogs that don't appear
- * in the #WnckTasklist).
+ * in the #VnckTasklist).
  *
  * Return value: %TRUE if one of the transients of @window is the most recently
  * activated window, %FALSE otherwise.
@@ -2089,10 +2089,10 @@ vnck_window_activate_transient (WnckWindow *window,
  * Since: 2.12
  **/
 gboolean
-vnck_window_transient_is_most_recently_activated (WnckWindow *window)
+vnck_window_transient_is_most_recently_activated (VnckWindow *window)
 {
   GList *windows;
-  WnckWindow *transient;
+  VnckWindow *transient;
 
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -2113,7 +2113,7 @@ vnck_window_transient_is_most_recently_activated (WnckWindow *window)
 }
 
 static void
-get_icons (WnckWindow *window)
+get_icons (VnckWindow *window)
 {
   GdkPixbuf *icon;
   GdkPixbuf *mini_icon;
@@ -2148,7 +2148,7 @@ get_icons (WnckWindow *window)
 }
 
 void
-_vnck_window_load_icons (WnckWindow *window)
+_vnck_window_load_icons (VnckWindow *window)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
 
@@ -2161,7 +2161,7 @@ _vnck_window_load_icons (WnckWindow *window)
 
 /**
  * vnck_window_get_icon:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the icon to be used for @window. If no icon was found, a fallback
  * icon is used. vnck_window_get_icon_is_fallback() can be used to tell if the
@@ -2172,7 +2172,7 @@ _vnck_window_load_icons (WnckWindow *window)
  * the icon around.
  **/
 GdkPixbuf*
-vnck_window_get_icon (WnckWindow *window)
+vnck_window_get_icon (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
@@ -2183,7 +2183,7 @@ vnck_window_get_icon (WnckWindow *window)
 
 /**
  * vnck_window_get_mini_icon:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the mini-icon to be used for @window. If no mini-icon was found, a
  * fallback mini-icon is used. vnck_window_get_icon_is_fallback() can be used
@@ -2194,7 +2194,7 @@ vnck_window_get_icon (WnckWindow *window)
  * the icon around.
  **/
 GdkPixbuf*
-vnck_window_get_mini_icon (WnckWindow *window)
+vnck_window_get_mini_icon (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
 
@@ -2205,7 +2205,7 @@ vnck_window_get_mini_icon (WnckWindow *window)
 
 /**
  * vnck_window_get_icon_is_fallback:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets whether a default fallback icon is used for @window (because none
  * was set on @window).
@@ -2213,7 +2213,7 @@ vnck_window_get_mini_icon (WnckWindow *window)
  * Return value: %TRUE if the icon for @window is a fallback, %FALSE otherwise.
  **/
 gboolean
-vnck_window_get_icon_is_fallback (WnckWindow *window)
+vnck_window_get_icon_is_fallback (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
 
@@ -2222,14 +2222,14 @@ vnck_window_get_icon_is_fallback (WnckWindow *window)
 
 /**
  * vnck_window_get_actions:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the actions that can be done for @window.
  *
  * Return value: bitmask of actions that can be done for @window.
  **/
-WnckWindowActions
-vnck_window_get_actions (WnckWindow *window)
+VnckWindowActions
+vnck_window_get_actions (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), 0);
 
@@ -2239,14 +2239,14 @@ vnck_window_get_actions (WnckWindow *window)
 
 /**
  * vnck_window_get_state:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  *
  * Gets the state of @window.
  *
  * Return value: bitmask of active states for @window.
  **/
-WnckWindowState
-vnck_window_get_state (WnckWindow *window)
+VnckWindowState
+vnck_window_get_state (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), 0);
 
@@ -2255,7 +2255,7 @@ vnck_window_get_state (WnckWindow *window)
 
 /**
  * vnck_window_get_client_window_geometry:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  * @xp: (out): return location for X coordinate in pixels of @window.
  * @yp: (out): return location for Y coordinate in pixels of @window.
  * @widthp: (out): return location for width in pixels of @window.
@@ -2273,7 +2273,7 @@ vnck_window_get_state (WnckWindow *window)
  * Since: 2.20
  **/
 void
-vnck_window_get_client_window_geometry (WnckWindow *window,
+vnck_window_get_client_window_geometry (VnckWindow *window,
                                         int        *xp,
 					int        *yp,
 					int        *widthp,
@@ -2293,7 +2293,7 @@ vnck_window_get_client_window_geometry (WnckWindow *window,
 
 /**
  * vnck_window_get_geometry:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  * @xp: (out): return location for X coordinate in pixels of @window.
  * @yp: (out): return location for Y coordinate in pixels of @window.
  * @widthp: (out): return location for width in pixels of @window.
@@ -2310,7 +2310,7 @@ vnck_window_get_client_window_geometry (WnckWindow *window,
  * added by the window manager, use vnck_window_get_client_window_geometry().
  **/
 void
-vnck_window_get_geometry (WnckWindow *window,
+vnck_window_get_geometry (VnckWindow *window,
                           int        *xp,
                           int        *yp,
                           int        *widthp,
@@ -2330,7 +2330,7 @@ vnck_window_get_geometry (WnckWindow *window,
 
 /**
  * vnck_window_set_geometry:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  * @gravity: the gravity point to use as a reference for the new position.
  * @geometry_mask: a bitmask containing flags for what should be set.
  * @x: new X coordinate in pixels of @window.
@@ -2351,9 +2351,9 @@ vnck_window_get_geometry (WnckWindow *window,
  * Since: 2.16
  **/
 void
-vnck_window_set_geometry (WnckWindow               *window,
-                          WnckWindowGravity         gravity,
-                          WnckWindowMoveResizeMask  geometry_mask,
+vnck_window_set_geometry (VnckWindow               *window,
+                          VnckWindowGravity         gravity,
+                          VnckWindowMoveResizeMask  geometry_mask,
                           int                       x,
                           int                       y,
                           int                       width,
@@ -2381,8 +2381,8 @@ vnck_window_set_geometry (WnckWindow               *window,
 
 /**
  * vnck_window_is_visible_on_workspace:
- * @window: a #WnckWindow.
- * @workspace: a #WnckWorkspace.
+ * @window: a #VnckWindow.
+ * @workspace: a #VnckWorkspace.
  *
  * Like vnck_window_is_on_workspace(), but also checks that
  * the window is in a visible state (i.e. not minimized or shaded).
@@ -2391,10 +2391,10 @@ vnck_window_set_geometry (WnckWindow               *window,
  * otherwise.
  **/
 gboolean
-vnck_window_is_visible_on_workspace (WnckWindow    *window,
-                                     WnckWorkspace *workspace)
+vnck_window_is_visible_on_workspace (VnckWindow    *window,
+                                     VnckWorkspace *workspace)
 {
-  WnckWindowState state;
+  VnckWindowState state;
 
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
   g_return_val_if_fail (VNCK_IS_WORKSPACE (workspace), FALSE);
@@ -2409,7 +2409,7 @@ vnck_window_is_visible_on_workspace (WnckWindow    *window,
 
 /**
  * vnck_window_set_icon_geometry:
- * @window: a #WnckWindow.
+ * @window: a #VnckWindow.
  * @x: X coordinate in pixels.
  * @y: Y coordinate in pixels.
  * @width: width in pixels.
@@ -2419,7 +2419,7 @@ vnck_window_is_visible_on_workspace (WnckWindow    *window,
  * destination of the minimization animation of @window.
  */
 void
-vnck_window_set_icon_geometry (WnckWindow *window,
+vnck_window_set_icon_geometry (VnckWindow *window,
 			       int         x,
 			       int         y,
 			       int         width,
@@ -2445,16 +2445,16 @@ vnck_window_set_icon_geometry (WnckWindow *window,
 
 /**
  * vnck_window_is_on_workspace:
- * @window: a #WnckWindow.
- * @workspace: a #WnckWorkspace.
+ * @window: a #VnckWindow.
+ * @workspace: a #VnckWorkspace.
  *
  * Gets whether @window appears on @workspace.
  *
  * Return value: %TRUE if @window appears on @workspace, %FALSE otherwise.
  **/
 gboolean
-vnck_window_is_on_workspace (WnckWindow    *window,
-                             WnckWorkspace *workspace)
+vnck_window_is_on_workspace (VnckWindow    *window,
+                             VnckWorkspace *workspace)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
   g_return_val_if_fail (VNCK_IS_WORKSPACE (workspace), FALSE);
@@ -2465,8 +2465,8 @@ vnck_window_is_on_workspace (WnckWindow    *window,
 
 /**
  * vnck_window_is_in_viewport:
- * @window: a #WnckWindow.
- * @workspace: a #WnckWorkspace.
+ * @window: a #VnckWindow.
+ * @workspace: a #VnckWorkspace.
  *
  * Gets %TRUE if @window appears in the current viewport of @workspace.
  *
@@ -2476,8 +2476,8 @@ vnck_window_is_on_workspace (WnckWindow    *window,
  * Since: 2.4
  **/
 gboolean
-vnck_window_is_in_viewport (WnckWindow    *window,
-                            WnckWorkspace *workspace)
+vnck_window_is_in_viewport (VnckWindow    *window,
+                            VnckWorkspace *workspace)
 {
   GdkRectangle window_rect;
   GdkRectangle viewport_rect;
@@ -2505,8 +2505,8 @@ vnck_window_is_in_viewport (WnckWindow    *window,
 }
 
 void
-_vnck_window_set_application (WnckWindow      *window,
-                              WnckApplication *app)
+_vnck_window_set_application (VnckWindow      *window,
+                              VnckApplication *app)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
   g_return_if_fail (app == NULL || VNCK_IS_APPLICATION (app));
@@ -2519,8 +2519,8 @@ _vnck_window_set_application (WnckWindow      *window,
 }
 
 void
-_vnck_window_set_class_group (WnckWindow     *window,
-			      WnckClassGroup *class_group)
+_vnck_window_set_class_group (VnckWindow     *window,
+			      VnckClassGroup *class_group)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
   g_return_if_fail (class_group == NULL || VNCK_IS_CLASS_GROUP (class_group));
@@ -2533,7 +2533,7 @@ _vnck_window_set_class_group (WnckWindow     *window,
 }
 
 void
-_vnck_window_process_property_notify (WnckWindow *window,
+_vnck_window_process_property_notify (VnckWindow *window,
                                       XEvent     *xevent)
 {
   if (xevent->xproperty.atom ==
@@ -2636,7 +2636,7 @@ _vnck_window_process_property_notify (WnckWindow *window,
 }
 
 void
-_vnck_window_process_configure_notify (WnckWindow *window,
+_vnck_window_process_configure_notify (VnckWindow *window,
                                        XEvent     *xevent)
 {
   if (xevent->xconfigure.send_event)
@@ -2659,7 +2659,7 @@ _vnck_window_process_configure_notify (WnckWindow *window,
 }
 
 static void
-update_wm_state (WnckWindow *window)
+update_wm_state (VnckWindow *window)
 {
   int state;
 
@@ -2678,7 +2678,7 @@ update_wm_state (WnckWindow *window)
 }
 
 static void
-update_state (WnckWindow *window)
+update_state (VnckWindow *window)
 {
   Atom *atoms;
   int n_atoms;
@@ -2827,7 +2827,7 @@ update_state (WnckWindow *window)
 }
 
 static void
-update_name (WnckWindow *window)
+update_name (VnckWindow *window)
 {
   char *new_name;
 
@@ -2847,7 +2847,7 @@ update_name (WnckWindow *window)
 }
 
 static void
-update_icon_name (WnckWindow *window)
+update_icon_name (VnckWindow *window)
 {
   char *new_name = NULL;
 
@@ -2867,7 +2867,7 @@ update_icon_name (WnckWindow *window)
 }
 
 static void
-update_workspace (WnckWindow *window)
+update_workspace (VnckWindow *window)
 {
   int val;
   int old;
@@ -2892,7 +2892,7 @@ update_workspace (WnckWindow *window)
 }
 
 static void
-update_actions (WnckWindow *window)
+update_actions (VnckWindow *window)
 {
   Atom *atoms;
   int   n_atoms;
@@ -3001,11 +3001,11 @@ update_actions (WnckWindow *window)
 }
 
 static void
-update_wintype (WnckWindow *window)
+update_wintype (VnckWindow *window)
 {
   Atom *atoms;
   int n_atoms;
-  WnckWindowType type;
+  VnckWindowType type;
   gboolean found_type;
 
   if (!window->priv->need_update_wintype)
@@ -3079,7 +3079,7 @@ update_wintype (WnckWindow *window)
 }
 
 static void
-update_transient_for (WnckWindow *window)
+update_transient_for (VnckWindow *window)
 {
   Window parent;
 
@@ -3110,7 +3110,7 @@ update_transient_for (WnckWindow *window)
 }
 
 static void
-update_startup_id (WnckWindow *window)
+update_startup_id (VnckWindow *window)
 {
   if (!window->priv->need_update_startup_id)
     return;
@@ -3125,7 +3125,7 @@ update_startup_id (WnckWindow *window)
 }
 
 static void
-update_wmclass (WnckWindow *window)
+update_wmclass (VnckWindow *window)
 {
   char *new_res_class = NULL;
   char *new_res_name = NULL;
@@ -3159,7 +3159,7 @@ update_wmclass (WnckWindow *window)
 }
 
 static void
-update_wmhints (WnckWindow *window)
+update_wmhints (VnckWindow *window)
 {
   Display  *display;
   XWMHints *hints;
@@ -3202,7 +3202,7 @@ update_wmhints (WnckWindow *window)
 }
 
 static void
-update_frame_extents (WnckWindow *window)
+update_frame_extents (VnckWindow *window)
 {
   int left, right, top, bottom;
 
@@ -3233,7 +3233,7 @@ update_frame_extents (WnckWindow *window)
 }
 
 static void
-update_role (WnckWindow *window)
+update_role (VnckWindow *window)
 {
   char *new_role;
 
@@ -3260,11 +3260,11 @@ update_role (WnckWindow *window)
 }
 
 static void
-force_update_now (WnckWindow *window)
+force_update_now (VnckWindow *window)
 {
-  WnckWindowState old_state;
-  WnckWindowState new_state;
-  WnckWindowActions old_actions;
+  VnckWindowState old_state;
+  VnckWindowState new_state;
+  VnckWindowActions old_actions;
 
   unqueue_update (window);
 
@@ -3325,7 +3325,7 @@ force_update_now (WnckWindow *window)
 static gboolean
 update_idle (gpointer data)
 {
-  WnckWindow *window = VNCK_WINDOW (data);
+  VnckWindow *window = VNCK_WINDOW (data);
 
   window->priv->update_handler = 0;
   force_update_now (window);
@@ -3333,7 +3333,7 @@ update_idle (gpointer data)
 }
 
 static void
-queue_update (WnckWindow *window)
+queue_update (VnckWindow *window)
 {
   if (window->priv->update_handler != 0)
     return;
@@ -3342,7 +3342,7 @@ queue_update (WnckWindow *window)
 }
 
 static void
-unqueue_update (WnckWindow *window)
+unqueue_update (VnckWindow *window)
 {
   if (window->priv->update_handler != 0)
     {
@@ -3352,7 +3352,7 @@ unqueue_update (WnckWindow *window)
 }
 
 static void
-emit_name_changed (WnckWindow *window)
+emit_name_changed (VnckWindow *window)
 {
   window->priv->need_emit_name_changed = FALSE;
   g_signal_emit (G_OBJECT (window),
@@ -3361,9 +3361,9 @@ emit_name_changed (WnckWindow *window)
 }
 
 static void
-emit_state_changed (WnckWindow     *window,
-                    WnckWindowState changed_mask,
-                    WnckWindowState new_state)
+emit_state_changed (VnckWindow     *window,
+                    VnckWindowState changed_mask,
+                    VnckWindowState new_state)
 {
   g_signal_emit (G_OBJECT (window),
                  signals[STATE_CHANGED],
@@ -3371,7 +3371,7 @@ emit_state_changed (WnckWindow     *window,
 }
 
 static void
-emit_workspace_changed (WnckWindow *window)
+emit_workspace_changed (VnckWindow *window)
 {
   g_signal_emit (G_OBJECT (window),
                  signals[WORKSPACE_CHANGED],
@@ -3379,7 +3379,7 @@ emit_workspace_changed (WnckWindow *window)
 }
 
 static void
-emit_icon_changed (WnckWindow *window)
+emit_icon_changed (VnckWindow *window)
 {
   window->priv->need_emit_icon_changed = FALSE;
   g_signal_emit (G_OBJECT (window),
@@ -3388,7 +3388,7 @@ emit_icon_changed (WnckWindow *window)
 }
 
 static void
-emit_class_changed (WnckWindow *window)
+emit_class_changed (VnckWindow *window)
 {
   window->priv->need_emit_class_changed = FALSE;
   g_signal_emit (G_OBJECT (window),
@@ -3397,9 +3397,9 @@ emit_class_changed (WnckWindow *window)
 }
 
 static void
-emit_actions_changed   (WnckWindow       *window,
-                        WnckWindowActions changed_mask,
-                        WnckWindowActions new_actions)
+emit_actions_changed   (VnckWindow       *window,
+                        VnckWindowActions changed_mask,
+                        VnckWindowActions new_actions)
 {
   g_signal_emit (G_OBJECT (window),
                  signals[ACTIONS_CHANGED],
@@ -3407,7 +3407,7 @@ emit_actions_changed   (WnckWindow       *window,
 }
 
 static void
-emit_geometry_changed (WnckWindow *window)
+emit_geometry_changed (VnckWindow *window)
 {
   g_signal_emit (G_OBJECT (window),
                  signals[GEOMETRY_CHANGED],
@@ -3415,7 +3415,7 @@ emit_geometry_changed (WnckWindow *window)
 }
 
 static void
-emit_role_changed (WnckWindow *window)
+emit_role_changed (VnckWindow *window)
 {
   window->priv->need_emit_role_changed = FALSE;
   g_signal_emit (G_OBJECT (window),
@@ -3424,7 +3424,7 @@ emit_role_changed (WnckWindow *window)
 }
 
 static void
-emit_type_changed (WnckWindow *window)
+emit_type_changed (VnckWindow *window)
 {
   window->priv->need_emit_type_changed = FALSE;
   g_signal_emit (G_OBJECT (window),

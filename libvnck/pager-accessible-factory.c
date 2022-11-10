@@ -20,7 +20,7 @@
 #include "pager-accessible-factory.h"
 #include "pager-accessible.h"
 
-G_DEFINE_TYPE (WnckPagerAccessibleFactory,
+G_DEFINE_TYPE (VnckPagerAccessibleFactory,
                vnck_pager_accessible_factory, ATK_TYPE_OBJECT_FACTORY);
 
 static AtkObject* vnck_pager_accessible_factory_create_accessible (GObject *obj);
@@ -28,7 +28,7 @@ static AtkObject* vnck_pager_accessible_factory_create_accessible (GObject *obj)
 static GType      vnck_pager_accessible_factory_get_accessible_type (void);
 
 static void
-vnck_pager_accessible_factory_class_init (WnckPagerAccessibleFactoryClass *klass)
+vnck_pager_accessible_factory_class_init (VnckPagerAccessibleFactoryClass *klass)
 {
   AtkObjectFactoryClass *class = ATK_OBJECT_FACTORY_CLASS (klass);
 
@@ -37,7 +37,7 @@ vnck_pager_accessible_factory_class_init (WnckPagerAccessibleFactoryClass *klass
 }
 
 static void
-vnck_pager_accessible_factory_init (WnckPagerAccessibleFactory *factory)
+vnck_pager_accessible_factory_init (VnckPagerAccessibleFactory *factory)
 {
 }
 

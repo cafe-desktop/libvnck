@@ -27,23 +27,23 @@
 G_BEGIN_DECLS
 
 #define VNCK_WORKSPACE_TYPE_ACCESSIBLE                     (vnck_workspace_accessible_get_type ())
-#define VNCK_WORKSPACE_ACCESSIBLE(obj)                     (G_TYPE_CHECK_INSTANCE_CAST ((obj), VNCK_WORKSPACE_TYPE_ACCESSIBLE, WnckWorkspaceAccessible))
-#define VNCK_WORKSPACE_ACCESSIBLE_CLASS(klass)             (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_WORKSPACE_TYPE_ACCESSIBLE, WnckWorkspaceAccessibleClass))
+#define VNCK_WORKSPACE_ACCESSIBLE(obj)                     (G_TYPE_CHECK_INSTANCE_CAST ((obj), VNCK_WORKSPACE_TYPE_ACCESSIBLE, VnckWorkspaceAccessible))
+#define VNCK_WORKSPACE_ACCESSIBLE_CLASS(klass)             (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_WORKSPACE_TYPE_ACCESSIBLE, VnckWorkspaceAccessibleClass))
 #define VNCK_IS_WORKSPACE_ACCESSIBLE(obj)                  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VNCK_WORKSPACE_TYPE_ACCESSIBLE))
-#define VNCK_IS_WORKSPACE_ACCESSIBLE_CLASS(klass)          (G_TYPE_CHECK_CLASS_TYPE ((klass), WnckWorkspaceAccessible))
-#define VNCK_WORKSPACE_ACCESSIBLE_GET_CLASS(obj)           (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_WORKSPACE_TYPE_ACCESSIBLE, WnckWorkspaceAccessibleClass)) 
+#define VNCK_IS_WORKSPACE_ACCESSIBLE_CLASS(klass)          (G_TYPE_CHECK_CLASS_TYPE ((klass), VnckWorkspaceAccessible))
+#define VNCK_WORKSPACE_ACCESSIBLE_GET_CLASS(obj)           (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_WORKSPACE_TYPE_ACCESSIBLE, VnckWorkspaceAccessibleClass)) 
 
-typedef struct _WnckWorkspaceAccessible WnckWorkspaceAccessible;
-typedef struct _WnckWorkspaceAccessibleClass WnckWorkspaceAccessibleClass;
+typedef struct _VnckWorkspaceAccessible VnckWorkspaceAccessible;
+typedef struct _VnckWorkspaceAccessibleClass VnckWorkspaceAccessibleClass;
 
-struct _WnckWorkspaceAccessible
+struct _VnckWorkspaceAccessible
 {
   AtkGObjectAccessible parent;
 
   int index;
 };
 
-struct _WnckWorkspaceAccessibleClass 
+struct _VnckWorkspaceAccessibleClass 
 {
   AtkGObjectAccessibleClass parent_class;
 };

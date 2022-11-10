@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-WnckActionMenu
+VnckActionMenu
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -20,13 +20,13 @@ WnckActionMenu
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### STRUCT WnckActionMenu ##### -->
+<!-- ##### STRUCT VnckActionMenu ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ARG WnckActionMenu:window ##### -->
+<!-- ##### ARG VnckActionMenu:window ##### -->
 <para>
 
 </para>

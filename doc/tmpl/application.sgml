@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-WnckApplication
+VnckApplication
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -20,20 +20,20 @@ WnckApplication
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### STRUCT WnckApplication ##### -->
+<!-- ##### STRUCT VnckApplication ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### SIGNAL WnckApplication::icon-changed ##### -->
+<!-- ##### SIGNAL VnckApplication::icon-changed ##### -->
 <para>
 
 </para>
 
 @vnckapplication: the object which received the signal.
 
-<!-- ##### SIGNAL WnckApplication::name-changed ##### -->
+<!-- ##### SIGNAL VnckApplication::name-changed ##### -->
 <para>
 
 </para>

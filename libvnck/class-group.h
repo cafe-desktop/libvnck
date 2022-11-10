@@ -34,34 +34,34 @@
 G_BEGIN_DECLS
 
 #define VNCK_TYPE_CLASS_GROUP              (vnck_class_group_get_type ())
-#define VNCK_CLASS_GROUP(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_CLASS_GROUP, WnckClassGroup))
-#define VNCK_CLASS_GROUP_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_CLASS_GROUP, WnckClassGroupClass))
+#define VNCK_CLASS_GROUP(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_CLASS_GROUP, VnckClassGroup))
+#define VNCK_CLASS_GROUP_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_CLASS_GROUP, VnckClassGroupClass))
 #define VNCK_IS_CLASS_GROUP(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_CLASS_GROUP))
 #define VNCK_IS_CLASS_GROUP_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_CLASS_GROUP))
-#define VNCK_CLASS_GROUP_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_CLASS_GROUP, WnckClassGroupClass))
+#define VNCK_CLASS_GROUP_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_CLASS_GROUP, VnckClassGroupClass))
 
-typedef struct _WnckClassGroupClass   WnckClassGroupClass;
-typedef struct _WnckClassGroupPrivate WnckClassGroupPrivate;
+typedef struct _VnckClassGroupClass   VnckClassGroupClass;
+typedef struct _VnckClassGroupPrivate VnckClassGroupPrivate;
 
 /**
- * WnckClassGroup:
+ * VnckClassGroup:
  *
- * The #WnckClassGroup struct contains only private fields and should not be
+ * The #VnckClassGroup struct contains only private fields and should not be
  * directly accessed.
  */
-struct _WnckClassGroup
+struct _VnckClassGroup
 {
   GObject parent_instance;
 
-  WnckClassGroupPrivate *priv;
+  VnckClassGroupPrivate *priv;
 };
 
-struct _WnckClassGroupClass
+struct _VnckClassGroupClass
 {
   GObjectClass parent_class;
 
-  void (* name_changed) (WnckClassGroup *group);
-  void (* icon_changed) (WnckClassGroup *group);
+  void (* name_changed) (VnckClassGroup *group);
+  void (* icon_changed) (VnckClassGroup *group);
 
   /* Padding for future expansion */
   void (* pad1) (void);
@@ -72,19 +72,19 @@ struct _WnckClassGroupClass
 
 GType vnck_class_group_get_type (void) G_GNUC_CONST;
 
-WnckClassGroup *vnck_class_group_get (const char *id);
+VnckClassGroup *vnck_class_group_get (const char *id);
 
-GList *vnck_class_group_get_windows (WnckClassGroup *class_group);
-const char * vnck_class_group_get_id (WnckClassGroup *class_group);
+GList *vnck_class_group_get_windows (VnckClassGroup *class_group);
+const char * vnck_class_group_get_id (VnckClassGroup *class_group);
 
-const char * vnck_class_group_get_name (WnckClassGroup *class_group);
+const char * vnck_class_group_get_name (VnckClassGroup *class_group);
 
-GdkPixbuf *vnck_class_group_get_icon (WnckClassGroup *class_group);
-GdkPixbuf *vnck_class_group_get_mini_icon (WnckClassGroup *class_group);
+GdkPixbuf *vnck_class_group_get_icon (VnckClassGroup *class_group);
+GdkPixbuf *vnck_class_group_get_mini_icon (VnckClassGroup *class_group);
 
 #ifndef VNCK_DISABLE_DEPRECATED
 G_DEPRECATED_FOR(vnck_class_group_get_id)
-const char * vnck_class_group_get_res_class (WnckClassGroup *class_group);
+const char * vnck_class_group_get_res_class (VnckClassGroup *class_group);
 #endif
 
 G_END_DECLS

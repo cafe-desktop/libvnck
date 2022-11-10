@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-WnckTasklist
+VnckTasklist
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -20,28 +20,28 @@ WnckTasklist
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### STRUCT WnckTasklist ##### -->
+<!-- ##### STRUCT VnckTasklist ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ARG WnckTasklist:fade-loop-time ##### -->
+<!-- ##### ARG VnckTasklist:fade-loop-time ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG WnckTasklist:fade-max-loops ##### -->
+<!-- ##### ARG VnckTasklist:fade-max-loops ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG WnckTasklist:fade-opacity ##### -->
+<!-- ##### ARG VnckTasklist:fade-opacity ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG WnckTasklist:fade-overlay-rect ##### -->
+<!-- ##### ARG VnckTasklist:fade-overlay-rect ##### -->
 <para>
 
 </para>
@@ -55,7 +55,7 @@ WnckTasklist
 @Returns: 
 
 
-<!-- ##### ENUM WnckTasklistGroupingType ##### -->
+<!-- ##### ENUM VnckTasklistGroupingType ##### -->
 <para>
 
 </para>
@@ -109,7 +109,7 @@ WnckTasklist
 @relief: 
 
 
-<!-- ##### USER_FUNCTION WnckLoadIconFunction ##### -->
+<!-- ##### USER_FUNCTION VnckLoadIconFunction ##### -->
 <para>
 
 </para>

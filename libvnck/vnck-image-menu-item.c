@@ -22,7 +22,7 @@
 
 #define SPACING 6
 
-struct _WnckImageMenuItem
+struct _VnckImageMenuItem
 {
   GtkMenuItem  parent;
 
@@ -33,12 +33,12 @@ struct _WnckImageMenuItem
   gchar       *label;
 };
 
-G_DEFINE_TYPE (WnckImageMenuItem, vnck_image_menu_item, GTK_TYPE_MENU_ITEM)
+G_DEFINE_TYPE (VnckImageMenuItem, vnck_image_menu_item, GTK_TYPE_MENU_ITEM)
 
 static void
 vnck_image_menu_item_finalize (GObject *object)
 {
-  WnckImageMenuItem *item;
+  VnckImageMenuItem *item;
 
   item = VNCK_IMAGE_MENU_ITEM (object);
 
@@ -53,7 +53,7 @@ vnck_image_menu_item_get_preferred_width (GtkWidget *widget,
                                           gint      *natural)
 {
   GtkWidgetClass *widget_class;
-  WnckImageMenuItem *item;
+  VnckImageMenuItem *item;
   GtkRequisition image_requisition;
 
   widget_class = GTK_WIDGET_CLASS (vnck_image_menu_item_parent_class);
@@ -78,7 +78,7 @@ vnck_image_menu_item_size_allocate (GtkWidget     *widget,
                                     GtkAllocation *allocation)
 {
   GtkWidgetClass *widget_class;
-  WnckImageMenuItem *item;
+  VnckImageMenuItem *item;
   GtkRequisition image_requisition;
   GtkAllocation box_allocation;
 
@@ -110,7 +110,7 @@ vnck_image_menu_item_size_allocate (GtkWidget     *widget,
 static const gchar *
 vnck_image_menu_item_get_label (GtkMenuItem *menu_item)
 {
-  WnckImageMenuItem *item;
+  VnckImageMenuItem *item;
 
   item = VNCK_IMAGE_MENU_ITEM (menu_item);
 
@@ -121,7 +121,7 @@ static void
 vnck_image_menu_item_toggle_size_request (GtkMenuItem *menu_item,
                                           gint        *requisition)
 {
-  WnckImageMenuItem *item;
+  VnckImageMenuItem *item;
   GtkRequisition image_requisition;
 
   item = VNCK_IMAGE_MENU_ITEM (menu_item);
@@ -141,7 +141,7 @@ static void
 vnck_image_menu_item_set_label (GtkMenuItem *menu_item,
                                 const gchar *label)
 {
-  WnckImageMenuItem *item;
+  VnckImageMenuItem *item;
 
   item = VNCK_IMAGE_MENU_ITEM (menu_item);
 
@@ -156,7 +156,7 @@ vnck_image_menu_item_set_label (GtkMenuItem *menu_item,
 }
 
 static void
-vnck_image_menu_item_class_init (WnckImageMenuItemClass *item_class)
+vnck_image_menu_item_class_init (VnckImageMenuItemClass *item_class)
 {
   GObjectClass *object_class;
   GtkWidgetClass *widget_class;
@@ -177,7 +177,7 @@ vnck_image_menu_item_class_init (WnckImageMenuItemClass *item_class)
 }
 
 static void
-vnck_image_menu_item_init (WnckImageMenuItem *item)
+vnck_image_menu_item_init (VnckImageMenuItem *item)
 {
   GtkAccelLabel *accel_label;
 
@@ -212,7 +212,7 @@ vnck_image_menu_item_new_with_label (const gchar *label)
 }
 
 void
-vnck_image_menu_item_set_image_from_icon_pixbuf (WnckImageMenuItem *item,
+vnck_image_menu_item_set_image_from_icon_pixbuf (VnckImageMenuItem *item,
                                                  GdkPixbuf         *pixbuf)
 {
   gtk_image_set_from_pixbuf (GTK_IMAGE (item->image), pixbuf);
@@ -220,21 +220,21 @@ vnck_image_menu_item_set_image_from_icon_pixbuf (WnckImageMenuItem *item,
 }
 
 void
-vnck_image_menu_item_set_image_from_window (WnckImageMenuItem *item,
-                                            WnckWindow        *window)
+vnck_image_menu_item_set_image_from_window (VnckImageMenuItem *item,
+                                            VnckWindow        *window)
 {
   _vnck_selector_set_window_icon (item->image, window);
   gtk_widget_show (item->image);
 }
 
 void
-vnck_image_menu_item_make_label_bold (WnckImageMenuItem *item)
+vnck_image_menu_item_make_label_bold (VnckImageMenuItem *item)
 {
   _make_gtk_label_bold (GTK_LABEL (item->accel_label));
 }
 
 void
-vnck_image_menu_item_make_label_normal (WnckImageMenuItem *item)
+vnck_image_menu_item_make_label_normal (VnckImageMenuItem *item)
 {
   _make_gtk_label_normal (GTK_LABEL (item->accel_label));
 }

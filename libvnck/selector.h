@@ -30,28 +30,28 @@
 
 G_BEGIN_DECLS
 #define VNCK_TYPE_SELECTOR              (vnck_selector_get_type ())
-#define VNCK_SELECTOR(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_SELECTOR, WnckSelector))
-#define VNCK_SELECTOR_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_SELECTOR, WnckSelectorClass))
+#define VNCK_SELECTOR(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), VNCK_TYPE_SELECTOR, VnckSelector))
+#define VNCK_SELECTOR_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_SELECTOR, VnckSelectorClass))
 #define VNCK_IS_SELECTOR(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_SELECTOR))
 #define VNCK_IS_SELECTOR_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_SELECTOR))
-#define VNCK_SELECTOR_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_SELECTOR, WnckSelectorClass))
-typedef struct _WnckSelector WnckSelector;
-typedef struct _WnckSelectorClass WnckSelectorClass;
-typedef struct _WnckSelectorPrivate WnckSelectorPrivate;
+#define VNCK_SELECTOR_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_SELECTOR, VnckSelectorClass))
+typedef struct _VnckSelector VnckSelector;
+typedef struct _VnckSelectorClass VnckSelectorClass;
+typedef struct _VnckSelectorPrivate VnckSelectorPrivate;
 
 /**
- * WnckSelector:
+ * VnckSelector:
  *
- * The #WnckSelector struct contains only private fields and should not be
+ * The #VnckSelector struct contains only private fields and should not be
  * directly accessed.
  */
-struct _WnckSelector
+struct _VnckSelector
 {
   GtkMenuBar parent_instance;
-  WnckSelectorPrivate *priv;
+  VnckSelectorPrivate *priv;
 };
 
-struct _WnckSelectorClass 
+struct _VnckSelectorClass 
 {
   GtkMenuBarClass parent_class;
   

@@ -45,7 +45,7 @@ static void        vnck_workspace_accessible_get_size            (AtkComponent  
                                                                   int                          *width,
                                                                   int                          *height);
 
-G_DEFINE_TYPE_WITH_CODE (WnckWorkspaceAccessible,
+G_DEFINE_TYPE_WITH_CODE (VnckWorkspaceAccessible,
                          vnck_workspace_accessible,
                          ATK_TYPE_GOBJECT_ACCESSIBLE,
                          G_IMPLEMENT_INTERFACE (ATK_TYPE_COMPONENT,
@@ -71,7 +71,7 @@ vnck_workspace_accessible_get_extents (AtkComponent *component,
                                        AtkCoordType  coords)
 {
   AtkGObjectAccessible *atk_gobj;
-  WnckPager *pager;
+  VnckPager *pager;
   GdkRectangle rect;
   GtkWidget *widget;
   AtkObject *parent;
@@ -156,7 +156,7 @@ vnck_workspace_accessible_contains (AtkComponent *component,
 }
 
 static void
-vnck_workspace_accessible_class_init (WnckWorkspaceAccessibleClass *klass)
+vnck_workspace_accessible_class_init (VnckWorkspaceAccessibleClass *klass)
 {
   AtkObjectClass *class = ATK_OBJECT_CLASS (klass);
 
@@ -166,7 +166,7 @@ vnck_workspace_accessible_class_init (WnckWorkspaceAccessibleClass *klass)
 }
 
 static void
-vnck_workspace_accessible_init (WnckWorkspaceAccessible *accessible)
+vnck_workspace_accessible_init (VnckWorkspaceAccessible *accessible)
 {
 }
 

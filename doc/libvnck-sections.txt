@@ -3,8 +3,8 @@
 
 <SECTION>
 <FILE>window</FILE>
-<TITLE>WnckWindow</TITLE>
-WnckWindow
+<TITLE>VnckWindow</TITLE>
+VnckWindow
 vnck_window_get
 vnck_window_get_screen
 vnck_window_has_name
@@ -26,10 +26,10 @@ vnck_window_get_session_id_utf8
 vnck_window_get_pid
 vnck_window_get_sort_order
 vnck_window_set_sort_order
-WnckWindowType
+VnckWindowType
 vnck_window_get_window_type
 vnck_window_set_window_type
-WnckWindowState
+VnckWindowState
 vnck_window_get_state
 vnck_window_is_minimized
 vnck_window_is_maximized_horizontally
@@ -45,7 +45,7 @@ vnck_window_is_skip_tasklist
 vnck_window_is_fullscreen
 vnck_window_needs_attention
 vnck_window_or_transient_needs_attention
-WnckWindowActions
+VnckWindowActions
 vnck_window_get_actions
 vnck_window_minimize
 vnck_window_unminimize
@@ -80,15 +80,15 @@ vnck_window_is_most_recently_activated
 vnck_window_activate_transient
 vnck_window_transient_is_most_recently_activated
 vnck_window_set_icon_geometry
-WnckWindowGravity
-WnckWindowMoveResizeMask
+VnckWindowGravity
+VnckWindowMoveResizeMask
 vnck_window_get_client_window_geometry
 vnck_window_get_geometry
 vnck_window_set_geometry
 vnck_window_keyboard_move
 vnck_window_keyboard_size
 <SUBSECTION Private>
-WnckWindowPrivate
+VnckWindowPrivate
 vnck_window_get_type
 <SUBSECTION Standard>
 VNCK_WINDOW
@@ -97,13 +97,13 @@ VNCK_TYPE_WINDOW
 VNCK_WINDOW_CLASS
 VNCK_IS_WINDOW_CLASS
 VNCK_WINDOW_GET_CLASS
-WnckWindowClass
+VnckWindowClass
 </SECTION>
 
 <SECTION>
 <FILE>class-group</FILE>
-<TITLE>WnckClassGroup</TITLE>
-WnckClassGroup
+<TITLE>VnckClassGroup</TITLE>
+VnckClassGroup
 vnck_class_group_get
 vnck_class_group_get_id
 vnck_class_group_get_res_class
@@ -112,7 +112,7 @@ vnck_class_group_get_icon
 vnck_class_group_get_mini_icon
 vnck_class_group_get_windows
 <SUBSECTION Private>
-WnckClassGroupPrivate
+VnckClassGroupPrivate
 vnck_class_group_get_type
 <SUBSECTION Standard>
 VNCK_CLASS_GROUP
@@ -121,13 +121,13 @@ VNCK_TYPE_CLASS_GROUP
 VNCK_CLASS_GROUP_CLASS
 VNCK_IS_CLASS_GROUP_CLASS
 VNCK_CLASS_GROUP_GET_CLASS
-WnckClassGroupClass
+VnckClassGroupClass
 </SECTION>
 
 <SECTION>
 <FILE>application</FILE>
-<TITLE>WnckApplication</TITLE>
-WnckApplication
+<TITLE>VnckApplication</TITLE>
+VnckApplication
 vnck_application_get
 vnck_application_get_xid
 vnck_application_get_name
@@ -140,7 +140,7 @@ vnck_application_get_startup_id
 vnck_application_get_windows
 vnck_application_get_n_windows
 <SUBSECTION Private>
-WnckApplicationPrivate
+VnckApplicationPrivate
 vnck_application_get_type
 <SUBSECTION Standard>
 VNCK_APPLICATION
@@ -149,13 +149,13 @@ VNCK_TYPE_APPLICATION
 VNCK_APPLICATION_CLASS
 VNCK_IS_APPLICATION_CLASS
 VNCK_APPLICATION_GET_CLASS
-WnckApplicationClass
+VnckApplicationClass
 </SECTION>
 
 <SECTION>
 <FILE>workspace</FILE>
-<TITLE>WnckWorkspace</TITLE>
-WnckWorkspace
+<TITLE>VnckWorkspace</TITLE>
+VnckWorkspace
 vnck_workspace_get_screen
 vnck_workspace_get_number
 vnck_workspace_get_name
@@ -167,11 +167,11 @@ vnck_workspace_get_viewport_y
 vnck_workspace_is_virtual
 vnck_workspace_get_layout_row
 vnck_workspace_get_layout_column
-WnckMotionDirection
+VnckMotionDirection
 vnck_workspace_get_neighbor
 vnck_workspace_activate
 <SUBSECTION Private>
-WnckWorkspacePrivate
+VnckWorkspacePrivate
 vnck_workspace_get_type
 <SUBSECTION Standard>
 VNCK_WORKSPACE
@@ -180,13 +180,13 @@ VNCK_TYPE_WORKSPACE
 VNCK_WORKSPACE_CLASS
 VNCK_IS_WORKSPACE_CLASS
 VNCK_WORKSPACE_GET_CLASS
-WnckWorkspaceClass
+VnckWorkspaceClass
 </SECTION>
 
 <SECTION>
 <FILE>screen</FILE>
-<TITLE>WnckScreen</TITLE>
-WnckScreen
+<TITLE>VnckScreen</TITLE>
+VnckScreen
 vnck_screen_get_default
 vnck_screen_get
 vnck_screen_get_for_root
@@ -207,7 +207,7 @@ vnck_screen_get_workspace_count
 vnck_screen_change_workspace_count
 vnck_screen_try_set_workspace_layout
 vnck_screen_release_workspace_layout
-WnckWorkspaceLayout
+VnckWorkspaceLayout
 vnck_screen_calc_workspace_layout
 vnck_screen_free_workspace_layout
 vnck_screen_move_viewport
@@ -215,14 +215,14 @@ vnck_screen_get_background_pixmap
 vnck_screen_get_showing_desktop
 vnck_screen_toggle_showing_desktop
 <SUBSECTION Private>
-WnckScreenPrivate
+VnckScreenPrivate
 vnck_screen_get_type
 # FIXME: the first two VNCK_TYPE_ are dummy stuff gtk-doc generates, the other
 # two should be added when _vnck_screen_get_workspace_layout becomes public
 VNCK_TYPE___VNCK_LAYOUT_CORNER
 VNCK_TYPE___VNCK_LAYOUT_ORIENTATION
-_WnckLayoutCorner
-_WnckLayoutOrientation
+_VnckLayoutCorner
+_VnckLayoutOrientation
 <SUBSECTION Standard>
 VNCK_SCREEN
 VNCK_IS_SCREEN
@@ -230,26 +230,26 @@ VNCK_TYPE_SCREEN
 VNCK_SCREEN_CLASS
 VNCK_IS_SCREEN_CLASS
 VNCK_SCREEN_GET_CLASS
-WnckScreenClass
+VnckScreenClass
 </SECTION>
 
 # Widgets
 
 <SECTION>
 <FILE>pager</FILE>
-<TITLE>WnckPager</TITLE>
-WnckPager
+<TITLE>VnckPager</TITLE>
+VnckPager
 vnck_pager_new
 vnck_pager_set_orientation
 vnck_pager_set_n_rows
-WnckPagerDisplayMode
+VnckPagerDisplayMode
 vnck_pager_set_display_mode
-WnckPagerScrollMode
+VnckPagerScrollMode
 vnck_pager_set_scroll_mode
 vnck_pager_set_show_all
 vnck_pager_set_shadow_type
 <SUBSECTION Private>
-WnckPagerPrivate
+VnckPagerPrivate
 vnck_pager_get_type
 <SUBSECTION Standard>
 VNCK_PAGER
@@ -258,16 +258,16 @@ VNCK_TYPE_PAGER
 VNCK_PAGER_CLASS
 VNCK_IS_PAGER_CLASS
 VNCK_PAGER_GET_CLASS
-WnckPagerClass
+VnckPagerClass
 </SECTION>
 
 <SECTION>
 <FILE>selector</FILE>
-<TITLE>WnckSelector</TITLE>
-WnckSelector
+<TITLE>VnckSelector</TITLE>
+VnckSelector
 vnck_selector_new
 <SUBSECTION Private>
-WnckSelectorPrivate
+VnckSelectorPrivate
 vnck_selector_get_type
 <SUBSECTION Standard>
 VNCK_SELECTOR
@@ -276,25 +276,25 @@ VNCK_TYPE_SELECTOR
 VNCK_SELECTOR_CLASS
 VNCK_IS_SELECTOR_CLASS
 VNCK_SELECTOR_GET_CLASS
-WnckSelectorClass
+VnckSelectorClass
 </SECTION>
 
 <SECTION>
 <FILE>tasklist</FILE>
-<TITLE>WnckTasklist</TITLE>
-WnckTasklist
+<TITLE>VnckTasklist</TITLE>
+VnckTasklist
 vnck_tasklist_new
-WnckTasklistGroupingType
+VnckTasklistGroupingType
 vnck_tasklist_set_grouping
 vnck_tasklist_set_grouping_limit
 vnck_tasklist_set_include_all_workspaces
 vnck_tasklist_set_switch_workspace_on_unminimize
 vnck_tasklist_set_button_relief
-WnckLoadIconFunction
+VnckLoadIconFunction
 vnck_tasklist_set_icon_loader
 vnck_tasklist_get_size_hint_list
 <SUBSECTION Private>
-WnckTasklistPrivate
+VnckTasklistPrivate
 vnck_tasklist_get_type
 <SUBSECTION Standard>
 VNCK_TASKLIST
@@ -303,7 +303,7 @@ VNCK_TYPE_TASKLIST
 VNCK_TASKLIST_CLASS
 VNCK_IS_TASKLIST_CLASS
 VNCK_TASKLIST_GET_CLASS
-WnckTasklistClass
+VnckTasklistClass
 </SECTION>
 
 # Utilities
@@ -311,10 +311,10 @@ WnckTasklistClass
 <SECTION>
 <FILE>window-action-menu</FILE>
 <TITLE>Window Action Menu</TITLE>
-WnckActionMenu
+VnckActionMenu
 vnck_action_menu_new
 <SUBSECTION Private>
-WnckActionMenuPrivate
+VnckActionMenuPrivate
 vnck_action_menu_get_type
 <SUBSECTION Standard>
 VNCK_ACTION_MENU
@@ -323,13 +323,13 @@ VNCK_TYPE_ACTION_MENU
 VNCK_ACTION_MENU_CLASS
 VNCK_IS_ACTION_MENU_CLASS
 VNCK_ACTION_MENU_GET_CLASS
-WnckActionMenuClass
+VnckActionMenuClass
 </SECTION>
 
 <SECTION>
 <FILE>resource</FILE>
 <TITLE>Resource Usage of X Clients</TITLE>
-WnckResourceUsage
+VnckResourceUsage
 vnck_xid_read_resource_usage
 vnck_pid_read_resource_usage
 </SECTION>
@@ -346,7 +346,7 @@ vnck_set_default_mini_icon_size
 <SECTION>
 <FILE>misc</FILE>
 <TITLE>Miscellaneous Functions</TITLE>
-WnckClientType
+VnckClientType
 vnck_set_client_type
 vnck_shutdown
 </SECTION>
@@ -365,8 +365,8 @@ VNCK_CHECK_VERSION
 #<SECTION>
 <SUBSECTION Private>
 #<FILE>pager-accessible-factory</FILE>
-#<TITLE>WnckPagerAccessibleFactory</TITLE>
-WnckPagerAccessibleFactory
+#<TITLE>VnckPagerAccessibleFactory</TITLE>
+VnckPagerAccessibleFactory
 vnck_pager_accessible_factory_new
 <SUBSECTION Private>
 vnck_pager_accessible_factory_get_type
@@ -377,13 +377,13 @@ VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY
 VNCK_PAGER_ACCESSIBLE_FACTORY_CLASS
 VNCK_IS_PAGER_ACCESSIBLE_FACTORY_CLASS
 VNCK_PAGER_ACCESSIBLE_FACTORY_GET_CLASS
-WnckPagerAccessibleFactoryClass
+VnckPagerAccessibleFactoryClass
 #</SECTION>
 #
 #<SECTION>
 #<FILE>pager-accessible</FILE>
-#<TITLE>WnckPagerAccessible</TITLE>
-WnckPagerAccessible
+#<TITLE>VnckPagerAccessible</TITLE>
+VnckPagerAccessible
 vnck_pager_accessible_new
 <SUBSECTION Private>
 vnck_pager_accessible_get_type
@@ -394,13 +394,13 @@ VNCK_PAGER_TYPE_ACCESSIBLE
 VNCK_PAGER_ACCESSIBLE_CLASS
 VNCK_PAGER_IS_ACCESSIBLE_CLASS
 VNCK_PAGER_ACCESSIBLE_GET_CLASS
-WnckPagerAccessibleClass
+VnckPagerAccessibleClass
 #</SECTION>
 #
 #<SECTION>
 #<FILE>workspace-accessible-factory</FILE>
-#<TITLE>WnckWorkspaceAccessibleFactory</TITLE>
-WnckWorkspaceAccessibleFactory
+#<TITLE>VnckWorkspaceAccessibleFactory</TITLE>
+VnckWorkspaceAccessibleFactory
 vnck_workspace_accessible_factory_new
 <SUBSECTION Private>
 vnck_workspace_accessible_factory_get_type
@@ -411,13 +411,13 @@ VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY
 VNCK_WORKSPACE_ACCESSIBLE_FACTORY_CLASS
 VNCK_IS_WORKSPACE_ACCESSIBLE_FACTORY_CLASS
 VNCK_WORKSPACE_ACCESSIBLE_FACTORY_GET_CLASS
-WnckWorkspaceAccessibleFactoryClass
+VnckWorkspaceAccessibleFactoryClass
 #</SECTION>
 #
 #<SECTION>
 #<FILE>workspace-accessible</FILE>
-#<TITLE>WnckWorkspaceAccessible</TITLE>
-WnckWorkspaceAccessible
+#<TITLE>VnckWorkspaceAccessible</TITLE>
+VnckWorkspaceAccessible
 vnck_workspace_accessible_new
 <SUBSECTION Private>
 vnck_workspace_accessible_get_type
@@ -428,7 +428,7 @@ VNCK_WORKSPACE_TYPE_ACCESSIBLE
 VNCK_WORKSPACE_ACCESSIBLE_CLASS
 VNCK_IS_WORKSPACE_ACCESSIBLE_CLASS
 VNCK_WORKSPACE_ACCESSIBLE_GET_CLASS
-WnckWorkspaceAccessibleClass
+VnckWorkspaceAccessibleClass
 #</SECTION>
 #
 #<SECTION>
@@ -442,7 +442,7 @@ VNCK_SCREEN_XSCREEN
 #<FILE>xutils</FILE>
 <SUBSECTION Private>
 VNCK_APP_WINDOW_EVENT_MASK
-WnckIconCache
+VnckIconCache
 VNCK_NO_MANAGER_TOKEN
 #</SECTION>
 #

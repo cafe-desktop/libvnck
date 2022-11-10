@@ -24,22 +24,22 @@
 G_BEGIN_DECLS
 
 #define VNCK_TYPE_IMAGE_MENU_ITEM vnck_image_menu_item_get_type ()
-G_DECLARE_FINAL_TYPE (WnckImageMenuItem, vnck_image_menu_item,
+G_DECLARE_FINAL_TYPE (VnckImageMenuItem, vnck_image_menu_item,
                       VNCK, IMAGE_MENU_ITEM, GtkMenuItem)
 
 GtkWidget *vnck_image_menu_item_new                        (void);
 
 GtkWidget *vnck_image_menu_item_new_with_label             (const gchar       *label);
 
-void       vnck_image_menu_item_set_image_from_icon_pixbuf (WnckImageMenuItem *item,
+void       vnck_image_menu_item_set_image_from_icon_pixbuf (VnckImageMenuItem *item,
                                                             GdkPixbuf         *pixbuf);
 
-void       vnck_image_menu_item_set_image_from_window      (WnckImageMenuItem *item,
-                                                            WnckWindow        *window);
+void       vnck_image_menu_item_set_image_from_window      (VnckImageMenuItem *item,
+                                                            VnckWindow        *window);
 
-void       vnck_image_menu_item_make_label_bold            (WnckImageMenuItem *item);
+void       vnck_image_menu_item_make_label_bold            (VnckImageMenuItem *item);
 
-void       vnck_image_menu_item_make_label_normal          (WnckImageMenuItem *item);
+void       vnck_image_menu_item_make_label_normal          (VnckImageMenuItem *item);
 
 G_END_DECLS
 

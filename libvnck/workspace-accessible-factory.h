@@ -24,21 +24,21 @@
 G_BEGIN_DECLS
 
 #define VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY               (vnck_workspace_accessible_factory_get_type())
-#define VNCK_WORKSPACE_ACCESSIBLE_FACTORY(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, WnckWorkspaceAccessibleFactory))
-#define VNCK_WORKSPACE_ACCESSIBLE_FACTORY_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, WnckWorkspaceAccessibleFactoryClass))
+#define VNCK_WORKSPACE_ACCESSIBLE_FACTORY(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, VnckWorkspaceAccessibleFactory))
+#define VNCK_WORKSPACE_ACCESSIBLE_FACTORY_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, VnckWorkspaceAccessibleFactoryClass))
 #define VNCK_IS_WORKSPACE_ACCESSIBLE_FACTORY(obj)            (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY))
 #define VNCK_IS_WORKSPACE_ACCESSIBLE_FACTORY_CLASS(klass)    (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY))
-#define VNCK_WORKSPACE_ACCESSIBLE_FACTORY_GET_CLASS(obj)     (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, WnckWorkspaceAccessibleFactoryClass))
+#define VNCK_WORKSPACE_ACCESSIBLE_FACTORY_GET_CLASS(obj)     (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_WORKSPACE_ACCESSIBLE_FACTORY, VnckWorkspaceAccessibleFactoryClass))
 
-typedef struct _WnckWorkspaceAccessibleFactory       WnckWorkspaceAccessibleFactory;
-typedef struct _WnckWorkspaceAccessibleFactoryClass  WnckWorkspaceAccessibleFactoryClass;
+typedef struct _VnckWorkspaceAccessibleFactory       VnckWorkspaceAccessibleFactory;
+typedef struct _VnckWorkspaceAccessibleFactoryClass  VnckWorkspaceAccessibleFactoryClass;
 
-struct _WnckWorkspaceAccessibleFactory
+struct _VnckWorkspaceAccessibleFactory
 {
   AtkObjectFactory parent;
 };
 
-struct _WnckWorkspaceAccessibleFactoryClass
+struct _VnckWorkspaceAccessibleFactoryClass
 {
   AtkObjectFactoryClass parent_class;
 };

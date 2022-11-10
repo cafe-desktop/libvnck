@@ -30,9 +30,9 @@
 
 static void
 status_icon_activated (GtkStatusIcon *icon,
-                       WnckWindow    *window)
+                       VnckWindow    *window)
 {
-  WnckWorkspace *workspace;
+  VnckWorkspace *workspace;
   guint32 timestamp;
 
   /* We're in an activate callback, so gtk_get_current_time() works... */
@@ -50,13 +50,13 @@ status_icon_activated (GtkStatusIcon *icon,
 }
 
 static GtkStatusIcon *
-status_icon_get (WnckWindow *window)
+status_icon_get (VnckWindow *window)
 {
   return g_object_get_data (G_OBJECT (window), "vnck-urgency-icon");
 }
 
 static void
-status_icon_update (WnckWindow *window)
+status_icon_update (VnckWindow *window)
 {
   GtkStatusIcon *icon;
 
@@ -83,7 +83,7 @@ status_icon_update (WnckWindow *window)
 }
 
 static void
-status_icon_create (WnckWindow *window)
+status_icon_create (VnckWindow *window)
 {
   GtkStatusIcon *icon;
 
@@ -100,7 +100,7 @@ status_icon_create (WnckWindow *window)
 }
 
 static void
-status_icon_remove (WnckWindow *window)
+status_icon_remove (VnckWindow *window)
 {
   GtkStatusIcon *icon;
 
@@ -117,9 +117,9 @@ status_icon_remove (WnckWindow *window)
 }
 
 static void
-window_state_changed (WnckWindow      *window,
-                      WnckWindowState  changed_mask,
-                      WnckWindowState  new_state,
+window_state_changed (VnckWindow      *window,
+                      VnckWindowState  changed_mask,
+                      VnckWindowState  new_state,
                       gpointer         data)
 {
   GtkStatusIcon *icon;
@@ -146,22 +146,22 @@ window_state_changed (WnckWindow      *window,
 }
 
 static void
-window_icon_changed (WnckWindow *window,
+window_icon_changed (VnckWindow *window,
                      gpointer    data)
 {
   status_icon_update (window);
 }
 
 static void
-window_name_changed (WnckWindow *window,
+window_name_changed (VnckWindow *window,
                      gpointer    data)
 {
   status_icon_update (window);
 }
 
 static void
-connect_to_window (WnckScreen *screen,
-                   WnckWindow *window)
+connect_to_window (VnckScreen *screen,
+                   VnckWindow *window)
 {
   if (vnck_window_or_transient_needs_attention (window))
     {
@@ -177,8 +177,8 @@ connect_to_window (WnckScreen *screen,
 }
 
 static void
-disconnect_from_window (WnckScreen *screen,
-                        WnckWindow *window)
+disconnect_from_window (VnckScreen *screen,
+                        VnckWindow *window)
 {
   status_icon_remove (window);
 }
@@ -188,7 +188,7 @@ main (int argc, char **argv)
 {
   GOptionContext *ctxt;
   GError         *error;
-  WnckScreen     *screen;
+  VnckScreen     *screen;
 
   ctxt = g_option_context_new (NULL);
   g_option_context_set_summary (ctxt, "Monitor windows with the urgency hint "

@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-WnckPager
+VnckPager
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -20,7 +20,7 @@ WnckPager
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### STRUCT WnckPager ##### -->
+<!-- ##### STRUCT VnckPager ##### -->
 <para>
 
 </para>
@@ -55,7 +55,7 @@ WnckPager
 @Returns: 
 
 
-<!-- ##### ENUM WnckPagerDisplayMode ##### -->
+<!-- ##### ENUM VnckPagerDisplayMode ##### -->
 <para>
 
 </para>

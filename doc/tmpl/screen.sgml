@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-WnckScreen
+VnckScreen
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -20,21 +20,13 @@ WnckScreen
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### STRUCT WnckScreen ##### -->
+<!-- ##### STRUCT VnckScreen ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### SIGNAL WnckScreen::active-window-changed ##### -->
-<para>
-
-</para>
-
-@vnckscreen: the object which received the signal.
-@arg1: 
-
-<!-- ##### SIGNAL WnckScreen::active-workspace-changed ##### -->
+<!-- ##### SIGNAL VnckScreen::active-window-changed ##### -->
 <para>
 
 </para>
@@ -42,7 +34,7 @@ WnckScreen
 @vnckscreen: the object which received the signal.
 @arg1: 
 
-<!-- ##### SIGNAL WnckScreen::application-closed ##### -->
+<!-- ##### SIGNAL VnckScreen::active-workspace-changed ##### -->
 <para>
 
 </para>
@@ -50,7 +42,7 @@ WnckScreen
 @vnckscreen: the object which received the signal.
 @arg1: 
 
-<!-- ##### SIGNAL WnckScreen::application-opened ##### -->
+<!-- ##### SIGNAL VnckScreen::application-closed ##### -->
 <para>
 
 </para>
@@ -58,14 +50,7 @@ WnckScreen
 @vnckscreen: the object which received the signal.
 @arg1: 
 
-<!-- ##### SIGNAL WnckScreen::background-changed ##### -->
-<para>
-
-</para>
-
-@vnckscreen: the object which received the signal.
-
-<!-- ##### SIGNAL WnckScreen::class-group-closed ##### -->
+<!-- ##### SIGNAL VnckScreen::application-opened ##### -->
 <para>
 
 </para>
@@ -73,7 +58,14 @@ WnckScreen
 @vnckscreen: the object which received the signal.
 @arg1: 
 
-<!-- ##### SIGNAL WnckScreen::class-group-opened ##### -->
+<!-- ##### SIGNAL VnckScreen::background-changed ##### -->
+<para>
+
+</para>
+
+@vnckscreen: the object which received the signal.
+
+<!-- ##### SIGNAL VnckScreen::class-group-closed ##### -->
 <para>
 
 </para>
@@ -81,21 +73,7 @@ WnckScreen
 @vnckscreen: the object which received the signal.
 @arg1: 
 
-<!-- ##### SIGNAL WnckScreen::showing-desktop-changed ##### -->
-<para>
-
-</para>
-
-@vnckscreen: the object which received the signal.
-
-<!-- ##### SIGNAL WnckScreen::viewports-changed ##### -->
-<para>
-
-</para>
-
-@vnckscreen: the object which received the signal.
-
-<!-- ##### SIGNAL WnckScreen::window-closed ##### -->
+<!-- ##### SIGNAL VnckScreen::class-group-opened ##### -->
 <para>
 
 </para>
@@ -103,29 +81,21 @@ WnckScreen
 @vnckscreen: the object which received the signal.
 @arg1: 
 
-<!-- ##### SIGNAL WnckScreen::window-manager-changed ##### -->
+<!-- ##### SIGNAL VnckScreen::showing-desktop-changed ##### -->
 <para>
 
 </para>
 
 @vnckscreen: the object which received the signal.
 
-<!-- ##### SIGNAL WnckScreen::window-opened ##### -->
-<para>
-
-</para>
-
-@vnckscreen: the object which received the signal.
-@arg1: 
-
-<!-- ##### SIGNAL WnckScreen::window-stacking-changed ##### -->
+<!-- ##### SIGNAL VnckScreen::viewports-changed ##### -->
 <para>
 
 </para>
 
 @vnckscreen: the object which received the signal.
 
-<!-- ##### SIGNAL WnckScreen::workspace-created ##### -->
+<!-- ##### SIGNAL VnckScreen::window-closed ##### -->
 <para>
 
 </para>
@@ -133,7 +103,37 @@ WnckScreen
 @vnckscreen: the object which received the signal.
 @arg1: 
 
-<!-- ##### SIGNAL WnckScreen::workspace-destroyed ##### -->
+<!-- ##### SIGNAL VnckScreen::window-manager-changed ##### -->
+<para>
+
+</para>
+
+@vnckscreen: the object which received the signal.
+
+<!-- ##### SIGNAL VnckScreen::window-opened ##### -->
+<para>
+
+</para>
+
+@vnckscreen: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL VnckScreen::window-stacking-changed ##### -->
+<para>
+
+</para>
+
+@vnckscreen: the object which received the signal.
+
+<!-- ##### SIGNAL VnckScreen::workspace-created ##### -->
+<para>
+
+</para>
+
+@vnckscreen: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL VnckScreen::workspace-destroyed ##### -->
 <para>
 
 </para>
@@ -325,7 +325,7 @@ WnckScreen
 @current_token: 
 
 
-<!-- ##### STRUCT WnckWorkspaceLayout ##### -->
+<!-- ##### STRUCT VnckWorkspaceLayout ##### -->
 <para>
 
 </para>

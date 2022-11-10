@@ -68,7 +68,7 @@ resources = gnome.compile_resources(
 )
 
 libvnck_cflags = [
-  '-DG_LOG_DOMAIN="Wnck"',
+  '-DG_LOG_DOMAIN="Vnck"',
   '-DVNCK_I_KNOW_THIS_IS_UNSTABLE',
   '-DVNCK_LOCALEDIR="@0@"'.format(localedir),
   '-DVNCK_COMPILATION',
@@ -108,7 +108,7 @@ if not introspection.disabled()
   find_program('g-ir-scanner', required: introspection.enabled())
   gnome.generate_gir(libvnck_lib,
     sources: headers + sources + enum_types,
-    namespace: 'Wnck',
+    namespace: 'Vnck',
     nsversion: MODULE_VERSION,
     export_packages: PACKAGE_NAME,
     includes: ['GObject-2.0', 'GdkPixbuf-2.0', 'Gtk-3.0'],

@@ -1,8 +1,8 @@
 #include <libvnck/libvnck.h>
 
 static void
-on_window_opened (WnckScreen *screen,
-                  WnckWindow *window,
+on_window_opened (VnckScreen *screen,
+                  VnckWindow *window,
                   gpointer    data)
 {
   /* Note: when this event is emitted while screen is initialized, there is no
@@ -12,11 +12,11 @@ on_window_opened (WnckScreen *screen,
 }
 
 static void
-on_active_window_changed (WnckScreen *screen,
-                          WnckWindow *previously_active_window,
+on_active_window_changed (VnckScreen *screen,
+                          VnckWindow *previously_active_window,
                           gpointer    data)
 {
-  WnckWindow *active_window;
+  VnckWindow *active_window;
 
   active_window = vnck_screen_get_active_window (screen);
 
@@ -31,7 +31,7 @@ main (int    argc,
       char **argv)
 {
   GMainLoop *loop;
-  WnckScreen *screen;
+  VnckScreen *screen;
 
   gdk_init (&argc, &argv);
 

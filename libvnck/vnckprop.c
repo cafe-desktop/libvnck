@@ -68,7 +68,7 @@ gboolean option_workspace = FALSE;
 gboolean option_screen = FALSE;
 
 gboolean get_from_user = TRUE;
-WnckWindow *got_from_user = NULL;
+VnckWindow *got_from_user = NULL;
 
 gulong   xid = 0;
 gulong   interact_app_xid = 0;
@@ -124,7 +124,7 @@ int      set_y = G_MAXINT;
 int      set_width = -1;
 int      set_height = -1;
 char     *set_window_type = NULL;
-WnckWindowType set_window_type_t = VNCK_WINDOW_NORMAL;
+VnckWindowType set_window_type_t = VNCK_WINDOW_NORMAL;
 
 static gboolean
 option_parse (const char  *option_name,
@@ -316,7 +316,7 @@ timestamp_predicate (Display *display,
 }
 
 static guint32
-get_xserver_timestamp (WnckScreen *screen)
+get_xserver_timestamp (VnckScreen *screen)
 {
   Display *display;
   int number;
@@ -842,7 +842,7 @@ validate_options (void)
 }
 
 static void
-update_screen (WnckScreen *screen)
+update_screen (VnckScreen *screen)
 {
   int viewport_x;
   int viewport_y;
@@ -871,7 +871,7 @@ update_screen (WnckScreen *screen)
 
   if (set_viewport_x != -1 || set_viewport_y != -1)
     {
-       WnckWorkspace *active_space;
+       VnckWorkspace *active_space;
 
        active_space = vnck_screen_get_active_workspace (screen);
 
@@ -908,7 +908,7 @@ update_screen (WnckScreen *screen)
 }
 
 static void
-update_workspace (WnckWorkspace *space)
+update_workspace (VnckWorkspace *space)
 {
   unsigned int timestamp;
 
@@ -923,10 +923,10 @@ update_workspace (WnckWorkspace *space)
 
 
 static void
-update_window (WnckWindow *window)
+update_window (VnckWindow *window)
 {
-  WnckWindowActions        actions;
-  WnckWindowMoveResizeMask geometry_mask;
+  VnckWindowActions        actions;
+  VnckWindowMoveResizeMask geometry_mask;
   unsigned int             timestamp;
 
   actions = vnck_window_get_actions (window);
@@ -1026,8 +1026,8 @@ update_window (WnckWindow *window)
     {
       if (actions & VNCK_WINDOW_ACTION_CHANGE_WORKSPACE)
         {
-           WnckScreen    *screen;
-           WnckWorkspace *space;
+           VnckScreen    *screen;
+           VnckWorkspace *space;
 
            screen = vnck_window_get_screen (window);
            space = vnck_screen_get_workspace (screen, set_workspace);
@@ -1044,14 +1044,14 @@ update_window (WnckWindow *window)
   /* do activation after the workspace change */
   if (set_activate)
     {
-       WnckScreen    *screen;
-       WnckWorkspace *space;
+       VnckScreen    *screen;
+       VnckWorkspace *space;
 
        screen = vnck_window_get_screen (window);
        space = vnck_window_get_workspace (window);
        if (space != NULL)
          {
-           WnckWorkspace *active_space;
+           VnckWorkspace *active_space;
 
            active_space = vnck_screen_get_active_workspace (screen);
            if (space != active_space)
@@ -1086,7 +1086,7 @@ update_window (WnckWindow *window)
 static void
 list_windows (GList *windows)
 {
-  WnckWindow *window;
+  VnckWindow *window;
   GList      *l;
   const char *buf;
 
@@ -1106,11 +1106,11 @@ list_windows (GList *windows)
 }
 
 static void
-list_screen (WnckScreen *screen)
+list_screen (VnckScreen *screen)
 {
   if (list_workspaces)
     {
-      WnckWorkspace *space;
+      VnckWorkspace *space;
       GList         *spaces;
       GList         *l;
 
@@ -1131,9 +1131,9 @@ list_screen (WnckScreen *screen)
 }
 
 static void
-list_workspace (WnckWorkspace *space)
+list_workspace (VnckWorkspace *space)
 {
-  WnckWindow *window;
+  VnckWindow *window;
   GList      *all_windows;
   GList      *l;
   GList      *space_windows;
@@ -1160,26 +1160,26 @@ list_workspace (WnckWorkspace *space)
 }
 
 static void
-list_class_group (WnckClassGroup *class_group)
+list_class_group (VnckClassGroup *class_group)
 {
   list_windows (vnck_class_group_get_windows (class_group));
 }
 
 static void
-list_application (WnckApplication *app)
+list_application (VnckApplication *app)
 {
   list_windows (vnck_application_get_windows (app));
 }
 
 static void
-print_screen (WnckScreen *screen)
+print_screen (VnckScreen *screen)
 {
-  WnckWorkspace *space;
-  WnckWindow    *window;
+  VnckWorkspace *space;
+  VnckWindow    *window;
   const char    *buf;
   char          *free_buf;
 #if 0
-  WnckLayoutOrientation orientation;
+  VnckLayoutOrientation orientation;
   int            rows;
   int            columns;
 #endif
@@ -1249,10 +1249,10 @@ print_screen (WnckScreen *screen)
 }
 
 static void
-print_workspace (WnckWorkspace *space)
+print_workspace (VnckWorkspace *space)
 {
-  WnckScreen    *screen;
-  WnckWorkspace *neighbor;
+  VnckScreen    *screen;
+  VnckWorkspace *neighbor;
   const char    *buf;
   char          *free_buf;
 
@@ -1340,7 +1340,7 @@ print_workspace (WnckWorkspace *space)
 }
 
 static void
-print_class_group (WnckClassGroup *class_group)
+print_class_group (VnckClassGroup *class_group)
 {
   GList *windows;
 
@@ -1369,7 +1369,7 @@ print_class_group (WnckClassGroup *class_group)
 }
 
 static void
-print_application (WnckApplication *app)
+print_application (VnckApplication *app)
 {
   const char *buf;
   char       *free_buf;
@@ -1407,14 +1407,14 @@ print_application (WnckApplication *app)
 }
 
 static void
-print_window (WnckWindow *window)
+print_window (VnckWindow *window)
 {
-  WnckWindowType     type;
+  VnckWindowType     type;
   int                x, y, w, h;
-  WnckClassGroup    *class_group;
-  WnckWorkspace     *space;
-  WnckScreen        *screen;
-  WnckWindowActions  actions;
+  VnckClassGroup    *class_group;
+  VnckWorkspace     *space;
+  VnckScreen        *screen;
+  VnckWindowActions  actions;
   const char        *buf;
   char              *free_buf;
 
@@ -1707,7 +1707,7 @@ wm_state_set (Display *display,
   return TRUE;
 }
 
-static WnckWindow *
+static VnckWindow *
 find_managed_window (Display *display,
                      Window   window)
 {
@@ -1715,7 +1715,7 @@ find_managed_window (Display *display,
   Window      root;
   Window      parent;
   Window     *kids = NULL;
-  WnckWindow *retval;
+  VnckWindow *retval;
   guint       i, nkids;
   int         result;
 
@@ -1861,7 +1861,7 @@ main (int argc, char **argv)
   GOptionContext *ctxt;
   GOptionGroup   *group;
   GError         *error;
-  WnckScreen     *screen;
+  VnckScreen     *screen;
 
   bindtextdomain (GETTEXT_PACKAGE, VNCK_LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -1953,7 +1953,7 @@ main (int argc, char **argv)
 
   if (option_workspace && interact_space < 0)
     {
-      WnckWorkspace *space;
+      VnckWorkspace *space;
       space = vnck_screen_get_active_workspace (screen);
       if (space == NULL)
         interact_space = 0;
@@ -1980,7 +1980,7 @@ main (int argc, char **argv)
   else if (mode == WORKSPACE_READ_MODE || mode == WORKSPACE_LIST_MODE ||
            mode == WORKSPACE_WRITE_MODE)
     {
-      WnckWorkspace *space;
+      VnckWorkspace *space;
 
       g_assert (interact_space != -1);
 
@@ -2003,7 +2003,7 @@ main (int argc, char **argv)
     }
   else if (mode == CLASS_GROUP_READ_MODE || mode == CLASS_GROUP_LIST_MODE)
     {
-      WnckClassGroup *class_group;
+      VnckClassGroup *class_group;
 
       if (got_from_user)
         class_group = vnck_window_get_class_group (got_from_user);
@@ -2028,7 +2028,7 @@ main (int argc, char **argv)
     }
   else if (mode == APPLICATION_READ_MODE || mode == APPLICATION_LIST_MODE)
     {
-      WnckApplication *app;
+      VnckApplication *app;
 
       if (got_from_user)
         app = vnck_window_get_application (got_from_user);
@@ -2051,7 +2051,7 @@ main (int argc, char **argv)
     }
   else
     {
-      WnckWindow *window;
+      VnckWindow *window;
 
       if (got_from_user)
         window = got_from_user;

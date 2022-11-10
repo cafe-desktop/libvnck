@@ -41,19 +41,19 @@
 /**
  * SECTION:screen
  * @short_description: an object representing a screen.
- * @see_also: #WnckWindow, #WnckWorkspace
+ * @see_also: #VnckWindow, #VnckWorkspace
  * @stability: Unstable
  *
- * The #WnckScreen represents a physical screen. A screen may consist of
+ * The #VnckScreen represents a physical screen. A screen may consist of
  * multiple monitors which are merged to form a large screen area. The
- * #WnckScreen is at the bottom of the libvnck stack of objects: #WnckWorkspace
- * objects exist a #WnckScreen and #WnckWindow objects are displayed on a
- * #WnckWorkspace.
+ * #VnckScreen is at the bottom of the libvnck stack of objects: #VnckWorkspace
+ * objects exist a #VnckScreen and #VnckWindow objects are displayed on a
+ * #VnckWorkspace.
  *
- * The #WnckScreen corresponds to the notion of
+ * The #VnckScreen corresponds to the notion of
  * <classname>GdkScreen</classname> in GDK.
  *
- * The #WnckScreen objects are always owned by libvnck and must not be
+ * The #VnckScreen objects are always owned by libvnck and must not be
  * referenced or unreferenced.
  */
 
@@ -65,9 +65,9 @@
 #define _NET_WM_BOTTOMRIGHT 2
 #define _NET_WM_BOTTOMLEFT  3
 
-static WnckScreen** screens = NULL;
+static VnckScreen** screens = NULL;
 
-struct _WnckScreenPrivate
+struct _VnckScreenPrivate
 {
   int number;
   Window xroot;
@@ -87,10 +87,10 @@ struct _WnckScreenPrivate
    * These are usually shared for all screens, although this is not guaranteed
    * to be true.
    */
-  WnckWindow *active_window;
-  WnckWindow *previously_active_window;
+  VnckWindow *active_window;
+  VnckWindow *previously_active_window;
 
-  WnckWorkspace *active_workspace;
+  VnckWorkspace *active_workspace;
 
   /* Provides the sorting order number for the next window, to make
    * sure windows remain sorted in the order they appear.
@@ -110,7 +110,7 @@ struct _WnckScreenPrivate
   guint showing_desktop : 1;
 
   guint vertical_workspaces : 1;
-  _WnckLayoutCorner starting_corner;
+  _VnckLayoutCorner starting_corner;
   gint rows_of_workspaces;
   gint columns_of_workspaces;
 
@@ -129,7 +129,7 @@ struct _WnckScreenPrivate
   guint need_update_wm : 1;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (WnckScreen, vnck_screen, G_TYPE_OBJECT);
+G_DEFINE_TYPE_WITH_PRIVATE (VnckScreen, vnck_screen, G_TYPE_OBJECT);
 
 enum {
   ACTIVE_WINDOW_CHANGED,
@@ -152,48 +152,48 @@ enum {
 
 static void vnck_screen_finalize    (GObject         *object);
 
-static void update_client_list        (WnckScreen      *screen);
-static void update_workspace_list     (WnckScreen      *screen);
-static void update_viewport_settings  (WnckScreen      *screen);
-static void update_active_workspace   (WnckScreen      *screen);
-static void update_active_window      (WnckScreen      *screen);
-static void update_workspace_layout   (WnckScreen      *screen);
-static void update_workspace_names    (WnckScreen      *screen);
-static void update_showing_desktop    (WnckScreen      *screen);
+static void update_client_list        (VnckScreen      *screen);
+static void update_workspace_list     (VnckScreen      *screen);
+static void update_viewport_settings  (VnckScreen      *screen);
+static void update_active_workspace   (VnckScreen      *screen);
+static void update_active_window      (VnckScreen      *screen);
+static void update_workspace_layout   (VnckScreen      *screen);
+static void update_workspace_names    (VnckScreen      *screen);
+static void update_showing_desktop    (VnckScreen      *screen);
 
-static void queue_update            (WnckScreen      *screen);
-static void unqueue_update          (WnckScreen      *screen);
-static void do_update_now           (WnckScreen      *screen);
+static void queue_update            (VnckScreen      *screen);
+static void unqueue_update          (VnckScreen      *screen);
+static void do_update_now           (VnckScreen      *screen);
 
-static void emit_active_window_changed    (WnckScreen      *screen);
-static void emit_active_workspace_changed (WnckScreen      *screen,
-                                           WnckWorkspace   *previous_space);
-static void emit_window_stacking_changed  (WnckScreen      *screen);
-static void emit_window_opened            (WnckScreen      *screen,
-                                           WnckWindow      *window);
-static void emit_window_closed            (WnckScreen      *screen,
-                                           WnckWindow      *window);
-static void emit_workspace_created        (WnckScreen      *screen,
-                                           WnckWorkspace   *space);
-static void emit_workspace_destroyed      (WnckScreen      *screen,
-                                           WnckWorkspace   *space);
-static void emit_application_opened       (WnckScreen      *screen,
-                                           WnckApplication *app);
-static void emit_application_closed       (WnckScreen      *screen,
-                                           WnckApplication *app);
-static void emit_class_group_opened       (WnckScreen      *screen,
-                                           WnckClassGroup  *class_group);
-static void emit_class_group_closed       (WnckScreen      *screen,
-                                           WnckClassGroup  *class_group);
-static void emit_background_changed       (WnckScreen      *screen);
-static void emit_showing_desktop_changed  (WnckScreen      *screen);
-static void emit_viewports_changed        (WnckScreen      *screen);
-static void emit_wm_changed               (WnckScreen *screen);
+static void emit_active_window_changed    (VnckScreen      *screen);
+static void emit_active_workspace_changed (VnckScreen      *screen,
+                                           VnckWorkspace   *previous_space);
+static void emit_window_stacking_changed  (VnckScreen      *screen);
+static void emit_window_opened            (VnckScreen      *screen,
+                                           VnckWindow      *window);
+static void emit_window_closed            (VnckScreen      *screen,
+                                           VnckWindow      *window);
+static void emit_workspace_created        (VnckScreen      *screen,
+                                           VnckWorkspace   *space);
+static void emit_workspace_destroyed      (VnckScreen      *screen,
+                                           VnckWorkspace   *space);
+static void emit_application_opened       (VnckScreen      *screen,
+                                           VnckApplication *app);
+static void emit_application_closed       (VnckScreen      *screen,
+                                           VnckApplication *app);
+static void emit_class_group_opened       (VnckScreen      *screen,
+                                           VnckClassGroup  *class_group);
+static void emit_class_group_closed       (VnckScreen      *screen,
+                                           VnckClassGroup  *class_group);
+static void emit_background_changed       (VnckScreen      *screen);
+static void emit_showing_desktop_changed  (VnckScreen      *screen);
+static void emit_viewports_changed        (VnckScreen      *screen);
+static void emit_wm_changed               (VnckScreen *screen);
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
 static void
-vnck_screen_init (WnckScreen *screen)
+vnck_screen_init (VnckScreen *screen)
 {
   screen->priv = vnck_screen_get_instance_private (screen);
 
@@ -204,7 +204,7 @@ vnck_screen_init (WnckScreen *screen)
 }
 
 static void
-vnck_screen_class_init (WnckScreenClass *klass)
+vnck_screen_class_init (VnckScreenClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -213,9 +213,9 @@ vnck_screen_class_init (WnckScreenClass *klass)
   object_class->finalize = vnck_screen_finalize;
 
   /**
-   * WnckScreen::active-window-changed:
-   * @screen: the #WnckScreen which emitted the signal.
-   * @previously_active_window: the previously active #WnckWindow before this
+   * VnckScreen::active-window-changed:
+   * @screen: the #VnckScreen which emitted the signal.
+   * @previously_active_window: the previously active #VnckWindow before this
    * change.
    *
    * Emitted when the active window on @screen has changed.
@@ -224,14 +224,14 @@ vnck_screen_class_init (WnckScreenClass *klass)
     g_signal_new ("active_window_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, active_window_changed),
+                  G_STRUCT_OFFSET (VnckScreenClass, active_window_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 1, VNCK_TYPE_WINDOW);
 
   /**
-   * WnckScreen::active-workspace-changed:
-   * @screen: the #WnckScreen which emitted the signal.
-   * @previously_active_space: the previously active #WnckWorkspace before this
+   * VnckScreen::active-workspace-changed:
+   * @screen: the #VnckScreen which emitted the signal.
+   * @previously_active_space: the previously active #VnckWorkspace before this
    * change.
    *
    * Emitted when the active workspace on @screen has changed.
@@ -240,120 +240,120 @@ vnck_screen_class_init (WnckScreenClass *klass)
     g_signal_new ("active_workspace_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, active_workspace_changed),
+                  G_STRUCT_OFFSET (VnckScreenClass, active_workspace_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 1, VNCK_TYPE_WORKSPACE);
 
   /**
-   * WnckScreen::window-stacking-changed:
-   * @screen: the #WnckScreen which emitted the signal.
+   * VnckScreen::window-stacking-changed:
+   * @screen: the #VnckScreen which emitted the signal.
    *
-   * Emitted when the stacking order of #WnckWindow on @screen has changed.
+   * Emitted when the stacking order of #VnckWindow on @screen has changed.
    */
   signals[WINDOW_STACKING_CHANGED] =
     g_signal_new ("window_stacking_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, window_stacking_changed),
+                  G_STRUCT_OFFSET (VnckScreenClass, window_stacking_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 0);
 
   /**
-   * WnckScreen::window-opened:
-   * @screen: the #WnckScreen which emitted the signal.
-   * @window: the opened #WnckWindow.
+   * VnckScreen::window-opened:
+   * @screen: the #VnckScreen which emitted the signal.
+   * @window: the opened #VnckWindow.
    *
-   * Emitted when a new #WnckWindow is opened on @screen.
+   * Emitted when a new #VnckWindow is opened on @screen.
    */
   signals[WINDOW_OPENED] =
     g_signal_new ("window_opened",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, window_opened),
+                  G_STRUCT_OFFSET (VnckScreenClass, window_opened),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 1, VNCK_TYPE_WINDOW);
 
   /**
-   * WnckScreen::window-closed:
-   * @screen: the #WnckScreen which emitted the signal.
-   * @window: the closed #WnckWindow.
+   * VnckScreen::window-closed:
+   * @screen: the #VnckScreen which emitted the signal.
+   * @window: the closed #VnckWindow.
    *
-   * Emitted when a #WnckWindow is closed on @screen.
+   * Emitted when a #VnckWindow is closed on @screen.
    */
   signals[WINDOW_CLOSED] =
     g_signal_new ("window_closed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, window_closed),
+                  G_STRUCT_OFFSET (VnckScreenClass, window_closed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 1, VNCK_TYPE_WINDOW);
 
   /**
-   * WnckScreen::workspace-created:
-   * @screen: the #WnckScreen which emitted the signal.
+   * VnckScreen::workspace-created:
+   * @screen: the #VnckScreen which emitted the signal.
    * @space: the workspace that has been created.
    *
-   * Emitted when a #WnckWorkspace is created on @screen.
+   * Emitted when a #VnckWorkspace is created on @screen.
    */
   signals[WORKSPACE_CREATED] =
     g_signal_new ("workspace_created",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, workspace_created),
+                  G_STRUCT_OFFSET (VnckScreenClass, workspace_created),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 1, VNCK_TYPE_WORKSPACE);
 
   /**
-   * WnckScreen::workspace-destroyed:
-   * @screen: the #WnckScreen which emitted the signal.
+   * VnckScreen::workspace-destroyed:
+   * @screen: the #VnckScreen which emitted the signal.
    * @space: the workspace that has been destroyed.
    *
-   * Emitted when a #WnckWorkspace is destroyed on @screen.
+   * Emitted when a #VnckWorkspace is destroyed on @screen.
    */
   signals[WORKSPACE_DESTROYED] =
     g_signal_new ("workspace_destroyed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, workspace_destroyed),
+                  G_STRUCT_OFFSET (VnckScreenClass, workspace_destroyed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 1, VNCK_TYPE_WORKSPACE);
 
   /**
-   * WnckScreen::application-opened:
-   * @screen: the #WnckScreen which emitted the signal.
-   * @app: the opened #WnckApplication.
+   * VnckScreen::application-opened:
+   * @screen: the #VnckScreen which emitted the signal.
+   * @app: the opened #VnckApplication.
    *
-   * Emitted when a new #WnckApplication is opened on @screen.
+   * Emitted when a new #VnckApplication is opened on @screen.
    */
   signals[APPLICATION_OPENED] =
     g_signal_new ("application_opened",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, application_opened),
+                  G_STRUCT_OFFSET (VnckScreenClass, application_opened),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 1, VNCK_TYPE_APPLICATION);
 
   /**
-   * WnckScreen::application-closed:
-   * @screen: the #WnckScreen which emitted the signal.
-   * @app: the closed #WnckApplication.
+   * VnckScreen::application-closed:
+   * @screen: the #VnckScreen which emitted the signal.
+   * @app: the closed #VnckApplication.
    *
-   * Emitted when a #WnckApplication is closed on @screen.
+   * Emitted when a #VnckApplication is closed on @screen.
    */
   signals[APPLICATION_CLOSED] =
     g_signal_new ("application_closed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, application_closed),
+                  G_STRUCT_OFFSET (VnckScreenClass, application_closed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 1, VNCK_TYPE_APPLICATION);
 
   /**
-   * WnckScreen::class-group-opened:
-   * @screen: the #WnckScreen which emitted the signal.
-   * @class_group: the opened #WnckClassGroup.
+   * VnckScreen::class-group-opened:
+   * @screen: the #VnckScreen which emitted the signal.
+   * @class_group: the opened #VnckClassGroup.
    *
-   * Emitted when a new #WnckClassGroup is opened on @screen.
+   * Emitted when a new #VnckClassGroup is opened on @screen.
    *
    * Since: 2.20
    */
@@ -361,16 +361,16 @@ vnck_screen_class_init (WnckScreenClass *klass)
     g_signal_new ("class_group_opened",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, class_group_opened),
+                  G_STRUCT_OFFSET (VnckScreenClass, class_group_opened),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 1, VNCK_TYPE_CLASS_GROUP);
 
   /**
-   * WnckScreen::class-group-closed:
-   * @screen: the #WnckScreen which emitted the signal.
-   * @class_group: the closed #WnckClassGroup.
+   * VnckScreen::class-group-closed:
+   * @screen: the #VnckScreen which emitted the signal.
+   * @class_group: the closed #VnckClassGroup.
    *
-   * Emitted when a #WnckClassGroup is closed on @screen.
+   * Emitted when a #VnckClassGroup is closed on @screen.
    *
    * Since: 2.20
    */
@@ -378,13 +378,13 @@ vnck_screen_class_init (WnckScreenClass *klass)
     g_signal_new ("class_group_closed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, class_group_closed),
+                  G_STRUCT_OFFSET (VnckScreenClass, class_group_closed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 1, VNCK_TYPE_CLASS_GROUP);
 
   /**
-   * WnckScreen::background-changed:
-   * @screen: the #WnckScreen which emitted the signal.
+   * VnckScreen::background-changed:
+   * @screen: the #VnckScreen which emitted the signal.
    *
    * Emitted when the background on the root window of @screen has changed.
    */
@@ -392,13 +392,13 @@ vnck_screen_class_init (WnckScreenClass *klass)
     g_signal_new ("background_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, background_changed),
+                  G_STRUCT_OFFSET (VnckScreenClass, background_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 0);
 
   /**
-   * WnckScreen::showing-desktop-changed:
-   * @screen: the #WnckScreen which emitted the signal.
+   * VnckScreen::showing-desktop-changed:
+   * @screen: the #VnckScreen which emitted the signal.
    *
    * Emitted when "showing the desktop" mode of @screen is toggled.
    *
@@ -408,16 +408,16 @@ vnck_screen_class_init (WnckScreenClass *klass)
     g_signal_new ("showing_desktop_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, showing_desktop_changed),
+                  G_STRUCT_OFFSET (VnckScreenClass, showing_desktop_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 0);
 
   /**
-   * WnckScreen::viewports-changed:
-   * @screen: the #WnckScreen which emitted the signal.
+   * VnckScreen::viewports-changed:
+   * @screen: the #VnckScreen which emitted the signal.
    *
-   * Emitted when a viewport position has changed in a #WnckWorkspace of
-   * @screen or when a #WnckWorkspace of @screen gets or loses its viewport.
+   * Emitted when a viewport position has changed in a #VnckWorkspace of
+   * @screen or when a #VnckWorkspace of @screen gets or loses its viewport.
    *
    * Since: 2.20
    */
@@ -425,13 +425,13 @@ vnck_screen_class_init (WnckScreenClass *klass)
     g_signal_new ("viewports_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, viewports_changed),
+                  G_STRUCT_OFFSET (VnckScreenClass, viewports_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 0);
 
   /**
-   * WnckScreen::window-manager-changed:
-   * @screen: the #WnckScreen which emitted the signal.
+   * VnckScreen::window-manager-changed:
+   * @screen: the #VnckScreen which emitted the signal.
    *
    * Emitted when the window manager on @screen has changed.
    *
@@ -441,7 +441,7 @@ vnck_screen_class_init (WnckScreenClass *klass)
     g_signal_new ("window_manager_changed",
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (WnckScreenClass, window_manager_changed),
+                  G_STRUCT_OFFSET (VnckScreenClass, window_manager_changed),
                   NULL, NULL, NULL,
                   G_TYPE_NONE, 0);
 }
@@ -449,7 +449,7 @@ vnck_screen_class_init (WnckScreenClass *klass)
 static void
 vnck_screen_finalize (GObject *object)
 {
-  WnckScreen *screen;
+  VnckScreen *screen;
   GList *tmp;
   gpointer weak_pointer;
 
@@ -526,7 +526,7 @@ sn_error_trap_pop (SnDisplay *display,
 
 static void
 vnck_screen_construct (Display    *display,
-                       WnckScreen *screen,
+                       VnckScreen *screen,
                        int         number)
 {
   /* Create the initial state of the screen. */
@@ -565,13 +565,13 @@ vnck_screen_construct (Display    *display,
  * vnck_screen_get:
  * @index: screen number, starting from 0.
  *
- * Gets the #WnckScreen for a given screen on the default display.
+ * Gets the #VnckScreen for a given screen on the default display.
  *
- * Return value: (transfer none): the #WnckScreen for screen @index, or %NULL
- * if no such screen exists. The returned #WnckScreen is owned by libvnck and
+ * Return value: (transfer none): the #VnckScreen for screen @index, or %NULL
+ * if no such screen exists. The returned #VnckScreen is owned by libvnck and
  * must not be referenced or unreferenced.
  **/
-WnckScreen*
+VnckScreen*
 vnck_screen_get (int index)
 {
   Display *display;
@@ -585,7 +585,7 @@ vnck_screen_get (int index)
 
   if (screens == NULL)
     {
-      screens = g_new0 (WnckScreen*, ScreenCount (display));
+      screens = g_new0 (VnckScreen*, ScreenCount (display));
       _vnck_event_filter_init ();
     }
 
@@ -599,7 +599,7 @@ vnck_screen_get (int index)
   return screens[index];
 }
 
-WnckScreen*
+VnckScreen*
 _vnck_screen_get_existing (int number)
 {
   Display *display;
@@ -618,13 +618,13 @@ _vnck_screen_get_existing (int number)
 /**
  * vnck_screen_get_default:
  *
- * Gets the default #WnckScreen on the default display.
+ * Gets the default #VnckScreen on the default display.
  *
- * Return value: (transfer none) (nullable): the default #WnckScreen. The returned
- * #WnckScreen is owned by libvnck and must not be referenced or unreferenced. This
+ * Return value: (transfer none) (nullable): the default #VnckScreen. The returned
+ * #VnckScreen is owned by libvnck and must not be referenced or unreferenced. This
  * can return %NULL if not on X11.
  **/
-WnckScreen*
+VnckScreen*
 vnck_screen_get_default (void)
 {
   int default_screen;
@@ -642,17 +642,17 @@ vnck_screen_get_default (void)
  * vnck_screen_get_for_root:
  * @root_window_id: an X window ID.
  *
- * Gets the #WnckScreen for the root window at @root_window_id, or
- * %NULL if no #WnckScreen exists for this root window.
+ * Gets the #VnckScreen for the root window at @root_window_id, or
+ * %NULL if no #VnckScreen exists for this root window.
  *
  * This function does not work if vnck_screen_get() was not called for the
- * sought #WnckScreen before, and returns %NULL.
+ * sought #VnckScreen before, and returns %NULL.
  *
- * Return value: (transfer none): the #WnckScreen for the root window at
- * @root_window_id, or %NULL. The returned #WnckScreen is owned by libvnck and
+ * Return value: (transfer none): the #VnckScreen for the root window at
+ * @root_window_id, or %NULL. The returned #VnckScreen is owned by libvnck and
  * must not be referenced or unreferenced.
  **/
-WnckScreen*
+VnckScreen*
 vnck_screen_get_for_root (gulong root_window_id)
 {
   int i;
@@ -677,17 +677,17 @@ vnck_screen_get_for_root (gulong root_window_id)
 
 /**
  * vnck_screen_get_number:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
  * Gets the index of @screen on the display to which it belongs. The first
- * #WnckScreen has an index of 0.
+ * #VnckScreen has an index of 0.
  *
  * Return value: the index of @space on @screen, or -1 on errors.
  *
  * Since: 2.20
  **/
 int
-vnck_screen_get_number (WnckScreen *screen)
+vnck_screen_get_number (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), -1);
 
@@ -696,19 +696,19 @@ vnck_screen_get_number (WnckScreen *screen)
 
 /**
  * vnck_screen_get_workspaces:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
- * Gets the list of #WnckWorkspace on @screen. The list is ordered: the
- * first element in the list is the first #WnckWorkspace, etc..
+ * Gets the list of #VnckWorkspace on @screen. The list is ordered: the
+ * first element in the list is the first #VnckWorkspace, etc..
  *
- * Return value: (element-type WnckWorkspace) (transfer none): the list of
- * #WnckWorkspace on @screen. The list should not be modified nor freed, as it
+ * Return value: (element-type VnckWorkspace) (transfer none): the list of
+ * #VnckWorkspace on @screen. The list should not be modified nor freed, as it
  * is owned by @screen.
  *
  * Since: 2.20
  **/
 GList*
-vnck_screen_get_workspaces (WnckScreen *screen)
+vnck_screen_get_workspaces (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), NULL);
 
@@ -717,17 +717,17 @@ vnck_screen_get_workspaces (WnckScreen *screen)
 
 /**
  * vnck_screen_get_workspace:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  * @workspace: a workspace index, starting from 0.
  *
- * Gets the #WnckWorkspace numbered @workspace on @screen.
+ * Gets the #VnckWorkspace numbered @workspace on @screen.
  *
- * Return value: (transfer none): the #WnckWorkspace numbered @workspace on
- * @screen, or %NULL if no such workspace exists. The returned #WnckWorkspace
+ * Return value: (transfer none): the #VnckWorkspace numbered @workspace on
+ * @screen, or %NULL if no such workspace exists. The returned #VnckWorkspace
  * is owned by libvnck and must not be referenced or unreferenced.
  **/
-WnckWorkspace*
-vnck_screen_get_workspace (WnckScreen *screen,
+VnckWorkspace*
+vnck_screen_get_workspace (VnckScreen *screen,
 			   int         workspace)
 {
   GList *list;
@@ -747,18 +747,18 @@ vnck_screen_get_workspace (WnckScreen *screen,
 
 /**
  * vnck_screen_get_active_workspace:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
- * Gets the active #WnckWorkspace on @screen. May return %NULL sometimes,
+ * Gets the active #VnckWorkspace on @screen. May return %NULL sometimes,
  * if libvnck is in a weird state due to the asynchronous nature of the
  * interaction with the window manager.
  *
- * Return value: (transfer none): the active #WnckWorkspace on @screen, or
- * %NULL. The returned #WnckWorkspace is owned by libvnck and must not be
+ * Return value: (transfer none): the active #VnckWorkspace on @screen, or
+ * %NULL. The returned #VnckWorkspace is owned by libvnck and must not be
  * referenced or unreferenced.
  **/
-WnckWorkspace*
-vnck_screen_get_active_workspace (WnckScreen *screen)
+VnckWorkspace*
+vnck_screen_get_active_workspace (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), NULL);
 
@@ -767,17 +767,17 @@ vnck_screen_get_active_workspace (WnckScreen *screen)
 
 /**
  * vnck_screen_get_active_window:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
- * Gets the active #WnckWindow on @screen. May return %NULL sometimes, since
+ * Gets the active #VnckWindow on @screen. May return %NULL sometimes, since
  * not all window managers guarantee that a window is always active.
  *
- * Return value: (transfer none): the active #WnckWindow on @screen, or %NULL.
- * The returned #WnckWindow is owned by libvnck and must not be referenced or
+ * Return value: (transfer none): the active #VnckWindow on @screen, or %NULL.
+ * The returned #VnckWindow is owned by libvnck and must not be referenced or
  * unreferenced.
  **/
-WnckWindow*
-vnck_screen_get_active_window (WnckScreen *screen)
+VnckWindow*
+vnck_screen_get_active_window (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), NULL);
 
@@ -786,20 +786,20 @@ vnck_screen_get_active_window (WnckScreen *screen)
 
 /**
  * vnck_screen_get_previously_active_window:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
- * Gets the previously active #WnckWindow on @screen. May return %NULL
+ * Gets the previously active #VnckWindow on @screen. May return %NULL
  * sometimes, since not all window managers guarantee that a window is always
  * active.
  *
- * Return value: (transfer none): the previously active #WnckWindow on @screen,
- * or %NULL. The returned #WnckWindow is owned by libvnck and must not be
+ * Return value: (transfer none): the previously active #VnckWindow on @screen,
+ * or %NULL. The returned #VnckWindow is owned by libvnck and must not be
  * referenced or unreferenced.
  *
  * Since: 2.8
  **/
-WnckWindow*
-vnck_screen_get_previously_active_window (WnckScreen *screen)
+VnckWindow*
+vnck_screen_get_previously_active_window (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), NULL);
 
@@ -808,19 +808,19 @@ vnck_screen_get_previously_active_window (WnckScreen *screen)
 
 /**
  * vnck_screen_get_windows:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
- * Gets the list of #WnckWindow on @screen. The list is not in a defined
+ * Gets the list of #VnckWindow on @screen. The list is not in a defined
  * order, but should be "stable" (windows should not be reordered in it).
  * However, the stability of the list is established by the window manager, so
  * don't blame libvnck if it breaks down.
  *
- * Return value: (element-type WnckWindow) (transfer none): the list of
- * #WnckWindow on @screen, or %NULL if there is no window on @screen. The list
+ * Return value: (element-type VnckWindow) (transfer none): the list of
+ * #VnckWindow on @screen, or %NULL if there is no window on @screen. The list
  * should not be modified nor freed, as it is owned by @screen.
  **/
 GList*
-vnck_screen_get_windows (WnckScreen *screen)
+vnck_screen_get_windows (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), NULL);
 
@@ -829,17 +829,17 @@ vnck_screen_get_windows (WnckScreen *screen)
 
 /**
  * vnck_screen_get_windows_stacked:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
- * Gets the list of #WnckWindow on @screen in bottom-to-top order.
+ * Gets the list of #VnckWindow on @screen in bottom-to-top order.
  *
- * Return value: (element-type WnckWindow) (transfer none): the list of
- * #WnckWindow in stacking order on @screen, or %NULL if there is no window on
+ * Return value: (element-type VnckWindow) (transfer none): the list of
+ * #VnckWindow in stacking order on @screen, or %NULL if there is no window on
  * @screen. The list should not be modified nor freed, as it is owned by
  * @screen.
  **/
 GList*
-vnck_screen_get_windows_stacked (WnckScreen *screen)
+vnck_screen_get_windows_stacked (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), NULL);
 
@@ -848,7 +848,7 @@ vnck_screen_get_windows_stacked (WnckScreen *screen)
 
 /**
  * _vnck_screen_get_gdk_screen:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
  * Gets the <classname>GdkScreen</classname referring to the same screen as
  * @screen.
@@ -857,7 +857,7 @@ vnck_screen_get_windows_stacked (WnckScreen *screen)
  * screen as @screen.
  **/
 GdkScreen *
-_vnck_screen_get_gdk_screen (WnckScreen *screen)
+_vnck_screen_get_gdk_screen (VnckScreen *screen)
 {
   Display    *display;
   GdkDisplay *gdkdisplay;
@@ -877,10 +877,10 @@ _vnck_screen_get_gdk_screen (WnckScreen *screen)
 
 /**
  * vnck_screen_force_update:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
- * Synchronously and immediately updates the list of #WnckWindow on @screen.
- * This bypasses the standard update mechanism, where the list of #WnckWindow
+ * Synchronously and immediately updates the list of #VnckWindow on @screen.
+ * This bypasses the standard update mechanism, where the list of #VnckWindow
  * is updated in the idle loop.
  *
  * This is usually a bad idea for both performance and correctness reasons (to
@@ -889,7 +889,7 @@ _vnck_screen_get_gdk_screen (WnckScreen *screen)
  * small applications that just do something and then exit.
  **/
 void
-vnck_screen_force_update (WnckScreen *screen)
+vnck_screen_force_update (VnckScreen *screen)
 {
   g_return_if_fail (VNCK_IS_SCREEN (screen));
 
@@ -898,14 +898,14 @@ vnck_screen_force_update (WnckScreen *screen)
 
 /**
  * vnck_screen_get_workspace_count:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
- * Gets the number of #WnckWorkspace on @screen.
+ * Gets the number of #VnckWorkspace on @screen.
  *
- * Return value: the number of #WnckWorkspace on @screen.
+ * Return value: the number of #VnckWorkspace on @screen.
  **/
 int
-vnck_screen_get_workspace_count (WnckScreen *screen)
+vnck_screen_get_workspace_count (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), 0);
 
@@ -914,15 +914,15 @@ vnck_screen_get_workspace_count (WnckScreen *screen)
 
 /**
  * vnck_screen_change_workspace_count:
- * @screen: a #WnckScreen.
- * @count: the number of #WnckWorkspace to request.
+ * @screen: a #VnckScreen.
+ * @count: the number of #VnckWorkspace to request.
  *
- * Asks the window manager to change the number of #WnckWorkspace on @screen.
+ * Asks the window manager to change the number of #VnckWorkspace on @screen.
  *
  * Since: 2.2
  **/
 void
-vnck_screen_change_workspace_count (WnckScreen *screen,
+vnck_screen_change_workspace_count (VnckScreen *screen,
                                     int         count)
 {
   Display *display;
@@ -952,7 +952,7 @@ vnck_screen_change_workspace_count (WnckScreen *screen,
 }
 
 void
-_vnck_screen_process_property_notify (WnckScreen *screen,
+_vnck_screen_process_property_notify (VnckScreen *screen,
                                       XEvent     *xevent)
 {
   /* most frequently-changed properties first */
@@ -1028,15 +1028,15 @@ _vnck_screen_process_property_notify (WnckScreen *screen,
 
 /**
  * vnck_screen_calc_workspace_layout:
- * @screen: a #WnckScreen.
- * @num_workspaces: the number of #WnckWorkspace on @screen, or -1 to let
+ * @screen: a #VnckScreen.
+ * @num_workspaces: the number of #VnckWorkspace on @screen, or -1 to let
  * vnck_screen_calc_workspace_layout() find this number.
- * @space_index: the index of a #WnckWorkspace.
- * @layout: return location for the layout of #WnckWorkspace with additional
+ * @space_index: the index of a #VnckWorkspace.
+ * @layout: return location for the layout of #VnckWorkspace with additional
  * information.
  *
- * Calculates the layout of #WnckWorkspace, with additional information like
- * the row and column of the #WnckWorkspace with index @space_index.
+ * Calculates the layout of #VnckWorkspace, with additional information like
+ * the row and column of the #VnckWorkspace with index @space_index.
  *
  * Since: 2.12
  * Deprecated:2.20:
@@ -1044,10 +1044,10 @@ _vnck_screen_process_property_notify (WnckScreen *screen,
 /* TODO: when we make this private, remove num_workspaces since we can get it
  * from screen! */
 void
-vnck_screen_calc_workspace_layout (WnckScreen          *screen,
+vnck_screen_calc_workspace_layout (VnckScreen          *screen,
                                    int                  num_workspaces,
                                    int                  space_index,
-                                   WnckWorkspaceLayout *layout)
+                                   VnckWorkspaceLayout *layout)
 {
   int rows, cols;
   int grid_area;
@@ -1254,7 +1254,7 @@ vnck_screen_calc_workspace_layout (WnckScreen          *screen,
 
 /**
  * vnck_screen_free_workspace_layout:
- * @layout: a #WnckWorkspaceLayout.
+ * @layout: a #VnckWorkspaceLayout.
  *
  * Frees the content of @layout. This does not free @layout itself, so you
  * might want to free @layout yourself after calling this.
@@ -1263,7 +1263,7 @@ vnck_screen_calc_workspace_layout (WnckScreen          *screen,
  * Deprecated:2.20:
  */
 void
-vnck_screen_free_workspace_layout (WnckWorkspaceLayout *layout)
+vnck_screen_free_workspace_layout (VnckWorkspaceLayout *layout)
 {
   g_return_if_fail (layout != NULL);
 
@@ -1271,8 +1271,8 @@ vnck_screen_free_workspace_layout (WnckWorkspaceLayout *layout)
 }
 
 static void
-set_active_window (WnckScreen *screen,
-                   WnckWindow *window)
+set_active_window (VnckScreen *screen,
+                   VnckWindow *window)
 {
   gpointer weak_pointer;
 
@@ -1292,8 +1292,8 @@ set_active_window (WnckScreen *screen,
 }
 
 static void
-set_previously_active_window (WnckScreen *screen,
-                              WnckWindow *window)
+set_previously_active_window (VnckScreen *screen,
+                              VnckWindow *window)
 {
   gpointer weak_pointer;
 
@@ -1386,7 +1386,7 @@ arrays_contain_same_windows (Window *a,
 }
 
 static void
-update_client_list (WnckScreen *screen)
+update_client_list (VnckScreen *screen)
 {
   /* stacking order */
   Window *stack;
@@ -1456,16 +1456,16 @@ update_client_list (WnckScreen *screen)
   i = 0;
   while (i < mapping_length)
     {
-      WnckWindow *window;
+      VnckWindow *window;
 
       window = vnck_window_get (mapping[i]);
 
       if (window == NULL)
         {
           Window leader;
-          WnckApplication *app;
+          VnckApplication *app;
 	  const char *res_class;
-	  WnckClassGroup *class_group;
+	  VnckClassGroup *class_group;
 
           window = _vnck_window_create (mapping[i],
                                         screen,
@@ -1516,12 +1516,12 @@ update_client_list (WnckScreen *screen)
   tmp = screen->priv->mapped_windows;
   while (tmp != NULL)
     {
-      WnckWindow *window = tmp->data;
+      VnckWindow *window = tmp->data;
 
       if (g_hash_table_lookup (new_hash, window) == NULL)
         {
-          WnckApplication *app;
-	  WnckClassGroup *class_group;
+          VnckApplication *app;
+	  VnckClassGroup *class_group;
 
           closed = g_list_prepend (closed, window);
 
@@ -1552,7 +1552,7 @@ update_client_list (WnckScreen *screen)
   i = 0;
   while (i < stack_length)
     {
-      WnckWindow *window;
+      VnckWindow *window;
 
       window = vnck_window_get (stack[i]);
 
@@ -1618,7 +1618,7 @@ update_client_list (WnckScreen *screen)
   active_changed = FALSE;
   for (tmp = closed; tmp; tmp = tmp->next)
     {
-      WnckWindow *window;
+      VnckWindow *window;
 
       window = VNCK_WINDOW (tmp->data);
 
@@ -1679,7 +1679,7 @@ update_client_list (WnckScreen *screen)
 }
 
 static void
-update_workspace_list (WnckScreen *screen)
+update_workspace_list (VnckScreen *screen)
 {
   int n_spaces;
   int old_n_spaces;
@@ -1741,7 +1741,7 @@ update_workspace_list (WnckScreen *screen)
       i = 0;
       while (i < (n_spaces - old_n_spaces))
         {
-          WnckWorkspace *space;
+          VnckWorkspace *space;
 
           space = _vnck_workspace_create (old_n_spaces + i, screen);
 
@@ -1762,7 +1762,7 @@ update_workspace_list (WnckScreen *screen)
   tmp = deleted;
   while (tmp != NULL)
     {
-      WnckWorkspace *space = VNCK_WORKSPACE (tmp->data);
+      VnckWorkspace *space = VNCK_WORKSPACE (tmp->data);
 
       if (space == screen->priv->active_workspace)
         {
@@ -1806,10 +1806,10 @@ update_workspace_list (WnckScreen *screen)
 }
 
 static void
-update_viewport_settings (WnckScreen *screen)
+update_viewport_settings (VnckScreen *screen)
 {
   int i, n_spaces;
-  WnckWorkspace *space;
+  VnckWorkspace *space;
   gulong *p_coord;
   int n_coord;
   gboolean do_update;
@@ -1922,11 +1922,11 @@ update_viewport_settings (WnckScreen *screen)
 }
 
 static void
-update_active_workspace (WnckScreen *screen)
+update_active_workspace (VnckScreen *screen)
 {
   int number;
-  WnckWorkspace *previous_space;
-  WnckWorkspace *space;
+  VnckWorkspace *previous_space;
+  VnckWorkspace *space;
 
   if (!screen->priv->need_update_active_workspace)
     return;
@@ -1952,9 +1952,9 @@ update_active_workspace (WnckScreen *screen)
 }
 
 static void
-update_active_window (WnckScreen *screen)
+update_active_window (VnckScreen *screen)
 {
-  WnckWindow *window;
+  VnckWindow *window;
   Window xwindow;
 
   if (!screen->priv->need_update_active_window)
@@ -1980,7 +1980,7 @@ update_active_window (WnckScreen *screen)
 }
 
 static void
-update_workspace_layout (WnckScreen *screen)
+update_workspace_layout (VnckScreen *screen)
 {
   gulong *list;
   int n_items;
@@ -2075,7 +2075,7 @@ update_workspace_layout (WnckScreen *screen)
 }
 
 static void
-update_workspace_names (WnckScreen *screen)
+update_workspace_names (VnckScreen *screen)
 {
   char **names;
   int i;
@@ -2114,7 +2114,7 @@ update_workspace_names (WnckScreen *screen)
 }
 
 static void
-update_bg_pixmap (WnckScreen *screen)
+update_bg_pixmap (VnckScreen *screen)
 {
   Pixmap p;
 
@@ -2136,7 +2136,7 @@ update_bg_pixmap (WnckScreen *screen)
 }
 
 static void
-update_showing_desktop (WnckScreen *screen)
+update_showing_desktop (VnckScreen *screen)
 {
   int showing_desktop;
 
@@ -2157,7 +2157,7 @@ update_showing_desktop (WnckScreen *screen)
 }
 
 static void
-update_wm (WnckScreen *screen)
+update_wm (VnckScreen *screen)
 {
   Window wm_window;
 
@@ -2185,7 +2185,7 @@ update_wm (WnckScreen *screen)
 }
 
 static void
-do_update_now (WnckScreen *screen)
+do_update_now (VnckScreen *screen)
 {
   if (screen->priv->update_handler)
     {
@@ -2223,7 +2223,7 @@ do_update_now (WnckScreen *screen)
 static gboolean
 update_idle (gpointer data)
 {
-  WnckScreen *screen;
+  VnckScreen *screen;
 
   screen = data;
 
@@ -2235,7 +2235,7 @@ update_idle (gpointer data)
 }
 
 static void
-queue_update (WnckScreen *screen)
+queue_update (VnckScreen *screen)
 {
   if (screen->priv->update_handler != 0)
     return;
@@ -2244,7 +2244,7 @@ queue_update (WnckScreen *screen)
 }
 
 static void
-unqueue_update (WnckScreen *screen)
+unqueue_update (VnckScreen *screen)
 {
   if (screen->priv->update_handler != 0)
     {
@@ -2254,7 +2254,7 @@ unqueue_update (WnckScreen *screen)
 }
 
 static void
-emit_active_window_changed (WnckScreen *screen)
+emit_active_window_changed (VnckScreen *screen)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[ACTIVE_WINDOW_CHANGED],
@@ -2262,8 +2262,8 @@ emit_active_window_changed (WnckScreen *screen)
 }
 
 static void
-emit_active_workspace_changed (WnckScreen    *screen,
-                               WnckWorkspace *previous_space)
+emit_active_workspace_changed (VnckScreen    *screen,
+                               VnckWorkspace *previous_space)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[ACTIVE_WORKSPACE_CHANGED],
@@ -2271,7 +2271,7 @@ emit_active_workspace_changed (WnckScreen    *screen,
 }
 
 static void
-emit_window_stacking_changed (WnckScreen *screen)
+emit_window_stacking_changed (VnckScreen *screen)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[WINDOW_STACKING_CHANGED],
@@ -2279,8 +2279,8 @@ emit_window_stacking_changed (WnckScreen *screen)
 }
 
 static void
-emit_window_opened (WnckScreen *screen,
-                    WnckWindow *window)
+emit_window_opened (VnckScreen *screen,
+                    VnckWindow *window)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[WINDOW_OPENED],
@@ -2288,8 +2288,8 @@ emit_window_opened (WnckScreen *screen,
 }
 
 static void
-emit_window_closed (WnckScreen *screen,
-                    WnckWindow *window)
+emit_window_closed (VnckScreen *screen,
+                    VnckWindow *window)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[WINDOW_CLOSED],
@@ -2297,8 +2297,8 @@ emit_window_closed (WnckScreen *screen,
 }
 
 static void
-emit_workspace_created (WnckScreen    *screen,
-                        WnckWorkspace *space)
+emit_workspace_created (VnckScreen    *screen,
+                        VnckWorkspace *space)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[WORKSPACE_CREATED],
@@ -2306,8 +2306,8 @@ emit_workspace_created (WnckScreen    *screen,
 }
 
 static void
-emit_workspace_destroyed (WnckScreen    *screen,
-                          WnckWorkspace *space)
+emit_workspace_destroyed (VnckScreen    *screen,
+                          VnckWorkspace *space)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[WORKSPACE_DESTROYED],
@@ -2315,8 +2315,8 @@ emit_workspace_destroyed (WnckScreen    *screen,
 }
 
 static void
-emit_application_opened (WnckScreen      *screen,
-                         WnckApplication *app)
+emit_application_opened (VnckScreen      *screen,
+                         VnckApplication *app)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[APPLICATION_OPENED],
@@ -2324,8 +2324,8 @@ emit_application_opened (WnckScreen      *screen,
 }
 
 static void
-emit_application_closed (WnckScreen      *screen,
-                         WnckApplication *app)
+emit_application_closed (VnckScreen      *screen,
+                         VnckApplication *app)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[APPLICATION_CLOSED],
@@ -2333,8 +2333,8 @@ emit_application_closed (WnckScreen      *screen,
 }
 
 static void
-emit_class_group_opened (WnckScreen     *screen,
-                         WnckClassGroup *class_group)
+emit_class_group_opened (VnckScreen     *screen,
+                         VnckClassGroup *class_group)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[CLASS_GROUP_OPENED],
@@ -2342,8 +2342,8 @@ emit_class_group_opened (WnckScreen     *screen,
 }
 
 static void
-emit_class_group_closed (WnckScreen     *screen,
-                         WnckClassGroup *class_group)
+emit_class_group_closed (VnckScreen     *screen,
+                         VnckClassGroup *class_group)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[CLASS_GROUP_CLOSED],
@@ -2351,7 +2351,7 @@ emit_class_group_closed (WnckScreen     *screen,
 }
 
 static void
-emit_background_changed (WnckScreen *screen)
+emit_background_changed (VnckScreen *screen)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[BACKGROUND_CHANGED],
@@ -2359,7 +2359,7 @@ emit_background_changed (WnckScreen *screen)
 }
 
 static void
-emit_showing_desktop_changed (WnckScreen *screen)
+emit_showing_desktop_changed (VnckScreen *screen)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[SHOWING_DESKTOP_CHANGED],
@@ -2367,7 +2367,7 @@ emit_showing_desktop_changed (WnckScreen *screen)
 }
 
 static void
-emit_viewports_changed (WnckScreen *screen)
+emit_viewports_changed (VnckScreen *screen)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[VIEWPORTS_CHANGED],
@@ -2375,7 +2375,7 @@ emit_viewports_changed (WnckScreen *screen)
 }
 
 static void
-emit_wm_changed (WnckScreen *screen)
+emit_wm_changed (VnckScreen *screen)
 {
   g_signal_emit (G_OBJECT (screen),
                  signals[WM_CHANGED],
@@ -2384,7 +2384,7 @@ emit_wm_changed (WnckScreen *screen)
 
 /**
  * vnck_screen_get_window_manager_name:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
  * Gets the name of the window manager.
  *
@@ -2396,7 +2396,7 @@ emit_wm_changed (WnckScreen *screen)
  * Since: 2.20
  */
 const char *
-vnck_screen_get_window_manager_name (WnckScreen *screen)
+vnck_screen_get_window_manager_name (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), NULL);
 
@@ -2405,7 +2405,7 @@ vnck_screen_get_window_manager_name (WnckScreen *screen)
 
 /**
  * vnck_screen_net_wm_supports:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  * @atom: a property atom.
  *
  * Gets whether the window manager for @screen supports a certain hint from
@@ -2426,7 +2426,7 @@ vnck_screen_get_window_manager_name (WnckScreen *screen)
  * hint, %FALSE otherwise.
  */
 gboolean
-vnck_screen_net_wm_supports (WnckScreen *screen,
+vnck_screen_net_wm_supports (VnckScreen *screen,
                              const char *atom)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), FALSE);
@@ -2437,14 +2437,14 @@ vnck_screen_net_wm_supports (WnckScreen *screen,
 
 /**
  * vnck_screen_get_background_pixmap:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
  * Gets the X window ID of the background pixmap of @screen.
  *
  * Returns: the X window ID of the background pixmap of @screen.
  */
 gulong
-vnck_screen_get_background_pixmap (WnckScreen *screen)
+vnck_screen_get_background_pixmap (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), None);
 
@@ -2453,14 +2453,14 @@ vnck_screen_get_background_pixmap (WnckScreen *screen)
 
 /**
  * vnck_screen_get_width:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
  * Gets the width of @screen.
  *
  * Returns: the width of @screen.
  */
 int
-vnck_screen_get_width (WnckScreen *screen)
+vnck_screen_get_width (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), 0);
 
@@ -2469,14 +2469,14 @@ vnck_screen_get_width (WnckScreen *screen)
 
 /**
  * vnck_screen_get_height:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
  * Gets the height of @screen.
  *
  * Returns: the height of @screen.
  */
 int
-vnck_screen_get_height (WnckScreen *screen)
+vnck_screen_get_height (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), 0);
 
@@ -2484,34 +2484,34 @@ vnck_screen_get_height (WnckScreen *screen)
 }
 
 Screen *
-_vnck_screen_get_xscreen (WnckScreen *screen)
+_vnck_screen_get_xscreen (VnckScreen *screen)
 {
   return screen->priv->xscreen;
 }
 
 /**
  * vnck_screen_get_workspace_layout:
- * @screen: a #WnckScreen.
- * @orientation: return location for the orientation used in the #WnckWorkspace
+ * @screen: a #VnckScreen.
+ * @orientation: return location for the orientation used in the #VnckWorkspace
  * layout. See vnck_pager_set_orientation() for more information.
- * @rows: return location for the number of rows in the #WnckWorkspace layout.
- * @columns: return location for the number of columns in the #WnckWorkspace
+ * @rows: return location for the number of rows in the #VnckWorkspace layout.
+ * @columns: return location for the number of columns in the #VnckWorkspace
  * layout.
  * @starting_corner: return location for the starting corner in the
- * #WnckWorkspace layout (i.e. the corner containing the first #WnckWorkspace).
+ * #VnckWorkspace layout (i.e. the corner containing the first #VnckWorkspace).
  *
- * Gets the layout of #WnckWorkspace on @screen.
+ * Gets the layout of #VnckWorkspace on @screen.
  */
 /* TODO: when we are sure about this API, add this function,
- * WnckLayoutOrientation, WnckLayoutCorner and a "layout-changed" signal. But
- * to make it really better, use a WnckScreenLayout struct. We might also want
- * to wait for deprecation of WnckWorkspaceLayout. */
+ * VnckLayoutOrientation, VnckLayoutCorner and a "layout-changed" signal. But
+ * to make it really better, use a VnckScreenLayout struct. We might also want
+ * to wait for deprecation of VnckWorkspaceLayout. */
 void
-_vnck_screen_get_workspace_layout (WnckScreen             *screen,
-                                   _WnckLayoutOrientation *orientation,
+_vnck_screen_get_workspace_layout (VnckScreen             *screen,
+                                   _VnckLayoutOrientation *orientation,
                                    int                    *rows,
                                    int                    *columns,
-                                   _WnckLayoutCorner      *starting_corner)
+                                   _VnckLayoutCorner      *starting_corner)
 {
   g_return_if_fail (VNCK_IS_SCREEN (screen));
 
@@ -2532,14 +2532,14 @@ _vnck_screen_get_workspace_layout (WnckScreen             *screen,
 
 /**
  * vnck_screen_try_set_workspace_layout:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  * @current_token: a token. Use 0 if you do not called
  * vnck_screen_try_set_workspace_layout() before, or if you did not keep the
  * old token.
- * @rows: the number of rows to use for the #WnckWorkspace layout.
- * @columns: the number of columns to use for the #WnckWorkspace layout.
+ * @rows: the number of rows to use for the #VnckWorkspace layout.
+ * @columns: the number of columns to use for the #VnckWorkspace layout.
  *
- * Tries to modify the layout of #WnckWorkspace on @screen. To do this, tries
+ * Tries to modify the layout of #VnckWorkspace on @screen. To do this, tries
  * to acquire ownership of the layout. If the current process is the owner of
  * the layout, @current_token is used to determine if the caller is the owner
  * (there might be more than one part of the same process trying to set the
@@ -2547,9 +2547,9 @@ _vnck_screen_get_workspace_layout (WnckScreen             *screen,
  * @screen at a time, setting the layout is not guaranteed to work.
  *
  * If @rows is 0, the actual number of rows will be determined based on
- * @columns and the number of #WnckWorkspace. If @columns is 0, the actual
+ * @columns and the number of #VnckWorkspace. If @columns is 0, the actual
  * number of columns will be determined based on @rows and the number of
- * #WnckWorkspace. @rows and @columns must not be 0 at the same time.
+ * #VnckWorkspace. @rows and @columns must not be 0 at the same time.
  *
  * You have to release the ownership of the layout with
  * vnck_screen_release_workspace_layout() when you do not need it anymore.
@@ -2559,7 +2559,7 @@ _vnck_screen_get_workspace_layout (WnckScreen             *screen,
  * vnck_screen_release_workspace_layout(), or 0 if the layout could not be set.
  */
 int
-vnck_screen_try_set_workspace_layout (WnckScreen *screen,
+vnck_screen_try_set_workspace_layout (VnckScreen *screen,
                                       int         current_token,
                                       int         rows,
                                       int         columns)
@@ -2583,16 +2583,16 @@ vnck_screen_try_set_workspace_layout (WnckScreen *screen,
 
 /**
  * vnck_screen_release_workspace_layout:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  * @current_token: the token obtained through
  * vnck_screen_try_set_workspace_layout().
  *
- * Releases the ownership of the layout of #WnckWorkspace on @screen.
+ * Releases the ownership of the layout of #VnckWorkspace on @screen.
  * @current_token is used to verify that the caller is the owner of the layout.
  * If the verification fails, nothing happens.
  */
 void
-vnck_screen_release_workspace_layout (WnckScreen *screen,
+vnck_screen_release_workspace_layout (VnckScreen *screen,
                                       int         current_token)
 {
   g_return_if_fail (VNCK_IS_SCREEN (screen));
@@ -2604,17 +2604,17 @@ vnck_screen_release_workspace_layout (WnckScreen *screen,
 
 /**
  * vnck_screen_get_showing_desktop:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  *
  * Gets whether @screen is in the "showing the desktop" mode. This mode is
- * changed when a #WnckScreen::showing-desktop-changed signal gets emitted.
+ * changed when a #VnckScreen::showing-desktop-changed signal gets emitted.
  *
  * Return value: %TRUE if @window is fullscreen, %FALSE otherwise.
  *
  * Since: 2.2
  **/
 gboolean
-vnck_screen_get_showing_desktop (WnckScreen *screen)
+vnck_screen_get_showing_desktop (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), FALSE);
 
@@ -2623,7 +2623,7 @@ vnck_screen_get_showing_desktop (WnckScreen *screen)
 
 /**
  * vnck_screen_toggle_showing_desktop:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  * @show: whether to activate the "showing the desktop" mode on @screen.
  *
  * Asks the window manager to set the "showing the desktop" mode on @screen
@@ -2632,7 +2632,7 @@ vnck_screen_get_showing_desktop (WnckScreen *screen)
  * Since: 2.2
  **/
 void
-vnck_screen_toggle_showing_desktop (WnckScreen *screen,
+vnck_screen_toggle_showing_desktop (VnckScreen *screen,
                                     gboolean    show)
 {
   g_return_if_fail (VNCK_IS_SCREEN (screen));
@@ -2644,17 +2644,17 @@ vnck_screen_toggle_showing_desktop (WnckScreen *screen,
 
 /**
  * vnck_screen_move_viewport:
- * @screen: a #WnckScreen.
+ * @screen: a #VnckScreen.
  * @x: X offset in pixels of viewport.
  * @y: Y offset in pixels of viewport.
  *
- * Asks the window manager to move the viewport of the current #WnckWorkspace
+ * Asks the window manager to move the viewport of the current #VnckWorkspace
  * on @screen.
  *
  * Since: 2.4
  */
 void
-vnck_screen_move_viewport (WnckScreen *screen,
+vnck_screen_move_viewport (VnckScreen *screen,
                            int         x,
                            int         y)
 {
@@ -2667,7 +2667,7 @@ vnck_screen_move_viewport (WnckScreen *screen,
 
 #ifdef HAVE_STARTUP_NOTIFICATION
 SnDisplay*
-_vnck_screen_get_sn_display (WnckScreen *screen)
+_vnck_screen_get_sn_display (VnckScreen *screen)
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), NULL);
 
@@ -2676,7 +2676,7 @@ _vnck_screen_get_sn_display (WnckScreen *screen)
 #endif /* HAVE_STARTUP_NOTIFICATION */
 
 void
-_vnck_screen_change_workspace_name (WnckScreen *screen,
+_vnck_screen_change_workspace_name (VnckScreen *screen,
                                     int         number,
                                     const char *name)
 {
@@ -2695,7 +2695,7 @@ _vnck_screen_change_workspace_name (WnckScreen *screen,
         names[i] = (char*) name;
       else
         {
-          WnckWorkspace *workspace;
+          VnckWorkspace *workspace;
           workspace = vnck_screen_get_workspace (screen, i);
           if (workspace)
             names[i] = (char*) vnck_workspace_get_name (workspace);

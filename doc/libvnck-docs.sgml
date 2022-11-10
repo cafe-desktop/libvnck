@@ -62,14 +62,14 @@
     <sect2 id="getting-started.pitfalls.force-update">
      <title>Explicit fetching of information</title>
      <para>
-      At its creation, a <link linkend="WnckScreen"><type>WnckScreen</type></link> object will not have fetched information from the X server. If queried immediately after its creation (via <link linkend="vnck-screen-get-windows"><function>vnck_screen_get_windows()</function></link> or <link linkend="vnck-screen-get-workspaces"><function>vnck_screen_get_workspaces()</function></link>, for example), the <link linkend="WnckScreen"><type>WnckScreen</type></link> object will look like there are no workspaces nor windows on the screen. This information is fetched in the main event loop with an idle source, to avoid an expensive synchronous operation on startup. If no main event loop is used, or if the information is needed as soon as possible after the creation of the object, <link linkend="vnck-screen-force-update"><function>vnck_screen_force_update()</function></link> can be used to explicitly fetch the information.
+      At its creation, a <link linkend="VnckScreen"><type>VnckScreen</type></link> object will not have fetched information from the X server. If queried immediately after its creation (via <link linkend="vnck-screen-get-windows"><function>vnck_screen_get_windows()</function></link> or <link linkend="vnck-screen-get-workspaces"><function>vnck_screen_get_workspaces()</function></link>, for example), the <link linkend="VnckScreen"><type>VnckScreen</type></link> object will look like there are no workspaces nor windows on the screen. This information is fetched in the main event loop with an idle source, to avoid an expensive synchronous operation on startup. If no main event loop is used, or if the information is needed as soon as possible after the creation of the object, <link linkend="vnck-screen-force-update"><function>vnck_screen_force_update()</function></link> can be used to explicitly fetch the information.
      </para>
     </sect2>
 
     <sect2 id="getting-started.pitfalls.lazy-initialization">
-     <title>Lazy initialization of WnckScreen objects and signals</title>
+     <title>Lazy initialization of VnckScreen objects and signals</title>
      <para>
-      As mentioned above, a <link linkend="WnckScreen"><type>WnckScreen</type></link> object will have no information at its creation: it is lazily initialized during a main event loop. This lazy initialization will lead to the emission of many signals by the <link linkend="WnckScreen"><type>WnckScreen</type></link> object: for instance, the <link linkend="WnckScreen-window-opened"><function>"window-opened"</function></link> signal will be emitted for all <link linkend="WnckWindow"><type>WnckWindow</type></link> objects representing existing windows during the lazy initialization. This is actually a feature that enables you to easily initialize the state of your application, with the same code you will use to update its state when new windows get opened; there is an <link linkend="getting-started.examples.lazy-initialization">example</link> showing this.
+      As mentioned above, a <link linkend="VnckScreen"><type>VnckScreen</type></link> object will have no information at its creation: it is lazily initialized during a main event loop. This lazy initialization will lead to the emission of many signals by the <link linkend="VnckScreen"><type>VnckScreen</type></link> object: for instance, the <link linkend="VnckScreen-window-opened"><function>"window-opened"</function></link> signal will be emitted for all <link linkend="VnckWindow"><type>VnckWindow</type></link> objects representing existing windows during the lazy initialization. This is actually a feature that enables you to easily initialize the state of your application, with the same code you will use to update its state when new windows get opened; there is an <link linkend="getting-started.examples.lazy-initialization">example</link> showing this.
      </para>
     </sect2>
 
@@ -85,12 +85,12 @@
       For instance, the following would work in Python:
       <informalexample>
        <programlisting language="python">
-from gi.repository import Wnck
+from gi.repository import Vnck
 
-screen = Wnck.Screen.get_default()
+screen = Vnck.Screen.get_default()
 [...]
 screen = None
-Wnck.Shutdown()
+Vnck.Shutdown()
        </programlisting>
       </informalexample>
      </para>
@@ -115,7 +115,7 @@ Wnck.Shutdown()
     <title>Examples</title>
 
     <para id="getting-started.examples.force-update">
-     This first example is a small utility listing all windows on the current screen. As this is all done synchronously, without using a main event loop, we use <link linkend="vnck-screen-force-update"><function>vnck_screen_force_update()</function></link> to explicitly fetch the information needed for the <link linkend="WnckScreen"><type>WnckScreen</type></link> object.
+     This first example is a small utility listing all windows on the current screen. As this is all done synchronously, without using a main event loop, we use <link linkend="vnck-screen-force-update"><function>vnck_screen_force_update()</function></link> to explicitly fetch the information needed for the <link linkend="VnckScreen"><type>VnckScreen</type></link> object.
 
      <informalexample>
       <programlisting language="c">
@@ -125,7 +125,7 @@ Wnck.Shutdown()
     </para>
 
     <para id="getting-started.examples.lazy-initialization">
-     The second example is similar, except that we use a main event loop. We connect to the <link linkend="WnckScreen-window-opened"><function>"window-opened"</function></link> signal to print information about new <link linkend="WnckScreen"><type>WnckScreen</type></link> objects. Here, we use the fact that the <link linkend="WnckScreen-window-opened"><function>"window-opened"</function></link> signal is emitted for all existing windows during the lazy initialization of the <link linkend="WnckScreen"><type>WnckScreen</type></link> object, in order to achieve an output similar to the previous example. However, during the lazy initialization, the active window is not necessarily known yet and we cannot tell whether the opened window is the currently active one. We connect to the <link linkend="WnckScreen-active-window-changed"><function>"active-window-changed"</function></link> signal to determine the active window when this information becomes available.
+     The second example is similar, except that we use a main event loop. We connect to the <link linkend="VnckScreen-window-opened"><function>"window-opened"</function></link> signal to print information about new <link linkend="VnckScreen"><type>VnckScreen</type></link> objects. Here, we use the fact that the <link linkend="VnckScreen-window-opened"><function>"window-opened"</function></link> signal is emitted for all existing windows during the lazy initialization of the <link linkend="VnckScreen"><type>VnckScreen</type></link> object, in order to achieve an output similar to the previous example. However, during the lazy initialization, the active window is not necessarily known yet and we cannot tell whether the opened window is the currently active one. We connect to the <link linkend="VnckScreen-active-window-changed"><function>"active-window-changed"</function></link> signal to determine the active window when this information becomes available.
 
      <informalexample>
       <programlisting language="c">

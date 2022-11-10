@@ -16,7 +16,7 @@ int
 main (int argc, char **argv)
 {
   GOptionContext *ctxt;
-  WnckScreen *screen;
+  VnckScreen *screen;
   GtkWidget *win;
   GtkWidget *frame;
   GtkWidget *selector;

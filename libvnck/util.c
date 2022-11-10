@@ -56,8 +56,8 @@
  * @short_description: icons related functions.
  * @stability: Unstable
  *
- * These functions are utility functions to manage icons for #WnckWindow and
- * #WnckApplication.
+ * These functions are utility functions to manage icons for #VnckWindow and
+ * #VnckApplication.
  */
 
 typedef enum
@@ -65,13 +65,13 @@ typedef enum
   VNCK_EXT_UNKNOWN = 0,
   VNCK_EXT_FOUND = 1,
   VNCK_EXT_MISSING = 2
-} WnckExtStatus;
+} VnckExtStatus;
 
 
 #if 0
 /* useful for debugging */
 static void
-_vnck_print_resource_usage (WnckResourceUsage *usage)
+_vnck_print_resource_usage (VnckResourceUsage *usage)
 {
   if (!usage)
     return;
@@ -103,10 +103,10 @@ _vnck_print_resource_usage (WnckResourceUsage *usage)
 }
 #endif
 
-static WnckExtStatus
+static VnckExtStatus
 vnck_init_resource_usage (GdkDisplay *gdisplay)
 {
-  WnckExtStatus status;
+  VnckExtStatus status;
 
   status = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (gdisplay),
                                                "vnck-xres-status"));
@@ -153,7 +153,7 @@ vnck_init_resource_usage (GdkDisplay *gdisplay)
 void
 vnck_xid_read_resource_usage (GdkDisplay        *gdisplay,
                               gulong             xid,
-                              WnckResourceUsage *usage)
+                              VnckResourceUsage *usage)
 {
   g_return_if_fail (usage != NULL);
 
@@ -493,7 +493,7 @@ vnck_pid_read_resource_usage_destroy_hash_table (gpointer data)
 static gboolean
 vnck_pid_read_resource_usage_from_cache (GdkDisplay        *gdisplay,
                                          gulong             pid,
-                                         WnckResourceUsage *usage)
+                                         VnckResourceUsage *usage)
 {
   gboolean  need_rebuild;
   gulong   *xid_p;
@@ -539,7 +539,7 @@ vnck_pid_read_resource_usage_from_cache (GdkDisplay        *gdisplay,
 static void
 vnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
                                        gulong             pid,
-                                       WnckResourceUsage *usage)
+                                       VnckResourceUsage *usage)
 {
   Display *xdisplay;
   int i;
@@ -549,7 +549,7 @@ vnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
   i = 0;
   while (i < ScreenCount (xdisplay))
     {
-      WnckScreen *screen;
+      VnckScreen *screen;
       GList *windows;
       GList *tmp;
 
@@ -606,7 +606,7 @@ vnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
 void
 vnck_pid_read_resource_usage (GdkDisplay        *gdisplay,
                               gulong             pid,
-                              WnckResourceUsage *usage)
+                              VnckResourceUsage *usage)
 {
   g_return_if_fail (usage != NULL);
 
@@ -623,7 +623,7 @@ vnck_pid_read_resource_usage (GdkDisplay        *gdisplay,
 #endif /* HAVE_XRES */
 }
 
-static WnckClientType client_type = 0;
+static VnckClientType client_type = 0;
 
 /**
  * vnck_set_client_type:
@@ -644,7 +644,7 @@ static WnckClientType client_type = 0;
  * Since: 2.14
  */
 void
-vnck_set_client_type (WnckClientType ewmh_sourceindication_client_type)
+vnck_set_client_type (VnckClientType ewmh_sourceindication_client_type)
 {
   /* Clients constantly switching types makes no sense; this should only be
    * set once.
@@ -655,7 +655,7 @@ vnck_set_client_type (WnckClientType ewmh_sourceindication_client_type)
     client_type = ewmh_sourceindication_client_type;
 }
 
-WnckClientType
+VnckClientType
 _vnck_get_client_type (void)
 {
   /* If the type hasn't been set yet, use the default--treat it as a
@@ -705,7 +705,7 @@ void
 vnck_set_default_mini_icon_size (gsize size)
 {
   int default_screen;
-  WnckScreen *screen;
+  VnckScreen *screen;
   GList *l;
 
   default_mini_icon_size = size;
@@ -718,8 +718,8 @@ vnck_set_default_mini_icon_size (gsize size)
       /* Make applications and icons to reload their icons */
       for (l = vnck_screen_get_windows (screen); l; l = l->next)
         {
-          WnckWindow *window = VNCK_WINDOW (l->data);
-          WnckApplication *application = vnck_window_get_application (window);
+          VnckWindow *window = VNCK_WINDOW (l->data);
+          VnckApplication *application = vnck_window_get_application (window);
 
           _vnck_window_load_icons (window);
 
@@ -811,10 +811,10 @@ _vnck_get_default_display (void)
  * notifications for an extended period of time, to avoid wakeups with every
  * key and focus event.
  *
- * After this, all pointers to Wnck object you might still hold are invalid.
+ * After this, all pointers to Vnck object you might still hold are invalid.
  *
  * Due to the fact that <link
- * linkend="getting-started.pitfalls.memory-management">Wnck objects are all
+ * linkend="getting-started.pitfalls.memory-management">Vnck objects are all
  * owned by libvnck</link>, users of this API through introspection should be
  * extremely careful: they must explicitly clear variables referencing objects
  * before this call. Failure to do so might result in crashes.
@@ -828,16 +828,16 @@ vnck_shutdown (void)
 
   /* Warning: this is hacky :-)
    *
-   * Shutting down all WnckScreen objects will automatically unreference (and
-   * finalize) all WnckWindow objects, but not the WnckClassGroup and
-   * WnckApplication objects.
-   * Therefore we need to manually shut down all WnckClassGroup and
-   * WnckApplication objects first, since they reference the WnckScreen they're
+   * Shutting down all VnckScreen objects will automatically unreference (and
+   * finalize) all VnckWindow objects, but not the VnckClassGroup and
+   * VnckApplication objects.
+   * Therefore we need to manually shut down all VnckClassGroup and
+   * VnckApplication objects first, since they reference the VnckScreen they're
    * on.
-   * On the other side, shutting down the WnckScreen objects will results in
-   * all WnckWindow objects getting unreferenced and finalized, and must
-   * actually be done before shutting down global WnckWindow structures
-   * (because the WnckScreen has a list of WnckWindow that will get mis-used
+   * On the other side, shutting down the VnckScreen objects will results in
+   * all VnckWindow objects getting unreferenced and finalized, and must
+   * actually be done before shutting down global VnckWindow structures
+   * (because the VnckScreen has a list of VnckWindow that will get mis-used
    * otherwise). */
   _vnck_class_group_shutdown_all ();
   _vnck_application_shutdown_all ();

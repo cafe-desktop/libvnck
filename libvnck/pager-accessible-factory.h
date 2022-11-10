@@ -24,21 +24,21 @@
 G_BEGIN_DECLS
 
 #define VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY               (vnck_pager_accessible_factory_get_type())
-#define VNCK_PAGER_ACCESSIBLE_FACTORY(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, WnckpagerAccessibleFactory))
-#define VNCK_PAGER_ACCESSIBLE_FACTORY_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, WnckPagerAccessibleFactoryClass))
+#define VNCK_PAGER_ACCESSIBLE_FACTORY(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, VnckpagerAccessibleFactory))
+#define VNCK_PAGER_ACCESSIBLE_FACTORY_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, VnckPagerAccessibleFactoryClass))
 #define VNCK_IS_PAGER_ACCESSIBLE_FACTORY(obj)            (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY))
 #define VNCK_IS_PAGER_ACCESSIBLE_FACTORY_CLASS(klass)    (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY))
-#define VNCK_PAGER_ACCESSIBLE_FACTORY_GET_CLASS(obj)     (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, WnckPagerAccessibleFactoryClass))
+#define VNCK_PAGER_ACCESSIBLE_FACTORY_GET_CLASS(obj)     (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_PAGER_ACCESSIBLE_FACTORY, VnckPagerAccessibleFactoryClass))
 
-typedef struct _WnckPagerAccessibleFactory       WnckPagerAccessibleFactory;
-typedef struct _WnckPagerAccessibleFactoryClass  WnckPagerAccessibleFactoryClass;
+typedef struct _VnckPagerAccessibleFactory       VnckPagerAccessibleFactory;
+typedef struct _VnckPagerAccessibleFactoryClass  VnckPagerAccessibleFactoryClass;
 
-struct _WnckPagerAccessibleFactory
+struct _VnckPagerAccessibleFactory
 {
   AtkObjectFactory parent;
 };
 
-struct _WnckPagerAccessibleFactoryClass
+struct _VnckPagerAccessibleFactoryClass
 {
   AtkObjectFactoryClass parent_class;
 };

@@ -21,16 +21,16 @@ msgstr ""
 #. * @see_also: vnck_window_get_application()
 #. * @stability: Unstable
 #. *
-#. * The #WnckApplication is a group of #WnckWindow that are all in the same
+#. * The #VnckApplication is a group of #VnckWindow that are all in the same
 #. * application. It can bje used to represent windows by applications, group
 #. * windows by applications or to manipulate all windows of a particular
 #. * application.
 #. *
-#. * A #WnckApplication is identified by the group leader of the #WnckWindow
-#. * belonging to it, and new #WnckWindow are added to a #WnckApplication if and
-#. * only if they have the group leader of the #WnckApplication.
+#. * A #VnckApplication is identified by the group leader of the #VnckWindow
+#. * belonging to it, and new #VnckWindow are added to a #VnckApplication if and
+#. * only if they have the group leader of the #VnckApplication.
 #. *
-#. * The #WnckApplication objects are always owned by libvnck and must not bje
+#. * The #VnckApplication objects are always owned by libvnck and must not bje
 #. * referenced or unreferenced.
 #.
 #: ../libvnck/application.c:49
@@ -183,10 +183,10 @@ msgstr "_Zatvori"
 #. *
 #. * SECTION:window
 #. * @short_description: an object representing a window.
-#. * @see_also: #WnckWorkspace, #WnckApplication, #WnckClassGroup
+#. * @see_also: #VnckWorkspace, #VnckApplication, #VnckClassGroup
 #. * @stability: Unstable
 #. *
-#. * The #WnckWindow objects are always owned by libvnck and must not bje
+#. * The #VnckWindow objects are always owned by libvnck and must not bje
 #. * referenced or unreferenced.
 #.
 #: ../libvnck/window.c:47

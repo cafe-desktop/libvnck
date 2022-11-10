@@ -28,8 +28,8 @@
 #include "workspace-accessible.h"
 #include "private.h"
 
-typedef struct _WnckPagerAccessiblePrivate WnckPagerAccessiblePrivate;
-struct _WnckPagerAccessiblePrivate
+typedef struct _VnckPagerAccessiblePrivate VnckPagerAccessiblePrivate;
+struct _VnckPagerAccessiblePrivate
 {
   GSList *children;
 };
@@ -48,16 +48,16 @@ static AtkObject*  vnck_pager_ref_selection               (AtkSelection         
                                                            int                       i);
 static int         vnck_pager_selection_count             (AtkSelection             *selection);
 static void        vnck_pager_accessible_update_workspace (AtkObject                *aobj_ws,
-                                                           WnckPager                *pager,
+                                                           VnckPager                *pager,
                                                            int                       i);
 static void        vnck_pager_accessible_finalize         (GObject                  *gobject);
 
-G_DEFINE_TYPE_WITH_CODE (WnckPagerAccessible,
+G_DEFINE_TYPE_WITH_CODE (VnckPagerAccessible,
                          vnck_pager_accessible,
                          GTK_TYPE_ACCESSIBLE,
                          G_IMPLEMENT_INTERFACE (ATK_TYPE_SELECTION,
                                                 atk_selection_interface_init)
-                         G_ADD_PRIVATE (WnckPagerAccessible))
+                         G_ADD_PRIVATE (VnckPagerAccessible))
 
 static void
 atk_selection_interface_init (AtkSelectionIface *iface)
@@ -71,7 +71,7 @@ atk_selection_interface_init (AtkSelectionIface *iface)
 }
 
 static void
-vnck_pager_accessible_class_init (WnckPagerAccessibleClass *klass)
+vnck_pager_accessible_class_init (VnckPagerAccessibleClass *klass)
 {
   AtkObjectClass *class = ATK_OBJECT_CLASS (klass);
   GObjectClass *obj_class = G_OBJECT_CLASS (klass);
@@ -85,7 +85,7 @@ vnck_pager_accessible_class_init (WnckPagerAccessibleClass *klass)
 }
 
 static void
-vnck_pager_accessible_init (WnckPagerAccessible *accessible)
+vnck_pager_accessible_init (VnckPagerAccessible *accessible)
 {
 }
 
@@ -93,8 +93,8 @@ static gboolean
 vnck_pager_add_selection (AtkSelection *selection,
 		          int           i)
 {
-  WnckPager *pager;
-  WnckWorkspace *wspace;
+  VnckPager *pager;
+  VnckWorkspace *wspace;
   GtkWidget *widget;
   int n_spaces;
 
@@ -131,9 +131,9 @@ static AtkObject*
 vnck_pager_ref_selection (AtkSelection *selection,
 		          int           i)
 {
-  WnckPager *pager;
+  VnckPager *pager;
   GtkWidget *widget;
-  WnckWorkspace *active_wspace;
+  VnckWorkspace *active_wspace;
   AtkObject *accessible;
   int wsno;
 
@@ -190,9 +190,9 @@ static gboolean
 vnck_pager_is_child_selected (AtkSelection *selection,
 		              int           i)
 {
-  WnckPager *pager;
+  VnckPager *pager;
   GtkWidget *widget;
-  WnckWorkspace *active_wspace;
+  VnckWorkspace *active_wspace;
   int wsno;
 
   widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (selection));
@@ -236,8 +236,8 @@ vnck_pager_accessible_new (GtkWidget *widget)
 static void
 vnck_pager_accessible_finalize (GObject *gobject)
 {
-  WnckPagerAccessible *accessible;
-  WnckPagerAccessiblePrivate *priv;
+  VnckPagerAccessible *accessible;
+  VnckPagerAccessiblePrivate *priv;
 
   accessible = VNCK_PAGER_ACCESSIBLE (gobject);
   priv = vnck_pager_accessible_get_instance_private (accessible);
@@ -284,7 +284,7 @@ vnck_pager_accessible_get_n_children (AtkObject* obj)
 {
   GtkAccessible *accessible;
   GtkWidget *widget;
-  WnckPager *pager;
+  VnckPager *pager;
 
   g_return_val_if_fail (VNCK_PAGER_IS_ACCESSIBLE (obj), 0);
 
@@ -309,11 +309,11 @@ vnck_pager_accessible_ref_child (AtkObject *obj,
 {
   GtkAccessible *accessible;
   GtkWidget *widget;
-  WnckPager *pager;
+  VnckPager *pager;
   int n_spaces = 0;
   int len;
-  WnckPagerAccessible *pager_accessible;
-  WnckPagerAccessiblePrivate *priv;
+  VnckPagerAccessible *pager_accessible;
+  VnckPagerAccessiblePrivate *priv;
   AtkObject *ret;
 
   g_return_val_if_fail (VNCK_PAGER_IS_ACCESSIBLE (obj), NULL);
@@ -343,8 +343,8 @@ vnck_pager_accessible_ref_child (AtkObject *obj,
     {
       AtkRegistry *default_registry;
       AtkObjectFactory *factory;
-      WnckWorkspace *wspace;
-      WnckWorkspaceAccessible *space_accessible;
+      VnckWorkspace *wspace;
+      VnckWorkspaceAccessible *space_accessible;
 
       default_registry = atk_get_default_registry ();
       factory = atk_registry_get_factory (default_registry,
@@ -369,7 +369,7 @@ vnck_pager_accessible_ref_child (AtkObject *obj,
 
 static void
 vnck_pager_accessible_update_workspace (AtkObject *aobj_ws,
-                                        WnckPager *pager,
+                                        VnckPager *pager,
                                         int        i)
 {
   g_free (aobj_ws->name);
