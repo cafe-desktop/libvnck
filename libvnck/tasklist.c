@@ -606,7 +606,7 @@ vnck_tasklist_init (VnckTasklist *tasklist)
 #if 0
   /* This doesn't work because, and I think this is because we have no window;
    * therefore, we use the scroll events on task buttons instead */
-  ctk_widget_add_events (widget, GDK_SCROLL_MASK);
+  ctk_widget_add_events (widget, CDK_SCROLL_MASK);
 #endif
 }
 
@@ -2025,14 +2025,14 @@ vnck_tasklist_scroll_event (CtkWidget      *widget,
 
   switch (event->direction)
     {
-      case GDK_SCROLL_UP:
+      case CDK_SCROLL_UP:
         if (!window)
           window = g_list_last (tasklist->priv->windows);
         else
           window = window->prev;
       break;
 
-      case GDK_SCROLL_DOWN:
+      case CDK_SCROLL_DOWN:
         if (!window)
           window = tasklist->priv->windows;
         else
@@ -2057,7 +2057,7 @@ vnck_tasklist_scroll_event (CtkWidget      *widget,
         window = tasklist->priv->windows;               \
     } while (0)
 
-      case GDK_SCROLL_LEFT:
+      case CDK_SCROLL_LEFT:
         if (!window)
           TASKLIST_GET_MOST_RIGHT (ltr, window, tasklist);
         else
@@ -2081,7 +2081,7 @@ vnck_tasklist_scroll_event (CtkWidget      *widget,
           }
       break;
 
-      case GDK_SCROLL_RIGHT:
+      case CDK_SCROLL_RIGHT:
         if (!window)
           TASKLIST_GET_MOST_LEFT (ltr, window, tasklist);
         else
@@ -2105,7 +2105,7 @@ vnck_tasklist_scroll_event (CtkWidget      *widget,
           }
       break;
 
-      case GDK_SCROLL_SMOOTH:
+      case CDK_SCROLL_SMOOTH:
         window = NULL;
       break;
 
@@ -2989,8 +2989,8 @@ vnck_task_popup_menu (VnckTask *task,
                                    0);
 
 
-          ctk_drag_source_set (menu_item, GDK_BUTTON1_MASK,
-                               targets, 1, GDK_ACTION_MOVE);
+          ctk_drag_source_set (menu_item, CDK_BUTTON1_MASK,
+                               targets, 1, CDK_ACTION_MOVE);
           g_signal_connect_object (G_OBJECT(menu_item), "drag_begin",
                                    G_CALLBACK (vnck_task_drag_begin),
                                    G_OBJECT (win_task),
@@ -3069,8 +3069,8 @@ vnck_task_popup_menu (VnckTask *task,
 
   ctk_widget_show (menu);
   ctk_menu_popup_at_widget (CTK_MENU (menu), task->button,
-                            GDK_GRAVITY_SOUTH_WEST,
-                            GDK_GRAVITY_NORTH_WEST,
+                            CDK_GRAVITY_SOUTH_WEST,
+                            CDK_GRAVITY_NORTH_WEST,
                             NULL);
 }
 
@@ -3205,7 +3205,7 @@ vnck_task_scale_icon (GdkPixbuf *orig, gboolean minimized)
     {
       double scale;
 
-      pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
+      pixbuf = gdk_pixbuf_new (CDK_COLORSPACE_RGB,
 			       TRUE,
 			       8,
 			       MINI_ICON_SIZE * w / (double) h,
@@ -3220,7 +3220,7 @@ vnck_task_scale_icon (GdkPixbuf *orig, gboolean minimized)
 			gdk_pixbuf_get_height (pixbuf),
 			0, 0,
 			scale, scale,
-			GDK_INTERP_HYPER);
+			CDK_INTERP_HYPER);
     }
   else
     pixbuf = orig;
@@ -3731,8 +3731,8 @@ vnck_task_button_press_event (CtkWidget	      *widget,
 
           ctk_widget_show (task->action_menu);
           ctk_menu_popup_at_widget (CTK_MENU (task->action_menu), task->button,
-                                    GDK_GRAVITY_SOUTH_WEST,
-                                    GDK_GRAVITY_NORTH_WEST,
+                                    CDK_GRAVITY_SOUTH_WEST,
+                                    CDK_GRAVITY_NORTH_WEST,
                                     (GdkEvent *) event);
 
           g_signal_connect (task->action_menu, "selection-done",
@@ -3848,15 +3848,15 @@ vnck_task_create_widgets (VnckTask *task, CtkReliefStyle relief)
   if (task->type == VNCK_TASK_WINDOW)
     {
       ctk_drag_source_set (CTK_WIDGET (task->button),
-                           GDK_BUTTON1_MASK,
+                           CDK_BUTTON1_MASK,
                            targets, 1,
-                           GDK_ACTION_MOVE);
+                           CDK_ACTION_MOVE);
       ctk_drag_dest_set (CTK_WIDGET (task->button), CTK_DEST_DEFAULT_DROP,
-                         targets, 1, GDK_ACTION_MOVE);
+                         targets, 1, CDK_ACTION_MOVE);
     }
   else
     ctk_drag_dest_set (CTK_WIDGET (task->button), 0,
-                       NULL, 0, GDK_ACTION_DEFAULT);
+                       NULL, 0, CDK_ACTION_DEFAULT);
 
   hbox = ctk_box_new (CTK_ORIENTATION_HORIZONTAL, 0);
 
@@ -3925,7 +3925,7 @@ vnck_task_create_widgets (VnckTask *task, CtkReliefStyle relief)
                            G_OBJECT (task),
                            0);
 
-  ctk_widget_add_events (task->button, GDK_SCROLL_MASK);
+  ctk_widget_add_events (task->button, CDK_SCROLL_MASK);
   g_signal_connect_object (G_OBJECT (task->button), "scroll_event",
                            G_CALLBACK (vnck_task_scroll_event),
                            G_OBJECT (task),

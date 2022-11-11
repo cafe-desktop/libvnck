@@ -799,7 +799,7 @@ filter_func (GdkXEvent  *gdkxevent,
       break;
     }
 
-  return GDK_FILTER_CONTINUE;
+  return CDK_FILTER_CONTINUE;
 }
 
 static gboolean _vnck_event_filter_initialized = FALSE;
@@ -863,9 +863,9 @@ void
 _vnck_deiconify (Screen *screen,
                  Window  xwindow)
 {
-  /* We need special precautions, because GDK doesn't like
+  /* We need special precautions, because CDK doesn't like
    * XMapWindow() called on its windows, need to use the
-   * GDK functions
+   * CDK functions
    */
   Display   *display;
   GdkWindow *gdkwindow;
@@ -1432,7 +1432,7 @@ _vnck_select_input (Screen *screen,
   _vnck_error_trap_push (display);
   if (gdkwindow)
     {
-      /* Avoid breaking GDK's setup,
+      /* Avoid breaking CDK's setup,
        * this somewhat relies on people setting
        * event masks right after realization
        * and not changing them again
@@ -1884,14 +1884,14 @@ try_pixmap_and_mask (Screen     *screen,
                                  gdk_pixbuf_get_width (unscaled),
                                  ideal_height > 0 ? ideal_height :
                                  gdk_pixbuf_get_height (unscaled),
-                                 GDK_INTERP_BILINEAR);
+                                 CDK_INTERP_BILINEAR);
       *mini_iconp =
         gdk_pixbuf_scale_simple (unscaled,
                                  ideal_mini_width > 0 ? ideal_mini_width :
                                  gdk_pixbuf_get_width (unscaled),
                                  ideal_mini_height > 0 ? ideal_mini_height :
                                  gdk_pixbuf_get_height (unscaled),
-                                 GDK_INTERP_BILINEAR);
+                                 CDK_INTERP_BILINEAR);
 
       g_object_unref (G_OBJECT (unscaled));
       return TRUE;
@@ -2113,7 +2113,7 @@ scaled_from_pixdata (guchar *pixdata,
   GdkPixbuf *dest;
 
   src = gdk_pixbuf_new_from_data (pixdata,
-                                  GDK_COLORSPACE_RGB,
+                                  CDK_COLORSPACE_RGB,
                                   TRUE,
                                   8,
                                   w, h, w * 4,
@@ -2130,7 +2130,7 @@ scaled_from_pixdata (guchar *pixdata,
 
       size = MAX (w, h);
 
-      tmp = gdk_pixbuf_new (GDK_COLORSPACE_RGB, TRUE, 8, size, size);
+      tmp = gdk_pixbuf_new (CDK_COLORSPACE_RGB, TRUE, 8, size, size);
 
       if (tmp != NULL)
 	{
@@ -2146,7 +2146,7 @@ scaled_from_pixdata (guchar *pixdata,
 
   if (w != new_w || h != new_h)
     {
-      dest = gdk_pixbuf_scale_simple (src, new_w, new_h, GDK_INTERP_BILINEAR);
+      dest = gdk_pixbuf_scale_simple (src, new_w, new_h, CDK_INTERP_BILINEAR);
 
       g_object_unref (G_OBJECT (src));
     }
@@ -2362,7 +2362,7 @@ default_icon_at_size (int width,
                                         gdk_pixbuf_get_width (base),
                                         height > 0 ? height :
                                         gdk_pixbuf_get_height (base),
-                                        GDK_INTERP_BILINEAR);
+                                        CDK_INTERP_BILINEAR);
 
       g_object_unref (G_OBJECT (base));
 

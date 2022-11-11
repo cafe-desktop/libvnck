@@ -1239,7 +1239,7 @@ vnck_window_get_class_instance_name (VnckWindow *window)
  * Gets whether @window is maximized. Maximization state may change
  * anytime a #VnckWindow::state-changed signal gets emitted.
  *
- * As for GDK, "maximized" means both vertically and horizontally. If @window
+ * As for CDK, "maximized" means both vertically and horizontally. If @window
  * is maximized in only one direction, then @window is not considered
  * maximized.
  *
@@ -1440,7 +1440,7 @@ vnck_window_set_fullscreen (VnckWindow *window,
  * anytime a #VnckWindow::state-changed signal gets emitted.
  *
  * Sticky here means "stuck to the glass", i.e. does not scroll with the
- * viewport. In GDK/CTK+ (e.g. gdk_window_stick()/ctk_window_stick()), sticky
+ * viewport. In CDK/CTK+ (e.g. gdk_window_stick()/ctk_window_stick()), sticky
  * means "stuck to the glass" and <emphasis>also</emphasis> that the window is
  * on all workspaces. But here it only means the viewport aspect of it.
  *

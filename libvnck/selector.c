@@ -202,7 +202,7 @@ _vnck_selector_set_window_icon (CtkWidget  *image,
       scale = ((double) icon_size) / MAX (width, height);
 
       pixbuf = gdk_pixbuf_scale_simple (pixbuf, width * scale,
-                                        height * scale, GDK_INTERP_BILINEAR);
+                                        height * scale, CDK_INTERP_BILINEAR);
       freeme = pixbuf;
     }
 
@@ -534,9 +534,9 @@ vnck_selector_item_new (VnckSelector *selector,
   if (window != NULL)
     {
       ctk_drag_source_set (item,
-                           GDK_BUTTON1_MASK,
+                           CDK_BUTTON1_MASK,
                            targets, 1,
-                           GDK_ACTION_MOVE);
+                           CDK_ACTION_MOVE);
 
       g_signal_connect_object (item, "drag_data_get",
                                G_CALLBACK (vnck_selector_drag_data_get),
@@ -975,7 +975,7 @@ vnck_selector_scroll_event (CtkWidget      *widget,
         {
           switch (event->direction)
             {
-              case GDK_SCROLL_UP:
+              case CDK_SCROLL_UP:
                 if (previous_window != NULL)
                   {
                     vnck_window_activate_transient (previous_window,
@@ -984,16 +984,16 @@ vnck_selector_scroll_event (CtkWidget      *widget,
                   }
               break;
 
-              case GDK_SCROLL_DOWN:
+              case CDK_SCROLL_DOWN:
                 should_activate_next_window = TRUE;
               break;
 
-              case GDK_SCROLL_LEFT:
-              case GDK_SCROLL_RIGHT:
+              case CDK_SCROLL_LEFT:
+              case CDK_SCROLL_RIGHT:
                 /* We ignore LEFT and RIGHT scroll events. */
               break;
 
-              case GDK_SCROLL_SMOOTH:
+              case CDK_SCROLL_SMOOTH:
               break;
 
               default:
@@ -1149,7 +1149,7 @@ vnck_selector_init (VnckSelector *selector)
 
   selector->priv = vnck_selector_get_instance_private (selector);
 
-  ctk_widget_add_events (CTK_WIDGET (selector), GDK_SCROLL_MASK);
+  ctk_widget_add_events (CTK_WIDGET (selector), CDK_SCROLL_MASK);
 }
 
 static void

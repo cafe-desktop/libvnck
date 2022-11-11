@@ -51,7 +51,7 @@
  * #VnckWorkspace.
  *
  * The #VnckScreen corresponds to the notion of
- * <classname>GdkScreen</classname> in GDK.
+ * <classname>GdkScreen</classname> in CDK.
  *
  * The #VnckScreen objects are always owned by libvnck and must not be
  * referenced or unreferenced.
@@ -2420,7 +2420,7 @@ vnck_screen_get_window_manager_name (VnckScreen *screen)
  * the window manager starts vnck_screen_net_wm_supports() will return %FALSE
  * for every property.
  *
- * See also gdk_x11_screen_supports_net_wm_hint() in GDK.
+ * See also gdk_x11_screen_supports_net_wm_hint() in CDK.
  *
  * Return value: %TRUE if the window manager for @screen supports the @atom
  * hint, %FALSE otherwise.

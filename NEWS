@@ -1133,7 +1133,7 @@ Fixes
   - Add context for some strings to help translators (Vincent) [#476512]
   - Activate the window when the user drags and drops it quickly on itself
     (Jan Niklas Hasse, Vincent) [#460403]
-  - Do not re-implement some functions GDK has (Vincent)
+  - Do not re-implement some functions CDK has (Vincent)
 
  Misc
 

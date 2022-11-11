@@ -81,7 +81,7 @@ libvnck_ldflags = [
 ]
 
 if get_option('deprecation_flags')
-  foreach domain: ['G', 'ATK', 'GDK', 'GDK_PIXBUF', 'CTK', 'VNCK']
+  foreach domain: ['G', 'ATK', 'CDK', 'CDK_PIXBUF', 'CTK', 'VNCK']
     libvnck_cflags += '-D@0@_DISABLE_DEPRECATED'.format(domain)
   endforeach
 endif

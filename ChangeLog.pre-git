@@ -375,7 +375,7 @@
 
 	* libvnck/xutils.[ch]: change _vnck_atom_get() and _vnck_atom_name()
 	to be #define for gdk_x11_get_xatom_by_name() and
-	gdk_x11_get_xatom_name(). No need to duplicate what's GDK is doing.
+	gdk_x11_get_xatom_name(). No need to duplicate what's CDK is doing.
 
 2007-11-12  Vincent Untz  <vuntz@gnome.org>
 
@@ -5774,7 +5774,7 @@ Wed, 28 Nov 2001 00:32:42 -0500  Frank Belew  <frb@ximian.com>
 	* libvnck/screen.c: support _NET_CLIENT_LIST, now I understand the 
 	point of both that and the stacking order one
 
-	* libvnck/window.c (_vnck_window_create): don't break GDK's event
+	* libvnck/window.c (_vnck_window_create): don't break CDK's event
 	mask, fixes resize issues with test-vnck
 
 2001-10-07  Havoc Pennington  <hp@pobox.com>
