@@ -33,7 +33,7 @@ struct _VnckImageMenuItem
   gchar       *label;
 };
 
-G_DEFINE_TYPE (VnckImageMenuItem, vnck_image_menu_item, GTK_TYPE_MENU_ITEM)
+G_DEFINE_TYPE (VnckImageMenuItem, vnck_image_menu_item, CTK_TYPE_MENU_ITEM)
 
 static void
 vnck_image_menu_item_finalize (GObject *object)
@@ -56,7 +56,7 @@ vnck_image_menu_item_get_preferred_width (GtkWidget *widget,
   VnckImageMenuItem *item;
   GtkRequisition image_requisition;
 
-  widget_class = GTK_WIDGET_CLASS (vnck_image_menu_item_parent_class);
+  widget_class = CTK_WIDGET_CLASS (vnck_image_menu_item_parent_class);
   item = VNCK_IMAGE_MENU_ITEM (widget);
 
   widget_class->get_preferred_width (widget, minimum, natural);
@@ -82,7 +82,7 @@ vnck_image_menu_item_size_allocate (GtkWidget     *widget,
   GtkRequisition image_requisition;
   GtkAllocation box_allocation;
 
-  widget_class = GTK_WIDGET_CLASS (vnck_image_menu_item_parent_class);
+  widget_class = CTK_WIDGET_CLASS (vnck_image_menu_item_parent_class);
   item = VNCK_IMAGE_MENU_ITEM (widget);
 
   widget_class->size_allocate (widget, allocation);
@@ -93,7 +93,7 @@ vnck_image_menu_item_size_allocate (GtkWidget     *widget,
   ctk_widget_get_preferred_size (item->image, &image_requisition, NULL);
   ctk_widget_get_allocation (item->box, &box_allocation);
 
-  if (ctk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR)
+  if (ctk_widget_get_direction (widget) == CTK_TEXT_DIR_LTR)
     {
       if (image_requisition.width > 0)
         box_allocation.x -= image_requisition.width + SPACING;
@@ -150,7 +150,7 @@ vnck_image_menu_item_set_label (GtkMenuItem *menu_item,
       g_free (item->label);
       item->label = g_strdup (label);
 
-      ctk_label_set_text_with_mnemonic (GTK_LABEL (item->accel_label), label);
+      ctk_label_set_text_with_mnemonic (CTK_LABEL (item->accel_label), label);
       g_object_notify (G_OBJECT (menu_item), "label");
     }
 }
@@ -163,8 +163,8 @@ vnck_image_menu_item_class_init (VnckImageMenuItemClass *item_class)
   GtkMenuItemClass *menu_item_class;
 
   object_class = G_OBJECT_CLASS (item_class);
-  widget_class = GTK_WIDGET_CLASS (item_class);
-  menu_item_class = GTK_MENU_ITEM_CLASS (item_class);
+  widget_class = CTK_WIDGET_CLASS (item_class);
+  menu_item_class = CTK_MENU_ITEM_CLASS (item_class);
 
   object_class->finalize = vnck_image_menu_item_finalize;
 
@@ -181,22 +181,22 @@ vnck_image_menu_item_init (VnckImageMenuItem *item)
 {
   GtkAccelLabel *accel_label;
 
-  item->box = ctk_box_new (GTK_ORIENTATION_HORIZONTAL, SPACING);
-  ctk_container_add (GTK_CONTAINER (item), item->box);
+  item->box = ctk_box_new (CTK_ORIENTATION_HORIZONTAL, SPACING);
+  ctk_container_add (CTK_CONTAINER (item), item->box);
   ctk_widget_show (item->box);
 
   item->image = ctk_image_new ();
-  ctk_box_pack_start (GTK_BOX (item->box), item->image, FALSE, FALSE, 0);
+  ctk_box_pack_start (CTK_BOX (item->box), item->image, FALSE, FALSE, 0);
 
   item->accel_label = ctk_accel_label_new ("");
-  ctk_box_pack_end (GTK_BOX (item->box), item->accel_label, TRUE, TRUE, 0);
-  ctk_label_set_xalign (GTK_LABEL (item->accel_label), 0.0);
+  ctk_box_pack_end (CTK_BOX (item->box), item->accel_label, TRUE, TRUE, 0);
+  ctk_label_set_xalign (CTK_LABEL (item->accel_label), 0.0);
   ctk_widget_show (item->accel_label);
 
-  accel_label = GTK_ACCEL_LABEL (item->accel_label);
-  ctk_accel_label_set_accel_widget (accel_label, GTK_WIDGET (item));
-  ctk_label_set_ellipsize (GTK_LABEL (accel_label), PANGO_ELLIPSIZE_END);
-  ctk_label_set_use_underline (GTK_LABEL (accel_label), TRUE);
+  accel_label = CTK_ACCEL_LABEL (item->accel_label);
+  ctk_accel_label_set_accel_widget (accel_label, CTK_WIDGET (item));
+  ctk_label_set_ellipsize (CTK_LABEL (accel_label), PANGO_ELLIPSIZE_END);
+  ctk_label_set_use_underline (CTK_LABEL (accel_label), TRUE);
 }
 
 GtkWidget *
@@ -215,7 +215,7 @@ void
 vnck_image_menu_item_set_image_from_icon_pixbuf (VnckImageMenuItem *item,
                                                  GdkPixbuf         *pixbuf)
 {
-  ctk_image_set_from_pixbuf (GTK_IMAGE (item->image), pixbuf);
+  ctk_image_set_from_pixbuf (CTK_IMAGE (item->image), pixbuf);
   ctk_widget_show (item->image);
 }
 
@@ -230,11 +230,11 @@ vnck_image_menu_item_set_image_from_window (VnckImageMenuItem *item,
 void
 vnck_image_menu_item_make_label_bold (VnckImageMenuItem *item)
 {
-  _make_ctk_label_bold (GTK_LABEL (item->accel_label));
+  _make_ctk_label_bold (CTK_LABEL (item->accel_label));
 }
 
 void
 vnck_image_menu_item_make_label_normal (VnckImageMenuItem *item)
 {
-  _make_ctk_label_normal (GTK_LABEL (item->accel_label));
+  _make_ctk_label_normal (CTK_LABEL (item->accel_label));
 }

@@ -8,19 +8,19 @@ set_urgent (GtkWidget *window,
 {
   GtkWidget *label;
 
-  label = ctk_bin_get_child (GTK_BIN (window));
+  label = ctk_bin_get_child (CTK_BIN (window));
 
   if (urgent)
     {
-      ctk_window_set_urgency_hint (GTK_WINDOW (window), TRUE);
-      ctk_window_set_title (GTK_WINDOW (window), "Test Window - Urgent");
-      ctk_label_set_text (GTK_LABEL (label), "I am urgent!");
+      ctk_window_set_urgency_hint (CTK_WINDOW (window), TRUE);
+      ctk_window_set_title (CTK_WINDOW (window), "Test Window - Urgent");
+      ctk_label_set_text (CTK_LABEL (label), "I am urgent!");
     }
   else
     {
-      ctk_window_set_urgency_hint (GTK_WINDOW (window), FALSE);
-      ctk_window_set_title (GTK_WINDOW (window), "Test Window");
-      ctk_label_set_text (GTK_LABEL (label), "I'm not urgent.");
+      ctk_window_set_urgency_hint (CTK_WINDOW (window), FALSE);
+      ctk_window_set_title (CTK_WINDOW (window), "Test Window");
+      ctk_label_set_text (CTK_LABEL (label), "I'm not urgent.");
     }
 }
 
@@ -72,10 +72,10 @@ main (int argc, char **argv)
 
   ctk_init (&argc, &argv);
 
-  win = ctk_window_new (GTK_WINDOW_TOPLEVEL);
+  win = ctk_window_new (CTK_WINDOW_TOPLEVEL);
   label = ctk_label_new ("");
-  ctk_container_add (GTK_CONTAINER (win), label);
-  ctk_window_set_keep_above (GTK_WINDOW (win), TRUE);
+  ctk_container_add (CTK_CONTAINER (win), label);
+  ctk_window_set_keep_above (CTK_WINDOW (win), TRUE);
   ctk_widget_show_all (win);
 
   g_signal_connect (G_OBJECT (win), "focus-in-event",

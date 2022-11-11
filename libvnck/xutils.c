@@ -1395,7 +1395,7 @@ _vnck_get_frame_extents (Screen *screen,
   if (p_size == NULL)
     {
       _vnck_get_cardinal_list (screen, xwindow,
-                               _vnck_atom_get ("_GTK_FRAME_EXTENTS"),
+                               _vnck_atom_get ("_CTK_FRAME_EXTENTS"),
                                &p_size, &n_size);
 
       if (p_size != NULL && n_size == 4)

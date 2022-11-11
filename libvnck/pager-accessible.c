@@ -54,7 +54,7 @@ static void        vnck_pager_accessible_finalize         (GObject              
 
 G_DEFINE_TYPE_WITH_CODE (VnckPagerAccessible,
                          vnck_pager_accessible,
-                         GTK_TYPE_ACCESSIBLE,
+                         CTK_TYPE_ACCESSIBLE,
                          G_IMPLEMENT_INTERFACE (ATK_TYPE_SELECTION,
                                                 atk_selection_interface_init)
                          G_ADD_PRIVATE (VnckPagerAccessible))
@@ -98,7 +98,7 @@ vnck_pager_add_selection (AtkSelection *selection,
   GtkWidget *widget;
   int n_spaces;
 
-  widget = ctk_accessible_get_widget (GTK_ACCESSIBLE (selection));
+  widget = ctk_accessible_get_widget (CTK_ACCESSIBLE (selection));
 
   if (widget == NULL)
     {
@@ -139,7 +139,7 @@ vnck_pager_ref_selection (AtkSelection *selection,
 
   g_return_val_if_fail (i == 0, NULL);
 
-  widget = ctk_accessible_get_widget (GTK_ACCESSIBLE (selection));
+  widget = ctk_accessible_get_widget (CTK_ACCESSIBLE (selection));
 
   if (widget == NULL)
     {
@@ -167,7 +167,7 @@ vnck_pager_selection_count (AtkSelection *selection)
 {
   GtkWidget *widget;
 
-  widget = ctk_accessible_get_widget (GTK_ACCESSIBLE (selection));
+  widget = ctk_accessible_get_widget (CTK_ACCESSIBLE (selection));
 
   if (widget == NULL)
     {
@@ -195,7 +195,7 @@ vnck_pager_is_child_selected (AtkSelection *selection,
   VnckWorkspace *active_wspace;
   int wsno;
 
-  widget = ctk_accessible_get_widget (GTK_ACCESSIBLE (selection));
+  widget = ctk_accessible_get_widget (CTK_ACCESSIBLE (selection));
 
   if (widget == NULL)
     {
@@ -224,7 +224,7 @@ vnck_pager_accessible_new (GtkWidget *widget)
 
   aobj_pager = ATK_OBJECT (object);
 
-  ctk_accessible = GTK_ACCESSIBLE (aobj_pager);
+  ctk_accessible = CTK_ACCESSIBLE (aobj_pager);
   ctk_accessible_set_widget (ctk_accessible, widget);
 
   atk_object_initialize (aobj_pager, widget);
@@ -288,7 +288,7 @@ vnck_pager_accessible_get_n_children (AtkObject* obj)
 
   g_return_val_if_fail (VNCK_PAGER_IS_ACCESSIBLE (obj), 0);
 
-  accessible = GTK_ACCESSIBLE (obj);
+  accessible = CTK_ACCESSIBLE (obj);
   widget = ctk_accessible_get_widget (accessible);
 
   if (widget == NULL)
@@ -319,7 +319,7 @@ vnck_pager_accessible_ref_child (AtkObject *obj,
   g_return_val_if_fail (VNCK_PAGER_IS_ACCESSIBLE (obj), NULL);
   g_return_val_if_fail (ATK_IS_OBJECT (obj), NULL);
 
-  accessible = GTK_ACCESSIBLE (obj);
+  accessible = CTK_ACCESSIBLE (obj);
   widget = ctk_accessible_get_widget (accessible);
 
   if (widget == NULL)

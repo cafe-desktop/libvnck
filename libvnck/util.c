@@ -748,7 +748,7 @@ _make_ctk_label_bold (GtkLabel *label)
 
   _vnck_ensure_fallback_style ();
 
-  context = ctk_widget_get_style_context (GTK_WIDGET (label));
+  context = ctk_widget_get_style_context (CTK_WIDGET (label));
   ctk_style_context_add_class (context, "vnck-needs-attention");
 }
 
@@ -757,7 +757,7 @@ _make_ctk_label_normal (GtkLabel *label)
 {
   GtkStyleContext *context;
 
-  context = ctk_widget_get_style_context (GTK_WIDGET (label));
+  context = ctk_widget_get_style_context (CTK_WIDGET (label));
   ctk_style_context_remove_class (context, "vnck-needs-attention");
 }
 
@@ -865,9 +865,9 @@ _vnck_ensure_fallback_style (void)
   provider = ctk_css_provider_new ();
   ctk_css_provider_load_from_resource (provider, "/org/gnome/libvnck/vnck.css");
 
-  priority = GTK_STYLE_PROVIDER_PRIORITY_FALLBACK;
+  priority = CTK_STYLE_PROVIDER_PRIORITY_FALLBACK;
   ctk_style_context_add_provider_for_screen (gdk_screen_get_default (),
-                                             GTK_STYLE_PROVIDER (provider),
+                                             CTK_STYLE_PROVIDER (provider),
                                              priority);
 
   g_object_unref (provider);

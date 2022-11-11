@@ -97,7 +97,7 @@ enum {
 	PROP_WINDOW
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (VnckActionMenu, vnck_action_menu, GTK_TYPE_MENU);
+G_DEFINE_TYPE_WITH_PRIVATE (VnckActionMenu, vnck_action_menu, CTK_TYPE_MENU);
 
 static void vnck_action_menu_dispose (GObject *object);
 
@@ -112,20 +112,20 @@ window_weak_notify (gpointer data,
                     GObject *window)
 {
   VNCK_ACTION_MENU(data)->priv->window = NULL;
-  ctk_widget_destroy (GTK_WIDGET (data));
+  ctk_widget_destroy (CTK_WIDGET (data));
 }
 
 static VnckActionMenu*
 get_action_menu (GtkWidget *widget)
 {
   while (widget) {
-    if (GTK_IS_MENU_ITEM (widget))
+    if (CTK_IS_MENU_ITEM (widget))
       widget = ctk_widget_get_parent (widget);
 
     if (VNCK_IS_ACTION_MENU (widget))
       return VNCK_ACTION_MENU (widget);
 
-    widget = ctk_menu_get_attach_widget (GTK_MENU (widget));
+    widget = ctk_menu_get_attach_widget (CTK_MENU (widget));
     if (widget == NULL)
       break;
   }
@@ -334,7 +334,7 @@ set_item_text (GtkWidget  *mi,
 {
   GtkLabel *label;
 
-  label = GTK_LABEL (ctk_bin_get_child (GTK_BIN (mi)));
+  label = CTK_LABEL (ctk_bin_get_child (CTK_BIN (mi)));
   ctk_label_set_text_with_mnemonic (label, text);
   ctk_label_set_use_underline (label, TRUE);
 }
@@ -391,7 +391,7 @@ update_menu_state (VnckActionMenu *menu)
   g_signal_handlers_block_by_func (G_OBJECT (priv->above_item),
                                    item_activated_callback,
                                    GINT_TO_POINTER (ABOVE));
-  ctk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (priv->above_item),
+  ctk_check_menu_item_set_active (CTK_CHECK_MENU_ITEM (priv->above_item),
                                   vnck_window_is_above (priv->window));
   g_signal_handlers_unblock_by_func (G_OBJECT (priv->above_item),
                                      item_activated_callback,
@@ -408,10 +408,10 @@ update_menu_state (VnckActionMenu *menu)
                                    GINT_TO_POINTER (UNPIN));
   if ((viewport_mode  && vnck_window_is_sticky (priv->window)) ||
       (!viewport_mode && vnck_window_is_pinned (priv->window)))
-          ctk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (priv->pin_item),
+          ctk_check_menu_item_set_active (CTK_CHECK_MENU_ITEM (priv->pin_item),
                                           TRUE);
   else
-          ctk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (priv->unpin_item),
+          ctk_check_menu_item_set_active (CTK_CHECK_MENU_ITEM (priv->unpin_item),
                                           TRUE);
   g_signal_handlers_unblock_by_func (G_OBJECT (priv->pin_item),
                                      item_activated_callback,
@@ -546,7 +546,7 @@ update_menu_state (VnckActionMenu *menu)
       else
         {
           ctk_widget_hide (priv->workspace_item);
-          ctk_menu_popdown (GTK_MENU (ctk_menu_item_get_submenu (GTK_MENU_ITEM (priv->workspace_item))));
+          ctk_menu_popdown (CTK_MENU (ctk_menu_item_get_submenu (CTK_MENU_ITEM (priv->workspace_item))));
         }
     }
   else if (vnck_screen_get_workspace_count (screen) > 1)
@@ -563,10 +563,10 @@ update_menu_state (VnckActionMenu *menu)
       ctk_widget_hide (priv->pin_item);
       ctk_widget_hide (priv->unpin_item);
       ctk_widget_hide (priv->workspace_item);
-      ctk_menu_popdown (GTK_MENU (ctk_menu_item_get_submenu (GTK_MENU_ITEM (priv->workspace_item))));
+      ctk_menu_popdown (CTK_MENU (ctk_menu_item_get_submenu (CTK_MENU_ITEM (priv->workspace_item))));
     }
 
-  ctk_menu_reposition (GTK_MENU (menu));
+  ctk_menu_reposition (CTK_MENU (menu));
 
   return FALSE;
 }
@@ -627,7 +627,7 @@ make_radio_menu_item (WindowAction   action,
   GtkWidget *mi;
 
   mi = ctk_radio_menu_item_new_with_mnemonic (*group, mnemonic_text);
-  *group = ctk_radio_menu_item_get_group (GTK_RADIO_MENU_ITEM (mi));
+  *group = ctk_radio_menu_item_get_group (CTK_RADIO_MENU_ITEM (mi));
 
   g_signal_connect (G_OBJECT (mi), "activate",
                     G_CALLBACK (item_activated_callback),
@@ -753,12 +753,12 @@ refill_submenu_workspace (VnckActionMenu *menu)
   int num_workspaces, window_space, i;
   VnckWorkspace *workspace;
 
-  submenu = ctk_menu_item_get_submenu (GTK_MENU_ITEM (menu->priv->workspace_item));
+  submenu = ctk_menu_item_get_submenu (CTK_MENU_ITEM (menu->priv->workspace_item));
 
   /* Remove existing items */
-  children = ctk_container_get_children (GTK_CONTAINER (submenu));
+  children = ctk_container_get_children (CTK_CONTAINER (submenu));
   for (l = children; l; l = l->next)
-    ctk_container_remove (GTK_CONTAINER (submenu), l->data);
+    ctk_container_remove (CTK_CONTAINER (submenu), l->data);
   g_list_free (children);
 
   workspace = vnck_window_get_workspace (menu->priv->window);
@@ -783,13 +783,13 @@ refill_submenu_workspace (VnckActionMenu *menu)
       if (i == window_space)
         ctk_widget_set_sensitive (item, FALSE);
 
-      ctk_menu_shell_append (GTK_MENU_SHELL (submenu), item);
+      ctk_menu_shell_append (CTK_MENU_SHELL (submenu), item);
       set_item_text (item, name);
 
       g_free (name);
     }
 
-  ctk_menu_reposition (GTK_MENU (submenu));
+  ctk_menu_reposition (CTK_MENU (submenu));
 }
 
 static void
@@ -807,12 +807,12 @@ refill_submenu_viewport (VnckActionMenu *menu)
   int x, y;
   int number;
 
-  submenu = ctk_menu_item_get_submenu (GTK_MENU_ITEM (menu->priv->workspace_item));
+  submenu = ctk_menu_item_get_submenu (CTK_MENU_ITEM (menu->priv->workspace_item));
 
   /* Remove existing items */
-  children = ctk_container_get_children (GTK_CONTAINER (submenu));
+  children = ctk_container_get_children (CTK_CONTAINER (submenu));
   for (l = children; l; l = l->next)
-    ctk_container_remove (GTK_CONTAINER (submenu), l->data);
+    ctk_container_remove (CTK_CONTAINER (submenu), l->data);
   g_list_free (children);
 
   screen = vnck_window_get_screen (menu->priv->window);
@@ -861,14 +861,14 @@ refill_submenu_viewport (VnckActionMenu *menu)
               window_y >= y && window_y < y + screen_height)
             ctk_widget_set_sensitive (item, FALSE);
 
-          ctk_menu_shell_append (GTK_MENU_SHELL (submenu), item);
+          ctk_menu_shell_append (CTK_MENU_SHELL (submenu), item);
           set_item_text (item, label);
 
           g_free (label);
         }
     }
 
-  ctk_menu_reposition (GTK_MENU (submenu));
+  ctk_menu_reposition (CTK_MENU (submenu));
 }
 
 static void
@@ -975,66 +975,66 @@ vnck_action_menu_constructor (GType                  type,
 
   priv->minimize_item = make_menu_item (MINIMIZE);
 
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          priv->minimize_item);
 
   priv->maximize_item = make_menu_item (MAXIMIZE);
 
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          priv->maximize_item);
 
   priv->move_item = make_menu_item (MOVE);
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          priv->move_item);
 
   set_item_text (priv->move_item, _("_Move"));
 
   priv->resize_item = make_menu_item (RESIZE);
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          priv->resize_item);
 
   set_item_text (priv->resize_item, _("_Resize"));
 
   priv->workspace_separator = separator = ctk_separator_menu_item_new ();
   ctk_widget_show (separator);
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          separator);
 
   priv->above_item = make_check_menu_item (ABOVE,
                                           _("Always On _Top"));
 
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          priv->above_item);
 
   pin_group = NULL;
 
   priv->pin_item = make_radio_menu_item (PIN, &pin_group,
                                         _("_Always on Visible Workspace"));
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          priv->pin_item);
 
   priv->unpin_item = make_radio_menu_item (UNPIN, &pin_group,
                                           _("_Only on This Workspace"));
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          priv->unpin_item);
 
   priv->left_item = make_menu_item (LEFT);
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          priv->left_item);
   set_item_text (priv->left_item, _("Move to Workspace _Left"));
 
   priv->right_item = make_menu_item (RIGHT);
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          priv->right_item);
   set_item_text (priv->right_item, _("Move to Workspace R_ight"));
 
   priv->up_item = make_menu_item (UP);
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          priv->up_item);
   set_item_text (priv->up_item, _("Move to Workspace _Up"));
 
   priv->down_item = make_menu_item (DOWN);
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          priv->down_item);
   set_item_text (priv->down_item, _("Move to Workspace _Down"));
 
@@ -1042,20 +1042,20 @@ vnck_action_menu_constructor (GType                  type,
   ctk_widget_show (priv->workspace_item);
 
   submenu = ctk_menu_new ();
-  ctk_menu_item_set_submenu (GTK_MENU_ITEM (priv->workspace_item),
+  ctk_menu_item_set_submenu (CTK_MENU_ITEM (priv->workspace_item),
                              submenu);
 
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          priv->workspace_item);
 
   separator = ctk_separator_menu_item_new ();
   ctk_widget_show (separator);
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          separator);
 
   priv->close_item = make_menu_item (CLOSE);
 
-  ctk_menu_shell_append (GTK_MENU_SHELL (menu),
+  ctk_menu_shell_append (CTK_MENU_SHELL (menu),
                          priv->close_item);
 
   set_item_text (priv->close_item, _("_Close"));
