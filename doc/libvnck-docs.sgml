@@ -103,10 +103,10 @@ Vnck.Shutdown()
      </para>
     </sect2>
 
-    <sect2 id="getting-started.pitfalls.gdk-init">
+    <sect2 id="getting-started.pitfalls.cdk-init">
      <title>CDK initialization</title>
      <para>
-      Internally, libvnck uses CDK. This means that before any call to libvnck API, CDK needs to be initialized. This can be achieved with <function>gdk_init()</function>, or indirectly via <function>ctk_init()</function>.
+      Internally, libvnck uses CDK. This means that before any call to libvnck API, CDK needs to be initialized. This can be achieved with <function>cdk_init()</function>, or indirectly via <function>ctk_init()</function>.
      </para>
     </sect2>
    </refsect1>

@@ -122,7 +122,7 @@ Display *_vnck_get_default_display (void);
 #define VNCK_SCREEN_XSCREEN(screen) (_vnck_screen_get_xscreen (screen))
 
 Screen    *_vnck_screen_get_xscreen    (VnckScreen *screen);
-GdkScreen *_vnck_screen_get_gdk_screen (VnckScreen *screen);
+GdkScreen *_vnck_screen_get_cdk_screen (VnckScreen *screen);
 
 #ifdef HAVE_STARTUP_NOTIFICATION
 SnDisplay* _vnck_screen_get_sn_display (VnckScreen *screen);

@@ -256,19 +256,19 @@ static char*
 text_property_to_utf8 (Display             *display,
                        const XTextProperty *prop)
 {
-  GdkDisplay *gdkdisplay;
+  GdkDisplay *cdkdisplay;
   char **list;
   int count;
   char *retval;
 
   list = NULL;
 
-  gdkdisplay = _vnck_gdk_display_lookup_from_display (display);
-  if (!gdkdisplay)
+  cdkdisplay = _vnck_cdk_display_lookup_from_display (display);
+  if (!cdkdisplay)
     return NULL;
 
-  count = gdk_text_property_to_utf8_list_for_display (gdkdisplay,
-                                          gdk_x11_xatom_to_atom (prop->encoding),
+  count = cdk_text_property_to_utf8_list_for_display (cdkdisplay,
+                                          cdk_x11_xatom_to_atom (prop->encoding),
                                           prop->format,
                                           prop->value,
                                           prop->nitems,
@@ -699,32 +699,32 @@ _vnck_set_utf8_list (Screen  *screen,
 void
 _vnck_error_trap_push (Display *display)
 {
-  GdkDisplay *gdk_display;
+  GdkDisplay *cdk_display;
 
-  gdk_display = gdk_x11_lookup_xdisplay (display);
-  g_assert (gdk_display != NULL);
+  cdk_display = cdk_x11_lookup_xdisplay (display);
+  g_assert (cdk_display != NULL);
 
-  gdk_x11_display_error_trap_push (gdk_display);
+  cdk_x11_display_error_trap_push (cdk_display);
 }
 
 int
 _vnck_error_trap_pop (Display *display)
 {
-  GdkDisplay *gdk_display;
+  GdkDisplay *cdk_display;
 
-  gdk_display = gdk_x11_lookup_xdisplay (display);
-  g_assert (gdk_display != NULL);
+  cdk_display = cdk_x11_lookup_xdisplay (display);
+  g_assert (cdk_display != NULL);
 
-  gdk_display_flush (gdk_display);
-  return gdk_x11_display_error_trap_pop (gdk_display);
+  cdk_display_flush (cdk_display);
+  return cdk_x11_display_error_trap_pop (cdk_display);
 }
 
 static GdkFilterReturn
-filter_func (GdkXEvent  *gdkxevent,
+filter_func (GdkXEvent  *cdkxevent,
              GdkEvent   *event,
              gpointer    data)
 {
-  XEvent *xevent = gdkxevent;
+  XEvent *xevent = cdkxevent;
 #ifdef HAVE_STARTUP_NOTIFICATION
   int i;
   Display *display;
@@ -810,7 +810,7 @@ _vnck_event_filter_init (void)
 
   if (!_vnck_event_filter_initialized)
     {
-      gdk_window_add_filter (NULL, filter_func, NULL);
+      cdk_window_add_filter (NULL, filter_func, NULL);
       _vnck_event_filter_initialized = TRUE;
     }
 }
@@ -821,7 +821,7 @@ _vnck_event_filter_shutdown (void)
 
   if (_vnck_event_filter_initialized)
     {
-      gdk_window_remove_filter (NULL, filter_func, NULL);
+      cdk_window_remove_filter (NULL, filter_func, NULL);
       _vnck_event_filter_initialized = FALSE;
     }
 }
@@ -868,14 +868,14 @@ _vnck_deiconify (Screen *screen,
    * CDK functions
    */
   Display   *display;
-  GdkWindow *gdkwindow;
+  GdkWindow *cdkwindow;
 
   display = DisplayOfScreen (screen);
-  gdkwindow = _vnck_gdk_window_lookup_from_window (screen, xwindow);
+  cdkwindow = _vnck_cdk_window_lookup_from_window (screen, xwindow);
 
   _vnck_error_trap_push (display);
-  if (gdkwindow)
-    gdk_window_show (gdkwindow);
+  if (cdkwindow)
+    cdk_window_show (cdkwindow);
   else
     XMapRaised (display, xwindow);
   _vnck_error_trap_pop (display);
@@ -1422,15 +1422,15 @@ _vnck_select_input (Screen *screen,
                     gboolean update)
 {
   Display   *display;
-  GdkWindow *gdkwindow;
+  GdkWindow *cdkwindow;
   int old_mask = 0;
 
   display = DisplayOfScreen (screen);
 
-  gdkwindow = _vnck_gdk_window_lookup_from_window (screen, xwindow);
+  cdkwindow = _vnck_cdk_window_lookup_from_window (screen, xwindow);
 
   _vnck_error_trap_push (display);
-  if (gdkwindow)
+  if (cdkwindow)
     {
       /* Avoid breaking CDK's setup,
        * this somewhat relies on people setting
@@ -1770,7 +1770,7 @@ TRAP_POP:
 }
 
 GdkPixbuf*
-_vnck_gdk_pixbuf_get_from_pixmap (Screen *screen,
+_vnck_cdk_pixbuf_get_from_pixmap (Screen *screen,
                                   Pixmap  xpixmap)
 {
   cairo_surface_t *surface;
@@ -1781,7 +1781,7 @@ _vnck_gdk_pixbuf_get_from_pixmap (Screen *screen,
   if (surface == NULL)
     return NULL;
 
-  retval = gdk_pixbuf_get_from_surface (surface,
+  retval = cdk_pixbuf_get_from_surface (surface,
                                         0,
                                         0,
                                         cairo_xlib_surface_get_width (surface),
@@ -1803,7 +1803,7 @@ try_pixmap_and_mask (Screen     *screen,
                      int         ideal_mini_height)
 {
   cairo_surface_t *surface, *mask_surface, *image;
-  GdkDisplay *gdk_display;
+  GdkDisplay *cdk_display;
   GdkPixbuf *unscaled;
   int width, height;
   cairo_t *cr;
@@ -1821,10 +1821,10 @@ try_pixmap_and_mask (Screen     *screen,
   if (surface == NULL)
     return FALSE;
 
-  gdk_display = gdk_x11_lookup_xdisplay (XDisplayOfScreen (screen));
-  g_assert (gdk_display != NULL);
+  cdk_display = cdk_x11_lookup_xdisplay (XDisplayOfScreen (screen));
+  g_assert (cdk_display != NULL);
 
-  gdk_x11_display_error_trap_push (gdk_display);
+  cdk_x11_display_error_trap_push (cdk_display);
 
   width = cairo_xlib_surface_get_width (surface);
   height = cairo_xlib_surface_get_height (surface);
@@ -1864,13 +1864,13 @@ try_pixmap_and_mask (Screen     *screen,
   cairo_surface_destroy (surface);
   cairo_destroy (cr);
 
-  if (gdk_x11_display_error_trap_pop (gdk_display) != Success)
+  if (cdk_x11_display_error_trap_pop (cdk_display) != Success)
     {
       cairo_surface_destroy (image);
       return FALSE;
     }
 
-  unscaled = gdk_pixbuf_get_from_surface (image,
+  unscaled = cdk_pixbuf_get_from_surface (image,
                                           0, 0,
                                           width, height);
 
@@ -1879,18 +1879,18 @@ try_pixmap_and_mask (Screen     *screen,
   if (unscaled)
     {
       *iconp =
-        gdk_pixbuf_scale_simple (unscaled,
+        cdk_pixbuf_scale_simple (unscaled,
                                  ideal_width > 0 ? ideal_width :
-                                 gdk_pixbuf_get_width (unscaled),
+                                 cdk_pixbuf_get_width (unscaled),
                                  ideal_height > 0 ? ideal_height :
-                                 gdk_pixbuf_get_height (unscaled),
+                                 cdk_pixbuf_get_height (unscaled),
                                  CDK_INTERP_BILINEAR);
       *mini_iconp =
-        gdk_pixbuf_scale_simple (unscaled,
+        cdk_pixbuf_scale_simple (unscaled,
                                  ideal_mini_width > 0 ? ideal_mini_width :
-                                 gdk_pixbuf_get_width (unscaled),
+                                 cdk_pixbuf_get_width (unscaled),
                                  ideal_mini_height > 0 ? ideal_mini_height :
-                                 gdk_pixbuf_get_height (unscaled),
+                                 cdk_pixbuf_get_height (unscaled),
                                  CDK_INTERP_BILINEAR);
 
       g_object_unref (G_OBJECT (unscaled));
@@ -2112,7 +2112,7 @@ scaled_from_pixdata (guchar *pixdata,
   GdkPixbuf *src;
   GdkPixbuf *dest;
 
-  src = gdk_pixbuf_new_from_data (pixdata,
+  src = cdk_pixbuf_new_from_data (pixdata,
                                   CDK_COLORSPACE_RGB,
                                   TRUE,
                                   8,
@@ -2130,12 +2130,12 @@ scaled_from_pixdata (guchar *pixdata,
 
       size = MAX (w, h);
 
-      tmp = gdk_pixbuf_new (CDK_COLORSPACE_RGB, TRUE, 8, size, size);
+      tmp = cdk_pixbuf_new (CDK_COLORSPACE_RGB, TRUE, 8, size, size);
 
       if (tmp != NULL)
 	{
-	  gdk_pixbuf_fill (tmp, 0);
-	  gdk_pixbuf_copy_area (src, 0, 0, w, h,
+	  cdk_pixbuf_fill (tmp, 0);
+	  cdk_pixbuf_copy_area (src, 0, 0, w, h,
 				tmp,
 				(size - w) / 2, (size - h) / 2);
 
@@ -2146,7 +2146,7 @@ scaled_from_pixdata (guchar *pixdata,
 
   if (w != new_w || h != new_h)
     {
-      dest = gdk_pixbuf_scale_simple (src, new_w, new_h, CDK_INTERP_BILINEAR);
+      dest = cdk_pixbuf_scale_simple (src, new_w, new_h, CDK_INTERP_BILINEAR);
 
       g_object_unref (G_OBJECT (src));
     }
@@ -2343,13 +2343,13 @@ default_icon_at_size (int width,
 {
   GdkPixbuf *base;
 
-  base = gdk_pixbuf_new_from_resource ("/org/gnome/libvnck/default_icon.png", NULL);
+  base = cdk_pixbuf_new_from_resource ("/org/gnome/libvnck/default_icon.png", NULL);
 
   g_assert (base);
 
   if ((width < 0 && height < 0) ||
-      (gdk_pixbuf_get_width (base) == width &&
-       gdk_pixbuf_get_height (base) == height))
+      (cdk_pixbuf_get_width (base) == width &&
+       cdk_pixbuf_get_height (base) == height))
     {
       return base;
     }
@@ -2357,11 +2357,11 @@ default_icon_at_size (int width,
     {
       GdkPixbuf *scaled;
 
-      scaled = gdk_pixbuf_scale_simple (base,
+      scaled = cdk_pixbuf_scale_simple (base,
                                         width > 0 ? width :
-                                        gdk_pixbuf_get_width (base),
+                                        cdk_pixbuf_get_width (base),
                                         height > 0 ? height :
-                                        gdk_pixbuf_get_height (base),
+                                        cdk_pixbuf_get_height (base),
                                         CDK_INTERP_BILINEAR);
 
       g_object_unref (G_OBJECT (base));
@@ -2525,32 +2525,32 @@ _vnck_set_icon_geometry  (Screen *screen,
 }
 
 GdkDisplay*
-_vnck_gdk_display_lookup_from_display (Display *display)
+_vnck_cdk_display_lookup_from_display (Display *display)
 {
-  GdkDisplay *gdkdisplay = NULL;
+  GdkDisplay *cdkdisplay = NULL;
 
-  gdkdisplay = gdk_x11_lookup_xdisplay (display);
+  cdkdisplay = cdk_x11_lookup_xdisplay (display);
 
-  if (!gdkdisplay)
+  if (!cdkdisplay)
     g_warning ("No GdkDisplay matching Display \"%s\" was found.\n",
                DisplayString (display));
 
-  return gdkdisplay;
+  return cdkdisplay;
 }
 
 GdkWindow*
-_vnck_gdk_window_lookup_from_window (Screen *screen,
+_vnck_cdk_window_lookup_from_window (Screen *screen,
                                      Window  xwindow)
 {
   Display    *display;
-  GdkDisplay *gdkdisplay;
+  GdkDisplay *cdkdisplay;
 
   display = DisplayOfScreen (screen);
-  gdkdisplay = _vnck_gdk_display_lookup_from_display (display);
-  if (!gdkdisplay)
+  cdkdisplay = _vnck_cdk_display_lookup_from_display (display);
+  if (!cdkdisplay)
     return NULL;
 
-  return gdk_x11_window_lookup_for_display (gdkdisplay, xwindow);
+  return cdk_x11_window_lookup_for_display (cdkdisplay, xwindow);
 }
 
 /* orientation of pager */

@@ -45,8 +45,8 @@ window_composited_changed (CtkWidget *widget,
   GdkScreen *screen;
   gboolean composited;
 
-  screen = gdk_screen_get_default ();
-  composited = gdk_screen_is_composited (screen);
+  screen = cdk_screen_get_default ();
+  composited = cdk_screen_is_composited (screen);
 
   ctk_widget_set_app_paintable (widget, composited);
 }
@@ -116,7 +116,7 @@ main (int argc, char **argv)
     {
       GdkVisual *visual;
 
-      visual = gdk_screen_get_rgba_visual (ctk_widget_get_screen (win));
+      visual = cdk_screen_get_rgba_visual (ctk_widget_get_screen (win));
 
       if (visual != NULL)
         {

@@ -25,8 +25,8 @@
 #include <glib.h>
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
-#include <gdk/gdk.h>
-#include <gdk/gdkx.h>
+#include <cdk/cdk.h>
+#include <cdk/cdkx.h>
 #include <libvnck/screen.h>
 
 G_BEGIN_DECLS
@@ -84,8 +84,8 @@ void     _vnck_set_utf8_list     (Screen  *screen,
 void _vnck_error_trap_push (Display *display);
 int  _vnck_error_trap_pop  (Display *display);
 
-#define _vnck_atom_get(atom_name) gdk_x11_get_xatom_by_name (atom_name)
-#define _vnck_atom_name(atom)     gdk_x11_get_xatom_name (atom)
+#define _vnck_atom_get(atom_name) cdk_x11_get_xatom_by_name (atom_name)
+#define _vnck_atom_name(atom)     cdk_x11_get_xatom_name (atom)
 
 void _vnck_event_filter_init (void);
 void _vnck_event_filter_shutdown (void);
@@ -219,12 +219,12 @@ void _vnck_set_desktop_layout (Screen *xscreen,
                                int     rows,
                                int     columns);
 
-GdkPixbuf* _vnck_gdk_pixbuf_get_from_pixmap (Screen *screen,
+GdkPixbuf* _vnck_cdk_pixbuf_get_from_pixmap (Screen *screen,
                                              Pixmap  xpixmap);
 
-GdkDisplay* _vnck_gdk_display_lookup_from_display (Display *display);
+GdkDisplay* _vnck_cdk_display_lookup_from_display (Display *display);
 
-GdkWindow* _vnck_gdk_window_lookup_from_window (Screen *screen,
+GdkWindow* _vnck_cdk_window_lookup_from_window (Screen *screen,
                                                 Window  xwindow);
 
 #define VNCK_NO_MANAGER_TOKEN 0

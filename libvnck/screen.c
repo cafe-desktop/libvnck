@@ -33,8 +33,8 @@
 #include "class-group.h"
 #include "xutils.h"
 #include "private.h"
-#include <gdk/gdk.h>
-#include <gdk/gdkx.h>
+#include <cdk/cdk.h>
+#include <cdk/cdkx.h>
 #include <string.h>
 #include <stdlib.h>
 
@@ -847,7 +847,7 @@ vnck_screen_get_windows_stacked (VnckScreen *screen)
 }
 
 /**
- * _vnck_screen_get_gdk_screen:
+ * _vnck_screen_get_cdk_screen:
  * @screen: a #VnckScreen.
  *
  * Gets the <classname>GdkScreen</classname referring to the same screen as
@@ -857,22 +857,22 @@ vnck_screen_get_windows_stacked (VnckScreen *screen)
  * screen as @screen.
  **/
 GdkScreen *
-_vnck_screen_get_gdk_screen (VnckScreen *screen)
+_vnck_screen_get_cdk_screen (VnckScreen *screen)
 {
   Display    *display;
-  GdkDisplay *gdkdisplay;
+  GdkDisplay *cdkdisplay;
 
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), NULL);
 
   display = DisplayOfScreen (screen->priv->xscreen);
-  gdkdisplay = _vnck_gdk_display_lookup_from_display (display);
-  if (!gdkdisplay)
+  cdkdisplay = _vnck_cdk_display_lookup_from_display (display);
+  if (!cdkdisplay)
     return NULL;
 
   if (screen->priv->number != 0)
     return NULL;
 
-  return gdk_display_get_default_screen (gdkdisplay);
+  return cdk_display_get_default_screen (cdkdisplay);
 }
 
 /**
@@ -2420,7 +2420,7 @@ vnck_screen_get_window_manager_name (VnckScreen *screen)
  * the window manager starts vnck_screen_net_wm_supports() will return %FALSE
  * for every property.
  *
- * See also gdk_x11_screen_supports_net_wm_hint() in CDK.
+ * See also cdk_x11_screen_supports_net_wm_hint() in CDK.
  *
  * Return value: %TRUE if the window manager for @screen supports the @atom
  * hint, %FALSE otherwise.
@@ -2431,8 +2431,8 @@ vnck_screen_net_wm_supports (VnckScreen *screen,
 {
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), FALSE);
 
-  return gdk_x11_screen_supports_net_wm_hint (_vnck_screen_get_gdk_screen (screen),
-                                              gdk_atom_intern (atom, FALSE));
+  return cdk_x11_screen_supports_net_wm_hint (_vnck_screen_get_cdk_screen (screen),
+                                              cdk_atom_intern (atom, FALSE));
 }
 
 /**

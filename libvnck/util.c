@@ -25,7 +25,7 @@
 #include "util.h"
 #include "xutils.h"
 #include "private.h"
-#include <gdk/gdkx.h>
+#include <cdk/cdkx.h>
 #include <string.h>
 #ifdef HAVE_XRES
 #include <X11/extensions/XRes.h>
@@ -137,7 +137,7 @@ vnck_init_resource_usage (GdkDisplay *gdisplay)
 
 /**
  * vnck_xid_read_resource_usage:
- * @gdk_display: a <classname>GdkDisplay</classname>.
+ * @cdk_display: a <classname>GdkDisplay</classname>.
  * @xid: an X window ID.
  * @usage: return location for the X resource usage of the application owning
  * the X window ID @xid.
@@ -581,7 +581,7 @@ vnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
 
 /**
  * vnck_pid_read_resource_usage:
- * @gdk_display: a <classname>GdkDisplay</classname>.
+ * @cdk_display: a <classname>GdkDisplay</classname>.
  * @pid: a process ID.
  * @usage: return location for the X resource usage of the application with
  * process ID @pid.
@@ -791,7 +791,7 @@ _vnck_init (void)
 Display *
 _vnck_get_default_display (void)
 {
-  GdkDisplay *display = gdk_display_get_default ();
+  GdkDisplay *display = cdk_display_get_default ();
   /* FIXME: when we fix libvnck to not use the CDK default display, we will
    * need to fix vnckprop accordingly. */
   if (!CDK_IS_X11_DISPLAY (display))
@@ -866,7 +866,7 @@ _vnck_ensure_fallback_style (void)
   ctk_css_provider_load_from_resource (provider, "/org/gnome/libvnck/vnck.css");
 
   priority = CTK_STYLE_PROVIDER_PRIORITY_FALLBACK;
-  ctk_style_context_add_provider_for_screen (gdk_screen_get_default (),
+  ctk_style_context_add_provider_for_screen (cdk_screen_get_default (),
                                              CTK_STYLE_PROVIDER (provider),
                                              priority);
 

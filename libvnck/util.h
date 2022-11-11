@@ -110,11 +110,11 @@ void vnck_set_default_mini_icon_size (gsize size);
 
 void vnck_shutdown        (void);
 
-void vnck_xid_read_resource_usage (GdkDisplay        *gdk_display,
+void vnck_xid_read_resource_usage (GdkDisplay        *cdk_display,
                                    gulong             xid,
                                    VnckResourceUsage *usage);
 
-void vnck_pid_read_resource_usage (GdkDisplay        *gdk_display,
+void vnck_pid_read_resource_usage (GdkDisplay        *cdk_display,
                                    gulong             pid,
                                    VnckResourceUsage *usage);
 

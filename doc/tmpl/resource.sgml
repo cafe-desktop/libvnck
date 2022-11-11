@@ -43,7 +43,7 @@ Resource Usage of X Clients
 
 </para>
 
-@gdk_display: 
+@cdk_display: 
 @xid: 
 @usage: 
 
@@ -53,7 +53,7 @@ Resource Usage of X Clients
 
 </para>
 
-@gdk_display: 
+@cdk_display: 
 @pid: 
 @usage: 
 

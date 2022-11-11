@@ -1736,12 +1736,12 @@ static void
 vnck_tasklist_realize (CtkWidget *widget)
 {
   VnckTasklist *tasklist;
-  GdkScreen *gdkscreen;
+  GdkScreen *cdkscreen;
 
   tasklist = VNCK_TASKLIST (widget);
 
-  gdkscreen = ctk_widget_get_screen (widget);
-  tasklist->priv->screen = vnck_screen_get (gdk_x11_screen_get_screen_number (gdkscreen));
+  cdkscreen = ctk_widget_get_screen (widget);
+  tasklist->priv->screen = vnck_screen_get (cdk_x11_screen_get_screen_number (cdkscreen));
   g_assert (tasklist->priv->screen != NULL);
 
 #ifdef HAVE_STARTUP_NOTIFICATION
@@ -2214,8 +2214,8 @@ tasklist_include_window_impl (VnckTasklist *tasklist,
 
       /* Don't include the window if its center point is not on the same monitor */
 
-      display = gdk_display_get_default ();
-      monitor = gdk_display_get_monitor_at_point (display, x + w / 2, y + h / 2);
+      display = cdk_display_get_default ();
+      monitor = cdk_display_get_monitor_at_point (display, x + w / 2, y + h / 2);
 
       if (monitor != tasklist->priv->monitor)
         return FALSE;
@@ -2298,13 +2298,13 @@ vnck_tasklist_update_lists (VnckTasklist *tasklist)
           GdkDisplay *display;
           GdkMonitor *monitor;
 
-          display = gdk_display_get_default ();
-          monitor = gdk_display_get_monitor_at_window (display, tasklist_window);
+          display = cdk_display_get_default ();
+          monitor = cdk_display_get_monitor_at_window (display, tasklist_window);
 
           if (monitor != tasklist->priv->monitor)
             {
               tasklist->priv->monitor = monitor;
-              gdk_monitor_get_geometry (monitor, &tasklist->priv->monitor_geometry);
+              cdk_monitor_get_geometry (monitor, &tasklist->priv->monitor_geometry);
             }
         }
     }
@@ -2477,7 +2477,7 @@ vnck_tasklist_update_icon_geometries (VnckTasklist *tasklist,
 
                 ctk_widget_get_allocation (task->button, &allocation);
 
-                gdk_window_get_origin (ctk_widget_get_parent_window (task->button),
+                cdk_window_get_origin (ctk_widget_get_parent_window (task->button),
                                        &x, &y);
 
                 x += allocation.x;
@@ -2620,8 +2620,8 @@ vnck_tasklist_window_changed_geometry (VnckWindow   *window,
           GdkDisplay *display;
           GdkMonitor *monitor;
 
-          display = gdk_display_get_default ();
-          monitor = gdk_display_get_monitor_at_window (display, tasklist_window);
+          display = cdk_display_get_default ();
+          monitor = cdk_display_get_monitor_at_window (display, tasklist_window);
 
           monitor_changed = (monitor != tasklist->priv->monitor);
         }
@@ -3065,7 +3065,7 @@ vnck_task_popup_menu (VnckTask *task,
     }
 
   ctk_menu_set_screen (CTK_MENU (menu),
-		       _vnck_screen_get_gdk_screen (task->tasklist->priv->screen));
+		       _vnck_screen_get_cdk_screen (task->tasklist->priv->screen));
 
   ctk_widget_show (menu);
   ctk_menu_popup_at_widget (CTK_MENU (menu), task->button,
@@ -3163,15 +3163,15 @@ vnck_dimm_icon (GdkPixbuf *pixbuf)
 
   g_assert (pixbuf != NULL);
 
-  w = gdk_pixbuf_get_width (pixbuf);
-  h = gdk_pixbuf_get_height (pixbuf);
+  w = cdk_pixbuf_get_width (pixbuf);
+  h = cdk_pixbuf_get_height (pixbuf);
 
-  g_assert (gdk_pixbuf_get_has_alpha (pixbuf));
+  g_assert (cdk_pixbuf_get_has_alpha (pixbuf));
 
   pixel_stride = 4;
 
-  row = gdk_pixbuf_get_pixels (pixbuf);
-  row_stride = gdk_pixbuf_get_rowstride (pixbuf);
+  row = cdk_pixbuf_get_pixels (pixbuf);
+  row_stride = cdk_pixbuf_get_rowstride (pixbuf);
 
   for (y = 0; y < h; y++)
     {
@@ -3197,27 +3197,27 @@ vnck_task_scale_icon (GdkPixbuf *orig, gboolean minimized)
   if (!orig)
     return NULL;
 
-  w = gdk_pixbuf_get_width (orig);
-  h = gdk_pixbuf_get_height (orig);
+  w = cdk_pixbuf_get_width (orig);
+  h = cdk_pixbuf_get_height (orig);
 
   if (h != (int) MINI_ICON_SIZE ||
-      !gdk_pixbuf_get_has_alpha (orig))
+      !cdk_pixbuf_get_has_alpha (orig))
     {
       double scale;
 
-      pixbuf = gdk_pixbuf_new (CDK_COLORSPACE_RGB,
+      pixbuf = cdk_pixbuf_new (CDK_COLORSPACE_RGB,
 			       TRUE,
 			       8,
 			       MINI_ICON_SIZE * w / (double) h,
 			       MINI_ICON_SIZE);
 
-      scale = MINI_ICON_SIZE / (double) gdk_pixbuf_get_height (orig);
+      scale = MINI_ICON_SIZE / (double) cdk_pixbuf_get_height (orig);
 
-      gdk_pixbuf_scale (orig,
+      cdk_pixbuf_scale (orig,
 			pixbuf,
 			0, 0,
-			gdk_pixbuf_get_width (pixbuf),
-			gdk_pixbuf_get_height (pixbuf),
+			cdk_pixbuf_get_width (pixbuf),
+			cdk_pixbuf_get_height (pixbuf),
 			0, 0,
 			scale, scale,
 			CDK_INTERP_HYPER);
@@ -3228,7 +3228,7 @@ vnck_task_scale_icon (GdkPixbuf *orig, gboolean minimized)
   if (minimized)
     {
       if (orig == pixbuf)
-	pixbuf = gdk_pixbuf_copy (orig);
+	pixbuf = cdk_pixbuf_copy (orig);
 
       vnck_dimm_icon (pixbuf);
     }
@@ -3530,7 +3530,7 @@ vnck_task_drag_motion (CtkWidget          *widget,
   if (ctk_drag_dest_find_target (widget, context, NULL))
     {
       ctk_drag_highlight (widget);
-      gdk_drag_status (context, gdk_drag_context_get_suggested_action (context), time);
+      cdk_drag_status (context, cdk_drag_context_get_suggested_action (context), time);
     }
   else
     {
@@ -3543,7 +3543,7 @@ vnck_task_drag_motion (CtkWidget          *widget,
                                                           task);
         }
 
-      gdk_drag_status (context, 0, time);
+      cdk_drag_status (context, 0, time);
     }
   return TRUE;
 }
@@ -3727,7 +3727,7 @@ vnck_task_button_press_event (CtkWidget	      *widget,
                                      (void**) &task->action_menu);
 
           ctk_menu_set_screen (CTK_MENU (task->action_menu),
-                               _vnck_screen_get_gdk_screen (task->tasklist->priv->screen));
+                               _vnck_screen_get_cdk_screen (task->tasklist->priv->screen));
 
           ctk_widget_show (task->action_menu);
           ctk_menu_popup_at_widget (CTK_MENU (task->action_menu), task->button,
@@ -4047,7 +4047,7 @@ vnck_task_draw (CtkWidget *widget,
       y -= (2 * arrow_height + ARROW_SPACE) / 2;
 
       cairo_save (cr);
-      gdk_cairo_set_source_rgba (cr, &color);
+      cdk_cairo_set_source_rgba (cr, &color);
 
       /* Up arrow */
       cairo_move_to (cr, x, y + arrow_height);

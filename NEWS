@@ -103,7 +103,7 @@ Version 3.20.1
     (Alberts Muktupāvels)
   * tasklist: don't use deprecated CtkMisc (Alberts Muktupāvels)
   * selector: don't use deprecated CtkMisc (Alberts Muktupāvels)
-  * vnckprop: don't use deprecated gdk_cursor_new (Alberts Muktupāvels)
+  * vnckprop: don't use deprecated cdk_cursor_new (Alberts Muktupāvels)
   * test-vnck: don't use deprecated ctk_tree_view_set_rules_hint (Alberts
     Muktupāvels)
 
@@ -602,7 +602,7 @@ Version 2.30.4
 
  Fixes
 
-  - Stop using gdk_display (Vincent)
+  - Stop using cdk_display (Vincent)
 
  Misc
 
