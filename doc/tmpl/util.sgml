@@ -17,7 +17,7 @@ Miscellaneous Functions
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### FUNCTION vnck_gtk_window_set_dock_type ##### -->
+<!-- ##### FUNCTION vnck_ctk_window_set_dock_type ##### -->
 <para>
 
 </para>

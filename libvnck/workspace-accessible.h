@@ -19,7 +19,7 @@
 #ifndef __VNCK_WORKSPACE_ACCESSIBLE_H__
 #define __VNCK_WORKSPACE_ACCESSIBLE_H__
 
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 #include <atk/atk.h>
 #include "workspace.h"
 #include "pager-accessible.h"

@@ -20,7 +20,7 @@
 
 #include <libvnck/libvnck.h>
 #include <glib/gi18n-lib.h>
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 #include <string.h>
 #include <atk/atk.h>
 #include "pager-accessible.h"
@@ -98,7 +98,7 @@ vnck_pager_add_selection (AtkSelection *selection,
   GtkWidget *widget;
   int n_spaces;
 
-  widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (selection));
+  widget = ctk_accessible_get_widget (GTK_ACCESSIBLE (selection));
 
   if (widget == NULL)
     {
@@ -118,8 +118,8 @@ vnck_pager_add_selection (AtkSelection *selection,
    * Activate the following worksapce as current workspace
    */
   wspace = _vnck_pager_get_workspace (pager, i);
-  /* FIXME: Is gtk_get_current_event_time() good enough here?  I have no idea */
-  _vnck_pager_activate_workspace (wspace, gtk_get_current_event_time ());
+  /* FIXME: Is ctk_get_current_event_time() good enough here?  I have no idea */
+  _vnck_pager_activate_workspace (wspace, ctk_get_current_event_time ());
 
   return TRUE;
 }
@@ -139,7 +139,7 @@ vnck_pager_ref_selection (AtkSelection *selection,
 
   g_return_val_if_fail (i == 0, NULL);
 
-  widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (selection));
+  widget = ctk_accessible_get_widget (GTK_ACCESSIBLE (selection));
 
   if (widget == NULL)
     {
@@ -167,7 +167,7 @@ vnck_pager_selection_count (AtkSelection *selection)
 {
   GtkWidget *widget;
 
-  widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (selection));
+  widget = ctk_accessible_get_widget (GTK_ACCESSIBLE (selection));
 
   if (widget == NULL)
     {
@@ -195,7 +195,7 @@ vnck_pager_is_child_selected (AtkSelection *selection,
   VnckWorkspace *active_wspace;
   int wsno;
 
-  widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (selection));
+  widget = ctk_accessible_get_widget (GTK_ACCESSIBLE (selection));
 
   if (widget == NULL)
     {
@@ -218,14 +218,14 @@ vnck_pager_accessible_new (GtkWidget *widget)
 {
   GObject *object;
   AtkObject *aobj_pager;
-  GtkAccessible *gtk_accessible;
+  GtkAccessible *ctk_accessible;
 
   object = g_object_new (VNCK_PAGER_TYPE_ACCESSIBLE, NULL);
 
   aobj_pager = ATK_OBJECT (object);
 
-  gtk_accessible = GTK_ACCESSIBLE (aobj_pager);
-  gtk_accessible_set_widget (gtk_accessible, widget);
+  ctk_accessible = GTK_ACCESSIBLE (aobj_pager);
+  ctk_accessible_set_widget (ctk_accessible, widget);
 
   atk_object_initialize (aobj_pager, widget);
   aobj_pager->role = ATK_ROLE_PANEL;
@@ -289,7 +289,7 @@ vnck_pager_accessible_get_n_children (AtkObject* obj)
   g_return_val_if_fail (VNCK_PAGER_IS_ACCESSIBLE (obj), 0);
 
   accessible = GTK_ACCESSIBLE (obj);
-  widget = gtk_accessible_get_widget (accessible);
+  widget = ctk_accessible_get_widget (accessible);
 
   if (widget == NULL)
     /* State is defunct */
@@ -320,7 +320,7 @@ vnck_pager_accessible_ref_child (AtkObject *obj,
   g_return_val_if_fail (ATK_IS_OBJECT (obj), NULL);
 
   accessible = GTK_ACCESSIBLE (obj);
-  widget = gtk_accessible_get_widget (accessible);
+  widget = ctk_accessible_get_widget (accessible);
 
   if (widget == NULL)
     /* State is defunct */

@@ -1,7 +1,7 @@
 /* vim: set sw=2 et: */
 
 #include <libvnck/libvnck.h>
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 
 static int n_rows = 1;
 static gboolean only_current = FALSE;
@@ -33,21 +33,21 @@ create_pager_window (GtkOrientation       orientation,
   GtkWidget *win;
   GtkWidget *pager;
 
-  win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  win = ctk_window_new (GTK_WINDOW_TOPLEVEL);
 
-  gtk_window_stick (GTK_WINDOW (win));
+  ctk_window_stick (GTK_WINDOW (win));
 #if 0
-  vnck_gtk_window_set_dock_type (GTK_WINDOW (win));
+  vnck_ctk_window_set_dock_type (GTK_WINDOW (win));
 #endif
 
-  gtk_window_set_title (GTK_WINDOW (win), "Pager");
+  ctk_window_set_title (GTK_WINDOW (win), "Pager");
 
   /* very very random */
-  gtk_window_move (GTK_WINDOW (win), 0, 0);
+  ctk_window_move (GTK_WINDOW (win), 0, 0);
 
   /* quit on window close */
   g_signal_connect (G_OBJECT (win), "destroy",
-                    G_CALLBACK (gtk_main_quit),
+                    G_CALLBACK (ctk_main_quit),
                     NULL);
 
   pager = vnck_pager_new ();
@@ -60,9 +60,9 @@ create_pager_window (GtkOrientation       orientation,
   vnck_pager_set_shadow_type (VNCK_PAGER (pager), GTK_SHADOW_IN);
   vnck_pager_set_wrap_on_scroll (VNCK_PAGER (pager), wrap);
 
-  gtk_container_add (GTK_CONTAINER (win), pager);
+  ctk_container_add (GTK_CONTAINER (win), pager);
 
-  gtk_widget_show_all (win);
+  ctk_widget_show_all (win);
 }
 
 int
@@ -76,15 +76,15 @@ main (int argc, char **argv)
 
   ctxt = g_option_context_new ("");
   g_option_context_add_main_entries (ctxt, entries, NULL);
-  g_option_context_add_group (ctxt, gtk_get_option_group (TRUE));
+  g_option_context_add_group (ctxt, ctk_get_option_group (TRUE));
   g_option_context_parse (ctxt, &argc, &argv, NULL);
   g_option_context_free (ctxt);
   ctxt = NULL;
 
-  gtk_init (&argc, &argv);
+  ctk_init (&argc, &argv);
 
   if (rtl)
-    gtk_widget_set_default_direction (GTK_TEXT_DIR_RTL);
+    ctk_widget_set_default_direction (GTK_TEXT_DIR_RTL);
 
   screen = vnck_screen_get_default ();
 
@@ -108,7 +108,7 @@ main (int argc, char **argv)
 
   create_pager_window (orientation, !only_current, mode, scroll_mode, n_rows, wrap_on_scroll);
 
-  gtk_main ();
+  ctk_main ();
 
   return 0;
 }

@@ -26,7 +26,7 @@
 #ifndef VNCK_SELECTOR_H
 #define VNCK_SELECTOR_H
 
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 
 G_BEGIN_DECLS
 #define VNCK_TYPE_SELECTOR              (vnck_selector_get_type ())

@@ -17,7 +17,7 @@
  */
 
 #include <libvnck/libvnck.h>
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 #include <errno.h>
 #include <unistd.h>
 #include "workspace-accessible.h"
@@ -88,7 +88,7 @@ vnck_workspace_accessible_get_extents (AtkComponent *component,
   g_return_if_fail (VNCK_IS_WORKSPACE (g_obj));
 
   parent = atk_object_get_parent (ATK_OBJECT(component));
-  widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (parent));
+  widget = ctk_accessible_get_widget (GTK_ACCESSIBLE (parent));
 
   if (widget == NULL)
     {

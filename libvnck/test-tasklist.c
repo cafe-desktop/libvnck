@@ -1,7 +1,7 @@
 /* vim: set sw=2 et: */
 
 #include <libvnck/libvnck.h>
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 
 static gboolean display_all = FALSE;
 static gboolean never_group = FALSE;
@@ -48,7 +48,7 @@ window_composited_changed (GtkWidget *widget,
   screen = gdk_screen_get_default ();
   composited = gdk_screen_is_composited (screen);
 
-  gtk_widget_set_app_paintable (widget, composited);
+  ctk_widget_set_app_paintable (widget, composited);
 }
 
 int
@@ -62,15 +62,15 @@ main (int argc, char **argv)
 
   ctxt = g_option_context_new ("");
   g_option_context_add_main_entries (ctxt, entries, NULL);
-  g_option_context_add_group (ctxt, gtk_get_option_group (TRUE));
+  g_option_context_add_group (ctxt, ctk_get_option_group (TRUE));
   g_option_context_parse (ctxt, &argc, &argv, NULL);
   g_option_context_free (ctxt);
   ctxt = NULL;
 
-  gtk_init (&argc, &argv);
+  ctk_init (&argc, &argv);
 
   if (rtl)
-    gtk_widget_set_default_direction (GTK_TEXT_DIR_RTL);
+    ctk_widget_set_default_direction (GTK_TEXT_DIR_RTL);
 
   vnck_set_default_mini_icon_size (icon_size);
   screen = vnck_screen_get_default ();
@@ -78,17 +78,17 @@ main (int argc, char **argv)
   /* because the pager doesn't respond to signals at the moment */
   vnck_screen_force_update (screen);
 
-  win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_default_size (GTK_WINDOW (win), 200, 100);
-  gtk_window_stick (GTK_WINDOW (win));
-  /*   vnck_gtk_window_set_dock_type (GTK_WINDOW (win)); */
+  win = ctk_window_new (GTK_WINDOW_TOPLEVEL);
+  ctk_window_set_default_size (GTK_WINDOW (win), 200, 100);
+  ctk_window_stick (GTK_WINDOW (win));
+  /*   vnck_ctk_window_set_dock_type (GTK_WINDOW (win)); */
 
-  gtk_window_set_title (GTK_WINDOW (win), "Task List");
-  gtk_window_set_resizable (GTK_WINDOW (win), TRUE);
+  ctk_window_set_title (GTK_WINDOW (win), "Task List");
+  ctk_window_set_resizable (GTK_WINDOW (win), TRUE);
 
   /* quit on window close */
   g_signal_connect (G_OBJECT (win), "destroy",
-                    G_CALLBACK (gtk_main_quit),
+                    G_CALLBACK (ctk_main_quit),
                     NULL);
 
   tasklist = vnck_tasklist_new ();
@@ -116,11 +116,11 @@ main (int argc, char **argv)
     {
       GdkVisual *visual;
 
-      visual = gdk_screen_get_rgba_visual (gtk_widget_get_screen (win));
+      visual = gdk_screen_get_rgba_visual (ctk_widget_get_screen (win));
 
       if (visual != NULL)
         {
-          gtk_widget_set_visual (win, visual);
+          ctk_widget_set_visual (win, visual);
 
           g_signal_connect (win, "composited-changed",
                             G_CALLBACK (window_composited_changed),
@@ -140,26 +140,26 @@ main (int argc, char **argv)
                                          GTK_RELIEF_NONE);
     }
 
-  frame = gtk_frame_new (NULL);
-  gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
-  gtk_container_add (GTK_CONTAINER (win), frame);
+  frame = ctk_frame_new (NULL);
+  ctk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
+  ctk_container_add (GTK_CONTAINER (win), frame);
 
-  gtk_container_add (GTK_CONTAINER (frame), tasklist);
+  ctk_container_add (GTK_CONTAINER (frame), tasklist);
 
-  gtk_widget_show (tasklist);
-  gtk_widget_show (frame);
+  ctk_widget_show (tasklist);
+  ctk_widget_show (frame);
 
-  gtk_window_move (GTK_WINDOW (win), 0, 0);
+  ctk_window_move (GTK_WINDOW (win), 0, 0);
 
   if (skip_tasklist)
   {
-    gtk_window_set_skip_taskbar_hint (GTK_WINDOW (win), TRUE);
-    gtk_window_set_keep_above (GTK_WINDOW (win), TRUE);
+    ctk_window_set_skip_taskbar_hint (GTK_WINDOW (win), TRUE);
+    ctk_window_set_keep_above (GTK_WINDOW (win), TRUE);
   }
 
-  gtk_widget_show (win);
+  ctk_widget_show (win);
 
-  gtk_main ();
+  ctk_main ();
 
   return 0;
 }

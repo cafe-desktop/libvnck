@@ -38,7 +38,7 @@
 #include <X11/keysym.h>
 #include <X11/extensions/XInput2.h>
 
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 #include <gdk/gdkx.h>
 
 #include <glib/gi18n.h>
@@ -1852,7 +1852,7 @@ clean_up (void)
   gdk_window_remove_filter (root, (GdkFilterFunc) target_filter, NULL);
   gdk_seat_ungrab (seat);
 
-  gtk_main_quit ();
+  ctk_main_quit ();
 }
 
 int
@@ -1914,7 +1914,7 @@ main (int argc, char **argv)
   g_option_group_set_translation_domain (group, GETTEXT_PACKAGE);
   g_option_context_add_group (ctxt, group);
 
-  g_option_context_add_group (ctxt, gtk_get_option_group (TRUE));
+  g_option_context_add_group (ctxt, ctk_get_option_group (TRUE));
 
   error = NULL;
   if (!g_option_context_parse (ctxt, &argc, &argv, &error))
@@ -1931,7 +1931,7 @@ main (int argc, char **argv)
   if (!validate_options ())
     return 1;
 
-  gtk_init (&argc, &argv);
+  ctk_init (&argc, &argv);
 
   vnck_set_client_type (VNCK_CLIENT_TYPE_PAGER);
 
@@ -1965,7 +1965,7 @@ main (int argc, char **argv)
     {
       g_idle_add (get_target, NULL);
 
-      gtk_main ();
+      ctk_main ();
 
       if (!got_from_user)
         return 0;

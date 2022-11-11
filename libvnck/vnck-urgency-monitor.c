@@ -24,7 +24,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 
 #include <libvnck/libvnck.h>
 
@@ -35,8 +35,8 @@ status_icon_activated (GtkStatusIcon *icon,
   VnckWorkspace *workspace;
   guint32 timestamp;
 
-  /* We're in an activate callback, so gtk_get_current_time() works... */
-  timestamp = gtk_get_current_event_time ();
+  /* We're in an activate callback, so ctk_get_current_time() works... */
+  timestamp = ctk_get_current_event_time ();
 
   /* FIXME: THIS IS SICK AND WRONG AND BUGGY.  See the end of
    * http://mail.gnome.org/archives/wm-spec-list/2005-July/msg00032.html
@@ -70,15 +70,15 @@ status_icon_update (VnckWindow *window)
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   if (vnck_window_get_icon_is_fallback (window))
     {
-      gtk_status_icon_set_from_icon_name (icon, "dialog-information");
+      ctk_status_icon_set_from_icon_name (icon, "dialog-information");
     }
   else
     {
-      gtk_status_icon_set_from_pixbuf (icon,
+      ctk_status_icon_set_from_pixbuf (icon,
                                        vnck_window_get_mini_icon (window));
     }
 
-  gtk_status_icon_set_tooltip_text (icon, vnck_window_get_name (window));
+  ctk_status_icon_set_tooltip_text (icon, vnck_window_get_name (window));
   G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
@@ -88,7 +88,7 @@ status_icon_create (VnckWindow *window)
   GtkStatusIcon *icon;
 
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-  icon = gtk_status_icon_new ();
+  icon = ctk_status_icon_new ();
   G_GNUC_END_IGNORE_DEPRECATIONS
 
   g_object_set_data (G_OBJECT (window), "vnck-urgency-icon", icon);
@@ -108,7 +108,7 @@ status_icon_remove (VnckWindow *window)
   if (icon != NULL)
     {
       G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-      gtk_status_icon_set_visible (icon, FALSE);
+      ctk_status_icon_set_visible (icon, FALSE);
       G_GNUC_END_IGNORE_DEPRECATIONS
 
       g_object_unref (icon);
@@ -194,7 +194,7 @@ main (int argc, char **argv)
   g_option_context_set_summary (ctxt, "Monitor windows with the urgency hint "
                                       "set, and display a notification icon "
                                       "for each of them.");
-  g_option_context_add_group (ctxt, gtk_get_option_group (TRUE));
+  g_option_context_add_group (ctxt, ctk_get_option_group (TRUE));
 
   error = NULL;
   if (!g_option_context_parse (ctxt, &argc, &argv, &error))
@@ -208,7 +208,7 @@ main (int argc, char **argv)
   g_option_context_free (ctxt);
   ctxt = NULL;
 
-  gtk_init (&argc, &argv);
+  ctk_init (&argc, &argv);
 
   vnck_set_client_type (VNCK_CLIENT_TYPE_PAGER);
 
@@ -218,7 +218,7 @@ main (int argc, char **argv)
   g_signal_connect (screen, "window_closed",
                     G_CALLBACK (disconnect_from_window), NULL);
 
-  gtk_main ();
+  ctk_main ();
 
   return 0;
 }

@@ -27,7 +27,7 @@
 #define VNCK_WINDOW_ACTION_MENU_H
 
 #include <libvnck/window.h>
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 
 G_BEGIN_DECLS
 

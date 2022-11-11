@@ -10,7 +10,7 @@ should feel free to use libvnck as users can always recompile against
 a new version. The API/ABI has historically changed very little: we are
 not changing it gratuitously or without soname increments.
 
-Documentation for the API is available with gtk-doc. The code
+Documentation for the API is available with ctk-doc. The code
 implementing the tasklist or pager widgets (tasklist.c and pager.c) can
 also be used as sample code.
 

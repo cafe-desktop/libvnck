@@ -26,7 +26,7 @@
 #ifndef VNCK_TASKLIST_H
 #define VNCK_TASKLIST_H
 
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 #include <libvnck/screen.h>
 
 G_BEGIN_DECLS

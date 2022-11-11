@@ -142,8 +142,8 @@ void           _vnck_pager_get_workspace_rect   (VnckPager     *pager,
                                                  int            i,
                                                  GdkRectangle  *rect);
 
-void           _make_gtk_label_bold   (GtkLabel *label);
-void           _make_gtk_label_normal (GtkLabel *label);
+void           _make_ctk_label_bold   (GtkLabel *label);
+void           _make_ctk_label_normal (GtkLabel *label);
 
 void           _vnck_selector_set_window_icon   (GtkWidget     *image,
                                                  VnckWindow    *window);

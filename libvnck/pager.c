@@ -230,8 +230,8 @@ vnck_pager_init (VnckPager *pager)
 
   g_object_set (pager, "has-tooltip", TRUE, NULL);
 
-  gtk_drag_dest_set (GTK_WIDGET (pager), 0, targets, G_N_ELEMENTS (targets), GDK_ACTION_MOVE);
-  gtk_widget_set_can_focus (GTK_WIDGET (pager), TRUE);
+  ctk_drag_dest_set (GTK_WIDGET (pager), 0, targets, G_N_ELEMENTS (targets), GDK_ACTION_MOVE);
+  ctk_widget_set_can_focus (GTK_WIDGET (pager), TRUE);
 }
 
 static void
@@ -265,7 +265,7 @@ vnck_pager_class_init (VnckPagerClass *klass)
   widget_class->drag_end = vnck_pager_drag_end;
   widget_class->query_tooltip = vnck_pager_query_tooltip;
 
-  gtk_widget_class_set_css_name (widget_class, "vnck-pager");
+  ctk_widget_class_set_css_name (widget_class, "vnck-pager");
 }
 
 static void
@@ -295,10 +295,10 @@ _vnck_pager_set_screen (VnckPager *pager)
 {
   GdkScreen *gdkscreen;
 
-  if (!gtk_widget_has_screen (GTK_WIDGET (pager)))
+  if (!ctk_widget_has_screen (GTK_WIDGET (pager)))
     return;
 
-  gdkscreen = gtk_widget_get_screen (GTK_WIDGET (pager));
+  gdkscreen = ctk_widget_get_screen (GTK_WIDGET (pager));
   pager->priv->screen = vnck_screen_get (gdk_x11_screen_get_screen_number (gdkscreen));
 
   if (!vnck_pager_set_layout_hint (pager))
@@ -319,7 +319,7 @@ _vnck_pager_set_screen (VnckPager *pager)
       else
         pager->priv->orientation = GTK_ORIENTATION_HORIZONTAL;
 
-      gtk_widget_queue_resize (GTK_WIDGET (pager));
+      ctk_widget_queue_resize (GTK_WIDGET (pager));
     }
 
   vnck_pager_connect_screen (pager);
@@ -339,9 +339,9 @@ vnck_pager_realize (GtkWidget *widget)
 
   /* do not call the parent class realize since we're doing things a bit
    * differently here */
-  gtk_widget_set_realized (widget, TRUE);
+  ctk_widget_set_realized (widget, TRUE);
 
-  gtk_widget_get_allocation (widget, &allocation);
+  ctk_widget_get_allocation (widget, &allocation);
 
   attributes.window_type = GDK_WINDOW_CHILD;
   attributes.x = allocation.x;
@@ -349,8 +349,8 @@ vnck_pager_realize (GtkWidget *widget)
   attributes.width = allocation.width;
   attributes.height = allocation.height;
   attributes.wclass = GDK_INPUT_OUTPUT;
-  attributes.visual = gtk_widget_get_visual (widget);
-  attributes.event_mask = gtk_widget_get_events (widget) | GDK_EXPOSURE_MASK |
+  attributes.visual = ctk_widget_get_visual (widget);
+  attributes.event_mask = ctk_widget_get_events (widget) | GDK_EXPOSURE_MASK |
 	  		  GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK |
 			  GDK_SCROLL_MASK |
 			  GDK_LEAVE_NOTIFY_MASK | GDK_POINTER_MOTION_MASK |
@@ -358,8 +358,8 @@ vnck_pager_realize (GtkWidget *widget)
 
   attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL;
 
-  window = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
-  gtk_widget_set_window (widget, window);
+  window = gdk_window_new (ctk_widget_get_parent_window (widget), &attributes, attributes_mask);
+  ctk_widget_set_window (widget, window);
   gdk_window_set_user_data (window, widget);
 
   /* connect to the screen of this pager. In theory, this will already have
@@ -401,9 +401,9 @@ _vnck_pager_get_padding (VnckPager *pager,
       GtkStateFlags    state;
 
       widget = GTK_WIDGET (pager);
-      context = gtk_widget_get_style_context (widget);
-      state = gtk_style_context_get_state (context);
-      gtk_style_context_get_padding (context, state, padding);
+      context = ctk_widget_get_style_context (widget);
+      state = ctk_style_context_get_state (context);
+      ctk_style_context_get_padding (context, state, padding);
     }
   else
     {
@@ -444,7 +444,7 @@ _vnck_pager_get_workspace_width_for_height (VnckPager *pager,
       int n_spaces;
       int i, w;
 
-      layout = gtk_widget_create_pango_layout  (GTK_WIDGET (pager), NULL);
+      layout = ctk_widget_create_pango_layout  (GTK_WIDGET (pager), NULL);
       screen = pager->priv->screen;
       n_spaces = vnck_screen_get_workspace_count (pager->priv->screen);
       workspace_width = 1;
@@ -690,7 +690,7 @@ vnck_pager_get_preferred_height_for_width (GtkWidget *widget,
 static gboolean
 _vnck_pager_queue_resize (gpointer data)
 {
-  gtk_widget_queue_resize (GTK_WIDGET (data));
+  ctk_widget_queue_resize (GTK_WIDGET (data));
   return FALSE;
 }
 
@@ -758,7 +758,7 @@ get_workspace_rect (VnckPager    *pager,
 
   widget = GTK_WIDGET (pager);
 
-  gtk_widget_get_allocation (widget, &allocation);
+  ctk_widget_get_allocation (widget, &allocation);
 
   if (allocation.x < 0 || allocation.y < 0 ||
       allocation.width < 0 || allocation.height < 0)
@@ -819,7 +819,7 @@ get_workspace_rect (VnckPager    *pager,
       col = space / spaces_per_row;
       row = space % spaces_per_row;
 
-      if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+      if (ctk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
         col = pager->priv->n_rows - col - 1;
 
       rect->x = (rect->width + 1) * col;
@@ -839,7 +839,7 @@ get_workspace_rect (VnckPager    *pager,
       col = space % spaces_per_row;
       row = space / spaces_per_row;
 
-      if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+      if (ctk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
         col = spaces_per_row - col - 1;
 
       rect->x = (rect->width + 1) * col;
@@ -965,17 +965,17 @@ draw_window (cairo_t            *cr,
   GdkRGBA fg;
   gdouble translucency;
 
-  context = gtk_widget_get_style_context (widget);
+  context = ctk_widget_get_style_context (widget);
 
   is_active = vnck_window_is_active (win);
   translucency = translucent ? 0.4 : 1.0;
 
-  gtk_style_context_save (context);
-  gtk_style_context_set_state (context, state);
+  ctk_style_context_save (context);
+  ctk_style_context_set_state (context, state);
 
   cairo_push_group (cr);
 
-  gtk_render_background (context, cr, winrect->x + 1, winrect->y + 1,
+  ctk_render_background (context, cr, winrect->x + 1, winrect->y + 1,
                          MAX (0, winrect->width - 2), MAX (0, winrect->height - 2));
 
   if (is_active)
@@ -1026,18 +1026,18 @@ draw_window (cairo_t            *cr,
       icon_y = winrect->y + (winrect->height - icon_h) / 2;
 
       cairo_push_group (cr);
-      gtk_render_icon (context, cr, icon, icon_x, icon_y);
+      ctk_render_icon (context, cr, icon, icon_x, icon_y);
       cairo_pop_group_to_source (cr);
       cairo_paint_with_alpha (cr, translucency);
     }
 
   cairo_push_group (cr);
-  gtk_render_frame (context, cr, winrect->x + 0.5, winrect->y + 0.5,
+  ctk_render_frame (context, cr, winrect->x + 0.5, winrect->y + 0.5,
                     MAX (0, winrect->width - 1), MAX (0, winrect->height - 1));
   cairo_pop_group_to_source (cr);
   cairo_paint_with_alpha (cr, translucency);
 
-  gtk_style_context_get_color (context, state, &fg);
+  ctk_style_context_get_color (context, state, &fg);
   fg.alpha = translucency;
   gdk_cairo_set_source_rgba (cr, &fg);
   cairo_set_line_width (cr, 1.0);
@@ -1046,7 +1046,7 @@ draw_window (cairo_t            *cr,
                    MAX (0, winrect->width - 1), MAX (0, winrect->height - 1));
   cairo_stroke (cr);
 
-  gtk_style_context_restore (context);
+  ctk_style_context_restore (context);
 }
 
 static VnckWindow *
@@ -1103,7 +1103,7 @@ workspace_at_point (VnckPager *pager,
 
   widget = GTK_WIDGET (pager);
 
-  gtk_widget_get_allocation (widget, &allocation);
+  ctk_widget_get_allocation (widget, &allocation);
 
   _vnck_pager_get_padding (pager, &padding);
 
@@ -1182,13 +1182,13 @@ draw_dark_rectangle (GtkStyleContext *context,
                      GtkStateFlags state,
                      int rx, int ry, int rw, int rh)
 {
-  gtk_style_context_save (context);
+  ctk_style_context_save (context);
 
-  gtk_style_context_set_state (context, state);
+  ctk_style_context_set_state (context, state);
 
   cairo_push_group (cr);
 
-  gtk_render_background (context, cr, rx, ry, rw, rh);
+  ctk_render_background (context, cr, rx, ry, rw, rh);
   cairo_set_source_rgba (cr, 0.0f, 0.0f, 0.0f, 0.3f);
   cairo_rectangle (cr, rx, ry, rw, rh);
   cairo_fill (cr);
@@ -1196,7 +1196,7 @@ draw_dark_rectangle (GtkStyleContext *context,
   cairo_pop_group_to_source (cr);
   cairo_paint (cr);
 
-  gtk_style_context_restore (context);
+  ctk_style_context_restore (context);
 }
 
 static void
@@ -1227,7 +1227,7 @@ vnck_pager_draw_workspace (VnckPager    *pager,
   else if (workspace == pager->priv->prelight)
     state |= GTK_STATE_FLAG_PRELIGHT;
 
-  context = gtk_widget_get_style_context (widget);
+  context = ctk_widget_get_style_context (widget);
 
   /* FIXME in names mode, should probably draw things like a button.
    */
@@ -1376,26 +1376,26 @@ vnck_pager_draw_workspace (VnckPager    *pager,
 
       ws = vnck_screen_get_workspace (pager->priv->screen, workspace);
       workspace_name = vnck_workspace_get_name (ws);
-      layout = gtk_widget_create_pango_layout (widget, workspace_name);
+      layout = ctk_widget_create_pango_layout (widget, workspace_name);
 
       pango_layout_get_pixel_size (layout, &w, &h);
 
       layout_state = (is_current) ? GTK_STATE_FLAG_SELECTED : GTK_STATE_FLAG_NORMAL;
-      gtk_style_context_save (context);
-      gtk_style_context_set_state (context, layout_state);
-      gtk_render_layout (context, cr, rect->x + (rect->width - w) / 2,
+      ctk_style_context_save (context);
+      ctk_style_context_set_state (context, layout_state);
+      ctk_render_layout (context, cr, rect->x + (rect->width - w) / 2,
                          rect->y + (rect->height - h) / 2, layout);
 
-      gtk_style_context_restore (context);
+      ctk_style_context_restore (context);
       g_object_unref (layout);
     }
 
   if (workspace == pager->priv->prelight && pager->priv->prelight_dnd)
     {
-      gtk_style_context_save (context);
-      gtk_style_context_set_state (context, GTK_STATE_FLAG_NORMAL);
-      gtk_render_frame (context, cr, rect->x, rect->y, rect->width, rect->height);
-      gtk_style_context_restore (context);
+      ctk_style_context_save (context);
+      ctk_style_context_set_state (context, GTK_STATE_FLAG_NORMAL);
+      ctk_render_frame (context, cr, rect->x, rect->y, rect->width, rect->height);
+      ctk_style_context_restore (context);
 
       cairo_set_source_rgb (cr, 0.0, 0.0, 0.0); /* black */
       cairo_set_line_width (cr, 1.0);
@@ -1425,36 +1425,36 @@ vnck_pager_draw (GtkWidget *widget,
   bg_pixbuf = NULL;
   first = TRUE;
 
-  state = gtk_widget_get_state_flags (widget);
-  context = gtk_widget_get_style_context (widget);
+  state = ctk_widget_get_state_flags (widget);
+  context = ctk_widget_get_style_context (widget);
 
-  gtk_render_background (context, cr, 0, 0,
-                         gtk_widget_get_allocated_width (widget),
-                         gtk_widget_get_allocated_height (widget));
+  ctk_render_background (context, cr, 0, 0,
+                         ctk_widget_get_allocated_width (widget),
+                         ctk_widget_get_allocated_height (widget));
 
-  gtk_style_context_save (context);
-  gtk_style_context_set_state (context, state);
+  ctk_style_context_save (context);
+  ctk_style_context_set_state (context, state);
 
-  if (gtk_widget_has_focus (widget))
+  if (ctk_widget_has_focus (widget))
   {
     cairo_save (cr);
-    gtk_render_focus (context, cr,
+    ctk_render_focus (context, cr,
 		      0, 0,
-		      gtk_widget_get_allocated_width (widget),
-		      gtk_widget_get_allocated_height (widget));
+		      ctk_widget_get_allocated_width (widget),
+		      ctk_widget_get_allocated_height (widget));
     cairo_restore (cr);
   }
 
   if (pager->priv->shadow_type != GTK_SHADOW_NONE)
     {
       cairo_save (cr);
-      gtk_render_frame (context, cr, 0, 0,
-                        gtk_widget_get_allocated_width (widget),
-                        gtk_widget_get_allocated_height (widget));
+      ctk_render_frame (context, cr, 0, 0,
+                        ctk_widget_get_allocated_width (widget),
+                        ctk_widget_get_allocated_height (widget));
       cairo_restore (cr);
     }
 
-  gtk_style_context_restore (context);
+  ctk_style_context_restore (context);
 
   i = 0;
   while (i < n_spaces)
@@ -1557,7 +1557,7 @@ vnck_pager_queue_draw_workspace (VnckPager *pager,
     return;
 
   get_workspace_rect (pager, i, &rect);
-  gtk_widget_queue_draw_area (GTK_WIDGET (pager),
+  ctk_widget_queue_draw_area (GTK_WIDGET (pager),
                               rect.x, rect.y,
 			      rect.width, rect.height);
 }
@@ -1617,7 +1617,7 @@ vnck_pager_drag_motion (GtkWidget          *widget,
   previous_workspace = pager->priv->prelight;
   vnck_pager_check_prelight (pager, x, y, TRUE);
 
-  if (gtk_drag_dest_find_target (widget, context, NULL))
+  if (ctk_drag_dest_find_target (widget, context, NULL))
     {
       gdk_drag_status (context, gdk_drag_context_get_suggested_action (context), time);
     }
@@ -1656,12 +1656,12 @@ vnck_pager_drag_drop  (GtkWidget        *widget,
   VnckPager *pager = VNCK_PAGER (widget);
   GdkAtom target;
 
-  target = gtk_drag_dest_find_target (widget, context, NULL);
+  target = ctk_drag_dest_find_target (widget, context, NULL);
 
   if (target != GDK_NONE)
-    gtk_drag_get_data (widget, context, target, time);
+    ctk_drag_get_data (widget, context, target, time);
   else
-    gtk_drag_finish (context, FALSE, FALSE, time);
+    ctk_drag_finish (context, FALSE, FALSE, time);
 
   vnck_pager_clear_drag (pager);
   vnck_pager_check_prelight (pager, x, y, FALSE);
@@ -1684,10 +1684,10 @@ vnck_pager_drag_data_received (GtkWidget          *widget,
   gint i;
   gulong xid;
 
-  if ((gtk_selection_data_get_length (selection_data) != sizeof (gulong)) ||
-      (gtk_selection_data_get_format (selection_data) != 8))
+  if ((ctk_selection_data_get_length (selection_data) != sizeof (gulong)) ||
+      (ctk_selection_data_get_format (selection_data) != 8))
     {
-      gtk_drag_finish (context, FALSE, FALSE, time);
+      ctk_drag_finish (context, FALSE, FALSE, time);
       return;
     }
 
@@ -1695,11 +1695,11 @@ vnck_pager_drag_data_received (GtkWidget          *widget,
   space = vnck_screen_get_workspace (pager->priv->screen, i);
   if (!space)
     {
-      gtk_drag_finish (context, FALSE, FALSE, time);
+      ctk_drag_finish (context, FALSE, FALSE, time);
       return;
     }
 
-  xid = *((gulong *) gtk_selection_data_get_data (selection_data));
+  xid = *((gulong *) ctk_selection_data_get_data (selection_data));
 
   for (tmp = vnck_screen_get_windows_stacked (pager->priv->screen); tmp != NULL; tmp = tmp->next)
     {
@@ -1709,12 +1709,12 @@ vnck_pager_drag_data_received (GtkWidget          *widget,
 	  vnck_window_move_to_workspace (win, space);
 	  if (space == vnck_screen_get_active_workspace (pager->priv->screen))
 	    vnck_window_activate (win, time);
-	  gtk_drag_finish (context, TRUE, FALSE, time);
+	  ctk_drag_finish (context, TRUE, FALSE, time);
 	  return;
 	}
     }
 
-  gtk_drag_finish (context, FALSE, FALSE, time);
+  ctk_drag_finish (context, FALSE, FALSE, time);
 }
 
 static void
@@ -1731,8 +1731,8 @@ vnck_pager_drag_data_get (GtkWidget        *widget,
     return;
 
   xid = vnck_window_get_xid (pager->priv->drag_window);
-  gtk_selection_data_set (selection_data,
-			  gtk_selection_data_get_target (selection_data),
+  ctk_selection_data_set (selection_data,
+			  ctk_selection_data_get_target (selection_data),
 			  8, (guchar *)&xid, sizeof (gulong));
 }
 
@@ -1789,7 +1789,7 @@ vnck_update_drag_icon (VnckWindow     *window,
   if (!widget)
     return;
 
-  if (!gtk_icon_size_lookup (GTK_ICON_SIZE_DND, &dnd_w, &dnd_h))
+  if (!ctk_icon_size_lookup (GTK_ICON_SIZE_DND, &dnd_w, &dnd_h))
     dnd_w = dnd_h = 32;
   /* windows are huge, so let's make this huge */
   dnd_w *= 3;
@@ -1811,7 +1811,7 @@ vnck_update_drag_icon (VnckWindow     *window,
   rect.width = MAX (rect.width, 3);
   rect.height = MAX (rect.height, 3);
 
-  surface = gdk_window_create_similar_surface (gtk_widget_get_window (widget),
+  surface = gdk_window_create_similar_surface (ctk_widget_get_window (widget),
                                                CAIRO_CONTENT_COLOR,
                                                rect.width, rect.height);
   cr = cairo_create (surface);
@@ -1819,7 +1819,7 @@ vnck_update_drag_icon (VnckWindow     *window,
   cairo_destroy (cr);
   cairo_surface_set_device_offset (surface, 2, 2);
 
-  gtk_drag_set_icon_surface (context, surface);
+  ctk_drag_set_icon_surface (context, surface);
 
   cairo_surface_destroy (surface);
 }
@@ -1915,14 +1915,14 @@ vnck_pager_motion (GtkWidget        *widget,
 
   pager = VNCK_PAGER (widget);
 
-  seat = gdk_display_get_default_seat (gtk_widget_get_display (widget));
-  window = gtk_widget_get_window (widget);
+  seat = gdk_display_get_default_seat (ctk_widget_get_display (widget));
+  window = ctk_widget_get_window (widget);
   pointer = gdk_seat_get_pointer (seat);
   gdk_window_get_device_position (window, pointer, &x, &y, NULL);
 
   if (!pager->priv->dragging &&
       pager->priv->drag_window != NULL &&
-      gtk_drag_check_threshold (widget,
+      ctk_drag_check_threshold (widget,
                                 pager->priv->drag_start_x,
                                 pager->priv->drag_start_y,
                                 x, y))
@@ -1930,8 +1930,8 @@ vnck_pager_motion (GtkWidget        *widget,
       GtkTargetList *target_list;
       GdkDragContext *context;
 
-      target_list = gtk_drag_dest_get_target_list (widget);
-      context = gtk_drag_begin_with_coordinates (widget, target_list,
+      target_list = ctk_drag_dest_get_target_list (widget);
+      context = ctk_drag_begin_with_coordinates (widget, target_list,
                                                  GDK_ACTION_MOVE,
                                                  1, (GdkEvent *) event,
                                                  -1, -1);
@@ -2055,7 +2055,7 @@ vnck_pager_scroll_event (GtkWidget      *widget,
   in_last_row = n_workspaces % n_columns;
   wrap_workspaces = pager->priv->wrap_on_scroll;
 
-  if (gtk_widget_get_direction (GTK_WIDGET (pager)) == GTK_TEXT_DIR_RTL)
+  if (ctk_widget_get_direction (GTK_WIDGET (pager)) == GTK_TEXT_DIR_RTL)
     {
       switch (event->direction)
         {
@@ -2230,7 +2230,7 @@ vnck_pager_query_tooltip (GtkWidget  *widget,
                               vnck_workspace_get_name (space));
     }
 
-  gtk_tooltip_set_text (tooltip, name);
+  ctk_tooltip_set_text (tooltip, name);
 
   g_free (name);
 
@@ -2347,7 +2347,7 @@ vnck_pager_set_orientation (VnckPager     *pager,
 
   if (vnck_pager_set_layout_hint (pager))
     {
-      gtk_widget_queue_resize (GTK_WIDGET (pager));
+      ctk_widget_queue_resize (GTK_WIDGET (pager));
       return TRUE;
     }
   else
@@ -2395,7 +2395,7 @@ vnck_pager_set_n_rows (VnckPager *pager,
 
   if (vnck_pager_set_layout_hint (pager))
     {
-      gtk_widget_queue_resize (GTK_WIDGET (pager));
+      ctk_widget_queue_resize (GTK_WIDGET (pager));
       return TRUE;
     }
   else
@@ -2425,7 +2425,7 @@ vnck_pager_set_display_mode (VnckPager            *pager,
   g_object_set (pager, "has-tooltip", mode != VNCK_PAGER_DISPLAY_NAME, NULL);
 
   pager->priv->display_mode = mode;
-  gtk_widget_queue_resize (GTK_WIDGET (pager));
+  ctk_widget_queue_resize (GTK_WIDGET (pager));
 }
 
 /**
@@ -2468,7 +2468,7 @@ vnck_pager_set_show_all (VnckPager *pager,
     return;
 
   pager->priv->show_all_workspaces = show_all_workspaces;
-  gtk_widget_queue_resize (GTK_WIDGET (pager));
+  ctk_widget_queue_resize (GTK_WIDGET (pager));
 }
 
 /**
@@ -2492,7 +2492,7 @@ vnck_pager_set_shadow_type (VnckPager *   pager,
     return;
 
   pager->priv->shadow_type = shadow_type;
-  gtk_widget_queue_resize (GTK_WIDGET (pager));
+  ctk_widget_queue_resize (GTK_WIDGET (pager));
 }
 
 /**
@@ -2538,7 +2538,7 @@ active_window_changed_callback    (VnckScreen      *screen,
                                    gpointer         data)
 {
   VnckPager *pager = VNCK_PAGER (data);
-  gtk_widget_queue_draw (GTK_WIDGET (pager));
+  ctk_widget_queue_draw (GTK_WIDGET (pager));
 }
 
 static void
@@ -2547,7 +2547,7 @@ active_workspace_changed_callback (VnckScreen      *screen,
                                    gpointer         data)
 {
   VnckPager *pager = VNCK_PAGER (data);
-  gtk_widget_queue_draw (GTK_WIDGET (pager));
+  ctk_widget_queue_draw (GTK_WIDGET (pager));
 }
 
 static void
@@ -2555,7 +2555,7 @@ window_stacking_changed_callback  (VnckScreen      *screen,
                                    gpointer         data)
 {
   VnckPager *pager = VNCK_PAGER (data);
-  gtk_widget_queue_draw (GTK_WIDGET (pager));
+  ctk_widget_queue_draw (GTK_WIDGET (pager));
 }
 
 static void
@@ -2590,7 +2590,7 @@ workspace_created_callback        (VnckScreen      *screen,
   VnckPager *pager = VNCK_PAGER (data);
   g_signal_connect (space, "name_changed",
                     G_CALLBACK (workspace_name_changed_callback), pager);
-  gtk_widget_queue_resize (GTK_WIDGET (pager));
+  ctk_widget_queue_resize (GTK_WIDGET (pager));
 }
 
 static void
@@ -2600,7 +2600,7 @@ workspace_destroyed_callback      (VnckScreen      *screen,
 {
   VnckPager *pager = VNCK_PAGER (data);
   g_signal_handlers_disconnect_by_func (space, G_CALLBACK (workspace_name_changed_callback), pager);
-  gtk_widget_queue_resize (GTK_WIDGET (pager));
+  ctk_widget_queue_resize (GTK_WIDGET (pager));
 }
 
 static void
@@ -2651,7 +2651,7 @@ window_workspace_changed_callback (VnckWindow      *window,
                                    gpointer         data)
 {
   VnckPager *pager = VNCK_PAGER (data);
-  gtk_widget_queue_draw (GTK_WIDGET (pager));
+  ctk_widget_queue_draw (GTK_WIDGET (pager));
 }
 
 static void
@@ -2683,21 +2683,21 @@ background_changed_callback (VnckWindow *window,
       pager->priv->bg_cache = NULL;
     }
 
-  gtk_widget_queue_draw (GTK_WIDGET (pager));
+  ctk_widget_queue_draw (GTK_WIDGET (pager));
 }
 
 static void
 workspace_name_changed_callback (VnckWorkspace *space,
                                  gpointer       data)
 {
-  gtk_widget_queue_resize (GTK_WIDGET (data));
+  ctk_widget_queue_resize (GTK_WIDGET (data));
 }
 
 static void
 viewports_changed_callback (VnckWorkspace *space,
                             gpointer       data)
 {
-  gtk_widget_queue_resize (GTK_WIDGET (data));
+  ctk_widget_queue_resize (GTK_WIDGET (data));
 }
 
 static void

@@ -1,4 +1,4 @@
-gnome.gtkdoc(meson.project_name(),
+gnome.ctkdoc(meson.project_name(),
   namespace: PACKAGE_NAME,
   mode: 'sgml',
   main_sgml: meson.project_name() + '-docs.sgml',

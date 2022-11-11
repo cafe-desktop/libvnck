@@ -27,7 +27,7 @@
 #ifndef VNCK_UTIL_H
 #define VNCK_UTIL_H
 
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 
 G_BEGIN_DECLS
 
