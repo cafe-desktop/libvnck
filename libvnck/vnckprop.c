@@ -39,7 +39,7 @@
 #include <X11/extensions/XInput2.h>
 
 #include <ctk/ctk.h>
-#include <gdk/gdkx.h>
+#include <cdk/cdkx.h>
 
 #include <glib/gi18n.h>
 
@@ -325,7 +325,7 @@ get_xserver_timestamp (VnckScreen *screen)
   unsigned char c = 'a';
   XEvent xevent;
 
-  display = CDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+  display = CDK_DISPLAY_XDISPLAY (cdk_display_get_default ());
   number = vnck_screen_get_number (screen);
   xscreen = ScreenOfDisplay (display, number);
 
@@ -1673,7 +1673,7 @@ static gboolean
 wm_state_set (Display *display,
               Window   window)
 {
-  GdkDisplay *gdk_display;
+  GdkDisplay *cdk_display;
   Atom    wm_state;
   gulong  nitems;
   gulong  bytes_after;
@@ -1682,19 +1682,19 @@ wm_state_set (Display *display,
   int     ret_format;
   int     err, result;
 
-  gdk_display = gdk_x11_lookup_xdisplay (display);
-  g_assert (gdk_display != NULL);
+  cdk_display = cdk_x11_lookup_xdisplay (display);
+  g_assert (cdk_display != NULL);
 
-  wm_state = gdk_x11_get_xatom_by_name ("WM_STATE");
+  wm_state = cdk_x11_get_xatom_by_name ("WM_STATE");
 
-  gdk_x11_display_error_trap_push (gdk_display);
+  cdk_x11_display_error_trap_push (cdk_display);
   result = XGetWindowProperty (display,
                                window,
                                wm_state,
                                0, G_MAXLONG,
                                False, wm_state, &ret_type, &ret_format, &nitems,
                                &bytes_after, (gpointer) &prop);
-  err = gdk_x11_display_error_trap_pop (gdk_display);
+  err = cdk_x11_display_error_trap_pop (cdk_display);
   if (err != Success ||
       result != Success)
     return FALSE;
@@ -1711,7 +1711,7 @@ static VnckWindow *
 find_managed_window (Display *display,
                      Window   window)
 {
-  GdkDisplay *gdk_display;
+  GdkDisplay *cdk_display;
   Window      root;
   Window      parent;
   Window     *kids = NULL;
@@ -1722,12 +1722,12 @@ find_managed_window (Display *display,
   if (wm_state_set (display, window))
     return vnck_window_get (window);
 
-  gdk_display = gdk_x11_lookup_xdisplay (display);
-  g_assert (gdk_display != NULL);
+  cdk_display = cdk_x11_lookup_xdisplay (display);
+  g_assert (cdk_display != NULL);
 
-  gdk_x11_display_error_trap_push (gdk_display);
+  cdk_x11_display_error_trap_push (cdk_display);
   result = XQueryTree (display, window, &root, &parent, &kids, &nkids);
-  if (gdk_x11_display_error_trap_pop (gdk_display) || !result)
+  if (cdk_x11_display_error_trap_pop (cdk_display) || !result)
     return NULL;
 
   retval = NULL;
@@ -1761,11 +1761,11 @@ handle_button_press_event (Display *dpy, XIDeviceEvent *event)
 }
 
 static GdkFilterReturn
-target_filter (GdkXEvent *gdk_xevent,
-               GdkEvent  *gdk_event,
+target_filter (GdkXEvent *cdk_xevent,
+               GdkEvent  *cdk_event,
                gpointer   data)
 {
-  XEvent *xevent = (XEvent *) gdk_xevent;
+  XEvent *xevent = (XEvent *) cdk_xevent;
   XGenericEventCookie *cookie = &xevent->xcookie;
 
   /* Use XI2 to read the event data */
@@ -1802,7 +1802,7 @@ prepare (GdkSeat   *seat,
          GdkWindow *window,
          gpointer   user_data)
 {
-  gdk_window_show_unraised (window);
+  cdk_window_show_unraised (window);
 }
 
 static gboolean
@@ -1815,15 +1815,15 @@ get_target (gpointer data)
   GdkSeatCapabilities caps;
   GdkGrabStatus status;
 
-  root = gdk_get_default_root_window ();
-  display = gdk_display_get_default ();
-  seat = gdk_display_get_default_seat (display);
-  cross = gdk_cursor_new_for_display (display, CDK_CROSS);
+  root = cdk_get_default_root_window ();
+  display = cdk_display_get_default ();
+  seat = cdk_display_get_default_seat (display);
+  cross = cdk_cursor_new_for_display (display, CDK_CROSS);
   caps = CDK_SEAT_CAPABILITY_POINTER | CDK_SEAT_CAPABILITY_KEYBOARD;
 
-  gdk_window_add_filter (root, (GdkFilterFunc) target_filter, NULL);
+  cdk_window_add_filter (root, (GdkFilterFunc) target_filter, NULL);
 
-  status = gdk_seat_grab (seat, root, caps, TRUE, cross, NULL, prepare, NULL);
+  status = cdk_seat_grab (seat, root, caps, TRUE, cross, NULL, prepare, NULL);
   g_object_unref (cross);
 
   if (status != CDK_GRAB_SUCCESS)
@@ -1833,7 +1833,7 @@ get_target (gpointer data)
       return FALSE;
     }
 
-  gdk_display_flush (display);
+  cdk_display_flush (display);
 
   return FALSE;
 }
@@ -1845,12 +1845,12 @@ clean_up (void)
   GdkDisplay *display;
   GdkSeat *seat;
 
-  root = gdk_get_default_root_window ();
-  display = gdk_display_get_default ();
-  seat = gdk_display_get_default_seat (display);
+  root = cdk_get_default_root_window ();
+  display = cdk_display_get_default ();
+  seat = cdk_display_get_default_seat (display);
 
-  gdk_window_remove_filter (root, (GdkFilterFunc) target_filter, NULL);
-  gdk_seat_ungrab (seat);
+  cdk_window_remove_filter (root, (GdkFilterFunc) target_filter, NULL);
+  cdk_seat_ungrab (seat);
 
   ctk_main_quit ();
 }
@@ -1867,7 +1867,7 @@ main (int argc, char **argv)
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  gdk_set_allowed_backends ("x11");
+  cdk_set_allowed_backends ("x11");
 
   ctxt = g_option_context_new (NULL);
   g_option_context_set_translation_domain (ctxt, GETTEXT_PACKAGE);

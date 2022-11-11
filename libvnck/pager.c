@@ -293,13 +293,13 @@ vnck_pager_finalize (GObject *object)
 static void
 _vnck_pager_set_screen (VnckPager *pager)
 {
-  GdkScreen *gdkscreen;
+  GdkScreen *cdkscreen;
 
   if (!ctk_widget_has_screen (CTK_WIDGET (pager)))
     return;
 
-  gdkscreen = ctk_widget_get_screen (CTK_WIDGET (pager));
-  pager->priv->screen = vnck_screen_get (gdk_x11_screen_get_screen_number (gdkscreen));
+  cdkscreen = ctk_widget_get_screen (CTK_WIDGET (pager));
+  pager->priv->screen = vnck_screen_get (cdk_x11_screen_get_screen_number (cdkscreen));
 
   if (!vnck_pager_set_layout_hint (pager))
     {
@@ -358,9 +358,9 @@ vnck_pager_realize (CtkWidget *widget)
 
   attributes_mask = CDK_WA_X | CDK_WA_Y | CDK_WA_VISUAL;
 
-  window = gdk_window_new (ctk_widget_get_parent_window (widget), &attributes, attributes_mask);
+  window = cdk_window_new (ctk_widget_get_parent_window (widget), &attributes, attributes_mask);
   ctk_widget_set_window (widget, window);
-  gdk_window_set_user_data (window, widget);
+  cdk_window_set_user_data (window, widget);
 
   /* connect to the screen of this pager. In theory, this will already have
    * been done in vnck_pager_size_request() */
@@ -947,7 +947,7 @@ get_window_rect (VnckWindow         *window,
   unclipped_win_rect.width = width;
   unclipped_win_rect.height = height;
 
-  gdk_rectangle_intersect ((GdkRectangle *) workspace_rect, &unclipped_win_rect, rect);
+  cdk_rectangle_intersect ((GdkRectangle *) workspace_rect, &unclipped_win_rect, rect);
 }
 
 static void
@@ -996,8 +996,8 @@ draw_window (cairo_t            *cr,
 
   if (icon)
     {
-      icon_w = gdk_pixbuf_get_width (icon);
-      icon_h = gdk_pixbuf_get_height (icon);
+      icon_w = cdk_pixbuf_get_width (icon);
+      icon_h = cdk_pixbuf_get_height (icon);
 
       /* If the icon is too big, fall back to mini icon.
        * We don't arbitrarily scale the icon, because it's
@@ -1009,8 +1009,8 @@ draw_window (cairo_t            *cr,
           icon = vnck_window_get_mini_icon (win);
           if (icon)
             {
-              icon_w = gdk_pixbuf_get_width (icon);
-              icon_h = gdk_pixbuf_get_height (icon);
+              icon_w = cdk_pixbuf_get_width (icon);
+              icon_h = cdk_pixbuf_get_height (icon);
 
               /* Give up. */
               if (icon_w > (winrect->width - 2) ||
@@ -1039,7 +1039,7 @@ draw_window (cairo_t            *cr,
 
   ctk_style_context_get_color (context, state, &fg);
   fg.alpha = translucency;
-  gdk_cairo_set_source_rgba (cr, &fg);
+  cdk_cairo_set_source_rgba (cr, &fg);
   cairo_set_line_width (cr, 1.0);
   cairo_rectangle (cr,
                    winrect->x + 0.5, winrect->y + 0.5,
@@ -1234,7 +1234,7 @@ vnck_pager_draw_workspace (VnckPager    *pager,
 
   if (bg_pixbuf)
     {
-      gdk_cairo_set_source_pixbuf (cr, bg_pixbuf, rect->x, rect->y);
+      cdk_cairo_set_source_pixbuf (cr, bg_pixbuf, rect->x, rect->y);
       cairo_paint (cr);
     }
   else
@@ -1619,11 +1619,11 @@ vnck_pager_drag_motion (CtkWidget          *widget,
 
   if (ctk_drag_dest_find_target (widget, context, NULL))
     {
-      gdk_drag_status (context, gdk_drag_context_get_suggested_action (context), time);
+      cdk_drag_status (context, cdk_drag_context_get_suggested_action (context), time);
     }
   else
     {
-      gdk_drag_status (context, 0, time);
+      cdk_drag_status (context, 0, time);
 
       if (pager->priv->prelight != previous_workspace &&
           pager->priv->dnd_activate != 0)
@@ -1811,7 +1811,7 @@ vnck_update_drag_icon (VnckWindow     *window,
   rect.width = MAX (rect.width, 3);
   rect.height = MAX (rect.height, 3);
 
-  surface = gdk_window_create_similar_surface (ctk_widget_get_window (widget),
+  surface = cdk_window_create_similar_surface (ctk_widget_get_window (widget),
                                                CAIRO_CONTENT_COLOR,
                                                rect.width, rect.height);
   cr = cairo_create (surface);
@@ -1915,10 +1915,10 @@ vnck_pager_motion (CtkWidget        *widget,
 
   pager = VNCK_PAGER (widget);
 
-  seat = gdk_display_get_default_seat (ctk_widget_get_display (widget));
+  seat = cdk_display_get_default_seat (ctk_widget_get_display (widget));
   window = ctk_widget_get_window (widget);
-  pointer = gdk_seat_get_pointer (seat);
-  gdk_window_get_device_position (window, pointer, &x, &y, NULL);
+  pointer = cdk_seat_get_pointer (seat);
+  cdk_window_get_device_position (window, pointer, &x, &y, NULL);
 
   if (!pager->priv->dragging &&
       pager->priv->drag_window != NULL &&
@@ -2069,7 +2069,7 @@ vnck_pager_scroll_event (CtkWidget      *widget,
             absolute_direction = CDK_SCROLL_RIGHT;
             break;
           case CDK_SCROLL_SMOOTH:
-            gdk_event_get_scroll_deltas ((GdkEvent*)event, &smooth_x, &smooth_y);
+            cdk_event_get_scroll_deltas ((GdkEvent*)event, &smooth_x, &smooth_y);
             if (smooth_x > 5)
               absolute_direction = CDK_SCROLL_RIGHT;
             else if (smooth_x < -5)
@@ -2887,8 +2887,8 @@ vnck_pager_get_background (VnckPager *pager,
    * width/height values, otherwise this would get really slow.
    */
   if (pager->priv->bg_cache &&
-      gdk_pixbuf_get_width (pager->priv->bg_cache) == width &&
-      gdk_pixbuf_get_height (pager->priv->bg_cache) == height)
+      cdk_pixbuf_get_width (pager->priv->bg_cache) == width &&
+      cdk_pixbuf_get_height (pager->priv->bg_cache) == height)
     return pager->priv->bg_cache;
 
   if (pager->priv->bg_cache)
@@ -2915,12 +2915,12 @@ vnck_pager_get_background (VnckPager *pager,
       Screen *xscreen;
 
       xscreen = VNCK_SCREEN_XSCREEN (pager->priv->screen);
-      pix = _vnck_gdk_pixbuf_get_from_pixmap (xscreen, p);
+      pix = _vnck_cdk_pixbuf_get_from_pixmap (xscreen, p);
     }
 
   if (pix)
     {
-      pager->priv->bg_cache = gdk_pixbuf_scale_simple (pix,
+      pager->priv->bg_cache = cdk_pixbuf_scale_simple (pix,
                                                        width,
                                                        height,
                                                        CDK_INTERP_BILINEAR);

@@ -64,7 +64,7 @@ Miscellaneous Functions
 
 </para>
 
-@gdk_display: 
+@cdk_display: 
 @xid: 
 @usage: 
 
@@ -74,7 +74,7 @@ Miscellaneous Functions
 
 </para>
 
-@gdk_display: 
+@cdk_display: 
 @pid: 
 @usage: 
 

@@ -374,8 +374,8 @@
 2007-11-12  Vincent Untz  <vuntz@gnome.org>
 
 	* libvnck/xutils.[ch]: change _vnck_atom_get() and _vnck_atom_name()
-	to be #define for gdk_x11_get_xatom_by_name() and
-	gdk_x11_get_xatom_name(). No need to duplicate what's CDK is doing.
+	to be #define for cdk_x11_get_xatom_by_name() and
+	cdk_x11_get_xatom_name(). No need to duplicate what's CDK is doing.
 
 2007-11-12  Vincent Untz  <vuntz@gnome.org>
 
@@ -758,7 +758,7 @@
 	(_vnck_keyboard_size), (_vnck_change_state),
 	(_vnck_change_workspace), (_vnck_activate),
 	(_vnck_activate_workspace), (_vnck_change_viewport),
-	(_vnck_toggle_showing_desktop), (_vnck_gdk_pixbuf_get_from_pixmap),
+	(_vnck_toggle_showing_desktop), (_vnck_cdk_pixbuf_get_from_pixmap),
 	(_vnck_set_window_geometry), (_vnck_free_layout_manager),
 	(_vnck_try_desktop_layout_manager),
 	(_vnck_release_desktop_layout_manager): ditto.
@@ -1523,7 +1523,7 @@
 	Improve a bit selection ownership for the desktop layout.
 
 	* libvnck/xutils.c: (get_server_time): don't require a display
-	argument since we're using gdk_display all over the place already,
+	argument since we're using cdk_display all over the place already,
 	this makes possible to use _vnck_atom_get() instead of XInternAtom()
 	(_vnck_free_layout_manager): new, to share code
 	(_vnck_try_desktop_layout_manager): makes more robust wrt selection
@@ -1603,7 +1603,7 @@
 	* libvnck/window.c: add some "Since: 2.20" items to doc.
 	* libvnck/util.c: (set_dock_realize_handler): kill,
 	(vnck_ctk_window_set_dock_type): deprecate, and make it use
-	gdk_window_set_type_hint()
+	cdk_window_set_type_hint()
 	* libvnck/xutils.[ch]: (_vnck_set_dock_type_hint): kill
 
 2007-06-09  Vincent Untz  <vuntz@gnome.org>
@@ -2113,7 +2113,7 @@
 
 	* libvnck/xutils.c (text_property_to_utf8): Always
 	free the list of strings returned by  
-	gdk_text_property_to_utf8_list.  (#428056)
+	cdk_text_property_to_utf8_list.  (#428056)
 
 2007-04-09  Elijah Newren  <newren gmail com>
 
@@ -2532,10 +2532,10 @@
 
 	* libvnck/tasklist.c: (cleanup_screenshots): new, helper to free
 	screenshot variables
-	(glow_pixbuf): simplify with gdk_pixbuf_composite() thanks to some
+	(glow_pixbuf): simplify with cdk_pixbuf_composite() thanks to some
 	helper variables
 	(vnck_task_button_glow): updated to use the style properties,
-	fix potential issues with gdk-pixbuf returning NULL
+	fix potential issues with cdk-pixbuf returning NULL
 	(vnck_task_finalize): updated
 	(vnck_tasklist_init): updated
 	(vnck_tasklist_class_init): provide an expose method, install
@@ -2549,7 +2549,7 @@
 
 2006-05-14  Vincent Untz  <vuntz@gnome.org>
 
-	* libvnck/xutils.c: (_vnck_gdk_pixbuf_get_from_pixmap): don't assume
+	* libvnck/xutils.c: (_vnck_cdk_pixbuf_get_from_pixmap): don't assume
 	the drawable will always exist. Fix crash in bug #336823.
 
 2006-04-20  Brian Pepple  <bdpepple@gmail.com>
@@ -2676,7 +2676,7 @@
 2006-02-18  Vincent Untz  <vuntz@gnome.org>
 
 	* libvnck/pager.c: (draw_window): don't pass negative width or height
-	to gdk_draw_rectangle(). It seems it draws a big rectangle when it's
+	to cdk_draw_rectangle(). It seems it draws a big rectangle when it's
 	negative :-)
 	Fix bug #155502
 
@@ -4728,7 +4728,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 	feature
 
 	* libvnck/xutils.c (_vnck_toggle_showing_desktop): new function
-	(_vnck_activate_workspace): fix a hardcoded gdk_display, but it
+	(_vnck_activate_workspace): fix a hardcoded cdk_display, but it
 	looks like there are a lot more
 
 	* libvnck/screen.c (vnck_screen_toggle_showing_desktop):
@@ -4773,7 +4773,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 	* configure.in: require ctk+ 2.1.0.
 
 	* libvnck/screen.c, libvnck/private.h:
-	(_vnck_screen_get_gdk_screen): impl.
+	(_vnck_screen_get_cdk_screen): impl.
 
 	* libvnck/tasklist.c:
 	(vnck_task_popup_menu), (vnck_task_button_press_event):

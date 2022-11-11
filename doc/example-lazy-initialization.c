@@ -33,7 +33,7 @@ main (int    argc,
   GMainLoop *loop;
   VnckScreen *screen;
 
-  gdk_init (&argc, &argv);
+  cdk_init (&argc, &argv);
 
   loop = g_main_loop_new (NULL, FALSE);
   screen = vnck_screen_get_default ();

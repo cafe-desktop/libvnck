@@ -8,7 +8,7 @@ main (int    argc,
   VnckWindow *active_window;
   GList *window_l;
 
-  gdk_init (&argc, &argv);
+  cdk_init (&argc, &argv);
 
   screen = vnck_screen_get_default ();
 
