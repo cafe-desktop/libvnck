@@ -26,7 +26,7 @@
 #ifndef VNCK_PAGER_H
 #define VNCK_PAGER_H
 
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 #include <libvnck/screen.h>
 
 G_BEGIN_DECLS

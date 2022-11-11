@@ -27,7 +27,7 @@
 
 #include <config.h>
 
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 
 #include <glib/gi18n-lib.h>
 #include "selector.h"
@@ -114,9 +114,9 @@ vnck_selector_get_screen (VnckSelector *selector)
 {
   GdkScreen *screen;
 
-  g_assert (gtk_widget_has_screen (GTK_WIDGET (selector)));
+  g_assert (ctk_widget_has_screen (GTK_WIDGET (selector)));
 
-  screen = gtk_widget_get_screen (GTK_WIDGET (selector));
+  screen = ctk_widget_get_screen (GTK_WIDGET (selector));
 
   return vnck_screen_get (gdk_x11_screen_get_screen_number (screen));
 }
@@ -190,7 +190,7 @@ _vnck_selector_set_window_icon (GtkWidget  *image,
     pixbuf = vnck_selector_get_default_window_icon ();
 
   if (icon_size == -1)
-    gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, NULL, &icon_size);
+    ctk_icon_size_lookup (GTK_ICON_SIZE_MENU, NULL, &icon_size);
 
   width = gdk_pixbuf_get_width (pixbuf);
   height = gdk_pixbuf_get_height (pixbuf);
@@ -212,7 +212,7 @@ _vnck_selector_set_window_icon (GtkWidget  *image,
       freeme2 = pixbuf;
     }
 
-  gtk_image_set_from_pixbuf (GTK_IMAGE (image), pixbuf);
+  ctk_image_set_from_pixbuf (GTK_IMAGE (image), pixbuf);
 
   if (freeme)
     g_object_unref (freeme);
@@ -247,7 +247,7 @@ vnck_selector_make_menu_consistent (VnckSelector *selector)
 
   visible_window = FALSE;
 
-  children = gtk_container_get_children (GTK_CONTAINER (selector->priv->menu));
+  children = ctk_container_get_children (GTK_CONTAINER (selector->priv->menu));
 
   for (l = children; l; l = l->next)
     {
@@ -262,7 +262,7 @@ vnck_selector_make_menu_consistent (VnckSelector *selector)
 
           /* we have two consecutive workspace items => hide the first */
           if (workspace_item)
-            gtk_widget_hide (workspace_item);
+            ctk_widget_hide (workspace_item);
 
           workspace_item = GTK_WIDGET (l->data);
         }
@@ -273,7 +273,7 @@ vnck_selector_make_menu_consistent (VnckSelector *selector)
           separator_is_last = TRUE;
           separator = GTK_WIDGET (l->data);
         }
-      else if (gtk_widget_get_visible (l->data) &&
+      else if (ctk_widget_get_visible (l->data) &&
                l->data != selector->priv->no_windows_item)
         {
           separator_is_last = FALSE;
@@ -294,7 +294,7 @@ vnck_selector_make_menu_consistent (VnckSelector *selector)
                   if (workspace &&
                       workspace_n == vnck_workspace_get_number (workspace))
                     {
-                      gtk_widget_show (workspace_item);
+                      ctk_widget_show (workspace_item);
                       workspace_n = -1;
                       workspace_item = NULL;
                     }
@@ -307,20 +307,20 @@ vnck_selector_make_menu_consistent (VnckSelector *selector)
 
   /* do we have a trailing workspace item to be hidden? */
   if (workspace_item)
-    gtk_widget_hide (workspace_item);
+    ctk_widget_hide (workspace_item);
 
   if (separator)
     {
       if (separator_is_first || separator_is_last)
-        gtk_widget_hide (separator);
+        ctk_widget_hide (separator);
       else
-        gtk_widget_show (separator);
+        ctk_widget_show (separator);
     }
 
   if (visible_window)
-    gtk_widget_hide (selector->priv->no_windows_item);
+    ctk_widget_hide (selector->priv->no_windows_item);
   else
-    gtk_widget_show (selector->priv->no_windows_item);
+    ctk_widget_show (selector->priv->no_windows_item);
 }
 
 static void
@@ -357,7 +357,7 @@ vnck_selector_window_name_changed (VnckWindow *window,
   if (item != NULL)
     {
       window_name = _vnck_window_get_name_for_display (window, FALSE, TRUE);
-      gtk_menu_item_set_label (GTK_MENU_ITEM (item), window_name);
+      ctk_menu_item_set_label (GTK_MENU_ITEM (item), window_name);
       g_free (window_name);
     }
 }
@@ -389,13 +389,13 @@ vnck_selector_window_state_changed (VnckWindow *window,
   if (changed_mask & VNCK_WINDOW_STATE_SKIP_TASKLIST)
     {
       if (vnck_window_is_skip_tasklist (window))
-        gtk_widget_hide (item);
+        ctk_widget_hide (item);
       else
-        gtk_widget_show (item);
+        ctk_widget_show (item);
 
       vnck_selector_make_menu_consistent (selector);
 
-      gtk_menu_reposition (GTK_MENU (selector->priv->menu));
+      ctk_menu_reposition (GTK_MENU (selector->priv->menu));
     }
 
   if (changed_mask &
@@ -411,7 +411,7 @@ vnck_selector_window_state_changed (VnckWindow *window,
       (VNCK_WINDOW_STATE_MINIMIZED | VNCK_WINDOW_STATE_SHADED))
     {
       window_name = _vnck_window_get_name_for_display (window, FALSE, TRUE);
-      gtk_menu_item_set_label (GTK_MENU_ITEM (item), window_name);
+      ctk_menu_item_set_label (GTK_MENU_ITEM (item), window_name);
       g_free (window_name);
     }
 }
@@ -422,7 +422,7 @@ vnck_selector_window_workspace_changed (VnckWindow   *window,
 {
   GtkWidget *item;
 
-  if (!selector->priv->menu || !gtk_widget_get_visible (selector->priv->menu))
+  if (!selector->priv->menu || !ctk_widget_get_visible (selector->priv->menu))
     return;
 
   if (!selector->priv->window_hash)
@@ -433,13 +433,13 @@ vnck_selector_window_workspace_changed (VnckWindow   *window,
     return;
 
   /* destroy the item and recreate one so it's at the right position */
-  gtk_widget_destroy (item);
+  ctk_widget_destroy (item);
   g_hash_table_remove (selector->priv->window_hash, window);
 
   vnck_selector_insert_window (selector, window);
   vnck_selector_make_menu_consistent (selector);
 
-  gtk_menu_reposition (GTK_MENU (selector->priv->menu));
+  ctk_menu_reposition (GTK_MENU (selector->priv->menu));
 }
 
 static void
@@ -461,8 +461,8 @@ vnck_selector_activate_window (VnckWindow *window)
   VnckWorkspace *workspace;
   guint32 timestamp;
 
-  /* We're in an activate callback, so gtk_get_current_time() works... */
-  timestamp = gtk_get_current_event_time ();
+  /* We're in an activate callback, so ctk_get_current_time() works... */
+  timestamp = ctk_get_current_event_time ();
 
   /* FIXME: THIS IS SICK AND WRONG AND BUGGY.  See the end of
    * http://mail.gnome.org/archives/wm-spec-list/2005-July/msg00032.html
@@ -486,9 +486,9 @@ vnck_selector_drag_begin (GtkWidget          *widget,
         break;
 
       if (GTK_IS_MENU (widget))
-        widget = gtk_menu_get_attach_widget (GTK_MENU (widget));
+        widget = ctk_menu_get_attach_widget (GTK_MENU (widget));
       else
-        widget = gtk_widget_get_parent (widget);
+        widget = ctk_widget_get_parent (widget);
     }
 
   if (widget)
@@ -506,8 +506,8 @@ vnck_selector_drag_data_get (GtkWidget          *widget,
   gulong xid;
 
   xid = vnck_window_get_xid (window);
-  gtk_selection_data_set (selection_data,
-                          gtk_selection_data_get_target (selection_data),
+  ctk_selection_data_set (selection_data,
+                          ctk_selection_data_get_target (selection_data),
 			  8, (guchar *)&xid, sizeof (gulong));
 }
 
@@ -533,7 +533,7 @@ vnck_selector_item_new (VnckSelector *selector,
 
   if (window != NULL)
     {
-      gtk_drag_source_set (item,
+      ctk_drag_source_set (item,
                            GDK_BUTTON1_MASK,
                            targets, 1,
                            GDK_ACTION_MOVE);
@@ -561,12 +561,12 @@ vnck_selector_workspace_name_changed (VnckWorkspace *workspace,
   char            *name;
   char            *markup;
 
-  context = gtk_widget_get_style_context (GTK_WIDGET (label));
+  context = ctk_widget_get_style_context (GTK_WIDGET (label));
 
-  gtk_style_context_save (context);
-  gtk_style_context_set_state (context, GTK_STATE_FLAG_INSENSITIVE);
-  gtk_style_context_get_color (context, GTK_STATE_FLAG_INSENSITIVE, &color);
-  gtk_style_context_restore (context);
+  ctk_style_context_save (context);
+  ctk_style_context_set_state (context, GTK_STATE_FLAG_INSENSITIVE);
+  ctk_style_context_get_color (context, GTK_STATE_FLAG_INSENSITIVE, &color);
+  ctk_style_context_restore (context);
 
   name = g_markup_escape_text (vnck_workspace_get_name (workspace), -1);
   markup = g_strdup_printf ("<span size=\"x-small\" style=\"italic\" foreground=\"#%.2x%.2x%.2x\">%s</span>",
@@ -575,7 +575,7 @@ vnck_selector_workspace_name_changed (VnckWorkspace *workspace,
                             (int)(color.blue * 65535 + 0.5), name);
   g_free (name);
 
-  gtk_label_set_markup (label, markup);
+  ctk_label_set_markup (label, markup);
   g_free (markup);
 }
 
@@ -599,11 +599,11 @@ vnck_selector_add_workspace (VnckSelector *selector,
 
   /* We use a separator in which we add a label. This makes the menu item not
    * selectable without any hack. */
-  item = gtk_separator_menu_item_new ();
+  item = ctk_separator_menu_item_new ();
 
-  label = gtk_label_new ("");
-  gtk_label_set_xalign (GTK_LABEL (label), 1.0);
-  gtk_widget_show (label);
+  label = ctk_label_new ("");
+  ctk_label_set_xalign (GTK_LABEL (label), 1.0);
+  ctk_widget_show (label);
   /* the handler will also take care of setting the name for the first time,
    * and we'll be able to adapt to theme changes */
   g_signal_connect (G_OBJECT (label), "style-updated",
@@ -613,9 +613,9 @@ vnck_selector_add_workspace (VnckSelector *selector,
                                G_CALLBACK (vnck_selector_workspace_name_changed),
                                 label, label);
 
-  gtk_container_add (GTK_CONTAINER (item), label);
+  ctk_container_add (GTK_CONTAINER (item), label);
 
-  gtk_menu_shell_append (GTK_MENU_SHELL (selector->priv->menu), item);
+  ctk_menu_shell_append (GTK_MENU_SHELL (selector->priv->menu), item);
 
   g_object_set_data (G_OBJECT (item), "vnck-selector-workspace-n",
                      GINT_TO_POINTER (workspace_n + 1));
@@ -640,7 +640,7 @@ vnck_selector_create_window (VnckSelector *selector, VnckWindow *window)
                             window);
 
   if (!vnck_window_is_skip_tasklist (window))
-    gtk_widget_show (item);
+    ctk_widget_show (item);
 
   g_object_set_data (G_OBJECT (item), "vnck-selector-window", window);
 
@@ -672,7 +672,7 @@ vnck_selector_insert_window (VnckSelector *selector, VnckWindow *window)
 
       i = 0;
 
-      children = gtk_container_get_children (GTK_CONTAINER (selector->priv->menu));
+      children = ctk_container_get_children (GTK_CONTAINER (selector->priv->menu));
       for (l = children; l; l = l->next)
         {
           if (GTK_IS_SEPARATOR_MENU_ITEM (l->data))
@@ -681,7 +681,7 @@ vnck_selector_insert_window (VnckSelector *selector, VnckWindow *window)
         }
       g_list_free (children);
 
-      gtk_menu_shell_insert (GTK_MENU_SHELL (selector->priv->menu),
+      ctk_menu_shell_insert (GTK_MENU_SHELL (selector->priv->menu),
                              item, i);
     }
   else
@@ -690,7 +690,7 @@ vnck_selector_insert_window (VnckSelector *selector, VnckWindow *window)
 
       if (workspace_n == vnck_screen_get_workspace_count (screen) - 1)
         /* window is in last workspace => just append */
-        gtk_menu_shell_append (GTK_MENU_SHELL (selector->priv->menu), item);
+        ctk_menu_shell_append (GTK_MENU_SHELL (selector->priv->menu), item);
       else
         {
           /* insert just before the next workspace item */
@@ -698,7 +698,7 @@ vnck_selector_insert_window (VnckSelector *selector, VnckWindow *window)
 
           i = 0;
 
-          children = gtk_container_get_children (GTK_CONTAINER (selector->priv->menu));
+          children = ctk_container_get_children (GTK_CONTAINER (selector->priv->menu));
           for (l = children; l; l = l->next)
             {
               int j;
@@ -710,7 +710,7 @@ vnck_selector_insert_window (VnckSelector *selector, VnckWindow *window)
             }
           g_list_free (children);
 
-          gtk_menu_shell_insert (GTK_MENU_SHELL (selector->priv->menu),
+          ctk_menu_shell_insert (GTK_MENU_SHELL (selector->priv->menu),
                                  item, i);
         }
     }
@@ -722,7 +722,7 @@ vnck_selector_append_window (VnckSelector *selector, VnckWindow *window)
   GtkWidget *item;
 
   item = vnck_selector_create_window (selector, window);
-  gtk_menu_shell_append (GTK_MENU_SHELL (selector->priv->menu), item);
+  ctk_menu_shell_append (GTK_MENU_SHELL (selector->priv->menu), item);
 }
 
 static void
@@ -731,7 +731,7 @@ vnck_selector_window_opened (VnckScreen *screen,
 {
   vnck_selector_connect_to_window (selector, window);
 
-  if (!selector->priv->menu || !gtk_widget_get_visible (selector->priv->menu))
+  if (!selector->priv->menu || !ctk_widget_get_visible (selector->priv->menu))
     return;
 
   if (!selector->priv->window_hash)
@@ -740,7 +740,7 @@ vnck_selector_window_opened (VnckScreen *screen,
   vnck_selector_insert_window (selector, window);
   vnck_selector_make_menu_consistent (selector);
 
-  gtk_menu_reposition (GTK_MENU (selector->priv->menu));
+  ctk_menu_reposition (GTK_MENU (selector->priv->menu));
 }
 
 static void
@@ -752,7 +752,7 @@ vnck_selector_window_closed (VnckScreen *screen,
   if (window == selector->priv->icon_window)
     vnck_selector_set_active_window (selector, NULL);
 
-  if (!selector->priv->menu || !gtk_widget_get_visible (selector->priv->menu))
+  if (!selector->priv->menu || !ctk_widget_get_visible (selector->priv->menu))
     return;
 
   if (!selector->priv->window_hash)
@@ -764,10 +764,10 @@ vnck_selector_window_closed (VnckScreen *screen,
 
   g_object_set_data (G_OBJECT (item), "vnck-selector-window", NULL);
 
-  gtk_widget_hide (item);
+  ctk_widget_hide (item);
   vnck_selector_make_menu_consistent (selector);
 
-  gtk_menu_reposition (GTK_MENU (selector->priv->menu));
+  ctk_menu_reposition (GTK_MENU (selector->priv->menu));
 }
 
 static void
@@ -775,7 +775,7 @@ vnck_selector_workspace_created (VnckScreen    *screen,
                                  VnckWorkspace *workspace,
                                  VnckSelector  *selector)
 {
-  if (!selector->priv->menu || !gtk_widget_get_visible (selector->priv->menu))
+  if (!selector->priv->menu || !ctk_widget_get_visible (selector->priv->menu))
     return;
 
   /* this is assuming that the new workspace will have a higher number
@@ -786,7 +786,7 @@ vnck_selector_workspace_created (VnckScreen    *screen,
 
   vnck_selector_make_menu_consistent (selector);
 
-  gtk_menu_reposition (GTK_MENU (selector->priv->menu));
+  ctk_menu_reposition (GTK_MENU (selector->priv->menu));
 }
 
 static void
@@ -798,7 +798,7 @@ vnck_selector_workspace_destroyed (VnckScreen    *screen,
   GtkWidget *destroy;
   int        i;
 
-  if (!selector->priv->menu || !gtk_widget_get_visible (selector->priv->menu))
+  if (!selector->priv->menu || !ctk_widget_get_visible (selector->priv->menu))
     return;
 
   destroy = NULL;
@@ -806,7 +806,7 @@ vnck_selector_workspace_destroyed (VnckScreen    *screen,
   i = vnck_workspace_get_number (workspace);
 
   /* search for the item of this workspace so that we destroy it */
-  children = gtk_container_get_children (GTK_CONTAINER (selector->priv->menu));
+  children = ctk_container_get_children (GTK_CONTAINER (selector->priv->menu));
 
   for (l = children; l; l = l->next)
     {
@@ -827,11 +827,11 @@ vnck_selector_workspace_destroyed (VnckScreen    *screen,
   g_list_free (children);
 
   if (destroy)
-    gtk_widget_destroy (destroy);
+    ctk_widget_destroy (destroy);
 
   vnck_selector_make_menu_consistent (selector);
 
-  gtk_menu_reposition (GTK_MENU (selector->priv->menu));
+  ctk_menu_reposition (GTK_MENU (selector->priv->menu));
 }
 
 static void
@@ -1010,7 +1010,7 @@ vnck_selector_scroll_event (GtkWidget      *widget,
 static void
 vnck_selector_menu_hidden (GtkWidget *menu, VnckSelector *selector)
 {
-  gtk_widget_set_state_flags (GTK_WIDGET (selector), GTK_STATE_FLAG_NORMAL, TRUE);
+  ctk_widget_set_state_flags (GTK_WIDGET (selector), GTK_STATE_FLAG_NORMAL, TRUE);
 }
 
 static void
@@ -1026,9 +1026,9 @@ vnck_selector_on_show (GtkWidget *widget, VnckSelector *selector)
   GList *l, *children;
 
   /* Remove existing items */
-  children = gtk_container_get_children (GTK_CONTAINER (selector->priv->menu));
+  children = ctk_container_get_children (GTK_CONTAINER (selector->priv->menu));
   for (l = children; l; l = l->next)
-    gtk_container_remove (GTK_CONTAINER (selector->priv->menu), l->data);
+    ctk_container_remove (GTK_CONTAINER (selector->priv->menu), l->data);
   g_list_free (children);
 
   if (selector->priv->window_hash)
@@ -1072,8 +1072,8 @@ vnck_selector_on_show (GtkWidget *widget, VnckSelector *selector)
     }
 
   /* Add separator */
-  separator = gtk_separator_menu_item_new ();
-  gtk_menu_shell_append (GTK_MENU_SHELL (selector->priv->menu), separator);
+  separator = ctk_separator_menu_item_new ();
+  ctk_menu_shell_append (GTK_MENU_SHELL (selector->priv->menu), separator);
 
   /* Add windows from other workspaces */
   for (i = 0; i < nb_workspace; i++)
@@ -1090,8 +1090,8 @@ vnck_selector_on_show (GtkWidget *widget, VnckSelector *selector)
   selector->priv->no_windows_item = vnck_selector_item_new (selector,
 		  					    _("No Windows Open"),
 							    NULL);
-  gtk_widget_set_sensitive (selector->priv->no_windows_item, FALSE);
-  gtk_menu_shell_append (GTK_MENU_SHELL (selector->priv->menu),
+  ctk_widget_set_sensitive (selector->priv->no_windows_item, FALSE);
+  ctk_menu_shell_append (GTK_MENU_SHELL (selector->priv->menu),
                          selector->priv->no_windows_item);
 
   vnck_selector_make_menu_consistent (selector);
@@ -1103,16 +1103,16 @@ vnck_selector_fill (VnckSelector *selector)
   GtkWidget      *menu_item;
   GtkCssProvider *provider;
 
-  menu_item = gtk_menu_item_new ();
-  gtk_widget_show (menu_item);
-  gtk_menu_shell_append (GTK_MENU_SHELL (selector), menu_item);
+  menu_item = ctk_menu_item_new ();
+  ctk_widget_show (menu_item);
+  ctk_menu_shell_append (GTK_MENU_SHELL (selector), menu_item);
 
-  selector->priv->image = gtk_image_new ();
-  gtk_widget_show (selector->priv->image);
-  gtk_container_add (GTK_CONTAINER (menu_item), selector->priv->image);
+  selector->priv->image = ctk_image_new ();
+  ctk_widget_show (selector->priv->image);
+  ctk_container_add (GTK_CONTAINER (menu_item), selector->priv->image);
 
-  selector->priv->menu = gtk_menu_new ();
-  gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item),
+  selector->priv->menu = ctk_menu_new ();
+  ctk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item),
                              selector->priv->menu);
   g_signal_connect (selector->priv->menu, "hide",
                     G_CALLBACK (vnck_selector_menu_hidden), selector);
@@ -1121,21 +1121,21 @@ vnck_selector_fill (VnckSelector *selector)
   g_signal_connect (selector->priv->menu, "show",
                     G_CALLBACK (vnck_selector_on_show), selector);
 
-  gtk_widget_set_name (GTK_WIDGET (selector),
+  ctk_widget_set_name (GTK_WIDGET (selector),
                        "gnome-panel-window-menu-menu-bar");
 
-  provider = gtk_css_provider_new ();
-  gtk_css_provider_load_from_data (provider,
+  provider = ctk_css_provider_new ();
+  ctk_css_provider_load_from_data (provider,
                                    "#gnome-panel-window-menu-menu-bar {\n"
                                    " border-width: 0px;\n"
                                    "}",
                                    -1, NULL);
-  gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (selector)),
+  ctk_style_context_add_provider (ctk_widget_get_style_context (GTK_WIDGET (selector)),
                                   GTK_STYLE_PROVIDER (provider),
                                   GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
   g_object_unref (provider);
 
-  gtk_widget_show (GTK_WIDGET (selector));
+  ctk_widget_show (GTK_WIDGET (selector));
 }
 
 static void
@@ -1143,13 +1143,13 @@ vnck_selector_init (VnckSelector *selector)
 {
   AtkObject *atk_obj;
 
-  atk_obj = gtk_widget_get_accessible (GTK_WIDGET (selector));
+  atk_obj = ctk_widget_get_accessible (GTK_WIDGET (selector));
   atk_object_set_name (atk_obj, _("Window Selector"));
   atk_object_set_description (atk_obj, _("Tool to switch between windows"));
 
   selector->priv = vnck_selector_get_instance_private (selector);
 
-  gtk_widget_add_events (GTK_WIDGET (selector), GDK_SCROLL_MASK);
+  ctk_widget_add_events (GTK_WIDGET (selector), GDK_SCROLL_MASK);
 }
 
 static void
@@ -1166,7 +1166,7 @@ vnck_selector_class_init (VnckSelectorClass *klass)
   widget_class->unrealize = vnck_selector_unrealize;
   widget_class->scroll_event = vnck_selector_scroll_event;
 
-  gtk_widget_class_set_css_name (widget_class, "vnck-selector");
+  ctk_widget_class_set_css_name (widget_class, "vnck-selector");
 }
 
 static GObject *
@@ -1208,7 +1208,7 @@ vnck_selector_dispose (GObject *object)
   selector = VNCK_SELECTOR (object);
 
   if (selector->priv->menu)
-    gtk_widget_destroy (selector->priv->menu);
+    ctk_widget_destroy (selector->priv->menu);
   selector->priv->menu = NULL;
 
   selector->priv->image       = NULL;

@@ -106,7 +106,7 @@ Vnck.Shutdown()
     <sect2 id="getting-started.pitfalls.gdk-init">
      <title>GDK initialization</title>
      <para>
-      Internally, libvnck uses GDK. This means that before any call to libvnck API, GDK needs to be initialized. This can be achieved with <function>gdk_init()</function>, or indirectly via <function>gtk_init()</function>.
+      Internally, libvnck uses GDK. This means that before any call to libvnck API, GDK needs to be initialized. This can be achieved with <function>gdk_init()</function>, or indirectly via <function>ctk_init()</function>.
      </para>
     </sect2>
    </refsect1>

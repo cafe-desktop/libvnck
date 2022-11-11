@@ -42,7 +42,7 @@ pkg_deps = [
   {'name': 'cairo-xlib-xrender', 'required': false},
   {'name': 'glib-2.0', 'version': '>= 2.34' },
   {'name': 'gobject-2.0', 'version': '>= 2.13.0' },
-  {'name': 'gtk+-3.0', 'version': '>= 3.22.0' },
+  {'name': 'ctk+-3.0', 'version': '>= 3.22.0' },
   {'name': STARTUP_NOTIFICATION_PACKAGE, 'version': '>= 0.4', 'required': get_option('startup_notification')},
   {'name': X11_PACKAGE },
   {'name': XRES_PACKAGE, 'required': false},
@@ -95,6 +95,6 @@ endforeach
 subdir('libvnck')
 subdir('po')
 
-if get_option('gtk_doc')
+if get_option('ctk_doc')
   subdir('doc')
 endif

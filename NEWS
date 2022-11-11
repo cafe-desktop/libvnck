@@ -104,7 +104,7 @@ Version 3.20.1
   * tasklist: don't use deprecated GtkMisc (Alberts Muktupāvels)
   * selector: don't use deprecated GtkMisc (Alberts Muktupāvels)
   * vnckprop: don't use deprecated gdk_cursor_new (Alberts Muktupāvels)
-  * test-vnck: don't use deprecated gtk_tree_view_set_rules_hint (Alberts
+  * test-vnck: don't use deprecated ctk_tree_view_set_rules_hint (Alberts
     Muktupāvels)
 
 ==============
@@ -115,8 +115,8 @@ Version 3.20.0
 
   * xutils: add error trap in try_pixmap_and_mask (Alberts Muktupāvel)
   * Window: ignore unhandled non-_NET_WM actions
-  * ActionMenu: Use gtk_label_set_text_with_mnemonic instead of
-    gtk_label_set_text (Andrea Azzarone)
+  * ActionMenu: Use ctk_label_set_text_with_mnemonic instead of
+    ctk_label_set_text (Andrea Azzarone)
   * tasklist: set css name (Alberts Muktupāvel)
   * selector: set css name (Alberts Muktupāvel)
   * pager: set css name Alberts Muktupāvels
@@ -138,7 +138,7 @@ Version 3.18.0
   * pager: use correct state flags (Alberts Muktupāvels)
   * selector: avoid warnings from GtkStyleContext (Alberts Muktupāvels)
   * tasklist: avoid warnings from GtkStyleContext (Alberts Muktupāvels)
-  * Back to dependency on gtk+-3.0 >= 3.10
+  * Back to dependency on ctk+-3.0 >= 3.10
 
   Translators
 
@@ -296,7 +296,7 @@ Version 3.4.3
 
   Misc
 
-	* Require gtk+-3.0 >= 3.4.0 (Vincent)
+	* Require ctk+-3.0 >= 3.4.0 (Vincent)
 
   Translators
 
@@ -541,7 +541,7 @@ unusual behavior with the library.
     vnck_screen_get_workspace_neighbor, vnck_pager_set_screen,
     vnck_tasklist_set_minimum_width, vnck_tasklist_get_minimum_width,
     vnck_tasklist_set_minimum_height, vnck_tasklist_get_minimum_height,
-    vnck_tasklist_set_screen, vnck_gtk_window_set_dock_type,
+    vnck_tasklist_set_screen, vnck_ctk_window_set_dock_type,
     vnck_create_window_action_menu (Vincent)
   - Remove screen argument from vnck_pager_new and vnck_tasklist_new (Vincent)
 
@@ -789,7 +789,7 @@ Version 2.27.4
  Fixes
 
   - Fix vnck_application_get_icon_is_fallback() to actually work (Vincent)
-  - Fix gtk-doc warning (Vincent)
+  - Fix ctk-doc warning (Vincent)
   - Code cleanup (Vincent)
   - Always show icons in selector menu (Vincent)
 
@@ -1063,7 +1063,7 @@ Fixes
 
 Misc
 
-  - Require gtk-doc 1.9 (Vincent) [#511414]
+  - Require ctk-doc 1.9 (Vincent) [#511414]
 
  Translators
 
@@ -1301,7 +1301,7 @@ Fixes
   - Add new fade-max-loops to control the number of loops before the glowing
     effect stops. Makes it possible to nearly disable the effect. (Vincent)
     [#356452]
-  - Don't draw dots for group buttons in the tasklist, but use gtk_paint_tab()
+  - Don't draw dots for group buttons in the tasklist, but use ctk_paint_tab()
     (Vincent) [#139523]
   - Make the glowing effect in the tasklist use cairo. This also makes it work
     with RGBA. (Ryan Lortie) [#439417]
@@ -1353,7 +1353,7 @@ Fixes
 
  Deprecations
 
-  - Deprecate vnck_gtk_window_set_dock_type() (Vincent)
+  - Deprecate vnck_ctk_window_set_dock_type() (Vincent)
   - Deprecate vnck_pager_set_screen() (Vincent)
   - Deprecate vnck_tasklist_set_screen() (Vincent)
   - Deprecate the screen argument of vnck_pager_new() and of
@@ -2178,7 +2178,7 @@ Fixes
 
  Fixes
 
-  - Setup gtk-doc to pull out API documentation (J.H.M. Dassen (Ray))
+  - Setup ctk-doc to pull out API documentation (J.H.M. Dassen (Ray))
 
  Translators
 

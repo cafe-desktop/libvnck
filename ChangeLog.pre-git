@@ -75,7 +75,7 @@
 2008-12-10  Vincent Untz  <vuntz@gnome.org>
 
 	* libvnck/pager-accessible.[ch]:
-	* libvnck/workspace-accessible.[ch]: single include for gtk+.
+	* libvnck/workspace-accessible.[ch]: single include for ctk+.
 	Patch by Pedro Fragoso <ember@ubuntu.com>, fix bug #563858.
 	* libvnck/tasklist.c: (vnck_task_drag_data_received): fix compiler
 	warning
@@ -289,7 +289,7 @@
 
 2008-02-09  Vincent Untz  <vuntz@gnome.org>
 
-	* configure.in: require gtk-doc 1.9
+	* configure.in: require ctk-doc 1.9
 	Fix bug #511414.
 
 2008-01-28  Vincent Untz  <vuntz@gnome.org>
@@ -394,7 +394,7 @@
 2007-11-11  Vincent Untz  <vuntz@gnome.org>
 
 	Activate the window when the user drags and drops it quickly on
-	itself. "Quickly" is defined by gtk-double-click-time.
+	itself. "Quickly" is defined by ctk-double-click-time.
 	Based on patch by Jan Niklas Hasse <jhasse@gmail.com>
 	Fix bug #460403.
 
@@ -747,7 +747,7 @@
 	the maximum button width, ignore the minimum width/height since
 	they're useless and making things more complex than they should be,
 	use the maximum size hint for the requested width
-	(vnck_task_create_widgets): don't call gtk_label_set_max_width_chars()
+	(vnck_task_create_widgets): don't call ctk_label_set_max_width_chars()
 
 2007-06-25  Vincent Untz  <vuntz@gnome.org>
 
@@ -930,7 +930,7 @@
 
 	* libvnck/tasklist.c: (draw_dot): killed
 	(vnck_task_expose): don't draw small dots that people don't see, but
-	use gtk_paint_tab()
+	use ctk_paint_tab()
 	Fix bug #139523
 
 2007-06-20  Vincent Untz  <vuntz@gnome.org>
@@ -1252,7 +1252,7 @@
 2007-06-18  Vincent Untz  <vuntz@gnome.org>
 
 	* libvnck/tasklist.c: (vnck_task_update_visible_state),
-	(vnck_task_create_widgets): use gtk_widget_set_tooltip_text()
+	(vnck_task_create_widgets): use ctk_widget_set_tooltip_text()
 
 2007-06-18  Vincent Untz  <vuntz@gnome.org>
 
@@ -1341,7 +1341,7 @@
 	* libvnck/tasklist.c: (vnck_tasklist_set_button_relief),
 	(vnck_tasklist_set_icon_loader),
 	(vnck_tasklist_get_size_hint_list):
-	* libvnck/util.c: (vnck_gtk_window_set_dock_type):
+	* libvnck/util.c: (vnck_ctk_window_set_dock_type):
 	* libvnck/window-action-menu.c: (vnck_create_window_action_menu):
 	* libvnck/window.c: (vnck_window_get_window_type),
 	(vnck_window_get_workspace),
@@ -1602,7 +1602,7 @@
 	* libvnck/screen.c:
 	* libvnck/window.c: add some "Since: 2.20" items to doc.
 	* libvnck/util.c: (set_dock_realize_handler): kill,
-	(vnck_gtk_window_set_dock_type): deprecate, and make it use
+	(vnck_ctk_window_set_dock_type): deprecate, and make it use
 	gdk_window_set_type_hint()
 	* libvnck/xutils.[ch]: (_vnck_set_dock_type_hint): kill
 
@@ -1620,7 +1620,7 @@
 
 	* libvnck/util.[ch]: (vnck_xid_read_resource_usage),
 	(vnck_pid_read_resource_usage): s/unsigned long/gulong/ to please
-	gtk-doc.
+	ctk-doc.
 
 2007-06-09  Vincent Untz  <vuntz@gnome.org>
 
@@ -1963,7 +1963,7 @@
 
 2007-05-14  Vincent Untz  <vuntz@gnome.org>
 
-	* libvnck/test-tasklist.c: (main): call gtk_init(), and get a --rtl
+	* libvnck/test-tasklist.c: (main): call ctk_init(), and get a --rtl
 	commandline argument
 	* libvnck/test-pager.c: add --n-rows, --only-current, --rtl,
 	--show-name and --vertical-orientation commandline arguments
@@ -2167,8 +2167,8 @@
 	* test-tasklist.c: add an option to always group windows, and default
 	to automatic grouping
 	* test-tasklist.c: (main):
-	* test-selector.c: (main): don't use gtk_window_set_policy(), but
-	gtk_window_set_resizable()
+	* test-selector.c: (main): don't use ctk_window_set_policy(), but
+	ctk_window_set_resizable()
 
 2007-02-17  Vincent Untz  <vuntz@gnome.org>
 
@@ -2781,7 +2781,7 @@
 	* libvnck/tasklist.c:
 	* libvnck/util.c:
 	* libvnck/private.h:
-        (make_gtk_label_bold, make_gtk_label_normal): Move these functions
+        (make_ctk_label_bold, make_ctk_label_normal): Move these functions
 	from tasklist.c to util.c/private.h and use an underscore prefix
 	to reinforce that they're private
 	
@@ -3071,7 +3071,7 @@
 	* configure.in: use intltool
 	Based on patch by Rodney Dawes <dobey@novell.com>. Fixes bug #317190
 
-	* gtk-doc.make: should not be in CVS
+	* ctk-doc.make: should not be in CVS
 	* acconfig.h: ditto
 	* stamp.h.in: ditto
 
@@ -3477,7 +3477,7 @@
 	libvnck issues pointed out in #128380 and #161361.
 
 	* libvnck/xutils.[ch]: (_vnck_activate): take a timestamp parameter
-	to avoid bugs from using gtk_get_current_event_time,
+	to avoid bugs from using ctk_get_current_event_time,
 	(_vnck_activate_workspace): likewise
 
 	* libvnck/pager_accessible.c:
@@ -3612,7 +3612,7 @@
 	Promote the window menu to a full-blown widget. Use GObject
 	functions for private structures. Fixes #164474. 
 	
-	* gtk-doc.make:
+	* ctk-doc.make:
 	* libvnck/Makefile.am:
 	* libvnck/libvnck.h:
 	* libvnck/selector.c: (vnck_selector_destroy),
@@ -3748,7 +3748,7 @@
 2004-12-20  Mark McLoughlin  <mark@skynet.ie>
 
 	* libvnck/tasklist.c:
-	(make_gtk_label_normal): rename and make
+	(make_ctk_label_normal): rename and make
 	static.
 
 2004-12-20  Mark McLoughlin  <mark@skynet.ie>
@@ -3767,8 +3767,8 @@
 
 2004-12-15  Mark McLoughlin  <mark@skynet.ie>
 
-	* libvnck/tasklist.c: (make_gtk_label_bold): rename
-	from eel_gtk_label_make_bold() and make static.
+	* libvnck/tasklist.c: (make_ctk_label_bold): rename
+	from eel_ctk_label_make_bold() and make static.
 	
 2004-12-15  Mark McLoughlin  <mark@skynet.ie>
 
@@ -3905,15 +3905,15 @@
 2004-08-26  J.H.M. Dassen (Ray) <jdassen@debian.org>
 
 	http://bugzilla.gnome.org/show_bug.cgi?id=150699:
-	Implemented API documentation generation using gtk-doc (adapted from
+	Implemented API documentation generation using ctk-doc (adapted from
 	libgsf's setup).
 
-	* gtk-doc.make: Added; copied from gtk-doc-tools.
+	* ctk-doc.make: Added; copied from ctk-doc-tools.
 	* doc/Makefile.am, doc/libvnck-docs.sgml, doc/libvnck-overrides.txt:
 	Added; adapted from libgsf.
-	* Makefile.am: Added `doc' subdir; include `gtk-doc.make' in release
+	* Makefile.am: Added `doc' subdir; include `ctk-doc.make' in release
 	tarballs.
-	* configure.in: Check for gtk-doc-tools.
+	* configure.in: Check for ctk-doc-tools.
 	* autogen.sh: Shorter replacement version (using gnome-common); bumped
 	minimal automake version to 1.6 (as the documentation generation
 	doesn't work with automake 1.4).
@@ -4013,9 +4013,9 @@
 
 	* libvnck/vnck-enum-types.c: add demands attention hint
 
-	* libvnck/tasklist.c (eel_gtk_label_make_bold): new function,
+	* libvnck/tasklist.c (eel_ctk_label_make_bold): new function,
 	copy/paste from eel.
-	(vnck_gtk_label_make_normal): inverse of make_bold
+	(vnck_ctk_label_make_normal): inverse of make_bold
 	(vnck_task_update_visible_state): If demands attention is set,
 	make bold, otherwise make normal.
 	(vnck_task_state_changed): demands attention changes require
@@ -4690,7 +4690,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
         (vnck_pager_disconnect_screen): disconnect from name_changed on
         current workspaces.
 
-        Patch by Kristian Rietveld  <kris@gtk.org>. Fixes #84165.
+        Patch by Kristian Rietveld  <kris@ctk.org>. Fixes #84165.
 
 2002-09-27  Havoc Pennington  <hp@redhat.com>
 
@@ -4770,7 +4770,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 
 2002-09-16  Mark McLoughlin  <mark@skynet.ie>
 
-	* configure.in: require gtk+ 2.1.0.
+	* configure.in: require ctk+ 2.1.0.
 
 	* libvnck/screen.c, libvnck/private.h:
 	(_vnck_screen_get_gdk_screen): impl.
@@ -5456,7 +5456,7 @@ Fri Dec 28 02:11:26 2001  George Lebl <jirka@5z.com>
 	  (vnck_tasklist_update_lists): active_workspace CAN be NULL so check
 	  for that.  If this is the case, we just show the task as if it
 	  were on the active workspace.
-	  (vnck_task_popup_menu): gtk_container_get_children returns a newly
+	  (vnck_task_popup_menu): ctk_container_get_children returns a newly
 	  allocated list, so free it after use.
 
 	* xutils.c (read_rgb_icon): Remove that annoying warning about this

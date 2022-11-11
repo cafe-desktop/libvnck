@@ -12,12 +12,12 @@ stages:
       docbook-xml
       gettext
       gobject-introspection
-      gtk-doc-tools
+      ctk-doc-tools
       libgirepository1.0-dev
       libglib2.0-dev
       libglib2.0-doc
-      libgtk-3-dev
-      libgtk-3-doc
+      libctk-3-dev
+      libctk-3-doc
       libstartup-notification0-dev
       libx11-dev
       libxext-dev
@@ -30,5 +30,5 @@ build:ubuntu:meson:
   before_script:
     - *ubuntu_deps_install
   script:
-    - meson _build -Dgtk_doc=true
+    - meson _build -Dctk_doc=true
     - ninja -C _build

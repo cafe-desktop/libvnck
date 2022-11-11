@@ -1440,7 +1440,7 @@ vnck_window_set_fullscreen (VnckWindow *window,
  * anytime a #VnckWindow::state-changed signal gets emitted.
  *
  * Sticky here means "stuck to the glass", i.e. does not scroll with the
- * viewport. In GDK/GTK+ (e.g. gdk_window_stick()/gtk_window_stick()), sticky
+ * viewport. In GDK/GTK+ (e.g. gdk_window_stick()/ctk_window_stick()), sticky
  * means "stuck to the glass" and <emphasis>also</emphasis> that the window is
  * on all workspaces. But here it only means the viewport aspect of it.
  *

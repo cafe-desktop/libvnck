@@ -391,7 +391,7 @@ vnck_task_button_glow (VnckTask *task)
   if (task->glow_start_time <= G_MINDOUBLE)
     task->glow_start_time = now;
 
-  gtk_widget_style_get (GTK_WIDGET (task->tasklist), "fade-opacity", &fade_opacity,
+  ctk_widget_style_get (GTK_WIDGET (task->tasklist), "fade-opacity", &fade_opacity,
                                                      "fade-loop-time", &loop_time,
                                                      "fade-max-loops", &fade_max_loops,
                                                      NULL);
@@ -415,7 +415,7 @@ vnck_task_button_glow (VnckTask *task)
         stopped = FALSE;
     }
 
-  gtk_widget_queue_draw (task->button);
+  ctk_widget_queue_draw (task->button);
 
   if (stopped)
     vnck_task_stop_glow (task);
@@ -478,7 +478,7 @@ vnck_task_finalize (GObject *object)
     {
       g_object_remove_weak_pointer (G_OBJECT (task->button),
                                     (void**) &task->button);
-      gtk_widget_destroy (task->button);
+      ctk_widget_destroy (task->button);
       task->button = NULL;
       task->image = NULL;
       task->label = NULL;
@@ -544,7 +544,7 @@ vnck_task_finalize (GObject *object)
 
   if (task->menu)
     {
-      gtk_widget_destroy (task->menu);
+      ctk_widget_destroy (task->menu);
       task->menu = NULL;
     }
 
@@ -552,7 +552,7 @@ vnck_task_finalize (GObject *object)
     {
       g_object_remove_weak_pointer (G_OBJECT (task->action_menu),
                                     (void**) &task->action_menu);
-      gtk_widget_destroy (task->action_menu);
+      ctk_widget_destroy (task->action_menu);
       task->action_menu = NULL;
     }
 
@@ -583,7 +583,7 @@ vnck_tasklist_init (VnckTasklist *tasklist)
 
   widget = GTK_WIDGET (tasklist);
 
-  gtk_widget_set_has_window (widget, FALSE);
+  ctk_widget_set_has_window (widget, FALSE);
 
   tasklist->priv = vnck_tasklist_get_instance_private (tasklist);
 
@@ -599,14 +599,14 @@ vnck_tasklist_init (VnckTasklist *tasklist)
   tasklist->priv->orientation = GTK_ORIENTATION_HORIZONTAL;
   tasklist->priv->scroll_enabled = TRUE;
 
-  atk_obj = gtk_widget_get_accessible (widget);
+  atk_obj = ctk_widget_get_accessible (widget);
   atk_object_set_name (atk_obj, _("Window List"));
   atk_object_set_description (atk_obj, _("Tool to switch between visible windows"));
 
 #if 0
   /* This doesn't work because, and I think this is because we have no window;
    * therefore, we use the scroll events on task buttons instead */
-  gtk_widget_add_events (widget, GDK_SCROLL_MASK);
+  ctk_widget_add_events (widget, GDK_SCROLL_MASK);
 #endif
 }
 
@@ -625,7 +625,7 @@ vnck_tasklist_class_init (VnckTasklistClass *klass)
   widget_class->realize = vnck_tasklist_realize;
   widget_class->unrealize = vnck_tasklist_unrealize;
 #if 0
-  /* See comment above gtk_widget_add_events() in vnck_tasklist_init() */
+  /* See comment above ctk_widget_add_events() in vnck_tasklist_init() */
   widget_class->scroll_event = vnck_tasklist_scroll_event;
 #endif
 
@@ -641,7 +641,7 @@ vnck_tasklist_class_init (VnckTasklistClass *klass)
    *
    * Since: 2.16
    */
-  gtk_widget_class_install_style_property (widget_class,
+  ctk_widget_class_install_style_property (widget_class,
                                            g_param_spec_float ("fade-loop-time",
                                                               "Loop time",
                                                               "The time one loop takes when fading, in seconds. Default: 3.0",
@@ -657,7 +657,7 @@ vnck_tasklist_class_init (VnckTasklistClass *klass)
    *
    * Since: 2.20
    */
-  gtk_widget_class_install_style_property (widget_class,
+  ctk_widget_class_install_style_property (widget_class,
                                            g_param_spec_int ("fade-max-loops",
                                                               "Maximum number of loops",
                                                               "The number of fading loops. 0 means the button will only fade to the final color. Default: 5",
@@ -675,7 +675,7 @@ vnck_tasklist_class_init (VnckTasklistClass *klass)
    *
    * Since: 2.16
    */
-  gtk_widget_class_install_style_property (widget_class,
+  ctk_widget_class_install_style_property (widget_class,
                                            g_param_spec_boolean ("fade-overlay-rect",
                                                                  "Overlay a rectangle, instead of modifying the background.",
                                                                  "Compatibility mode for pixbuf engine themes that cannot react to color changes. If enabled, a rectangle with the correct color will be drawn on top of the button. Default: TRUE",
@@ -691,14 +691,14 @@ vnck_tasklist_class_init (VnckTasklistClass *klass)
    *
    * Since: 2.16
    */
-  gtk_widget_class_install_style_property (widget_class,
+  ctk_widget_class_install_style_property (widget_class,
                                            g_param_spec_float ("fade-opacity",
                                                               "Final opacity",
                                                               "The final opacity that will be reached. Default: 0.8",
                                                               0.0, 1.0, 0.8,
                                                               G_PARAM_READABLE|G_PARAM_STATIC_NAME|G_PARAM_STATIC_NICK|G_PARAM_STATIC_BLURB));
 
-  gtk_widget_class_set_css_name (widget_class, "vnck-tasklist");
+  ctk_widget_class_set_css_name (widget_class, "vnck-tasklist");
 
   /**
    * VnckTasklist::task-enter-notify:
@@ -819,7 +819,7 @@ vnck_tasklist_set_grouping (VnckTasklist            *tasklist,
     return;
 
   tasklist->priv->grouping = grouping;
-  gtk_widget_queue_resize (GTK_WIDGET (tasklist));
+  ctk_widget_queue_resize (GTK_WIDGET (tasklist));
 }
 
 static void
@@ -827,7 +827,7 @@ vnck_tasklist_set_relief_callback (VnckWindow   *win,
 				   VnckTask     *task,
 				   VnckTasklist *tasklist)
 {
-  gtk_button_set_relief (GTK_BUTTON (task->button), tasklist->priv->relief);
+  ctk_button_set_relief (GTK_BUTTON (task->button), tasklist->priv->relief);
 }
 
 /**
@@ -857,7 +857,7 @@ vnck_tasklist_set_button_relief (VnckTasklist *tasklist, GtkReliefStyle relief)
                         (GHFunc) vnck_tasklist_set_relief_callback,
                         tasklist);
   for (walk = tasklist->priv->class_groups; walk; walk = g_list_next (walk))
-    gtk_button_set_relief (GTK_BUTTON (VNCK_TASK (walk->data)->button), relief);
+    ctk_button_set_relief (GTK_BUTTON (VNCK_TASK (walk->data)->button), relief);
 }
 
 /**
@@ -984,7 +984,7 @@ vnck_tasklist_set_include_all_workspaces (VnckTasklist *tasklist,
 
   tasklist->priv->include_all_workspaces = include_all_workspaces;
   vnck_tasklist_update_lists (tasklist);
-  gtk_widget_queue_resize (GTK_WIDGET (tasklist));
+  ctk_widget_queue_resize (GTK_WIDGET (tasklist));
 }
 
 /**
@@ -1007,7 +1007,7 @@ vnck_tasklist_set_grouping_limit (VnckTasklist *tasklist,
     return;
 
   tasklist->priv->grouping_limit = limit;
-  gtk_widget_queue_resize (GTK_WIDGET (tasklist));
+  ctk_widget_queue_resize (GTK_WIDGET (tasklist));
 }
 
 /**
@@ -1199,11 +1199,11 @@ vnck_tasklist_get_button_size (GtkWidget *widget)
   gint text_width;
   gint width;
 
-  style_context = gtk_widget_get_style_context (widget);
-  state = gtk_style_context_get_state (style_context);
-  gtk_style_context_get (style_context, state, GTK_STYLE_PROPERTY_FONT, &description, NULL);
+  style_context = ctk_widget_get_style_context (widget);
+  state = ctk_style_context_get_state (style_context);
+  ctk_style_context_get (style_context, state, GTK_STYLE_PROPERTY_FONT, &description, NULL);
 
-  context = gtk_widget_get_pango_context (widget);
+  context = ctk_widget_get_pango_context (widget);
   metrics = pango_context_get_metrics (context, description,
                                        pango_context_get_language (context));
   char_width = pango_font_metrics_get_approximate_char_width (metrics);
@@ -1250,7 +1250,7 @@ vnck_tasklist_size_request  (GtkWidget      *widget,
     {                                                           \
       VnckTask *task = VNCK_TASK (l->data);                     \
                                                                 \
-      gtk_widget_get_preferred_size (task->button,              \
+      ctk_widget_get_preferred_size (task->button,              \
                                      &child_req, NULL);         \
                                                                 \
       max_height = MAX (child_req.height,                       \
@@ -1268,13 +1268,13 @@ vnck_tasklist_size_request  (GtkWidget      *widget,
   /* Note that the fact that we nearly don't care about the width/height
    * requested by the buttons makes it possible to hide/show the label/image
    * in vnck_task_size_allocated(). If we really cared about those, this
-   * wouldn't work since our call to gtk_widget_size_request() does not take
+   * wouldn't work since our call to ctk_widget_size_request() does not take
    * into account the hidden widgets.
    */
   tasklist->priv->max_button_width = vnck_tasklist_get_button_size (widget);
   tasklist->priv->max_button_height = max_height;
 
-  gtk_widget_get_allocation (GTK_WIDGET (tasklist), &tasklist_allocation);
+  ctk_widget_get_allocation (GTK_WIDGET (tasklist), &tasklist_allocation);
 
   fake_allocation.width = tasklist_allocation.width;
   fake_allocation.height = tasklist_allocation.height;
@@ -1488,7 +1488,7 @@ task_button_queue_resize (gpointer user_data)
 {
   VnckTask *task = VNCK_TASK (user_data);
 
-  gtk_widget_queue_resize (task->button);
+  ctk_widget_queue_resize (task->button);
   task->resize_idle_id = 0;
 
   return G_SOURCE_REMOVE;
@@ -1507,30 +1507,30 @@ vnck_task_size_allocated (GtkWidget     *widget,
   gboolean         old_image_visible;
   gboolean         old_label_visible;
 
-  context = gtk_widget_get_style_context (widget);
-  state = gtk_style_context_get_state (context);
-  gtk_style_context_get_padding (context, state, &padding);
+  context = ctk_widget_get_style_context (widget);
+  state = ctk_style_context_get_state (context);
+  ctk_style_context_get_padding (context, state, &padding);
 
   min_image_width = MINI_ICON_SIZE +
                     padding.left + padding.right +
                     2 * TASKLIST_BUTTON_PADDING;
-  old_image_visible = gtk_widget_get_visible (task->image);
-  old_label_visible = gtk_widget_get_visible (task->label);
+  old_image_visible = ctk_widget_get_visible (task->image);
+  old_label_visible = ctk_widget_get_visible (task->label);
 
   if ((allocation->width < min_image_width + 2 * TASKLIST_BUTTON_PADDING) &&
       (allocation->width >= min_image_width)) {
-    gtk_widget_show (task->image);
-    gtk_widget_hide (task->label);
+    ctk_widget_show (task->image);
+    ctk_widget_hide (task->label);
   } else if (allocation->width < min_image_width) {
-    gtk_widget_hide (task->image);
-    gtk_widget_show (task->label);
+    ctk_widget_hide (task->image);
+    ctk_widget_show (task->label);
   } else {
-    gtk_widget_show (task->image);
-    gtk_widget_show (task->label);
+    ctk_widget_show (task->image);
+    ctk_widget_show (task->label);
   }
 
-  if (old_image_visible != gtk_widget_get_visible (task->image) ||
-      old_label_visible != gtk_widget_get_visible (task->label))
+  if (old_image_visible != ctk_widget_get_visible (task->image) ||
+      old_label_visible != ctk_widget_get_visible (task->label))
     {
       if (task->resize_idle_id == 0)
         task->resize_idle_id = g_idle_add (task_button_queue_resize, task);
@@ -1613,7 +1613,7 @@ vnck_tasklist_size_allocate (GtkWidget      *widget,
 	    {
 	      win_task = VNCK_TASK (l->data);
 
-	      gtk_widget_set_child_visible (GTK_WIDGET (win_task->button), FALSE);
+	      ctk_widget_set_child_visible (GTK_WIDGET (win_task->button), FALSE);
 
 	      l = l->next;
 	    }
@@ -1621,7 +1621,7 @@ vnck_tasklist_size_allocate (GtkWidget      *widget,
       else
 	{
 	  visible_tasks = g_list_prepend (visible_tasks, class_group_task->windows->data);
-	  gtk_widget_set_child_visible (GTK_WIDGET (class_group_task->button), FALSE);
+	  ctk_widget_set_child_visible (GTK_WIDGET (class_group_task->button), FALSE);
         }
 
       button_width = vnck_tasklist_layout (allocation,
@@ -1639,7 +1639,7 @@ vnck_tasklist_size_allocate (GtkWidget      *widget,
       class_group_task = VNCK_TASK (l->data);
 
       visible_tasks = g_list_concat (visible_tasks, g_list_copy (class_group_task->windows));
-      gtk_widget_set_child_visible (GTK_WIDGET (class_group_task->button), FALSE);
+      ctk_widget_set_child_visible (GTK_WIDGET (class_group_task->button), FALSE);
 
       l = l->next;
     }
@@ -1678,7 +1678,7 @@ vnck_tasklist_size_allocate (GtkWidget      *widget,
       int row = i % n_rows;
       int col = i / n_rows;
 
-      if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+      if (ctk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
         col = n_cols - col - 1;
 
       child_allocation.x = total_width*col / n_cols;
@@ -1688,8 +1688,8 @@ vnck_tasklist_size_allocate (GtkWidget      *widget,
       child_allocation.x += allocation->x;
       child_allocation.y += allocation->y;
 
-      gtk_widget_size_allocate (task->button, &child_allocation);
-      gtk_widget_set_child_visible (GTK_WIDGET (task->button), TRUE);
+      ctk_widget_size_allocate (task->button, &child_allocation);
+      ctk_widget_set_child_visible (GTK_WIDGET (task->button), TRUE);
 
       if (task->type != VNCK_TASK_STARTUP_SEQUENCE)
         {
@@ -1740,7 +1740,7 @@ vnck_tasklist_realize (GtkWidget *widget)
 
   tasklist = VNCK_TASKLIST (widget);
 
-  gdkscreen = gtk_widget_get_screen (widget);
+  gdkscreen = ctk_widget_get_screen (widget);
   tasklist->priv->screen = vnck_screen_get (gdk_x11_screen_get_screen_number (gdkscreen));
   g_assert (tasklist->priv->screen != NULL);
 
@@ -1866,7 +1866,7 @@ vnck_tasklist_remove (GtkContainer   *container,
 	    g_list_remove (tasklist->priv->windows,
 			   task);
 
-          gtk_widget_unparent (widget);
+          ctk_widget_unparent (widget);
           g_object_unref (task);
 	  break;
 	}
@@ -1886,7 +1886,7 @@ vnck_tasklist_remove (GtkContainer   *container,
 	    g_list_remove (tasklist->priv->class_groups,
 			   task);
 
-          gtk_widget_unparent (widget);
+          ctk_widget_unparent (widget);
           g_object_unref (task);
 	  break;
 	}
@@ -1904,13 +1904,13 @@ vnck_tasklist_remove (GtkContainer   *container,
 	    g_list_remove (tasklist->priv->startup_sequences,
 			   task);
 
-          gtk_widget_unparent (widget);
+          ctk_widget_unparent (widget);
           g_object_unref (task);
 	  break;
 	}
     }
 
-  gtk_widget_queue_resize (GTK_WIDGET (container));
+  ctk_widget_queue_resize (GTK_WIDGET (container));
 }
 
 static void
@@ -2021,7 +2021,7 @@ vnck_tasklist_scroll_event (GtkWidget      *widget,
        * It occurs if we change the active task too fast. */
       return TRUE;
 
-  ltr = (gtk_widget_get_direction (GTK_WIDGET (tasklist)) != GTK_TEXT_DIR_RTL);
+  ltr = (ctk_widget_get_direction (GTK_WIDGET (tasklist)) != GTK_TEXT_DIR_RTL);
 
   switch (event->direction)
     {
@@ -2158,7 +2158,7 @@ vnck_tasklist_free_tasks (VnckTasklist *tasklist)
           /* if we just unref the task it means we lose our ref to the
            * task before we unparent the button, which breaks stuff.
            */
-	  gtk_widget_destroy (task->button);
+	  ctk_widget_destroy (task->button);
 	}
     }
   g_assert (tasklist->priv->windows == NULL);
@@ -2175,7 +2175,7 @@ vnck_tasklist_free_tasks (VnckTasklist *tasklist)
           /* if we just unref the task it means we lose our ref to the
            * task before we unparent the button, which breaks stuff.
            */
-	  gtk_widget_destroy (task->button);
+	  ctk_widget_destroy (task->button);
 	}
     }
 
@@ -2279,10 +2279,10 @@ vnck_tasklist_update_lists (VnckTasklist *tasklist)
   vnck_tasklist_free_tasks (tasklist);
 
   /* vnck_tasklist_update_lists() will be called on realize */
-  if (!gtk_widget_get_realized (GTK_WIDGET (tasklist)))
+  if (!ctk_widget_get_realized (GTK_WIDGET (tasklist)))
     return;
 
-  tasklist_window = gtk_widget_get_window (GTK_WIDGET (tasklist));
+  tasklist_window = ctk_widget_get_window (GTK_WIDGET (tasklist));
 
   if (tasklist_window != NULL)
     {
@@ -2320,8 +2320,8 @@ vnck_tasklist_update_lists (VnckTasklist *tasklist)
 	  tasklist->priv->windows = g_list_prepend (tasklist->priv->windows, win_task);
 	  g_hash_table_insert (tasklist->priv->win_hash, win, win_task);
 
-	  gtk_widget_set_parent (win_task->button, GTK_WIDGET (tasklist));
-	  gtk_widget_show (win_task->button);
+	  ctk_widget_set_parent (win_task->button, GTK_WIDGET (tasklist));
+	  ctk_widget_show (win_task->button);
 
 	  /* Class group */
 
@@ -2338,9 +2338,9 @@ vnck_tasklist_update_lists (VnckTasklist *tasklist)
                   class_group_task =
                                   vnck_task_new_from_class_group (tasklist,
                                                                   class_group);
-                  gtk_widget_set_parent (class_group_task->button,
+                  ctk_widget_set_parent (class_group_task->button,
                                          GTK_WIDGET (tasklist));
-                  gtk_widget_show (class_group_task->button);
+                  ctk_widget_show (class_group_task->button);
 
                   tasklist->priv->class_groups =
                                   g_list_prepend (tasklist->priv->class_groups,
@@ -2396,7 +2396,7 @@ vnck_tasklist_update_lists (VnckTasklist *tasklist)
   /* since we cleared active_window we need to reset it */
   vnck_tasklist_active_window_changed (tasklist->priv->screen, NULL, tasklist);
 
-  gtk_widget_queue_resize (GTK_WIDGET (tasklist));
+  ctk_widget_queue_resize (GTK_WIDGET (tasklist));
 }
 
 static void
@@ -2412,7 +2412,7 @@ vnck_tasklist_change_active_task (VnckTasklist *tasklist, VnckTask *active_task)
   if (tasklist->priv->active_task)
     {
       tasklist->priv->active_task->really_toggling = TRUE;
-      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tasklist->priv->active_task->button),
+      ctk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tasklist->priv->active_task->button),
 				    FALSE);
       tasklist->priv->active_task->really_toggling = FALSE;
     }
@@ -2422,7 +2422,7 @@ vnck_tasklist_change_active_task (VnckTasklist *tasklist, VnckTask *active_task)
   if (tasklist->priv->active_task)
     {
       tasklist->priv->active_task->really_toggling = TRUE;
-      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tasklist->priv->active_task->button),
+      ctk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tasklist->priv->active_task->button),
 				    TRUE);
       tasklist->priv->active_task->really_toggling = FALSE;
     }
@@ -2439,7 +2439,7 @@ vnck_tasklist_change_active_task (VnckTasklist *tasklist, VnckTask *active_task)
       if (tasklist->priv->active_class_group)
 	{
 	  tasklist->priv->active_class_group->really_toggling = TRUE;
-	  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tasklist->priv->active_class_group->button),
+	  ctk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tasklist->priv->active_class_group->button),
 					FALSE);
 	  tasklist->priv->active_class_group->really_toggling = FALSE;
 	}
@@ -2449,7 +2449,7 @@ vnck_tasklist_change_active_task (VnckTasklist *tasklist, VnckTask *active_task)
       if (tasklist->priv->active_class_group)
 	{
 	  tasklist->priv->active_class_group->really_toggling = TRUE;
-	  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tasklist->priv->active_class_group->button),
+	  ctk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tasklist->priv->active_class_group->button),
 					TRUE);
 	  tasklist->priv->active_class_group->really_toggling = FALSE;
 	}
@@ -2467,7 +2467,7 @@ vnck_tasklist_update_icon_geometries (VnckTasklist *tasklist,
 		VnckTask *task = VNCK_TASK (l1->data);
                 GtkAllocation allocation;
 
-		if (!gtk_widget_get_realized (task->button))
+		if (!ctk_widget_get_realized (task->button))
 			continue;
 
                 /* Let's cheat with some internal knowledge of GtkButton: in a
@@ -2475,9 +2475,9 @@ vnck_tasklist_update_icon_geometries (VnckTasklist *tasklist,
                  * to know the position of the widget, we should use the
                  * the position of the parent window and the allocation information. */
 
-                gtk_widget_get_allocation (task->button, &allocation);
+                ctk_widget_get_allocation (task->button, &allocation);
 
-                gdk_window_get_origin (gtk_widget_get_parent_window (task->button),
+                gdk_window_get_origin (ctk_widget_get_parent_window (task->button),
                                        &x, &y);
 
                 x += allocation.x;
@@ -2534,7 +2534,7 @@ vnck_tasklist_active_workspace_changed (VnckScreen    *screen,
 					VnckTasklist  *tasklist)
 {
   vnck_tasklist_update_lists (tasklist);
-  gtk_widget_queue_resize (GTK_WIDGET (tasklist));
+  ctk_widget_queue_resize (GTK_WIDGET (tasklist));
 }
 
 static void
@@ -2572,7 +2572,7 @@ vnck_tasklist_window_changed_workspace (VnckWindow   *window,
   if (need_update)
     {
       vnck_tasklist_update_lists (tasklist);
-      gtk_widget_queue_resize (GTK_WIDGET (tasklist));
+      ctk_widget_queue_resize (GTK_WIDGET (tasklist));
     }
 }
 
@@ -2601,7 +2601,7 @@ vnck_tasklist_window_changed_geometry (VnckWindow   *window,
   if (tasklist->priv->idle_callback_tag != 0)
     return;
 
-  tasklist_window = gtk_widget_get_window (GTK_WIDGET (tasklist));
+  tasklist_window = ctk_widget_get_window (GTK_WIDGET (tasklist));
 
   /*
    * If the (parent of the) tasklist itself skips
@@ -2640,7 +2640,7 @@ vnck_tasklist_window_changed_geometry (VnckWindow   *window,
     return;
 
   /* Don't keep any stale references */
-  gtk_widget_queue_draw (GTK_WIDGET (tasklist));
+  ctk_widget_queue_draw (GTK_WIDGET (tasklist));
 
   tasklist->priv->idle_callback_tag = g_idle_add (do_vnck_tasklist_update_lists, tasklist);
 }
@@ -2681,7 +2681,7 @@ vnck_tasklist_window_added (VnckScreen   *screen,
   vnck_tasklist_connect_window (tasklist, win);
 
   vnck_tasklist_update_lists (tasklist);
-  gtk_widget_queue_resize (GTK_WIDGET (tasklist));
+  ctk_widget_queue_resize (GTK_WIDGET (tasklist));
 }
 
 static void
@@ -2690,7 +2690,7 @@ vnck_tasklist_window_removed (VnckScreen   *screen,
 			      VnckTasklist *tasklist)
 {
   vnck_tasklist_update_lists (tasklist);
-  gtk_widget_queue_resize (GTK_WIDGET (tasklist));
+  ctk_widget_queue_resize (GTK_WIDGET (tasklist));
 }
 
 static void
@@ -2698,7 +2698,7 @@ vnck_tasklist_viewports_changed (VnckScreen   *screen,
                                  VnckTasklist *tasklist)
 {
   vnck_tasklist_update_lists (tasklist);
-  gtk_widget_queue_resize (GTK_WIDGET (tasklist));
+  ctk_widget_queue_resize (GTK_WIDGET (tasklist));
 }
 
 static gboolean
@@ -2719,10 +2719,10 @@ vnck_task_menu_activated (GtkMenuItem *menu_item,
 {
   VnckTask *task = VNCK_TASK (data);
 
-  /* This is an "activate" callback function so gtk_get_current_event_time()
+  /* This is an "activate" callback function so ctk_get_current_event_time()
    * will suffice.
    */
-  vnck_tasklist_activate_task_window (task, gtk_get_current_event_time ());
+  vnck_tasklist_activate_task_window (task, ctk_get_current_event_time ());
 }
 
 static void
@@ -2838,7 +2838,7 @@ vnck_task_close_all (GtkMenuItem *menu_item,
   while (l)
     {
       VnckTask *child = VNCK_TASK (l->data);
-      vnck_window_close (child->window, gtk_get_current_event_time ());
+      vnck_window_close (child->window, ctk_get_current_event_time ());
       l = l->next;
     }
 }
@@ -2854,10 +2854,10 @@ vnck_task_unminimize_all (GtkMenuItem *menu_item,
   while (l)
     {
       VnckTask *child = VNCK_TASK (l->data);
-      /* This is inside an activate callback, so gtk_get_current_event_time()
+      /* This is inside an activate callback, so ctk_get_current_event_time()
        * will work.
        */
-      vnck_window_unminimize (child->window, gtk_get_current_event_time ());
+      vnck_window_unminimize (child->window, ctk_get_current_event_time ());
       l = l->next;
     }
 }
@@ -2928,19 +2928,19 @@ vnck_task_popup_menu (VnckTask *task,
 
   if (task->menu == NULL)
     {
-      task->menu = gtk_menu_new ();
+      task->menu = ctk_menu_new ();
       g_object_ref_sink (task->menu);
     }
 
   menu = task->menu;
 
   /* Remove old menu content */
-  list = gtk_container_get_children (GTK_CONTAINER (menu));
+  list = ctk_container_get_children (GTK_CONTAINER (menu));
   l = list;
   while (l)
     {
       GtkWidget *child = GTK_WIDGET (l->data);
-      gtk_container_remove (GTK_CONTAINER (menu), child);
+      ctk_container_remove (GTK_CONTAINER (menu), child);
       l = l->next;
     }
   g_list_free (list);
@@ -2955,10 +2955,10 @@ vnck_task_popup_menu (VnckTask *task,
       g_free (text);
 
       if (vnck_task_get_needs_attention (win_task))
-        _make_gtk_label_bold (GTK_LABEL (gtk_bin_get_child (GTK_BIN (menu_item))));
+        _make_ctk_label_bold (GTK_LABEL (ctk_bin_get_child (GTK_BIN (menu_item))));
 
       text = vnck_task_get_text (win_task, FALSE, FALSE);
-      gtk_widget_set_tooltip_text (menu_item, text);
+      ctk_widget_set_tooltip_text (menu_item, text);
       g_free (text);
 
       pixbuf = vnck_task_get_icon (win_task);
@@ -2972,10 +2972,10 @@ vnck_task_popup_menu (VnckTask *task,
           g_object_unref (pixbuf);
         }
 
-      gtk_widget_show (menu_item);
+      ctk_widget_show (menu_item);
 
       if (action_submenu)
-        gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item),
+        ctk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item),
                                    vnck_action_menu_new (win_task->window));
       else
         {
@@ -2989,7 +2989,7 @@ vnck_task_popup_menu (VnckTask *task,
                                    0);
 
 
-          gtk_drag_source_set (menu_item, GDK_BUTTON1_MASK,
+          ctk_drag_source_set (menu_item, GDK_BUTTON1_MASK,
                                targets, 1, GDK_ACTION_MOVE);
           g_signal_connect_object (G_OBJECT(menu_item), "drag_begin",
                                    G_CALLBACK (vnck_task_drag_begin),
@@ -3005,7 +3005,7 @@ vnck_task_popup_menu (VnckTask *task,
                                    0);
         }
 
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
+      ctk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
 
       l = l->next;
     }
@@ -3015,60 +3015,60 @@ vnck_task_popup_menu (VnckTask *task,
     {
       GtkWidget *separator;
 
-      separator = gtk_separator_menu_item_new ();
-      gtk_widget_show (separator);
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), separator);
+      separator = ctk_separator_menu_item_new ();
+      ctk_widget_show (separator);
+      ctk_menu_shell_append (GTK_MENU_SHELL (menu), separator);
 
-      menu_item = gtk_menu_item_new_with_mnemonic (_("Mi_nimize All"));
-      gtk_widget_show (menu_item);
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
+      menu_item = ctk_menu_item_new_with_mnemonic (_("Mi_nimize All"));
+      ctk_widget_show (menu_item);
+      ctk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
       g_signal_connect_object (G_OBJECT (menu_item), "activate",
 	    		       G_CALLBACK (vnck_task_minimize_all),
 			       G_OBJECT (task),
 			       0);
 
-      menu_item =  gtk_menu_item_new_with_mnemonic (_("Un_minimize All"));
-      gtk_widget_show (menu_item);
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
+      menu_item =  ctk_menu_item_new_with_mnemonic (_("Un_minimize All"));
+      ctk_widget_show (menu_item);
+      ctk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
       g_signal_connect_object (G_OBJECT (menu_item), "activate",
   			       G_CALLBACK (vnck_task_unminimize_all),
 			       G_OBJECT (task),
 			       0);
 
-      menu_item = gtk_menu_item_new_with_mnemonic (_("Ma_ximize All"));
-      gtk_widget_show (menu_item);
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
+      menu_item = ctk_menu_item_new_with_mnemonic (_("Ma_ximize All"));
+      ctk_widget_show (menu_item);
+      ctk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
       g_signal_connect_object (G_OBJECT (menu_item), "activate",
   			       G_CALLBACK (vnck_task_maximize_all),
 			       G_OBJECT (task),
 			       0);
 
-      menu_item =  gtk_menu_item_new_with_mnemonic (_("_Unmaximize All"));
-      gtk_widget_show (menu_item);
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
+      menu_item =  ctk_menu_item_new_with_mnemonic (_("_Unmaximize All"));
+      ctk_widget_show (menu_item);
+      ctk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
       g_signal_connect_object (G_OBJECT (menu_item), "activate",
   			       G_CALLBACK (vnck_task_unmaximize_all),
 			       G_OBJECT (task),
 			       0);
 
-      separator = gtk_separator_menu_item_new ();
-      gtk_widget_show (separator);
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), separator);
+      separator = ctk_separator_menu_item_new ();
+      ctk_widget_show (separator);
+      ctk_menu_shell_append (GTK_MENU_SHELL (menu), separator);
 
-      menu_item = gtk_menu_item_new_with_mnemonic(_("_Close All"));
-      gtk_widget_show (menu_item);
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
+      menu_item = ctk_menu_item_new_with_mnemonic(_("_Close All"));
+      ctk_widget_show (menu_item);
+      ctk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
       g_signal_connect_object (G_OBJECT (menu_item), "activate",
 			       G_CALLBACK (vnck_task_close_all),
 			       G_OBJECT (task),
 			       0);
     }
 
-  gtk_menu_set_screen (GTK_MENU (menu),
+  ctk_menu_set_screen (GTK_MENU (menu),
 		       _vnck_screen_get_gdk_screen (task->tasklist->priv->screen));
 
-  gtk_widget_show (menu);
-  gtk_menu_popup_at_widget (GTK_MENU (menu), task->button,
+  ctk_widget_show (menu);
+  ctk_menu_popup_at_widget (GTK_MENU (menu), task->button,
                             GDK_GRAVITY_SOUTH_WEST,
                             GDK_GRAVITY_NORTH_WEST,
                             NULL);
@@ -3084,8 +3084,8 @@ vnck_task_button_toggled (GtkButton *button,
 
   /* Undo the toggle */
   task->really_toggling = TRUE;
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button),
-				!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)));
+  ctk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button),
+				!ctk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)));
   task->really_toggling = FALSE;
 
   switch (task->type)
@@ -3098,9 +3098,9 @@ vnck_task_button_toggled (GtkButton *button,
 	return;
 
       /* This should only be called by clicking on the task button, so
-       * gtk_get_current_event_time() should be fine here...
+       * ctk_get_current_event_time() should be fine here...
        */
-      vnck_tasklist_activate_task_window (task, gtk_get_current_event_time ());
+      vnck_tasklist_activate_task_window (task, ctk_get_current_event_time ());
       break;
     case VNCK_TASK_STARTUP_SEQUENCE:
       break;
@@ -3351,7 +3351,7 @@ vnck_task_update_visible_state (VnckTask *task)
   char *text;
 
   pixbuf = vnck_task_get_icon (task);
-  gtk_image_set_from_pixbuf (GTK_IMAGE (task->image),
+  ctk_image_set_from_pixbuf (GTK_IMAGE (task->image),
 			     pixbuf);
   if (pixbuf)
     g_object_unref (pixbuf);
@@ -3359,15 +3359,15 @@ vnck_task_update_visible_state (VnckTask *task)
   text = vnck_task_get_text (task, TRUE, TRUE);
   if (text != NULL)
     {
-      gtk_label_set_text (GTK_LABEL (task->label), text);
+      ctk_label_set_text (GTK_LABEL (task->label), text);
       if (vnck_task_get_needs_attention (task))
         {
-          _make_gtk_label_bold ((GTK_LABEL (task->label)));
+          _make_ctk_label_bold ((GTK_LABEL (task->label)));
           vnck_task_queue_glow (task);
         }
       else
         {
-          _make_gtk_label_normal ((GTK_LABEL (task->label)));
+          _make_ctk_label_normal ((GTK_LABEL (task->label)));
           vnck_task_reset_glow (task);
         }
       g_free (text);
@@ -3376,10 +3376,10 @@ vnck_task_update_visible_state (VnckTask *task)
   text = vnck_task_get_text (task, FALSE, FALSE);
   /* if text is NULL, this unsets the tooltip, which is probably what we'd want
    * to do */
-  gtk_widget_set_tooltip_text (task->button, text);
+  ctk_widget_set_tooltip_text (task->button, text);
   g_free (text);
 
-  gtk_widget_queue_resize (GTK_WIDGET (task->tasklist));
+  ctk_widget_queue_resize (GTK_WIDGET (task->tasklist));
 }
 
 static void
@@ -3393,7 +3393,7 @@ vnck_task_state_changed (VnckWindow     *window,
   if (changed_mask & VNCK_WINDOW_STATE_SKIP_TASKLIST)
     {
       vnck_tasklist_update_lists  (tasklist);
-      gtk_widget_queue_resize (GTK_WIDGET (tasklist));
+      ctk_widget_queue_resize (GTK_WIDGET (tasklist));
       return;
     }
 
@@ -3409,7 +3409,7 @@ vnck_task_state_changed (VnckWindow     *window,
 	    !vnck_window_is_in_viewport (window, active_workspace))))
         {
           vnck_tasklist_update_lists (tasklist);
-          gtk_widget_queue_resize (GTK_WIDGET (tasklist));
+          ctk_widget_queue_resize (GTK_WIDGET (tasklist));
         }
     }
 
@@ -3516,7 +3516,7 @@ vnck_task_drag_leave (GtkWidget          *widget,
       task->button_activate = 0;
     }
 
-  gtk_drag_unhighlight (widget);
+  ctk_drag_unhighlight (widget);
 }
 
 static gboolean
@@ -3527,9 +3527,9 @@ vnck_task_drag_motion (GtkWidget          *widget,
 		       guint               time,
 		       VnckTask            *task)
 {
-  if (gtk_drag_dest_find_target (widget, context, NULL))
+  if (ctk_drag_dest_find_target (widget, context, NULL))
     {
-      gtk_drag_highlight (widget);
+      ctk_drag_highlight (widget);
       gdk_drag_status (context, gdk_drag_context_get_suggested_action (context), time);
     }
   else
@@ -3556,7 +3556,7 @@ vnck_task_drag_begin (GtkWidget          *widget,
   _vnck_window_set_as_drag_icon (task->window, context,
                                  GTK_WIDGET (task->tasklist));
 
-  task->tasklist->priv->drag_start_time = gtk_get_current_event_time ();
+  task->tasklist->priv->drag_start_time = ctk_get_current_event_time ();
 }
 
 static void
@@ -3578,8 +3578,8 @@ vnck_task_drag_data_get (GtkWidget          *widget,
   gulong xid;
 
   xid = vnck_window_get_xid (task->window);
-  gtk_selection_data_set (selection_data,
-                          gtk_selection_data_get_target (selection_data),
+  ctk_selection_data_set (selection_data,
+                          ctk_selection_data_get_target (selection_data),
 			  8, (guchar *)&xid, sizeof (gulong));
 }
 
@@ -3600,15 +3600,15 @@ vnck_task_drag_data_received (GtkWidget          *widget,
   guint         new_order, old_order, order;
   VnckWindow   *found_window;
 
-  if ((gtk_selection_data_get_length (data) != sizeof (gulong)) ||
-      (gtk_selection_data_get_format (data) != 8))
+  if ((ctk_selection_data_get_length (data) != sizeof (gulong)) ||
+      (ctk_selection_data_get_format (data) != 8))
     {
-      gtk_drag_finish (context, FALSE, FALSE, time);
+      ctk_drag_finish (context, FALSE, FALSE, time);
       return;
     }
 
   tasklist = target_task->tasklist;
-  xid = (gulong *) gtk_selection_data_get_data (data);
+  xid = (gulong *) ctk_selection_data_get_data (data);
   found_window = NULL;
   new_order = 0;
   windows = vnck_screen_get_windows (tasklist->priv->screen);
@@ -3632,16 +3632,16 @@ vnck_task_drag_data_received (GtkWidget          *widget,
       GtkSettings  *settings;
       guint         double_click_time;
 
-      settings = gtk_settings_get_for_screen (gtk_widget_get_screen (GTK_WIDGET (tasklist)));
+      settings = ctk_settings_get_for_screen (ctk_widget_get_screen (GTK_WIDGET (tasklist)));
       double_click_time = 0;
       g_object_get (G_OBJECT (settings),
-                    "gtk-double-click-time", &double_click_time,
+                    "ctk-double-click-time", &double_click_time,
                     NULL);
 
       if ((time - tasklist->priv->drag_start_time) < double_click_time)
         {
           vnck_tasklist_activate_task_window (target_task, time);
-          gtk_drag_finish (context, TRUE, FALSE, time);
+          ctk_drag_finish (context, TRUE, FALSE, time);
           return;
         }
     }
@@ -3665,10 +3665,10 @@ vnck_task_drag_data_received (GtkWidget          *widget,
            vnck_window_move_to_workspace (found_window, active_space);
          }
 
-       gtk_widget_queue_resize (GTK_WIDGET (tasklist));
+       ctk_widget_queue_resize (GTK_WIDGET (tasklist));
     }
 
-    gtk_drag_finish (context, TRUE, FALSE, time);
+    ctk_drag_finish (context, TRUE, FALSE, time);
 }
 
 static gboolean
@@ -3710,14 +3710,14 @@ vnck_task_button_press_event (GtkWidget	      *widget,
           /* middle-click close window */
           if (task->tasklist->priv->middle_click_close == TRUE)
             {
-              vnck_window_close (task->window, gtk_get_current_event_time ());
+              vnck_window_close (task->window, ctk_get_current_event_time ());
               return TRUE;
             }
         }
       else if (event->button == 3)
         {
           if (task->action_menu)
-            gtk_widget_destroy (task->action_menu);
+            ctk_widget_destroy (task->action_menu);
 
           g_assert (task->action_menu == NULL);
 
@@ -3726,17 +3726,17 @@ vnck_task_button_press_event (GtkWidget	      *widget,
           g_object_add_weak_pointer (G_OBJECT (task->action_menu),
                                      (void**) &task->action_menu);
 
-          gtk_menu_set_screen (GTK_MENU (task->action_menu),
+          ctk_menu_set_screen (GTK_MENU (task->action_menu),
                                _vnck_screen_get_gdk_screen (task->tasklist->priv->screen));
 
-          gtk_widget_show (task->action_menu);
-          gtk_menu_popup_at_widget (GTK_MENU (task->action_menu), task->button,
+          ctk_widget_show (task->action_menu);
+          ctk_menu_popup_at_widget (GTK_MENU (task->action_menu), task->button,
                                     GDK_GRAVITY_SOUTH_WEST,
                                     GDK_GRAVITY_NORTH_WEST,
                                     (GdkEvent *) event);
 
           g_signal_connect (task->action_menu, "selection-done",
-                            G_CALLBACK (gtk_widget_destroy), NULL);
+                            G_CALLBACK (ctk_widget_destroy), NULL);
 
           return TRUE;
         }
@@ -3832,70 +3832,70 @@ vnck_task_create_widgets (VnckTask *task, GtkReliefStyle relief)
   };
 
   if (task->type == VNCK_TASK_STARTUP_SEQUENCE)
-    task->button = gtk_button_new ();
+    task->button = ctk_button_new ();
   else
-    task->button = gtk_toggle_button_new ();
+    task->button = ctk_toggle_button_new ();
 
-  gtk_button_set_relief (GTK_BUTTON (task->button), relief);
+  ctk_button_set_relief (GTK_BUTTON (task->button), relief);
 
   task->button_activate = 0;
   g_object_add_weak_pointer (G_OBJECT (task->button),
                              (void**) &task->button);
 
-  gtk_widget_set_name (task->button,
+  ctk_widget_set_name (task->button,
 		       "tasklist-button");
 
   if (task->type == VNCK_TASK_WINDOW)
     {
-      gtk_drag_source_set (GTK_WIDGET (task->button),
+      ctk_drag_source_set (GTK_WIDGET (task->button),
                            GDK_BUTTON1_MASK,
                            targets, 1,
                            GDK_ACTION_MOVE);
-      gtk_drag_dest_set (GTK_WIDGET (task->button), GTK_DEST_DEFAULT_DROP,
+      ctk_drag_dest_set (GTK_WIDGET (task->button), GTK_DEST_DEFAULT_DROP,
                          targets, 1, GDK_ACTION_MOVE);
     }
   else
-    gtk_drag_dest_set (GTK_WIDGET (task->button), 0,
+    ctk_drag_dest_set (GTK_WIDGET (task->button), 0,
                        NULL, 0, GDK_ACTION_DEFAULT);
 
-  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+  hbox = ctk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 
   pixbuf = vnck_task_get_icon (task);
   if (pixbuf)
     {
-      task->image = gtk_image_new_from_pixbuf (pixbuf);
+      task->image = ctk_image_new_from_pixbuf (pixbuf);
       g_object_unref (pixbuf);
     }
   else
-    task->image = gtk_image_new ();
+    task->image = ctk_image_new ();
 
-  gtk_widget_show (task->image);
+  ctk_widget_show (task->image);
 
   text = vnck_task_get_text (task, TRUE, TRUE);
-  task->label = gtk_label_new (text);
-  gtk_label_set_xalign (GTK_LABEL (task->label), 0.0);
-  gtk_label_set_ellipsize (GTK_LABEL (task->label),
+  task->label = ctk_label_new (text);
+  ctk_label_set_xalign (GTK_LABEL (task->label), 0.0);
+  ctk_label_set_ellipsize (GTK_LABEL (task->label),
                           PANGO_ELLIPSIZE_END);
 
   if (vnck_task_get_needs_attention (task))
     {
-      _make_gtk_label_bold ((GTK_LABEL (task->label)));
+      _make_ctk_label_bold ((GTK_LABEL (task->label)));
       vnck_task_queue_glow (task);
     }
 
-  gtk_widget_show (task->label);
+  ctk_widget_show (task->label);
 
-  gtk_box_pack_start (GTK_BOX (hbox), task->image, FALSE, FALSE,
+  ctk_box_pack_start (GTK_BOX (hbox), task->image, FALSE, FALSE,
 		      TASKLIST_BUTTON_PADDING);
-  gtk_box_pack_start (GTK_BOX (hbox), task->label, TRUE, TRUE,
+  ctk_box_pack_start (GTK_BOX (hbox), task->label, TRUE, TRUE,
 		      TASKLIST_BUTTON_PADDING);
 
-  gtk_container_add (GTK_CONTAINER (task->button), hbox);
-  gtk_widget_show (hbox);
+  ctk_container_add (GTK_CONTAINER (task->button), hbox);
+  ctk_widget_show (hbox);
   g_free (text);
 
   text = vnck_task_get_text (task, FALSE, FALSE);
-  gtk_widget_set_tooltip_text (task->button, text);
+  ctk_widget_set_tooltip_text (task->button, text);
   g_free (text);
 
   /* Set up signals */
@@ -3925,7 +3925,7 @@ vnck_task_create_widgets (VnckTask *task, GtkReliefStyle relief)
                            G_OBJECT (task),
                            0);
 
-  gtk_widget_add_events (task->button, GDK_SCROLL_MASK);
+  ctk_widget_add_events (task->button, GDK_SCROLL_MASK);
   g_signal_connect_object (G_OBJECT (task->button), "scroll_event",
                            G_CALLBACK (vnck_task_scroll_event),
                            G_OBJECT (task),
@@ -4024,22 +4024,22 @@ vnck_task_draw (GtkWidget *widget,
   switch (task->type)
     {
     case VNCK_TASK_CLASS_GROUP:
-      context = gtk_widget_get_style_context (widget);
+      context = ctk_widget_get_style_context (widget);
 
-      state = gtk_style_context_get_state (context);
-      gtk_style_context_get_padding (context, state, &padding);
+      state = ctk_style_context_get_state (context);
+      ctk_style_context_get_padding (context, state, &padding);
 
       state = (task->tasklist->priv->active_class_group == task) ?
               GTK_STATE_FLAG_ACTIVE : GTK_STATE_FLAG_NORMAL;
 
-      gtk_style_context_save (context);
-      gtk_style_context_set_state (context, state);
-      gtk_style_context_get_color (context, state, &color);
-      gtk_style_context_restore (context);
+      ctk_style_context_save (context);
+      ctk_style_context_set_state (context, state);
+      ctk_style_context_get_color (context, state, &color);
+      ctk_style_context_restore (context);
 
-      x = gtk_widget_get_allocated_width (widget) -
-          (gtk_container_get_border_width (GTK_CONTAINER (widget)) + padding.right + ARROW_SIZE);
-      y = gtk_widget_get_allocated_height (widget) / 2;
+      x = ctk_widget_get_allocated_width (widget) -
+          (ctk_container_get_border_width (GTK_CONTAINER (widget)) + padding.right + ARROW_SIZE);
+      y = ctk_widget_get_allocated_height (widget) / 2;
 
       arrow_width = INDICATOR_SIZE + ((INDICATOR_SIZE % 2) - 1);
       arrow_height = arrow_width / 2 + 1;
@@ -4080,42 +4080,42 @@ vnck_task_draw (GtkWidget *widget,
   /* push a translucent overlay to paint to, so we can blend later */
   cairo_push_group_with_content (cr, CAIRO_CONTENT_COLOR_ALPHA);
 
-  width = gtk_widget_get_allocated_width (task->button);
-  height = gtk_widget_get_allocated_height (task->button);
+  width = ctk_widget_get_allocated_width (task->button);
+  height = ctk_widget_get_allocated_height (task->button);
 
   tasklist_widget = GTK_WIDGET (task->tasklist);
 
-  context = gtk_widget_get_style_context (task->button);
+  context = ctk_widget_get_style_context (task->button);
 
   /* first draw the button */
-  gtk_widget_style_get (tasklist_widget, "fade-overlay-rect", &overlay_rect, NULL);
+  ctk_widget_style_get (tasklist_widget, "fade-overlay-rect", &overlay_rect, NULL);
   if (overlay_rect)
     {
-      gtk_style_context_save (context);
-      gtk_style_context_set_state (context, GTK_STATE_FLAG_SELECTED);
+      ctk_style_context_save (context);
+      ctk_style_context_set_state (context, GTK_STATE_FLAG_SELECTED);
 
       /* Draw a rectangle with selected background color */
-      gtk_render_background (context, cr, 0, 0, width, height);
+      ctk_render_background (context, cr, 0, 0, width, height);
 
-      gtk_style_context_restore (context);
+      ctk_style_context_restore (context);
     }
   else
     {
-      gtk_style_context_save (context);
-      gtk_style_context_set_state (context, GTK_STATE_FLAG_SELECTED);
-      gtk_style_context_add_class (context, GTK_STYLE_CLASS_BUTTON);
+      ctk_style_context_save (context);
+      ctk_style_context_set_state (context, GTK_STATE_FLAG_SELECTED);
+      ctk_style_context_add_class (context, GTK_STYLE_CLASS_BUTTON);
 
       cairo_save (cr);
-      gtk_render_background (context, cr, 0, 0, width, height);
-      gtk_render_frame (context, cr, 0, 0, width, height);
+      ctk_render_background (context, cr, 0, 0, width, height);
+      ctk_render_frame (context, cr, 0, 0, width, height);
       cairo_restore (cr);
 
-      gtk_style_context_restore (context);
+      ctk_style_context_restore (context);
     }
 
   /* then the contents */
-  gtk_container_propagate_draw (GTK_CONTAINER (task->button),
-                                gtk_bin_get_child (GTK_BIN (task->button)),
+  ctk_container_propagate_draw (GTK_CONTAINER (task->button),
+                                ctk_bin_get_child (GTK_BIN (task->button)),
                                 cr);
   /* finally blend it */
   cairo_pop_group_to_source (cr);
@@ -4235,7 +4235,7 @@ remove_startup_sequences_for_window (VnckTasklist *tasklist,
       task_id = sn_startup_sequence_get_id (task->startup_sequence);
 
       if (task_id && strcmp (task_id, win_id) == 0)
-        gtk_widget_destroy (task->button);
+        ctk_widget_destroy (task->button);
 
       tmp = next;
     }
@@ -4335,7 +4335,7 @@ sequence_timeout_callback (void *user_data)
         {
           g_assert (task->button != NULL);
           /* removes task from list as a side effect */
-          gtk_widget_destroy (task->button);
+          ctk_widget_destroy (task->button);
 
           goto restart; /* don't iterate over changed list, just restart;
                          * not efficient but who cares here.
@@ -4371,8 +4371,8 @@ vnck_tasklist_sn_event (SnMonitorEvent *event,
         task = vnck_task_new_from_startup_sequence (tasklist,
                                                     sn_monitor_event_get_startup_sequence (event));
 
-        gtk_widget_set_parent (task->button, GTK_WIDGET (tasklist));
-        gtk_widget_show (task->button);
+        ctk_widget_set_parent (task->button, GTK_WIDGET (tasklist));
+        ctk_widget_show (task->button);
 
         tasklist->priv->startup_sequences =
           g_list_prepend (tasklist->priv->startup_sequences,
@@ -4385,7 +4385,7 @@ vnck_tasklist_sn_event (SnMonitorEvent *event,
                                      tasklist);
           }
 
-        gtk_widget_queue_resize (GTK_WIDGET (tasklist));
+        ctk_widget_queue_resize (GTK_WIDGET (tasklist));
       }
       break;
 
@@ -4402,7 +4402,7 @@ vnck_tasklist_sn_event (SnMonitorEvent *event,
               {
                 g_assert (task->button != NULL);
                 /* removes task from list as a side effect */
-                gtk_widget_destroy (task->button);
+                ctk_widget_destroy (task->button);
                 break;
               }
 
@@ -4462,7 +4462,7 @@ vnck_tasklist_check_end_sequence (VnckTasklist   *tasklist,
 
           g_assert (task->button != NULL);
           /* removes task from list as a side effect */
-          gtk_widget_destroy (task->button);
+          ctk_widget_destroy (task->button);
 
           /* only match one */
           return;

@@ -1,6 +1,6 @@
 /* vim: set sw=2 et: */
 
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 
 static void
 set_urgent (GtkWidget *window,
@@ -8,19 +8,19 @@ set_urgent (GtkWidget *window,
 {
   GtkWidget *label;
 
-  label = gtk_bin_get_child (GTK_BIN (window));
+  label = ctk_bin_get_child (GTK_BIN (window));
 
   if (urgent)
     {
-      gtk_window_set_urgency_hint (GTK_WINDOW (window), TRUE);
-      gtk_window_set_title (GTK_WINDOW (window), "Test Window - Urgent");
-      gtk_label_set_text (GTK_LABEL (label), "I am urgent!");
+      ctk_window_set_urgency_hint (GTK_WINDOW (window), TRUE);
+      ctk_window_set_title (GTK_WINDOW (window), "Test Window - Urgent");
+      ctk_label_set_text (GTK_LABEL (label), "I am urgent!");
     }
   else
     {
-      gtk_window_set_urgency_hint (GTK_WINDOW (window), FALSE);
-      gtk_window_set_title (GTK_WINDOW (window), "Test Window");
-      gtk_label_set_text (GTK_LABEL (label), "I'm not urgent.");
+      ctk_window_set_urgency_hint (GTK_WINDOW (window), FALSE);
+      ctk_window_set_title (GTK_WINDOW (window), "Test Window");
+      ctk_label_set_text (GTK_LABEL (label), "I'm not urgent.");
     }
 }
 
@@ -70,13 +70,13 @@ main (int argc, char **argv)
   GtkWidget *win;
   GtkWidget *label;
 
-  gtk_init (&argc, &argv);
+  ctk_init (&argc, &argv);
 
-  win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  label = gtk_label_new ("");
-  gtk_container_add (GTK_CONTAINER (win), label);
-  gtk_window_set_keep_above (GTK_WINDOW (win), TRUE);
-  gtk_widget_show_all (win);
+  win = ctk_window_new (GTK_WINDOW_TOPLEVEL);
+  label = ctk_label_new ("");
+  ctk_container_add (GTK_CONTAINER (win), label);
+  ctk_window_set_keep_above (GTK_WINDOW (win), TRUE);
+  ctk_widget_show_all (win);
 
   g_signal_connect (G_OBJECT (win), "focus-in-event",
                     G_CALLBACK (focused_in),
@@ -85,12 +85,12 @@ main (int argc, char **argv)
                     G_CALLBACK (focused_out),
                     NULL);
   g_signal_connect (G_OBJECT (win), "destroy",
-                    G_CALLBACK (gtk_main_quit),
+                    G_CALLBACK (ctk_main_quit),
                     NULL);
 
   set_urgent (win, FALSE);
 
-  gtk_main ();
+  ctk_main ();
 
   return 0;
 }

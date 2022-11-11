@@ -312,8 +312,8 @@ vnck_find_pid_for_resource_r (Display *xdisplay,
   guint    i;
   gulong   found_pid = 0;
 
-  while (gtk_events_pending ())
-    gtk_main_iteration ();
+  while (ctk_events_pending ())
+    ctk_main_iteration ();
 
   found_pid = vnck_check_window_for_pid (screen, win_top, match_xid, mask);
   if (found_pid != 0)
@@ -736,29 +736,29 @@ _vnck_get_default_mini_icon_size (void)
 }
 
 /**
- * _make_gtk_label_bold:
+ * _make_ctk_label_bold:
  * @label: The label.
  *
  * Switches the font of label to a bold equivalent.
  **/
 void
-_make_gtk_label_bold (GtkLabel *label)
+_make_ctk_label_bold (GtkLabel *label)
 {
   GtkStyleContext *context;
 
   _vnck_ensure_fallback_style ();
 
-  context = gtk_widget_get_style_context (GTK_WIDGET (label));
-  gtk_style_context_add_class (context, "vnck-needs-attention");
+  context = ctk_widget_get_style_context (GTK_WIDGET (label));
+  ctk_style_context_add_class (context, "vnck-needs-attention");
 }
 
 void
-_make_gtk_label_normal (GtkLabel *label)
+_make_ctk_label_normal (GtkLabel *label)
 {
   GtkStyleContext *context;
 
-  context = gtk_widget_get_style_context (GTK_WIDGET (label));
-  gtk_style_context_remove_class (context, "vnck-needs-attention");
+  context = ctk_widget_get_style_context (GTK_WIDGET (label));
+  ctk_style_context_remove_class (context, "vnck-needs-attention");
 }
 
 #ifdef HAVE_STARTUP_NOTIFICATION
@@ -862,11 +862,11 @@ _vnck_ensure_fallback_style (void)
   if (css_loaded)
     return;
 
-  provider = gtk_css_provider_new ();
-  gtk_css_provider_load_from_resource (provider, "/org/gnome/libvnck/vnck.css");
+  provider = ctk_css_provider_new ();
+  ctk_css_provider_load_from_resource (provider, "/org/gnome/libvnck/vnck.css");
 
   priority = GTK_STYLE_PROVIDER_PRIORITY_FALLBACK;
-  gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
+  ctk_style_context_add_provider_for_screen (gdk_screen_get_default (),
                                              GTK_STYLE_PROVIDER (provider),
                                              priority);
 

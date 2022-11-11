@@ -16,7 +16,7 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 #include "workspace-accessible-factory.h"
 #include "workspace-accessible.h"
 

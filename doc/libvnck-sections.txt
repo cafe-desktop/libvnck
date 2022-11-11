@@ -217,7 +217,7 @@ vnck_screen_toggle_showing_desktop
 <SUBSECTION Private>
 VnckScreenPrivate
 vnck_screen_get_type
-# FIXME: the first two VNCK_TYPE_ are dummy stuff gtk-doc generates, the other
+# FIXME: the first two VNCK_TYPE_ are dummy stuff ctk-doc generates, the other
 # two should be added when _vnck_screen_get_workspace_layout becomes public
 VNCK_TYPE___VNCK_LAYOUT_CORNER
 VNCK_TYPE___VNCK_LAYOUT_ORIENTATION

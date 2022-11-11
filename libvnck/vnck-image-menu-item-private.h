@@ -18,7 +18,7 @@
 #ifndef VNCK_IMAGE_MENU_ITEM_PRIVATE_H
 #define VNCK_IMAGE_MENU_ITEM_PRIVATE_H
 
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 #include "window.h"
 
 G_BEGIN_DECLS

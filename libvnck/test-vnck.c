@@ -1,7 +1,7 @@
 /* vim: set sw=2 et: */
 
 #include <libvnck/libvnck.h>
-#include <gtk/gtk.h>
+#include <ctk/ctk.h>
 
 static GtkWidget *global_tree_view;
 static GtkTreeModel *global_tree_model;
@@ -76,13 +76,13 @@ main (int argc, char **argv)
 
   ctxt = g_option_context_new ("");
   g_option_context_add_main_entries (ctxt, entries, NULL);
-  g_option_context_add_group (ctxt, gtk_get_option_group (TRUE));
+  g_option_context_add_group (ctxt, ctk_get_option_group (TRUE));
   g_option_context_parse (ctxt, &argc, &argv, NULL);
   g_option_context_free (ctxt);
 
   vnck_set_default_mini_icon_size (icon_size);
 
-  gtk_init (&argc, &argv);
+  ctk_init (&argc, &argv);
 
   screen = vnck_screen_get (0);
 
@@ -120,31 +120,31 @@ main (int argc, char **argv)
   global_tree_model = create_tree_model ();
   global_tree_view = create_tree_view ();
   
-  gtk_tree_view_set_model (GTK_TREE_VIEW (global_tree_view),
+  ctk_tree_view_set_model (GTK_TREE_VIEW (global_tree_view),
                            global_tree_model);
   
-  win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  win = ctk_window_new (GTK_WINDOW_TOPLEVEL);
 
-  gtk_window_set_title (GTK_WINDOW (win), "Window List");
+  ctk_window_set_title (GTK_WINDOW (win), "Window List");
   
-  sw = gtk_scrolled_window_new (NULL, NULL);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+  sw = ctk_scrolled_window_new (NULL, NULL);
+  ctk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
                                   GTK_POLICY_AUTOMATIC,
                                   GTK_POLICY_AUTOMATIC);
   
-  gtk_container_add (GTK_CONTAINER (sw), global_tree_view);
-  gtk_container_add (GTK_CONTAINER (win), sw);
+  ctk_container_add (GTK_CONTAINER (sw), global_tree_view);
+  ctk_container_add (GTK_CONTAINER (win), sw);
 
-  gtk_window_set_default_size (GTK_WINDOW (win), 650, 550);
+  ctk_window_set_default_size (GTK_WINDOW (win), 650, 550);
 
   /* quit on window close */
   g_signal_connect (G_OBJECT (win), "destroy",
-                    G_CALLBACK (gtk_main_quit),
+                    G_CALLBACK (ctk_main_quit),
                     NULL);
   
-  gtk_widget_show_all (win);
+  ctk_widget_show_all (win);
   
-  gtk_main ();
+  ctk_main ();
   
   return 0;
 }
@@ -401,7 +401,7 @@ create_tree_model (void)
 {
   GtkListStore *store;
   
-  store = gtk_list_store_new (1, VNCK_TYPE_WINDOW);
+  store = ctk_list_store_new (1, VNCK_TYPE_WINDOW);
 
   return GTK_TREE_MODEL (store);
 }
@@ -412,7 +412,7 @@ refill_tree_model (GtkTreeModel *model,
 {
   GList *tmp;
   
-  gtk_list_store_clear (GTK_LIST_STORE (model));
+  ctk_list_store_clear (GTK_LIST_STORE (model));
 
   tmp = vnck_screen_get_windows (screen);
   while (tmp != NULL)
@@ -420,24 +420,24 @@ refill_tree_model (GtkTreeModel *model,
       GtkTreeIter iter;
       VnckWindow *window = tmp->data;
 
-      gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-      gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, window, -1);
+      ctk_list_store_append (GTK_LIST_STORE (model), &iter);
+      ctk_list_store_set (GTK_LIST_STORE (model), &iter, 0, window, -1);
 
       if (vnck_window_is_active (window))
         {
           GtkTreeSelection *selection;
           
-          selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (global_tree_view));
+          selection = ctk_tree_view_get_selection (GTK_TREE_VIEW (global_tree_view));
 
-          gtk_tree_selection_unselect_all (selection);
+          ctk_tree_selection_unselect_all (selection);
           
-          gtk_tree_selection_select_iter (selection, &iter);
+          ctk_tree_selection_select_iter (selection, &iter);
         }
       
       tmp = tmp->next;
     }
   
-  gtk_tree_view_columns_autosize (GTK_TREE_VIEW (global_tree_view));
+  ctk_tree_view_columns_autosize (GTK_TREE_VIEW (global_tree_view));
 }
 
 static void
@@ -462,20 +462,20 @@ update_window (GtkTreeModel *model,
 
   g_return_if_fail (i >= 0);
 
-  if (gtk_tree_model_iter_nth_child (model, &iter, NULL, i))
+  if (ctk_tree_model_iter_nth_child (model, &iter, NULL, i))
     {
       /* Reset the list store value to trigger a recompute */
-      gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, window, -1);
+      ctk_list_store_set (GTK_LIST_STORE (model), &iter, 0, window, -1);
 
       if (vnck_window_is_active (window))
         {
           GtkTreeSelection *selection;
           
-          selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (global_tree_view));
+          selection = ctk_tree_view_get_selection (GTK_TREE_VIEW (global_tree_view));
 
-          gtk_tree_selection_unselect_all (selection);
+          ctk_tree_selection_unselect_all (selection);
 
-          gtk_tree_selection_select_iter (selection, &iter);
+          ctk_tree_selection_select_iter (selection, &iter);
         }
     }
   else
@@ -488,12 +488,12 @@ get_window (GtkTreeModel *model,
 {
   VnckWindow *window;
   
-  gtk_tree_model_get (model, iter,
+  ctk_tree_model_get (model, iter,
                       0, &window,
                       -1);
 
   /* window may be NULL after we append to the list store and
-   * before we set the value with gtk_list_store_set()
+   * before we set the value with ctk_list_store_set()
    */
   if (window)
     {
@@ -615,7 +615,7 @@ shaded_set_func (GtkTreeViewColumn *tree_column,
   if (window == NULL)
     return;
   
-  gtk_cell_renderer_toggle_set_active (GTK_CELL_RENDERER_TOGGLE (cell),
+  ctk_cell_renderer_toggle_set_active (GTK_CELL_RENDERER_TOGGLE (cell),
                                        vnck_window_is_shaded (window));
 }
 
@@ -625,12 +625,12 @@ shaded_toggled_callback (GtkCellRendererToggle *cell,
                          gpointer               data)
 {
   GtkTreeView *tree_view = GTK_TREE_VIEW (data);
-  GtkTreeModel *model = gtk_tree_view_get_model (tree_view);
-  GtkTreePath *path = gtk_tree_path_new_from_string (path_string);
+  GtkTreeModel *model = ctk_tree_view_get_model (tree_view);
+  GtkTreePath *path = ctk_tree_path_new_from_string (path_string);
   GtkTreeIter iter;
   VnckWindow *window;
 
-  gtk_tree_model_get_iter (model, &iter, path);
+  ctk_tree_model_get_iter (model, &iter, path);
   window = get_window (model, &iter);
 
   if (vnck_window_is_shaded (window))
@@ -638,7 +638,7 @@ shaded_toggled_callback (GtkCellRendererToggle *cell,
   else
     vnck_window_shade (window);
   
-  gtk_tree_path_free (path);
+  ctk_tree_path_free (path);
 }
 
 static void
@@ -655,7 +655,7 @@ minimized_set_func (GtkTreeViewColumn *tree_column,
     return;
 
   
-  gtk_cell_renderer_toggle_set_active (GTK_CELL_RENDERER_TOGGLE (cell),
+  ctk_cell_renderer_toggle_set_active (GTK_CELL_RENDERER_TOGGLE (cell),
                                        vnck_window_is_minimized (window));
 }
 
@@ -665,24 +665,24 @@ minimized_toggled_callback (GtkCellRendererToggle *cell,
                             gpointer               data)
 {
   GtkTreeView *tree_view = GTK_TREE_VIEW (data);
-  GtkTreeModel *model = gtk_tree_view_get_model (tree_view);
-  GtkTreePath *path = gtk_tree_path_new_from_string (path_string);
+  GtkTreeModel *model = ctk_tree_view_get_model (tree_view);
+  GtkTreePath *path = ctk_tree_path_new_from_string (path_string);
   GtkTreeIter iter;
   VnckWindow *window;
 
-  gtk_tree_model_get_iter (model, &iter, path);
+  ctk_tree_model_get_iter (model, &iter, path);
   window = get_window (model, &iter);
 
   if (vnck_window_is_minimized (window))
     /* The toggled callback will only be called in reaction to user
-     * button presses or key presses, so gtk_get_current_event_time()
+     * button presses or key presses, so ctk_get_current_event_time()
      * should be okay here.
      */
-    vnck_window_unminimize (window, gtk_get_current_event_time ());
+    vnck_window_unminimize (window, ctk_get_current_event_time ());
   else
     vnck_window_minimize (window);
   
-  gtk_tree_path_free (path);
+  ctk_tree_path_free (path);
 }
 
 static void
@@ -699,7 +699,7 @@ maximized_set_func (GtkTreeViewColumn *tree_column,
     return;
 
   
-  gtk_cell_renderer_toggle_set_active (GTK_CELL_RENDERER_TOGGLE (cell),
+  ctk_cell_renderer_toggle_set_active (GTK_CELL_RENDERER_TOGGLE (cell),
                                        vnck_window_is_maximized (window));
 }
 
@@ -709,12 +709,12 @@ maximized_toggled_callback (GtkCellRendererToggle *cell,
                             gpointer               data)
 {
   GtkTreeView *tree_view = GTK_TREE_VIEW (data);
-  GtkTreeModel *model = gtk_tree_view_get_model (tree_view);
-  GtkTreePath *path = gtk_tree_path_new_from_string (path_string);
+  GtkTreeModel *model = ctk_tree_view_get_model (tree_view);
+  GtkTreePath *path = ctk_tree_path_new_from_string (path_string);
   GtkTreeIter iter;
   VnckWindow *window;
 
-  gtk_tree_model_get_iter (model, &iter, path);
+  ctk_tree_model_get_iter (model, &iter, path);
   window = get_window (model, &iter);
 
   if (vnck_window_is_maximized (window))
@@ -722,7 +722,7 @@ maximized_toggled_callback (GtkCellRendererToggle *cell,
   else
     vnck_window_maximize (window);
   
-  gtk_tree_path_free (path);
+  ctk_tree_path_free (path);
 }
 
 static void
@@ -763,7 +763,7 @@ selection_func (GtkTreeSelection  *selection,
    * select the newly-active window
    */
   
-  gtk_tree_model_get_iter (model, &iter, path);  
+  ctk_tree_model_get_iter (model, &iter, path);  
 
   window = get_window (model, &iter);
   if (window == NULL)
@@ -785,9 +785,9 @@ selection_func (GtkTreeSelection  *selection,
         {
           /* This should only be called in reaction to user button
            * presses or key presses (I hope), so
-           * gtk_get_current_event_time() should be okay here.
+           * ctk_get_current_event_time() should be okay here.
            */
-          vnck_window_activate (window, gtk_get_current_event_time ());
+          vnck_window_activate (window, ctk_get_current_event_time ());
           return FALSE;
         }
     }
@@ -801,38 +801,38 @@ create_tree_view (void)
   GtkTreeViewColumn *column;
   GtkTreeSelection *selection;
   
-  tree_view = gtk_tree_view_new ();
+  tree_view = ctk_tree_view_new ();
 
   /* The icon and title are in the same column, so pack
    * two cell renderers into that column
    */
-  column = gtk_tree_view_column_new ();
-  gtk_tree_view_column_set_title (column, "Window");
+  column = ctk_tree_view_column_new ();
+  ctk_tree_view_column_set_title (column, "Window");
 
-  cell_renderer = gtk_cell_renderer_pixbuf_new ();
+  cell_renderer = ctk_cell_renderer_pixbuf_new ();
   g_object_set (G_OBJECT (cell_renderer),
                 "xpad", 2,
                 NULL);
-  gtk_tree_view_column_pack_start (column,
+  ctk_tree_view_column_pack_start (column,
                                    cell_renderer,
                                    FALSE);
-  gtk_tree_view_column_set_cell_data_func (column, cell_renderer,
+  ctk_tree_view_column_set_cell_data_func (column, cell_renderer,
                                            icon_set_func, NULL, NULL);
-  cell_renderer = gtk_cell_renderer_text_new ();
-  gtk_tree_view_column_pack_start (column,
+  cell_renderer = ctk_cell_renderer_text_new ();
+  ctk_tree_view_column_pack_start (column,
                                    cell_renderer,
                                    TRUE);
-  gtk_tree_view_column_set_cell_data_func (column, cell_renderer,
+  ctk_tree_view_column_set_cell_data_func (column, cell_renderer,
                                            title_set_func, NULL, NULL);
 
-  gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view),
+  ctk_tree_view_append_column (GTK_TREE_VIEW (tree_view),
                                column);
   
   /* Then create a workspace column, only one renderer in this column
    * so we get to use insert_column convenience function
    */
-  cell_renderer = gtk_cell_renderer_text_new ();
-  gtk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (tree_view),
+  cell_renderer = ctk_cell_renderer_text_new ();
+  ctk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (tree_view),
                                               -1, /* append */
                                               "Workspace",
                                               cell_renderer,
@@ -841,8 +841,8 @@ create_tree_view (void)
                                               NULL);
 
   /* Process ID */
-  cell_renderer = gtk_cell_renderer_text_new ();
-  gtk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (tree_view),
+  cell_renderer = ctk_cell_renderer_text_new ();
+  ctk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (tree_view),
                                               -1, /* append */
                                               "PID",
                                               cell_renderer,
@@ -851,8 +851,8 @@ create_tree_view (void)
                                               NULL);
   
   /* Shaded checkbox */
-  cell_renderer = gtk_cell_renderer_toggle_new ();
-  gtk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (tree_view),
+  cell_renderer = ctk_cell_renderer_toggle_new ();
+  ctk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (tree_view),
                                               -1, /* append */
                                               "Shaded",
                                               cell_renderer,
@@ -864,8 +864,8 @@ create_tree_view (void)
                     tree_view);
 
   /* Minimized checkbox */
-  cell_renderer = gtk_cell_renderer_toggle_new ();
-  gtk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (tree_view),
+  cell_renderer = ctk_cell_renderer_toggle_new ();
+  ctk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (tree_view),
                                               -1, /* append */
                                               "Minimized",
                                               cell_renderer,
@@ -877,8 +877,8 @@ create_tree_view (void)
                     tree_view);
 
   /* Maximized checkbox */
-  cell_renderer = gtk_cell_renderer_toggle_new ();
-  gtk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (tree_view),
+  cell_renderer = ctk_cell_renderer_toggle_new ();
+  ctk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (tree_view),
                                               -1, /* append */
                                               "Maximized",
                                               cell_renderer,
@@ -890,8 +890,8 @@ create_tree_view (void)
                     tree_view);
 
   /* Session ID */
-  cell_renderer = gtk_cell_renderer_text_new ();
-  gtk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (tree_view),
+  cell_renderer = ctk_cell_renderer_text_new ();
+  ctk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (tree_view),
                                               -1, /* append */
                                               "Session ID",
                                               cell_renderer,
@@ -902,9 +902,9 @@ create_tree_view (void)
   /* The selection will track the active window, so we need to
    * handle it with a custom function
    */
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree_view));
-  gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
-  gtk_tree_selection_set_select_function (selection, selection_func, NULL, NULL);
+  selection = ctk_tree_view_get_selection (GTK_TREE_VIEW (tree_view));
+  ctk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
+  ctk_tree_selection_set_select_function (selection, selection_func, NULL, NULL);
   return tree_view;
 }
 
@@ -926,7 +926,7 @@ queue_refill_model (void)
     return;
 
   /* Don't keep any stale references */
-  gtk_list_store_clear (GTK_LIST_STORE (global_tree_model));
+  ctk_list_store_clear (GTK_LIST_STORE (global_tree_model));
   
   refill_idle = g_idle_add (do_refill_model, NULL);
 }
