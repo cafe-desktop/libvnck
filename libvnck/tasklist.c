@@ -3220,7 +3220,7 @@ vnck_task_scale_icon (GdkPixbuf *orig, gboolean minimized)
 			gdk_pixbuf_get_height (pixbuf),
 			0, 0,
 			scale, scale,
-			CDK_INTERP_HYPER);
+			GDK_INTERP_HYPER);
     }
   else
     pixbuf = orig;
