@@ -114,7 +114,7 @@ vnck_init_resource_usage (GdkDisplay *gdisplay)
   if (status == VNCK_EXT_UNKNOWN)
     {
 #ifdef HAVE_XRES
-      Display *xdisplay = GDK_DISPLAY_XDISPLAY (gdisplay);
+      Display *xdisplay = CDK_DISPLAY_XDISPLAY (gdisplay);
       int event, error;
 
       if (!XResQueryExtension (xdisplay, &event, &error))
@@ -183,7 +183,7 @@ vnck_xid_read_resource_usage (GdkDisplay        *gdisplay,
    n_types = 0;
    pixmap_bytes = 0;
 
-  xdisplay = GDK_DISPLAY_XDISPLAY (gdisplay);
+  xdisplay = CDK_DISPLAY_XDISPLAY (gdisplay);
 
   _vnck_error_trap_push (xdisplay);
 
@@ -453,7 +453,7 @@ vnck_pid_read_resource_usage_start_build_cache (GdkDisplay *gdisplay)
 
   time (&start_update);
 
-  xdisplay = GDK_DISPLAY_XDISPLAY (gdisplay);
+  xdisplay = CDK_DISPLAY_XDISPLAY (gdisplay);
 
   _vnck_error_trap_push (xdisplay);
   XResQueryClients (xdisplay, &xres_state.n_clients, &xres_state.clients);
@@ -544,7 +544,7 @@ vnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
   Display *xdisplay;
   int i;
 
-  xdisplay = GDK_DISPLAY_XDISPLAY (gdisplay);
+  xdisplay = CDK_DISPLAY_XDISPLAY (gdisplay);
 
   i = 0;
   while (i < ScreenCount (xdisplay))
@@ -792,15 +792,15 @@ Display *
 _vnck_get_default_display (void)
 {
   GdkDisplay *display = gdk_display_get_default ();
-  /* FIXME: when we fix libvnck to not use the GDK default display, we will
+  /* FIXME: when we fix libvnck to not use the CDK default display, we will
    * need to fix vnckprop accordingly. */
-  if (!GDK_IS_X11_DISPLAY (display))
+  if (!CDK_IS_X11_DISPLAY (display))
     {
       g_warning ("libvnck is designed to work in X11 only, no valid display found");
       return NULL;
     }
 
-  return GDK_DISPLAY_XDISPLAY (display);
+  return CDK_DISPLAY_XDISPLAY (display);
 }
 
 /**

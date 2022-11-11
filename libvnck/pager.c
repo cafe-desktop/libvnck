@@ -230,7 +230,7 @@ vnck_pager_init (VnckPager *pager)
 
   g_object_set (pager, "has-tooltip", TRUE, NULL);
 
-  ctk_drag_dest_set (CTK_WIDGET (pager), 0, targets, G_N_ELEMENTS (targets), GDK_ACTION_MOVE);
+  ctk_drag_dest_set (CTK_WIDGET (pager), 0, targets, G_N_ELEMENTS (targets), CDK_ACTION_MOVE);
   ctk_widget_set_can_focus (CTK_WIDGET (pager), TRUE);
 }
 
@@ -343,20 +343,20 @@ vnck_pager_realize (CtkWidget *widget)
 
   ctk_widget_get_allocation (widget, &allocation);
 
-  attributes.window_type = GDK_WINDOW_CHILD;
+  attributes.window_type = CDK_WINDOW_CHILD;
   attributes.x = allocation.x;
   attributes.y = allocation.y;
   attributes.width = allocation.width;
   attributes.height = allocation.height;
-  attributes.wclass = GDK_INPUT_OUTPUT;
+  attributes.wclass = CDK_INPUT_OUTPUT;
   attributes.visual = ctk_widget_get_visual (widget);
-  attributes.event_mask = ctk_widget_get_events (widget) | GDK_EXPOSURE_MASK |
-	  		  GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK |
-			  GDK_SCROLL_MASK |
-			  GDK_LEAVE_NOTIFY_MASK | GDK_POINTER_MOTION_MASK |
-			  GDK_POINTER_MOTION_HINT_MASK;
+  attributes.event_mask = ctk_widget_get_events (widget) | CDK_EXPOSURE_MASK |
+	  		  CDK_BUTTON_PRESS_MASK | CDK_BUTTON_RELEASE_MASK |
+			  CDK_SCROLL_MASK |
+			  CDK_LEAVE_NOTIFY_MASK | CDK_POINTER_MOTION_MASK |
+			  CDK_POINTER_MOTION_HINT_MASK;
 
-  attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL;
+  attributes_mask = CDK_WA_X | CDK_WA_Y | CDK_WA_VISUAL;
 
   window = gdk_window_new (ctk_widget_get_parent_window (widget), &attributes, attributes_mask);
   ctk_widget_set_window (widget, window);
@@ -1658,7 +1658,7 @@ vnck_pager_drag_drop  (CtkWidget        *widget,
 
   target = ctk_drag_dest_find_target (widget, context, NULL);
 
-  if (target != GDK_NONE)
+  if (target != CDK_NONE)
     ctk_drag_get_data (widget, context, target, time);
   else
     ctk_drag_finish (context, FALSE, FALSE, time);
@@ -1828,7 +1828,7 @@ static void
 vnck_drag_window_destroyed (gpointer  contextp,
                             GObject  *window)
 {
-  vnck_drag_clean_up ((VnckWindow *) window, GDK_DRAG_CONTEXT (contextp),
+  vnck_drag_clean_up ((VnckWindow *) window, CDK_DRAG_CONTEXT (contextp),
                       FALSE, TRUE);
 }
 
@@ -1887,7 +1887,7 @@ _vnck_window_set_as_drag_icon (VnckWindow     *window,
                                CtkWidget      *drag_source)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
-  g_return_if_fail (GDK_IS_DRAG_CONTEXT (context));
+  g_return_if_fail (CDK_IS_DRAG_CONTEXT (context));
 
   g_object_weak_ref (G_OBJECT (window), vnck_drag_window_destroyed, context);
   g_signal_connect (window, "geometry_changed",
@@ -1932,7 +1932,7 @@ vnck_pager_motion (CtkWidget        *widget,
 
       target_list = ctk_drag_dest_get_target_list (widget);
       context = ctk_drag_begin_with_coordinates (widget, target_list,
-                                                 GDK_ACTION_MOVE,
+                                                 CDK_ACTION_MOVE,
                                                  1, (GdkEvent *) event,
                                                  -1, -1);
 
@@ -2038,9 +2038,9 @@ vnck_pager_scroll_event (CtkWidget      *widget,
 
   pager = VNCK_PAGER (widget);
 
-  if (event->type != GDK_SCROLL)
+  if (event->type != CDK_SCROLL)
     return FALSE;
-  if (event->direction == GDK_SCROLL_SMOOTH)
+  if (event->direction == CDK_SCROLL_SMOOTH)
     return FALSE;
 
   absolute_direction = event->direction;
@@ -2059,21 +2059,21 @@ vnck_pager_scroll_event (CtkWidget      *widget,
     {
       switch (event->direction)
         {
-          case GDK_SCROLL_DOWN:
-          case GDK_SCROLL_UP:
+          case CDK_SCROLL_DOWN:
+          case CDK_SCROLL_UP:
             break;
-          case GDK_SCROLL_RIGHT:
-            absolute_direction = GDK_SCROLL_LEFT;
+          case CDK_SCROLL_RIGHT:
+            absolute_direction = CDK_SCROLL_LEFT;
             break;
-          case GDK_SCROLL_LEFT:
-            absolute_direction = GDK_SCROLL_RIGHT;
+          case CDK_SCROLL_LEFT:
+            absolute_direction = CDK_SCROLL_RIGHT;
             break;
-          case GDK_SCROLL_SMOOTH:
+          case CDK_SCROLL_SMOOTH:
             gdk_event_get_scroll_deltas ((GdkEvent*)event, &smooth_x, &smooth_y);
             if (smooth_x > 5)
-              absolute_direction = GDK_SCROLL_RIGHT;
+              absolute_direction = CDK_SCROLL_RIGHT;
             else if (smooth_x < -5)
-              absolute_direction = GDK_SCROLL_LEFT;
+              absolute_direction = CDK_SCROLL_LEFT;
             break;
           default:
             break;
@@ -2084,7 +2084,7 @@ vnck_pager_scroll_event (CtkWidget      *widget,
     {
       switch (absolute_direction)
         {
-          case GDK_SCROLL_DOWN:
+          case CDK_SCROLL_DOWN:
             if (index + n_columns < n_workspaces)
               {
                 index += n_columns;
@@ -2101,7 +2101,7 @@ vnck_pager_scroll_event (CtkWidget      *widget,
                 index = (index % n_columns) + 1;
               }
             break;
-          case GDK_SCROLL_RIGHT:
+          case CDK_SCROLL_RIGHT:
             if (index < n_workspaces - 1)
               {
                 index++;
@@ -2111,7 +2111,7 @@ vnck_pager_scroll_event (CtkWidget      *widget,
                 index = 0;
               }
             break;
-          case GDK_SCROLL_UP:
+          case CDK_SCROLL_UP:
             if (index - n_columns >= 0)
               {
                 index -= n_columns;
@@ -2129,7 +2129,7 @@ vnck_pager_scroll_event (CtkWidget      *widget,
                 index -= n_columns;
               }
             break;
-          case GDK_SCROLL_LEFT:
+          case CDK_SCROLL_LEFT:
             if (index > 0)
               {
                 index--;
@@ -2139,7 +2139,7 @@ vnck_pager_scroll_event (CtkWidget      *widget,
                 index = n_workspaces - 1;
               }
             break;
-          case GDK_SCROLL_SMOOTH:
+          case CDK_SCROLL_SMOOTH:
           default:
             g_assert_not_reached ();
             break;
@@ -2149,8 +2149,8 @@ vnck_pager_scroll_event (CtkWidget      *widget,
       {
         switch (absolute_direction)
           {
-            case GDK_SCROLL_UP:
-            case GDK_SCROLL_LEFT:
+            case CDK_SCROLL_UP:
+            case CDK_SCROLL_LEFT:
               if (index > 0)
                 {
                   index--;
@@ -2160,8 +2160,8 @@ vnck_pager_scroll_event (CtkWidget      *widget,
                   index = n_workspaces - 1;
                 }
               break;
-            case GDK_SCROLL_DOWN:
-            case GDK_SCROLL_RIGHT:
+            case CDK_SCROLL_DOWN:
+            case CDK_SCROLL_RIGHT:
               if (index < n_workspaces - 1)
                 {
                   index++;
@@ -2171,7 +2171,7 @@ vnck_pager_scroll_event (CtkWidget      *widget,
                   index = 0;
                 }
               break;
-            case GDK_SCROLL_SMOOTH:
+            case CDK_SCROLL_SMOOTH:
             default:
               g_assert_not_reached ();
               break;
@@ -2923,7 +2923,7 @@ vnck_pager_get_background (VnckPager *pager,
       pager->priv->bg_cache = gdk_pixbuf_scale_simple (pix,
                                                        width,
                                                        height,
-                                                       GDK_INTERP_BILINEAR);
+                                                       CDK_INTERP_BILINEAR);
 
       g_object_unref (G_OBJECT (pix));
     }

@@ -325,7 +325,7 @@ get_xserver_timestamp (VnckScreen *screen)
   unsigned char c = 'a';
   XEvent xevent;
 
-  display = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+  display = CDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
   number = vnck_screen_get_number (screen);
   xscreen = ScreenOfDisplay (display, number);
 
@@ -1774,19 +1774,19 @@ target_filter (GdkXEvent *gdk_xevent,
       XIDeviceEvent *event = cookie->data;
 
       if (!event)
-        return GDK_FILTER_CONTINUE;
+        return CDK_FILTER_CONTINUE;
 
       switch (event->evtype)
         {
           case XI_ButtonPress:
             handle_button_press_event (cookie->display, event);
             clean_up ();
-            return GDK_FILTER_REMOVE;
+            return CDK_FILTER_REMOVE;
           case XI_KeyPress:
             if (event->detail == XKeysymToKeycode (cookie->display, XK_Escape))
               {
                 clean_up ();
-                return GDK_FILTER_REMOVE;
+                return CDK_FILTER_REMOVE;
               }
             break;
           default:
@@ -1794,7 +1794,7 @@ target_filter (GdkXEvent *gdk_xevent,
         }
     }
 
-  return GDK_FILTER_CONTINUE;
+  return CDK_FILTER_CONTINUE;
 }
 
 static void
@@ -1818,15 +1818,15 @@ get_target (gpointer data)
   root = gdk_get_default_root_window ();
   display = gdk_display_get_default ();
   seat = gdk_display_get_default_seat (display);
-  cross = gdk_cursor_new_for_display (display, GDK_CROSS);
-  caps = GDK_SEAT_CAPABILITY_POINTER | GDK_SEAT_CAPABILITY_KEYBOARD;
+  cross = gdk_cursor_new_for_display (display, CDK_CROSS);
+  caps = CDK_SEAT_CAPABILITY_POINTER | CDK_SEAT_CAPABILITY_KEYBOARD;
 
   gdk_window_add_filter (root, (GdkFilterFunc) target_filter, NULL);
 
   status = gdk_seat_grab (seat, root, caps, TRUE, cross, NULL, prepare, NULL);
   g_object_unref (cross);
 
-  if (status != GDK_GRAB_SUCCESS)
+  if (status != CDK_GRAB_SUCCESS)
     {
       g_warning ("Seat grab failed.");
       clean_up ();
