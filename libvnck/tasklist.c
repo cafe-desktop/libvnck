@@ -3205,7 +3205,7 @@ vnck_task_scale_icon (GdkPixbuf *orig, gboolean minimized)
     {
       double scale;
 
-      pixbuf = gdk_pixbuf_new (CDK_COLORSPACE_RGB,
+      pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
 			       TRUE,
 			       8,
 			       MINI_ICON_SIZE * w / (double) h,
