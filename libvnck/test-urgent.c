@@ -35,7 +35,7 @@ make_urgent (CtkWidget *widget)
 
 static gboolean
 focused_in (CtkWidget     *widget,
-            GdkEventFocus *event,
+            CdkEventFocus *event,
             gpointer       user_data)
 {
   guint id;
@@ -53,7 +53,7 @@ focused_in (CtkWidget     *widget,
 
 static gboolean
 focused_out (CtkWidget     *widget,
-             GdkEventFocus *event,
+             CdkEventFocus *event,
              gpointer       user_data)
 {
   guint id;

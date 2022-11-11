@@ -120,13 +120,13 @@ gboolean vnck_tasklist_get_scroll_enabled (VnckTasklist *tasklist);
  *
  * Specifies the type of function passed to vnck_tasklist_set_icon_loader().
  *
- * Returns: it should return a <classname>GdkPixbuf</classname> of @icon_name
+ * Returns: it should return a <classname>CdkPixbuf</classname> of @icon_name
  * at size @size, or %NULL if no icon for @icon_name at size @size could be
  * loaded.
  *
  * Since: 2.2
  */
-typedef GdkPixbuf* (*VnckLoadIconFunction) (const char   *icon_name,
+typedef CdkPixbuf* (*VnckLoadIconFunction) (const char   *icon_name,
                                             int           size,
                                             unsigned int  flags,
                                             void         *data);

@@ -89,8 +89,8 @@ int    vnck_application_get_n_windows (VnckApplication *app);
 const char* vnck_application_get_name      (VnckApplication *app);
 const char* vnck_application_get_icon_name (VnckApplication *app);
 int         vnck_application_get_pid       (VnckApplication *app);
-GdkPixbuf*  vnck_application_get_icon      (VnckApplication *app);
-GdkPixbuf*  vnck_application_get_mini_icon (VnckApplication *app);
+CdkPixbuf*  vnck_application_get_icon      (VnckApplication *app);
+CdkPixbuf*  vnck_application_get_mini_icon (VnckApplication *app);
 gboolean    vnck_application_get_icon_is_fallback (VnckApplication *app);
 const char* vnck_application_get_startup_id (VnckApplication *app);
 

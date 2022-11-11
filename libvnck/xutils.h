@@ -173,17 +173,17 @@ gboolean       _vnck_icon_cache_get_is_fallback      (VnckIconCache *icon_cache)
 gboolean _vnck_read_icons (VnckScreen     *screen,
                            Window          xwindow,
                            VnckIconCache  *icon_cache,
-                           GdkPixbuf     **iconp,
+                           CdkPixbuf     **iconp,
                            int             ideal_width,
                            int             ideal_height,
-                           GdkPixbuf     **mini_iconp,
+                           CdkPixbuf     **mini_iconp,
                            int             ideal_mini_width,
                            int             ideal_mini_height);
 
-void _vnck_get_fallback_icons (GdkPixbuf     **iconp,
+void _vnck_get_fallback_icons (CdkPixbuf     **iconp,
                                int             ideal_width,
                                int             ideal_height,
-                               GdkPixbuf     **mini_iconp,
+                               CdkPixbuf     **mini_iconp,
                                int             ideal_mini_width,
                                int             ideal_mini_height);
 
@@ -219,12 +219,12 @@ void _vnck_set_desktop_layout (Screen *xscreen,
                                int     rows,
                                int     columns);
 
-GdkPixbuf* _vnck_cdk_pixbuf_get_from_pixmap (Screen *screen,
+CdkPixbuf* _vnck_cdk_pixbuf_get_from_pixmap (Screen *screen,
                                              Pixmap  xpixmap);
 
-GdkDisplay* _vnck_cdk_display_lookup_from_display (Display *display);
+CdkDisplay* _vnck_cdk_display_lookup_from_display (Display *display);
 
-GdkWindow* _vnck_cdk_window_lookup_from_window (Screen *screen,
+CdkWindow* _vnck_cdk_window_lookup_from_window (Screen *screen,
                                                 Window  xwindow);
 
 #define VNCK_NO_MANAGER_TOKEN 0

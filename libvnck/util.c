@@ -104,7 +104,7 @@ _vnck_print_resource_usage (VnckResourceUsage *usage)
 #endif
 
 static VnckExtStatus
-vnck_init_resource_usage (GdkDisplay *gdisplay)
+vnck_init_resource_usage (CdkDisplay *gdisplay)
 {
   VnckExtStatus status;
 
@@ -137,7 +137,7 @@ vnck_init_resource_usage (GdkDisplay *gdisplay)
 
 /**
  * vnck_xid_read_resource_usage:
- * @cdk_display: a <classname>GdkDisplay</classname>.
+ * @cdk_display: a <classname>CdkDisplay</classname>.
  * @xid: an X window ID.
  * @usage: return location for the X resource usage of the application owning
  * the X window ID @xid.
@@ -151,7 +151,7 @@ vnck_init_resource_usage (GdkDisplay *gdisplay)
  * Since: 2.6
  */
 void
-vnck_xid_read_resource_usage (GdkDisplay        *gdisplay,
+vnck_xid_read_resource_usage (CdkDisplay        *gdisplay,
                               gulong             xid,
                               VnckResourceUsage *usage)
 {
@@ -443,7 +443,7 @@ vnck_pid_read_resource_usage_fill_cache (struct xresclient_state *state)
 }
 
 static void
-vnck_pid_read_resource_usage_start_build_cache (GdkDisplay *gdisplay)
+vnck_pid_read_resource_usage_start_build_cache (CdkDisplay *gdisplay)
 {
   Display *xdisplay;
   int      err;
@@ -491,7 +491,7 @@ vnck_pid_read_resource_usage_destroy_hash_table (gpointer data)
 
 #define XRES_UPDATE_RATE_SEC 30
 static gboolean
-vnck_pid_read_resource_usage_from_cache (GdkDisplay        *gdisplay,
+vnck_pid_read_resource_usage_from_cache (CdkDisplay        *gdisplay,
                                          gulong             pid,
                                          VnckResourceUsage *usage)
 {
@@ -537,7 +537,7 @@ vnck_pid_read_resource_usage_from_cache (GdkDisplay        *gdisplay,
 }
 
 static void
-vnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
+vnck_pid_read_resource_usage_no_cache (CdkDisplay        *gdisplay,
                                        gulong             pid,
                                        VnckResourceUsage *usage)
 {
@@ -581,7 +581,7 @@ vnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
 
 /**
  * vnck_pid_read_resource_usage:
- * @cdk_display: a <classname>GdkDisplay</classname>.
+ * @cdk_display: a <classname>CdkDisplay</classname>.
  * @pid: a process ID.
  * @usage: return location for the X resource usage of the application with
  * process ID @pid.
@@ -604,7 +604,7 @@ vnck_pid_read_resource_usage_no_cache (GdkDisplay        *gdisplay,
  * Since: 2.6
  */
 void
-vnck_pid_read_resource_usage (GdkDisplay        *gdisplay,
+vnck_pid_read_resource_usage (CdkDisplay        *gdisplay,
                               gulong             pid,
                               VnckResourceUsage *usage)
 {
@@ -791,7 +791,7 @@ _vnck_init (void)
 Display *
 _vnck_get_default_display (void)
 {
-  GdkDisplay *display = cdk_display_get_default ();
+  CdkDisplay *display = cdk_display_get_default ();
   /* FIXME: when we fix libvnck to not use the CDK default display, we will
    * need to fix vnckprop accordingly. */
   if (!CDK_IS_X11_DISPLAY (display))

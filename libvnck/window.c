@@ -76,7 +76,7 @@ struct _VnckWindowPrivate
   Window group_leader;
   Window transient_for;
   int orig_event_mask;
-  GdkRectangle icon_geometry;
+  CdkRectangle icon_geometry;
   char *name;
   char *icon_name;
   char *session_id;
@@ -88,8 +88,8 @@ struct _VnckWindowPrivate
 
   VnckWindowType wintype;
 
-  GdkPixbuf *icon;
-  GdkPixbuf *mini_icon;
+  CdkPixbuf *icon;
+  CdkPixbuf *mini_icon;
 
   VnckIconCache *icon_cache;
 
@@ -2115,8 +2115,8 @@ vnck_window_transient_is_most_recently_activated (VnckWindow *window)
 static void
 get_icons (VnckWindow *window)
 {
-  GdkPixbuf *icon;
-  GdkPixbuf *mini_icon;
+  CdkPixbuf *icon;
+  CdkPixbuf *mini_icon;
   gsize normal_size;
   gsize mini_size;
 
@@ -2168,10 +2168,10 @@ _vnck_window_load_icons (VnckWindow *window)
  * icon is the fallback icon.
  *
  * Return value: (transfer none): the icon for @window. The caller should
- * reference the returned <classname>GdkPixbuf</classname> if it needs to keep
+ * reference the returned <classname>CdkPixbuf</classname> if it needs to keep
  * the icon around.
  **/
-GdkPixbuf*
+CdkPixbuf*
 vnck_window_get_icon (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
@@ -2190,10 +2190,10 @@ vnck_window_get_icon (VnckWindow *window)
  * to tell if the mini-icon is the fallback mini-icon.
  *
  * Return value: (transfer none): the mini-icon for @window. The caller should
- * reference the returned <classname>GdkPixbuf</classname> if it needs to keep
+ * reference the returned <classname>CdkPixbuf</classname> if it needs to keep
  * the icon around.
  **/
-GdkPixbuf*
+CdkPixbuf*
 vnck_window_get_mini_icon (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
@@ -2479,8 +2479,8 @@ gboolean
 vnck_window_is_in_viewport (VnckWindow    *window,
                             VnckWorkspace *workspace)
 {
-  GdkRectangle window_rect;
-  GdkRectangle viewport_rect;
+  CdkRectangle window_rect;
+  CdkRectangle viewport_rect;
 
   g_return_val_if_fail (VNCK_IS_WINDOW (window), FALSE);
   g_return_val_if_fail (VNCK_IS_WORKSPACE (workspace), FALSE);

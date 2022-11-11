@@ -42,7 +42,7 @@ static void
 window_composited_changed (CtkWidget *widget,
                            gpointer   user_data)
 {
-  GdkScreen *screen;
+  CdkScreen *screen;
   gboolean composited;
 
   screen = cdk_screen_get_default ();
@@ -114,7 +114,7 @@ main (int argc, char **argv)
 
   if (transparent)
     {
-      GdkVisual *visual;
+      CdkVisual *visual;
 
       visual = cdk_screen_get_rgba_visual (ctk_widget_get_screen (win));
 

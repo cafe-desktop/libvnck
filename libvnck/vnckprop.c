@@ -1673,7 +1673,7 @@ static gboolean
 wm_state_set (Display *display,
               Window   window)
 {
-  GdkDisplay *cdk_display;
+  CdkDisplay *cdk_display;
   Atom    wm_state;
   gulong  nitems;
   gulong  bytes_after;
@@ -1711,7 +1711,7 @@ static VnckWindow *
 find_managed_window (Display *display,
                      Window   window)
 {
-  GdkDisplay *cdk_display;
+  CdkDisplay *cdk_display;
   Window      root;
   Window      parent;
   Window     *kids = NULL;
@@ -1760,9 +1760,9 @@ handle_button_press_event (Display *dpy, XIDeviceEvent *event)
   got_from_user = find_managed_window (dpy, event->child);
 }
 
-static GdkFilterReturn
-target_filter (GdkXEvent *cdk_xevent,
-               GdkEvent  *cdk_event,
+static CdkFilterReturn
+target_filter (CdkXEvent *cdk_xevent,
+               CdkEvent  *cdk_event,
                gpointer   data)
 {
   XEvent *xevent = (XEvent *) cdk_xevent;
@@ -1798,8 +1798,8 @@ target_filter (GdkXEvent *cdk_xevent,
 }
 
 static void
-prepare (GdkSeat   *seat,
-         GdkWindow *window,
+prepare (CdkSeat   *seat,
+         CdkWindow *window,
          gpointer   user_data)
 {
   cdk_window_show_unraised (window);
@@ -1808,12 +1808,12 @@ prepare (GdkSeat   *seat,
 static gboolean
 get_target (gpointer data)
 {
-  GdkWindow *root;
-  GdkDisplay *display;
-  GdkSeat *seat;
-  GdkCursor *cross;
-  GdkSeatCapabilities caps;
-  GdkGrabStatus status;
+  CdkWindow *root;
+  CdkDisplay *display;
+  CdkSeat *seat;
+  CdkCursor *cross;
+  CdkSeatCapabilities caps;
+  CdkGrabStatus status;
 
   root = cdk_get_default_root_window ();
   display = cdk_display_get_default ();
@@ -1821,7 +1821,7 @@ get_target (gpointer data)
   cross = cdk_cursor_new_for_display (display, CDK_CROSS);
   caps = CDK_SEAT_CAPABILITY_POINTER | CDK_SEAT_CAPABILITY_KEYBOARD;
 
-  cdk_window_add_filter (root, (GdkFilterFunc) target_filter, NULL);
+  cdk_window_add_filter (root, (CdkFilterFunc) target_filter, NULL);
 
   status = cdk_seat_grab (seat, root, caps, TRUE, cross, NULL, prepare, NULL);
   g_object_unref (cross);
@@ -1841,15 +1841,15 @@ get_target (gpointer data)
 static void
 clean_up (void)
 {
-  GdkWindow *root;
-  GdkDisplay *display;
-  GdkSeat *seat;
+  CdkWindow *root;
+  CdkDisplay *display;
+  CdkSeat *seat;
 
   root = cdk_get_default_root_window ();
   display = cdk_display_get_default ();
   seat = cdk_display_get_default_seat (display);
 
-  cdk_window_remove_filter (root, (GdkFilterFunc) target_filter, NULL);
+  cdk_window_remove_filter (root, (CdkFilterFunc) target_filter, NULL);
   cdk_seat_ungrab (seat);
 
   ctk_main_quit ();

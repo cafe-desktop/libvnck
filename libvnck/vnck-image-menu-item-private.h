@@ -32,7 +32,7 @@ CtkWidget *vnck_image_menu_item_new                        (void);
 CtkWidget *vnck_image_menu_item_new_with_label             (const gchar       *label);
 
 void       vnck_image_menu_item_set_image_from_icon_pixbuf (VnckImageMenuItem *item,
-                                                            GdkPixbuf         *pixbuf);
+                                                            CdkPixbuf         *pixbuf);
 
 void       vnck_image_menu_item_set_image_from_window      (VnckImageMenuItem *item,
                                                             VnckWindow        *window);

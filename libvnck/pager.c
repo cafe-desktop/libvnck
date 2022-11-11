@@ -81,7 +81,7 @@ struct _VnckPagerPrivate
   int drag_start_y;
   VnckWindow *drag_window;
 
-  GdkPixbuf *bg_cache;
+  CdkPixbuf *bg_cache;
 
   int layout_manager_token;
 
@@ -127,42 +127,42 @@ static void     vnck_pager_size_allocate (CtkWidget        *widget,
 static gboolean vnck_pager_draw          (CtkWidget        *widget,
                                           cairo_t          *cr);
 static gboolean vnck_pager_button_press  (CtkWidget        *widget,
-                                          GdkEventButton   *event);
+                                          CdkEventButton   *event);
 static gboolean vnck_pager_drag_motion   (CtkWidget        *widget,
-                                          GdkDragContext   *context,
+                                          CdkDragContext   *context,
                                           gint              x,
                                           gint              y,
                                           guint             time);
 static void vnck_pager_drag_motion_leave (CtkWidget        *widget,
-                                          GdkDragContext   *context,
+                                          CdkDragContext   *context,
                                           guint             time);
 static gboolean vnck_pager_drag_drop	 (CtkWidget        *widget,
-					  GdkDragContext   *context,
+					  CdkDragContext   *context,
 					  gint              x,
 					  gint              y,
 					  guint             time);
 static void vnck_pager_drag_data_received (CtkWidget          *widget,
-			  	           GdkDragContext     *context,
+			  	           CdkDragContext     *context,
 				           gint                x,
 				           gint                y,
 				           CtkSelectionData   *selection_data,
 				           guint               info,
 				           guint               time_);
 static void vnck_pager_drag_data_get      (CtkWidget        *widget,
-		                           GdkDragContext   *context,
+		                           CdkDragContext   *context,
 		                           CtkSelectionData *selection_data,
 		                           guint             info,
 		                           guint             time);
 static void vnck_pager_drag_end		  (CtkWidget        *widget,
-					   GdkDragContext   *context);
+					   CdkDragContext   *context);
 static gboolean vnck_pager_motion        (CtkWidget        *widget,
-                                          GdkEventMotion   *event);
+                                          CdkEventMotion   *event);
 static gboolean vnck_pager_leave_notify	 (CtkWidget          *widget,
-					  GdkEventCrossing   *event);
+					  CdkEventCrossing   *event);
 static gboolean vnck_pager_button_release (CtkWidget        *widget,
-                                           GdkEventButton   *event);
+                                           CdkEventButton   *event);
 static gboolean vnck_pager_scroll_event  (CtkWidget        *widget,
-                                          GdkEventScroll   *event);
+                                          CdkEventScroll   *event);
 static gboolean vnck_pager_query_tooltip (CtkWidget  *widget,
                                           gint        x,
                                           gint        y,
@@ -194,7 +194,7 @@ static void vnck_pager_check_prelight (VnckPager *pager,
 				       gint	  y,
 				       gboolean	  dnd);
 
-static GdkPixbuf* vnck_pager_get_background (VnckPager *pager,
+static CdkPixbuf* vnck_pager_get_background (VnckPager *pager,
                                              int        width,
                                              int        height);
 
@@ -293,7 +293,7 @@ vnck_pager_finalize (GObject *object)
 static void
 _vnck_pager_set_screen (VnckPager *pager)
 {
-  GdkScreen *cdkscreen;
+  CdkScreen *cdkscreen;
 
   if (!ctk_widget_has_screen (CTK_WIDGET (pager)))
     return;
@@ -329,11 +329,11 @@ static void
 vnck_pager_realize (CtkWidget *widget)
 {
 
-  GdkWindowAttr attributes;
+  CdkWindowAttr attributes;
   gint attributes_mask;
   VnckPager *pager;
   CtkAllocation allocation;
-  GdkWindow *window;
+  CdkWindow *window;
 
   pager = VNCK_PAGER (widget);
 
@@ -746,7 +746,7 @@ vnck_pager_size_allocate (CtkWidget      *widget,
 static void
 get_workspace_rect (VnckPager    *pager,
                     int           space,
-                    GdkRectangle *rect)
+                    CdkRectangle *rect)
 {
   int hsize, vsize;
   int n_spaces;
@@ -909,13 +909,13 @@ get_windows_for_workspace_in_bottom_to_top (VnckScreen    *screen,
 
 static void
 get_window_rect (VnckWindow         *window,
-                 const GdkRectangle *workspace_rect,
-                 GdkRectangle       *rect)
+                 const CdkRectangle *workspace_rect,
+                 CdkRectangle       *rect)
 {
   double width_ratio, height_ratio;
   int x, y, width, height;
   VnckWorkspace *workspace;
-  GdkRectangle unclipped_win_rect;
+  CdkRectangle unclipped_win_rect;
 
   workspace = vnck_window_get_workspace (window);
   if (workspace == NULL)
@@ -947,22 +947,22 @@ get_window_rect (VnckWindow         *window,
   unclipped_win_rect.width = width;
   unclipped_win_rect.height = height;
 
-  cdk_rectangle_intersect ((GdkRectangle *) workspace_rect, &unclipped_win_rect, rect);
+  cdk_rectangle_intersect ((CdkRectangle *) workspace_rect, &unclipped_win_rect, rect);
 }
 
 static void
 draw_window (cairo_t            *cr,
              CtkWidget          *widget,
              VnckWindow         *win,
-             const GdkRectangle *winrect,
+             const CdkRectangle *winrect,
              CtkStateFlags       state,
              gboolean            translucent)
 {
   CtkStyleContext *context;
-  GdkPixbuf *icon;
+  CdkPixbuf *icon;
   int icon_x, icon_y, icon_w, icon_h;
   gboolean is_active;
-  GdkRGBA fg;
+  CdkRGBA fg;
   gdouble translucency;
 
   context = ctk_widget_get_style_context (widget);
@@ -1052,7 +1052,7 @@ draw_window (cairo_t            *cr,
 static VnckWindow *
 window_at_point (VnckPager     *pager,
                  VnckWorkspace *space,
-                 GdkRectangle  *space_rect,
+                 CdkRectangle  *space_rect,
                  int            x,
                  int            y)
 {
@@ -1071,7 +1071,7 @@ window_at_point (VnckPager     *pager,
   for (tmp = windows; tmp != NULL; tmp = tmp->next)
     {
       VnckWindow *win = VNCK_WINDOW (tmp->data);
-      GdkRectangle winrect;
+      CdkRectangle winrect;
 
       get_window_rect (win, space_rect, &winrect);
 
@@ -1112,7 +1112,7 @@ workspace_at_point (VnckPager *pager,
   i = 0;
   while (i < n_spaces)
     {
-      GdkRectangle rect;
+      CdkRectangle rect;
 
       get_workspace_rect (pager, i, &rect);
 
@@ -1203,8 +1203,8 @@ static void
 vnck_pager_draw_workspace (VnckPager    *pager,
                            cairo_t      *cr,
                            int           workspace,
-                           GdkRectangle *rect,
-                           GdkPixbuf    *bg_pixbuf)
+                           CdkRectangle *rect,
+                           CdkPixbuf    *bg_pixbuf)
 {
   GList *windows;
   GList *tmp;
@@ -1352,7 +1352,7 @@ vnck_pager_draw_workspace (VnckPager    *pager,
       while (tmp != NULL)
         {
           VnckWindow *win = tmp->data;
-          GdkRectangle winrect;
+          CdkRectangle winrect;
           gboolean translucent;
 
           get_window_rect (win, rect, &winrect);
@@ -1413,7 +1413,7 @@ vnck_pager_draw (CtkWidget *widget,
   int i;
   int n_spaces;
   VnckWorkspace *active_space;
-  GdkPixbuf *bg_pixbuf;
+  CdkPixbuf *bg_pixbuf;
   gboolean first;
   CtkStyleContext *context;
   CtkStateFlags state;
@@ -1459,7 +1459,7 @@ vnck_pager_draw (CtkWidget *widget,
   i = 0;
   while (i < n_spaces)
     {
-      GdkRectangle rect;
+      CdkRectangle rect;
 
       if (pager->priv->show_all_workspaces ||
 	  (active_space && i == vnck_workspace_get_number (active_space)))
@@ -1490,12 +1490,12 @@ vnck_pager_draw (CtkWidget *widget,
 
 static gboolean
 vnck_pager_button_press (CtkWidget      *widget,
-                         GdkEventButton *event)
+                         CdkEventButton *event)
 {
   VnckPager *pager;
   int space_number;
   VnckWorkspace *space = NULL;
-  GdkRectangle workspace_rect;
+  CdkRectangle workspace_rect;
 
   if (event->button != 1)
     return FALSE;
@@ -1551,7 +1551,7 @@ static void
 vnck_pager_queue_draw_workspace (VnckPager *pager,
                                  gint       i)
 {
-  GdkRectangle rect;
+  CdkRectangle rect;
 
   if (i < 0)
     return;
@@ -1604,7 +1604,7 @@ vnck_pager_check_prelight (VnckPager *pager,
 
 static gboolean
 vnck_pager_drag_motion (CtkWidget          *widget,
-                        GdkDragContext     *context,
+                        CdkDragContext     *context,
                         gint                x,
                         gint                y,
                         guint               time)
@@ -1648,13 +1648,13 @@ vnck_pager_drag_motion (CtkWidget          *widget,
 
 static gboolean
 vnck_pager_drag_drop  (CtkWidget        *widget,
-		       GdkDragContext   *context,
+		       CdkDragContext   *context,
 		       gint              x,
 		       gint              y,
 		       guint             time)
 {
   VnckPager *pager = VNCK_PAGER (widget);
-  GdkAtom target;
+  CdkAtom target;
 
   target = ctk_drag_dest_find_target (widget, context, NULL);
 
@@ -1671,7 +1671,7 @@ vnck_pager_drag_drop  (CtkWidget        *widget,
 
 static void
 vnck_pager_drag_data_received (CtkWidget          *widget,
-	  	               GdkDragContext     *context,
+	  	               CdkDragContext     *context,
 			       gint                x,
 			       gint                y,
 			       CtkSelectionData   *selection_data,
@@ -1719,7 +1719,7 @@ vnck_pager_drag_data_received (CtkWidget          *widget,
 
 static void
 vnck_pager_drag_data_get (CtkWidget        *widget,
-                          GdkDragContext   *context,
+                          CdkDragContext   *context,
                           CtkSelectionData *selection_data,
                           guint             info,
                           guint             time)
@@ -1738,7 +1738,7 @@ vnck_pager_drag_data_get (CtkWidget        *widget,
 
 static void
 vnck_pager_drag_end (CtkWidget        *widget,
-                     GdkDragContext   *context)
+                     CdkDragContext   *context)
 {
   VnckPager *pager = VNCK_PAGER (widget);
 
@@ -1747,7 +1747,7 @@ vnck_pager_drag_end (CtkWidget        *widget,
 
 static void
 vnck_pager_drag_motion_leave (CtkWidget          *widget,
-                              GdkDragContext     *context,
+                              CdkDragContext     *context,
                               guint               time)
 {
   VnckPager *pager = VNCK_PAGER (widget);
@@ -1763,7 +1763,7 @@ vnck_pager_drag_motion_leave (CtkWidget          *widget,
 
 static void
 vnck_drag_clean_up (VnckWindow     *window,
-		    GdkDragContext *context,
+		    CdkDragContext *context,
 		    gboolean	    clean_up_for_context_destroy,
 		    gboolean	    clean_up_for_window_destroy);
 
@@ -1771,16 +1771,16 @@ static void
 vnck_drag_context_destroyed (gpointer  windowp,
                              GObject  *context)
 {
-  vnck_drag_clean_up (windowp, (GdkDragContext *) context, TRUE, FALSE);
+  vnck_drag_clean_up (windowp, (CdkDragContext *) context, TRUE, FALSE);
 }
 
 static void
 vnck_update_drag_icon (VnckWindow     *window,
-		       GdkDragContext *context)
+		       CdkDragContext *context)
 {
   gint org_w, org_h, dnd_w, dnd_h;
   VnckWorkspace *workspace;
-  GdkRectangle rect;
+  CdkRectangle rect;
   cairo_surface_t *surface;
   CtkWidget *widget;
   cairo_t *cr;
@@ -1843,7 +1843,7 @@ vnck_drag_source_destroyed (gpointer  contextp,
  * finalized already */
 static void
 vnck_drag_clean_up (VnckWindow     *window,
-		    GdkDragContext *context,
+		    CdkDragContext *context,
 		    gboolean	    clean_up_for_context_destroy,
 		    gboolean	    clean_up_for_window_destroy)
 {
@@ -1875,7 +1875,7 @@ vnck_drag_clean_up (VnckWindow     *window,
 /**
  * vnck_window_set_as_drag_icon:
  * @window: #VnckWindow to use as drag icon
- * @context: #GdkDragContext to set the icon on
+ * @context: #CdkDragContext to set the icon on
  * @drag_source: #CtkWidget that started the drag, or one of its parent. This
  * widget needs to stay alive as long as possible during the drag.
  *
@@ -1883,7 +1883,7 @@ vnck_drag_clean_up (VnckWindow     *window,
  **/
 void
 _vnck_window_set_as_drag_icon (VnckWindow     *window,
-                               GdkDragContext *context,
+                               CdkDragContext *context,
                                CtkWidget      *drag_source)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
@@ -1905,12 +1905,12 @@ _vnck_window_set_as_drag_icon (VnckWindow     *window,
 
 static gboolean
 vnck_pager_motion (CtkWidget        *widget,
-                   GdkEventMotion   *event)
+                   CdkEventMotion   *event)
 {
   VnckPager *pager;
-  GdkWindow *window;
-  GdkSeat *seat;
-  GdkDevice *pointer;
+  CdkWindow *window;
+  CdkSeat *seat;
+  CdkDevice *pointer;
   int x, y;
 
   pager = VNCK_PAGER (widget);
@@ -1928,12 +1928,12 @@ vnck_pager_motion (CtkWidget        *widget,
                                 x, y))
     {
       CtkTargetList *target_list;
-      GdkDragContext *context;
+      CdkDragContext *context;
 
       target_list = ctk_drag_dest_get_target_list (widget);
       context = ctk_drag_begin_with_coordinates (widget, target_list,
                                                  CDK_ACTION_MOVE,
-                                                 1, (GdkEvent *) event,
+                                                 1, (CdkEvent *) event,
                                                  -1, -1);
 
       pager->priv->dragging = TRUE;
@@ -1950,7 +1950,7 @@ vnck_pager_motion (CtkWidget        *widget,
 
 static gboolean
 vnck_pager_leave_notify	 (CtkWidget          *widget,
-	      		  GdkEventCrossing   *event)
+	      		  CdkEventCrossing   *event)
 {
   VnckPager *pager;
 
@@ -1963,7 +1963,7 @@ vnck_pager_leave_notify	 (CtkWidget          *widget,
 
 static gboolean
 vnck_pager_button_release (CtkWidget        *widget,
-                           GdkEventButton   *event)
+                           CdkEventButton   *event)
 {
   VnckWorkspace *space;
   VnckPager *pager;
@@ -2023,11 +2023,11 @@ vnck_pager_button_release (CtkWidget        *widget,
 
 static gboolean
 vnck_pager_scroll_event (CtkWidget      *widget,
-                         GdkEventScroll *event)
+                         CdkEventScroll *event)
 {
   VnckPager          *pager;
   VnckWorkspace      *space;
-  GdkScrollDirection  absolute_direction;
+  CdkScrollDirection  absolute_direction;
   int                 index;
   int                 n_workspaces;
   int                 n_columns;
@@ -2069,7 +2069,7 @@ vnck_pager_scroll_event (CtkWidget      *widget,
             absolute_direction = CDK_SCROLL_RIGHT;
             break;
           case CDK_SCROLL_SMOOTH:
-            cdk_event_get_scroll_deltas ((GdkEvent*)event, &smooth_x, &smooth_y);
+            cdk_event_get_scroll_deltas ((CdkEvent*)event, &smooth_x, &smooth_y);
             if (smooth_x > 5)
               absolute_direction = CDK_SCROLL_RIGHT;
             else if (smooth_x < -5)
@@ -2211,7 +2211,7 @@ vnck_pager_query_tooltip (CtkWidget  *widget,
   if (vnck_screen_get_active_workspace (screen) == space)
     {
       VnckWindow *window;
-      GdkRectangle workspace_rect;
+      CdkRectangle workspace_rect;
 
       get_workspace_rect (pager, i, &workspace_rect);
 
@@ -2875,13 +2875,13 @@ vnck_pager_clear_drag (VnckPager *pager)
   pager->priv->drag_start_y = -1;
 }
 
-static GdkPixbuf*
+static CdkPixbuf*
 vnck_pager_get_background (VnckPager *pager,
                            int        width,
                            int        height)
 {
   Pixmap p;
-  GdkPixbuf *pix = NULL;
+  CdkPixbuf *pix = NULL;
 
   /* We have to be careful not to keep alternating between
    * width/height values, otherwise this would get really slow.
@@ -3019,7 +3019,7 @@ _vnck_pager_activate_workspace (VnckWorkspace *wspace,
 void
 _vnck_pager_get_workspace_rect (VnckPager    *pager,
                                 int           i,
-                                GdkRectangle *rect)
+                                CdkRectangle *rect)
 {
   get_workspace_rect (pager, i, rect);
 }
