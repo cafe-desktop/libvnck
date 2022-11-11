@@ -17,9 +17,9 @@ main (int argc, char **argv)
 {
   GOptionContext *ctxt;
   VnckScreen *screen;
-  GtkWidget *win;
-  GtkWidget *frame;
-  GtkWidget *selector;
+  CtkWidget *win;
+  CtkWidget *frame;
+  CtkWidget *selector;
 
   ctxt = g_option_context_new ("");
   g_option_context_add_main_entries (ctxt, entries, NULL);

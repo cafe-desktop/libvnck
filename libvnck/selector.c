@@ -52,12 +52,12 @@
  */
 
 struct _VnckSelectorPrivate {
-  GtkWidget  *image;
+  CtkWidget  *image;
   VnckWindow *icon_window;
 
   /* those have the same lifecycle as the menu */
-  GtkWidget  *menu;
-  GtkWidget  *no_windows_item;
+  CtkWidget  *menu;
+  CtkWidget  *no_windows_item;
   GHashTable *window_hash;
 };
 
@@ -68,9 +68,9 @@ static GObject *vnck_selector_constructor (GType                  type,
                                            GObjectConstructParam *construct_properties);
 static void vnck_selector_dispose           (GObject           *object);
 static void vnck_selector_finalize          (GObject           *object);
-static void vnck_selector_realize           (GtkWidget *widget);
-static void vnck_selector_unrealize         (GtkWidget *widget);
-static gboolean vnck_selector_scroll_event  (GtkWidget        *widget,
+static void vnck_selector_realize           (CtkWidget *widget);
+static void vnck_selector_unrealize         (CtkWidget *widget);
+static gboolean vnck_selector_scroll_event  (CtkWidget        *widget,
                                              GdkEventScroll   *event);
 static void vnck_selector_connect_to_window (VnckSelector      *selector,
                                              VnckWindow        *window);
@@ -172,7 +172,7 @@ vnck_selector_dimm_icon (GdkPixbuf *pixbuf)
 }
 
 void
-_vnck_selector_set_window_icon (GtkWidget  *image,
+_vnck_selector_set_window_icon (CtkWidget  *image,
                                 VnckWindow *window)
 {
   GdkPixbuf *pixbuf, *freeme, *freeme2;
@@ -232,8 +232,8 @@ vnck_selector_make_menu_consistent (VnckSelector *selector)
 {
   GList     *l, *children;
   int        workspace_n;
-  GtkWidget *workspace_item;
-  GtkWidget *separator;
+  CtkWidget *workspace_item;
+  CtkWidget *separator;
   gboolean   separator_is_first;
   gboolean   separator_is_last;
   gboolean   visible_window;
@@ -327,7 +327,7 @@ static void
 vnck_selector_window_icon_changed (VnckWindow *window,
                                    VnckSelector *selector)
 {
-  GtkWidget *item;
+  CtkWidget *item;
 
   if (selector->priv->icon_window == window)
     vnck_selector_set_active_window (selector, window);
@@ -347,7 +347,7 @@ static void
 vnck_selector_window_name_changed (VnckWindow *window,
                                    VnckSelector *selector)
 {
-  GtkWidget *item;
+  CtkWidget *item;
   char *window_name;
 
   if (!selector->priv->window_hash)
@@ -368,7 +368,7 @@ vnck_selector_window_state_changed (VnckWindow *window,
                                     VnckWindowState new_state,
                                     VnckSelector *selector)
 {
-  GtkWidget *item;
+  CtkWidget *item;
   char *window_name;
 
   if (!
@@ -420,7 +420,7 @@ static void
 vnck_selector_window_workspace_changed (VnckWindow   *window,
                                         VnckSelector *selector)
 {
-  GtkWidget *item;
+  CtkWidget *item;
 
   if (!selector->priv->menu || !ctk_widget_get_visible (selector->priv->menu))
     return;
@@ -476,7 +476,7 @@ vnck_selector_activate_window (VnckWindow *window)
 }
 
 static void
-vnck_selector_drag_begin (GtkWidget          *widget,
+vnck_selector_drag_begin (CtkWidget          *widget,
 			  GdkDragContext     *context,
 			  VnckWindow         *window)
 {
@@ -496,9 +496,9 @@ vnck_selector_drag_begin (GtkWidget          *widget,
 }
 
 static void
-vnck_selector_drag_data_get (GtkWidget          *widget,
+vnck_selector_drag_data_get (CtkWidget          *widget,
 			     GdkDragContext     *context,
-			     GtkSelectionData   *selection_data,
+			     CtkSelectionData   *selection_data,
 			     guint               info,
 			     guint               time,
 			     VnckWindow         *window)
@@ -511,12 +511,12 @@ vnck_selector_drag_data_get (GtkWidget          *widget,
 			  8, (guchar *)&xid, sizeof (gulong));
 }
 
-static GtkWidget *
+static CtkWidget *
 vnck_selector_item_new (VnckSelector *selector,
                         const gchar *label, VnckWindow *window)
 {
-  GtkWidget *item;
-  static const GtkTargetEntry targets[] = {
+  CtkWidget *item;
+  static const CtkTargetEntry targets[] = {
     { (gchar *) "application/x-vnck-window-id", 0, 0 }
   };
 
@@ -554,9 +554,9 @@ vnck_selector_item_new (VnckSelector *selector,
 
 static void
 vnck_selector_workspace_name_changed (VnckWorkspace *workspace,
-                                      GtkLabel      *label)
+                                      CtkLabel      *label)
 {
-  GtkStyleContext *context;
+  CtkStyleContext *context;
   GdkRGBA          color;
   char            *name;
   char            *markup;
@@ -580,7 +580,7 @@ vnck_selector_workspace_name_changed (VnckWorkspace *workspace,
 }
 
 static void
-vnck_selector_workspace_label_style_updated (GtkLabel      *label,
+vnck_selector_workspace_label_style_updated (CtkLabel      *label,
                                              VnckWorkspace *workspace)
 {
   vnck_selector_workspace_name_changed (workspace, label);
@@ -592,8 +592,8 @@ vnck_selector_add_workspace (VnckSelector *selector,
                              int           workspace_n)
 {
   VnckWorkspace *workspace;
-  GtkWidget     *item;
-  GtkWidget     *label;
+  CtkWidget     *item;
+  CtkWidget     *label;
 
   workspace = vnck_screen_get_workspace (screen, workspace_n);
 
@@ -621,10 +621,10 @@ vnck_selector_add_workspace (VnckSelector *selector,
                      GINT_TO_POINTER (workspace_n + 1));
 }
 
-static GtkWidget *
+static CtkWidget *
 vnck_selector_create_window (VnckSelector *selector, VnckWindow *window)
 {
-  GtkWidget *item;
+  CtkWidget *item;
   char *name;
 
   name = _vnck_window_get_name_for_display (window, FALSE, TRUE);
@@ -650,7 +650,7 @@ vnck_selector_create_window (VnckSelector *selector, VnckWindow *window)
 static void
 vnck_selector_insert_window (VnckSelector *selector, VnckWindow *window)
 {
-  GtkWidget     *item;
+  CtkWidget     *item;
   VnckScreen    *screen;
   VnckWorkspace *workspace;
   int            workspace_n;
@@ -719,7 +719,7 @@ vnck_selector_insert_window (VnckSelector *selector, VnckWindow *window)
 static void
 vnck_selector_append_window (VnckSelector *selector, VnckWindow *window)
 {
-  GtkWidget *item;
+  CtkWidget *item;
 
   item = vnck_selector_create_window (selector, window);
   ctk_menu_shell_append (CTK_MENU_SHELL (selector->priv->menu), item);
@@ -747,7 +747,7 @@ static void
 vnck_selector_window_closed (VnckScreen *screen,
                              VnckWindow *window, VnckSelector *selector)
 {
-  GtkWidget *item;
+  CtkWidget *item;
 
   if (window == selector->priv->icon_window)
     vnck_selector_set_active_window (selector, NULL);
@@ -795,7 +795,7 @@ vnck_selector_workspace_destroyed (VnckScreen    *screen,
                                    VnckSelector  *selector)
 {
   GList     *l, *children;
-  GtkWidget *destroy;
+  CtkWidget *destroy;
   int        i;
 
   if (!selector->priv->menu || !ctk_widget_get_visible (selector->priv->menu))
@@ -916,7 +916,7 @@ vnck_selector_disconnect_from_screen (VnckSelector *selector,
 }
 
 static void
-vnck_selector_destroy_menu (GtkWidget *widget, VnckSelector *selector)
+vnck_selector_destroy_menu (CtkWidget *widget, VnckSelector *selector)
 {
   selector->priv->menu = NULL;
 
@@ -928,7 +928,7 @@ vnck_selector_destroy_menu (GtkWidget *widget, VnckSelector *selector)
 }
 
 static gboolean
-vnck_selector_scroll_event (GtkWidget      *widget,
+vnck_selector_scroll_event (CtkWidget      *widget,
                             GdkEventScroll *event)
 {
   VnckSelector *selector;
@@ -1008,15 +1008,15 @@ vnck_selector_scroll_event (GtkWidget      *widget,
 }
 
 static void
-vnck_selector_menu_hidden (GtkWidget *menu, VnckSelector *selector)
+vnck_selector_menu_hidden (CtkWidget *menu, VnckSelector *selector)
 {
   ctk_widget_set_state_flags (CTK_WIDGET (selector), CTK_STATE_FLAG_NORMAL, TRUE);
 }
 
 static void
-vnck_selector_on_show (GtkWidget *widget, VnckSelector *selector)
+vnck_selector_on_show (CtkWidget *widget, VnckSelector *selector)
 {
-  GtkWidget *separator;
+  CtkWidget *separator;
   VnckScreen *screen;
   VnckWorkspace *workspace;
   int nb_workspace;
@@ -1100,8 +1100,8 @@ vnck_selector_on_show (GtkWidget *widget, VnckSelector *selector)
 static void
 vnck_selector_fill (VnckSelector *selector)
 {
-  GtkWidget      *menu_item;
-  GtkCssProvider *provider;
+  CtkWidget      *menu_item;
+  CtkCssProvider *provider;
 
   menu_item = ctk_menu_item_new ();
   ctk_widget_show (menu_item);
@@ -1156,7 +1156,7 @@ static void
 vnck_selector_class_init (VnckSelectorClass *klass)
 {
   GObjectClass   *object_class     = G_OBJECT_CLASS (klass);
-  GtkWidgetClass *widget_class     = CTK_WIDGET_CLASS (klass);
+  CtkWidgetClass *widget_class     = CTK_WIDGET_CLASS (klass);
 
   object_class->constructor = vnck_selector_constructor;
   object_class->dispose = vnck_selector_dispose;
@@ -1218,7 +1218,7 @@ vnck_selector_dispose (GObject *object)
 }
 
 static void
-vnck_selector_realize (GtkWidget *widget)
+vnck_selector_realize (CtkWidget *widget)
 {
   VnckSelector *selector;
   VnckScreen   *screen;
@@ -1240,7 +1240,7 @@ vnck_selector_realize (GtkWidget *widget)
 }
 
 static void
-vnck_selector_unrealize (GtkWidget *widget)
+vnck_selector_unrealize (CtkWidget *widget)
 {
   VnckSelector *selector;
   VnckScreen   *screen;
@@ -1267,7 +1267,7 @@ vnck_selector_unrealize (GtkWidget *widget)
  *
  * Since: 2.10
  */
-GtkWidget *
+CtkWidget *
 vnck_selector_new (void)
 {
   VnckSelector *selector;

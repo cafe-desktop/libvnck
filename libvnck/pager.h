@@ -50,14 +50,14 @@ typedef struct _VnckPagerPrivate VnckPagerPrivate;
  */
 struct _VnckPager
 {
-  GtkContainer parent_instance;
+  CtkContainer parent_instance;
 
   VnckPagerPrivate *priv;
 };
 
 struct _VnckPagerClass
 {
-  GtkContainerClass parent_class;
+  CtkContainerClass parent_class;
   
   /* Padding for future expansion */
   void (* pad1) (void);
@@ -98,10 +98,10 @@ typedef enum {
 
 GType      vnck_pager_get_type           (void) G_GNUC_CONST;
 
-GtkWidget* vnck_pager_new                (void);
+CtkWidget* vnck_pager_new                (void);
 
 gboolean   vnck_pager_set_orientation    (VnckPager            *pager,
-                                          GtkOrientation        orientation);
+                                          CtkOrientation        orientation);
 gboolean   vnck_pager_set_n_rows         (VnckPager            *pager,
                                           int                   n_rows);
 void       vnck_pager_set_display_mode   (VnckPager            *pager,
@@ -111,7 +111,7 @@ void       vnck_pager_set_scroll_mode    (VnckPager            *pager,
 void       vnck_pager_set_show_all       (VnckPager            *pager,
                                           gboolean              show_all_workspaces);
 void       vnck_pager_set_shadow_type    (VnckPager            *pager,
-                                          GtkShadowType         shadow_type);
+                                          CtkShadowType         shadow_type);
 void       vnck_pager_set_wrap_on_scroll (VnckPager            *pager,
                                           gboolean              wrap_on_scroll);
 gboolean   vnck_pager_get_wrap_on_scroll (VnckPager            *pager);

@@ -742,9 +742,9 @@ _vnck_get_default_mini_icon_size (void)
  * Switches the font of label to a bold equivalent.
  **/
 void
-_make_ctk_label_bold (GtkLabel *label)
+_make_ctk_label_bold (CtkLabel *label)
 {
-  GtkStyleContext *context;
+  CtkStyleContext *context;
 
   _vnck_ensure_fallback_style ();
 
@@ -753,9 +753,9 @@ _make_ctk_label_bold (GtkLabel *label)
 }
 
 void
-_make_ctk_label_normal (GtkLabel *label)
+_make_ctk_label_normal (CtkLabel *label)
 {
-  GtkStyleContext *context;
+  CtkStyleContext *context;
 
   context = ctk_widget_get_style_context (CTK_WIDGET (label));
   ctk_style_context_remove_class (context, "vnck-needs-attention");
@@ -856,7 +856,7 @@ void
 _vnck_ensure_fallback_style (void)
 {
   static gboolean css_loaded = FALSE;
-  GtkCssProvider *provider;
+  CtkCssProvider *provider;
   guint priority;
 
   if (css_loaded)

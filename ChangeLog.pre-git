@@ -1361,11 +1361,11 @@
 
 2007-06-14  Vincent Untz  <vuntz@gnome.org>
 
-	Migrate from GtkTooltips to GtkTooltip.
+	Migrate from CtkTooltips to CtkTooltip.
 
 	* configure.in: require CTK+ 2.11.3
 	* libvnck/tasklist.c: (vnck_tasklist_finalize): we don't have a
-	GtkTooltips anymore
+	CtkTooltips anymore
 	(vnck_tasklist_new): ditto
 	(vnck_task_update_visible_state): use the "tooltip-markup" property on
 	the button
@@ -2293,7 +2293,7 @@
 2006-09-07  Benjamin Berg  <benjamin@sipsolutions.net>
 
 	* libvnck/tasklist.c: (take_screenshot):
-	- Fix a critical warning and a leak of a GtkStyle in the glowing
+	- Fix a critical warning and a leak of a CtkStyle in the glowing
 	code when taking the screenshot. (Fixes #354268)
 
 2006-09-04  Vincent Untz  <vuntz@gnome.org>
@@ -2488,7 +2488,7 @@
 	(vnck_pager_window_state_is_relevant): new
 	(vnck_pager_window_get_workspace): new, helper
 	(get_windows_for_workspace_in_bottom_to_top): simplify
-	(draw_window): changed so that a GtkStateType is passed as argument,
+	(draw_window): changed so that a CtkStateType is passed as argument,
 	to let us know how to draw the window. Use translucency if requested.
 	Cairo love.
 	(vnck_pager_draw_workspace): updated with cairo love, and simplified
@@ -3459,8 +3459,8 @@
 
 2005-02-26  Vincent Untz  <vincent@vuntz.net>
 
-	* libvnck/tasklist.c: (vnck_task_create_widgets): use GtkHBox instead
-	of GtkTable, set a max width in characters for the label so that it
+	* libvnck/tasklist.c: (vnck_task_create_widgets): use CtkHBox instead
+	of CtkTable, set a max width in characters for the label so that it
 	requests a reasonable size.
 	Fix bug #160977
 
@@ -4597,7 +4597,7 @@ Sun Nov 24 18:38:27 2002  Soeren Sandmann  <sandmann@daimi.au.dk>
 	workspace.
 
 	* libvnck/test-pager.c (create_pager_window): Use
-	vnck_pager_set_shadow_type instead of a GtkFrame.
+	vnck_pager_set_shadow_type instead of a CtkFrame.
 
 2002-11-03  Havoc Pennington  <hp@pobox.com>
 

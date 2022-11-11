@@ -101,8 +101,8 @@ Version 3.20.1
   * workspace-accessible: drop obsolete CTK_CHECK_VERSION (Alberts Muktupāvels)
   * workspace-accessible: don't use deprecated atk_component_get_position
     (Alberts Muktupāvels)
-  * tasklist: don't use deprecated GtkMisc (Alberts Muktupāvels)
-  * selector: don't use deprecated GtkMisc (Alberts Muktupāvels)
+  * tasklist: don't use deprecated CtkMisc (Alberts Muktupāvels)
+  * selector: don't use deprecated CtkMisc (Alberts Muktupāvels)
   * vnckprop: don't use deprecated gdk_cursor_new (Alberts Muktupāvels)
   * test-vnck: don't use deprecated ctk_tree_view_set_rules_hint (Alberts
     Muktupāvels)
@@ -136,8 +136,8 @@ Version 3.18.0
   * VnckWindow: Add a new 'type-changed' signal (Sebastian Geiger)
   * don't use deprecated style properties (Alberts Muktupāvels)
   * pager: use correct state flags (Alberts Muktupāvels)
-  * selector: avoid warnings from GtkStyleContext (Alberts Muktupāvels)
-  * tasklist: avoid warnings from GtkStyleContext (Alberts Muktupāvels)
+  * selector: avoid warnings from CtkStyleContext (Alberts Muktupāvels)
+  * tasklist: avoid warnings from CtkStyleContext (Alberts Muktupāvels)
   * Back to dependency on ctk+-3.0 >= 3.10
 
   Translators
@@ -163,8 +163,8 @@ Version 3.14.0
   * xutils: Correctly link against libXrender (David King)
   * pager: don't return invalid workspace rect (Alberts Muktupāvels)
   * tasklist: fix missing icon in tasklist button (Alberts Muktupāvels)
-  * window-action-menu: don't use deprecated GtkImageMenuItem (Alberts Muktupāvels)
-  * tasklist: don't use deprecated GtkImageMenuItem (Alberts Muktupāvels)
+  * window-action-menu: don't use deprecated CtkImageMenuItem (Alberts Muktupāvels)
+  * tasklist: don't use deprecated CtkImageMenuItem (Alberts Muktupāvels)
 
   Translators
 
@@ -502,7 +502,7 @@ Version 2.91.90
 
  Fixes
 
-  - Port widgets to GtkStyleContext (Carlos Garcia Campos)
+  - Port widgets to CtkStyleContext (Carlos Garcia Campos)
   - Improve geometry management of VnckPager (Vincent)
   - Add switching workspace on scroll events to VnckPager (Vincent)
   - Fix crash when fetching some icons (Vincent)
@@ -565,7 +565,7 @@ Version 2.30.6
 
  Fixes
 
-  - Adapt to GtkObject removal in CTK3 (Javier Jardón)
+  - Adapt to CtkObject removal in CTK3 (Javier Jardón)
 
  Misc
 
@@ -659,7 +659,7 @@ Version 2.30.0
  Fixes
 
   - Many GSeal-related fixes (Vincent)
-  - Use a GtkMenuSeparator with a label instead of a hack for workspace menu
+  - Use a CtkMenuSeparator with a label instead of a hack for workspace menu
     items in selector (Vincent)
 
  Misc
@@ -1372,7 +1372,7 @@ Fixes
   - Make the pager use the real layout of the screen when it cannot set the
     layout (Vincent)
   - Use g_timeout_add_seconds() when possible (Vincent)
-  - Migrate to new GtkTooltip API (Vincent)
+  - Migrate to new CtkTooltip API (Vincent)
   - Add some safety guards to the public API (Vincent)
   - Improve position of the drag icon when dragging a window (Vincent)
     [#446531]

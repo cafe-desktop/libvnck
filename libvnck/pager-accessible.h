@@ -38,17 +38,17 @@ typedef struct _VnckPagerAccessibleClass VnckPagerAccessibleClass;
 
 struct _VnckPagerAccessible
 {
-  GtkAccessible parent;
+  CtkAccessible parent;
 };
 
 struct _VnckPagerAccessibleClass
 {
-  GtkAccessibleClass parent_class;
+  CtkAccessibleClass parent_class;
 };
 
 GType vnck_pager_accessible_get_type (void) G_GNUC_CONST;
 
-AtkObject* vnck_pager_accessible_new (GtkWidget *widget); 
+AtkObject* vnck_pager_accessible_new (CtkWidget *widget); 
 
 G_END_DECLS
 

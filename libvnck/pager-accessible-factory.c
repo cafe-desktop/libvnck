@@ -54,7 +54,7 @@ vnck_pager_accessible_factory_new (void)
 static AtkObject*
 vnck_pager_accessible_factory_create_accessible (GObject *obj)
 {
-  GtkWidget *widget;
+  CtkWidget *widget;
 
   g_return_val_if_fail (CTK_IS_WIDGET (obj), NULL);
 

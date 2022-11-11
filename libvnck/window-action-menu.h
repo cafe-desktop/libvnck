@@ -50,14 +50,14 @@ typedef struct _VnckActionMenuPrivate VnckActionMenuPrivate;
  */
 struct _VnckActionMenu
 {
-  GtkMenu parent_instance;
+  CtkMenu parent_instance;
 
   VnckActionMenuPrivate *priv;
 };
 
 struct _VnckActionMenuClass
 {
-  GtkMenuClass parent_class;
+  CtkMenuClass parent_class;
 
   /* Padding for future expansion */
   void (* pad1) (void);
@@ -68,7 +68,7 @@ struct _VnckActionMenuClass
 
 GType vnck_action_menu_get_type (void) G_GNUC_CONST;
 
-GtkWidget* vnck_action_menu_new (VnckWindow *window);
+CtkWidget* vnck_action_menu_new (VnckWindow *window);
 
 G_END_DECLS
 

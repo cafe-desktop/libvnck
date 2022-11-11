@@ -67,10 +67,10 @@ struct _VnckPagerPrivate
   VnckPagerDisplayMode display_mode;
   VnckPagerScrollMode scroll_mode;
   gboolean show_all_workspaces;
-  GtkShadowType shadow_type;
+  CtkShadowType shadow_type;
   gboolean wrap_on_scroll;
 
-  GtkOrientation orientation;
+  CtkOrientation orientation;
   int workspace_size;
   guint screen_connections[N_SCREEN_CONNECTIONS];
   int prelight; /* workspace mouse is hovering over */
@@ -105,69 +105,69 @@ enum
 
 static void vnck_pager_finalize    (GObject        *object);
 
-static void     vnck_pager_realize       (GtkWidget        *widget);
-static void     vnck_pager_unrealize     (GtkWidget        *widget);
-static GtkSizeRequestMode vnck_pager_get_request_mode (GtkWidget *widget);
-static void     vnck_pager_get_preferred_width (GtkWidget *widget,
+static void     vnck_pager_realize       (CtkWidget        *widget);
+static void     vnck_pager_unrealize     (CtkWidget        *widget);
+static CtkSizeRequestMode vnck_pager_get_request_mode (CtkWidget *widget);
+static void     vnck_pager_get_preferred_width (CtkWidget *widget,
                                                 int       *minimum_width,
                                                 int       *natural_width);
-static void     vnck_pager_get_preferred_width_for_height (GtkWidget *widget,
+static void     vnck_pager_get_preferred_width_for_height (CtkWidget *widget,
                                                            int        height,
                                                            int       *minimum_width,
                                                            int       *natural_width);
-static void     vnck_pager_get_preferred_height (GtkWidget *widget,
+static void     vnck_pager_get_preferred_height (CtkWidget *widget,
                                                  int       *minimum_height,
                                                  int       *natural_height);
-static void     vnck_pager_get_preferred_height_for_width (GtkWidget *widget,
+static void     vnck_pager_get_preferred_height_for_width (CtkWidget *widget,
                                                            int        width,
                                                            int       *minimum_height,
                                                            int       *natural_height);
-static void     vnck_pager_size_allocate (GtkWidget        *widget,
-                                          GtkAllocation    *allocation);
-static gboolean vnck_pager_draw          (GtkWidget        *widget,
+static void     vnck_pager_size_allocate (CtkWidget        *widget,
+                                          CtkAllocation    *allocation);
+static gboolean vnck_pager_draw          (CtkWidget        *widget,
                                           cairo_t          *cr);
-static gboolean vnck_pager_button_press  (GtkWidget        *widget,
+static gboolean vnck_pager_button_press  (CtkWidget        *widget,
                                           GdkEventButton   *event);
-static gboolean vnck_pager_drag_motion   (GtkWidget        *widget,
+static gboolean vnck_pager_drag_motion   (CtkWidget        *widget,
                                           GdkDragContext   *context,
                                           gint              x,
                                           gint              y,
                                           guint             time);
-static void vnck_pager_drag_motion_leave (GtkWidget        *widget,
+static void vnck_pager_drag_motion_leave (CtkWidget        *widget,
                                           GdkDragContext   *context,
                                           guint             time);
-static gboolean vnck_pager_drag_drop	 (GtkWidget        *widget,
+static gboolean vnck_pager_drag_drop	 (CtkWidget        *widget,
 					  GdkDragContext   *context,
 					  gint              x,
 					  gint              y,
 					  guint             time);
-static void vnck_pager_drag_data_received (GtkWidget          *widget,
+static void vnck_pager_drag_data_received (CtkWidget          *widget,
 			  	           GdkDragContext     *context,
 				           gint                x,
 				           gint                y,
-				           GtkSelectionData   *selection_data,
+				           CtkSelectionData   *selection_data,
 				           guint               info,
 				           guint               time_);
-static void vnck_pager_drag_data_get      (GtkWidget        *widget,
+static void vnck_pager_drag_data_get      (CtkWidget        *widget,
 		                           GdkDragContext   *context,
-		                           GtkSelectionData *selection_data,
+		                           CtkSelectionData *selection_data,
 		                           guint             info,
 		                           guint             time);
-static void vnck_pager_drag_end		  (GtkWidget        *widget,
+static void vnck_pager_drag_end		  (CtkWidget        *widget,
 					   GdkDragContext   *context);
-static gboolean vnck_pager_motion        (GtkWidget        *widget,
+static gboolean vnck_pager_motion        (CtkWidget        *widget,
                                           GdkEventMotion   *event);
-static gboolean vnck_pager_leave_notify	 (GtkWidget          *widget,
+static gboolean vnck_pager_leave_notify	 (CtkWidget          *widget,
 					  GdkEventCrossing   *event);
-static gboolean vnck_pager_button_release (GtkWidget        *widget,
+static gboolean vnck_pager_button_release (CtkWidget        *widget,
                                            GdkEventButton   *event);
-static gboolean vnck_pager_scroll_event  (GtkWidget        *widget,
+static gboolean vnck_pager_scroll_event  (CtkWidget        *widget,
                                           GdkEventScroll   *event);
-static gboolean vnck_pager_query_tooltip (GtkWidget  *widget,
+static gboolean vnck_pager_query_tooltip (CtkWidget  *widget,
                                           gint        x,
                                           gint        y,
                                           gboolean    keyboard_tip,
-                                          GtkTooltip *tooltip);
+                                          CtkTooltip *tooltip);
 static void workspace_name_changed_callback (VnckWorkspace *workspace,
                                              gpointer       data);
 
@@ -198,14 +198,14 @@ static GdkPixbuf* vnck_pager_get_background (VnckPager *pager,
                                              int        width,
                                              int        height);
 
-static AtkObject* vnck_pager_get_accessible (GtkWidget *widget);
+static AtkObject* vnck_pager_get_accessible (CtkWidget *widget);
 
 
 static void
 vnck_pager_init (VnckPager *pager)
 {
   int i;
-  static const GtkTargetEntry targets[] = {
+  static const CtkTargetEntry targets[] = {
     { (gchar *) "application/x-vnck-window-id", 0, 0}
   };
 
@@ -238,7 +238,7 @@ static void
 vnck_pager_class_init (VnckPagerClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  GtkWidgetClass *widget_class = CTK_WIDGET_CLASS (klass);
+  CtkWidgetClass *widget_class = CTK_WIDGET_CLASS (klass);
 
   object_class->finalize = vnck_pager_finalize;
 
@@ -326,13 +326,13 @@ _vnck_pager_set_screen (VnckPager *pager)
 }
 
 static void
-vnck_pager_realize (GtkWidget *widget)
+vnck_pager_realize (CtkWidget *widget)
 {
 
   GdkWindowAttr attributes;
   gint attributes_mask;
   VnckPager *pager;
-  GtkAllocation allocation;
+  CtkAllocation allocation;
   GdkWindow *window;
 
   pager = VNCK_PAGER (widget);
@@ -370,7 +370,7 @@ vnck_pager_realize (GtkWidget *widget)
 }
 
 static void
-vnck_pager_unrealize (GtkWidget *widget)
+vnck_pager_unrealize (CtkWidget *widget)
 {
   VnckPager *pager;
 
@@ -392,13 +392,13 @@ vnck_pager_unrealize (GtkWidget *widget)
 
 static void
 _vnck_pager_get_padding (VnckPager *pager,
-                         GtkBorder *padding)
+                         CtkBorder *padding)
 {
   if (pager->priv->shadow_type != CTK_SHADOW_NONE)
     {
-      GtkWidget       *widget;
-      GtkStyleContext *context;
-      GtkStateFlags    state;
+      CtkWidget       *widget;
+      CtkStyleContext *context;
+      CtkStateFlags    state;
 
       widget = CTK_WIDGET (pager);
       context = ctk_widget_get_style_context (widget);
@@ -407,7 +407,7 @@ _vnck_pager_get_padding (VnckPager *pager,
     }
   else
     {
-      GtkBorder empty_padding = { 0, 0, 0, 0 };
+      CtkBorder empty_padding = { 0, 0, 0, 0 };
       *padding = empty_padding;
     }
 }
@@ -494,15 +494,15 @@ _vnck_pager_get_workspace_height_for_width (VnckPager *pager,
 }
 
 static void
-vnck_pager_size_request  (GtkWidget      *widget,
-                          GtkRequisition *requisition)
+vnck_pager_size_request  (CtkWidget      *widget,
+                          CtkRequisition *requisition)
 {
   VnckPager *pager;
   int n_spaces;
   int spaces_per_row;
   int workspace_width, workspace_height;
   int n_rows;
-  GtkBorder padding;
+  CtkBorder padding;
 
   pager = VNCK_PAGER (widget);
 
@@ -550,8 +550,8 @@ vnck_pager_size_request  (GtkWidget      *widget,
   requisition->height += padding.top + padding.bottom;
 }
 
-static GtkSizeRequestMode
-vnck_pager_get_request_mode (GtkWidget *widget)
+static CtkSizeRequestMode
+vnck_pager_get_request_mode (CtkWidget *widget)
 {
   VnckPager *pager;
 
@@ -564,11 +564,11 @@ vnck_pager_get_request_mode (GtkWidget *widget)
 }
 
 static void
-vnck_pager_get_preferred_width (GtkWidget *widget,
+vnck_pager_get_preferred_width (CtkWidget *widget,
                                 int       *minimum_width,
                                 int       *natural_width)
 {
-  GtkRequisition req;
+  CtkRequisition req;
 
   vnck_pager_size_request (widget, &req);
 
@@ -576,7 +576,7 @@ vnck_pager_get_preferred_width (GtkWidget *widget,
 }
 
 static void
-vnck_pager_get_preferred_width_for_height (GtkWidget *widget,
+vnck_pager_get_preferred_width_for_height (CtkWidget *widget,
                                            int        height,
                                            int       *minimum_width,
                                            int       *natural_width)
@@ -586,7 +586,7 @@ vnck_pager_get_preferred_width_for_height (GtkWidget *widget,
   int n_rows;
   int spaces_per_row;
   int workspace_width, workspace_height;
-  GtkBorder padding;
+  CtkBorder padding;
   int width = 0;
 
   pager = VNCK_PAGER (widget);
@@ -626,11 +626,11 @@ vnck_pager_get_preferred_width_for_height (GtkWidget *widget,
 }
 
 static void
-vnck_pager_get_preferred_height (GtkWidget *widget,
+vnck_pager_get_preferred_height (CtkWidget *widget,
                                  int       *minimum_height,
                                  int       *natural_height)
 {
-  GtkRequisition req;
+  CtkRequisition req;
 
   vnck_pager_size_request (widget, &req);
 
@@ -638,7 +638,7 @@ vnck_pager_get_preferred_height (GtkWidget *widget,
 }
 
 static void
-vnck_pager_get_preferred_height_for_width (GtkWidget *widget,
+vnck_pager_get_preferred_height_for_width (CtkWidget *widget,
                                            int        width,
                                            int       *minimum_height,
                                            int       *natural_height)
@@ -648,7 +648,7 @@ vnck_pager_get_preferred_height_for_width (GtkWidget *widget,
   int n_rows;
   int spaces_per_row;
   int workspace_width, workspace_height;
-  GtkBorder padding;
+  CtkBorder padding;
   int height = 0;
 
   pager = VNCK_PAGER (widget);
@@ -695,12 +695,12 @@ _vnck_pager_queue_resize (gpointer data)
 }
 
 static void
-vnck_pager_size_allocate (GtkWidget      *widget,
-                          GtkAllocation  *allocation)
+vnck_pager_size_allocate (CtkWidget      *widget,
+                          CtkAllocation  *allocation)
 {
   VnckPager *pager;
   int workspace_size;
-  GtkBorder padding;
+  CtkBorder padding;
   int width;
   int height;
 
@@ -751,10 +751,10 @@ get_workspace_rect (VnckPager    *pager,
   int hsize, vsize;
   int n_spaces;
   int spaces_per_row;
-  GtkWidget *widget;
+  CtkWidget *widget;
   int col, row;
-  GtkAllocation allocation;
-  GtkBorder padding;
+  CtkAllocation allocation;
+  CtkBorder padding;
 
   widget = CTK_WIDGET (pager);
 
@@ -952,13 +952,13 @@ get_window_rect (VnckWindow         *window,
 
 static void
 draw_window (cairo_t            *cr,
-             GtkWidget          *widget,
+             CtkWidget          *widget,
              VnckWindow         *win,
              const GdkRectangle *winrect,
-             GtkStateFlags       state,
+             CtkStateFlags       state,
              gboolean            translucent)
 {
-  GtkStyleContext *context;
+  CtkStyleContext *context;
   GdkPixbuf *icon;
   int icon_x, icon_y, icon_w, icon_h;
   gboolean is_active;
@@ -1095,11 +1095,11 @@ workspace_at_point (VnckPager *pager,
                     int       *viewport_x,
                     int       *viewport_y)
 {
-  GtkWidget *widget;
+  CtkWidget *widget;
   int i;
   int n_spaces;
-  GtkAllocation allocation;
-  GtkBorder padding;
+  CtkAllocation allocation;
+  CtkBorder padding;
 
   widget = CTK_WIDGET (pager);
 
@@ -1177,9 +1177,9 @@ workspace_at_point (VnckPager *pager,
 }
 
 static void
-draw_dark_rectangle (GtkStyleContext *context,
+draw_dark_rectangle (CtkStyleContext *context,
                      cairo_t *cr,
-                     GtkStateFlags state,
+                     CtkStateFlags state,
                      int rx, int ry, int rw, int rh)
 {
   ctk_style_context_save (context);
@@ -1210,9 +1210,9 @@ vnck_pager_draw_workspace (VnckPager    *pager,
   GList *tmp;
   gboolean is_current;
   VnckWorkspace *space;
-  GtkWidget *widget;
-  GtkStateFlags state;
-  GtkStyleContext *context;
+  CtkWidget *widget;
+  CtkStateFlags state;
+  CtkStyleContext *context;
 
   space = vnck_screen_get_workspace (pager->priv->screen, workspace);
   if (!space)
@@ -1301,7 +1301,7 @@ vnck_pager_draw_workspace (VnckPager    *pager,
 
                   for (j = 0; j < verti_views; j++)
                     {
-                      GtkStateFlags rec_state = CTK_STATE_FLAG_NORMAL;
+                      CtkStateFlags rec_state = CTK_STATE_FLAG_NORMAL;
 
                       /* "+ j" is for the thin lines */
                       vy = rect->y + (height_ratio * screen_height) * j + j;
@@ -1368,7 +1368,7 @@ vnck_pager_draw_workspace (VnckPager    *pager,
   else
     {
       /* Workspace name mode */
-      GtkStateFlags layout_state;
+      CtkStateFlags layout_state;
       const char *workspace_name;
       PangoLayout *layout;
       VnckWorkspace *ws;
@@ -1406,7 +1406,7 @@ vnck_pager_draw_workspace (VnckPager    *pager,
 }
 
 static gboolean
-vnck_pager_draw (GtkWidget *widget,
+vnck_pager_draw (CtkWidget *widget,
                  cairo_t   *cr)
 {
   VnckPager *pager;
@@ -1415,8 +1415,8 @@ vnck_pager_draw (GtkWidget *widget,
   VnckWorkspace *active_space;
   GdkPixbuf *bg_pixbuf;
   gboolean first;
-  GtkStyleContext *context;
-  GtkStateFlags state;
+  CtkStyleContext *context;
+  CtkStateFlags state;
 
   pager = VNCK_PAGER (widget);
 
@@ -1489,7 +1489,7 @@ vnck_pager_draw (GtkWidget *widget,
 }
 
 static gboolean
-vnck_pager_button_press (GtkWidget      *widget,
+vnck_pager_button_press (CtkWidget      *widget,
                          GdkEventButton *event)
 {
   VnckPager *pager;
@@ -1603,7 +1603,7 @@ vnck_pager_check_prelight (VnckPager *pager,
 }
 
 static gboolean
-vnck_pager_drag_motion (GtkWidget          *widget,
+vnck_pager_drag_motion (CtkWidget          *widget,
                         GdkDragContext     *context,
                         gint                x,
                         gint                y,
@@ -1647,7 +1647,7 @@ vnck_pager_drag_motion (GtkWidget          *widget,
 }
 
 static gboolean
-vnck_pager_drag_drop  (GtkWidget        *widget,
+vnck_pager_drag_drop  (CtkWidget        *widget,
 		       GdkDragContext   *context,
 		       gint              x,
 		       gint              y,
@@ -1670,11 +1670,11 @@ vnck_pager_drag_drop  (GtkWidget        *widget,
 }
 
 static void
-vnck_pager_drag_data_received (GtkWidget          *widget,
+vnck_pager_drag_data_received (CtkWidget          *widget,
 	  	               GdkDragContext     *context,
 			       gint                x,
 			       gint                y,
-			       GtkSelectionData   *selection_data,
+			       CtkSelectionData   *selection_data,
 			       guint               info,
 			       guint               time)
 {
@@ -1718,9 +1718,9 @@ vnck_pager_drag_data_received (GtkWidget          *widget,
 }
 
 static void
-vnck_pager_drag_data_get (GtkWidget        *widget,
+vnck_pager_drag_data_get (CtkWidget        *widget,
                           GdkDragContext   *context,
-                          GtkSelectionData *selection_data,
+                          CtkSelectionData *selection_data,
                           guint             info,
                           guint             time)
 {
@@ -1737,7 +1737,7 @@ vnck_pager_drag_data_get (GtkWidget        *widget,
 }
 
 static void
-vnck_pager_drag_end (GtkWidget        *widget,
+vnck_pager_drag_end (CtkWidget        *widget,
                      GdkDragContext   *context)
 {
   VnckPager *pager = VNCK_PAGER (widget);
@@ -1746,7 +1746,7 @@ vnck_pager_drag_end (GtkWidget        *widget,
 }
 
 static void
-vnck_pager_drag_motion_leave (GtkWidget          *widget,
+vnck_pager_drag_motion_leave (CtkWidget          *widget,
                               GdkDragContext     *context,
                               guint               time)
 {
@@ -1782,7 +1782,7 @@ vnck_update_drag_icon (VnckWindow     *window,
   VnckWorkspace *workspace;
   GdkRectangle rect;
   cairo_surface_t *surface;
-  GtkWidget *widget;
+  CtkWidget *widget;
   cairo_t *cr;
 
   widget = g_object_get_data (G_OBJECT (context), "vnck-drag-source-widget");
@@ -1849,7 +1849,7 @@ vnck_drag_clean_up (VnckWindow     *window,
 {
   if (clean_up_for_context_destroy)
     {
-      GtkWidget *drag_source;
+      CtkWidget *drag_source;
 
       drag_source = g_object_get_data (G_OBJECT (context),
                                        "vnck-drag-source-widget");
@@ -1876,7 +1876,7 @@ vnck_drag_clean_up (VnckWindow     *window,
  * vnck_window_set_as_drag_icon:
  * @window: #VnckWindow to use as drag icon
  * @context: #GdkDragContext to set the icon on
- * @drag_source: #GtkWidget that started the drag, or one of its parent. This
+ * @drag_source: #CtkWidget that started the drag, or one of its parent. This
  * widget needs to stay alive as long as possible during the drag.
  *
  * Sets the given @window as the drag icon for @context.
@@ -1884,7 +1884,7 @@ vnck_drag_clean_up (VnckWindow     *window,
 void
 _vnck_window_set_as_drag_icon (VnckWindow     *window,
                                GdkDragContext *context,
-                               GtkWidget      *drag_source)
+                               CtkWidget      *drag_source)
 {
   g_return_if_fail (VNCK_IS_WINDOW (window));
   g_return_if_fail (GDK_IS_DRAG_CONTEXT (context));
@@ -1904,7 +1904,7 @@ _vnck_window_set_as_drag_icon (VnckWindow     *window,
 }
 
 static gboolean
-vnck_pager_motion (GtkWidget        *widget,
+vnck_pager_motion (CtkWidget        *widget,
                    GdkEventMotion   *event)
 {
   VnckPager *pager;
@@ -1927,7 +1927,7 @@ vnck_pager_motion (GtkWidget        *widget,
                                 pager->priv->drag_start_y,
                                 x, y))
     {
-      GtkTargetList *target_list;
+      CtkTargetList *target_list;
       GdkDragContext *context;
 
       target_list = ctk_drag_dest_get_target_list (widget);
@@ -1949,7 +1949,7 @@ vnck_pager_motion (GtkWidget        *widget,
 }
 
 static gboolean
-vnck_pager_leave_notify	 (GtkWidget          *widget,
+vnck_pager_leave_notify	 (CtkWidget          *widget,
 	      		  GdkEventCrossing   *event)
 {
   VnckPager *pager;
@@ -1962,7 +1962,7 @@ vnck_pager_leave_notify	 (GtkWidget          *widget,
 }
 
 static gboolean
-vnck_pager_button_release (GtkWidget        *widget,
+vnck_pager_button_release (CtkWidget        *widget,
                            GdkEventButton   *event)
 {
   VnckWorkspace *space;
@@ -2022,7 +2022,7 @@ vnck_pager_button_release (GtkWidget        *widget,
 }
 
 static gboolean
-vnck_pager_scroll_event (GtkWidget      *widget,
+vnck_pager_scroll_event (CtkWidget      *widget,
                          GdkEventScroll *event)
 {
   VnckPager          *pager;
@@ -2185,11 +2185,11 @@ vnck_pager_scroll_event (GtkWidget      *widget,
 }
 
 static gboolean
-vnck_pager_query_tooltip (GtkWidget  *widget,
+vnck_pager_query_tooltip (CtkWidget  *widget,
                           gint        x,
                           gint        y,
                           gboolean    keyboard_tip,
-                          GtkTooltip *tooltip)
+                          CtkTooltip *tooltip)
 {
   int i;
   VnckPager *pager;
@@ -2245,7 +2245,7 @@ vnck_pager_query_tooltip (GtkWidget  *widget,
  *
  * Return value: a newly created #VnckPager.
  */
-GtkWidget*
+CtkWidget*
 vnck_pager_new (void)
 {
   VnckPager *pager;
@@ -2330,9 +2330,9 @@ vnck_pager_set_layout_hint (VnckPager *pager)
  */
 gboolean
 vnck_pager_set_orientation (VnckPager     *pager,
-                            GtkOrientation orientation)
+                            CtkOrientation orientation)
 {
-  GtkOrientation old_orientation;
+  CtkOrientation old_orientation;
   gboolean       old_orientation_is_valid;
 
   g_return_val_if_fail (VNCK_IS_PAGER (pager), FALSE);
@@ -2484,7 +2484,7 @@ vnck_pager_set_show_all (VnckPager *pager,
  */
 void
 vnck_pager_set_shadow_type (VnckPager *   pager,
-			    GtkShadowType shadow_type)
+			    CtkShadowType shadow_type)
 {
   g_return_if_fail (VNCK_IS_PAGER (pager));
 
@@ -2935,7 +2935,7 @@ vnck_pager_get_background (VnckPager *pager,
  *This will return aobj_pager whose parent is vnck's atk object -Gail Container
  */
 static AtkObject *
-vnck_pager_get_accessible (GtkWidget *widget)
+vnck_pager_get_accessible (CtkWidget *widget)
 {
   static gboolean first_time = TRUE;
 

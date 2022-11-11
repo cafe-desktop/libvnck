@@ -75,20 +75,20 @@ typedef enum
 struct _VnckActionMenuPrivate
 {
   VnckWindow *window;
-  GtkWidget *minimize_item;
-  GtkWidget *maximize_item;
-  GtkWidget *above_item;
-  GtkWidget *move_item;
-  GtkWidget *resize_item;
-  GtkWidget *close_item;
-  GtkWidget *workspace_separator;
-  GtkWidget *pin_item;
-  GtkWidget *unpin_item;
-  GtkWidget *left_item;
-  GtkWidget *right_item;
-  GtkWidget *up_item;
-  GtkWidget *down_item;
-  GtkWidget *workspace_item;
+  CtkWidget *minimize_item;
+  CtkWidget *maximize_item;
+  CtkWidget *above_item;
+  CtkWidget *move_item;
+  CtkWidget *resize_item;
+  CtkWidget *close_item;
+  CtkWidget *workspace_separator;
+  CtkWidget *pin_item;
+  CtkWidget *unpin_item;
+  CtkWidget *left_item;
+  CtkWidget *right_item;
+  CtkWidget *up_item;
+  CtkWidget *down_item;
+  CtkWidget *workspace_item;
   guint idle_handler;
 };
 
@@ -116,7 +116,7 @@ window_weak_notify (gpointer data,
 }
 
 static VnckActionMenu*
-get_action_menu (GtkWidget *widget)
+get_action_menu (CtkWidget *widget)
 {
   while (widget) {
     if (CTK_IS_MENU_ITEM (widget))
@@ -134,7 +134,7 @@ get_action_menu (GtkWidget *widget)
 }
 
 static void
-item_activated_callback (GtkWidget *menu_item,
+item_activated_callback (CtkWidget *menu_item,
                          gpointer   data)
 {
   VnckActionMenu *menu;
@@ -329,10 +329,10 @@ item_activated_callback (GtkWidget *menu_item,
 }
 
 static void
-set_item_text (GtkWidget  *mi,
+set_item_text (CtkWidget  *mi,
                const char *text)
 {
-  GtkLabel *label;
+  CtkLabel *label;
 
   label = CTK_LABEL (ctk_bin_get_child (CTK_BIN (mi)));
   ctk_label_set_text_with_mnemonic (label, text);
@@ -619,12 +619,12 @@ viewports_changed_callback (VnckWindow *window,
   queue_update (VNCK_ACTION_MENU (data));
 }
 
-static GtkWidget*
+static CtkWidget*
 make_radio_menu_item (WindowAction   action,
                       GSList       **group,
                       const gchar   *mnemonic_text)
 {
-  GtkWidget *mi;
+  CtkWidget *mi;
 
   mi = ctk_radio_menu_item_new_with_mnemonic (*group, mnemonic_text);
   *group = ctk_radio_menu_item_get_group (CTK_RADIO_MENU_ITEM (mi));
@@ -638,11 +638,11 @@ make_radio_menu_item (WindowAction   action,
   return mi;
 }
 
-static GtkWidget*
+static CtkWidget*
 make_check_menu_item (WindowAction  action,
                       const gchar  *mnemonic_text)
 {
-  GtkWidget *mi;
+  CtkWidget *mi;
 
   mi = ctk_check_menu_item_new_with_mnemonic (mnemonic_text);
 
@@ -655,10 +655,10 @@ make_check_menu_item (WindowAction  action,
   return mi;
 }
 
-static GtkWidget*
+static CtkWidget*
 make_menu_item (WindowAction action)
 {
-  GtkWidget *mi;
+  CtkWidget *mi;
 
   mi = ctk_menu_item_new_with_label ("");
 
@@ -747,7 +747,7 @@ get_workspace_name_with_accel (VnckWindow *window,
 static void
 refill_submenu_workspace (VnckActionMenu *menu)
 {
-  GtkWidget *submenu;
+  CtkWidget *submenu;
   GList *children;
   GList *l;
   int num_workspaces, window_space, i;
@@ -773,7 +773,7 @@ refill_submenu_workspace (VnckActionMenu *menu)
   for (i = 0; i < num_workspaces; i++)
     {
       char      *name;
-      GtkWidget *item;
+      CtkWidget *item;
 
       name = get_workspace_name_with_accel (menu->priv->window, i);
 
@@ -795,7 +795,7 @@ refill_submenu_workspace (VnckActionMenu *menu)
 static void
 refill_submenu_viewport (VnckActionMenu *menu)
 {
-  GtkWidget *submenu;
+  CtkWidget *submenu;
   GList *children;
   GList *l;
   VnckScreen *screen;
@@ -837,7 +837,7 @@ refill_submenu_viewport (VnckActionMenu *menu)
   for (y = 0; y < viewport_height; y += screen_height)
     {
       char      *label;
-      GtkWidget *item;
+      CtkWidget *item;
 
       for (x = 0; x < viewport_width; x += screen_width)
         {
@@ -952,8 +952,8 @@ vnck_action_menu_constructor (GType                  type,
   GObject               *obj;
   VnckActionMenu        *menu;
   VnckActionMenuPrivate *priv;
-  GtkWidget             *submenu;
-  GtkWidget             *separator;
+  CtkWidget             *submenu;
+  CtkWidget             *separator;
   GSList                *pin_group;
   VnckScreen            *screen;
 
@@ -1161,7 +1161,7 @@ vnck_action_menu_dispose (GObject *object)
  *
  * Since: 2.22
  **/
-GtkWidget*
+CtkWidget*
 vnck_action_menu_new (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);

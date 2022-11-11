@@ -27,7 +27,7 @@ static GOptionEntry entries[] = {
 };
 
 static gboolean
-window_draw (GtkWidget      *widget,
+window_draw (CtkWidget      *widget,
              cairo_t        *cr,
              gpointer        user_data)
 {
@@ -39,7 +39,7 @@ window_draw (GtkWidget      *widget,
 }
 
 static void
-window_composited_changed (GtkWidget *widget,
+window_composited_changed (CtkWidget *widget,
                            gpointer   user_data)
 {
   GdkScreen *screen;
@@ -56,9 +56,9 @@ main (int argc, char **argv)
 {
   GOptionContext *ctxt;
   VnckScreen *screen;
-  GtkWidget *win;
-  GtkWidget *frame;
-  GtkWidget *tasklist;
+  CtkWidget *win;
+  CtkWidget *frame;
+  CtkWidget *tasklist;
 
   ctxt = g_option_context_new ("");
   g_option_context_add_main_entries (ctxt, entries, NULL);
