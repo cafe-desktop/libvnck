@@ -2535,7 +2535,7 @@
 	(glow_pixbuf): simplify with cdk_pixbuf_composite() thanks to some
 	helper variables
 	(vnck_task_button_glow): updated to use the style properties,
-	fix potential issues with cdk-pixbuf returning NULL
+	fix potential issues with gdk-pixbuf returning NULL
 	(vnck_task_finalize): updated
 	(vnck_tasklist_init): updated
 	(vnck_tasklist_class_init): provide an expose method, install

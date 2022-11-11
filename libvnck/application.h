@@ -27,7 +27,7 @@
 #define VNCK_APPLICATION_H
 
 #include <glib-object.h>
-#include <cdk-pixbuf/cdk-pixbuf.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 #include <libvnck/screen.h>
 
 G_BEGIN_DECLS
