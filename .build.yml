@@ -16,8 +16,6 @@ requires:
     - libgirepository1.0-dev
     - libglib2.0-dev
     - libglib2.0-doc
-    - libctk-3-dev
-    - libctk-3-doc
     - libstartup-notification0-dev
     - libx11-dev
     - libxext-dev
@@ -27,7 +25,7 @@ requires:
 
 before_scripts:
   - ./html-cppcheck
-  - ./debrepo-install 'libctk-3-dev gir1.2-ctk-3.0 libctk-3-common libctk-3-0'
+  - ./debrepo-install 'libctk-3-dev gir1.2-ctk-3.0 libctk-3-common libctk-3-0 libctk-3-doc'
 
 build_scripts:
   - ./before-build
