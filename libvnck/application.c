@@ -62,8 +62,8 @@ struct _VnckApplicationPrivate
 
   VnckWindow *name_window;    /* window we are using name of */
 
-  CdkPixbuf *icon;
-  CdkPixbuf *mini_icon;
+  GdkPixbuf *icon;
+  GdkPixbuf *mini_icon;
 
   VnckIconCache *icon_cache;
 
@@ -327,8 +327,8 @@ vnck_application_get_pid (VnckApplication *app)
 static void
 get_icons (VnckApplication *app)
 {
-  CdkPixbuf *icon;
-  CdkPixbuf *mini_icon;
+  GdkPixbuf *icon;
+  GdkPixbuf *mini_icon;
   gsize normal_size;
   gsize mini_size;
 
@@ -408,10 +408,10 @@ find_icon_window (VnckApplication *app)
  * found, a fallback icon is used.
  *
  * Return value: (transfer none): the icon for @app. The caller should
- * reference the returned <classname>CdkPixbuf</classname> if it needs to keep
+ * reference the returned <classname>GdkPixbuf</classname> if it needs to keep
  * the icon around.
  **/
-CdkPixbuf*
+GdkPixbuf*
 vnck_application_get_icon (VnckApplication *app)
 {
   g_return_val_if_fail (VNCK_IS_APPLICATION (app), NULL);
@@ -439,10 +439,10 @@ vnck_application_get_icon (VnckApplication *app)
  * was found, a fallback mini-icon is used.
  *
  * Return value: (transfer none): the mini-icon for @app. The caller should
- * reference the returned <classname>CdkPixbuf</classname> if it needs to keep
+ * reference the returned <classname>GdkPixbuf</classname> if it needs to keep
  * the mini-icon around.
  **/
-CdkPixbuf*
+GdkPixbuf*
 vnck_application_get_mini_icon (VnckApplication *app)
 {
   g_return_val_if_fail (VNCK_IS_APPLICATION (app), NULL);

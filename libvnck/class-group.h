@@ -79,8 +79,8 @@ const char * vnck_class_group_get_id (VnckClassGroup *class_group);
 
 const char * vnck_class_group_get_name (VnckClassGroup *class_group);
 
-CdkPixbuf *vnck_class_group_get_icon (VnckClassGroup *class_group);
-CdkPixbuf *vnck_class_group_get_mini_icon (VnckClassGroup *class_group);
+GdkPixbuf *vnck_class_group_get_icon (VnckClassGroup *class_group);
+GdkPixbuf *vnck_class_group_get_mini_icon (VnckClassGroup *class_group);
 
 #ifndef VNCK_DISABLE_DEPRECATED
 G_DEPRECATED_FOR(vnck_class_group_get_id)

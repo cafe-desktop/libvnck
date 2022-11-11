@@ -265,7 +265,7 @@ static gboolean vnck_task_get_needs_attention (VnckTask *task);
 static char      *vnck_task_get_text (VnckTask *task,
                                       gboolean  icon_text,
                                       gboolean  include_state);
-static CdkPixbuf *vnck_task_get_icon (VnckTask *task);
+static GdkPixbuf *vnck_task_get_icon (VnckTask *task);
 static gint       vnck_task_compare_alphabetically (gconstpointer  a,
                                                     gconstpointer  b);
 static gint       vnck_task_compare  (gconstpointer  a,
@@ -2917,7 +2917,7 @@ vnck_task_popup_menu (VnckTask *task,
   CtkWidget *menu;
   VnckTask *win_task;
   char *text;
-  CdkPixbuf *pixbuf;
+  GdkPixbuf *pixbuf;
   CtkWidget *menu_item;
   GList *l, *list;
 
@@ -3155,7 +3155,7 @@ vnck_task_get_text (VnckTask *task,
 }
 
 static void
-vnck_dimm_icon (CdkPixbuf *pixbuf)
+vnck_dimm_icon (GdkPixbuf *pixbuf)
 {
   int x, y, pixel_stride, row_stride;
   guchar *row, *pixels;
@@ -3188,11 +3188,11 @@ vnck_dimm_icon (CdkPixbuf *pixbuf)
     }
 }
 
-static CdkPixbuf *
-vnck_task_scale_icon (CdkPixbuf *orig, gboolean minimized)
+static GdkPixbuf *
+vnck_task_scale_icon (GdkPixbuf *orig, gboolean minimized)
 {
   int w, h;
-  CdkPixbuf *pixbuf;
+  GdkPixbuf *pixbuf;
 
   if (!orig)
     return NULL;
@@ -3240,11 +3240,11 @@ vnck_task_scale_icon (CdkPixbuf *orig, gboolean minimized)
 }
 
 
-static CdkPixbuf *
+static GdkPixbuf *
 vnck_task_get_icon (VnckTask *task)
 {
   VnckWindowState state;
-  CdkPixbuf *pixbuf;
+  GdkPixbuf *pixbuf;
 
   pixbuf = NULL;
 
@@ -3271,7 +3271,7 @@ vnck_task_get_icon (VnckTask *task)
           icon = sn_startup_sequence_get_icon_name (task->startup_sequence);
           if (icon != NULL)
             {
-              CdkPixbuf *loaded;
+              GdkPixbuf *loaded;
 
               loaded =  (* task->tasklist->priv->icon_loader) (icon,
                                                                MINI_ICON_SIZE,
@@ -3347,7 +3347,7 @@ vnck_task_get_needs_attention (VnckTask *task)
 static void
 vnck_task_update_visible_state (VnckTask *task)
 {
-  CdkPixbuf *pixbuf;
+  GdkPixbuf *pixbuf;
   char *text;
 
   pixbuf = vnck_task_get_icon (task);
@@ -3825,7 +3825,7 @@ static void
 vnck_task_create_widgets (VnckTask *task, CtkReliefStyle relief)
 {
   CtkWidget *hbox;
-  CdkPixbuf *pixbuf;
+  GdkPixbuf *pixbuf;
   char *text;
   static const CtkTargetEntry targets[] = {
     { (gchar *) "application/x-vnck-window-id", 0, 0 }

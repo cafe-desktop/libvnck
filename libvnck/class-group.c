@@ -58,8 +58,8 @@ struct _VnckClassGroupPrivate {
   GHashTable *window_icon_handlers;
   GHashTable *window_name_handlers;
 
-  CdkPixbuf *icon;
-  CdkPixbuf *mini_icon;
+  GdkPixbuf *icon;
+  GdkPixbuf *mini_icon;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (VnckClassGroup, vnck_class_group, G_TYPE_OBJECT);
@@ -381,7 +381,7 @@ set_name (VnckClassGroup *class_group)
 
 /* Walks the list of applications, trying to get an icon from them */
 static void
-get_icons_from_applications (VnckClassGroup *class_group, CdkPixbuf **icon, CdkPixbuf **mini_icon)
+get_icons_from_applications (VnckClassGroup *class_group, GdkPixbuf **icon, GdkPixbuf **mini_icon)
 {
   GList *l;
 
@@ -413,7 +413,7 @@ get_icons_from_applications (VnckClassGroup *class_group, CdkPixbuf **icon, CdkP
 
 /* Walks the list of windows, trying to get an icon from them */
 static void
-get_icons_from_windows (VnckClassGroup *class_group, CdkPixbuf **icon, CdkPixbuf **mini_icon)
+get_icons_from_windows (VnckClassGroup *class_group, GdkPixbuf **icon, GdkPixbuf **mini_icon)
 {
   GList *l;
 
@@ -445,7 +445,7 @@ get_icons_from_windows (VnckClassGroup *class_group, CdkPixbuf **icon, CdkPixbuf
 static void
 set_icon (VnckClassGroup *class_group)
 {
-  CdkPixbuf *icon, *mini_icon;
+  GdkPixbuf *icon, *mini_icon;
   gboolean icons_reffed = FALSE;
 
   get_icons_from_applications (class_group, &icon, &mini_icon);
@@ -703,12 +703,12 @@ vnck_class_group_get_name (VnckClassGroup *class_group)
  * no icon was found, a fallback icon is used.
  *
  * Return value: (transfer none): the icon for @class_group. The caller should
- * reference the returned <classname>CdkPixbuf</classname> if it needs to keep
+ * reference the returned <classname>GdkPixbuf</classname> if it needs to keep
  * the icon around.
  *
  * Since: 2.2
  **/
-CdkPixbuf *
+GdkPixbuf *
 vnck_class_group_get_icon (VnckClassGroup *class_group)
 {
   g_return_val_if_fail (class_group != NULL, NULL);
@@ -725,12 +725,12 @@ vnck_class_group_get_icon (VnckClassGroup *class_group)
  * vnck_class_group_get_icon() is used to find it.
  *
  * Return value: (transfer none): the mini-icon for @class_group. The caller
- * should reference the returned <classname>CdkPixbuf</classname> if it needs
+ * should reference the returned <classname>GdkPixbuf</classname> if it needs
  * to keep the mini-icon around.
  *
  * Since: 2.2
  **/
-CdkPixbuf *
+GdkPixbuf *
 vnck_class_group_get_mini_icon (VnckClassGroup *class_group)
 {
   g_return_val_if_fail (class_group != NULL, NULL);

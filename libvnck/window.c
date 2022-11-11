@@ -88,8 +88,8 @@ struct _VnckWindowPrivate
 
   VnckWindowType wintype;
 
-  CdkPixbuf *icon;
-  CdkPixbuf *mini_icon;
+  GdkPixbuf *icon;
+  GdkPixbuf *mini_icon;
 
   VnckIconCache *icon_cache;
 
@@ -2115,8 +2115,8 @@ vnck_window_transient_is_most_recently_activated (VnckWindow *window)
 static void
 get_icons (VnckWindow *window)
 {
-  CdkPixbuf *icon;
-  CdkPixbuf *mini_icon;
+  GdkPixbuf *icon;
+  GdkPixbuf *mini_icon;
   gsize normal_size;
   gsize mini_size;
 
@@ -2168,10 +2168,10 @@ _vnck_window_load_icons (VnckWindow *window)
  * icon is the fallback icon.
  *
  * Return value: (transfer none): the icon for @window. The caller should
- * reference the returned <classname>CdkPixbuf</classname> if it needs to keep
+ * reference the returned <classname>GdkPixbuf</classname> if it needs to keep
  * the icon around.
  **/
-CdkPixbuf*
+GdkPixbuf*
 vnck_window_get_icon (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
@@ -2190,10 +2190,10 @@ vnck_window_get_icon (VnckWindow *window)
  * to tell if the mini-icon is the fallback mini-icon.
  *
  * Return value: (transfer none): the mini-icon for @window. The caller should
- * reference the returned <classname>CdkPixbuf</classname> if it needs to keep
+ * reference the returned <classname>GdkPixbuf</classname> if it needs to keep
  * the icon around.
  **/
-CdkPixbuf*
+GdkPixbuf*
 vnck_window_get_mini_icon (VnckWindow *window)
 {
   g_return_val_if_fail (VNCK_IS_WINDOW (window), NULL);
