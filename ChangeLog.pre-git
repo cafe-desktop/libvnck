@@ -758,7 +758,7 @@
 	(_vnck_keyboard_size), (_vnck_change_state),
 	(_vnck_change_workspace), (_vnck_activate),
 	(_vnck_activate_workspace), (_vnck_change_viewport),
-	(_vnck_toggle_showing_desktop), (_vnck_cdk_pixbuf_get_from_pixmap),
+	(_vnck_toggle_showing_desktop), (_vnck_gdk_pixbuf_get_from_pixmap),
 	(_vnck_set_window_geometry), (_vnck_free_layout_manager),
 	(_vnck_try_desktop_layout_manager),
 	(_vnck_release_desktop_layout_manager): ditto.
@@ -2532,7 +2532,7 @@
 
 	* libvnck/tasklist.c: (cleanup_screenshots): new, helper to free
 	screenshot variables
-	(glow_pixbuf): simplify with cdk_pixbuf_composite() thanks to some
+	(glow_pixbuf): simplify with gdk_pixbuf_composite() thanks to some
 	helper variables
 	(vnck_task_button_glow): updated to use the style properties,
 	fix potential issues with gdk-pixbuf returning NULL
@@ -2549,7 +2549,7 @@
 
 2006-05-14  Vincent Untz  <vuntz@gnome.org>
 
-	* libvnck/xutils.c: (_vnck_cdk_pixbuf_get_from_pixmap): don't assume
+	* libvnck/xutils.c: (_vnck_gdk_pixbuf_get_from_pixmap): don't assume
 	the drawable will always exist. Fix crash in bug #336823.
 
 2006-04-20  Brian Pepple  <bdpepple@gmail.com>

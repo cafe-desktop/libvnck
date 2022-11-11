@@ -219,7 +219,7 @@ void _vnck_set_desktop_layout (Screen *xscreen,
                                int     rows,
                                int     columns);
 
-GdkPixbuf* _vnck_cdk_pixbuf_get_from_pixmap (Screen *screen,
+GdkPixbuf* _vnck_gdk_pixbuf_get_from_pixmap (Screen *screen,
                                              Pixmap  xpixmap);
 
 CdkDisplay* _vnck_cdk_display_lookup_from_display (Display *display);

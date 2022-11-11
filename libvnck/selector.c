@@ -129,7 +129,7 @@ vnck_selector_get_default_window_icon (void)
   if (retval)
     return retval;
 
-  retval = cdk_pixbuf_new_from_resource ("/org/gnome/libvnck/default_icon.png", NULL);
+  retval = gdk_pixbuf_new_from_resource ("/org/gnome/libvnck/default_icon.png", NULL);
 
   g_assert (retval);
 
@@ -144,18 +144,18 @@ vnck_selector_dimm_icon (GdkPixbuf *pixbuf)
   int w, h;
   GdkPixbuf *dimmed;
 
-  w = cdk_pixbuf_get_width (pixbuf);
-  h = cdk_pixbuf_get_height (pixbuf);
+  w = gdk_pixbuf_get_width (pixbuf);
+  h = gdk_pixbuf_get_height (pixbuf);
 
-  if (cdk_pixbuf_get_has_alpha (pixbuf))
-    dimmed = cdk_pixbuf_copy (pixbuf);
+  if (gdk_pixbuf_get_has_alpha (pixbuf))
+    dimmed = gdk_pixbuf_copy (pixbuf);
   else
-    dimmed = cdk_pixbuf_add_alpha (pixbuf, FALSE, 0, 0, 0);
+    dimmed = gdk_pixbuf_add_alpha (pixbuf, FALSE, 0, 0, 0);
 
   pixel_stride = 4;
 
-  row = cdk_pixbuf_get_pixels (dimmed);
-  row_stride = cdk_pixbuf_get_rowstride (dimmed);
+  row = gdk_pixbuf_get_pixels (dimmed);
+  row_stride = gdk_pixbuf_get_rowstride (dimmed);
 
   for (y = 0; y < h; y++)
     {
@@ -192,8 +192,8 @@ _vnck_selector_set_window_icon (CtkWidget  *image,
   if (icon_size == -1)
     ctk_icon_size_lookup (CTK_ICON_SIZE_MENU, NULL, &icon_size);
 
-  width = cdk_pixbuf_get_width (pixbuf);
-  height = cdk_pixbuf_get_height (pixbuf);
+  width = gdk_pixbuf_get_width (pixbuf);
+  height = gdk_pixbuf_get_height (pixbuf);
 
   if (icon_size != -1 && (width > icon_size || height > icon_size))
     {
@@ -201,7 +201,7 @@ _vnck_selector_set_window_icon (CtkWidget  *image,
 
       scale = ((double) icon_size) / MAX (width, height);
 
-      pixbuf = cdk_pixbuf_scale_simple (pixbuf, width * scale,
+      pixbuf = gdk_pixbuf_scale_simple (pixbuf, width * scale,
                                         height * scale, CDK_INTERP_BILINEAR);
       freeme = pixbuf;
     }

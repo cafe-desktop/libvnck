@@ -996,8 +996,8 @@ draw_window (cairo_t            *cr,
 
   if (icon)
     {
-      icon_w = cdk_pixbuf_get_width (icon);
-      icon_h = cdk_pixbuf_get_height (icon);
+      icon_w = gdk_pixbuf_get_width (icon);
+      icon_h = gdk_pixbuf_get_height (icon);
 
       /* If the icon is too big, fall back to mini icon.
        * We don't arbitrarily scale the icon, because it's
@@ -1009,8 +1009,8 @@ draw_window (cairo_t            *cr,
           icon = vnck_window_get_mini_icon (win);
           if (icon)
             {
-              icon_w = cdk_pixbuf_get_width (icon);
-              icon_h = cdk_pixbuf_get_height (icon);
+              icon_w = gdk_pixbuf_get_width (icon);
+              icon_h = gdk_pixbuf_get_height (icon);
 
               /* Give up. */
               if (icon_w > (winrect->width - 2) ||
@@ -2887,8 +2887,8 @@ vnck_pager_get_background (VnckPager *pager,
    * width/height values, otherwise this would get really slow.
    */
   if (pager->priv->bg_cache &&
-      cdk_pixbuf_get_width (pager->priv->bg_cache) == width &&
-      cdk_pixbuf_get_height (pager->priv->bg_cache) == height)
+      gdk_pixbuf_get_width (pager->priv->bg_cache) == width &&
+      gdk_pixbuf_get_height (pager->priv->bg_cache) == height)
     return pager->priv->bg_cache;
 
   if (pager->priv->bg_cache)
@@ -2915,12 +2915,12 @@ vnck_pager_get_background (VnckPager *pager,
       Screen *xscreen;
 
       xscreen = VNCK_SCREEN_XSCREEN (pager->priv->screen);
-      pix = _vnck_cdk_pixbuf_get_from_pixmap (xscreen, p);
+      pix = _vnck_gdk_pixbuf_get_from_pixmap (xscreen, p);
     }
 
   if (pix)
     {
-      pager->priv->bg_cache = cdk_pixbuf_scale_simple (pix,
+      pager->priv->bg_cache = gdk_pixbuf_scale_simple (pix,
                                                        width,
                                                        height,
                                                        CDK_INTERP_BILINEAR);

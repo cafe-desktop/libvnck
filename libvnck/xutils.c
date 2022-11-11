@@ -1770,7 +1770,7 @@ TRAP_POP:
 }
 
 GdkPixbuf*
-_vnck_cdk_pixbuf_get_from_pixmap (Screen *screen,
+_vnck_gdk_pixbuf_get_from_pixmap (Screen *screen,
                                   Pixmap  xpixmap)
 {
   cairo_surface_t *surface;
@@ -1781,7 +1781,7 @@ _vnck_cdk_pixbuf_get_from_pixmap (Screen *screen,
   if (surface == NULL)
     return NULL;
 
-  retval = cdk_pixbuf_get_from_surface (surface,
+  retval = gdk_pixbuf_get_from_surface (surface,
                                         0,
                                         0,
                                         cairo_xlib_surface_get_width (surface),
@@ -1870,7 +1870,7 @@ try_pixmap_and_mask (Screen     *screen,
       return FALSE;
     }
 
-  unscaled = cdk_pixbuf_get_from_surface (image,
+  unscaled = gdk_pixbuf_get_from_surface (image,
                                           0, 0,
                                           width, height);
 
@@ -1879,18 +1879,18 @@ try_pixmap_and_mask (Screen     *screen,
   if (unscaled)
     {
       *iconp =
-        cdk_pixbuf_scale_simple (unscaled,
+        gdk_pixbuf_scale_simple (unscaled,
                                  ideal_width > 0 ? ideal_width :
-                                 cdk_pixbuf_get_width (unscaled),
+                                 gdk_pixbuf_get_width (unscaled),
                                  ideal_height > 0 ? ideal_height :
-                                 cdk_pixbuf_get_height (unscaled),
+                                 gdk_pixbuf_get_height (unscaled),
                                  CDK_INTERP_BILINEAR);
       *mini_iconp =
-        cdk_pixbuf_scale_simple (unscaled,
+        gdk_pixbuf_scale_simple (unscaled,
                                  ideal_mini_width > 0 ? ideal_mini_width :
-                                 cdk_pixbuf_get_width (unscaled),
+                                 gdk_pixbuf_get_width (unscaled),
                                  ideal_mini_height > 0 ? ideal_mini_height :
-                                 cdk_pixbuf_get_height (unscaled),
+                                 gdk_pixbuf_get_height (unscaled),
                                  CDK_INTERP_BILINEAR);
 
       g_object_unref (G_OBJECT (unscaled));
@@ -2112,7 +2112,7 @@ scaled_from_pixdata (guchar *pixdata,
   GdkPixbuf *src;
   GdkPixbuf *dest;
 
-  src = cdk_pixbuf_new_from_data (pixdata,
+  src = gdk_pixbuf_new_from_data (pixdata,
                                   CDK_COLORSPACE_RGB,
                                   TRUE,
                                   8,
@@ -2130,12 +2130,12 @@ scaled_from_pixdata (guchar *pixdata,
 
       size = MAX (w, h);
 
-      tmp = cdk_pixbuf_new (CDK_COLORSPACE_RGB, TRUE, 8, size, size);
+      tmp = gdk_pixbuf_new (CDK_COLORSPACE_RGB, TRUE, 8, size, size);
 
       if (tmp != NULL)
 	{
-	  cdk_pixbuf_fill (tmp, 0);
-	  cdk_pixbuf_copy_area (src, 0, 0, w, h,
+	  gdk_pixbuf_fill (tmp, 0);
+	  gdk_pixbuf_copy_area (src, 0, 0, w, h,
 				tmp,
 				(size - w) / 2, (size - h) / 2);
 
@@ -2146,7 +2146,7 @@ scaled_from_pixdata (guchar *pixdata,
 
   if (w != new_w || h != new_h)
     {
-      dest = cdk_pixbuf_scale_simple (src, new_w, new_h, CDK_INTERP_BILINEAR);
+      dest = gdk_pixbuf_scale_simple (src, new_w, new_h, CDK_INTERP_BILINEAR);
 
       g_object_unref (G_OBJECT (src));
     }
@@ -2343,13 +2343,13 @@ default_icon_at_size (int width,
 {
   GdkPixbuf *base;
 
-  base = cdk_pixbuf_new_from_resource ("/org/gnome/libvnck/default_icon.png", NULL);
+  base = gdk_pixbuf_new_from_resource ("/org/gnome/libvnck/default_icon.png", NULL);
 
   g_assert (base);
 
   if ((width < 0 && height < 0) ||
-      (cdk_pixbuf_get_width (base) == width &&
-       cdk_pixbuf_get_height (base) == height))
+      (gdk_pixbuf_get_width (base) == width &&
+       gdk_pixbuf_get_height (base) == height))
     {
       return base;
     }
@@ -2357,11 +2357,11 @@ default_icon_at_size (int width,
     {
       GdkPixbuf *scaled;
 
-      scaled = cdk_pixbuf_scale_simple (base,
+      scaled = gdk_pixbuf_scale_simple (base,
                                         width > 0 ? width :
-                                        cdk_pixbuf_get_width (base),
+                                        gdk_pixbuf_get_width (base),
                                         height > 0 ? height :
-                                        cdk_pixbuf_get_height (base),
+                                        gdk_pixbuf_get_height (base),
                                         CDK_INTERP_BILINEAR);
 
       g_object_unref (G_OBJECT (base));
