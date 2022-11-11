@@ -50,14 +50,14 @@ typedef struct _VnckTasklistPrivate VnckTasklistPrivate;
  */
 struct _VnckTasklist
 {
-  GtkContainer parent_instance;
+  CtkContainer parent_instance;
 
   VnckTasklistPrivate *priv;
 };
 
 struct _VnckTasklistClass
 {
-  GtkContainerClass parent_class;
+  CtkContainerClass parent_class;
   
   /* Padding for future expansion */
   void (* pad1) (void);
@@ -87,7 +87,7 @@ typedef enum {
 
 GType vnck_tasklist_get_type (void) G_GNUC_CONST;
 
-GtkWidget *vnck_tasklist_new (void);
+CtkWidget *vnck_tasklist_new (void);
 const int *vnck_tasklist_get_size_hint_list (VnckTasklist  *tasklist,
 					      int           *n_elements);
 
@@ -102,9 +102,9 @@ void vnck_tasklist_set_grouping_limit (VnckTasklist *tasklist,
 void vnck_tasklist_set_include_all_workspaces (VnckTasklist *tasklist,
 					       gboolean      include_all_workspaces);
 void vnck_tasklist_set_button_relief (VnckTasklist *tasklist,
-                                      GtkReliefStyle relief);
+                                      CtkReliefStyle relief);
 void vnck_tasklist_set_orientation (VnckTasklist *tasklist,
-                                    GtkOrientation orient);
+                                    CtkOrientation orient);
 void vnck_tasklist_set_scroll_enabled (VnckTasklist *tasklist,
                                        gboolean      scroll_enabled);
 gboolean vnck_tasklist_get_scroll_enabled (VnckTasklist *tasklist);

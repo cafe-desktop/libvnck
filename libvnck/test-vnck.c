@@ -3,8 +3,8 @@
 #include <libvnck/libvnck.h>
 #include <ctk/ctk.h>
 
-static GtkWidget *global_tree_view;
-static GtkTreeModel *global_tree_model;
+static CtkWidget *global_tree_view;
+static CtkTreeModel *global_tree_model;
 static guint refill_idle;
 
 static void active_window_changed_callback    (VnckScreen      *screen,
@@ -50,11 +50,11 @@ static void window_class_changed_callback     (VnckWindow      *window,
 static void window_role_changed_callback      (VnckWindow      *window,
                                                gpointer         data);
 
-static GtkTreeModel* create_tree_model (void);
-static GtkWidget*    create_tree_view  (void);
-static void          refill_tree_model (GtkTreeModel *model,
+static CtkTreeModel* create_tree_model (void);
+static CtkWidget*    create_tree_view  (void);
+static void          refill_tree_model (CtkTreeModel *model,
                                         VnckScreen   *screen);
-static void          update_window     (GtkTreeModel *model,
+static void          update_window     (CtkTreeModel *model,
                                         VnckWindow   *window);
 static void          queue_refill_model (void);
 
@@ -70,8 +70,8 @@ int
 main (int argc, char **argv)
 {
   VnckScreen *screen;
-  GtkWidget *sw;
-  GtkWidget *win;
+  CtkWidget *sw;
+  CtkWidget *win;
   GOptionContext *ctxt;
 
   ctxt = g_option_context_new ("");
@@ -396,10 +396,10 @@ window_role_changed_callback  (VnckWindow      *window,
            vnck_window_get_name (window), role);
 }
 
-static GtkTreeModel*
+static CtkTreeModel*
 create_tree_model (void)
 {
-  GtkListStore *store;
+  CtkListStore *store;
   
   store = ctk_list_store_new (1, VNCK_TYPE_WINDOW);
 
@@ -407,7 +407,7 @@ create_tree_model (void)
 }
 
 static void
-refill_tree_model (GtkTreeModel *model,
+refill_tree_model (CtkTreeModel *model,
                    VnckScreen   *screen)
 {
   GList *tmp;
@@ -417,7 +417,7 @@ refill_tree_model (GtkTreeModel *model,
   tmp = vnck_screen_get_windows (screen);
   while (tmp != NULL)
     {
-      GtkTreeIter iter;
+      CtkTreeIter iter;
       VnckWindow *window = tmp->data;
 
       ctk_list_store_append (CTK_LIST_STORE (model), &iter);
@@ -425,7 +425,7 @@ refill_tree_model (GtkTreeModel *model,
 
       if (vnck_window_is_active (window))
         {
-          GtkTreeSelection *selection;
+          CtkTreeSelection *selection;
           
           selection = ctk_tree_view_get_selection (CTK_TREE_VIEW (global_tree_view));
 
@@ -441,10 +441,10 @@ refill_tree_model (GtkTreeModel *model,
 }
 
 static void
-update_window (GtkTreeModel *model,
+update_window (CtkTreeModel *model,
                VnckWindow   *window)
 {
-  GtkTreeIter iter;
+  CtkTreeIter iter;
   GList *windows;
   int i;
   
@@ -469,7 +469,7 @@ update_window (GtkTreeModel *model,
 
       if (vnck_window_is_active (window))
         {
-          GtkTreeSelection *selection;
+          CtkTreeSelection *selection;
           
           selection = ctk_tree_view_get_selection (CTK_TREE_VIEW (global_tree_view));
 
@@ -483,8 +483,8 @@ update_window (GtkTreeModel *model,
 }
 
 static VnckWindow*
-get_window (GtkTreeModel *model,
-            GtkTreeIter  *iter)
+get_window (CtkTreeModel *model,
+            CtkTreeIter  *iter)
 {
   VnckWindow *window;
   
@@ -507,10 +507,10 @@ get_window (GtkTreeModel *model,
 }
 
 static void
-icon_set_func (GtkTreeViewColumn *tree_column,
-               GtkCellRenderer   *cell,
-               GtkTreeModel      *model,
-               GtkTreeIter       *iter,
+icon_set_func (CtkTreeViewColumn *tree_column,
+               CtkCellRenderer   *cell,
+               CtkTreeModel      *model,
+               CtkTreeIter       *iter,
                gpointer           data)
 {
   VnckWindow *window;
@@ -525,10 +525,10 @@ icon_set_func (GtkTreeViewColumn *tree_column,
 }
 
 static void
-title_set_func (GtkTreeViewColumn *tree_column,
-                GtkCellRenderer   *cell,
-                GtkTreeModel      *model,
-                GtkTreeIter       *iter,
+title_set_func (CtkTreeViewColumn *tree_column,
+                CtkCellRenderer   *cell,
+                CtkTreeModel      *model,
+                CtkTreeIter       *iter,
                 gpointer           data)
 {
   VnckWindow *window;
@@ -543,10 +543,10 @@ title_set_func (GtkTreeViewColumn *tree_column,
 }
 
 static void
-workspace_set_func (GtkTreeViewColumn *tree_column,
-                    GtkCellRenderer   *cell,
-                    GtkTreeModel      *model,
-                    GtkTreeIter       *iter,
+workspace_set_func (CtkTreeViewColumn *tree_column,
+                    CtkCellRenderer   *cell,
+                    CtkTreeModel      *model,
+                    CtkTreeIter       *iter,
                     gpointer           data)
 {
   VnckWindow *window;
@@ -574,10 +574,10 @@ workspace_set_func (GtkTreeViewColumn *tree_column,
 }
 
 static void
-pid_set_func (GtkTreeViewColumn *tree_column,
-              GtkCellRenderer   *cell,
-              GtkTreeModel      *model,
-              GtkTreeIter       *iter,
+pid_set_func (CtkTreeViewColumn *tree_column,
+              CtkCellRenderer   *cell,
+              CtkTreeModel      *model,
+              CtkTreeIter       *iter,
               gpointer           data)
 {
   VnckWindow *window;
@@ -603,10 +603,10 @@ pid_set_func (GtkTreeViewColumn *tree_column,
 }
 
 static void
-shaded_set_func (GtkTreeViewColumn *tree_column,
-                 GtkCellRenderer   *cell,
-                 GtkTreeModel      *model,
-                 GtkTreeIter       *iter,
+shaded_set_func (CtkTreeViewColumn *tree_column,
+                 CtkCellRenderer   *cell,
+                 CtkTreeModel      *model,
+                 CtkTreeIter       *iter,
                  gpointer           data)
 {
   VnckWindow *window;
@@ -620,14 +620,14 @@ shaded_set_func (GtkTreeViewColumn *tree_column,
 }
 
 static void
-shaded_toggled_callback (GtkCellRendererToggle *cell,
+shaded_toggled_callback (CtkCellRendererToggle *cell,
                          char                  *path_string,
                          gpointer               data)
 {
-  GtkTreeView *tree_view = CTK_TREE_VIEW (data);
-  GtkTreeModel *model = ctk_tree_view_get_model (tree_view);
-  GtkTreePath *path = ctk_tree_path_new_from_string (path_string);
-  GtkTreeIter iter;
+  CtkTreeView *tree_view = CTK_TREE_VIEW (data);
+  CtkTreeModel *model = ctk_tree_view_get_model (tree_view);
+  CtkTreePath *path = ctk_tree_path_new_from_string (path_string);
+  CtkTreeIter iter;
   VnckWindow *window;
 
   ctk_tree_model_get_iter (model, &iter, path);
@@ -642,10 +642,10 @@ shaded_toggled_callback (GtkCellRendererToggle *cell,
 }
 
 static void
-minimized_set_func (GtkTreeViewColumn *tree_column,
-                    GtkCellRenderer   *cell,
-                    GtkTreeModel      *model,
-                    GtkTreeIter       *iter,
+minimized_set_func (CtkTreeViewColumn *tree_column,
+                    CtkCellRenderer   *cell,
+                    CtkTreeModel      *model,
+                    CtkTreeIter       *iter,
                     gpointer           data)
 {
   VnckWindow *window;
@@ -660,14 +660,14 @@ minimized_set_func (GtkTreeViewColumn *tree_column,
 }
 
 static void
-minimized_toggled_callback (GtkCellRendererToggle *cell,
+minimized_toggled_callback (CtkCellRendererToggle *cell,
                             char                  *path_string,
                             gpointer               data)
 {
-  GtkTreeView *tree_view = CTK_TREE_VIEW (data);
-  GtkTreeModel *model = ctk_tree_view_get_model (tree_view);
-  GtkTreePath *path = ctk_tree_path_new_from_string (path_string);
-  GtkTreeIter iter;
+  CtkTreeView *tree_view = CTK_TREE_VIEW (data);
+  CtkTreeModel *model = ctk_tree_view_get_model (tree_view);
+  CtkTreePath *path = ctk_tree_path_new_from_string (path_string);
+  CtkTreeIter iter;
   VnckWindow *window;
 
   ctk_tree_model_get_iter (model, &iter, path);
@@ -686,10 +686,10 @@ minimized_toggled_callback (GtkCellRendererToggle *cell,
 }
 
 static void
-maximized_set_func (GtkTreeViewColumn *tree_column,
-                    GtkCellRenderer   *cell,
-                    GtkTreeModel      *model,
-                    GtkTreeIter       *iter,
+maximized_set_func (CtkTreeViewColumn *tree_column,
+                    CtkCellRenderer   *cell,
+                    CtkTreeModel      *model,
+                    CtkTreeIter       *iter,
                     gpointer           data)
 {
   VnckWindow *window;
@@ -704,14 +704,14 @@ maximized_set_func (GtkTreeViewColumn *tree_column,
 }
 
 static void
-maximized_toggled_callback (GtkCellRendererToggle *cell,
+maximized_toggled_callback (CtkCellRendererToggle *cell,
                             char                  *path_string,
                             gpointer               data)
 {
-  GtkTreeView *tree_view = CTK_TREE_VIEW (data);
-  GtkTreeModel *model = ctk_tree_view_get_model (tree_view);
-  GtkTreePath *path = ctk_tree_path_new_from_string (path_string);
-  GtkTreeIter iter;
+  CtkTreeView *tree_view = CTK_TREE_VIEW (data);
+  CtkTreeModel *model = ctk_tree_view_get_model (tree_view);
+  CtkTreePath *path = ctk_tree_path_new_from_string (path_string);
+  CtkTreeIter iter;
   VnckWindow *window;
 
   ctk_tree_model_get_iter (model, &iter, path);
@@ -726,10 +726,10 @@ maximized_toggled_callback (GtkCellRendererToggle *cell,
 }
 
 static void
-session_id_set_func (GtkTreeViewColumn *tree_column,
-                     GtkCellRenderer   *cell,
-                     GtkTreeModel      *model,
-                     GtkTreeIter       *iter,
+session_id_set_func (CtkTreeViewColumn *tree_column,
+                     CtkCellRenderer   *cell,
+                     CtkTreeModel      *model,
+                     CtkTreeIter       *iter,
                      gpointer           data)
 {
   VnckWindow *window;
@@ -747,13 +747,13 @@ session_id_set_func (GtkTreeViewColumn *tree_column,
 }
 
 static gboolean
-selection_func (GtkTreeSelection  *selection,
-                GtkTreeModel      *model,
-                GtkTreePath       *path,
+selection_func (CtkTreeSelection  *selection,
+                CtkTreeModel      *model,
+                CtkTreePath       *path,
                 gboolean           currently_selected,
                 gpointer           data)
 {
-  GtkTreeIter iter;
+  CtkTreeIter iter;
   VnckWindow *window;
   
   /* Kind of some hack action here. If you try to select a row that's
@@ -793,13 +793,13 @@ selection_func (GtkTreeSelection  *selection,
     }
 }
 
-static GtkWidget*
+static CtkWidget*
 create_tree_view (void)
 {
-  GtkWidget *tree_view;
-  GtkCellRenderer *cell_renderer;
-  GtkTreeViewColumn *column;
-  GtkTreeSelection *selection;
+  CtkWidget *tree_view;
+  CtkCellRenderer *cell_renderer;
+  CtkTreeViewColumn *column;
+  CtkTreeSelection *selection;
   
   tree_view = ctk_tree_view_new ();
 

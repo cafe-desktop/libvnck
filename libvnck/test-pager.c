@@ -23,15 +23,15 @@ static GOptionEntry entries[] = {
 };
 
 static void
-create_pager_window (GtkOrientation       orientation,
+create_pager_window (CtkOrientation       orientation,
                      gboolean             show_all,
                      VnckPagerDisplayMode mode,
                      VnckPagerScrollMode  scroll_mode,
                      int                  rows,
                      gboolean             wrap)
 {
-  GtkWidget *win;
-  GtkWidget *pager;
+  CtkWidget *win;
+  CtkWidget *pager;
 
   win = ctk_window_new (CTK_WINDOW_TOPLEVEL);
 
@@ -69,7 +69,7 @@ int
 main (int argc, char **argv)
 {
   GOptionContext *ctxt;
-  GtkOrientation  orientation;
+  CtkOrientation  orientation;
   VnckPagerDisplayMode mode;
   VnckPagerScrollMode scroll_mode;
   VnckScreen *screen;

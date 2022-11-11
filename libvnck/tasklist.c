@@ -115,9 +115,9 @@ struct _VnckTask
 
   VnckTasklist *tasklist;
 
-  GtkWidget *button;
-  GtkWidget *image;
-  GtkWidget *label;
+  CtkWidget *button;
+  CtkWidget *image;
+  CtkWidget *label;
 
   VnckTaskType type;
 
@@ -138,9 +138,9 @@ struct _VnckTask
   guint class_icon_changed_tag;
 
   /* task menu */
-  GtkWidget *menu;
+  CtkWidget *menu;
   /* ops menu */
-  GtkWidget *action_menu;
+  CtkWidget *action_menu;
 
   guint really_toggling : 1; /* Set when tasklist really wants
                               * to change the togglebutton state
@@ -227,8 +227,8 @@ struct _VnckTasklistPrivate
 
   GdkMonitor *monitor;
   GdkRectangle monitor_geometry;
-  GtkReliefStyle relief;
-  GtkOrientation orientation;
+  CtkReliefStyle relief;
+  CtkOrientation orientation;
 
   guint drag_start_time;
 
@@ -276,46 +276,46 @@ static void       vnck_task_state_changed        (VnckWindow      *window,
                                                   VnckWindowState  new_state,
                                                   gpointer         data);
 
-static void       vnck_task_drag_begin    (GtkWidget          *widget,
+static void       vnck_task_drag_begin    (CtkWidget          *widget,
                                            GdkDragContext     *context,
                                            VnckTask           *task);
-static void       vnck_task_drag_end      (GtkWidget          *widget,
+static void       vnck_task_drag_end      (CtkWidget          *widget,
                                            GdkDragContext     *context,
                                            VnckTask           *task);
-static void       vnck_task_drag_data_get (GtkWidget          *widget,
+static void       vnck_task_drag_data_get (CtkWidget          *widget,
                                            GdkDragContext     *context,
-                                           GtkSelectionData   *selection_data,
+                                           CtkSelectionData   *selection_data,
                                            guint               info,
                                            guint               time,
                                            VnckTask           *task);
 
 static void     vnck_tasklist_finalize      (GObject        *object);
 
-static void     vnck_tasklist_get_preferred_width (GtkWidget *widget,
+static void     vnck_tasklist_get_preferred_width (CtkWidget *widget,
                                                    int       *minimum_width,
                                                    int       *natural_width);
-static void     vnck_tasklist_get_preferred_height (GtkWidget *widget,
+static void     vnck_tasklist_get_preferred_height (CtkWidget *widget,
                                                     int       *minimum_height,
                                                     int       *natural_height);
-static void     vnck_tasklist_size_allocate (GtkWidget        *widget,
-                                             GtkAllocation    *allocation);
-static void     vnck_tasklist_realize       (GtkWidget        *widget);
-static void     vnck_tasklist_unrealize     (GtkWidget        *widget);
-static gboolean vnck_tasklist_scroll_event  (GtkWidget        *widget,
+static void     vnck_tasklist_size_allocate (CtkWidget        *widget,
+                                             CtkAllocation    *allocation);
+static void     vnck_tasklist_realize       (CtkWidget        *widget);
+static void     vnck_tasklist_unrealize     (CtkWidget        *widget);
+static gboolean vnck_tasklist_scroll_event  (CtkWidget        *widget,
                                              GdkEventScroll   *event);
-static void     vnck_tasklist_forall        (GtkContainer     *container,
+static void     vnck_tasklist_forall        (CtkContainer     *container,
                                              gboolean	       include_internals,
-                                             GtkCallback       callback,
+                                             CtkCallback       callback,
                                              gpointer          callback_data);
-static void     vnck_tasklist_remove	    (GtkContainer   *container,
-					     GtkWidget	    *widget);
+static void     vnck_tasklist_remove	    (CtkContainer   *container,
+					     CtkWidget	    *widget);
 static void     vnck_tasklist_free_tasks    (VnckTasklist   *tasklist);
 static void     vnck_tasklist_update_lists  (VnckTasklist   *tasklist);
-static int      vnck_tasklist_layout        (GtkAllocation  *allocation,
+static int      vnck_tasklist_layout        (CtkAllocation  *allocation,
 					     int             max_width,
 					     int             max_height,
 					     int             n_buttons,
-                                             GtkOrientation  orientation,
+                                             CtkOrientation  orientation,
 					     int            *n_cols_out,
 					     int            *n_rows_out);
 
@@ -578,7 +578,7 @@ static guint signals[LAST_SIGNAL] = { 0 };
 static void
 vnck_tasklist_init (VnckTasklist *tasklist)
 {
-  GtkWidget *widget;
+  CtkWidget *widget;
   AtkObject *atk_obj;
 
   widget = CTK_WIDGET (tasklist);
@@ -614,8 +614,8 @@ static void
 vnck_tasklist_class_init (VnckTasklistClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  GtkWidgetClass *widget_class = CTK_WIDGET_CLASS (klass);
-  GtkContainerClass *container_class = CTK_CONTAINER_CLASS (klass);
+  CtkWidgetClass *widget_class = CTK_WIDGET_CLASS (klass);
+  CtkContainerClass *container_class = CTK_CONTAINER_CLASS (klass);
 
   object_class->finalize = vnck_tasklist_finalize;
 
@@ -842,7 +842,7 @@ vnck_tasklist_set_relief_callback (VnckWindow   *win,
  * Since: 2.12
  */
 void
-vnck_tasklist_set_button_relief (VnckTasklist *tasklist, GtkReliefStyle relief)
+vnck_tasklist_set_button_relief (VnckTasklist *tasklist, CtkReliefStyle relief)
 {
   GList *walk;
 
@@ -883,7 +883,7 @@ vnck_tasklist_set_middle_click_close (VnckTasklist  *tasklist,
 /**
  * vnck_tasklist_set_orientation:
  * @tasklist: a #VnckTasklist.
- * @orient: a GtkOrientation.
+ * @orient: a CtkOrientation.
  *
  * Set the orientation of the @tasklist to match @orient.
  * This function can be used to integrate a #VnckTasklist in vertical panels.
@@ -891,7 +891,7 @@ vnck_tasklist_set_middle_click_close (VnckTasklist  *tasklist,
  * Since: 3.4.6
  */
 void vnck_tasklist_set_orientation (VnckTasklist *tasklist,
-				    GtkOrientation orient)
+				    CtkOrientation orient)
 {
   g_return_if_fail (VNCK_IS_TASKLIST (tasklist));
 
@@ -1041,11 +1041,11 @@ vnck_tasklist_set_icon_loader (VnckTasklist         *tasklist,
  * don't want to stretch the buttons to fill the alloctions
  * the width can be smaller) */
 static int
-vnck_tasklist_layout (GtkAllocation *allocation,
+vnck_tasklist_layout (CtkAllocation *allocation,
 		      int            max_width,
 		      int            max_height,
 		      int            n_buttons,
-		      GtkOrientation orientation,
+		      CtkOrientation orientation,
 		      int           *n_cols_out,
 		      int           *n_rows_out)
 {
@@ -1188,10 +1188,10 @@ vnck_task_get_highest_scored (GList     *ungrouped_class_groups,
 }
 
 static int
-vnck_tasklist_get_button_size (GtkWidget *widget)
+vnck_tasklist_get_button_size (CtkWidget *widget)
 {
-  GtkStyleContext *style_context;
-  GtkStateFlags state;
+  CtkStyleContext *style_context;
+  CtkStateFlags state;
   PangoContext *context;
   PangoFontMetrics *metrics;
   PangoFontDescription *description;
@@ -1217,13 +1217,13 @@ vnck_tasklist_get_button_size (GtkWidget *widget)
 }
 
 static void
-vnck_tasklist_size_request  (GtkWidget      *widget,
-                             GtkRequisition *requisition)
+vnck_tasklist_size_request  (CtkWidget      *widget,
+                             CtkRequisition *requisition)
 {
   VnckTasklist *tasklist;
-  GtkRequisition child_req;
-  GtkAllocation  tasklist_allocation;
-  GtkAllocation  fake_allocation;
+  CtkRequisition child_req;
+  CtkAllocation  tasklist_allocation;
+  CtkAllocation  fake_allocation;
   int max_height = 1;
   int max_width = 1;
   /* int u_width, u_height; */
@@ -1433,11 +1433,11 @@ vnck_tasklist_size_request  (GtkWidget      *widget,
 }
 
 static void
-vnck_tasklist_get_preferred_width (GtkWidget *widget,
+vnck_tasklist_get_preferred_width (CtkWidget *widget,
                                    int       *minimum_width,
                                    int       *natural_width)
 {
-  GtkRequisition req;
+  CtkRequisition req;
 
   vnck_tasklist_size_request (widget, &req);
 
@@ -1445,11 +1445,11 @@ vnck_tasklist_get_preferred_width (GtkWidget *widget,
 }
 
 static void
-vnck_tasklist_get_preferred_height (GtkWidget *widget,
+vnck_tasklist_get_preferred_height (CtkWidget *widget,
                                    int       *minimum_height,
                                    int       *natural_height)
 {
-  GtkRequisition req;
+  CtkRequisition req;
 
   vnck_tasklist_size_request (widget, &req);
 
@@ -1495,14 +1495,14 @@ task_button_queue_resize (gpointer user_data)
 }
 
 static void
-vnck_task_size_allocated (GtkWidget     *widget,
-                          GtkAllocation *allocation,
+vnck_task_size_allocated (CtkWidget     *widget,
+                          CtkAllocation *allocation,
                           gpointer       data)
 {
   VnckTask        *task = VNCK_TASK (data);
-  GtkStyleContext *context;
-  GtkStateFlags    state;
-  GtkBorder        padding;
+  CtkStyleContext *context;
+  CtkStateFlags    state;
+  CtkBorder        padding;
   int              min_image_width;
   gboolean         old_image_visible;
   gboolean         old_label_visible;
@@ -1538,10 +1538,10 @@ vnck_task_size_allocated (GtkWidget     *widget,
 }
 
 static void
-vnck_tasklist_size_allocate (GtkWidget      *widget,
-                             GtkAllocation  *allocation)
+vnck_tasklist_size_allocate (CtkWidget      *widget,
+                             CtkAllocation  *allocation)
 {
-  GtkAllocation child_allocation;
+  CtkAllocation child_allocation;
   VnckTasklist *tasklist;
   VnckTask *class_group_task;
   int n_windows;
@@ -1733,7 +1733,7 @@ foreach_tasklist (VnckTasklist *tasklist,
 }
 
 static void
-vnck_tasklist_realize (GtkWidget *widget)
+vnck_tasklist_realize (CtkWidget *widget)
 {
   VnckTasklist *tasklist;
   GdkScreen *gdkscreen;
@@ -1764,7 +1764,7 @@ vnck_tasklist_realize (GtkWidget *widget)
 }
 
 static void
-vnck_tasklist_unrealize (GtkWidget *widget)
+vnck_tasklist_unrealize (CtkWidget *widget)
 {
   VnckTasklist *tasklist;
 
@@ -1785,9 +1785,9 @@ vnck_tasklist_unrealize (GtkWidget *widget)
 }
 
 static void
-vnck_tasklist_forall (GtkContainer *container,
+vnck_tasklist_forall (CtkContainer *container,
                       gboolean      include_internals,
-                      GtkCallback   callback,
+                      CtkCallback   callback,
                       gpointer      callback_data)
 {
   VnckTasklist *tasklist;
@@ -1824,8 +1824,8 @@ vnck_tasklist_forall (GtkContainer *container,
 }
 
 static void
-vnck_tasklist_remove (GtkContainer   *container,
-		      GtkWidget	     *widget)
+vnck_tasklist_remove (CtkContainer   *container,
+		      CtkWidget	     *widget)
 {
   VnckTasklist *tasklist;
   GList *tmp;
@@ -1992,13 +1992,13 @@ vnck_tasklist_disconnect_screen (VnckTasklist *tasklist)
 }
 
 static gboolean
-vnck_tasklist_scroll_event (GtkWidget      *widget,
+vnck_tasklist_scroll_event (CtkWidget      *widget,
                             GdkEventScroll *event)
 {
   /* use the fact that tasklist->priv->windows is sorted
    * see vnck_tasklist_size_allocate() */
   VnckTasklist *tasklist;
-  GtkTextDirection ltr;
+  CtkTextDirection ltr;
   GList *window;
   gint row = 0;
   gint col = 0;
@@ -2130,7 +2130,7 @@ vnck_tasklist_scroll_event (GtkWidget      *widget,
  *
  * Return value: a newly created #VnckTasklist.
  */
-GtkWidget*
+CtkWidget*
 vnck_tasklist_new (void)
 {
   VnckTasklist *tasklist;
@@ -2465,13 +2465,13 @@ vnck_tasklist_update_icon_geometries (VnckTasklist *tasklist,
 
 	for (l1 = visible_tasks; l1; l1 = l1->next) {
 		VnckTask *task = VNCK_TASK (l1->data);
-                GtkAllocation allocation;
+                CtkAllocation allocation;
 
 		if (!ctk_widget_get_realized (task->button))
 			continue;
 
-                /* Let's cheat with some internal knowledge of GtkButton: in a
-                 * GtkButton, the window is the same as the parent window. So
+                /* Let's cheat with some internal knowledge of CtkButton: in a
+                 * CtkButton, the window is the same as the parent window. So
                  * to know the position of the widget, we should use the
                  * the position of the parent window and the allocation information. */
 
@@ -2714,7 +2714,7 @@ vnck_tasklist_change_active_timeout (gpointer data)
 }
 
 static void
-vnck_task_menu_activated (GtkMenuItem *menu_item,
+vnck_task_menu_activated (CtkMenuItem *menu_item,
 			  gpointer     data)
 {
   VnckTask *task = VNCK_TASK (data);
@@ -2828,7 +2828,7 @@ vnck_tasklist_activate_task_window (VnckTask *task,
 }
 
 static void
-vnck_task_close_all (GtkMenuItem *menu_item,
+vnck_task_close_all (CtkMenuItem *menu_item,
  		     gpointer     data)
 {
   VnckTask *task = VNCK_TASK (data);
@@ -2844,7 +2844,7 @@ vnck_task_close_all (GtkMenuItem *menu_item,
 }
 
 static void
-vnck_task_unminimize_all (GtkMenuItem *menu_item,
+vnck_task_unminimize_all (CtkMenuItem *menu_item,
 		          gpointer     data)
 {
   VnckTask *task = VNCK_TASK (data);
@@ -2863,7 +2863,7 @@ vnck_task_unminimize_all (GtkMenuItem *menu_item,
 }
 
 static void
-vnck_task_minimize_all (GtkMenuItem *menu_item,
+vnck_task_minimize_all (CtkMenuItem *menu_item,
   		        gpointer     data)
 {
   VnckTask *task = VNCK_TASK (data);
@@ -2879,7 +2879,7 @@ vnck_task_minimize_all (GtkMenuItem *menu_item,
 }
 
 static void
-vnck_task_unmaximize_all (GtkMenuItem *menu_item,
+vnck_task_unmaximize_all (CtkMenuItem *menu_item,
   		        gpointer     data)
 {
   VnckTask *task = VNCK_TASK (data);
@@ -2895,7 +2895,7 @@ vnck_task_unmaximize_all (GtkMenuItem *menu_item,
 }
 
 static void
-vnck_task_maximize_all (GtkMenuItem *menu_item,
+vnck_task_maximize_all (CtkMenuItem *menu_item,
   		        gpointer     data)
 {
   VnckTask *task = VNCK_TASK (data);
@@ -2914,11 +2914,11 @@ static void
 vnck_task_popup_menu (VnckTask *task,
                       gboolean  action_submenu)
 {
-  GtkWidget *menu;
+  CtkWidget *menu;
   VnckTask *win_task;
   char *text;
   GdkPixbuf *pixbuf;
-  GtkWidget *menu_item;
+  CtkWidget *menu_item;
   GList *l, *list;
 
   g_return_if_fail (task->type == VNCK_TASK_CLASS_GROUP);
@@ -2939,7 +2939,7 @@ vnck_task_popup_menu (VnckTask *task,
   l = list;
   while (l)
     {
-      GtkWidget *child = CTK_WIDGET (l->data);
+      CtkWidget *child = CTK_WIDGET (l->data);
       ctk_container_remove (CTK_CONTAINER (menu), child);
       l = l->next;
     }
@@ -2979,7 +2979,7 @@ vnck_task_popup_menu (VnckTask *task,
                                    vnck_action_menu_new (win_task->window));
       else
         {
-          static const GtkTargetEntry targets[] = {
+          static const CtkTargetEntry targets[] = {
             { (gchar *) "application/x-vnck-window-id", 0, 0 }
           };
 
@@ -3013,7 +3013,7 @@ vnck_task_popup_menu (VnckTask *task,
   /* In case of Right click, show Minimize All, Unminimize All, Close All*/
   if (action_submenu)
     {
-      GtkWidget *separator;
+      CtkWidget *separator;
 
       separator = ctk_separator_menu_item_new ();
       ctk_widget_show (separator);
@@ -3075,7 +3075,7 @@ vnck_task_popup_menu (VnckTask *task,
 }
 
 static void
-vnck_task_button_toggled (GtkButton *button,
+vnck_task_button_toggled (CtkButton *button,
 			  VnckTask  *task)
 {
   /* Did we really want to change the state of the togglebutton? */
@@ -3505,7 +3505,7 @@ vnck_task_motion_timeout (gpointer data)
 }
 
 static void
-vnck_task_drag_leave (GtkWidget          *widget,
+vnck_task_drag_leave (CtkWidget          *widget,
 		      GdkDragContext     *context,
 		      guint               time,
 		      VnckTask           *task)
@@ -3520,7 +3520,7 @@ vnck_task_drag_leave (GtkWidget          *widget,
 }
 
 static gboolean
-vnck_task_drag_motion (GtkWidget          *widget,
+vnck_task_drag_motion (CtkWidget          *widget,
 		       GdkDragContext     *context,
 		       gint                x,
 		       gint                y,
@@ -3549,7 +3549,7 @@ vnck_task_drag_motion (GtkWidget          *widget,
 }
 
 static void
-vnck_task_drag_begin (GtkWidget          *widget,
+vnck_task_drag_begin (CtkWidget          *widget,
 		      GdkDragContext     *context,
 		      VnckTask           *task)
 {
@@ -3560,7 +3560,7 @@ vnck_task_drag_begin (GtkWidget          *widget,
 }
 
 static void
-vnck_task_drag_end (GtkWidget      *widget,
+vnck_task_drag_end (CtkWidget      *widget,
 		    GdkDragContext *context,
 		    VnckTask       *task)
 {
@@ -3568,9 +3568,9 @@ vnck_task_drag_end (GtkWidget      *widget,
 }
 
 static void
-vnck_task_drag_data_get (GtkWidget          *widget,
+vnck_task_drag_data_get (CtkWidget          *widget,
 		         GdkDragContext     *context,
-		         GtkSelectionData   *selection_data,
+		         CtkSelectionData   *selection_data,
 		         guint               info,
 		 	 guint               time,
 		         VnckTask           *task)
@@ -3584,11 +3584,11 @@ vnck_task_drag_data_get (GtkWidget          *widget,
 }
 
 static void
-vnck_task_drag_data_received (GtkWidget          *widget,
+vnck_task_drag_data_received (CtkWidget          *widget,
                               GdkDragContext     *context,
                               gint                x,
                               gint                y,
-                              GtkSelectionData   *data,
+                              CtkSelectionData   *data,
                               guint               info,
                               guint               time,
                               VnckTask           *target_task)
@@ -3629,7 +3629,7 @@ vnck_task_drag_data_received (GtkWidget          *widget,
 
   if (target_task->window == found_window)
     {
-      GtkSettings  *settings;
+      CtkSettings  *settings;
       guint         double_click_time;
 
       settings = ctk_settings_get_for_screen (ctk_widget_get_screen (CTK_WIDGET (tasklist)));
@@ -3672,7 +3672,7 @@ vnck_task_drag_data_received (GtkWidget          *widget,
 }
 
 static gboolean
-vnck_task_button_press_event (GtkWidget	      *widget,
+vnck_task_button_press_event (CtkWidget	      *widget,
 			      GdkEventButton  *event,
 			      gpointer         data)
 {
@@ -3773,7 +3773,7 @@ vnck_task_extract_windows (VnckTask *task)
 }
 
 static gboolean
-vnck_task_enter_notify_event (GtkWidget *widget,
+vnck_task_enter_notify_event (CtkWidget *widget,
                               GdkEvent  *event,
                               gpointer   data)
 {
@@ -3790,7 +3790,7 @@ vnck_task_enter_notify_event (GtkWidget *widget,
 }
 
 static gboolean
-vnck_task_leave_notify_event (GtkWidget *widget,
+vnck_task_leave_notify_event (CtkWidget *widget,
                               GdkEvent  *event,
                               gpointer   data)
 {
@@ -3807,7 +3807,7 @@ vnck_task_leave_notify_event (GtkWidget *widget,
 }
 
 static gboolean
-vnck_task_scroll_event (GtkWidget *widget,
+vnck_task_scroll_event (CtkWidget *widget,
 			GdkEvent  *event,
 			gpointer   data)
 {
@@ -3817,17 +3817,17 @@ vnck_task_scroll_event (GtkWidget *widget,
 }
 
 static gboolean
-vnck_task_draw (GtkWidget *widget,
+vnck_task_draw (CtkWidget *widget,
                 cairo_t   *cr,
                 gpointer   data);
 
 static void
-vnck_task_create_widgets (VnckTask *task, GtkReliefStyle relief)
+vnck_task_create_widgets (VnckTask *task, CtkReliefStyle relief)
 {
-  GtkWidget *hbox;
+  CtkWidget *hbox;
   GdkPixbuf *pixbuf;
   char *text;
-  static const GtkTargetEntry targets[] = {
+  static const CtkTargetEntry targets[] = {
     { (gchar *) "application/x-vnck-window-id", 0, 0 }
   };
 
@@ -4003,16 +4003,16 @@ vnck_task_create_widgets (VnckTask *task, GtkReliefStyle relief)
 #define INDICATOR_SIZE 7
 
 static gboolean
-vnck_task_draw (GtkWidget *widget,
+vnck_task_draw (CtkWidget *widget,
                 cairo_t   *cr,
                 gpointer   data)
 {
   int x, y;
   VnckTask *task;
-  GtkStyleContext *context;
-  GtkStateFlags state;
-  GtkBorder padding;
-  GtkWidget    *tasklist_widget;
+  CtkStyleContext *context;
+  CtkStateFlags state;
+  CtkBorder padding;
+  CtkWidget    *tasklist_widget;
   gint width, height;
   gboolean overlay_rect;
   gint arrow_width;

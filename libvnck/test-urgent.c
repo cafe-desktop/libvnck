@@ -3,10 +3,10 @@
 #include <ctk/ctk.h>
 
 static void
-set_urgent (GtkWidget *window,
+set_urgent (CtkWidget *window,
             gboolean   urgent)
 {
-  GtkWidget *label;
+  CtkWidget *label;
 
   label = ctk_bin_get_child (CTK_BIN (window));
 
@@ -25,7 +25,7 @@ set_urgent (GtkWidget *window,
 }
 
 static gboolean
-make_urgent (GtkWidget *widget)
+make_urgent (CtkWidget *widget)
 {
   set_urgent (widget, TRUE);
   g_object_set_data (G_OBJECT (widget), "vnck-timeout", NULL);
@@ -34,7 +34,7 @@ make_urgent (GtkWidget *widget)
 }
 
 static gboolean
-focused_in (GtkWidget     *widget,
+focused_in (CtkWidget     *widget,
             GdkEventFocus *event,
             gpointer       user_data)
 {
@@ -52,7 +52,7 @@ focused_in (GtkWidget     *widget,
 }
 
 static gboolean
-focused_out (GtkWidget     *widget,
+focused_out (CtkWidget     *widget,
              GdkEventFocus *event,
              gpointer       user_data)
 {
@@ -67,8 +67,8 @@ focused_out (GtkWidget     *widget,
 int
 main (int argc, char **argv)
 {
-  GtkWidget *win;
-  GtkWidget *label;
+  CtkWidget *win;
+  CtkWidget *label;
 
   ctk_init (&argc, &argv);
 

@@ -29,7 +29,7 @@
 #include <libvnck/libvnck.h>
 
 static void
-status_icon_activated (GtkStatusIcon *icon,
+status_icon_activated (CtkStatusIcon *icon,
                        VnckWindow    *window)
 {
   VnckWorkspace *workspace;
@@ -49,7 +49,7 @@ status_icon_activated (GtkStatusIcon *icon,
   vnck_window_activate (window, timestamp);
 }
 
-static GtkStatusIcon *
+static CtkStatusIcon *
 status_icon_get (VnckWindow *window)
 {
   return g_object_get_data (G_OBJECT (window), "vnck-urgency-icon");
@@ -58,7 +58,7 @@ status_icon_get (VnckWindow *window)
 static void
 status_icon_update (VnckWindow *window)
 {
-  GtkStatusIcon *icon;
+  CtkStatusIcon *icon;
 
   icon = status_icon_get (window);
 
@@ -85,7 +85,7 @@ status_icon_update (VnckWindow *window)
 static void
 status_icon_create (VnckWindow *window)
 {
-  GtkStatusIcon *icon;
+  CtkStatusIcon *icon;
 
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   icon = ctk_status_icon_new ();
@@ -102,7 +102,7 @@ status_icon_create (VnckWindow *window)
 static void
 status_icon_remove (VnckWindow *window)
 {
-  GtkStatusIcon *icon;
+  CtkStatusIcon *icon;
 
   icon = status_icon_get (window);
   if (icon != NULL)
@@ -122,7 +122,7 @@ window_state_changed (VnckWindow      *window,
                       VnckWindowState  new_state,
                       gpointer         data)
 {
-  GtkStatusIcon *icon;
+  CtkStatusIcon *icon;
 
   if (!
       (changed_mask &

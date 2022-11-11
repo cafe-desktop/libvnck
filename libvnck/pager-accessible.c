@@ -95,7 +95,7 @@ vnck_pager_add_selection (AtkSelection *selection,
 {
   VnckPager *pager;
   VnckWorkspace *wspace;
-  GtkWidget *widget;
+  CtkWidget *widget;
   int n_spaces;
 
   widget = ctk_accessible_get_widget (CTK_ACCESSIBLE (selection));
@@ -132,7 +132,7 @@ vnck_pager_ref_selection (AtkSelection *selection,
 		          int           i)
 {
   VnckPager *pager;
-  GtkWidget *widget;
+  CtkWidget *widget;
   VnckWorkspace *active_wspace;
   AtkObject *accessible;
   int wsno;
@@ -165,7 +165,7 @@ vnck_pager_ref_selection (AtkSelection *selection,
 static int
 vnck_pager_selection_count (AtkSelection *selection)
 {
-  GtkWidget *widget;
+  CtkWidget *widget;
 
   widget = ctk_accessible_get_widget (CTK_ACCESSIBLE (selection));
 
@@ -191,7 +191,7 @@ vnck_pager_is_child_selected (AtkSelection *selection,
 		              int           i)
 {
   VnckPager *pager;
-  GtkWidget *widget;
+  CtkWidget *widget;
   VnckWorkspace *active_wspace;
   int wsno;
 
@@ -214,11 +214,11 @@ vnck_pager_is_child_selected (AtkSelection *selection,
 }
 
 AtkObject*
-vnck_pager_accessible_new (GtkWidget *widget)
+vnck_pager_accessible_new (CtkWidget *widget)
 {
   GObject *object;
   AtkObject *aobj_pager;
-  GtkAccessible *ctk_accessible;
+  CtkAccessible *ctk_accessible;
 
   object = g_object_new (VNCK_PAGER_TYPE_ACCESSIBLE, NULL);
 
@@ -282,8 +282,8 @@ vnck_pager_accessible_get_description (AtkObject *obj)
 static int
 vnck_pager_accessible_get_n_children (AtkObject* obj)
 {
-  GtkAccessible *accessible;
-  GtkWidget *widget;
+  CtkAccessible *accessible;
+  CtkWidget *widget;
   VnckPager *pager;
 
   g_return_val_if_fail (VNCK_PAGER_IS_ACCESSIBLE (obj), 0);
@@ -307,8 +307,8 @@ static AtkObject*
 vnck_pager_accessible_ref_child (AtkObject *obj,
                                  int        i)
 {
-  GtkAccessible *accessible;
-  GtkWidget *widget;
+  CtkAccessible *accessible;
+  CtkWidget *widget;
   VnckPager *pager;
   int n_spaces = 0;
   int len;

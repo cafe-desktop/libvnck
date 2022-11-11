@@ -82,7 +82,7 @@ void _vnck_window_set_class_group (VnckWindow     *window,
 /* this one is in pager.c since it needs code from there to draw the icon */
 void _vnck_window_set_as_drag_icon (VnckWindow     *window,
                                     GdkDragContext *context,
-                                    GtkWidget      *drag_source);
+                                    CtkWidget      *drag_source);
 
 void _vnck_application_add_window    (VnckApplication *app,
                                       VnckWindow      *window);
@@ -142,10 +142,10 @@ void           _vnck_pager_get_workspace_rect   (VnckPager     *pager,
                                                  int            i,
                                                  GdkRectangle  *rect);
 
-void           _make_ctk_label_bold   (GtkLabel *label);
-void           _make_ctk_label_normal (GtkLabel *label);
+void           _make_ctk_label_bold   (CtkLabel *label);
+void           _make_ctk_label_normal (CtkLabel *label);
 
-void           _vnck_selector_set_window_icon   (GtkWidget     *image,
+void           _vnck_selector_set_window_icon   (CtkWidget     *image,
                                                  VnckWindow    *window);
 
 void           _vnck_ensure_fallback_style      (void);

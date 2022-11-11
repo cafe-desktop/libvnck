@@ -47,13 +47,13 @@ typedef struct _VnckSelectorPrivate VnckSelectorPrivate;
  */
 struct _VnckSelector
 {
-  GtkMenuBar parent_instance;
+  CtkMenuBar parent_instance;
   VnckSelectorPrivate *priv;
 };
 
 struct _VnckSelectorClass 
 {
-  GtkMenuBarClass parent_class;
+  CtkMenuBarClass parent_class;
   
   /* Padding for future expansion */
   void (* pad1) (void);
@@ -62,7 +62,7 @@ struct _VnckSelectorClass
   void (* pad4) (void);
 };
 
-GtkWidget *vnck_selector_new      (void);
+CtkWidget *vnck_selector_new      (void);
 GType      vnck_selector_get_type (void) G_GNUC_CONST;
 
 G_END_DECLS

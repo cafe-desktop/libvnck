@@ -73,7 +73,7 @@ vnck_workspace_accessible_get_extents (AtkComponent *component,
   AtkGObjectAccessible *atk_gobj;
   VnckPager *pager;
   GdkRectangle rect;
-  GtkWidget *widget;
+  CtkWidget *widget;
   AtkObject *parent;
   GObject *g_obj;
   int px, py;

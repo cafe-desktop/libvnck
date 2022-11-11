@@ -24,11 +24,11 @@
 
 struct _VnckImageMenuItem
 {
-  GtkMenuItem  parent;
+  CtkMenuItem  parent;
 
-  GtkWidget   *box;
-  GtkWidget   *image;
-  GtkWidget   *accel_label;
+  CtkWidget   *box;
+  CtkWidget   *image;
+  CtkWidget   *accel_label;
 
   gchar       *label;
 };
@@ -48,13 +48,13 @@ vnck_image_menu_item_finalize (GObject *object)
 }
 
 static void
-vnck_image_menu_item_get_preferred_width (GtkWidget *widget,
+vnck_image_menu_item_get_preferred_width (CtkWidget *widget,
                                           gint      *minimum,
                                           gint      *natural)
 {
-  GtkWidgetClass *widget_class;
+  CtkWidgetClass *widget_class;
   VnckImageMenuItem *item;
-  GtkRequisition image_requisition;
+  CtkRequisition image_requisition;
 
   widget_class = CTK_WIDGET_CLASS (vnck_image_menu_item_parent_class);
   item = VNCK_IMAGE_MENU_ITEM (widget);
@@ -74,13 +74,13 @@ vnck_image_menu_item_get_preferred_width (GtkWidget *widget,
 }
 
 static void
-vnck_image_menu_item_size_allocate (GtkWidget     *widget,
-                                    GtkAllocation *allocation)
+vnck_image_menu_item_size_allocate (CtkWidget     *widget,
+                                    CtkAllocation *allocation)
 {
-  GtkWidgetClass *widget_class;
+  CtkWidgetClass *widget_class;
   VnckImageMenuItem *item;
-  GtkRequisition image_requisition;
-  GtkAllocation box_allocation;
+  CtkRequisition image_requisition;
+  CtkAllocation box_allocation;
 
   widget_class = CTK_WIDGET_CLASS (vnck_image_menu_item_parent_class);
   item = VNCK_IMAGE_MENU_ITEM (widget);
@@ -108,7 +108,7 @@ vnck_image_menu_item_size_allocate (GtkWidget     *widget,
 }
 
 static const gchar *
-vnck_image_menu_item_get_label (GtkMenuItem *menu_item)
+vnck_image_menu_item_get_label (CtkMenuItem *menu_item)
 {
   VnckImageMenuItem *item;
 
@@ -118,11 +118,11 @@ vnck_image_menu_item_get_label (GtkMenuItem *menu_item)
 }
 
 static void
-vnck_image_menu_item_toggle_size_request (GtkMenuItem *menu_item,
+vnck_image_menu_item_toggle_size_request (CtkMenuItem *menu_item,
                                           gint        *requisition)
 {
   VnckImageMenuItem *item;
-  GtkRequisition image_requisition;
+  CtkRequisition image_requisition;
 
   item = VNCK_IMAGE_MENU_ITEM (menu_item);
 
@@ -138,7 +138,7 @@ vnck_image_menu_item_toggle_size_request (GtkMenuItem *menu_item,
 }
 
 static void
-vnck_image_menu_item_set_label (GtkMenuItem *menu_item,
+vnck_image_menu_item_set_label (CtkMenuItem *menu_item,
                                 const gchar *label)
 {
   VnckImageMenuItem *item;
@@ -159,8 +159,8 @@ static void
 vnck_image_menu_item_class_init (VnckImageMenuItemClass *item_class)
 {
   GObjectClass *object_class;
-  GtkWidgetClass *widget_class;
-  GtkMenuItemClass *menu_item_class;
+  CtkWidgetClass *widget_class;
+  CtkMenuItemClass *menu_item_class;
 
   object_class = G_OBJECT_CLASS (item_class);
   widget_class = CTK_WIDGET_CLASS (item_class);
@@ -179,7 +179,7 @@ vnck_image_menu_item_class_init (VnckImageMenuItemClass *item_class)
 static void
 vnck_image_menu_item_init (VnckImageMenuItem *item)
 {
-  GtkAccelLabel *accel_label;
+  CtkAccelLabel *accel_label;
 
   item->box = ctk_box_new (CTK_ORIENTATION_HORIZONTAL, SPACING);
   ctk_container_add (CTK_CONTAINER (item), item->box);
@@ -199,13 +199,13 @@ vnck_image_menu_item_init (VnckImageMenuItem *item)
   ctk_label_set_use_underline (CTK_LABEL (accel_label), TRUE);
 }
 
-GtkWidget *
+CtkWidget *
 vnck_image_menu_item_new (void)
 {
   return g_object_new (VNCK_TYPE_IMAGE_MENU_ITEM, NULL);
 }
 
-GtkWidget *
+CtkWidget *
 vnck_image_menu_item_new_with_label (const gchar *label)
 {
   return g_object_new (VNCK_TYPE_IMAGE_MENU_ITEM, "label", label, NULL);

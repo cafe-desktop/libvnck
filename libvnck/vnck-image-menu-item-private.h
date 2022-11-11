@@ -25,11 +25,11 @@ G_BEGIN_DECLS
 
 #define VNCK_TYPE_IMAGE_MENU_ITEM vnck_image_menu_item_get_type ()
 G_DECLARE_FINAL_TYPE (VnckImageMenuItem, vnck_image_menu_item,
-                      VNCK, IMAGE_MENU_ITEM, GtkMenuItem)
+                      VNCK, IMAGE_MENU_ITEM, CtkMenuItem)
 
-GtkWidget *vnck_image_menu_item_new                        (void);
+CtkWidget *vnck_image_menu_item_new                        (void);
 
-GtkWidget *vnck_image_menu_item_new_with_label             (const gchar       *label);
+CtkWidget *vnck_image_menu_item_new_with_label             (const gchar       *label);
 
 void       vnck_image_menu_item_set_image_from_icon_pixbuf (VnckImageMenuItem *item,
                                                             GdkPixbuf         *pixbuf);
