@@ -202,7 +202,7 @@ _vnck_selector_set_window_icon (CtkWidget  *image,
       scale = ((double) icon_size) / MAX (width, height);
 
       pixbuf = gdk_pixbuf_scale_simple (pixbuf, width * scale,
-                                        height * scale, CDK_INTERP_BILINEAR);
+                                        height * scale, GDK_INTERP_BILINEAR);
       freeme = pixbuf;
     }
 
