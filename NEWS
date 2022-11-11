@@ -789,7 +789,7 @@ Version 2.27.4
  Fixes
 
   - Fix vnck_application_get_icon_is_fallback() to actually work (Vincent)
-  - Fix ctk-doc warning (Vincent)
+  - Fix gtk-doc warning (Vincent)
   - Code cleanup (Vincent)
   - Always show icons in selector menu (Vincent)
 
@@ -1063,7 +1063,7 @@ Fixes
 
 Misc
 
-  - Require ctk-doc 1.9 (Vincent) [#511414]
+  - Require gtk-doc 1.9 (Vincent) [#511414]
 
  Translators
 
@@ -2178,7 +2178,7 @@ Fixes
 
  Fixes
 
-  - Setup ctk-doc to pull out API documentation (J.H.M. Dassen (Ray))
+  - Setup gtk-doc to pull out API documentation (J.H.M. Dassen (Ray))
 
  Translators
 

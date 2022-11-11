@@ -12,7 +12,7 @@ stages:
       docbook-xml
       gettext
       gobject-introspection
-      ctk-doc-tools
+      gtk-doc-tools
       libgirepository1.0-dev
       libglib2.0-dev
       libglib2.0-doc
