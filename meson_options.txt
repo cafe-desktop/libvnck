@@ -17,4 +17,4 @@ option('introspection',
 option('gtk_doc',
   type: 'boolean',
   value: false,
-  description: 'Enable generating the API reference (depends on CTK-Doc)')
+  description: 'Enable generating the API reference (depends on GTK-Doc)')
