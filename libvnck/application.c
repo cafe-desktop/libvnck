@@ -263,7 +263,7 @@ vnck_application_get_n_windows (VnckApplication *app)
  * @app: a #VnckApplication.
  *
  * Gets the name of @app. Since there is no way to properly find this name,
- * various suboptimal heuristics are used to find it. GTK+ should probably have
+ * various suboptimal heuristics are used to find it. CTK+ should probably have
  * a function to allow applications to set the _NET_WM_NAME property on the
  * group leader as the application name, and the <ulink
  * url="http://standards.freedesktop.org/wm-spec/wm-spec-latest.html">EWMH</ulink>

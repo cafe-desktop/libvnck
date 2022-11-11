@@ -817,7 +817,7 @@ vnck_window_get_class_group (VnckWindow *window)
  *
  * Gets the session ID for @window in Latin-1 encoding.
  * NOTE: this is invalid UTF-8. You can't display this
- * string in a GTK+ widget without converting to UTF-8.
+ * string in a CTK+ widget without converting to UTF-8.
  * See vnck_window_get_session_id_utf8().
  *
  * Return value: the session ID for @window in Latin-1, or %NULL if @window has
@@ -1440,7 +1440,7 @@ vnck_window_set_fullscreen (VnckWindow *window,
  * anytime a #VnckWindow::state-changed signal gets emitted.
  *
  * Sticky here means "stuck to the glass", i.e. does not scroll with the
- * viewport. In GDK/GTK+ (e.g. gdk_window_stick()/ctk_window_stick()), sticky
+ * viewport. In GDK/CTK+ (e.g. gdk_window_stick()/ctk_window_stick()), sticky
  * means "stuck to the glass" and <emphasis>also</emphasis> that the window is
  * on all workspaces. But here it only means the viewport aspect of it.
  *
@@ -2622,7 +2622,7 @@ _vnck_window_process_property_notify (VnckWindow *window,
   else if (xevent->xproperty.atom ==
            _vnck_atom_get ("_NET_FRAME_EXTENTS") ||
            xevent->xproperty.atom ==
-           _vnck_atom_get ("_GTK_FRAME_EXTENTS"))
+           _vnck_atom_get ("_CTK_FRAME_EXTENTS"))
     {
       window->priv->need_update_frame_extents = TRUE;
       queue_update (window);

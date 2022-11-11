@@ -18,9 +18,9 @@
      libvnck depends on the following libraries:
      <variablelist>
       <varlistentry>
-       <term>GTK+</term>
+       <term>CTK+</term>
        <listitem><para>
-        The GTK+ GUI library.
+        The CTK+ GUI library.
        </para></listitem>
       </varlistentry>
       <varlistentry>

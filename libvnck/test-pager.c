@@ -33,17 +33,17 @@ create_pager_window (GtkOrientation       orientation,
   GtkWidget *win;
   GtkWidget *pager;
 
-  win = ctk_window_new (GTK_WINDOW_TOPLEVEL);
+  win = ctk_window_new (CTK_WINDOW_TOPLEVEL);
 
-  ctk_window_stick (GTK_WINDOW (win));
+  ctk_window_stick (CTK_WINDOW (win));
 #if 0
-  vnck_ctk_window_set_dock_type (GTK_WINDOW (win));
+  vnck_ctk_window_set_dock_type (CTK_WINDOW (win));
 #endif
 
-  ctk_window_set_title (GTK_WINDOW (win), "Pager");
+  ctk_window_set_title (CTK_WINDOW (win), "Pager");
 
   /* very very random */
-  ctk_window_move (GTK_WINDOW (win), 0, 0);
+  ctk_window_move (CTK_WINDOW (win), 0, 0);
 
   /* quit on window close */
   g_signal_connect (G_OBJECT (win), "destroy",
@@ -57,10 +57,10 @@ create_pager_window (GtkOrientation       orientation,
   vnck_pager_set_scroll_mode (VNCK_PAGER (pager), scroll_mode);
   vnck_pager_set_orientation (VNCK_PAGER (pager), orientation);
   vnck_pager_set_n_rows (VNCK_PAGER (pager), rows);
-  vnck_pager_set_shadow_type (VNCK_PAGER (pager), GTK_SHADOW_IN);
+  vnck_pager_set_shadow_type (VNCK_PAGER (pager), CTK_SHADOW_IN);
   vnck_pager_set_wrap_on_scroll (VNCK_PAGER (pager), wrap);
 
-  ctk_container_add (GTK_CONTAINER (win), pager);
+  ctk_container_add (CTK_CONTAINER (win), pager);
 
   ctk_widget_show_all (win);
 }
@@ -84,7 +84,7 @@ main (int argc, char **argv)
   ctk_init (&argc, &argv);
 
   if (rtl)
-    ctk_widget_set_default_direction (GTK_TEXT_DIR_RTL);
+    ctk_widget_set_default_direction (CTK_TEXT_DIR_RTL);
 
   screen = vnck_screen_get_default ();
 
@@ -92,9 +92,9 @@ main (int argc, char **argv)
   vnck_screen_force_update (screen);
 
   if (vertical)
-	  orientation = GTK_ORIENTATION_VERTICAL;
+	  orientation = CTK_ORIENTATION_VERTICAL;
   else
-	  orientation = GTK_ORIENTATION_HORIZONTAL;
+	  orientation = CTK_ORIENTATION_HORIZONTAL;
 
   if (show_name)
 	  mode = VNCK_PAGER_DISPLAY_NAME;

@@ -35,13 +35,13 @@ main (int argc, char **argv)
   /* because the pager doesn't respond to signals at the moment */
   vnck_screen_force_update (screen);
 
-  win = ctk_window_new (GTK_WINDOW_TOPLEVEL);
-  ctk_window_set_default_size (GTK_WINDOW (win), 200, 32);
-  ctk_window_stick (GTK_WINDOW (win));
-  /*   vnck_ctk_window_set_dock_type (GTK_WINDOW (win)); */
+  win = ctk_window_new (CTK_WINDOW_TOPLEVEL);
+  ctk_window_set_default_size (CTK_WINDOW (win), 200, 32);
+  ctk_window_stick (CTK_WINDOW (win));
+  /*   vnck_ctk_window_set_dock_type (CTK_WINDOW (win)); */
 
-  ctk_window_set_title (GTK_WINDOW (win), "Window Selector");
-  ctk_window_set_resizable (GTK_WINDOW (win), TRUE);
+  ctk_window_set_title (CTK_WINDOW (win), "Window Selector");
+  ctk_window_set_resizable (CTK_WINDOW (win), TRUE);
 
   /* quit on window close */
   g_signal_connect (G_OBJECT (win), "destroy",
@@ -51,20 +51,20 @@ main (int argc, char **argv)
   selector = vnck_selector_new ();
 
   frame = ctk_frame_new (NULL);
-  ctk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
-  ctk_container_add (GTK_CONTAINER (win), frame);
+  ctk_frame_set_shadow_type (CTK_FRAME (frame), CTK_SHADOW_IN);
+  ctk_container_add (CTK_CONTAINER (win), frame);
 
-  ctk_container_add (GTK_CONTAINER (frame), selector);
+  ctk_container_add (CTK_CONTAINER (frame), selector);
 
   ctk_widget_show (selector);
   ctk_widget_show (frame);
 
-  ctk_window_move (GTK_WINDOW (win), 0, 0);
+  ctk_window_move (CTK_WINDOW (win), 0, 0);
 
   if (skip_tasklist)
   {
-    ctk_window_set_skip_taskbar_hint (GTK_WINDOW (win), TRUE);
-    ctk_window_set_keep_above (GTK_WINDOW (win), TRUE);
+    ctk_window_set_skip_taskbar_hint (CTK_WINDOW (win), TRUE);
+    ctk_window_set_keep_above (CTK_WINDOW (win), TRUE);
   }
 
   ctk_widget_show (win);

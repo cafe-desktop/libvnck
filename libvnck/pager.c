@@ -89,7 +89,7 @@ struct _VnckPagerPrivate
   guint dnd_time; /* time of last event during dnd (for delayed workspace activation) */
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (VnckPager, vnck_pager, GTK_TYPE_WIDGET);
+G_DEFINE_TYPE_WITH_PRIVATE (VnckPager, vnck_pager, CTK_TYPE_WIDGET);
 
 enum
 {
@@ -215,10 +215,10 @@ vnck_pager_init (VnckPager *pager)
   pager->priv->display_mode = VNCK_PAGER_DISPLAY_CONTENT;
   pager->priv->scroll_mode = VNCK_PAGER_SCROLL_2D;
   pager->priv->show_all_workspaces = TRUE;
-  pager->priv->shadow_type = GTK_SHADOW_NONE;
+  pager->priv->shadow_type = CTK_SHADOW_NONE;
   pager->priv->wrap_on_scroll = FALSE;
 
-  pager->priv->orientation = GTK_ORIENTATION_HORIZONTAL;
+  pager->priv->orientation = CTK_ORIENTATION_HORIZONTAL;
   pager->priv->workspace_size = 48;
 
   for (i = 0; i < N_SCREEN_CONNECTIONS; i++)
@@ -230,15 +230,15 @@ vnck_pager_init (VnckPager *pager)
 
   g_object_set (pager, "has-tooltip", TRUE, NULL);
 
-  ctk_drag_dest_set (GTK_WIDGET (pager), 0, targets, G_N_ELEMENTS (targets), GDK_ACTION_MOVE);
-  ctk_widget_set_can_focus (GTK_WIDGET (pager), TRUE);
+  ctk_drag_dest_set (CTK_WIDGET (pager), 0, targets, G_N_ELEMENTS (targets), GDK_ACTION_MOVE);
+  ctk_widget_set_can_focus (CTK_WIDGET (pager), TRUE);
 }
 
 static void
 vnck_pager_class_init (VnckPagerClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+  GtkWidgetClass *widget_class = CTK_WIDGET_CLASS (klass);
 
   object_class->finalize = vnck_pager_finalize;
 
@@ -295,10 +295,10 @@ _vnck_pager_set_screen (VnckPager *pager)
 {
   GdkScreen *gdkscreen;
 
-  if (!ctk_widget_has_screen (GTK_WIDGET (pager)))
+  if (!ctk_widget_has_screen (CTK_WIDGET (pager)))
     return;
 
-  gdkscreen = ctk_widget_get_screen (GTK_WIDGET (pager));
+  gdkscreen = ctk_widget_get_screen (CTK_WIDGET (pager));
   pager->priv->screen = vnck_screen_get (gdk_x11_screen_get_screen_number (gdkscreen));
 
   if (!vnck_pager_set_layout_hint (pager))
@@ -315,11 +315,11 @@ _vnck_pager_set_screen (VnckPager *pager)
       /* test in this order to default to horizontal in case there was in issue
        * when fetching the layout */
       if (orientation == VNCK_LAYOUT_ORIENTATION_VERTICAL)
-        pager->priv->orientation = GTK_ORIENTATION_VERTICAL;
+        pager->priv->orientation = CTK_ORIENTATION_VERTICAL;
       else
-        pager->priv->orientation = GTK_ORIENTATION_HORIZONTAL;
+        pager->priv->orientation = CTK_ORIENTATION_HORIZONTAL;
 
-      ctk_widget_queue_resize (GTK_WIDGET (pager));
+      ctk_widget_queue_resize (CTK_WIDGET (pager));
     }
 
   vnck_pager_connect_screen (pager);
@@ -387,20 +387,20 @@ vnck_pager_unrealize (GtkWidget *widget)
   vnck_pager_disconnect_screen (pager);
   pager->priv->screen = NULL;
 
-  GTK_WIDGET_CLASS (vnck_pager_parent_class)->unrealize (widget);
+  CTK_WIDGET_CLASS (vnck_pager_parent_class)->unrealize (widget);
 }
 
 static void
 _vnck_pager_get_padding (VnckPager *pager,
                          GtkBorder *padding)
 {
-  if (pager->priv->shadow_type != GTK_SHADOW_NONE)
+  if (pager->priv->shadow_type != CTK_SHADOW_NONE)
     {
       GtkWidget       *widget;
       GtkStyleContext *context;
       GtkStateFlags    state;
 
-      widget = GTK_WIDGET (pager);
+      widget = CTK_WIDGET (pager);
       context = ctk_widget_get_style_context (widget);
       state = ctk_style_context_get_state (context);
       ctk_style_context_get_padding (context, state, padding);
@@ -444,7 +444,7 @@ _vnck_pager_get_workspace_width_for_height (VnckPager *pager,
       int n_spaces;
       int i, w;
 
-      layout = ctk_widget_create_pango_layout  (GTK_WIDGET (pager), NULL);
+      layout = ctk_widget_create_pango_layout  (CTK_WIDGET (pager), NULL);
       screen = pager->priv->screen;
       n_spaces = vnck_screen_get_workspace_count (pager->priv->screen);
       workspace_width = 1;
@@ -526,7 +526,7 @@ vnck_pager_size_request  (GtkWidget      *widget,
       spaces_per_row = 1;
     }
 
-  if (pager->priv->orientation == GTK_ORIENTATION_VERTICAL)
+  if (pager->priv->orientation == CTK_ORIENTATION_VERTICAL)
     {
       workspace_width = pager->priv->workspace_size;
       workspace_height = _vnck_pager_get_workspace_height_for_width (pager,
@@ -557,10 +557,10 @@ vnck_pager_get_request_mode (GtkWidget *widget)
 
   pager = VNCK_PAGER (widget);
 
-  if (pager->priv->orientation == GTK_ORIENTATION_VERTICAL)
-    return GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH;
+  if (pager->priv->orientation == CTK_ORIENTATION_VERTICAL)
+    return CTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH;
   else
-    return GTK_SIZE_REQUEST_WIDTH_FOR_HEIGHT;
+    return CTK_SIZE_REQUEST_WIDTH_FOR_HEIGHT;
 }
 
 static void
@@ -690,7 +690,7 @@ vnck_pager_get_preferred_height_for_width (GtkWidget *widget,
 static gboolean
 _vnck_pager_queue_resize (gpointer data)
 {
-  ctk_widget_queue_resize (GTK_WIDGET (data));
+  ctk_widget_queue_resize (CTK_WIDGET (data));
   return FALSE;
 }
 
@@ -715,7 +715,7 @@ vnck_pager_size_allocate (GtkWidget      *widget,
 
   g_assert (pager->priv->n_rows > 0);
 
-  if (pager->priv->orientation == GTK_ORIENTATION_VERTICAL)
+  if (pager->priv->orientation == CTK_ORIENTATION_VERTICAL)
     {
       if (pager->priv->show_all_workspaces)
 	workspace_size = (width - (pager->priv->n_rows - 1))  / pager->priv->n_rows;
@@ -739,7 +739,7 @@ vnck_pager_size_allocate (GtkWidget      *widget,
       return;
     }
 
-  GTK_WIDGET_CLASS (vnck_pager_parent_class)->size_allocate (widget,
+  CTK_WIDGET_CLASS (vnck_pager_parent_class)->size_allocate (widget,
                                                              allocation);
 }
 
@@ -756,7 +756,7 @@ get_workspace_rect (VnckPager    *pager,
   GtkAllocation allocation;
   GtkBorder padding;
 
-  widget = GTK_WIDGET (pager);
+  widget = CTK_WIDGET (pager);
 
   ctk_widget_get_allocation (widget, &allocation);
 
@@ -800,7 +800,7 @@ get_workspace_rect (VnckPager    *pager,
   hsize = allocation.width;
   vsize = allocation.height;
 
-  if (pager->priv->shadow_type != GTK_SHADOW_NONE)
+  if (pager->priv->shadow_type != CTK_SHADOW_NONE)
     {
       hsize -= padding.left + padding.right;
       vsize -= padding.top + padding.bottom;
@@ -811,7 +811,7 @@ get_workspace_rect (VnckPager    *pager,
   g_assert (pager->priv->n_rows > 0);
   spaces_per_row = (n_spaces + pager->priv->n_rows - 1) / pager->priv->n_rows;
 
-  if (pager->priv->orientation == GTK_ORIENTATION_VERTICAL)
+  if (pager->priv->orientation == CTK_ORIENTATION_VERTICAL)
     {
       rect->width = (hsize - (pager->priv->n_rows - 1)) / pager->priv->n_rows;
       rect->height = (vsize - (spaces_per_row - 1)) / spaces_per_row;
@@ -819,7 +819,7 @@ get_workspace_rect (VnckPager    *pager,
       col = space / spaces_per_row;
       row = space % spaces_per_row;
 
-      if (ctk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+      if (ctk_widget_get_direction (widget) == CTK_TEXT_DIR_RTL)
         col = pager->priv->n_rows - col - 1;
 
       rect->x = (rect->width + 1) * col;
@@ -839,7 +839,7 @@ get_workspace_rect (VnckPager    *pager,
       col = space % spaces_per_row;
       row = space / spaces_per_row;
 
-      if (ctk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+      if (ctk_widget_get_direction (widget) == CTK_TEXT_DIR_RTL)
         col = spaces_per_row - col - 1;
 
       rect->x = (rect->width + 1) * col;
@@ -852,7 +852,7 @@ get_workspace_rect (VnckPager    *pager,
 	rect->height = vsize - rect->y;
     }
 
-  if (pager->priv->shadow_type != GTK_SHADOW_NONE)
+  if (pager->priv->shadow_type != CTK_SHADOW_NONE)
     {
       rect->x += padding.left;
       rect->y += padding.top;
@@ -1101,7 +1101,7 @@ workspace_at_point (VnckPager *pager,
   GtkAllocation allocation;
   GtkBorder padding;
 
-  widget = GTK_WIDGET (pager);
+  widget = CTK_WIDGET (pager);
 
   ctk_widget_get_allocation (widget, &allocation);
 
@@ -1218,14 +1218,14 @@ vnck_pager_draw_workspace (VnckPager    *pager,
   if (!space)
     return;
 
-  widget = GTK_WIDGET (pager);
+  widget = CTK_WIDGET (pager);
   is_current = (space == vnck_screen_get_active_workspace (pager->priv->screen));
 
-  state = GTK_STATE_FLAG_NORMAL;
+  state = CTK_STATE_FLAG_NORMAL;
   if (is_current)
-    state |= GTK_STATE_FLAG_SELECTED;
+    state |= CTK_STATE_FLAG_SELECTED;
   else if (workspace == pager->priv->prelight)
-    state |= GTK_STATE_FLAG_PRELIGHT;
+    state |= CTK_STATE_FLAG_PRELIGHT;
 
   context = ctk_widget_get_style_context (widget);
 
@@ -1301,7 +1301,7 @@ vnck_pager_draw_workspace (VnckPager    *pager,
 
                   for (j = 0; j < verti_views; j++)
                     {
-                      GtkStateFlags rec_state = GTK_STATE_FLAG_NORMAL;
+                      GtkStateFlags rec_state = CTK_STATE_FLAG_NORMAL;
 
                       /* "+ j" is for the thin lines */
                       vy = rect->y + (height_ratio * screen_height) * j + j;
@@ -1310,7 +1310,7 @@ vnck_pager_draw_workspace (VnckPager    *pager,
                         vh = rect->height + rect->y - vy;
 
                       if (active_i == i && active_j == j)
-                        rec_state = GTK_STATE_FLAG_SELECTED;
+                        rec_state = CTK_STATE_FLAG_SELECTED;
 
                       draw_dark_rectangle (context, cr, rec_state, vx, vy, vw, vh);
                     }
@@ -1322,7 +1322,7 @@ vnck_pager_draw_workspace (VnckPager    *pager,
               height_ratio = rect->height / (double) workspace_height;
 
               /* first draw non-active part of the viewport */
-              draw_dark_rectangle (context, cr, GTK_STATE_FLAG_NORMAL,
+              draw_dark_rectangle (context, cr, CTK_STATE_FLAG_NORMAL,
                                    rect->x, rect->y, rect->width, rect->height);
 
               if (is_current)
@@ -1335,7 +1335,7 @@ vnck_pager_draw_workspace (VnckPager    *pager,
                   vw = width_ratio * screen_width;
                   vh = height_ratio * screen_height;
 
-                  draw_dark_rectangle (context, cr, GTK_STATE_FLAG_SELECTED,
+                  draw_dark_rectangle (context, cr, CTK_STATE_FLAG_SELECTED,
                                        vx, vy, vw, vh);
                 }
             }
@@ -1380,7 +1380,7 @@ vnck_pager_draw_workspace (VnckPager    *pager,
 
       pango_layout_get_pixel_size (layout, &w, &h);
 
-      layout_state = (is_current) ? GTK_STATE_FLAG_SELECTED : GTK_STATE_FLAG_NORMAL;
+      layout_state = (is_current) ? CTK_STATE_FLAG_SELECTED : CTK_STATE_FLAG_NORMAL;
       ctk_style_context_save (context);
       ctk_style_context_set_state (context, layout_state);
       ctk_render_layout (context, cr, rect->x + (rect->width - w) / 2,
@@ -1393,7 +1393,7 @@ vnck_pager_draw_workspace (VnckPager    *pager,
   if (workspace == pager->priv->prelight && pager->priv->prelight_dnd)
     {
       ctk_style_context_save (context);
-      ctk_style_context_set_state (context, GTK_STATE_FLAG_NORMAL);
+      ctk_style_context_set_state (context, CTK_STATE_FLAG_NORMAL);
       ctk_render_frame (context, cr, rect->x, rect->y, rect->width, rect->height);
       ctk_style_context_restore (context);
 
@@ -1445,7 +1445,7 @@ vnck_pager_draw (GtkWidget *widget,
     cairo_restore (cr);
   }
 
-  if (pager->priv->shadow_type != GTK_SHADOW_NONE)
+  if (pager->priv->shadow_type != CTK_SHADOW_NONE)
     {
       cairo_save (cr);
       ctk_render_frame (context, cr, 0, 0,
@@ -1557,7 +1557,7 @@ vnck_pager_queue_draw_workspace (VnckPager *pager,
     return;
 
   get_workspace_rect (pager, i, &rect);
-  ctk_widget_queue_draw_area (GTK_WIDGET (pager),
+  ctk_widget_queue_draw_area (CTK_WIDGET (pager),
                               rect.x, rect.y,
 			      rect.width, rect.height);
 }
@@ -1789,7 +1789,7 @@ vnck_update_drag_icon (VnckWindow     *window,
   if (!widget)
     return;
 
-  if (!ctk_icon_size_lookup (GTK_ICON_SIZE_DND, &dnd_w, &dnd_h))
+  if (!ctk_icon_size_lookup (CTK_ICON_SIZE_DND, &dnd_w, &dnd_h))
     dnd_w = dnd_h = 32;
   /* windows are huge, so let's make this huge */
   dnd_w *= 3;
@@ -1815,7 +1815,7 @@ vnck_update_drag_icon (VnckWindow     *window,
                                                CAIRO_CONTENT_COLOR,
                                                rect.width, rect.height);
   cr = cairo_create (surface);
-  draw_window (cr, widget, window, &rect, GTK_STATE_FLAG_NORMAL, FALSE);
+  draw_window (cr, widget, window, &rect, CTK_STATE_FLAG_NORMAL, FALSE);
   cairo_destroy (cr);
   cairo_surface_set_device_offset (surface, 2, 2);
 
@@ -1940,7 +1940,7 @@ vnck_pager_motion (GtkWidget        *widget,
       pager->priv->prelight_dnd = TRUE;
       _vnck_window_set_as_drag_icon (pager->priv->drag_window,
 				     context,
-				     GTK_WIDGET (pager));
+				     CTK_WIDGET (pager));
     }
 
   vnck_pager_check_prelight (pager, x, y, pager->priv->prelight_dnd);
@@ -2055,7 +2055,7 @@ vnck_pager_scroll_event (GtkWidget      *widget,
   in_last_row = n_workspaces % n_columns;
   wrap_workspaces = pager->priv->wrap_on_scroll;
 
-  if (ctk_widget_get_direction (GTK_WIDGET (pager)) == GTK_TEXT_DIR_RTL)
+  if (ctk_widget_get_direction (CTK_WIDGET (pager)) == CTK_TEXT_DIR_RTL)
     {
       switch (event->direction)
         {
@@ -2203,7 +2203,7 @@ vnck_pager_query_tooltip (GtkWidget  *widget,
   i = workspace_at_point (pager, x, y, NULL, NULL);
   space = vnck_screen_get_workspace (screen, i);
   if (!space)
-    return GTK_WIDGET_CLASS (vnck_pager_parent_class)->query_tooltip (widget,
+    return CTK_WIDGET_CLASS (vnck_pager_parent_class)->query_tooltip (widget,
                                                                       x, y,
                                                                       keyboard_tip,
                                                                       tooltip);
@@ -2252,7 +2252,7 @@ vnck_pager_new (void)
 
   pager = g_object_new (VNCK_TYPE_PAGER, NULL);
 
-  return GTK_WIDGET (pager);
+  return CTK_WIDGET (pager);
 }
 
 static gboolean
@@ -2276,7 +2276,7 @@ vnck_pager_set_layout_hint (VnckPager *pager)
   if (!pager->priv->show_all_workspaces)
     return FALSE;
 
-  if (pager->priv->orientation == GTK_ORIENTATION_HORIZONTAL)
+  if (pager->priv->orientation == CTK_ORIENTATION_HORIZONTAL)
     {
       layout_rows = pager->priv->n_rows;
       layout_cols = 0;
@@ -2307,19 +2307,19 @@ vnck_pager_set_layout_hint (VnckPager *pager)
  * set this property of a #VnckScreen at a time, setting the layout is not
  * guaranteed to work.
  *
- * If @orientation is %GTK_ORIENTATION_HORIZONTAL, the #VnckWorkspace will be
+ * If @orientation is %CTK_ORIENTATION_HORIZONTAL, the #VnckWorkspace will be
  * laid out in rows, with the first #VnckWorkspace in the top left corner.
  *
- * If @orientation is %GTK_ORIENTATION_VERTICAL, the #VnckWorkspace will be
+ * If @orientation is %CTK_ORIENTATION_VERTICAL, the #VnckWorkspace will be
  * laid out in columns, with the first #VnckWorkspace in the top left corner.
  *
  * For example, if the layout contains one row, but the orientation of the
  * layout is vertical, the #VnckPager will display a column of #VnckWorkspace.
  *
  * Note that setting the orientation will have an effect on the geometry
- * management: if @orientation is %GTK_ORIENTATION_HORIZONTAL,
- * %GTK_SIZE_REQUEST_WIDTH_FOR_HEIGHT will be used as request mode; if
- * @orientation is %GTK_ORIENTATION_VERTICAL, GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH
+ * management: if @orientation is %CTK_ORIENTATION_HORIZONTAL,
+ * %CTK_SIZE_REQUEST_WIDTH_FOR_HEIGHT will be used as request mode; if
+ * @orientation is %CTK_ORIENTATION_VERTICAL, CTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH
  * will be used instead.
  *
  * If @pager has not been added to a widget hierarchy, the call will fail
@@ -2347,7 +2347,7 @@ vnck_pager_set_orientation (VnckPager     *pager,
 
   if (vnck_pager_set_layout_hint (pager))
     {
-      ctk_widget_queue_resize (GTK_WIDGET (pager));
+      ctk_widget_queue_resize (CTK_WIDGET (pager));
       return TRUE;
     }
   else
@@ -2395,7 +2395,7 @@ vnck_pager_set_n_rows (VnckPager *pager,
 
   if (vnck_pager_set_layout_hint (pager))
     {
-      ctk_widget_queue_resize (GTK_WIDGET (pager));
+      ctk_widget_queue_resize (CTK_WIDGET (pager));
       return TRUE;
     }
   else
@@ -2425,7 +2425,7 @@ vnck_pager_set_display_mode (VnckPager            *pager,
   g_object_set (pager, "has-tooltip", mode != VNCK_PAGER_DISPLAY_NAME, NULL);
 
   pager->priv->display_mode = mode;
-  ctk_widget_queue_resize (GTK_WIDGET (pager));
+  ctk_widget_queue_resize (CTK_WIDGET (pager));
 }
 
 /**
@@ -2468,7 +2468,7 @@ vnck_pager_set_show_all (VnckPager *pager,
     return;
 
   pager->priv->show_all_workspaces = show_all_workspaces;
-  ctk_widget_queue_resize (GTK_WIDGET (pager));
+  ctk_widget_queue_resize (CTK_WIDGET (pager));
 }
 
 /**
@@ -2492,7 +2492,7 @@ vnck_pager_set_shadow_type (VnckPager *   pager,
     return;
 
   pager->priv->shadow_type = shadow_type;
-  ctk_widget_queue_resize (GTK_WIDGET (pager));
+  ctk_widget_queue_resize (CTK_WIDGET (pager));
 }
 
 /**
@@ -2538,7 +2538,7 @@ active_window_changed_callback    (VnckScreen      *screen,
                                    gpointer         data)
 {
   VnckPager *pager = VNCK_PAGER (data);
-  ctk_widget_queue_draw (GTK_WIDGET (pager));
+  ctk_widget_queue_draw (CTK_WIDGET (pager));
 }
 
 static void
@@ -2547,7 +2547,7 @@ active_workspace_changed_callback (VnckScreen      *screen,
                                    gpointer         data)
 {
   VnckPager *pager = VNCK_PAGER (data);
-  ctk_widget_queue_draw (GTK_WIDGET (pager));
+  ctk_widget_queue_draw (CTK_WIDGET (pager));
 }
 
 static void
@@ -2555,7 +2555,7 @@ window_stacking_changed_callback  (VnckScreen      *screen,
                                    gpointer         data)
 {
   VnckPager *pager = VNCK_PAGER (data);
-  ctk_widget_queue_draw (GTK_WIDGET (pager));
+  ctk_widget_queue_draw (CTK_WIDGET (pager));
 }
 
 static void
@@ -2590,7 +2590,7 @@ workspace_created_callback        (VnckScreen      *screen,
   VnckPager *pager = VNCK_PAGER (data);
   g_signal_connect (space, "name_changed",
                     G_CALLBACK (workspace_name_changed_callback), pager);
-  ctk_widget_queue_resize (GTK_WIDGET (pager));
+  ctk_widget_queue_resize (CTK_WIDGET (pager));
 }
 
 static void
@@ -2600,7 +2600,7 @@ workspace_destroyed_callback      (VnckScreen      *screen,
 {
   VnckPager *pager = VNCK_PAGER (data);
   g_signal_handlers_disconnect_by_func (space, G_CALLBACK (workspace_name_changed_callback), pager);
-  ctk_widget_queue_resize (GTK_WIDGET (pager));
+  ctk_widget_queue_resize (CTK_WIDGET (pager));
 }
 
 static void
@@ -2651,7 +2651,7 @@ window_workspace_changed_callback (VnckWindow      *window,
                                    gpointer         data)
 {
   VnckPager *pager = VNCK_PAGER (data);
-  ctk_widget_queue_draw (GTK_WIDGET (pager));
+  ctk_widget_queue_draw (CTK_WIDGET (pager));
 }
 
 static void
@@ -2683,21 +2683,21 @@ background_changed_callback (VnckWindow *window,
       pager->priv->bg_cache = NULL;
     }
 
-  ctk_widget_queue_draw (GTK_WIDGET (pager));
+  ctk_widget_queue_draw (CTK_WIDGET (pager));
 }
 
 static void
 workspace_name_changed_callback (VnckWorkspace *space,
                                  gpointer       data)
 {
-  ctk_widget_queue_resize (GTK_WIDGET (data));
+  ctk_widget_queue_resize (CTK_WIDGET (data));
 }
 
 static void
 viewports_changed_callback (VnckWorkspace *space,
                             gpointer       data)
 {
-  ctk_widget_queue_resize (GTK_WIDGET (data));
+  ctk_widget_queue_resize (CTK_WIDGET (data));
 }
 
 static void
@@ -2958,7 +2958,7 @@ vnck_pager_get_accessible (GtkWidget *widget)
                                           derived_type);
       derived_atk_type = atk_object_factory_get_accessible_type (factory);
 
-      if (g_type_is_a (derived_atk_type, GTK_TYPE_ACCESSIBLE))
+      if (g_type_is_a (derived_atk_type, CTK_TYPE_ACCESSIBLE))
         {
           /*
            * Specify what factory to use to create accessible
@@ -2974,7 +2974,7 @@ vnck_pager_get_accessible (GtkWidget *widget)
         }
       first_time = FALSE;
     }
-  return GTK_WIDGET_CLASS (vnck_pager_parent_class)->get_accessible (widget);
+  return CTK_WIDGET_CLASS (vnck_pager_parent_class)->get_accessible (widget);
 }
 
 int

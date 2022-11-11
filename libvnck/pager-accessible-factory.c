@@ -56,9 +56,9 @@ vnck_pager_accessible_factory_create_accessible (GObject *obj)
 {
   GtkWidget *widget;
 
-  g_return_val_if_fail (GTK_IS_WIDGET (obj), NULL);
+  g_return_val_if_fail (CTK_IS_WIDGET (obj), NULL);
 
-  widget = GTK_WIDGET (obj);
+  widget = CTK_WIDGET (obj);
   return vnck_pager_accessible_new (widget);
 }
 

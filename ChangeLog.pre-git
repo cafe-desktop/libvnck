@@ -1363,7 +1363,7 @@
 
 	Migrate from GtkTooltips to GtkTooltip.
 
-	* configure.in: require GTK+ 2.11.3
+	* configure.in: require CTK+ 2.11.3
 	* libvnck/tasklist.c: (vnck_tasklist_finalize): we don't have a
 	GtkTooltips anymore
 	(vnck_tasklist_new): ditto
@@ -2266,7 +2266,7 @@
 
 2006-10-01  Vincent Untz  <vuntz@gnome.org>
 
-	* configure.in: depends on GTK+ >= 2.8.0 (and thus on cairo)
+	* configure.in: depends on CTK+ >= 2.8.0 (and thus on cairo)
 	Fix bug #348189. Thanks to dmacks@netspace.org
 
 2006-09-14  Benjamin Berg  <benjamin@sipsolutions.net>
@@ -2473,7 +2473,7 @@
 
 2006-05-15  Vincent Untz  <vuntz@gnome.org>
 
-	Many things: cairo love, use dnd from GTK+, make the pager look
+	Many things: cairo love, use dnd from CTK+, make the pager look
 	better.
 
 	Based on patch from Benjamin Otte <in7y118@public.uni-hamburg.de>,
@@ -2765,7 +2765,7 @@
 	Make the pager Fitt's law compliant when shadow type is none.
 
 	* pager.c: (workspace_at_point): count the focus width when
-	shadow_type == GTK_SHADOW_NONE, extend the workspaces so that the
+	shadow_type == CTK_SHADOW_NONE, extend the workspaces so that the
 	right/bottom lines belong to them too.
 	Fix bug #304248
 
@@ -2982,7 +2982,7 @@
 2005-12-04  Vincent Untz  <vuntz@gnome.org>
 
 	* configure.in:
-	* libvnck/xutils.c: remove old hack for old versions of GTK+
+	* libvnck/xutils.c: remove old hack for old versions of CTK+
 
 2005-11-14  Vincent Untz  <vuntz@gnome.org>
 
@@ -3149,7 +3149,7 @@
 
 	* libvnck/tasklist.h (vnck_tasklist_set_button_relief):
 	* libvnck/tasklist.c:  Add new API for allowing the button relief
-	to be set to GTK_RELIEF_NONE on transparent panels.
+	to be set to CTK_RELIEF_NONE on transparent panels.
 
 2005-07-19  Elijah Newren  <newren@gmail.com>
 
@@ -3743,7 +3743,7 @@
 
 	* NEWS:
 	* README: Version 2.9.3.
-	* configure.in: check for GTK+ >= 2.5.4
+	* configure.in: check for CTK+ >= 2.5.4
 
 2004-12-20  Mark McLoughlin  <mark@skynet.ie>
 
@@ -5477,7 +5477,7 @@ Fri Dec 28 02:11:26 2001  George Lebl <jirka@5z.com>
 
 	* libvnck/tasklist.c (vnck_task_class_init):
 	Change focus-line-width too, and make the buttons
-	not GTK_CAN_FOCUS.
+	not CTK_CAN_FOCUS.
 
 2001-12-18  Takayuki KUSANO  <AE5T-KSN@asahi-net.or.jp>
 
@@ -5732,7 +5732,7 @@ Wed, 28 Nov 2001 00:32:42 -0500  Frank Belew  <frb@ximian.com>
 
 2001-10-24  Havoc Pennington  <hp@redhat.com>
 
-	* configure.in: hack to work with slightly older GTK as well as
+	* configure.in: hack to work with slightly older CTK as well as
 	HEAD
 	
 	* libvnck/screen.c (vnck_screen_force_update): add function to
@@ -5779,7 +5779,7 @@ Wed, 28 Nov 2001 00:32:42 -0500  Frank Belew  <frb@ximian.com>
 
 2001-10-07  Havoc Pennington  <hp@pobox.com>
 
-	* libvnck/test-vnck.c: fixes (requires CVS HEAD GTK)
+	* libvnck/test-vnck.c: fixes (requires CVS HEAD CTK)
 
 2001-10-07  Havoc Pennington  <hp@pobox.com>
 
@@ -5787,7 +5787,7 @@ Wed, 28 Nov 2001 00:32:42 -0500  Frank Belew  <frb@ximian.com>
 	to handle WM_STATE changes
 	
 	* libvnck/test-vnck.c: add GUI to test program. exposes various
-	GTK bugs...
+	CTK bugs...
 
 2001-10-07  Havoc Pennington  <hp@pobox.com>
 

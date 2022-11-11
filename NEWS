@@ -78,7 +78,7 @@ Version 3.24.0
 
   Fixes
 
-  * bump GTK+ required version to 3.22.0
+  * bump CTK+ required version to 3.22.0
   * Various refactoring to remove deprecated code (Alberts Muktupāvel)
   * Add an option to disable the tasklist scroll event (Moritz Bruder)
   * Add wrap-on-scroll option for VnckPager widget (Moritz Bruder)
@@ -98,7 +98,7 @@ Version 3.20.1
 
   * tasklist: ignore size_allocate with invalid size (Alberts Muktupāvels)
   * tasklist: queue resize on button not on its content (Alberts Muktupāvels)
-  * workspace-accessible: drop obsolete GTK_CHECK_VERSION (Alberts Muktupāvels)
+  * workspace-accessible: drop obsolete CTK_CHECK_VERSION (Alberts Muktupāvels)
   * workspace-accessible: don't use deprecated atk_component_get_position
     (Alberts Muktupāvels)
   * tasklist: don't use deprecated GtkMisc (Alberts Muktupāvels)
@@ -187,7 +187,7 @@ Version 3.4.8
 
   Features
 
-  * Add support for _GTK_FRAME_EXTENTS (Rico Tzschichholz)
+  * Add support for _CTK_FRAME_EXTENTS (Rico Tzschichholz)
 
   Fixes
 
@@ -311,7 +311,7 @@ Version 3.4.2
 
   Fixes
 
-	* Fix mouse wheel scrolling with new GTK+ (Christian Persch, Vincent)
+	* Fix mouse wheel scrolling with new CTK+ (Christian Persch, Vincent)
 
   Misc
 
@@ -489,7 +489,7 @@ Version 2.91.92
 
  Misc
 
-  - Require GTK+ 3.0 (Carlos Garcia Campos)
+  - Require CTK+ 3.0 (Carlos Garcia Campos)
 
  Translators
 
@@ -522,15 +522,15 @@ Version 2.91.90
 Version 2.91.6
 ==============
 
-This is the first version of libvnck, ported to GTK+ 3. It should be
-parallel-installable with the GTK+ 2 version of libvnck. Some API changes
+This is the first version of libvnck, ported to CTK+ 3. It should be
+parallel-installable with the CTK+ 2 version of libvnck. Some API changes
 might still happen until 3.0, but the libtool versioning won't change.
-There might be some issues left after the GTK+ 3 port, so please report any
+There might be some issues left after the CTK+ 3 port, so please report any
 unusual behavior with the library.
 
  Major changes
 
-  - Port to GTK+ 3 (Benjamin Otte, Christian Persch, David Ronis, Vincent)
+  - Port to CTK+ 3 (Benjamin Otte, Christian Persch, David Ronis, Vincent)
   - Enforce single include for libvnck (Vincent)
   - Add macros to determine libvnck version at build time: VNCK_CHECK_VERSION,
     VNCK_MAJOR_VERSION, VNCK_MINOR_VERSION, VNCK_MICRO_VERSION (Vincent)
@@ -565,7 +565,7 @@ Version 2.30.6
 
  Fixes
 
-  - Adapt to GtkObject removal in GTK3 (Javier Jardón)
+  - Adapt to GtkObject removal in CTK3 (Javier Jardón)
 
  Misc
 
@@ -681,7 +681,7 @@ Version 2.29.92
 
  Fixes
 
-  - Build with latest GSeal'ed GTK+ (Vincent)
+  - Build with latest GSeal'ed CTK+ (Vincent)
   - Do not lose the pinned status when dragging a window in a tasklist
     (Vincent)
   - Use _NET_WM_WINDOW_TYPE_SPLASH instead of non-existing
@@ -909,7 +909,7 @@ Version 2.27.4
 
  Fixes
 
-  - Use single include for GTK+ (Pedro Fragoso)
+  - Use single include for CTK+ (Pedro Fragoso)
   - Fix compiler warning (Vincent)
 
 2.24.2
@@ -1394,7 +1394,7 @@ Fixes
   - Totally rework API documentation (Vincent)
   - New vnckprop utility, not installed by default (Vincent)
   - Require glib 2.13.0 (Vincent)
-  - Require GTK+ 2.11.3 (Vincent)
+  - Require CTK+ 2.11.3 (Vincent)
 
  Translators
 
@@ -1583,7 +1583,7 @@ Fixes
 
  Misc
 
-  - Require GTK+ 2.8.0 (Vincent) [#348189]
+  - Require CTK+ 2.8.0 (Vincent) [#348189]
 
  Translators
 
@@ -1936,7 +1936,7 @@ Fixes
   - Add vnck_window_set_window_type() function (Olivier Andrieu)
     [#133306]
   - Add API for allowing the button relief to be set to
-    GTK_RELIEF_NONE for transparent panels (Ryan Lortie) [#167932]
+    CTK_RELIEF_NONE for transparent panels (Ryan Lortie) [#167932]
   - Fix workspace switching behavior (revert the stuff related to the
     behavioral change from bug 161361 made in the 2.10 cycle -- Elijah
     Newren)
