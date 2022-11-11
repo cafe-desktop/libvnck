@@ -81,7 +81,7 @@ void _vnck_window_set_class_group (VnckWindow     *window,
 
 /* this one is in pager.c since it needs code from there to draw the icon */
 void _vnck_window_set_as_drag_icon (VnckWindow     *window,
-                                    GdkDragContext *context,
+                                    CdkDragContext *context,
                                     CtkWidget      *drag_source);
 
 void _vnck_application_add_window    (VnckApplication *app,
@@ -122,7 +122,7 @@ Display *_vnck_get_default_display (void);
 #define VNCK_SCREEN_XSCREEN(screen) (_vnck_screen_get_xscreen (screen))
 
 Screen    *_vnck_screen_get_xscreen    (VnckScreen *screen);
-GdkScreen *_vnck_screen_get_cdk_screen (VnckScreen *screen);
+CdkScreen *_vnck_screen_get_cdk_screen (VnckScreen *screen);
 
 #ifdef HAVE_STARTUP_NOTIFICATION
 SnDisplay* _vnck_screen_get_sn_display (VnckScreen *screen);
@@ -140,7 +140,7 @@ VnckWorkspace* _vnck_pager_get_workspace        (VnckPager     *pager,
                                                  int            i);
 void           _vnck_pager_get_workspace_rect   (VnckPager     *pager,
                                                  int            i,
-                                                 GdkRectangle  *rect);
+                                                 CdkRectangle  *rect);
 
 void           _make_ctk_label_bold   (CtkLabel *label);
 void           _make_ctk_label_normal (CtkLabel *label);

@@ -51,7 +51,7 @@
  * #VnckWorkspace.
  *
  * The #VnckScreen corresponds to the notion of
- * <classname>GdkScreen</classname> in CDK.
+ * <classname>CdkScreen</classname> in CDK.
  *
  * The #VnckScreen objects are always owned by libvnck and must not be
  * referenced or unreferenced.
@@ -850,17 +850,17 @@ vnck_screen_get_windows_stacked (VnckScreen *screen)
  * _vnck_screen_get_cdk_screen:
  * @screen: a #VnckScreen.
  *
- * Gets the <classname>GdkScreen</classname referring to the same screen as
+ * Gets the <classname>CdkScreen</classname referring to the same screen as
  * @screen.
  *
- * Return value: the <classname>GdkScreen</classname referring to the same
+ * Return value: the <classname>CdkScreen</classname referring to the same
  * screen as @screen.
  **/
-GdkScreen *
+CdkScreen *
 _vnck_screen_get_cdk_screen (VnckScreen *screen)
 {
   Display    *display;
-  GdkDisplay *cdkdisplay;
+  CdkDisplay *cdkdisplay;
 
   g_return_val_if_fail (VNCK_IS_SCREEN (screen), NULL);
 

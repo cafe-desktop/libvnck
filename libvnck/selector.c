@@ -71,7 +71,7 @@ static void vnck_selector_finalize          (GObject           *object);
 static void vnck_selector_realize           (CtkWidget *widget);
 static void vnck_selector_unrealize         (CtkWidget *widget);
 static gboolean vnck_selector_scroll_event  (CtkWidget        *widget,
-                                             GdkEventScroll   *event);
+                                             CdkEventScroll   *event);
 static void vnck_selector_connect_to_window (VnckSelector      *selector,
                                              VnckWindow        *window);
 
@@ -112,7 +112,7 @@ vncklet_connect_while_alive (gpointer object,
 static VnckScreen *
 vnck_selector_get_screen (VnckSelector *selector)
 {
-  GdkScreen *screen;
+  CdkScreen *screen;
 
   g_assert (ctk_widget_has_screen (CTK_WIDGET (selector)));
 
@@ -121,10 +121,10 @@ vnck_selector_get_screen (VnckSelector *selector)
   return vnck_screen_get (cdk_x11_screen_get_screen_number (screen));
 }
 
-static GdkPixbuf *
+static CdkPixbuf *
 vnck_selector_get_default_window_icon (void)
 {
-  static GdkPixbuf *retval = NULL;
+  static CdkPixbuf *retval = NULL;
 
   if (retval)
     return retval;
@@ -136,13 +136,13 @@ vnck_selector_get_default_window_icon (void)
   return retval;
 }
 
-static GdkPixbuf *
-vnck_selector_dimm_icon (GdkPixbuf *pixbuf)
+static CdkPixbuf *
+vnck_selector_dimm_icon (CdkPixbuf *pixbuf)
 {
   int x, y, pixel_stride, row_stride;
   guchar *row, *pixels;
   int w, h;
-  GdkPixbuf *dimmed;
+  CdkPixbuf *dimmed;
 
   w = cdk_pixbuf_get_width (pixbuf);
   h = cdk_pixbuf_get_height (pixbuf);
@@ -175,7 +175,7 @@ void
 _vnck_selector_set_window_icon (CtkWidget  *image,
                                 VnckWindow *window)
 {
-  GdkPixbuf *pixbuf, *freeme, *freeme2;
+  CdkPixbuf *pixbuf, *freeme, *freeme2;
   int width, height;
   int icon_size = -1;
 
@@ -477,7 +477,7 @@ vnck_selector_activate_window (VnckWindow *window)
 
 static void
 vnck_selector_drag_begin (CtkWidget          *widget,
-			  GdkDragContext     *context,
+			  CdkDragContext     *context,
 			  VnckWindow         *window)
 {
   while (widget)
@@ -497,7 +497,7 @@ vnck_selector_drag_begin (CtkWidget          *widget,
 
 static void
 vnck_selector_drag_data_get (CtkWidget          *widget,
-			     GdkDragContext     *context,
+			     CdkDragContext     *context,
 			     CtkSelectionData   *selection_data,
 			     guint               info,
 			     guint               time,
@@ -557,7 +557,7 @@ vnck_selector_workspace_name_changed (VnckWorkspace *workspace,
                                       CtkLabel      *label)
 {
   CtkStyleContext *context;
-  GdkRGBA          color;
+  CdkRGBA          color;
   char            *name;
   char            *markup;
 
@@ -929,7 +929,7 @@ vnck_selector_destroy_menu (CtkWidget *widget, VnckSelector *selector)
 
 static gboolean
 vnck_selector_scroll_event (CtkWidget      *widget,
-                            GdkEventScroll *event)
+                            CdkEventScroll *event)
 {
   VnckSelector *selector;
   VnckScreen *screen;

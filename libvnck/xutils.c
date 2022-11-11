@@ -256,7 +256,7 @@ static char*
 text_property_to_utf8 (Display             *display,
                        const XTextProperty *prop)
 {
-  GdkDisplay *cdkdisplay;
+  CdkDisplay *cdkdisplay;
   char **list;
   int count;
   char *retval;
@@ -699,7 +699,7 @@ _vnck_set_utf8_list (Screen  *screen,
 void
 _vnck_error_trap_push (Display *display)
 {
-  GdkDisplay *cdk_display;
+  CdkDisplay *cdk_display;
 
   cdk_display = cdk_x11_lookup_xdisplay (display);
   g_assert (cdk_display != NULL);
@@ -710,7 +710,7 @@ _vnck_error_trap_push (Display *display)
 int
 _vnck_error_trap_pop (Display *display)
 {
-  GdkDisplay *cdk_display;
+  CdkDisplay *cdk_display;
 
   cdk_display = cdk_x11_lookup_xdisplay (display);
   g_assert (cdk_display != NULL);
@@ -719,9 +719,9 @@ _vnck_error_trap_pop (Display *display)
   return cdk_x11_display_error_trap_pop (cdk_display);
 }
 
-static GdkFilterReturn
-filter_func (GdkXEvent  *cdkxevent,
-             GdkEvent   *event,
+static CdkFilterReturn
+filter_func (CdkXEvent  *cdkxevent,
+             CdkEvent   *event,
              gpointer    data)
 {
   XEvent *xevent = cdkxevent;
@@ -868,7 +868,7 @@ _vnck_deiconify (Screen *screen,
    * CDK functions
    */
   Display   *display;
-  GdkWindow *cdkwindow;
+  CdkWindow *cdkwindow;
 
   display = DisplayOfScreen (screen);
   cdkwindow = _vnck_cdk_window_lookup_from_window (screen, xwindow);
@@ -1422,7 +1422,7 @@ _vnck_select_input (Screen *screen,
                     gboolean update)
 {
   Display   *display;
-  GdkWindow *cdkwindow;
+  CdkWindow *cdkwindow;
   int old_mask = 0;
 
   display = DisplayOfScreen (screen);
@@ -1769,12 +1769,12 @@ TRAP_POP:
   return surface;
 }
 
-GdkPixbuf*
+CdkPixbuf*
 _vnck_cdk_pixbuf_get_from_pixmap (Screen *screen,
                                   Pixmap  xpixmap)
 {
   cairo_surface_t *surface;
-  GdkPixbuf *retval;
+  CdkPixbuf *retval;
 
   surface = _vnck_cairo_surface_get_from_pixmap (screen, xpixmap);
 
@@ -1795,16 +1795,16 @@ static gboolean
 try_pixmap_and_mask (Screen     *screen,
                      Pixmap      src_pixmap,
                      Pixmap      src_mask,
-                     GdkPixbuf **iconp,
+                     CdkPixbuf **iconp,
                      int         ideal_width,
                      int         ideal_height,
-                     GdkPixbuf **mini_iconp,
+                     CdkPixbuf **mini_iconp,
                      int         ideal_mini_width,
                      int         ideal_mini_height)
 {
   cairo_surface_t *surface, *mask_surface, *image;
-  GdkDisplay *cdk_display;
-  GdkPixbuf *unscaled;
+  CdkDisplay *cdk_display;
+  CdkPixbuf *unscaled;
   int width, height;
   cairo_t *cr;
 
@@ -1966,8 +1966,8 @@ struct _VnckIconCache
   IconOrigin origin;
   Pixmap prev_pixmap;
   Pixmap prev_mask;
-  GdkPixbuf *icon;
-  GdkPixbuf *mini_icon;
+  CdkPixbuf *icon;
+  CdkPixbuf *mini_icon;
   int ideal_width;
   int ideal_height;
   int ideal_mini_width;
@@ -2084,8 +2084,8 @@ _vnck_icon_cache_get_is_fallback (VnckIconCache *icon_cache)
 static void
 replace_cache (VnckIconCache *icon_cache,
                IconOrigin     origin,
-               GdkPixbuf     *new_icon,
-               GdkPixbuf     *new_mini_icon)
+               CdkPixbuf     *new_icon,
+               CdkPixbuf     *new_mini_icon)
 {
   clear_icon_cache (icon_cache, FALSE);
 
@@ -2102,15 +2102,15 @@ replace_cache (VnckIconCache *icon_cache,
   icon_cache->mini_icon = new_mini_icon;
 }
 
-static GdkPixbuf*
+static CdkPixbuf*
 scaled_from_pixdata (guchar *pixdata,
                      int     w,
                      int     h,
                      int     new_w,
                      int     new_h)
 {
-  GdkPixbuf *src;
-  GdkPixbuf *dest;
+  CdkPixbuf *src;
+  CdkPixbuf *dest;
 
   src = cdk_pixbuf_new_from_data (pixdata,
                                   CDK_COLORSPACE_RGB,
@@ -2125,7 +2125,7 @@ scaled_from_pixdata (guchar *pixdata,
 
   if (w != h)
     {
-      GdkPixbuf *tmp;
+      CdkPixbuf *tmp;
       int size;
 
       size = MAX (w, h);
@@ -2162,10 +2162,10 @@ gboolean
 _vnck_read_icons (VnckScreen     *screen,
                   Window          xwindow,
                   VnckIconCache  *icon_cache,
-                  GdkPixbuf     **iconp,
+                  CdkPixbuf     **iconp,
                   int             ideal_width,
                   int             ideal_height,
-                  GdkPixbuf     **mini_iconp,
+                  CdkPixbuf     **mini_iconp,
                   int             ideal_mini_width,
                   int             ideal_mini_height)
 {
@@ -2337,11 +2337,11 @@ _vnck_read_icons (VnckScreen     *screen,
   return FALSE;
 }
 
-static GdkPixbuf*
+static CdkPixbuf*
 default_icon_at_size (int width,
                       int height)
 {
-  GdkPixbuf *base;
+  CdkPixbuf *base;
 
   base = cdk_pixbuf_new_from_resource ("/org/gnome/libvnck/default_icon.png", NULL);
 
@@ -2355,7 +2355,7 @@ default_icon_at_size (int width,
     }
   else
     {
-      GdkPixbuf *scaled;
+      CdkPixbuf *scaled;
 
       scaled = cdk_pixbuf_scale_simple (base,
                                         width > 0 ? width :
@@ -2371,10 +2371,10 @@ default_icon_at_size (int width,
 }
 
 void
-_vnck_get_fallback_icons (GdkPixbuf **iconp,
+_vnck_get_fallback_icons (CdkPixbuf **iconp,
                           int         ideal_width,
                           int         ideal_height,
-                          GdkPixbuf **mini_iconp,
+                          CdkPixbuf **mini_iconp,
                           int         ideal_mini_width,
                           int         ideal_mini_height)
 {
@@ -2524,26 +2524,26 @@ _vnck_set_icon_geometry  (Screen *screen,
   _vnck_error_trap_pop (display);
 }
 
-GdkDisplay*
+CdkDisplay*
 _vnck_cdk_display_lookup_from_display (Display *display)
 {
-  GdkDisplay *cdkdisplay = NULL;
+  CdkDisplay *cdkdisplay = NULL;
 
   cdkdisplay = cdk_x11_lookup_xdisplay (display);
 
   if (!cdkdisplay)
-    g_warning ("No GdkDisplay matching Display \"%s\" was found.\n",
+    g_warning ("No CdkDisplay matching Display \"%s\" was found.\n",
                DisplayString (display));
 
   return cdkdisplay;
 }
 
-GdkWindow*
+CdkWindow*
 _vnck_cdk_window_lookup_from_window (Screen *screen,
                                      Window  xwindow)
 {
   Display    *display;
-  GdkDisplay *cdkdisplay;
+  CdkDisplay *cdkdisplay;
 
   display = DisplayOfScreen (screen);
   cdkdisplay = _vnck_cdk_display_lookup_from_display (display);
