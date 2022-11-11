@@ -95,6 +95,6 @@ endforeach
 subdir('libvnck')
 subdir('po')
 
-if get_option('ctk_doc')
+if get_option('gtk_doc')
   subdir('doc')
 endif
