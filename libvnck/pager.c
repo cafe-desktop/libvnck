@@ -81,7 +81,7 @@ struct _VnckPagerPrivate
   int drag_start_y;
   VnckWindow *drag_window;
 
-  CdkPixbuf *bg_cache;
+  GdkPixbuf *bg_cache;
 
   int layout_manager_token;
 
@@ -194,7 +194,7 @@ static void vnck_pager_check_prelight (VnckPager *pager,
 				       gint	  y,
 				       gboolean	  dnd);
 
-static CdkPixbuf* vnck_pager_get_background (VnckPager *pager,
+static GdkPixbuf* vnck_pager_get_background (VnckPager *pager,
                                              int        width,
                                              int        height);
 
@@ -959,7 +959,7 @@ draw_window (cairo_t            *cr,
              gboolean            translucent)
 {
   CtkStyleContext *context;
-  CdkPixbuf *icon;
+  GdkPixbuf *icon;
   int icon_x, icon_y, icon_w, icon_h;
   gboolean is_active;
   CdkRGBA fg;
@@ -1204,7 +1204,7 @@ vnck_pager_draw_workspace (VnckPager    *pager,
                            cairo_t      *cr,
                            int           workspace,
                            CdkRectangle *rect,
-                           CdkPixbuf    *bg_pixbuf)
+                           GdkPixbuf    *bg_pixbuf)
 {
   GList *windows;
   GList *tmp;
@@ -1413,7 +1413,7 @@ vnck_pager_draw (CtkWidget *widget,
   int i;
   int n_spaces;
   VnckWorkspace *active_space;
-  CdkPixbuf *bg_pixbuf;
+  GdkPixbuf *bg_pixbuf;
   gboolean first;
   CtkStyleContext *context;
   CtkStateFlags state;
@@ -2875,13 +2875,13 @@ vnck_pager_clear_drag (VnckPager *pager)
   pager->priv->drag_start_y = -1;
 }
 
-static CdkPixbuf*
+static GdkPixbuf*
 vnck_pager_get_background (VnckPager *pager,
                            int        width,
                            int        height)
 {
   Pixmap p;
-  CdkPixbuf *pix = NULL;
+  GdkPixbuf *pix = NULL;
 
   /* We have to be careful not to keep alternating between
    * width/height values, otherwise this would get really slow.
