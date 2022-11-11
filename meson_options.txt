@@ -14,7 +14,7 @@ option('introspection',
   type: 'feature',
   value: 'enabled',
   description: 'Enable GObject introspection')
-option('ctk_doc',
+option('gtk_doc',
   type: 'boolean',
   value: false,
   description: 'Enable generating the API reference (depends on CTK-Doc)')

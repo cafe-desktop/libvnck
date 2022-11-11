@@ -30,5 +30,5 @@ build:ubuntu:meson:
   before_script:
     - *ubuntu_deps_install
   script:
-    - meson _build -Dctk_doc=true
+    - meson _build -Dgtk_doc=true
     - ninja -C _build
