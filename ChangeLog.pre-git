@@ -289,7 +289,7 @@
 
 2008-02-09  Vincent Untz  <vuntz@gnome.org>
 
-	* configure.in: require ctk-doc 1.9
+	* configure.in: require gtk-doc 1.9
 	Fix bug #511414.
 
 2008-01-28  Vincent Untz  <vuntz@gnome.org>
@@ -1620,7 +1620,7 @@
 
 	* libvnck/util.[ch]: (vnck_xid_read_resource_usage),
 	(vnck_pid_read_resource_usage): s/unsigned long/gulong/ to please
-	ctk-doc.
+	gtk-doc.
 
 2007-06-09  Vincent Untz  <vuntz@gnome.org>
 
@@ -3071,7 +3071,7 @@
 	* configure.in: use intltool
 	Based on patch by Rodney Dawes <dobey@novell.com>. Fixes bug #317190
 
-	* ctk-doc.make: should not be in CVS
+	* gtk-doc.make: should not be in CVS
 	* acconfig.h: ditto
 	* stamp.h.in: ditto
 
@@ -3612,7 +3612,7 @@
 	Promote the window menu to a full-blown widget. Use GObject
 	functions for private structures. Fixes #164474. 
 	
-	* ctk-doc.make:
+	* gtk-doc.make:
 	* libvnck/Makefile.am:
 	* libvnck/libvnck.h:
 	* libvnck/selector.c: (vnck_selector_destroy),
@@ -3905,15 +3905,15 @@
 2004-08-26  J.H.M. Dassen (Ray) <jdassen@debian.org>
 
 	http://bugzilla.gnome.org/show_bug.cgi?id=150699:
-	Implemented API documentation generation using ctk-doc (adapted from
+	Implemented API documentation generation using gtk-doc (adapted from
 	libgsf's setup).
 
-	* ctk-doc.make: Added; copied from ctk-doc-tools.
+	* gtk-doc.make: Added; copied from gtk-doc-tools.
 	* doc/Makefile.am, doc/libvnck-docs.sgml, doc/libvnck-overrides.txt:
 	Added; adapted from libgsf.
-	* Makefile.am: Added `doc' subdir; include `ctk-doc.make' in release
+	* Makefile.am: Added `doc' subdir; include `gtk-doc.make' in release
 	tarballs.
-	* configure.in: Check for ctk-doc-tools.
+	* configure.in: Check for gtk-doc-tools.
 	* autogen.sh: Shorter replacement version (using gnome-common); bumped
 	minimal automake version to 1.6 (as the documentation generation
 	doesn't work with automake 1.4).
