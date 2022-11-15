@@ -67,8 +67,6 @@ struct _VnckApplicationPrivate
 
   VnckIconCache *icon_cache;
 
-  VnckWindow *icon_window;
-
   char *startup_id;
 
   guint name_from_leader : 1; /* name is from group leader */
