@@ -29,7 +29,7 @@ before_scripts:
 
 build_scripts:
   - ./before-build
-  - ./make-scanbuild meson '-Dgtk_doc=true'
+  - ./make-scanbuild meson 'setup -Dgtk_doc=true'
   - ./after-build
 
 after_scripts:
