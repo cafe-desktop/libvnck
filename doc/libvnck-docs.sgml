@@ -11,7 +11,7 @@
    <title>Libvnck Overview</title>
    <partintro>
     <para>
-     libvnck is the Window Navigator Construction Kit, a library for use in writing pagers, tasklists, and more generally applications that are dealing with window management. It tries hard to respect the <ulink url="http://standards.freedesktop.org/wm-spec/wm-spec-latest.html">Extended Window Manager Hints specification</ulink> (EWMH). The <ulink url="http://tronche.com/gui/x/icccm/">Inter-Client Communication Conventions Manual</ulink> (ICCCM) is also a useful resource.
+     libvnck is the Visual Navigator Construction Kit, a library for use in writing pagers, tasklists, and more generally applications that are dealing with window management. It tries hard to respect the <ulink url="http://standards.freedesktop.org/wm-spec/wm-spec-latest.html">Extended Window Manager Hints specification</ulink> (EWMH). The <ulink url="http://tronche.com/gui/x/icccm/">Inter-Client Communication Conventions Manual</ulink> (ICCCM) is also a useful resource.
     </para>
 
     <para>

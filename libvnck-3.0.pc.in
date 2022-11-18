@@ -4,7 +4,7 @@ libdir=@libdir@
 includedir=@includedir@
 
 Name: libvnck
-Description: Window Navigator Construction Kit library
+Description: Visual Navigator Construction Kit library
 Version: @VERSION@
 Requires: glib-2.0 gobject-2.0 ctk+-3.0
 Requires.private: @X11_PACKAGE@ pango cairo @STARTUP_NOTIFICATION_PACKAGE@ @XRES_PACKAGE@

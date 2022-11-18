@@ -1,7 +1,7 @@
 libvnck
 =======
 
-libvnck is Window Navigator Construction Kit, i.e. a library to use
+libvnck is Visual Navigator Construction Kit, i.e. a library to use
 for writing pagers and taskslists and stuff.  
 
 libvnck is not supported in the devel platform, which means OS vendors
