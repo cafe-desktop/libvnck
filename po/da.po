@@ -11,9 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libvnck\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=libvnck&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-04-27 06:46+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-18 20:24+0100\n"
 "PO-Revision-Date: 2013-03-17 00:51+0200\n"
 "Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -46,146 +45,147 @@ msgstr ""
 msgid "Untitled application"
 msgstr "Unavngivet program"
 
-#: libvnck/pager-accessible.c:340
+#: libvnck/pager-accessible.c:263
 msgid "Workspace Switcher"
 msgstr "Arbejdsområdeskifter"
 
-#: libvnck/pager-accessible.c:351
+#: libvnck/pager-accessible.c:274
 msgid "Tool to switch between workspaces"
 msgstr "Værktøj til at skifte mellem arbejdsområder"
 
-#: libvnck/pager-accessible.c:463
+#: libvnck/pager-accessible.c:379
 #, c-format
 msgid "Click this to switch to workspace %s"
 msgstr "Klik her for at skifte til arbejdsområdet %s"
 
-#: libvnck/pager.c:2181
+#: libvnck/pager.c:2221
 #, c-format
 msgid "Click to start dragging \"%s\""
 msgstr "Klik for at begynde på at trække “%s”"
 
-#: libvnck/pager.c:2184
+#: libvnck/pager.c:2224
 #, c-format
 msgid "Current workspace: \"%s\""
 msgstr "Nuværende arbejdsområde: “%s”"
 
-#: libvnck/pager.c:2189
+#: libvnck/pager.c:2229
 #, c-format
 msgid "Click to switch to \"%s\""
 msgstr "Klik for at skifte til “%s”"
 
-#: libvnck/selector.c:1092
+#: libvnck/selector.c:1091
 msgid "No Windows Open"
 msgstr "Ingen vinduer åbne"
 
-#: libvnck/selector.c:1148
+#: libvnck/selector.c:1147
 msgid "Window Selector"
 msgstr "Vinduesvælger"
 
-#: libvnck/selector.c:1149
+#: libvnck/selector.c:1148
 msgid "Tool to switch between windows"
 msgstr "Værktøj til at skifte mellem vinduer"
 
-#: libvnck/tasklist.c:597
+#: libvnck/tasklist.c:603
 msgid "Window List"
 msgstr "Vinduesliste"
 
-#: libvnck/tasklist.c:598
+#: libvnck/tasklist.c:604
 msgid "Tool to switch between visible windows"
 msgstr "Værktøj til at skifte mellem synlige vinduer"
 
-#: libvnck/tasklist.c:2974
+#: libvnck/tasklist.c:3022
 msgid "Mi_nimize All"
 msgstr "Mi_nimér alle"
 
 # der er også "unmaximize" så vi bliver nødt til at skelne
-#: libvnck/tasklist.c:2982
+#: libvnck/tasklist.c:3030
 msgid "Un_minimize All"
 msgstr "_Gendan alle minimerede"
 
-#: libvnck/tasklist.c:2990
+#: libvnck/tasklist.c:3038
 msgid "Ma_ximize All"
 msgstr "Ma_ksimér alle"
 
-#: libvnck/tasklist.c:2998
+#: libvnck/tasklist.c:3046
 msgid "_Unmaximize All"
 msgstr "G_endan alle maksimerede"
 
-#: libvnck/tasklist.c:3010
+#: libvnck/tasklist.c:3058
 msgid "_Close All"
 msgstr "_Luk alle"
 
-#: libvnck/window-action-menu.c:368
+#: libvnck/window-action-menu.c:367
 msgid "Unmi_nimize"
 msgstr "G_endan"
 
-#: libvnck/window-action-menu.c:374
+#: libvnck/window-action-menu.c:373
 msgid "Mi_nimize"
 msgstr "Min_imér"
 
-#: libvnck/window-action-menu.c:381
+#: libvnck/window-action-menu.c:380
 msgid "Unma_ximize"
 msgstr "Ge_ndan"
 
-#: libvnck/window-action-menu.c:387
+#: libvnck/window-action-menu.c:386
 msgid "Ma_ximize"
 msgstr "Ma_ksimér"
 
-#: libvnck/window-action-menu.c:693 libvnck/workspace.c:268
+#: libvnck/window-action-menu.c:692 libvnck/workspace.c:265
 #, c-format
 msgid "Workspace %d"
 msgstr "Arbejdsområde %d"
 
-#: libvnck/window-action-menu.c:702 libvnck/window-action-menu.c:848
+#: libvnck/window-action-menu.c:701 libvnck/window-action-menu.c:847
+#, c-format
 msgid "Workspace 1_0"
 msgstr "Arbejdsområde 1_0"
 
-#: libvnck/window-action-menu.c:704 libvnck/window-action-menu.c:850
+#: libvnck/window-action-menu.c:703 libvnck/window-action-menu.c:849
 #, c-format
 msgid "Workspace %s%d"
 msgstr "Arbejdsområde %s%d"
 
-#: libvnck/window-action-menu.c:991
+#: libvnck/window-action-menu.c:990
 msgid "_Move"
 msgstr "_Flyt"
 
-#: libvnck/window-action-menu.c:997
+#: libvnck/window-action-menu.c:996
 msgid "_Resize"
 msgstr "Ænd_r størrelse"
 
-#: libvnck/window-action-menu.c:1005
+#: libvnck/window-action-menu.c:1004
 msgid "Always On _Top"
 msgstr "Altid _øverst"
 
-#: libvnck/window-action-menu.c:1013
+#: libvnck/window-action-menu.c:1012
 msgid "_Always on Visible Workspace"
 msgstr "_Altid på synligt arbejdsområde"
 
-#: libvnck/window-action-menu.c:1018
+#: libvnck/window-action-menu.c:1017
 msgid "_Only on This Workspace"
 msgstr "Kun på _dette arbejdsområde"
 
-#: libvnck/window-action-menu.c:1025
+#: libvnck/window-action-menu.c:1024
 msgid "Move to Workspace _Left"
 msgstr "Flyt til arbejdsområde mod _venstre"
 
-#: libvnck/window-action-menu.c:1030
+#: libvnck/window-action-menu.c:1029
 msgid "Move to Workspace R_ight"
 msgstr "Flyt til arbejdsområde mod _højre"
 
-#: libvnck/window-action-menu.c:1035
+#: libvnck/window-action-menu.c:1034
 msgid "Move to Workspace _Up"
 msgstr "Flyt til arbejdsområde _ovenfor"
 
-#: libvnck/window-action-menu.c:1040
+#: libvnck/window-action-menu.c:1039
 msgid "Move to Workspace _Down"
 msgstr "Flyt til arbejdsområde _nedenfor"
 
-#: libvnck/window-action-menu.c:1042
+#: libvnck/window-action-menu.c:1041
 msgid "Move to Another _Workspace"
 msgstr "Flyt til andet _arbejdsområde"
 
-#: libvnck/window-action-menu.c:1062
+#: libvnck/window-action-menu.c:1061
 msgid "_Close"
 msgstr "_Luk"
 
@@ -608,6 +608,7 @@ msgid "Invalid argument \"%s\" for --%s, valid values are: %s\n"
 msgstr "Ugyldigt argument “%s” for --%s, gyldige værdier er: %s\n"
 
 #: libvnck/vnckprop.c:863
+#, c-format
 msgid ""
 "Cannot change the workspace layout on the screen: the layout is already "
 "owned\n"
@@ -619,6 +620,7 @@ msgstr ""
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
 #: libvnck/vnckprop.c:898
+#, c-format
 msgid ""
 "Viewport cannot be moved: the current workspace does not contain a viewport\n"
 msgstr ""
@@ -629,6 +631,7 @@ msgstr ""
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
 #: libvnck/vnckprop.c:905
+#, c-format
 msgid "Viewport cannot be moved: there is no current workspace\n"
 msgstr ""
 "Visningsområdet kan ikke flyttes: der er ikke noget aktuelt arbejdsområde\n"
@@ -637,6 +640,7 @@ msgstr ""
 #: libvnck/vnckprop.c:941 libvnck/vnckprop.c:950 libvnck/vnckprop.c:959
 #: libvnck/vnckprop.c:966 libvnck/vnckprop.c:976 libvnck/vnckprop.c:983
 #: libvnck/vnckprop.c:992 libvnck/vnckprop.c:1041
+#, c-format
 msgid "Action not allowed\n"
 msgstr "Handlingen er ikke tilladt\n"
 
@@ -1138,7 +1142,7 @@ msgstr "ingen handling mulig"
 msgid "Possible Actions: %s\n"
 msgstr "Mulige handlinger: %s\n"
 
-#: libvnck/vnckprop.c:1866
+#: libvnck/vnckprop.c:1876
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1150,49 +1154,49 @@ msgstr ""
 "For information om denne specifikation, se:\n"
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: libvnck/vnckprop.c:1876
+#: libvnck/vnckprop.c:1886
 msgid "Options to list windows or workspaces"
 msgstr "Valgmuligheder for at opskrive vinduer eller arbejdsområder"
 
-#: libvnck/vnckprop.c:1877
+#: libvnck/vnckprop.c:1887
 msgid "Show options to list windows or workspaces"
 msgstr "Vis valgmuligheder for at opskrive vinduer eller arbejdsområder"
 
-#: libvnck/vnckprop.c:1884
+#: libvnck/vnckprop.c:1894
 msgid "Options to modify properties of a window"
 msgstr "Valgmuligheder for at modificere egenskaberne for et vindue"
 
-#: libvnck/vnckprop.c:1885
+#: libvnck/vnckprop.c:1895
 msgid "Show options to modify properties of a window"
 msgstr "Vis valgmuligheder for at modificere egenskaberne for et vindue"
 
-#: libvnck/vnckprop.c:1892
+#: libvnck/vnckprop.c:1902
 msgid "Options to modify properties of a workspace"
 msgstr "Valgmuligheder for at modificere egenskaber for et arbejdsområde"
 
-#: libvnck/vnckprop.c:1893
+#: libvnck/vnckprop.c:1903
 msgid "Show options to modify properties of a workspace"
 msgstr "Vis valgmuligheder for at modificere egenskaber for et arbejdsområde"
 
-#: libvnck/vnckprop.c:1900
+#: libvnck/vnckprop.c:1910
 msgid "Options to modify properties of a screen"
 msgstr "Valgmulighederne for at modificere egenskaberne for en skærm"
 
-#: libvnck/vnckprop.c:1901
+#: libvnck/vnckprop.c:1911
 msgid "Show options to modify properties of a screen"
 msgstr "Vis valgmulighederne for at modificere egenskaberne for en skærm"
 
-#: libvnck/vnckprop.c:1912
+#: libvnck/vnckprop.c:1922
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "Fejl under fortolkning af argumenter: %s\n"
 
-#: libvnck/vnckprop.c:1935
+#: libvnck/vnckprop.c:1945
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "Kan ikke interagere med skærm %d: skærmen findes ikke\n"
 
-#: libvnck/vnckprop.c:1991
+#: libvnck/vnckprop.c:2001
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr ""
@@ -1200,14 +1204,14 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2015
+#: libvnck/vnckprop.c:2025
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
 msgstr ""
 "Kan ikke interagere med klassegruppe “%s”: kan ikke finde klassegruppen\n"
 
-#: libvnck/vnckprop.c:2038
+#: libvnck/vnckprop.c:2048
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
@@ -1216,7 +1220,7 @@ msgstr ""
 "Kan ikke interagere med programmet hvis gruppeleders XID er %lu: kan ikke "
 "finde programmet\n"
 
-#: libvnck/vnckprop.c:2061
+#: libvnck/vnckprop.c:2071
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr "Kan ikke interagere med vindue med XID %lu: kan ikke finde vinduet\n"

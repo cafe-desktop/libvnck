@@ -8,9 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libvnck\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=libwnc"
-"k&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-04-27 06:46+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-18 20:24+0100\n"
 "PO-Revision-Date: 2017-12-24 23:25+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
@@ -45,145 +44,146 @@ msgstr ""
 msgid "Untitled application"
 msgstr "Sentitola aplikaĵo"
 
-#: libvnck/pager-accessible.c:340
+#: libvnck/pager-accessible.c:263
 msgid "Workspace Switcher"
 msgstr "Laborkadra ŝaltilo"
 
-#: libvnck/pager-accessible.c:351
+#: libvnck/pager-accessible.c:274
 msgid "Tool to switch between workspaces"
 msgstr "Ilo por ŝalti inter laborspacoj"
 
-#: libvnck/pager-accessible.c:463
+#: libvnck/pager-accessible.c:379
 #, c-format
 msgid "Click this to switch to workspace %s"
 msgstr "Allaku tion por ŝalti al laborspaco %s"
 
-#: libvnck/pager.c:2181
+#: libvnck/pager.c:2221
 #, c-format
 msgid "Click to start dragging \"%s\""
 msgstr ""
 
-#: libvnck/pager.c:2184
+#: libvnck/pager.c:2224
 #, c-format
 msgid "Current workspace: \"%s\""
 msgstr "Aktuala laborspaco: \"%s\""
 
-#: libvnck/pager.c:2189
+#: libvnck/pager.c:2229
 #, c-format
 msgid "Click to switch to \"%s\""
 msgstr "Klaku por ŝalti al \"%s\""
 
-#: libvnck/selector.c:1092
+#: libvnck/selector.c:1091
 msgid "No Windows Open"
 msgstr "Neniu fenestro estas malfermita"
 
-#: libvnck/selector.c:1148
+#: libvnck/selector.c:1147
 msgid "Window Selector"
 msgstr "Fenestroelektilo"
 
-#: libvnck/selector.c:1149
+#: libvnck/selector.c:1148
 msgid "Tool to switch between windows"
 msgstr "Ilo por ŝalti inter fenestroj"
 
-#: libvnck/tasklist.c:597
+#: libvnck/tasklist.c:603
 msgid "Window List"
 msgstr "Fenestrolisto"
 
-#: libvnck/tasklist.c:598
+#: libvnck/tasklist.c:604
 msgid "Tool to switch between visible windows"
 msgstr "Ilo por ŝalti inter videblaj fenestroj"
 
-#: libvnck/tasklist.c:2974
+#: libvnck/tasklist.c:3022
 msgid "Mi_nimize All"
 msgstr "Mi_nimumigi ĉiujn"
 
-#: libvnck/tasklist.c:2982
+#: libvnck/tasklist.c:3030
 msgid "Un_minimize All"
 msgstr "Ne_minimumigi ĉiujn"
 
-#: libvnck/tasklist.c:2990
+#: libvnck/tasklist.c:3038
 msgid "Ma_ximize All"
 msgstr "Ma_ksimumigi ĉiujn"
 
-#: libvnck/tasklist.c:2998
+#: libvnck/tasklist.c:3046
 msgid "_Unmaximize All"
 msgstr "_Nemaksimumigi ĉiujn"
 
-#: libvnck/tasklist.c:3010
+#: libvnck/tasklist.c:3058
 msgid "_Close All"
 msgstr "_Fermi ĉiujn"
 
-#: libvnck/window-action-menu.c:368
+#: libvnck/window-action-menu.c:367
 msgid "Unmi_nimize"
 msgstr "Nemi_nimumigi"
 
-#: libvnck/window-action-menu.c:374
+#: libvnck/window-action-menu.c:373
 msgid "Mi_nimize"
 msgstr "Mi_nimumigi"
 
-#: libvnck/window-action-menu.c:381
+#: libvnck/window-action-menu.c:380
 msgid "Unma_ximize"
 msgstr "Nema_ksimumigi"
 
-#: libvnck/window-action-menu.c:387
+#: libvnck/window-action-menu.c:386
 msgid "Ma_ximize"
 msgstr "Ma_ksimumigi"
 
-#: libvnck/window-action-menu.c:693 libvnck/workspace.c:268
+#: libvnck/window-action-menu.c:692 libvnck/workspace.c:265
 #, c-format
 msgid "Workspace %d"
 msgstr "Laborspaco %d"
 
-#: libvnck/window-action-menu.c:702 libvnck/window-action-menu.c:848
+#: libvnck/window-action-menu.c:701 libvnck/window-action-menu.c:847
+#, c-format
 msgid "Workspace 1_0"
 msgstr "Laborspaco 1_0"
 
-#: libvnck/window-action-menu.c:704 libvnck/window-action-menu.c:850
+#: libvnck/window-action-menu.c:703 libvnck/window-action-menu.c:849
 #, c-format
 msgid "Workspace %s%d"
 msgstr "Laborspaco %s%d"
 
-#: libvnck/window-action-menu.c:991
+#: libvnck/window-action-menu.c:990
 msgid "_Move"
 msgstr "_Movi"
 
-#: libvnck/window-action-menu.c:997
+#: libvnck/window-action-menu.c:996
 msgid "_Resize"
 msgstr "_Aligrandigi"
 
-#: libvnck/window-action-menu.c:1005
+#: libvnck/window-action-menu.c:1004
 msgid "Always On _Top"
 msgstr "Ĉiam _antaŭe"
 
-#: libvnck/window-action-menu.c:1013
+#: libvnck/window-action-menu.c:1012
 msgid "_Always on Visible Workspace"
 msgstr "Ĉi_am en videbla laborspaco"
 
-#: libvnck/window-action-menu.c:1018
+#: libvnck/window-action-menu.c:1017
 msgid "_Only on This Workspace"
 msgstr "_Nur en ĉi tiu laborspaco"
 
-#: libvnck/window-action-menu.c:1025
+#: libvnck/window-action-menu.c:1024
 msgid "Move to Workspace _Left"
 msgstr "Movi al la _maldekstra laborspaco"
 
-#: libvnck/window-action-menu.c:1030
+#: libvnck/window-action-menu.c:1029
 msgid "Move to Workspace R_ight"
 msgstr "Movi al la _dekstra laborspaco"
 
-#: libvnck/window-action-menu.c:1035
+#: libvnck/window-action-menu.c:1034
 msgid "Move to Workspace _Up"
 msgstr "Movi al la su_pra laborspaco"
 
-#: libvnck/window-action-menu.c:1040
+#: libvnck/window-action-menu.c:1039
 msgid "Move to Workspace _Down"
 msgstr "Movi al la su_ba laborspaco"
 
-#: libvnck/window-action-menu.c:1042
+#: libvnck/window-action-menu.c:1041
 msgid "Move to Another _Workspace"
 msgstr "Movi al alia _laborspaco"
 
-#: libvnck/window-action-menu.c:1062
+#: libvnck/window-action-menu.c:1061
 msgid "_Close"
 msgstr "_Fermi"
 
@@ -581,6 +581,7 @@ msgid "Invalid argument \"%s\" for --%s, valid values are: %s\n"
 msgstr ""
 
 #: libvnck/vnckprop.c:863
+#, c-format
 msgid ""
 "Cannot change the workspace layout on the screen: the layout is already "
 "owned\n"
@@ -590,6 +591,7 @@ msgstr ""
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
 #: libvnck/vnckprop.c:898
+#, c-format
 msgid ""
 "Viewport cannot be moved: the current workspace does not contain a viewport\n"
 msgstr ""
@@ -598,6 +600,7 @@ msgstr ""
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
 #: libvnck/vnckprop.c:905
+#, c-format
 msgid "Viewport cannot be moved: there is no current workspace\n"
 msgstr ""
 
@@ -605,6 +608,7 @@ msgstr ""
 #: libvnck/vnckprop.c:941 libvnck/vnckprop.c:950 libvnck/vnckprop.c:959
 #: libvnck/vnckprop.c:966 libvnck/vnckprop.c:976 libvnck/vnckprop.c:983
 #: libvnck/vnckprop.c:992 libvnck/vnckprop.c:1041
+#, c-format
 msgid "Action not allowed\n"
 msgstr "Ago ne estas permesite\n"
 
@@ -904,7 +908,6 @@ msgstr "Seanco-ID: %s\n"
 
 #: libvnck/vnckprop.c:1544
 #, c-format
-#| msgid "%lu: %s\n"
 msgid "Role: %s\n"
 msgstr "Rolo: %s\n"
 
@@ -1105,7 +1108,7 @@ msgstr "neniu ago eblas"
 msgid "Possible Actions: %s\n"
 msgstr "Eblaj agoj: %s\n"
 
-#: libvnck/vnckprop.c:1866
+#: libvnck/vnckprop.c:1876
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1113,69 +1116,69 @@ msgid ""
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec"
 msgstr ""
 
-#: libvnck/vnckprop.c:1876
+#: libvnck/vnckprop.c:1886
 msgid "Options to list windows or workspaces"
 msgstr ""
 
-#: libvnck/vnckprop.c:1877
+#: libvnck/vnckprop.c:1887
 msgid "Show options to list windows or workspaces"
 msgstr ""
 
-#: libvnck/vnckprop.c:1884
+#: libvnck/vnckprop.c:1894
 msgid "Options to modify properties of a window"
 msgstr ""
 
-#: libvnck/vnckprop.c:1885
+#: libvnck/vnckprop.c:1895
 msgid "Show options to modify properties of a window"
 msgstr ""
 
-#: libvnck/vnckprop.c:1892
+#: libvnck/vnckprop.c:1902
 msgid "Options to modify properties of a workspace"
 msgstr ""
 
-#: libvnck/vnckprop.c:1893
+#: libvnck/vnckprop.c:1903
 msgid "Show options to modify properties of a workspace"
 msgstr ""
 
-#: libvnck/vnckprop.c:1900
+#: libvnck/vnckprop.c:1910
 msgid "Options to modify properties of a screen"
 msgstr ""
 
-#: libvnck/vnckprop.c:1901
+#: libvnck/vnckprop.c:1911
 msgid "Show options to modify properties of a screen"
 msgstr ""
 
-#: libvnck/vnckprop.c:1912
+#: libvnck/vnckprop.c:1922
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr ""
 
-#: libvnck/vnckprop.c:1935
+#: libvnck/vnckprop.c:1945
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr ""
 
-#: libvnck/vnckprop.c:1991
+#: libvnck/vnckprop.c:2001
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2015
+#: libvnck/vnckprop.c:2025
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
 msgstr ""
 
-#: libvnck/vnckprop.c:2038
+#: libvnck/vnckprop.c:2048
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
 "application cannot be found\n"
 msgstr ""
 
-#: libvnck/vnckprop.c:2061
+#: libvnck/vnckprop.c:2071
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr ""

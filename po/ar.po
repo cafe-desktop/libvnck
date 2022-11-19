@@ -10,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libvnck.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-28 08:47+0200\n"
+"POT-Creation-Date: 2022-11-18 20:24+0100\n"
 "PO-Revision-Date: 2009-11-28 08:46+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Generator: Virtaal 0.5.0-rc1\n"
@@ -41,196 +41,150 @@ msgstr ""
 #. * The #VnckApplication objects are always owned by libvnck and must not be
 #. * referenced or unreferenced.
 #.
-#: ../libvnck/application.c:51
+#: libvnck/application.c:49
 msgid "Untitled application"
 msgstr "تطبيق غير معنون"
 
-#: ../libvnck/pager-accessible.c:322
+#: libvnck/pager-accessible.c:263
 msgid "Workspace Switcher"
 msgstr "محوّل مساحات العمل"
 
-#: ../libvnck/pager-accessible.c:333
+#: libvnck/pager-accessible.c:274
 msgid "Tool to switch between workspaces"
 msgstr "أداة للانتقال بين مساحات العمل"
 
-#: ../libvnck/pager-accessible.c:437
+#: libvnck/pager-accessible.c:379
 #, c-format
 msgid "Click this to switch to workspace %s"
 msgstr "انقر هذا للانتقال إلى مساحة العمل %s"
 
-#: ../libvnck/pager.c:1910
+#: libvnck/pager.c:2221
 #, c-format
 msgid "Click to start dragging \"%s\""
 msgstr "انقر لبدء سحب \"%s\""
 
-#: ../libvnck/pager.c:1913
+#: libvnck/pager.c:2224
 #, c-format
 msgid "Current workspace: \"%s\""
 msgstr "مساحة العمل الحالية: \"%s\""
 
-#: ../libvnck/pager.c:1918
+#: libvnck/pager.c:2229
 #, c-format
 msgid "Click to switch to \"%s\""
 msgstr "انقر للانتقال إلى مساحة العمل \"%s\""
 
-#: ../libvnck/selector.c:1172
+#: libvnck/selector.c:1091
 msgid "No Windows Open"
 msgstr "لا يوجد نافذة مفتوحة"
 
-#: ../libvnck/selector.c:1225
+#: libvnck/selector.c:1147
 msgid "Window Selector"
 msgstr "منتقي النوافذ"
 
-#: ../libvnck/selector.c:1226
+#: libvnck/selector.c:1148
 msgid "Tool to switch between windows"
 msgstr "أداة للانتقال بين النوافذ"
 
-#: ../libvnck/tasklist.c:729
+#: libvnck/tasklist.c:603
 msgid "Window List"
 msgstr "قائمة النوافذ"
 
-#: ../libvnck/tasklist.c:730
+#: libvnck/tasklist.c:604
 msgid "Tool to switch between visible windows"
 msgstr "أداة للانتقال بين النوافذ المرئية"
 
-#: ../libvnck/tasklist.c:3022
+#: libvnck/tasklist.c:3022
 msgid "Mi_nimize All"
 msgstr "_صغّر الكل"
 
-#: ../libvnck/tasklist.c:3033
+#: libvnck/tasklist.c:3030
 msgid "Un_minimize All"
 msgstr "اعكس تص_غير الكل"
 
-#: ../libvnck/tasklist.c:3041
+#: libvnck/tasklist.c:3038
 msgid "Ma_ximize All"
 msgstr "ك_بّر الكل"
 
-#: ../libvnck/tasklist.c:3052
+#: libvnck/tasklist.c:3046
 msgid "_Unmaximize All"
 msgstr "اعكس ت_كبير الكل"
 
-#: ../libvnck/tasklist.c:3064
+#: libvnck/tasklist.c:3058
 msgid "_Close All"
 msgstr "أ_غلق الكل"
 
-#: ../libvnck/test-pager.c:15
-msgid "Use N_ROWS rows"
-msgstr "استخدم ر من صفوف"
-
-#: ../libvnck/test-pager.c:15
-msgid "N_ROWS"
-msgstr "ر صفوف"
-
-#: ../libvnck/test-pager.c:16
-msgid "Only show current workspace"
-msgstr "أظهر فقط مساحة العمل الحالية"
-
-#: ../libvnck/test-pager.c:17 ../libvnck/test-tasklist.c:19
-msgid "Use RTL as default direction"
-msgstr "استخدم اليمين-إلى-اليسار كاتجاه افتراضي"
-
-#: ../libvnck/test-pager.c:18
-msgid "Show workspace names instead of workspace contents"
-msgstr "أظهر أسماء مساحات العمل عوضًا عن محتوياتها"
-
-#: ../libvnck/test-pager.c:19
-msgid "Use a vertical orientation"
-msgstr "استخدم اتجاهًا عموديًا"
-
-#. Translators: "tasklist" is the list of running applications (the
-#. * window list)
-#: ../libvnck/test-selector.c:13 ../libvnck/test-tasklist.c:20
-msgid "Don't show window in tasklist"
-msgstr "لا تظهر النافذة في قائمة المهمات"
-
-#: ../libvnck/test-tasklist.c:16
-msgid "Always group windows"
-msgstr "جمّع النوافذ دائمًا"
-
-#: ../libvnck/test-tasklist.c:17
-msgid "Never group windows"
-msgstr "لا تجمّع النوافذ أبدًا"
-
-#: ../libvnck/test-tasklist.c:18
-msgid "Display windows from all workspaces"
-msgstr "أظهر النوافذ من كل مساحات العمل"
-
-#: ../libvnck/test-tasklist.c:21
-msgid "Enable Transparency"
-msgstr "اسمح بالشفافية"
-
-#: ../libvnck/window-action-menu.c:417
+#: libvnck/window-action-menu.c:367
 msgid "Unmi_nimize"
 msgstr "اعكس الت_صغير"
 
-#: ../libvnck/window-action-menu.c:424
+#: libvnck/window-action-menu.c:373
 msgid "Mi_nimize"
 msgstr "_صغّر"
 
-#: ../libvnck/window-action-menu.c:432
+#: libvnck/window-action-menu.c:380
 msgid "Unma_ximize"
 msgstr "اعكس الت_كبير"
 
-#: ../libvnck/window-action-menu.c:439
+#: libvnck/window-action-menu.c:386
 msgid "Ma_ximize"
 msgstr "ك_بّر"
 
-#: ../libvnck/window-action-menu.c:746 ../libvnck/workspace.c:281
+#: libvnck/window-action-menu.c:692 libvnck/workspace.c:265
 #, c-format
 msgid "Workspace %d"
 msgstr "مساحة العمل %Id"
 
-#: ../libvnck/window-action-menu.c:755 ../libvnck/window-action-menu.c:902
+#: libvnck/window-action-menu.c:701 libvnck/window-action-menu.c:847
 #, c-format
 msgid "Workspace 1_0"
 msgstr "مساحة العمل 1_0"
 
-#: ../libvnck/window-action-menu.c:757 ../libvnck/window-action-menu.c:904
+#: libvnck/window-action-menu.c:703 libvnck/window-action-menu.c:849
 #, c-format
 msgid "Workspace %s%d"
 msgstr "مساحة العمل %s%Id"
 
-#: ../libvnck/window-action-menu.c:1047
+#: libvnck/window-action-menu.c:990
 msgid "_Move"
 msgstr "ا_نقل"
 
-#: ../libvnck/window-action-menu.c:1054
+#: libvnck/window-action-menu.c:996
 msgid "_Resize"
 msgstr "_حجّم"
 
-#: ../libvnck/window-action-menu.c:1063
+#: libvnck/window-action-menu.c:1004
 msgid "Always On _Top"
 msgstr "دائمًا _فوق الكل"
 
-#: ../libvnck/window-action-menu.c:1071
+#: libvnck/window-action-menu.c:1012
 msgid "_Always on Visible Workspace"
 msgstr "فقط على مساحة العمل الم_رئية"
 
-#: ../libvnck/window-action-menu.c:1076
+#: libvnck/window-action-menu.c:1017
 msgid "_Only on This Workspace"
 msgstr "فقط على مساحة العمل _هذه"
 
-#: ../libvnck/window-action-menu.c:1083
+#: libvnck/window-action-menu.c:1024
 msgid "Move to Workspace _Left"
 msgstr "انقل لمساحة العمل نحو ال_يسار"
 
-#: ../libvnck/window-action-menu.c:1089
+#: libvnck/window-action-menu.c:1029
 msgid "Move to Workspace R_ight"
 msgstr "انقل ل_مساحة العمل نحو الي_مين"
 
-#: ../libvnck/window-action-menu.c:1095
+#: libvnck/window-action-menu.c:1034
 msgid "Move to Workspace _Up"
 msgstr "انقل ل_مساحة العمل ف_وق"
 
-#: ../libvnck/window-action-menu.c:1101
+#: libvnck/window-action-menu.c:1039
 msgid "Move to Workspace _Down"
 msgstr "انقل ل_مساحة العمل _تحت"
 
-#: ../libvnck/window-action-menu.c:1104
+#: libvnck/window-action-menu.c:1041
 msgid "Move to Another _Workspace"
 msgstr "انقل ل_مساحة عمل أخرى"
 
-#: ../libvnck/window-action-menu.c:1124
+#: libvnck/window-action-menu.c:1061
 msgid "_Close"
 msgstr "أ_غلق"
 
@@ -243,16 +197,15 @@ msgstr "أ_غلق"
 #. * The #VnckWindow objects are always owned by libvnck and must not be
 #. * referenced or unreferenced.
 #.
-#: ../libvnck/window.c:50
+#: libvnck/window.c:47
 msgid "Untitled window"
 msgstr "نافذة غير معنونة"
 
-#: ../libvnck/vnckprop.c:139
+#: libvnck/vnckprop.c:137
 msgid "X window ID of the window to examine or modify"
 msgstr "معرّف إكس ويندو الخاص بالنافذة لفحصه أو تعديله"
 
-#: ../libvnck/vnckprop.c:139 ../libvnck/vnckprop.c:146
-#: ../libvnck/vnckprop.c:156
+#: libvnck/vnckprop.c:137 libvnck/vnckprop.c:144 libvnck/vnckprop.c:154
 msgid "XID"
 msgstr "معرّف إكس"
 
@@ -260,41 +213,40 @@ msgstr "معرّف إكس"
 #. * group of windows, ie: if you have multiple windows in one
 #. * application, one window has some information about the application
 #. * (like the application name).
-#: ../libvnck/vnckprop.c:145
+#: libvnck/vnckprop.c:143
 msgid "X window ID of the group leader of an application to examine"
 msgstr "معرّف إكس ويندو الخاص بقائد مجموعة تطبيق لفحصه"
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: ../libvnck/vnckprop.c:150
+#: libvnck/vnckprop.c:148
 msgid "Class resource of the class group to examine"
 msgstr "موارد الفئة الخاصة بمجموعة الفئة لفحصها"
 
-#: ../libvnck/vnckprop.c:150
+#: libvnck/vnckprop.c:148
 msgid "CLASS"
 msgstr "الفئة"
 
-#: ../libvnck/vnckprop.c:152
+#: libvnck/vnckprop.c:150
 msgid "NUMBER of the workspace to examine or modify"
 msgstr "رقم مساحة العمل لفحصه أو تعديله"
 
-#: ../libvnck/vnckprop.c:152 ../libvnck/vnckprop.c:154
-#: ../libvnck/vnckprop.c:172 ../libvnck/vnckprop.c:174
-#: ../libvnck/vnckprop.c:176 ../libvnck/vnckprop.c:273
+#: libvnck/vnckprop.c:150 libvnck/vnckprop.c:152 libvnck/vnckprop.c:170
+#: libvnck/vnckprop.c:172 libvnck/vnckprop.c:174 libvnck/vnckprop.c:271
 msgid "NUMBER"
 msgstr "الرقم"
 
-#: ../libvnck/vnckprop.c:154
+#: libvnck/vnckprop.c:152
 msgid "NUMBER of the screen to examine or modify"
 msgstr "رقم الشاشة لفحصه أو تعديله"
 
-#: ../libvnck/vnckprop.c:156
+#: libvnck/vnckprop.c:154
 msgid "Alias of --window"
 msgstr "الاسم المستعار ل‍ --window"
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: ../libvnck/vnckprop.c:164
+#: libvnck/vnckprop.c:162
 msgid ""
 "List windows of the application/class group/workspace/screen (output format: "
 "\"XID: Window Name\")"
@@ -302,144 +254,144 @@ msgstr ""
 "اسرد نوافذ المجموعة/الشاشة/مساحة العمل الخاصة بالتطبيق/الفئة (صيغة الخرج: "
 "\"معرّف إكس: اسم النافذة\""
 
-#: ../libvnck/vnckprop.c:166
+#: libvnck/vnckprop.c:164
 msgid ""
 "List workspaces of the screen (output format: \"Number: Workspace Name\")"
 msgstr "اسرد مساحات العمل في الشاشة (صيغة الخرج: \"الرقم: اسم مساحة العمل\")"
 
-#: ../libvnck/vnckprop.c:172
+#: libvnck/vnckprop.c:170
 msgid "Change the number of workspaces of the screen to NUMBER"
 msgstr "غيّر رقم مساحات العمل في الشاشة إلى الرقم"
 
-#: ../libvnck/vnckprop.c:174
+#: libvnck/vnckprop.c:172
 msgid "Change the workspace layout of the screen to use NUMBER rows"
 msgstr "غيّر مخطط مساحة العمل في الشاشة لاستخدام صفوف الأرقام"
 
-#: ../libvnck/vnckprop.c:176
+#: libvnck/vnckprop.c:174
 msgid "Change the workspace layout of the screen to use NUMBER columns"
 msgstr "غيّر مخطط مساحة العمل في الشاشة لاستخدام أعمدة الأرقام"
 
-#: ../libvnck/vnckprop.c:178
+#: libvnck/vnckprop.c:176
 msgid "Show the desktop"
 msgstr "أظهر سطح المكتب"
 
-#: ../libvnck/vnckprop.c:180
+#: libvnck/vnckprop.c:178
 msgid "Stop showing the desktop"
 msgstr "لا تظهر سطح المكتب"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libvnck/vnckprop.c:185
+#: libvnck/vnckprop.c:183
 msgid "Move the viewport of the current workspace to X coordinate X"
 msgstr "انقل منفذ العرض لمساحة العمل الحالية إلى س إحداثية س"
 
-#: ../libvnck/vnckprop.c:185 ../libvnck/vnckprop.c:275
+#: libvnck/vnckprop.c:183 libvnck/vnckprop.c:273
 msgid "X"
 msgstr "س"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libvnck/vnckprop.c:190
+#: libvnck/vnckprop.c:188
 msgid "Move the viewport of the current workspace to Y coordinate Y"
 msgstr "انقل منفذ العرض لمساحة العمل الحالية إلى ص إحداثية ص"
 
-#: ../libvnck/vnckprop.c:190 ../libvnck/vnckprop.c:277
+#: libvnck/vnckprop.c:188 libvnck/vnckprop.c:275
 msgid "Y"
 msgstr "ص"
 
-#: ../libvnck/vnckprop.c:196
+#: libvnck/vnckprop.c:194
 msgid "Minimize the window"
 msgstr "صغّر النافذة"
 
-#: ../libvnck/vnckprop.c:198
+#: libvnck/vnckprop.c:196
 msgid "Unminimize the window"
 msgstr "اعكس تصغير النافذة"
 
-#: ../libvnck/vnckprop.c:200
+#: libvnck/vnckprop.c:198
 msgid "Maximize the window"
 msgstr "كبّر النافذة"
 
-#: ../libvnck/vnckprop.c:202
+#: libvnck/vnckprop.c:200
 msgid "Unmaximize the window"
 msgstr "اعكس تكبير النافذة"
 
-#: ../libvnck/vnckprop.c:204
+#: libvnck/vnckprop.c:202
 msgid "Maximize horizontally the window"
 msgstr "كبّر النافذة أفقيًا"
 
-#: ../libvnck/vnckprop.c:206
+#: libvnck/vnckprop.c:204
 msgid "Unmaximize horizontally the window"
 msgstr "اعكس تكبير النافذة أفقيًا"
 
-#: ../libvnck/vnckprop.c:208
+#: libvnck/vnckprop.c:206
 msgid "Maximize vertically the window"
 msgstr "كبّر النافذة عموديًا"
 
-#: ../libvnck/vnckprop.c:210
+#: libvnck/vnckprop.c:208
 msgid "Unmaximize vertically the window"
 msgstr "اعكس تكبير النافذة عموديًا"
 
-#: ../libvnck/vnckprop.c:212
+#: libvnck/vnckprop.c:210
 msgid "Start moving the window via the keyboard"
 msgstr "ابدأ بتحريك النافذة عن طريق لوحة المفاتيح"
 
-#: ../libvnck/vnckprop.c:214
+#: libvnck/vnckprop.c:212
 msgid "Start resizing the window via the keyboard"
 msgstr "ابدأ بتحجيم النافذة عن طريق لوحة المفاتيح"
 
-#: ../libvnck/vnckprop.c:216
+#: libvnck/vnckprop.c:214
 msgid "Activate the window"
 msgstr "نشّط النافذة"
 
-#: ../libvnck/vnckprop.c:218
+#: libvnck/vnckprop.c:216
 msgid "Close the window"
 msgstr "أغلق النافذة"
 
-#: ../libvnck/vnckprop.c:221
+#: libvnck/vnckprop.c:219
 msgid "Make the window fullscreen"
 msgstr "اجعل النافذة ملء الشاشة"
 
-#: ../libvnck/vnckprop.c:223
+#: libvnck/vnckprop.c:221
 msgid "Make the window quit fullscreen mode"
 msgstr "اجعل النافذة تخرج من نمط ملء الشاشة"
 
-#: ../libvnck/vnckprop.c:225
+#: libvnck/vnckprop.c:223
 msgid "Make the window always on top"
 msgstr "اجعل النافذة في الأعلى دائمًا"
 
-#: ../libvnck/vnckprop.c:227
+#: libvnck/vnckprop.c:225
 msgid "Make the window not always on top"
 msgstr "اجعل النافذة ليست في الأعلى دائمًا"
 
-#: ../libvnck/vnckprop.c:229
+#: libvnck/vnckprop.c:227
 msgid "Make the window below other windows"
 msgstr "اجعل النافذة أسفل بقية النوافذ"
 
-#: ../libvnck/vnckprop.c:231
+#: libvnck/vnckprop.c:229
 msgid "Make the window not below other windows"
 msgstr "اجعل النافذة ليست في أسفل بقية النوافذ"
 
-#: ../libvnck/vnckprop.c:233
+#: libvnck/vnckprop.c:231
 msgid "Shade the window"
 msgstr "ظلّل النافذة"
 
-#: ../libvnck/vnckprop.c:235
+#: libvnck/vnckprop.c:233
 msgid "Unshade the window"
 msgstr "اعكس تظليل النافذة"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libvnck/vnckprop.c:240
+#: libvnck/vnckprop.c:238
 msgid "Make the window have a fixed position in the viewport"
 msgstr "اجعل للنافذة موقعًا ثابتًا في منفذ العرض"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libvnck/vnckprop.c:245
+#: libvnck/vnckprop.c:243
 msgid "Make the window not have a fixed position in the viewport"
 msgstr "لا تجعل للنافذة موقعًا ثابتًا في منفذ العرض"
 
@@ -448,7 +400,7 @@ msgstr "لا تجعل للنافذة موقعًا ثابتًا في منفذ ا�
 #. * inside it. Please make sure that the translation is in sync with
 #. * gnome-panel, where this term is also used in translatable strings
 #.
-#: ../libvnck/vnckprop.c:252
+#: libvnck/vnckprop.c:250
 msgid "Make the window not appear in pagers"
 msgstr "اجعل النافذة لا تظهر في مبدّل المساحات"
 
@@ -457,60 +409,60 @@ msgstr "اجعل النافذة لا تظهر في مبدّل المساحات"
 #. * inside it. Please make sure that the translation is in sync with
 #. * gnome-panel, where this term is also used in translatable strings
 #.
-#: ../libvnck/vnckprop.c:259
+#: libvnck/vnckprop.c:257
 msgid "Make the window appear in pagers"
 msgstr "اجعل النافذة تظهر في مبدّل المساحات"
 
 #. Translators: "tasklist" is the list of running applications (the
 #. * window list)
-#: ../libvnck/vnckprop.c:263
+#: libvnck/vnckprop.c:261
 msgid "Make the window not appear in tasklists"
 msgstr "اجعل النافذة لا تظهر في قائمة المهمات"
 
 #. Translators: "tasklist" is the list of running applications (the
 #. * window list)
-#: ../libvnck/vnckprop.c:267
+#: libvnck/vnckprop.c:265
 msgid "Make the window appear in tasklists"
 msgstr "اجعل النافذة تظهر في قائمة المهمات"
 
-#: ../libvnck/vnckprop.c:269
+#: libvnck/vnckprop.c:267
 msgid "Make the window visible on all workspaces"
 msgstr "أظهر النافذة في جميع مساحات العمل"
 
-#: ../libvnck/vnckprop.c:271
+#: libvnck/vnckprop.c:269
 msgid "Make the window visible on the current workspace only"
 msgstr "اجعل النافذة مرئية في مساحة العمل الحالية فقط"
 
-#: ../libvnck/vnckprop.c:273
+#: libvnck/vnckprop.c:271
 msgid "Move the window to workspace NUMBER (first workspace is 0)"
 msgstr "انقل النافذة إلى مساحة العمل رقم (مساحة العمل الأولى رقمها 0)"
 
-#: ../libvnck/vnckprop.c:275
+#: libvnck/vnckprop.c:273
 msgid "Change the X coordinate of the window to X"
 msgstr "غيّر الإحداثية س الخاصة بالنافذة إلى س"
 
-#: ../libvnck/vnckprop.c:277
+#: libvnck/vnckprop.c:275
 msgid "Change the Y coordinate of the window to Y"
 msgstr "غيّر الإحداثية ص الخاصة بالنافذة إلى ص"
 
-#: ../libvnck/vnckprop.c:279
+#: libvnck/vnckprop.c:277
 msgid "Change the width of the window to WIDTH"
 msgstr "غيّر عرض النافذة إلى العرض"
 
-#: ../libvnck/vnckprop.c:279
+#: libvnck/vnckprop.c:277
 msgid "WIDTH"
 msgstr "العرض"
 
-#: ../libvnck/vnckprop.c:281
+#: libvnck/vnckprop.c:279
 msgid "Change the height of the window to HEIGHT"
 msgstr "غيّر ارتفاع النافذة إلى الارتفاع"
 
-#: ../libvnck/vnckprop.c:281
+#: libvnck/vnckprop.c:279
 msgid "HEIGHT"
 msgstr "الارتفاع"
 
 #. Translators: do not translate "normal, desktop, dock..."
-#: ../libvnck/vnckprop.c:284
+#: libvnck/vnckprop.c:282
 msgid ""
 "Change the type of the window to TYPE (valid values: normal, desktop, dock, "
 "dialog, toolbar, menu, utility, splash)"
@@ -518,37 +470,37 @@ msgstr ""
 "غيّر نوع النافذة إلى النوع (القيم الصالحة هي: normal, desktop, dock, dialog, "
 "toolbar, menu, utility, splash)"
 
-#: ../libvnck/vnckprop.c:284
+#: libvnck/vnckprop.c:282
 msgid "TYPE"
 msgstr "النوع"
 
-#: ../libvnck/vnckprop.c:290
+#: libvnck/vnckprop.c:288
 msgid "Change the name of the workspace to NAME"
 msgstr "غيّر اسم مساحة العمل إلى الاسم"
 
-#: ../libvnck/vnckprop.c:290
+#: libvnck/vnckprop.c:288
 msgid "NAME"
 msgstr "الاسم"
 
-#: ../libvnck/vnckprop.c:292
+#: libvnck/vnckprop.c:290
 msgid "Activate the workspace"
 msgstr "نشّط مساحة العمل"
 
-#: ../libvnck/vnckprop.c:384 ../libvnck/vnckprop.c:408
-#: ../libvnck/vnckprop.c:444 ../libvnck/vnckprop.c:467
+#: libvnck/vnckprop.c:384 libvnck/vnckprop.c:408 libvnck/vnckprop.c:444
+#: libvnck/vnckprop.c:467
 #, c-format
 msgid "Invalid value \"%s\" for --%s"
 msgstr "القيمة \"%s\" غير صالحة ل‍ --%s"
 
-#: ../libvnck/vnckprop.c:501 ../libvnck/vnckprop.c:520
+#: libvnck/vnckprop.c:501 libvnck/vnckprop.c:520
 #, c-format
 msgid ""
-"Conflicting options are present: screen %d should be interacted with, but --%"
-"s has been used\n"
+"Conflicting options are present: screen %d should be interacted with, but --"
+"%s has been used\n"
 msgstr ""
 "هناك خيارات متضاربة: الشاشة %Id يجب أن يُتفاعل معها، ولكن --%s استُخدمت\n"
 
-#: ../libvnck/vnckprop.c:510
+#: libvnck/vnckprop.c:510
 #, c-format
 msgid ""
 "Conflicting options are present: windows or workspaces of screen %d should "
@@ -557,7 +509,7 @@ msgstr ""
 "هناك خيارات متضاربة: النوافذ أو مساحات العمل في الشاشة %Id ينبغي أن تُسرد، "
 "ولكن --%s استُخدمت\n"
 
-#: ../libvnck/vnckprop.c:533 ../libvnck/vnckprop.c:553
+#: libvnck/vnckprop.c:533 libvnck/vnckprop.c:553
 #, c-format
 msgid ""
 "Conflicting options are present: workspace %d should be interacted with, but "
@@ -565,7 +517,7 @@ msgid ""
 msgstr ""
 "هناك خيارات متضاربة: مساحة العمل %Id يجب أن يُتفاعل معها، ولكن --%s استُخدمت\n"
 
-#: ../libvnck/vnckprop.c:543
+#: libvnck/vnckprop.c:543
 #, c-format
 msgid ""
 "Conflicting options are present: windows of workspace %d should be listed, "
@@ -573,14 +525,14 @@ msgid ""
 msgstr ""
 "هناك خيارات متضاربة: نوافذ مساحة العمل %Id ينبغي أن تُسرد، ولكن --%s استُخدمت\n"
 
-#: ../libvnck/vnckprop.c:565
+#: libvnck/vnckprop.c:565
 #, c-format
 msgid ""
 "Conflicting options are present: an application should be interacted with, "
 "but --%s has been used\n"
 msgstr "هناك خيارات متضاربة: يجب أن يُتفاعل مع تطبيق، ولكن --%s استُخدمت\n"
 
-#: ../libvnck/vnckprop.c:575
+#: libvnck/vnckprop.c:575
 #, c-format
 msgid ""
 "Conflicting options are present: windows of an application should be listed, "
@@ -589,7 +541,7 @@ msgstr "هناك خيارات متضاربة: نافذة تطبيق يجب أن 
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: ../libvnck/vnckprop.c:589
+#: libvnck/vnckprop.c:589
 #, c-format
 msgid ""
 "Conflicting options are present: class group \"%s\" should be interacted "
@@ -600,51 +552,50 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: ../libvnck/vnckprop.c:601
+#: libvnck/vnckprop.c:601
 #, c-format
 msgid ""
 "Conflicting options are present: windows of class group \"%s\" should be "
 "listed, but --%s has been used\n"
 msgstr ""
-"هناك خيارات متضاربة: نوافذ مجموعة الفئات \"%s\" يجب أن يُتفاعل معها، ولكن --%"
-"s استُخدمت\n"
+"هناك خيارات متضاربة: نوافذ مجموعة الفئات \"%s\" يجب أن يُتفاعل معها، ولكن --"
+"%s استُخدمت\n"
 
-#: ../libvnck/vnckprop.c:613 ../libvnck/vnckprop.c:622
+#: libvnck/vnckprop.c:613 libvnck/vnckprop.c:622
 #, c-format
 msgid ""
-"Conflicting options are present: a window should be interacted with, but --%"
-"s has been used\n"
+"Conflicting options are present: a window should be interacted with, but --"
+"%s has been used\n"
 msgstr "هناك خيارات متضاربة: يجب أن يُتفاعل مع نافذة، ولكن --%s استُخدمت\n"
 
-#: ../libvnck/vnckprop.c:641 ../libvnck/vnckprop.c:722
-#: ../libvnck/vnckprop.c:769
+#: libvnck/vnckprop.c:641 libvnck/vnckprop.c:722 libvnck/vnckprop.c:769
 #, c-format
 msgid "Conflicting options are present: --%s and --%s\n"
 msgstr "هناك خيارات متضاربة: --%s و --%s\n"
 
-#: ../libvnck/vnckprop.c:680
+#: libvnck/vnckprop.c:680
 #, c-format
 msgid ""
 "Invalid argument \"%d\" for --%s: the argument must be strictly positive\n"
 msgstr ""
 "المعطى \"%Id\" غير صالح ل‍ --%s: المعطى يجب أن يكون رقمًا إيجابيًا غير الصفر\n"
 
-#: ../libvnck/vnckprop.c:693
+#: libvnck/vnckprop.c:693
 #, c-format
 msgid "Invalid argument \"%d\" for --%s: the argument must be positive\n"
 msgstr "المعطى \"%Id\" غير صالح ل‍ --%s: المعطى يجب أن يكون رقمًا إيجابيًا\n"
 
-#: ../libvnck/vnckprop.c:788
+#: libvnck/vnckprop.c:788
 #, c-format
 msgid "Conflicting options are present: --%s or --%s, and --%s\n"
 msgstr "هناك خيارات متضاربة: --%s أو --%s، و --%s\n"
 
-#: ../libvnck/vnckprop.c:820
+#: libvnck/vnckprop.c:820
 #, c-format
 msgid "Invalid argument \"%s\" for --%s, valid values are: %s\n"
 msgstr "المعطى \"%s\" غير صالح ل‍ --%s، القيم الصالحة هي: %s\n"
 
-#: ../libvnck/vnckprop.c:863
+#: libvnck/vnckprop.c:863
 #, c-format
 msgid ""
 "Cannot change the workspace layout on the screen: the layout is already "
@@ -654,7 +605,7 @@ msgstr "لا يمكن تغيير مخطط مساحة العمل على الشا�
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libvnck/vnckprop.c:898
+#: libvnck/vnckprop.c:898
 #, c-format
 msgid ""
 "Viewport cannot be moved: the current workspace does not contain a viewport\n"
@@ -663,139 +614,135 @@ msgstr "لا يمكن تحريك منفذ العرض: مساحة العمل ال
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libvnck/vnckprop.c:905
+#: libvnck/vnckprop.c:905
 #, c-format
 msgid "Viewport cannot be moved: there is no current workspace\n"
 msgstr "لا يمكن تحريك منفذ العرض: ليس هناك مساحة عمل حالية\n"
 
 #. FIXME: why do we have dual & boolean API. This is not consistent!
-#: ../libvnck/vnckprop.c:941 ../libvnck/vnckprop.c:950
-#: ../libvnck/vnckprop.c:959 ../libvnck/vnckprop.c:966
-#: ../libvnck/vnckprop.c:976 ../libvnck/vnckprop.c:983
-#: ../libvnck/vnckprop.c:992 ../libvnck/vnckprop.c:1041
+#: libvnck/vnckprop.c:941 libvnck/vnckprop.c:950 libvnck/vnckprop.c:959
+#: libvnck/vnckprop.c:966 libvnck/vnckprop.c:976 libvnck/vnckprop.c:983
+#: libvnck/vnckprop.c:992 libvnck/vnckprop.c:1041
 #, c-format
 msgid "Action not allowed\n"
 msgstr "الإجراء غير مسموح\n"
 
-#: ../libvnck/vnckprop.c:1037
+#: libvnck/vnckprop.c:1037
 #, c-format
 msgid "Window cannot be moved to workspace %d: the workspace does not exist\n"
 msgstr "لا يمكن نقل النافذة إلى مساحة العمل %Id: مساحة العمل غير موجودة\n"
 
 #. Translators: 'unset' in the sense of "something has not been set".
-#: ../libvnck/vnckprop.c:1101 ../libvnck/vnckprop.c:1233
+#: libvnck/vnckprop.c:1101 libvnck/vnckprop.c:1233
 msgid "<name unset>"
 msgstr "<الاسم غير معيّن>"
 
 #. Translators: %lu is a window number and %s a window name
-#: ../libvnck/vnckprop.c:1104
+#: libvnck/vnckprop.c:1104
 #, c-format
 msgid "%lu: %s\n"
 msgstr "‏%lu:‏ %s\n"
 
 #. Translators: %d is a workspace number and %s a workspace name
-#: ../libvnck/vnckprop.c:1124
+#: libvnck/vnckprop.c:1124
 #, c-format
 msgid "%d: %s\n"
 msgstr "‏%Id:‏ %s\n"
 
-#: ../libvnck/vnckprop.c:1187
+#: libvnck/vnckprop.c:1187
 #, c-format
 msgid "Screen Number: %d\n"
 msgstr "رقم الشاشة: %Id\n"
 
-#: ../libvnck/vnckprop.c:1189 ../libvnck/vnckprop.c:1270
+#: libvnck/vnckprop.c:1189 libvnck/vnckprop.c:1270
 #, c-format
 msgid "Geometry (width, height): %d, %d\n"
 msgstr "الهندسة (العرض، الارتفاع): %Id, %Id\n"
 
-#: ../libvnck/vnckprop.c:1193
+#: libvnck/vnckprop.c:1193
 #, c-format
 msgid "Number of Workspaces: %d\n"
 msgstr "عدد مساحات العمل: %Id\n"
 
-#: ../libvnck/vnckprop.c:1199
+#: libvnck/vnckprop.c:1199
 #, c-format
 msgid "Workspace Layout (rows, columns, orientation): %d, %d, %s\n"
 msgstr "مخطط مساحة العمل (الصفوف، الأعمدة، الاتجاه): %Id، %Id، %s\n"
 
-#: ../libvnck/vnckprop.c:1209 ../libvnck/vnckprop.c:1266
-#: ../libvnck/vnckprop.c:1460
+#: libvnck/vnckprop.c:1209 libvnck/vnckprop.c:1266 libvnck/vnckprop.c:1463
 msgid "<no EWMH-compliant window manager>"
 msgstr "<لا مدير نوافذ ملتزم ب‍ EWMH>"
 
-#: ../libvnck/vnckprop.c:1210
+#: libvnck/vnckprop.c:1210
 #, c-format
 msgid "Window Manager: %s\n"
 msgstr "مدير النوافذ: %s\n"
 
 #. Translators: %d is a workspace number and %s a workspace name
-#: ../libvnck/vnckprop.c:1215 ../libvnck/vnckprop.c:1296
-#: ../libvnck/vnckprop.c:1308 ../libvnck/vnckprop.c:1320
-#: ../libvnck/vnckprop.c:1332 ../libvnck/vnckprop.c:1445
+#: libvnck/vnckprop.c:1215 libvnck/vnckprop.c:1296 libvnck/vnckprop.c:1308
+#: libvnck/vnckprop.c:1320 libvnck/vnckprop.c:1332 libvnck/vnckprop.c:1448
 #, c-format
 msgid "%d (\"%s\")"
 msgstr "‏%Id ‏(\"%s\")"
 
 #. Translators: "none" here means "no workspace"
-#: ../libvnck/vnckprop.c:1220 ../libvnck/vnckprop.c:1301
-#: ../libvnck/vnckprop.c:1313 ../libvnck/vnckprop.c:1325
-#: ../libvnck/vnckprop.c:1337 ../libvnck/vnckprop.c:1452
+#: libvnck/vnckprop.c:1220 libvnck/vnckprop.c:1301 libvnck/vnckprop.c:1313
+#: libvnck/vnckprop.c:1325 libvnck/vnckprop.c:1337 libvnck/vnckprop.c:1455
 msgctxt "workspace"
 msgid "none"
 msgstr "لا شيء"
 
-#: ../libvnck/vnckprop.c:1221
+#: libvnck/vnckprop.c:1221
 #, c-format
 msgid "Active Workspace: %s\n"
 msgstr "مساحة العمل النشطة: %s\n"
 
-#: ../libvnck/vnckprop.c:1230
+#: libvnck/vnckprop.c:1230
 #, c-format
 msgid "\"%s\""
 msgstr "‏\"%s\""
 
 #. Translators: %lu is a window identifier (number) and %s a window name
-#: ../libvnck/vnckprop.c:1236
+#: libvnck/vnckprop.c:1236
 #, c-format
 msgid "%lu (%s)"
 msgstr "‏%lu ‏(%s)"
 
 #. Translators: "none" here means "no window"
-#: ../libvnck/vnckprop.c:1242
+#: libvnck/vnckprop.c:1242
 msgctxt "window"
 msgid "none"
 msgstr "لا شيء"
 
-#: ../libvnck/vnckprop.c:1243
+#: libvnck/vnckprop.c:1243
 #, c-format
 msgid "Active Window: %s\n"
 msgstr "النافذة النشطة: %s\n"
 
-#: ../libvnck/vnckprop.c:1246
+#: libvnck/vnckprop.c:1246
 #, c-format
 msgid "Showing the desktop: %s\n"
 msgstr "إظهار سطح المكتب: %s\n"
 
-#: ../libvnck/vnckprop.c:1248
+#: libvnck/vnckprop.c:1248
 msgid "true"
 msgstr "صحيح"
 
-#: ../libvnck/vnckprop.c:1248
+#: libvnck/vnckprop.c:1248
 msgid "false"
 msgstr "خطأ"
 
-#: ../libvnck/vnckprop.c:1259
+#: libvnck/vnckprop.c:1259
 #, c-format
 msgid "Workspace Name: %s\n"
 msgstr "اسم مساحة العمل: %s\n"
 
-#: ../libvnck/vnckprop.c:1260
+#: libvnck/vnckprop.c:1260
 #, c-format
 msgid "Workspace Number: %d\n"
 msgstr "رقم مساحة العمل: %Id\n"
 
-#: ../libvnck/vnckprop.c:1267 ../libvnck/vnckprop.c:1461
+#: libvnck/vnckprop.c:1267 libvnck/vnckprop.c:1464
 #, c-format
 msgid "On Screen: %d (Window Manager: %s)\n"
 msgstr "على الشاشة %Id (مدير النوافذ: %s)\n"
@@ -803,188 +750,194 @@ msgstr "على الشاشة %Id (مدير النوافذ: %s)\n"
 #. Translators: 'viewport' is kind of the viewable area. A viewport can be
 #. * used to implement workspaces (e.g. compiz is an example); however it is
 #. * not just the current workspace.
-#: ../libvnck/vnckprop.c:1282
+#: libvnck/vnckprop.c:1282
 msgid "<no viewport>"
 msgstr "<لا منفذ عرض>"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport can be
 #. * used to implement workspaces (e.g. compiz is an example); however it is
 #. * not just the current workspace.
-#: ../libvnck/vnckprop.c:1286
+#: libvnck/vnckprop.c:1286
 #, c-format
 msgid "Viewport position (x, y): %s\n"
 msgstr "موقع منفذ العرض (س، ص): %s\n"
 
-#: ../libvnck/vnckprop.c:1289
+#: libvnck/vnckprop.c:1289
 #, c-format
 msgid "Position in Layout (row, column): %d, %d\n"
 msgstr "الموقع في المخطط (صف، عمود): %Id، %Id\n"
 
-#: ../libvnck/vnckprop.c:1302
+#: libvnck/vnckprop.c:1302
 #, c-format
 msgid "Left Neighbor: %s\n"
 msgstr "الجار الأيسر: %s\n"
 
-#: ../libvnck/vnckprop.c:1314
+#: libvnck/vnckprop.c:1314
 #, c-format
 msgid "Right Neighbor: %s\n"
 msgstr "الجار الأيمن: %s\n"
 
-#: ../libvnck/vnckprop.c:1326
+#: libvnck/vnckprop.c:1326
 #, c-format
 msgid "Top Neighbor: %s\n"
 msgstr "الجار الأعلى: %s\n"
 
-#: ../libvnck/vnckprop.c:1338
+#: libvnck/vnckprop.c:1338
 #, c-format
 msgid "Bottom Neighbor: %s\n"
 msgstr "الجار الأسفل: %s\n"
 
-#. Translators: Resource class is the name to identify a class.
-#: ../libvnck/vnckprop.c:1350
+#. Translators: A class is like a "family". E.g., all gvim windows are of the
+#. * same class.
+#: libvnck/vnckprop.c:1351 libvnck/vnckprop.c:1510
 #, c-format
-msgid "Resource Class: %s\n"
-msgstr "فئة الموارد: %s\n"
+msgid "Class Group ID: %s\n"
+msgstr ""
 
-#: ../libvnck/vnckprop.c:1352
+#. Translators: A class is like a "family". E.g., all gvim windows are of the
+#. * same class.
+#: libvnck/vnckprop.c:1355
 #, c-format
-msgid "Group Name: %s\n"
-msgstr "اسم المجموعة: %s\n"
+msgid "Class Group Name: %s\n"
+msgstr ""
 
 #. Translators: 'set' in the sense of "something has been set".
-#: ../libvnck/vnckprop.c:1358 ../libvnck/vnckprop.c:1382
-#: ../libvnck/vnckprop.c:1436
+#: libvnck/vnckprop.c:1361 libvnck/vnckprop.c:1385 libvnck/vnckprop.c:1439
 msgid "set"
 msgstr "ضُبط"
 
 #. Translators: 'unset' in the sense of "something has not been set".
-#: ../libvnck/vnckprop.c:1361 ../libvnck/vnckprop.c:1385
-#: ../libvnck/vnckprop.c:1392 ../libvnck/vnckprop.c:1422
-#: ../libvnck/vnckprop.c:1429 ../libvnck/vnckprop.c:1439
-#: ../libvnck/vnckprop.c:1504 ../libvnck/vnckprop.c:1515
-#: ../libvnck/vnckprop.c:1523
+#: libvnck/vnckprop.c:1364 libvnck/vnckprop.c:1388 libvnck/vnckprop.c:1395
+#: libvnck/vnckprop.c:1425 libvnck/vnckprop.c:1432 libvnck/vnckprop.c:1442
+#: libvnck/vnckprop.c:1507 libvnck/vnckprop.c:1516 libvnck/vnckprop.c:1528
+#: libvnck/vnckprop.c:1536 libvnck/vnckprop.c:1543
 msgid "<unset>"
 msgstr "<غير مضبوط>"
 
-#: ../libvnck/vnckprop.c:1362 ../libvnck/vnckprop.c:1386
-#: ../libvnck/vnckprop.c:1440
+#: libvnck/vnckprop.c:1365 libvnck/vnckprop.c:1389 libvnck/vnckprop.c:1443
 #, c-format
 msgid "Icons: %s\n"
 msgstr "الأيقونات: %s\n"
 
-#: ../libvnck/vnckprop.c:1365 ../libvnck/vnckprop.c:1403
+#: libvnck/vnckprop.c:1368 libvnck/vnckprop.c:1406
 #, c-format
 msgid "Number of Windows: %d\n"
 msgstr "عدد النوافذ: %Id\n"
 
-#: ../libvnck/vnckprop.c:1377 ../libvnck/vnckprop.c:1423
+#: libvnck/vnckprop.c:1380 libvnck/vnckprop.c:1426
 #, c-format
 msgid "Name: %s\n"
 msgstr "الاسم: %s\n"
 
 #. Translators: note that "Icon" here has a specific window
 #. * management-related meaning. It means minimized.
-#: ../libvnck/vnckprop.c:1378 ../libvnck/vnckprop.c:1432
+#: libvnck/vnckprop.c:1381 libvnck/vnckprop.c:1435
 #, c-format
 msgid "Icon Name: %s\n"
 msgstr "اسم الأيقونة: %s\n"
 
-#: ../libvnck/vnckprop.c:1393 ../libvnck/vnckprop.c:1516
+#: libvnck/vnckprop.c:1396 libvnck/vnckprop.c:1529
 #, c-format
 msgid "PID: %s\n"
 msgstr "معرّف العملية: %s\n"
 
 #. Translators: "none" here means "no startup ID"
-#: ../libvnck/vnckprop.c:1400
+#: libvnck/vnckprop.c:1403
 msgctxt "startupID"
 msgid "none"
 msgstr "لا شيء"
 
-#: ../libvnck/vnckprop.c:1401
+#: libvnck/vnckprop.c:1404
 #, c-format
 msgid "Startup ID: %s\n"
 msgstr "معرّف بدء التشغيل: %s\n"
 
-#: ../libvnck/vnckprop.c:1449
+#: libvnck/vnckprop.c:1452
 msgid "all workspaces"
 msgstr "كل مساحات العمل"
 
-#: ../libvnck/vnckprop.c:1453
+#: libvnck/vnckprop.c:1456
 #, c-format
 msgid "On Workspace: %s\n"
 msgstr "على مساحة العمل %s\n"
 
-#: ../libvnck/vnckprop.c:1468
+#: libvnck/vnckprop.c:1471
 msgid "normal window"
 msgstr "نافذة عادية"
 
-#: ../libvnck/vnckprop.c:1471
+#: libvnck/vnckprop.c:1474
 msgid "desktop"
 msgstr "سطح مكتب"
 
-#: ../libvnck/vnckprop.c:1474
+#: libvnck/vnckprop.c:1477
 msgid "dock or panel"
 msgstr "رصيف أو لوح"
 
-#: ../libvnck/vnckprop.c:1477
+#: libvnck/vnckprop.c:1480
 msgid "dialog window"
 msgstr "نافذة حوار"
 
-#: ../libvnck/vnckprop.c:1480
+#: libvnck/vnckprop.c:1483
 msgid "tearoff toolbar"
 msgstr "شريط أدوات متحرك"
 
-#: ../libvnck/vnckprop.c:1483
+#: libvnck/vnckprop.c:1486
 msgid "tearoff menu"
 msgstr "قائمة متحركة"
 
-#: ../libvnck/vnckprop.c:1486
+#: libvnck/vnckprop.c:1489
 msgid "utility window"
 msgstr "نافذة أدوات"
 
-#: ../libvnck/vnckprop.c:1489
+#: libvnck/vnckprop.c:1492
 msgid "splash screen"
 msgstr "شاشة البداية"
 
-#: ../libvnck/vnckprop.c:1494
+#: libvnck/vnckprop.c:1497
 #, c-format
 msgid "Window Type: %s\n"
 msgstr "نوع النافذة: %s\n"
 
-#: ../libvnck/vnckprop.c:1497
+#: libvnck/vnckprop.c:1500
 #, c-format
 msgid "Geometry (x, y, width, height): %d, %d, %d, %d\n"
 msgstr "الهندسة (س، ص، عرض، ارتفاع): %Id، %Id، %Id، %Id\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are of the
-#. * same class.
-#: ../libvnck/vnckprop.c:1507
+#. * same class. The class instance is a way to differentiate windows belonging
+#. * to the same class group.
+#: libvnck/vnckprop.c:1520
 #, c-format
-msgid "Class Group: %s\n"
-msgstr "مجموعة الفئات: %s\n"
+msgid "Class Instance: %s\n"
+msgstr ""
 
-#: ../libvnck/vnckprop.c:1509
+#: libvnck/vnckprop.c:1522
 #, c-format
 msgid "XID: %lu\n"
 msgstr "معرّف إكس: %lu\n"
 
-#: ../libvnck/vnckprop.c:1524
+#: libvnck/vnckprop.c:1537
 #, c-format
 msgid "Session ID: %s\n"
 msgstr "معرّف الجلسة: %s\n"
+
+#: libvnck/vnckprop.c:1544
+#, c-format
+msgid "Role: %s\n"
+msgstr ""
 
 #. Translators: A group leader is the window that is the "owner" of a group
 #. * of windows, ie: if you have multiple windows in one application, one
 #. * window has some information about the application (like the application
 #. * name).
-#: ../libvnck/vnckprop.c:1531
+#: libvnck/vnckprop.c:1551
 #, c-format
 msgid "Group Leader: %lu\n"
 msgstr "قائد المجموعة: %lu\n"
 
 #. Translators: A window can be transient for another window: it means it's
 #. * on top of it
-#: ../libvnck/vnckprop.c:1537
+#: libvnck/vnckprop.c:1557
 #, c-format
 msgid "Transient for: %lu\n"
 msgstr "عابرة فوق: %lu\n"
@@ -992,57 +945,57 @@ msgstr "عابرة فوق: %lu\n"
 #. FIXME: else print something?
 #. Translators: we're building a list of items here.             * For example, the result is "a, b".                            * In this case, the first string is "a", the second             * string is ", " and the third string is "b".                   * We can then use this information here to also                 * recursively build longer lists, like "a, b, c, d"
 #. Translators: we're building a list of items here.             * The end result is something like "a, b, c"                    * In this case, the first string is "a, b", the second          * string is ", " and the third string is "c"
-#: ../libvnck/vnckprop.c:1552 ../libvnck/vnckprop.c:1600
+#: libvnck/vnckprop.c:1572 libvnck/vnckprop.c:1620
 #, c-format
 msgid "%1$s%2$s%3$s"
 msgstr "%1$s%2$s%3$s"
 
 #. Translators: see comment for "%1$s%2$s%3$s" in order          * to properly translate this
-#: ../libvnck/vnckprop.c:1556 ../libvnck/vnckprop.c:1602
+#: libvnck/vnckprop.c:1576 libvnck/vnckprop.c:1622
 msgid ", "
 msgstr "، "
 
-#: ../libvnck/vnckprop.c:1562
+#: libvnck/vnckprop.c:1582
 msgid "minimized"
 msgstr "مصغّرة"
 
-#: ../libvnck/vnckprop.c:1563
+#: libvnck/vnckprop.c:1583
 msgid "maximized"
 msgstr "مكبّرة"
 
-#: ../libvnck/vnckprop.c:1567
+#: libvnck/vnckprop.c:1587
 msgid "maximized horizontally"
 msgstr "مكبّرة أفقيًا"
 
-#: ../libvnck/vnckprop.c:1569
+#: libvnck/vnckprop.c:1589
 msgid "maximized vertically"
 msgstr "مكبّرة رأسيًا"
 
-#: ../libvnck/vnckprop.c:1571
+#: libvnck/vnckprop.c:1591
 msgid "shaded"
 msgstr "مظللة"
 
-#: ../libvnck/vnckprop.c:1572
+#: libvnck/vnckprop.c:1592
 msgid "pinned"
 msgstr "مثبتة"
 
-#: ../libvnck/vnckprop.c:1573
+#: libvnck/vnckprop.c:1593
 msgid "sticky"
 msgstr "ملصقة"
 
-#: ../libvnck/vnckprop.c:1574
+#: libvnck/vnckprop.c:1594
 msgid "above"
 msgstr "فوق"
 
-#: ../libvnck/vnckprop.c:1575
+#: libvnck/vnckprop.c:1595
 msgid "below"
 msgstr "تحت"
 
-#: ../libvnck/vnckprop.c:1576
+#: libvnck/vnckprop.c:1596
 msgid "fullscreen"
 msgstr "تملأ الشاشة"
 
-#: ../libvnck/vnckprop.c:1577
+#: libvnck/vnckprop.c:1597
 msgid "needs attention"
 msgstr "تتطلب انتباهًا"
 
@@ -1050,127 +1003,127 @@ msgstr "تتطلب انتباهًا"
 #. * It's a representation of all workspaces with windows inside it.
 #. * Please make sure that the translation is in sync with gnome-panel,
 #. * where this term is also used in translatable strings
-#: ../libvnck/vnckprop.c:1582
+#: libvnck/vnckprop.c:1602
 msgid "skip pager"
 msgstr "تجاوز عن مبدّل مساحات العمل"
 
 #. Translators: "tasklist" is the list of running applications (the window
 #. * list)
-#: ../libvnck/vnckprop.c:1585
+#: libvnck/vnckprop.c:1605
 msgid "skip tasklist"
 msgstr "تجاوز عن قائمة المهمات"
 
-#: ../libvnck/vnckprop.c:1587
+#: libvnck/vnckprop.c:1607
 msgid "normal"
 msgstr "عادية"
 
-#: ../libvnck/vnckprop.c:1588
+#: libvnck/vnckprop.c:1608
 #, c-format
 msgid "State: %s\n"
 msgstr "الحالة: %s\n"
 
-#: ../libvnck/vnckprop.c:1609
+#: libvnck/vnckprop.c:1629
 msgid "move"
 msgstr "انقل"
 
-#: ../libvnck/vnckprop.c:1610
+#: libvnck/vnckprop.c:1630
 msgid "resize"
 msgstr "حجّم"
 
-#: ../libvnck/vnckprop.c:1611
+#: libvnck/vnckprop.c:1631
 msgid "shade"
 msgstr "ظلّل"
 
-#: ../libvnck/vnckprop.c:1612
+#: libvnck/vnckprop.c:1632
 msgid "unshade"
 msgstr "اعكس التظليل"
 
-#: ../libvnck/vnckprop.c:1613
+#: libvnck/vnckprop.c:1633
 msgid "stick"
 msgstr "الصق"
 
-#: ../libvnck/vnckprop.c:1614
+#: libvnck/vnckprop.c:1634
 msgid "unstick"
 msgstr "اعكس الإلصاق"
 
-#: ../libvnck/vnckprop.c:1616
+#: libvnck/vnckprop.c:1636
 msgid "maximize horizontally"
 msgstr "كبّر أفقيًا"
 
-#: ../libvnck/vnckprop.c:1618
+#: libvnck/vnckprop.c:1638
 msgid "unmaximize horizontally"
 msgstr "اعكس التكبير أفقيًا"
 
-#: ../libvnck/vnckprop.c:1620
+#: libvnck/vnckprop.c:1640
 msgid "maximize vertically"
 msgstr "كبّر رأسيًا"
 
-#: ../libvnck/vnckprop.c:1622
+#: libvnck/vnckprop.c:1642
 msgid "unmaximize vertically"
 msgstr "اعكس التكبير رأسيًا"
 
-#: ../libvnck/vnckprop.c:1625
+#: libvnck/vnckprop.c:1645
 msgid "change workspace"
 msgstr "غيّر مساحة العمل"
 
-#: ../libvnck/vnckprop.c:1627
+#: libvnck/vnckprop.c:1647
 msgid "pin"
 msgstr "ثبّت"
 
-#: ../libvnck/vnckprop.c:1629
+#: libvnck/vnckprop.c:1649
 msgid "unpin"
 msgstr "اعكس التثبيت"
 
-#: ../libvnck/vnckprop.c:1630
+#: libvnck/vnckprop.c:1650
 msgid "minimize"
 msgstr "صغّر"
 
-#: ../libvnck/vnckprop.c:1631
+#: libvnck/vnckprop.c:1651
 msgid "unminimize"
 msgstr "اعكس التصغير"
 
-#: ../libvnck/vnckprop.c:1632
+#: libvnck/vnckprop.c:1652
 msgid "maximize"
 msgstr "كبّر"
 
-#: ../libvnck/vnckprop.c:1633
+#: libvnck/vnckprop.c:1653
 msgid "unmaximize"
 msgstr "اعكس التكبير"
 
-#: ../libvnck/vnckprop.c:1635
+#: libvnck/vnckprop.c:1655
 msgid "change fullscreen mode"
 msgstr "غيّر نمط ملء الشاشة"
 
-#: ../libvnck/vnckprop.c:1636
+#: libvnck/vnckprop.c:1656
 msgid "close"
 msgstr "أغلق"
 
-#: ../libvnck/vnckprop.c:1638
+#: libvnck/vnckprop.c:1658
 msgid "make above"
 msgstr "انقل إلى الأعلى"
 
-#: ../libvnck/vnckprop.c:1640
+#: libvnck/vnckprop.c:1660
 msgid "unmake above"
 msgstr "اعكس النقل إلى الأعلى"
 
-#: ../libvnck/vnckprop.c:1642
+#: libvnck/vnckprop.c:1662
 msgid "make below"
 msgstr "انقل إلى الأسفل"
 
-#: ../libvnck/vnckprop.c:1644
+#: libvnck/vnckprop.c:1664
 msgid "unmake below"
 msgstr "اعكس النقل إلى الأسفل"
 
-#: ../libvnck/vnckprop.c:1646
+#: libvnck/vnckprop.c:1666
 msgid "no action possible"
 msgstr "لا يوجد إجراء ممكن"
 
-#: ../libvnck/vnckprop.c:1647
+#: libvnck/vnckprop.c:1667
 #, c-format
 msgid "Possible Actions: %s\n"
 msgstr "الإجراءات الممكنة: %s\n"
 
-#: ../libvnck/vnckprop.c:1826
+#: libvnck/vnckprop.c:1876
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1181,63 +1134,63 @@ msgstr ""
 "لمعلومات حول هذه المواصفات، راجع:\n"
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: ../libvnck/vnckprop.c:1836
+#: libvnck/vnckprop.c:1886
 msgid "Options to list windows or workspaces"
 msgstr "أظهر النوافذ من كل مساحات العمل"
 
-#: ../libvnck/vnckprop.c:1837
+#: libvnck/vnckprop.c:1887
 msgid "Show options to list windows or workspaces"
 msgstr "أظهر الخيارات لسرد النوافذ أو مساحات العمل"
 
-#: ../libvnck/vnckprop.c:1844
+#: libvnck/vnckprop.c:1894
 msgid "Options to modify properties of a window"
 msgstr "الخيارات لتعديل خصائص نافذة"
 
-#: ../libvnck/vnckprop.c:1845
+#: libvnck/vnckprop.c:1895
 msgid "Show options to modify properties of a window"
 msgstr "أظهر الخيارات لتعديل خصائص نافذة"
 
-#: ../libvnck/vnckprop.c:1852
+#: libvnck/vnckprop.c:1902
 msgid "Options to modify properties of a workspace"
 msgstr "الخيارات لتعديل خصائص مساحة عمل"
 
-#: ../libvnck/vnckprop.c:1853
+#: libvnck/vnckprop.c:1903
 msgid "Show options to modify properties of a workspace"
 msgstr "أظهر الخيارات لتعديل خصائص مساحة عمل"
 
-#: ../libvnck/vnckprop.c:1860
+#: libvnck/vnckprop.c:1910
 msgid "Options to modify properties of a screen"
 msgstr "الخيارات لتعديل خصائص شاشة"
 
-#: ../libvnck/vnckprop.c:1861
+#: libvnck/vnckprop.c:1911
 msgid "Show options to modify properties of a screen"
 msgstr "أظهر الخيارات لتعديل خصائص شاشة"
 
-#: ../libvnck/vnckprop.c:1872
+#: libvnck/vnckprop.c:1922
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "خطأ أثناء تحليل المعطيات: %s\n"
 
-#: ../libvnck/vnckprop.c:1895
+#: libvnck/vnckprop.c:1945
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "لا يمكن التفاعل مع الشاشة %Id: الشاشة غير موجودة\n"
 
-#: ../libvnck/vnckprop.c:1951
+#: libvnck/vnckprop.c:2001
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr "لا يمكن التفاعل مع مساحة العمل %Id: مساحة العمل لا يمكن إيجادها\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: ../libvnck/vnckprop.c:1975
+#: libvnck/vnckprop.c:2025
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
 msgstr ""
 "لا يمكن التفاعل مع مجموعة الفئات \"%s\": مجموعة الفئات لا يمكن إيجادها\n"
 
-#: ../libvnck/vnckprop.c:1998
+#: libvnck/vnckprop.c:2048
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
@@ -1246,10 +1199,55 @@ msgstr ""
 "لا يمكن التفاعل مع تطبيق يملك قائد مجموعة له معرّف إكس %lu: لا يمكن إيجاد "
 "التطبيق\n"
 
-#: ../libvnck/vnckprop.c:2021
+#: libvnck/vnckprop.c:2071
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr "لا يمكن التفاعل مع نافذة لها معرّف إكس %lu: لا يمكن إيجاد النافذة\n"
+
+#~ msgid "Use N_ROWS rows"
+#~ msgstr "استخدم ر من صفوف"
+
+#~ msgid "N_ROWS"
+#~ msgstr "ر صفوف"
+
+#~ msgid "Only show current workspace"
+#~ msgstr "أظهر فقط مساحة العمل الحالية"
+
+#~ msgid "Use RTL as default direction"
+#~ msgstr "استخدم اليمين-إلى-اليسار كاتجاه افتراضي"
+
+#~ msgid "Show workspace names instead of workspace contents"
+#~ msgstr "أظهر أسماء مساحات العمل عوضًا عن محتوياتها"
+
+#~ msgid "Use a vertical orientation"
+#~ msgstr "استخدم اتجاهًا عموديًا"
+
+#~ msgid "Don't show window in tasklist"
+#~ msgstr "لا تظهر النافذة في قائمة المهمات"
+
+#~ msgid "Always group windows"
+#~ msgstr "جمّع النوافذ دائمًا"
+
+#~ msgid "Never group windows"
+#~ msgstr "لا تجمّع النوافذ أبدًا"
+
+#~ msgid "Display windows from all workspaces"
+#~ msgstr "أظهر النوافذ من كل مساحات العمل"
+
+#~ msgid "Enable Transparency"
+#~ msgstr "اسمح بالشفافية"
+
+#, c-format
+#~ msgid "Resource Class: %s\n"
+#~ msgstr "فئة الموارد: %s\n"
+
+#, c-format
+#~ msgid "Group Name: %s\n"
+#~ msgstr "اسم المجموعة: %s\n"
+
+#, c-format
+#~ msgid "Class Group: %s\n"
+#~ msgstr "مجموعة الفئات: %s\n"
 
 #~ msgid "workspace|none"
 #~ msgstr "غير محدّد"

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libvnck.HEAD.ro\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libvnck/issues\n"
-"POT-Creation-Date: 2018-11-07 12:31+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-18 20:24+0100\n"
 "PO-Revision-Date: 2019-08-19 13:35+0300\n"
 "Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
 "com>\n"
@@ -58,17 +58,17 @@ msgstr "Unealtă pentru comutarea între spații de lucru"
 msgid "Click this to switch to workspace %s"
 msgstr "Clic pentru comutarea în spațiul de lucru %s"
 
-#: libvnck/pager.c:2189
+#: libvnck/pager.c:2221
 #, c-format
 msgid "Click to start dragging \"%s\""
 msgstr "Clic pentru a trage „%s”"
 
-#: libvnck/pager.c:2192
+#: libvnck/pager.c:2224
 #, c-format
 msgid "Current workspace: \"%s\""
 msgstr "Spațiul de lucru curent: „%s”"
 
-#: libvnck/pager.c:2197
+#: libvnck/pager.c:2229
 #, c-format
 msgid "Click to switch to \"%s\""
 msgstr "Clic pentru a comuta la „%s”"
@@ -85,31 +85,31 @@ msgstr "Selector ferestre"
 msgid "Tool to switch between windows"
 msgstr "Unealtă pentru comutarea între ferestre"
 
-#: libvnck/tasklist.c:597
+#: libvnck/tasklist.c:603
 msgid "Window List"
 msgstr "Listă ferestre"
 
-#: libvnck/tasklist.c:598
+#: libvnck/tasklist.c:604
 msgid "Tool to switch between visible windows"
 msgstr "Unealtă pentru comutarea între ferestrele vizibile"
 
-#: libvnck/tasklist.c:2986
+#: libvnck/tasklist.c:3022
 msgid "Mi_nimize All"
 msgstr "Mi_nimizează toate"
 
-#: libvnck/tasklist.c:2994
+#: libvnck/tasklist.c:3030
 msgid "Un_minimize All"
 msgstr "De_minimizează toate"
 
-#: libvnck/tasklist.c:3002
+#: libvnck/tasklist.c:3038
 msgid "Ma_ximize All"
 msgstr "Ma_ximizează toate"
 
-#: libvnck/tasklist.c:3010
+#: libvnck/tasklist.c:3046
 msgid "_Unmaximize All"
 msgstr "_Demaximizează toate"
 
-#: libvnck/tasklist.c:3022
+#: libvnck/tasklist.c:3058
 msgid "_Close All"
 msgstr "În_chide toate"
 
@@ -135,6 +135,7 @@ msgid "Workspace %d"
 msgstr "Spațiul de lucru %d"
 
 #: libvnck/window-action-menu.c:701 libvnck/window-action-menu.c:847
+#, c-format
 msgid "Workspace 1_0"
 msgstr "Spațiul de lucru 1_0"
 
@@ -612,6 +613,7 @@ msgid "Invalid argument \"%s\" for --%s, valid values are: %s\n"
 msgstr "Argument nevalid „%s” pentru --%s, valorile valide sunt: %s\n"
 
 #: libvnck/vnckprop.c:863
+#, c-format
 msgid ""
 "Cannot change the workspace layout on the screen: the layout is already "
 "owned\n"
@@ -623,6 +625,7 @@ msgstr ""
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
 #: libvnck/vnckprop.c:898
+#, c-format
 msgid ""
 "Viewport cannot be moved: the current workspace does not contain a viewport\n"
 msgstr ""
@@ -633,6 +636,7 @@ msgstr ""
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
 #: libvnck/vnckprop.c:905
+#, c-format
 msgid "Viewport cannot be moved: there is no current workspace\n"
 msgstr "Zona vizibilă nu poate fi mutată: spațiul de lucru curent nu există\n"
 
@@ -640,6 +644,7 @@ msgstr "Zona vizibilă nu poate fi mutată: spațiul de lucru curent nu există\
 #: libvnck/vnckprop.c:941 libvnck/vnckprop.c:950 libvnck/vnckprop.c:959
 #: libvnck/vnckprop.c:966 libvnck/vnckprop.c:976 libvnck/vnckprop.c:983
 #: libvnck/vnckprop.c:992 libvnck/vnckprop.c:1041
+#, c-format
 msgid "Action not allowed\n"
 msgstr "Acțiune nepermisă\n"
 
@@ -1141,7 +1146,7 @@ msgstr "nicio acțiune posibilă"
 msgid "Possible Actions: %s\n"
 msgstr "Acțiuni posibile: %s\n"
 
-#: libvnck/vnckprop.c:1874
+#: libvnck/vnckprop.c:1876
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1153,50 +1158,50 @@ msgstr ""
 "Pentru informații despre aceste specificații consulați:\n"
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: libvnck/vnckprop.c:1884
+#: libvnck/vnckprop.c:1886
 msgid "Options to list windows or workspaces"
 msgstr "Opțiuni pentru listare ferestre sau spații de lucru"
 
-#: libvnck/vnckprop.c:1885
+#: libvnck/vnckprop.c:1887
 msgid "Show options to list windows or workspaces"
 msgstr "Afișare opțiuni pentru listare ferestre sau spații de lucru"
 
-#: libvnck/vnckprop.c:1892
+#: libvnck/vnckprop.c:1894
 msgid "Options to modify properties of a window"
 msgstr "Opțiuni de modificare a proprietăților unei ferestre"
 
-#: libvnck/vnckprop.c:1893
+#: libvnck/vnckprop.c:1895
 msgid "Show options to modify properties of a window"
 msgstr "Afișează opțiuni pentru modificare proprietăți fereastră"
 
-#: libvnck/vnckprop.c:1900
+#: libvnck/vnckprop.c:1902
 msgid "Options to modify properties of a workspace"
 msgstr "Opțiuni pentru modificarea proprietăților unui spațiu de lucru"
 
-#: libvnck/vnckprop.c:1901
+#: libvnck/vnckprop.c:1903
 msgid "Show options to modify properties of a workspace"
 msgstr ""
 "Afișează opțiuni pentru modificarea proprietăților unui spațiu de lucru"
 
-#: libvnck/vnckprop.c:1908
+#: libvnck/vnckprop.c:1910
 msgid "Options to modify properties of a screen"
 msgstr "Opțiuni pentru modificare proprietăți fereastră"
 
-#: libvnck/vnckprop.c:1909
+#: libvnck/vnckprop.c:1911
 msgid "Show options to modify properties of a screen"
 msgstr "Afișează opțiuni pentru modificare proprietăți ecran"
 
-#: libvnck/vnckprop.c:1920
+#: libvnck/vnckprop.c:1922
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "Eroare la analizarea argumentelor: %s\n"
 
-#: libvnck/vnckprop.c:1943
+#: libvnck/vnckprop.c:1945
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "Nu se poate interacționa cu ecranul %d: ecranul nu există\n"
 
-#: libvnck/vnckprop.c:1999
+#: libvnck/vnckprop.c:2001
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr ""
@@ -1205,7 +1210,7 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2023
+#: libvnck/vnckprop.c:2025
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
@@ -1213,7 +1218,7 @@ msgstr ""
 "Nu se poate interacționa cu grupul de clasă „%s”: acest grup de clasă nu "
 "poate fi găsit\n"
 
-#: libvnck/vnckprop.c:2046
+#: libvnck/vnckprop.c:2048
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
@@ -1222,7 +1227,7 @@ msgstr ""
 "Nu s-a putut interacționa cu aplicația având liderul de grup cu XID-ul  %lu: "
 "aplicația nu a putut fi găsită\n"
 
-#: libvnck/vnckprop.c:2069
+#: libvnck/vnckprop.c:2071
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr ""

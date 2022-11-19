@@ -11,9 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libvnck.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=libvnck&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-19 15:17+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-18 20:24+0100\n"
 "PO-Revision-Date: 2016-03-20 09:58+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
@@ -42,150 +41,150 @@ msgstr ""
 #. * The #VnckApplication objects are always owned by libvnck and must not be
 #. * referenced or unreferenced.
 #.
-#: ../libvnck/application.c:51
+#: libvnck/application.c:49
 msgid "Untitled application"
 msgstr "Aplikácia bez názvu"
 
-#: ../libvnck/pager-accessible.c:342
+#: libvnck/pager-accessible.c:263
 msgid "Workspace Switcher"
 msgstr "Prepínač plôch"
 
-#: ../libvnck/pager-accessible.c:353
+#: libvnck/pager-accessible.c:274
 msgid "Tool to switch between workspaces"
 msgstr "Nástroj pre prepínanie medzi pracovnými plochami"
 
-#: ../libvnck/pager-accessible.c:465
+#: libvnck/pager-accessible.c:379
 #, c-format
 msgid "Click this to switch to workspace %s"
 msgstr "Kliknutím sa prepnete na plochu %s"
 
-#: ../libvnck/pager.c:2188
+#: libvnck/pager.c:2221
 #, c-format
 msgid "Click to start dragging \"%s\""
 msgstr "Kliknutím naštartujete ťahanie \"%s\""
 
-#: ../libvnck/pager.c:2191
+#: libvnck/pager.c:2224
 #, c-format
 msgid "Current workspace: \"%s\""
 msgstr "Aktuálna plocha: \"%s\""
 
-#: ../libvnck/pager.c:2196
+#: libvnck/pager.c:2229
 #, c-format
 msgid "Click to switch to \"%s\""
 msgstr "Kliknutím sa prepnete na %s"
 
-#: ../libvnck/selector.c:1184
+#: libvnck/selector.c:1091
 msgid "No Windows Open"
 msgstr "Nie sú otvorené žiadne okná"
 
-#: ../libvnck/selector.c:1240
+#: libvnck/selector.c:1147
 msgid "Window Selector"
 msgstr "Výber okien"
 
-#: ../libvnck/selector.c:1241
+#: libvnck/selector.c:1148
 msgid "Tool to switch between windows"
 msgstr "Nástroj pre prepínanie medzi oknami"
 
-#: ../libvnck/tasklist.c:594
+#: libvnck/tasklist.c:603
 msgid "Window List"
 msgstr "Zoznam okien"
 
-#: ../libvnck/tasklist.c:595
+#: libvnck/tasklist.c:604
 msgid "Tool to switch between visible windows"
 msgstr "Nástroj pre prepínanie medzi viditeľnými oknami"
 
-#: ../libvnck/tasklist.c:2952
+#: libvnck/tasklist.c:3022
 msgid "Mi_nimize All"
 msgstr "Mi_nimalizovať všetky"
 
-#: ../libvnck/tasklist.c:2963
+#: libvnck/tasklist.c:3030
 msgid "Un_minimize All"
 msgstr "Zrušiť _minimalizáciu všetkých"
 
-#: ../libvnck/tasklist.c:2971
+#: libvnck/tasklist.c:3038
 msgid "Ma_ximize All"
 msgstr "Ma_ximalizovať všetky"
 
-#: ../libvnck/tasklist.c:2982
+#: libvnck/tasklist.c:3046
 msgid "_Unmaximize All"
 msgstr "Zrušiť m_aximalizáciu všetkých"
 
-#: ../libvnck/tasklist.c:2994
+#: libvnck/tasklist.c:3058
 msgid "_Close All"
 msgstr "_Zavrieť všetky"
 
-#: ../libvnck/window-action-menu.c:398
+#: libvnck/window-action-menu.c:367
 msgid "Unmi_nimize"
 msgstr "Zrušiť mi_nimalizáciu"
 
-#: ../libvnck/window-action-menu.c:405
+#: libvnck/window-action-menu.c:373
 msgid "Mi_nimize"
 msgstr "Mi_nimalizovať"
 
-#: ../libvnck/window-action-menu.c:413
+#: libvnck/window-action-menu.c:380
 msgid "Unma_ximize"
 msgstr "Zrušiť ma_ximalizáciu"
 
-#: ../libvnck/window-action-menu.c:420
+#: libvnck/window-action-menu.c:386
 msgid "Ma_ximize"
 msgstr "Ma_ximalizovať"
 
-#: ../libvnck/window-action-menu.c:727 ../libvnck/workspace.c:273
+#: libvnck/window-action-menu.c:692 libvnck/workspace.c:265
 #, c-format
 msgid "Workspace %d"
 msgstr "Pracovná plocha %d"
 
-#: ../libvnck/window-action-menu.c:736 ../libvnck/window-action-menu.c:883
+#: libvnck/window-action-menu.c:701 libvnck/window-action-menu.c:847
 #, c-format
 msgid "Workspace 1_0"
 msgstr "Pracovná plocha 1_0"
 
-#: ../libvnck/window-action-menu.c:738 ../libvnck/window-action-menu.c:885
+#: libvnck/window-action-menu.c:703 libvnck/window-action-menu.c:849
 #, c-format
 msgid "Workspace %s%d"
 msgstr "Pracovná plocha %s%d"
 
-#: ../libvnck/window-action-menu.c:1027
+#: libvnck/window-action-menu.c:990
 msgid "_Move"
 msgstr "Pre_miestniť"
 
-#: ../libvnck/window-action-menu.c:1034
+#: libvnck/window-action-menu.c:996
 msgid "_Resize"
 msgstr "Zmeniť veľko_sť"
 
-#: ../libvnck/window-action-menu.c:1043
+#: libvnck/window-action-menu.c:1004
 msgid "Always On _Top"
 msgstr "Vždy na_vrchu"
 
-#: ../libvnck/window-action-menu.c:1051
+#: libvnck/window-action-menu.c:1012
 msgid "_Always on Visible Workspace"
 msgstr "Vž_dy na viditeľnej pracovnej ploche"
 
-#: ../libvnck/window-action-menu.c:1056
+#: libvnck/window-action-menu.c:1017
 msgid "_Only on This Workspace"
 msgstr "_Len na tejto pracovnej ploche"
 
-#: ../libvnck/window-action-menu.c:1063
+#: libvnck/window-action-menu.c:1024
 msgid "Move to Workspace _Left"
 msgstr "Presunúť na pracovnú plochu vľav_o"
 
-#: ../libvnck/window-action-menu.c:1069
+#: libvnck/window-action-menu.c:1029
 msgid "Move to Workspace R_ight"
 msgstr "Presunúť na pracovnú plochu v_pravo"
 
-#: ../libvnck/window-action-menu.c:1075
+#: libvnck/window-action-menu.c:1034
 msgid "Move to Workspace _Up"
 msgstr "Presunúť na pracovnú plochu _hore"
 
-#: ../libvnck/window-action-menu.c:1081
+#: libvnck/window-action-menu.c:1039
 msgid "Move to Workspace _Down"
 msgstr "Presunúť na pracovnú plochu _dole"
 
-#: ../libvnck/window-action-menu.c:1084
+#: libvnck/window-action-menu.c:1041
 msgid "Move to Another _Workspace"
 msgstr "P_resunúť na inú pracovnú plochu"
 
-#: ../libvnck/window-action-menu.c:1104
+#: libvnck/window-action-menu.c:1061
 msgid "_Close"
 msgstr "_Zavrieť"
 
@@ -198,16 +197,15 @@ msgstr "_Zavrieť"
 #. * The #VnckWindow objects are always owned by libvnck and must not be
 #. * referenced or unreferenced.
 #.
-#: ../libvnck/window.c:49
+#: libvnck/window.c:47
 msgid "Untitled window"
 msgstr "Okno bez názvu"
 
-#: ../libvnck/vnckprop.c:139
+#: libvnck/vnckprop.c:137
 msgid "X window ID of the window to examine or modify"
 msgstr "X window ID okna na skúmanie alebo zmenu"
 
-#: ../libvnck/vnckprop.c:139 ../libvnck/vnckprop.c:146
-#: ../libvnck/vnckprop.c:156
+#: libvnck/vnckprop.c:137 libvnck/vnckprop.c:144 libvnck/vnckprop.c:154
 msgid "XID"
 msgstr "XID"
 
@@ -215,41 +213,40 @@ msgstr "XID"
 #. * group of windows, ie: if you have multiple windows in one
 #. * application, one window has some information about the application
 #. * (like the application name).
-#: ../libvnck/vnckprop.c:145
+#: libvnck/vnckprop.c:143
 msgid "X window ID of the group leader of an application to examine"
 msgstr "X window ID vedúceho skupiny aplikácie na skúmanie"
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: ../libvnck/vnckprop.c:150
+#: libvnck/vnckprop.c:148
 msgid "Class resource of the class group to examine"
 msgstr "Triedny zdroj skupiny tried na skúmanie"
 
-#: ../libvnck/vnckprop.c:150
+#: libvnck/vnckprop.c:148
 msgid "CLASS"
 msgstr "TRIEDA"
 
-#: ../libvnck/vnckprop.c:152
+#: libvnck/vnckprop.c:150
 msgid "NUMBER of the workspace to examine or modify"
 msgstr "ČÍSLO pracovnej plochy na skúmanie alebo zmenu"
 
-#: ../libvnck/vnckprop.c:152 ../libvnck/vnckprop.c:154
-#: ../libvnck/vnckprop.c:172 ../libvnck/vnckprop.c:174
-#: ../libvnck/vnckprop.c:176 ../libvnck/vnckprop.c:273
+#: libvnck/vnckprop.c:150 libvnck/vnckprop.c:152 libvnck/vnckprop.c:170
+#: libvnck/vnckprop.c:172 libvnck/vnckprop.c:174 libvnck/vnckprop.c:271
 msgid "NUMBER"
 msgstr "ČÍSLO"
 
-#: ../libvnck/vnckprop.c:154
+#: libvnck/vnckprop.c:152
 msgid "NUMBER of the screen to examine or modify"
 msgstr "ČÍSLO obrazovky na skúmanie alebo zmenu"
 
-#: ../libvnck/vnckprop.c:156
+#: libvnck/vnckprop.c:154
 msgid "Alias of --window"
 msgstr "Alias pre --window"
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: ../libvnck/vnckprop.c:164
+#: libvnck/vnckprop.c:162
 msgid ""
 "List windows of the application/class group/workspace/screen (output format: "
 "\"XID: Window Name\")"
@@ -257,146 +254,146 @@ msgstr ""
 "Zobrazť zoznam okien aplikácie/skupiny okien/plochy/obrazovky (výstupný "
 "formát: \"XID: Názov okna\")"
 
-#: ../libvnck/vnckprop.c:166
+#: libvnck/vnckprop.c:164
 msgid ""
 "List workspaces of the screen (output format: \"Number: Workspace Name\")"
 msgstr ""
 "Zobraziť zoznam pracovných plôch obrazovky (výstupný formát: \"Číslo: Názov "
 "plochy\")"
 
-#: ../libvnck/vnckprop.c:172
+#: libvnck/vnckprop.c:170
 msgid "Change the number of workspaces of the screen to NUMBER"
 msgstr "Zmeniť počet pracovných plôch na obrazovke na hodnotu ČÍSLO"
 
-#: ../libvnck/vnckprop.c:174
+#: libvnck/vnckprop.c:172
 msgid "Change the workspace layout of the screen to use NUMBER rows"
 msgstr "Zmeniť rozloženie plôch na obrazovke na hodnotu ČÍSLO riadkov"
 
-#: ../libvnck/vnckprop.c:176
+#: libvnck/vnckprop.c:174
 msgid "Change the workspace layout of the screen to use NUMBER columns"
 msgstr "Zmeniť rozloženie plôch na obrazovke na hodnotu ČÍSLO stĺpcov"
 
-#: ../libvnck/vnckprop.c:178
+#: libvnck/vnckprop.c:176
 msgid "Show the desktop"
 msgstr "Zobraziť pracovnú plochu"
 
-#: ../libvnck/vnckprop.c:180
+#: libvnck/vnckprop.c:178
 msgid "Stop showing the desktop"
 msgstr "Zrušiť zobrazenie pracovnej plochy"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libvnck/vnckprop.c:185
+#: libvnck/vnckprop.c:183
 msgid "Move the viewport of the current workspace to X coordinate X"
 msgstr "Premiestniť výhľad aktuálnej pracovnej plochy na X-ovú pozíciu X"
 
-#: ../libvnck/vnckprop.c:185 ../libvnck/vnckprop.c:275
+#: libvnck/vnckprop.c:183 libvnck/vnckprop.c:273
 msgid "X"
 msgstr "X"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libvnck/vnckprop.c:190
+#: libvnck/vnckprop.c:188
 msgid "Move the viewport of the current workspace to Y coordinate Y"
 msgstr "Premiestniť výhľad aktuálnej pracovnej plochy na Y-ovú pozíciu Y"
 
-#: ../libvnck/vnckprop.c:190 ../libvnck/vnckprop.c:277
+#: libvnck/vnckprop.c:188 libvnck/vnckprop.c:275
 msgid "Y"
 msgstr "Y"
 
-#: ../libvnck/vnckprop.c:196
+#: libvnck/vnckprop.c:194
 msgid "Minimize the window"
 msgstr "Minimalizovať okno"
 
-#: ../libvnck/vnckprop.c:198
+#: libvnck/vnckprop.c:196
 msgid "Unminimize the window"
 msgstr "Zrušiť minimalizáciu okna"
 
-#: ../libvnck/vnckprop.c:200
+#: libvnck/vnckprop.c:198
 msgid "Maximize the window"
 msgstr "Maximalizovať okno"
 
-#: ../libvnck/vnckprop.c:202
+#: libvnck/vnckprop.c:200
 msgid "Unmaximize the window"
 msgstr "Zrušiť maximalizáciu okna"
 
-#: ../libvnck/vnckprop.c:204
+#: libvnck/vnckprop.c:202
 msgid "Maximize horizontally the window"
 msgstr "Horizontálne maximalizovať okno"
 
-#: ../libvnck/vnckprop.c:206
+#: libvnck/vnckprop.c:204
 msgid "Unmaximize horizontally the window"
 msgstr "Zrušiť horizontálnu maximalizáciu okna"
 
-#: ../libvnck/vnckprop.c:208
+#: libvnck/vnckprop.c:206
 msgid "Maximize vertically the window"
 msgstr "Vertikálne maximalizovať okno"
 
-#: ../libvnck/vnckprop.c:210
+#: libvnck/vnckprop.c:208
 msgid "Unmaximize vertically the window"
 msgstr "Zrušiť vertikálnu maximalizáciu okna"
 
-#: ../libvnck/vnckprop.c:212
+#: libvnck/vnckprop.c:210
 msgid "Start moving the window via the keyboard"
 msgstr "Začať premiestnenie okna pomocou klávesnice"
 
-#: ../libvnck/vnckprop.c:214
+#: libvnck/vnckprop.c:212
 msgid "Start resizing the window via the keyboard"
 msgstr "Začať zmenu veľkosti okna pomocou klávesnice"
 
-#: ../libvnck/vnckprop.c:216
+#: libvnck/vnckprop.c:214
 msgid "Activate the window"
 msgstr "Aktivovať okno"
 
-#: ../libvnck/vnckprop.c:218
+#: libvnck/vnckprop.c:216
 msgid "Close the window"
 msgstr "Zavrieť okno"
 
-#: ../libvnck/vnckprop.c:221
+#: libvnck/vnckprop.c:219
 msgid "Make the window fullscreen"
 msgstr "Zobraziť okno na celú obrazovku"
 
-#: ../libvnck/vnckprop.c:223
+#: libvnck/vnckprop.c:221
 msgid "Make the window quit fullscreen mode"
 msgstr "Zrušiť zobrazenie okna na celú obrazovku"
 
-#: ../libvnck/vnckprop.c:225
+#: libvnck/vnckprop.c:223
 msgid "Make the window always on top"
 msgstr "Zobraziť okno vždy navrchu"
 
-#: ../libvnck/vnckprop.c:227
+#: libvnck/vnckprop.c:225
 msgid "Make the window not always on top"
 msgstr "Zrušiť zobrazenie okna \"vždy navrchu\""
 
-#: ../libvnck/vnckprop.c:229
+#: libvnck/vnckprop.c:227
 msgid "Make the window below other windows"
 msgstr "Presunúť okno pod ostatné okná"
 
-#: ../libvnck/vnckprop.c:231
+#: libvnck/vnckprop.c:229
 msgid "Make the window not below other windows"
 msgstr "Zrušiť presunutie okna pod ostatné okná"
 
-#: ../libvnck/vnckprop.c:233
+#: libvnck/vnckprop.c:231
 msgid "Shade the window"
 msgstr "Zrolovať okno"
 
-#: ../libvnck/vnckprop.c:235
+#: libvnck/vnckprop.c:233
 msgid "Unshade the window"
 msgstr "Zrušiť zrolovanie okna"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libvnck/vnckprop.c:240
+#: libvnck/vnckprop.c:238
 msgid "Make the window have a fixed position in the viewport"
 msgstr "Umiestniť okno na fixnú pozíciu vo výhľade"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libvnck/vnckprop.c:245
+#: libvnck/vnckprop.c:243
 msgid "Make the window not have a fixed position in the viewport"
 msgstr "Zrušiť umiestnenie okna na fixnej pozícií vo výhľade"
 
@@ -405,7 +402,7 @@ msgstr "Zrušiť umiestnenie okna na fixnej pozícií vo výhľade"
 #. * inside it. Please make sure that the translation is in sync with
 #. * gnome-panel, where this term is also used in translatable strings
 #.
-#: ../libvnck/vnckprop.c:252
+#: libvnck/vnckprop.c:250
 msgid "Make the window not appear in pagers"
 msgstr "Nezobrazovať okno v prepínaní plôch"
 
@@ -414,60 +411,60 @@ msgstr "Nezobrazovať okno v prepínaní plôch"
 #. * inside it. Please make sure that the translation is in sync with
 #. * gnome-panel, where this term is also used in translatable strings
 #.
-#: ../libvnck/vnckprop.c:259
+#: libvnck/vnckprop.c:257
 msgid "Make the window appear in pagers"
 msgstr "Zobrazovať okno v prepínaní plôch"
 
 #. Translators: "tasklist" is the list of running applications (the
 #. * window list)
-#: ../libvnck/vnckprop.c:263
+#: libvnck/vnckprop.c:261
 msgid "Make the window not appear in tasklists"
 msgstr "Nezobrazovať okno v zozname okien"
 
 #. Translators: "tasklist" is the list of running applications (the
 #. * window list)
-#: ../libvnck/vnckprop.c:267
+#: libvnck/vnckprop.c:265
 msgid "Make the window appear in tasklists"
 msgstr "Zobrazovať okno v zozname okien"
 
-#: ../libvnck/vnckprop.c:269
+#: libvnck/vnckprop.c:267
 msgid "Make the window visible on all workspaces"
 msgstr "Zobraziť okno na všetkých pracovných plochách"
 
-#: ../libvnck/vnckprop.c:271
+#: libvnck/vnckprop.c:269
 msgid "Make the window visible on the current workspace only"
 msgstr "Zobraziť okno len na aktuálnej pracovnej ploche"
 
-#: ../libvnck/vnckprop.c:273
+#: libvnck/vnckprop.c:271
 msgid "Move the window to workspace NUMBER (first workspace is 0)"
 msgstr "Presunúť okno na pracovnú plochu ČÍSLO (prvá plocha má číslo 0)"
 
-#: ../libvnck/vnckprop.c:275
+#: libvnck/vnckprop.c:273
 msgid "Change the X coordinate of the window to X"
 msgstr "Nastaviť x-ovú súradnicu okna na hodnotu X"
 
-#: ../libvnck/vnckprop.c:277
+#: libvnck/vnckprop.c:275
 msgid "Change the Y coordinate of the window to Y"
 msgstr "Nastaviť y-ovú súradnicu okna na hodnotu Y"
 
-#: ../libvnck/vnckprop.c:279
+#: libvnck/vnckprop.c:277
 msgid "Change the width of the window to WIDTH"
 msgstr "Nastaviť šírku okna na hodnotu ŠÍRKA"
 
-#: ../libvnck/vnckprop.c:279
+#: libvnck/vnckprop.c:277
 msgid "WIDTH"
 msgstr "ŠÍRKA"
 
-#: ../libvnck/vnckprop.c:281
+#: libvnck/vnckprop.c:279
 msgid "Change the height of the window to HEIGHT"
 msgstr "Nastaviť výšku okna na hodnotu VÝŠKA"
 
-#: ../libvnck/vnckprop.c:281
+#: libvnck/vnckprop.c:279
 msgid "HEIGHT"
 msgstr "VÝŠKA"
 
 #. Translators: do not translate "normal, desktop, dock..."
-#: ../libvnck/vnckprop.c:284
+#: libvnck/vnckprop.c:282
 msgid ""
 "Change the type of the window to TYPE (valid values: normal, desktop, dock, "
 "dialog, toolbar, menu, utility, splash)"
@@ -475,29 +472,29 @@ msgstr ""
 "Nastaviť typ okna na hodnotu TYP (možné hodnoty: normal, desktop, dock, "
 "dialog, toolbar, menu, utility, splash)"
 
-#: ../libvnck/vnckprop.c:284
+#: libvnck/vnckprop.c:282
 msgid "TYPE"
 msgstr "TYP"
 
-#: ../libvnck/vnckprop.c:290
+#: libvnck/vnckprop.c:288
 msgid "Change the name of the workspace to NAME"
 msgstr "Zmeniť názov pracovnej plochy na NÁZOV"
 
-#: ../libvnck/vnckprop.c:290
+#: libvnck/vnckprop.c:288
 msgid "NAME"
 msgstr "NÁZOV"
 
-#: ../libvnck/vnckprop.c:292
+#: libvnck/vnckprop.c:290
 msgid "Activate the workspace"
 msgstr "Aktivovať pracovnú plochu"
 
-#: ../libvnck/vnckprop.c:386 ../libvnck/vnckprop.c:410
-#: ../libvnck/vnckprop.c:446 ../libvnck/vnckprop.c:469
+#: libvnck/vnckprop.c:384 libvnck/vnckprop.c:408 libvnck/vnckprop.c:444
+#: libvnck/vnckprop.c:467
 #, c-format
 msgid "Invalid value \"%s\" for --%s"
 msgstr "Chybná hodnota \"%s\" pre --%s"
 
-#: ../libvnck/vnckprop.c:503 ../libvnck/vnckprop.c:522
+#: libvnck/vnckprop.c:501 libvnck/vnckprop.c:520
 #, c-format
 msgid ""
 "Conflicting options are present: screen %d should be interacted with, but --"
@@ -506,7 +503,7 @@ msgstr ""
 "Použité voľby sú v konflikte: má sa pracovať s obrazovkou %d, ale bolo "
 "určené --%s\n"
 
-#: ../libvnck/vnckprop.c:512
+#: libvnck/vnckprop.c:510
 #, c-format
 msgid ""
 "Conflicting options are present: windows or workspaces of screen %d should "
@@ -515,7 +512,7 @@ msgstr ""
 "Použité voľby sú v konflikte: majú byť vypísané okná alebo plochy obrazovky "
 "%d, ale bolo určené --%s\n"
 
-#: ../libvnck/vnckprop.c:535 ../libvnck/vnckprop.c:555
+#: libvnck/vnckprop.c:533 libvnck/vnckprop.c:553
 #, c-format
 msgid ""
 "Conflicting options are present: workspace %d should be interacted with, but "
@@ -524,7 +521,7 @@ msgstr ""
 "Použité voľby sú v konflikte: má sa pracovať s plochou %d, ale bolo určené --"
 "%s\n"
 
-#: ../libvnck/vnckprop.c:545
+#: libvnck/vnckprop.c:543
 #, c-format
 msgid ""
 "Conflicting options are present: windows of workspace %d should be listed, "
@@ -533,7 +530,7 @@ msgstr ""
 "Použité voľby sú v konflikte: majú byť vypísané okná plochy %d, ale bolo "
 "určené --%s\n"
 
-#: ../libvnck/vnckprop.c:567
+#: libvnck/vnckprop.c:565
 #, c-format
 msgid ""
 "Conflicting options are present: an application should be interacted with, "
@@ -542,7 +539,7 @@ msgstr ""
 "Použité voľby sú v konflikte: má sa pracovať s aplikáciou, ale bolo určené --"
 "%s\n"
 
-#: ../libvnck/vnckprop.c:577
+#: libvnck/vnckprop.c:575
 #, c-format
 msgid ""
 "Conflicting options are present: windows of an application should be listed, "
@@ -553,7 +550,7 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: ../libvnck/vnckprop.c:591
+#: libvnck/vnckprop.c:589
 #, c-format
 msgid ""
 "Conflicting options are present: class group \"%s\" should be interacted "
@@ -564,7 +561,7 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: ../libvnck/vnckprop.c:603
+#: libvnck/vnckprop.c:601
 #, c-format
 msgid ""
 "Conflicting options are present: windows of class group \"%s\" should be "
@@ -573,7 +570,7 @@ msgstr ""
 "Použité voľby sú v konflikte: majú byť vypísané okná skupiny \"%s\", ale "
 "bolo určené --%s\n"
 
-#: ../libvnck/vnckprop.c:615 ../libvnck/vnckprop.c:624
+#: libvnck/vnckprop.c:613 libvnck/vnckprop.c:622
 #, c-format
 msgid ""
 "Conflicting options are present: a window should be interacted with, but --"
@@ -581,34 +578,33 @@ msgid ""
 msgstr ""
 "Použité voľby sú v konflikte: má sa pracovať s oknom, ale bolo určené --%s\n"
 
-#: ../libvnck/vnckprop.c:643 ../libvnck/vnckprop.c:724
-#: ../libvnck/vnckprop.c:771
+#: libvnck/vnckprop.c:641 libvnck/vnckprop.c:722 libvnck/vnckprop.c:769
 #, c-format
 msgid "Conflicting options are present: --%s and --%s\n"
 msgstr "Použité voľby sú v konflikte: --%s a --%s\n"
 
-#: ../libvnck/vnckprop.c:682
+#: libvnck/vnckprop.c:680
 #, c-format
 msgid ""
 "Invalid argument \"%d\" for --%s: the argument must be strictly positive\n"
 msgstr "Neplatná hodnota \"%d\" pre --%s: hodnota musí byť kladná\n"
 
-#: ../libvnck/vnckprop.c:695
+#: libvnck/vnckprop.c:693
 #, c-format
 msgid "Invalid argument \"%d\" for --%s: the argument must be positive\n"
 msgstr "Neplatná hodnota \"%d\" pre --%s: hodnota musí byť nezáporná\n"
 
-#: ../libvnck/vnckprop.c:790
+#: libvnck/vnckprop.c:788
 #, c-format
 msgid "Conflicting options are present: --%s or --%s, and --%s\n"
 msgstr "Použité voľby sú v konflikte: --%s (alebo --%s) a --%s\n"
 
-#: ../libvnck/vnckprop.c:822
+#: libvnck/vnckprop.c:820
 #, c-format
 msgid "Invalid argument \"%s\" for --%s, valid values are: %s\n"
 msgstr "Neplatná hodnota \"%s\" pre --%s, možné hodnoty sú: %s\n"
 
-#: ../libvnck/vnckprop.c:865
+#: libvnck/vnckprop.c:863
 #, c-format
 msgid ""
 "Cannot change the workspace layout on the screen: the layout is already "
@@ -620,7 +616,7 @@ msgstr ""
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libvnck/vnckprop.c:900
+#: libvnck/vnckprop.c:898
 #, c-format
 msgid ""
 "Viewport cannot be moved: the current workspace does not contain a viewport\n"
@@ -630,139 +626,135 @@ msgstr ""
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: ../libvnck/vnckprop.c:907
+#: libvnck/vnckprop.c:905
 #, c-format
 msgid "Viewport cannot be moved: there is no current workspace\n"
 msgstr "Výhľad sa nedá premiestniť: aktuálna nie je žiadna plocha\n"
 
 #. FIXME: why do we have dual & boolean API. This is not consistent!
-#: ../libvnck/vnckprop.c:943 ../libvnck/vnckprop.c:952
-#: ../libvnck/vnckprop.c:961 ../libvnck/vnckprop.c:968
-#: ../libvnck/vnckprop.c:978 ../libvnck/vnckprop.c:985
-#: ../libvnck/vnckprop.c:994 ../libvnck/vnckprop.c:1043
+#: libvnck/vnckprop.c:941 libvnck/vnckprop.c:950 libvnck/vnckprop.c:959
+#: libvnck/vnckprop.c:966 libvnck/vnckprop.c:976 libvnck/vnckprop.c:983
+#: libvnck/vnckprop.c:992 libvnck/vnckprop.c:1041
 #, c-format
 msgid "Action not allowed\n"
 msgstr "Nepovolená akcia\n"
 
-#: ../libvnck/vnckprop.c:1039
+#: libvnck/vnckprop.c:1037
 #, c-format
 msgid "Window cannot be moved to workspace %d: the workspace does not exist\n"
 msgstr "Okno nemôže byť premiestnené na plochu %d: taká plocha neexistuje\n"
 
 #. Translators: 'unset' in the sense of "something has not been set".
-#: ../libvnck/vnckprop.c:1103 ../libvnck/vnckprop.c:1235
+#: libvnck/vnckprop.c:1101 libvnck/vnckprop.c:1233
 msgid "<name unset>"
 msgstr "<názov nenastavený>"
 
 #. Translators: %lu is a window number and %s a window name
-#: ../libvnck/vnckprop.c:1106
+#: libvnck/vnckprop.c:1104
 #, c-format
 msgid "%lu: %s\n"
 msgstr "%lu: %s\n"
 
 #. Translators: %d is a workspace number and %s a workspace name
-#: ../libvnck/vnckprop.c:1126
+#: libvnck/vnckprop.c:1124
 #, c-format
 msgid "%d: %s\n"
 msgstr "%d: %s\n"
 
-#: ../libvnck/vnckprop.c:1189
+#: libvnck/vnckprop.c:1187
 #, c-format
 msgid "Screen Number: %d\n"
 msgstr "Číslo obrazovky: %d\n"
 
-#: ../libvnck/vnckprop.c:1191 ../libvnck/vnckprop.c:1272
+#: libvnck/vnckprop.c:1189 libvnck/vnckprop.c:1270
 #, c-format
 msgid "Geometry (width, height): %d, %d\n"
 msgstr "Geometria (šírka, výška): %d, %d\n"
 
-#: ../libvnck/vnckprop.c:1195
+#: libvnck/vnckprop.c:1193
 #, c-format
 msgid "Number of Workspaces: %d\n"
 msgstr "Počet pracovných plôch: %d\n"
 
-#: ../libvnck/vnckprop.c:1201
+#: libvnck/vnckprop.c:1199
 #, c-format
 msgid "Workspace Layout (rows, columns, orientation): %d, %d, %s\n"
 msgstr "Rozloženie plôch (riadky, stĺpce, orientácia): %d, %d, %s\n"
 
-#: ../libvnck/vnckprop.c:1211 ../libvnck/vnckprop.c:1268
-#: ../libvnck/vnckprop.c:1465
+#: libvnck/vnckprop.c:1209 libvnck/vnckprop.c:1266 libvnck/vnckprop.c:1463
 msgid "<no EWMH-compliant window manager>"
 msgstr "<žiaden správca okien spĺňajúci EWMH>"
 
-#: ../libvnck/vnckprop.c:1212
+#: libvnck/vnckprop.c:1210
 #, c-format
 msgid "Window Manager: %s\n"
 msgstr "Správca okien: %s\n"
 
 #. Translators: %d is a workspace number and %s a workspace name
-#: ../libvnck/vnckprop.c:1217 ../libvnck/vnckprop.c:1298
-#: ../libvnck/vnckprop.c:1310 ../libvnck/vnckprop.c:1322
-#: ../libvnck/vnckprop.c:1334 ../libvnck/vnckprop.c:1450
+#: libvnck/vnckprop.c:1215 libvnck/vnckprop.c:1296 libvnck/vnckprop.c:1308
+#: libvnck/vnckprop.c:1320 libvnck/vnckprop.c:1332 libvnck/vnckprop.c:1448
 #, c-format
 msgid "%d (\"%s\")"
 msgstr "%d (\"%s\")"
 
 #. Translators: "none" here means "no workspace"
-#: ../libvnck/vnckprop.c:1222 ../libvnck/vnckprop.c:1303
-#: ../libvnck/vnckprop.c:1315 ../libvnck/vnckprop.c:1327
-#: ../libvnck/vnckprop.c:1339 ../libvnck/vnckprop.c:1457
+#: libvnck/vnckprop.c:1220 libvnck/vnckprop.c:1301 libvnck/vnckprop.c:1313
+#: libvnck/vnckprop.c:1325 libvnck/vnckprop.c:1337 libvnck/vnckprop.c:1455
 msgctxt "workspace"
 msgid "none"
 msgstr "žiadna"
 
-#: ../libvnck/vnckprop.c:1223
+#: libvnck/vnckprop.c:1221
 #, c-format
 msgid "Active Workspace: %s\n"
 msgstr "Aktívna plocha: %s\n"
 
-#: ../libvnck/vnckprop.c:1232
+#: libvnck/vnckprop.c:1230
 #, c-format
 msgid "\"%s\""
 msgstr "\"%s\""
 
 #. Translators: %lu is a window identifier (number) and %s a window name
-#: ../libvnck/vnckprop.c:1238
+#: libvnck/vnckprop.c:1236
 #, c-format
 msgid "%lu (%s)"
 msgstr "%lu (%s)"
 
 #. Translators: "none" here means "no window"
-#: ../libvnck/vnckprop.c:1244
+#: libvnck/vnckprop.c:1242
 msgctxt "window"
 msgid "none"
 msgstr "žiadne"
 
-#: ../libvnck/vnckprop.c:1245
+#: libvnck/vnckprop.c:1243
 #, c-format
 msgid "Active Window: %s\n"
 msgstr "Aktívne okno: %s\n"
 
-#: ../libvnck/vnckprop.c:1248
+#: libvnck/vnckprop.c:1246
 #, c-format
 msgid "Showing the desktop: %s\n"
 msgstr "Zobrazená plocha: %s\n"
 
-#: ../libvnck/vnckprop.c:1250
+#: libvnck/vnckprop.c:1248
 msgid "true"
 msgstr "áno"
 
-#: ../libvnck/vnckprop.c:1250
+#: libvnck/vnckprop.c:1248
 msgid "false"
 msgstr "nie"
 
-#: ../libvnck/vnckprop.c:1261
+#: libvnck/vnckprop.c:1259
 #, c-format
 msgid "Workspace Name: %s\n"
 msgstr "Názov plochy: %s\n"
 
-#: ../libvnck/vnckprop.c:1262
+#: libvnck/vnckprop.c:1260
 #, c-format
 msgid "Workspace Number: %d\n"
 msgstr "Číslo plochy: %d\n"
 
-#: ../libvnck/vnckprop.c:1269 ../libvnck/vnckprop.c:1466
+#: libvnck/vnckprop.c:1267 libvnck/vnckprop.c:1464
 #, c-format
 msgid "On Screen: %d (Window Manager: %s)\n"
 msgstr "Na obrazovke: %d (Správca okien: %s)\n"
@@ -770,159 +762,155 @@ msgstr "Na obrazovke: %d (Správca okien: %s)\n"
 #. Translators: 'viewport' is kind of the viewable area. A viewport can be
 #. * used to implement workspaces (e.g. compiz is an example); however it is
 #. * not just the current workspace.
-#: ../libvnck/vnckprop.c:1284
+#: libvnck/vnckprop.c:1282
 msgid "<no viewport>"
 msgstr "<žiaden výhľad>"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport can be
 #. * used to implement workspaces (e.g. compiz is an example); however it is
 #. * not just the current workspace.
-#: ../libvnck/vnckprop.c:1288
+#: libvnck/vnckprop.c:1286
 #, c-format
 msgid "Viewport position (x, y): %s\n"
 msgstr "Pozícia výhľadu (x, y): %s\n"
 
-#: ../libvnck/vnckprop.c:1291
+#: libvnck/vnckprop.c:1289
 #, c-format
 msgid "Position in Layout (row, column): %d, %d\n"
 msgstr "Pozícia v rozložení (riadok, stĺpec): %d, %d\n"
 
-#: ../libvnck/vnckprop.c:1304
+#: libvnck/vnckprop.c:1302
 #, c-format
 msgid "Left Neighbor: %s\n"
 msgstr "Ľavý sused: %s\n"
 
-#: ../libvnck/vnckprop.c:1316
+#: libvnck/vnckprop.c:1314
 #, c-format
 msgid "Right Neighbor: %s\n"
 msgstr "Pravý sused: %s\n"
 
-#: ../libvnck/vnckprop.c:1328
+#: libvnck/vnckprop.c:1326
 #, c-format
 msgid "Top Neighbor: %s\n"
 msgstr "Horný sused: %s\n"
 
-#: ../libvnck/vnckprop.c:1340
+#: libvnck/vnckprop.c:1338
 #, c-format
 msgid "Bottom Neighbor: %s\n"
 msgstr "Dolný sused: %s\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are of the
 #. * same class.
-#: ../libvnck/vnckprop.c:1353 ../libvnck/vnckprop.c:1512
+#: libvnck/vnckprop.c:1351 libvnck/vnckprop.c:1510
 #, c-format
 msgid "Class Group ID: %s\n"
 msgstr "ID skupiny okien: %s\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are of the
 #. * same class.
-#: ../libvnck/vnckprop.c:1357
+#: libvnck/vnckprop.c:1355
 #, c-format
 msgid "Class Group Name: %s\n"
 msgstr "Názov skupiny okien: %s\n"
 
 #. Translators: 'set' in the sense of "something has been set".
-#: ../libvnck/vnckprop.c:1363 ../libvnck/vnckprop.c:1387
-#: ../libvnck/vnckprop.c:1441
+#: libvnck/vnckprop.c:1361 libvnck/vnckprop.c:1385 libvnck/vnckprop.c:1439
 msgid "set"
 msgstr "nastavené"
 
 #. Translators: 'unset' in the sense of "something has not been set".
-#: ../libvnck/vnckprop.c:1366 ../libvnck/vnckprop.c:1390
-#: ../libvnck/vnckprop.c:1397 ../libvnck/vnckprop.c:1427
-#: ../libvnck/vnckprop.c:1434 ../libvnck/vnckprop.c:1444
-#: ../libvnck/vnckprop.c:1509 ../libvnck/vnckprop.c:1518
-#: ../libvnck/vnckprop.c:1530 ../libvnck/vnckprop.c:1538
-#: ../libvnck/vnckprop.c:1545
+#: libvnck/vnckprop.c:1364 libvnck/vnckprop.c:1388 libvnck/vnckprop.c:1395
+#: libvnck/vnckprop.c:1425 libvnck/vnckprop.c:1432 libvnck/vnckprop.c:1442
+#: libvnck/vnckprop.c:1507 libvnck/vnckprop.c:1516 libvnck/vnckprop.c:1528
+#: libvnck/vnckprop.c:1536 libvnck/vnckprop.c:1543
 msgid "<unset>"
 msgstr "<bez hodnoty>"
 
-#: ../libvnck/vnckprop.c:1367 ../libvnck/vnckprop.c:1391
-#: ../libvnck/vnckprop.c:1445
+#: libvnck/vnckprop.c:1365 libvnck/vnckprop.c:1389 libvnck/vnckprop.c:1443
 #, c-format
 msgid "Icons: %s\n"
 msgstr "Ikony: %s\n"
 
-#: ../libvnck/vnckprop.c:1370 ../libvnck/vnckprop.c:1408
+#: libvnck/vnckprop.c:1368 libvnck/vnckprop.c:1406
 #, c-format
 msgid "Number of Windows: %d\n"
 msgstr "Počet okien: %d\n"
 
-#: ../libvnck/vnckprop.c:1382 ../libvnck/vnckprop.c:1428
+#: libvnck/vnckprop.c:1380 libvnck/vnckprop.c:1426
 #, c-format
 msgid "Name: %s\n"
 msgstr "Názov: %s\n"
 
 #. Translators: note that "Icon" here has a specific window
 #. * management-related meaning. It means minimized.
-#: ../libvnck/vnckprop.c:1383 ../libvnck/vnckprop.c:1437
+#: libvnck/vnckprop.c:1381 libvnck/vnckprop.c:1435
 #, c-format
 msgid "Icon Name: %s\n"
 msgstr "Ikonizovaný názov: %s\n"
 
-#: ../libvnck/vnckprop.c:1398 ../libvnck/vnckprop.c:1531
+#: libvnck/vnckprop.c:1396 libvnck/vnckprop.c:1529
 #, c-format
 msgid "PID: %s\n"
 msgstr "PID: %s\n"
 
 #. Translators: "none" here means "no startup ID"
-#: ../libvnck/vnckprop.c:1405
+#: libvnck/vnckprop.c:1403
 msgctxt "startupID"
 msgid "none"
 msgstr "žiadne"
 
-#: ../libvnck/vnckprop.c:1406
+#: libvnck/vnckprop.c:1404
 #, c-format
 msgid "Startup ID: %s\n"
 msgstr "Štartovacie ID: %s\n"
 
-#: ../libvnck/vnckprop.c:1454
+#: libvnck/vnckprop.c:1452
 msgid "all workspaces"
 msgstr "všetky plochy"
 
-#: ../libvnck/vnckprop.c:1458
+#: libvnck/vnckprop.c:1456
 #, c-format
 msgid "On Workspace: %s\n"
 msgstr "Pracovná plocha: %s\n"
 
-#: ../libvnck/vnckprop.c:1473
+#: libvnck/vnckprop.c:1471
 msgid "normal window"
 msgstr "normálne okno"
 
-#: ../libvnck/vnckprop.c:1476
+#: libvnck/vnckprop.c:1474
 msgid "desktop"
 msgstr "plocha"
 
-#: ../libvnck/vnckprop.c:1479
+#: libvnck/vnckprop.c:1477
 msgid "dock or panel"
 msgstr "dok alebo panel"
 
-#: ../libvnck/vnckprop.c:1482
+#: libvnck/vnckprop.c:1480
 msgid "dialog window"
 msgstr "dialógové okno"
 
-#: ../libvnck/vnckprop.c:1485
+#: libvnck/vnckprop.c:1483
 msgid "tearoff toolbar"
 msgstr "odtrhnutý panel nástrojov"
 
-#: ../libvnck/vnckprop.c:1488
+#: libvnck/vnckprop.c:1486
 msgid "tearoff menu"
 msgstr "odtrhnutá ponuka"
 
-#: ../libvnck/vnckprop.c:1491
+#: libvnck/vnckprop.c:1489
 msgid "utility window"
 msgstr "úžitkové okno"
 
-#: ../libvnck/vnckprop.c:1494
+#: libvnck/vnckprop.c:1492
 msgid "splash screen"
 msgstr "úvodná obrazovka"
 
-#: ../libvnck/vnckprop.c:1499
+#: libvnck/vnckprop.c:1497
 #, c-format
 msgid "Window Type: %s\n"
 msgstr "Typ okna: %s\n"
 
-#: ../libvnck/vnckprop.c:1502
+#: libvnck/vnckprop.c:1500
 #, c-format
 msgid "Geometry (x, y, width, height): %d, %d, %d, %d\n"
 msgstr "Geometria (x, y, šírka, výška): %d, %d, %d, %d\n"
@@ -930,24 +918,23 @@ msgstr "Geometria (x, y, šírka, výška): %d, %d, %d, %d\n"
 #. Translators: A class is like a "family". E.g., all gvim windows are of the
 #. * same class. The class instance is a way to differentiate windows belonging
 #. * to the same class group.
-#: ../libvnck/vnckprop.c:1522
+#: libvnck/vnckprop.c:1520
 #, c-format
 msgid "Class Instance: %s\n"
 msgstr "Inštancia okien: %s\n"
 
-#: ../libvnck/vnckprop.c:1524
+#: libvnck/vnckprop.c:1522
 #, c-format
 msgid "XID: %lu\n"
 msgstr "XID: %lu\n"
 
-#: ../libvnck/vnckprop.c:1539
+#: libvnck/vnckprop.c:1537
 #, c-format
 msgid "Session ID: %s\n"
 msgstr "ID relácie: %s\n"
 
-#: ../libvnck/vnckprop.c:1546
+#: libvnck/vnckprop.c:1544
 #, c-format
-#| msgid "%lu: %s\n"
 msgid "Role: %s\n"
 msgstr "Rola: %s\n"
 
@@ -955,14 +942,14 @@ msgstr "Rola: %s\n"
 #. * of windows, ie: if you have multiple windows in one application, one
 #. * window has some information about the application (like the application
 #. * name).
-#: ../libvnck/vnckprop.c:1553
+#: libvnck/vnckprop.c:1551
 #, c-format
 msgid "Group Leader: %lu\n"
 msgstr "Hlavné okno: %lu\n"
 
 #. Translators: A window can be transient for another window: it means it's
 #. * on top of it
-#: ../libvnck/vnckprop.c:1559
+#: libvnck/vnckprop.c:1557
 #, c-format
 msgid "Transient for: %lu\n"
 msgstr "Navrchu pre: %lu\n"
@@ -970,57 +957,57 @@ msgstr "Navrchu pre: %lu\n"
 #. FIXME: else print something?
 #. Translators: we're building a list of items here.             * For example, the result is "a, b".                            * In this case, the first string is "a", the second             * string is ", " and the third string is "b".                   * We can then use this information here to also                 * recursively build longer lists, like "a, b, c, d"
 #. Translators: we're building a list of items here.             * The end result is something like "a, b, c"                    * In this case, the first string is "a, b", the second          * string is ", " and the third string is "c"
-#: ../libvnck/vnckprop.c:1574 ../libvnck/vnckprop.c:1622
+#: libvnck/vnckprop.c:1572 libvnck/vnckprop.c:1620
 #, c-format
 msgid "%1$s%2$s%3$s"
 msgstr "%1$s%2$s%3$s"
 
 #. Translators: see comment for "%1$s%2$s%3$s" in order          * to properly translate this
-#: ../libvnck/vnckprop.c:1578 ../libvnck/vnckprop.c:1624
+#: libvnck/vnckprop.c:1576 libvnck/vnckprop.c:1622
 msgid ", "
 msgstr ", "
 
-#: ../libvnck/vnckprop.c:1584
+#: libvnck/vnckprop.c:1582
 msgid "minimized"
 msgstr "minimalizované"
 
-#: ../libvnck/vnckprop.c:1585
+#: libvnck/vnckprop.c:1583
 msgid "maximized"
 msgstr "maximalizované"
 
-#: ../libvnck/vnckprop.c:1589
+#: libvnck/vnckprop.c:1587
 msgid "maximized horizontally"
 msgstr "horizontálne maximalizované"
 
-#: ../libvnck/vnckprop.c:1591
+#: libvnck/vnckprop.c:1589
 msgid "maximized vertically"
 msgstr "vertikálne maximalizované"
 
-#: ../libvnck/vnckprop.c:1593
+#: libvnck/vnckprop.c:1591
 msgid "shaded"
 msgstr "zrolované"
 
-#: ../libvnck/vnckprop.c:1594
+#: libvnck/vnckprop.c:1592
 msgid "pinned"
 msgstr "pripnuté"
 
-#: ../libvnck/vnckprop.c:1595
+#: libvnck/vnckprop.c:1593
 msgid "sticky"
 msgstr "lepkavé"
 
-#: ../libvnck/vnckprop.c:1596
+#: libvnck/vnckprop.c:1594
 msgid "above"
 msgstr "nad"
 
-#: ../libvnck/vnckprop.c:1597
+#: libvnck/vnckprop.c:1595
 msgid "below"
 msgstr "pod"
 
-#: ../libvnck/vnckprop.c:1598
+#: libvnck/vnckprop.c:1596
 msgid "fullscreen"
 msgstr "celoobrazovkové"
 
-#: ../libvnck/vnckprop.c:1599
+#: libvnck/vnckprop.c:1597
 msgid "needs attention"
 msgstr "vyžaduje pozornosť"
 
@@ -1028,127 +1015,127 @@ msgstr "vyžaduje pozornosť"
 #. * It's a representation of all workspaces with windows inside it.
 #. * Please make sure that the translation is in sync with gnome-panel,
 #. * where this term is also used in translatable strings
-#: ../libvnck/vnckprop.c:1604
+#: libvnck/vnckprop.c:1602
 msgid "skip pager"
 msgstr "vynechať prepínač"
 
 #. Translators: "tasklist" is the list of running applications (the window
 #. * list)
-#: ../libvnck/vnckprop.c:1607
+#: libvnck/vnckprop.c:1605
 msgid "skip tasklist"
 msgstr "vynechať zoznam"
 
-#: ../libvnck/vnckprop.c:1609
+#: libvnck/vnckprop.c:1607
 msgid "normal"
 msgstr "normálne"
 
-#: ../libvnck/vnckprop.c:1610
+#: libvnck/vnckprop.c:1608
 #, c-format
 msgid "State: %s\n"
 msgstr "Stav: %s\n"
 
-#: ../libvnck/vnckprop.c:1631
+#: libvnck/vnckprop.c:1629
 msgid "move"
 msgstr "premiestniť"
 
-#: ../libvnck/vnckprop.c:1632
+#: libvnck/vnckprop.c:1630
 msgid "resize"
 msgstr "zmeniť veľkosť"
 
-#: ../libvnck/vnckprop.c:1633
+#: libvnck/vnckprop.c:1631
 msgid "shade"
 msgstr "zrolovať"
 
-#: ../libvnck/vnckprop.c:1634
+#: libvnck/vnckprop.c:1632
 msgid "unshade"
 msgstr "zrušiť zrolovanie"
 
-#: ../libvnck/vnckprop.c:1635
+#: libvnck/vnckprop.c:1633
 msgid "stick"
 msgstr "prilepiť"
 
-#: ../libvnck/vnckprop.c:1636
+#: libvnck/vnckprop.c:1634
 msgid "unstick"
 msgstr "zrušiť prilepenie"
 
-#: ../libvnck/vnckprop.c:1638
+#: libvnck/vnckprop.c:1636
 msgid "maximize horizontally"
 msgstr "horizontálne maximalizovať"
 
-#: ../libvnck/vnckprop.c:1640
+#: libvnck/vnckprop.c:1638
 msgid "unmaximize horizontally"
 msgstr "zrušiť horizontálnu maximalizáciu"
 
-#: ../libvnck/vnckprop.c:1642
+#: libvnck/vnckprop.c:1640
 msgid "maximize vertically"
 msgstr "vertikálne maximalizovať"
 
-#: ../libvnck/vnckprop.c:1644
+#: libvnck/vnckprop.c:1642
 msgid "unmaximize vertically"
 msgstr "zrušiť vertikálnu maximalizíciu"
 
-#: ../libvnck/vnckprop.c:1647
+#: libvnck/vnckprop.c:1645
 msgid "change workspace"
 msgstr "zmeniť plochu"
 
-#: ../libvnck/vnckprop.c:1649
+#: libvnck/vnckprop.c:1647
 msgid "pin"
 msgstr "pripnúť"
 
-#: ../libvnck/vnckprop.c:1651
+#: libvnck/vnckprop.c:1649
 msgid "unpin"
 msgstr "zrušiť pripnutie"
 
-#: ../libvnck/vnckprop.c:1652
+#: libvnck/vnckprop.c:1650
 msgid "minimize"
 msgstr "minimalizovať"
 
-#: ../libvnck/vnckprop.c:1653
+#: libvnck/vnckprop.c:1651
 msgid "unminimize"
 msgstr "zrušiť minimalizáciu"
 
-#: ../libvnck/vnckprop.c:1654
+#: libvnck/vnckprop.c:1652
 msgid "maximize"
 msgstr "maximalizovať"
 
-#: ../libvnck/vnckprop.c:1655
+#: libvnck/vnckprop.c:1653
 msgid "unmaximize"
 msgstr "zrušiť maximalizáciu"
 
-#: ../libvnck/vnckprop.c:1657
+#: libvnck/vnckprop.c:1655
 msgid "change fullscreen mode"
 msgstr "zmeniť celoobrazovkový režim"
 
-#: ../libvnck/vnckprop.c:1658
+#: libvnck/vnckprop.c:1656
 msgid "close"
 msgstr "zavrieť"
 
-#: ../libvnck/vnckprop.c:1660
+#: libvnck/vnckprop.c:1658
 msgid "make above"
 msgstr "dať nad"
 
-#: ../libvnck/vnckprop.c:1662
+#: libvnck/vnckprop.c:1660
 msgid "unmake above"
 msgstr "zrušiť nad"
 
-#: ../libvnck/vnckprop.c:1664
+#: libvnck/vnckprop.c:1662
 msgid "make below"
 msgstr "dať pod"
 
-#: ../libvnck/vnckprop.c:1666
+#: libvnck/vnckprop.c:1664
 msgid "unmake below"
 msgstr "zrušiť pod"
 
-#: ../libvnck/vnckprop.c:1668
+#: libvnck/vnckprop.c:1666
 msgid "no action possible"
 msgstr "žiadne akcie"
 
-#: ../libvnck/vnckprop.c:1669
+#: libvnck/vnckprop.c:1667
 #, c-format
 msgid "Possible Actions: %s\n"
 msgstr "Možné akcie: %s\n"
 
-#: ../libvnck/vnckprop.c:1901
+#: libvnck/vnckprop.c:1876
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1160,62 +1147,62 @@ msgstr ""
 "Viac informácií o tejto špecifikácií je dostupných na:\n"
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: ../libvnck/vnckprop.c:1911
+#: libvnck/vnckprop.c:1886
 msgid "Options to list windows or workspaces"
 msgstr "Možnosti pre zoznam okien alebo plôch"
 
-#: ../libvnck/vnckprop.c:1912
+#: libvnck/vnckprop.c:1887
 msgid "Show options to list windows or workspaces"
 msgstr "Zobraziť možnosti pre vypísanie zoznamu okien alebo plôch"
 
-#: ../libvnck/vnckprop.c:1919
+#: libvnck/vnckprop.c:1894
 msgid "Options to modify properties of a window"
 msgstr "Možnosti pre zmenu vlastností okna"
 
-#: ../libvnck/vnckprop.c:1920
+#: libvnck/vnckprop.c:1895
 msgid "Show options to modify properties of a window"
 msgstr "Zobraziť možnosti pre zmenu vlastností okna"
 
-#: ../libvnck/vnckprop.c:1927
+#: libvnck/vnckprop.c:1902
 msgid "Options to modify properties of a workspace"
 msgstr "Možnosti pre zmenu vlastností pracovnej plochy"
 
-#: ../libvnck/vnckprop.c:1928
+#: libvnck/vnckprop.c:1903
 msgid "Show options to modify properties of a workspace"
 msgstr "Zobraziť možnosti pre zmenu vlastností pracovnej plochy"
 
-#: ../libvnck/vnckprop.c:1935
+#: libvnck/vnckprop.c:1910
 msgid "Options to modify properties of a screen"
 msgstr "Možnosti pre zmenu vlastností obrazovky"
 
-#: ../libvnck/vnckprop.c:1936
+#: libvnck/vnckprop.c:1911
 msgid "Show options to modify properties of a screen"
 msgstr "Zobraziť možnosti pre zmenu vlastností obrazovky"
 
-#: ../libvnck/vnckprop.c:1947
+#: libvnck/vnckprop.c:1922
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "Chyba pri spracovaní parametrov: %s\n"
 
-#: ../libvnck/vnckprop.c:1970
+#: libvnck/vnckprop.c:1945
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "Nedá sa manipulovať s obrazovkou %d: obrazovka neexistuje\n"
 
-#: ../libvnck/vnckprop.c:2026
+#: libvnck/vnckprop.c:2001
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr "Nedá sa manipulovať s obrazovkou %d: obrazovka nebola nájdená\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: ../libvnck/vnckprop.c:2050
+#: libvnck/vnckprop.c:2025
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
 msgstr "Nedá sa manipulovať so skupinou okien \"%s\": skupina nebola nájdená\n"
 
-#: ../libvnck/vnckprop.c:2073
+#: libvnck/vnckprop.c:2048
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
@@ -1224,7 +1211,7 @@ msgstr ""
 "Nedá sa manipulovať s aplikáciou, ktorá má vedúceho skupiny s XID %lu: "
 "aplikácia nebola nájdená\n"
 
-#: ../libvnck/vnckprop.c:2096
+#: libvnck/vnckprop.c:2071
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr "Nedá sa manipulovať s oknom s XID %lu: okno nebolo nájdené\n"

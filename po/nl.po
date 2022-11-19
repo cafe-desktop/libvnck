@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libvnck\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libvnck/issues\n"
-"POT-Creation-Date: 2018-06-10 17:50+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-18 20:24+0100\n"
 "PO-Revision-Date: 2019-02-26 13:23+0100\n"
 "Last-Translator: Nathan Follens <nthn@unseen.is>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -48,148 +48,149 @@ msgstr ""
 msgid "Untitled application"
 msgstr "Naamloze toepassing"
 
-#: libvnck/pager-accessible.c:340
+#: libvnck/pager-accessible.c:263
 msgid "Workspace Switcher"
 msgstr "Werkbladwisselaar"
 
-#: libvnck/pager-accessible.c:351
+#: libvnck/pager-accessible.c:274
 msgid "Tool to switch between workspaces"
 msgstr "Hulpje om tussen verschillende werkbladen te wisselen"
 
-#: libvnck/pager-accessible.c:463
+#: libvnck/pager-accessible.c:379
 #, c-format
 msgid "Click this to switch to workspace %s"
 msgstr "Klik hier om te wisselen naar werkblad %s"
 
-#: libvnck/pager.c:2192
+#: libvnck/pager.c:2221
 #, c-format
 msgid "Click to start dragging \"%s\""
 msgstr "Klik om te starten met slepen van ʻ%sʼ"
 
-#: libvnck/pager.c:2195
+#: libvnck/pager.c:2224
 #, c-format
 msgid "Current workspace: \"%s\""
 msgstr "Huidige werkblad: ʻ%sʼ"
 
-#: libvnck/pager.c:2200
+#: libvnck/pager.c:2229
 #, c-format
 msgid "Click to switch to \"%s\""
 msgstr "Klik hier om te wisselen naar ʻ%sʼ"
 
-#: libvnck/selector.c:1092
+#: libvnck/selector.c:1091
 msgid "No Windows Open"
 msgstr "Geen geopende vensters"
 
 # niet helemaal exact vertaald, maar het is wel duidelijk zo
-#: libvnck/selector.c:1148
+#: libvnck/selector.c:1147
 msgid "Window Selector"
 msgstr "Vensterselectie"
 
-#: libvnck/selector.c:1149
+#: libvnck/selector.c:1148
 msgid "Tool to switch between windows"
 msgstr "Een hulpje om te wisselen van venster"
 
-#: libvnck/tasklist.c:598
+#: libvnck/tasklist.c:603
 msgid "Window List"
 msgstr "Vensterlijst"
 
 # degenen die zichtbaar zijn
-#: libvnck/tasklist.c:599
+#: libvnck/tasklist.c:604
 msgid "Tool to switch between visible windows"
 msgstr "Een hulpje om te wisselen van venster (die zichbaar zijn)"
 
-#: libvnck/tasklist.c:2986
+#: libvnck/tasklist.c:3022
 msgid "Mi_nimize All"
 msgstr "Alles _minimaliseren"
 
-#: libvnck/tasklist.c:2994
+#: libvnck/tasklist.c:3030
 msgid "Un_minimize All"
 msgstr "Alles _herstellen"
 
-#: libvnck/tasklist.c:3002
+#: libvnck/tasklist.c:3038
 msgid "Ma_ximize All"
 msgstr "Alles Ma_ximaliseren"
 
-#: libvnck/tasklist.c:3010
+#: libvnck/tasklist.c:3046
 msgid "_Unmaximize All"
 msgstr "Alles her_stellen"
 
-#: libvnck/tasklist.c:3022
+#: libvnck/tasklist.c:3058
 msgid "_Close All"
 msgstr "Alles sl_uiten"
 
-#: libvnck/window-action-menu.c:368
+#: libvnck/window-action-menu.c:367
 msgid "Unmi_nimize"
 msgstr "_Herstellen"
 
-#: libvnck/window-action-menu.c:374
+#: libvnck/window-action-menu.c:373
 msgid "Mi_nimize"
 msgstr "_Minimaliseren"
 
-#: libvnck/window-action-menu.c:381
+#: libvnck/window-action-menu.c:380
 msgid "Unma_ximize"
 msgstr "_Herstellen"
 
-#: libvnck/window-action-menu.c:387
+#: libvnck/window-action-menu.c:386
 msgid "Ma_ximize"
 msgstr "Ma_ximaliseren"
 
-#: libvnck/window-action-menu.c:693 libvnck/workspace.c:268
+#: libvnck/window-action-menu.c:692 libvnck/workspace.c:265
 #, c-format
 msgid "Workspace %d"
 msgstr "Werkblad %d"
 
-#: libvnck/window-action-menu.c:702 libvnck/window-action-menu.c:848
+#: libvnck/window-action-menu.c:701 libvnck/window-action-menu.c:847
+#, c-format
 msgid "Workspace 1_0"
 msgstr "Werkblad 1_0"
 
-#: libvnck/window-action-menu.c:704 libvnck/window-action-menu.c:850
+#: libvnck/window-action-menu.c:703 libvnck/window-action-menu.c:849
 #, c-format
 msgid "Workspace %s%d"
 msgstr "Werkblad %s%d"
 
-#: libvnck/window-action-menu.c:991
+#: libvnck/window-action-menu.c:990
 msgid "_Move"
 msgstr "_Verplaatsen"
 
 # grootte/afmeting
-#: libvnck/window-action-menu.c:997
+#: libvnck/window-action-menu.c:996
 msgid "_Resize"
 msgstr "Afmetingen _wijzigen"
 
-#: libvnck/window-action-menu.c:1005
+#: libvnck/window-action-menu.c:1004
 msgid "Always On _Top"
 msgstr "_Bovenop"
 
-#: libvnck/window-action-menu.c:1013
+#: libvnck/window-action-menu.c:1012
 msgid "_Always on Visible Workspace"
 msgstr "Op _alle werkbladen zichtbaar"
 
-#: libvnck/window-action-menu.c:1018
+#: libvnck/window-action-menu.c:1017
 msgid "_Only on This Workspace"
 msgstr "_Alleen op dit werkblad"
 
-#: libvnck/window-action-menu.c:1025
+#: libvnck/window-action-menu.c:1024
 msgid "Move to Workspace _Left"
 msgstr "Verplaatsen naar werkblad lin_ks"
 
-#: libvnck/window-action-menu.c:1030
+#: libvnck/window-action-menu.c:1029
 msgid "Move to Workspace R_ight"
 msgstr "Verplaatsen naar werkblad _rechts"
 
-#: libvnck/window-action-menu.c:1035
+#: libvnck/window-action-menu.c:1034
 msgid "Move to Workspace _Up"
 msgstr "Verplaatsen naar werkblad hierbov_en"
 
-#: libvnck/window-action-menu.c:1040
+#: libvnck/window-action-menu.c:1039
 msgid "Move to Workspace _Down"
 msgstr "Verplaatsen naar werkblad hier_onder"
 
-#: libvnck/window-action-menu.c:1042
+#: libvnck/window-action-menu.c:1041
 msgid "Move to Another _Workspace"
 msgstr "_Verplaatsen naar ander werkblad"
 
-#: libvnck/window-action-menu.c:1062
+#: libvnck/window-action-menu.c:1061
 msgid "_Close"
 msgstr "Sl_uiten"
 
@@ -612,6 +613,7 @@ msgid "Invalid argument \"%s\" for --%s, valid values are: %s\n"
 msgstr "Het argument \"%s\" is ongeldig voor --%s. Geldige waardes zijn %s\n"
 
 #: libvnck/vnckprop.c:863
+#, c-format
 msgid ""
 "Cannot change the workspace layout on the screen: the layout is already "
 "owned\n"
@@ -621,6 +623,7 @@ msgstr "Kan de werkbladlayout niet wijzigen: De layout heeft al een eigenaar\n"
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
 #: libvnck/vnckprop.c:898
+#, c-format
 msgid ""
 "Viewport cannot be moved: the current workspace does not contain a viewport\n"
 msgstr "Kan blikveld niet verplaatsen: Huidige werkblad heeft geen blikveld\n"
@@ -629,6 +632,7 @@ msgstr "Kan blikveld niet verplaatsen: Huidige werkblad heeft geen blikveld\n"
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
 #: libvnck/vnckprop.c:905
+#, c-format
 msgid "Viewport cannot be moved: there is no current workspace\n"
 msgstr "Kan blikveld niet verplaatsen: Er is geen werkblad geselecteerd\n"
 
@@ -636,6 +640,7 @@ msgstr "Kan blikveld niet verplaatsen: Er is geen werkblad geselecteerd\n"
 #: libvnck/vnckprop.c:941 libvnck/vnckprop.c:950 libvnck/vnckprop.c:959
 #: libvnck/vnckprop.c:966 libvnck/vnckprop.c:976 libvnck/vnckprop.c:983
 #: libvnck/vnckprop.c:992 libvnck/vnckprop.c:1041
+#, c-format
 msgid "Action not allowed\n"
 msgstr "Actie niet toegestaan\n"
 
@@ -1136,7 +1141,7 @@ msgstr "geen actie mogelijk"
 msgid "Possible Actions: %s\n"
 msgstr "Mogelijke acties: %s\n"
 
-#: libvnck/vnckprop.c:1874
+#: libvnck/vnckprop.c:1876
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1148,49 +1153,49 @@ msgstr ""
 "Voor informatie over deze specificatie kunt u kijken op:\n"
 "http://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: libvnck/vnckprop.c:1884
+#: libvnck/vnckprop.c:1886
 msgid "Options to list windows or workspaces"
 msgstr "Opties om vensters of werkbladen weer te geven"
 
-#: libvnck/vnckprop.c:1885
+#: libvnck/vnckprop.c:1887
 msgid "Show options to list windows or workspaces"
 msgstr "Opties weergeven om vensters of werkbladen weer te geven"
 
-#: libvnck/vnckprop.c:1892
+#: libvnck/vnckprop.c:1894
 msgid "Options to modify properties of a window"
 msgstr "Opties om venstereigenschappen te wijzigen"
 
-#: libvnck/vnckprop.c:1893
+#: libvnck/vnckprop.c:1895
 msgid "Show options to modify properties of a window"
 msgstr "Opties weergeven om venstereigenschappen te wijzigen"
 
-#: libvnck/vnckprop.c:1900
+#: libvnck/vnckprop.c:1902
 msgid "Options to modify properties of a workspace"
 msgstr "Opties om werkbladeigenschappen te wijzigen"
 
-#: libvnck/vnckprop.c:1901
+#: libvnck/vnckprop.c:1903
 msgid "Show options to modify properties of a workspace"
 msgstr "Opties weergeven om werkbladeigenschappen te wijzigen"
 
-#: libvnck/vnckprop.c:1908
+#: libvnck/vnckprop.c:1910
 msgid "Options to modify properties of a screen"
 msgstr "Opties om schermeigenschappen te wijzigen"
 
-#: libvnck/vnckprop.c:1909
+#: libvnck/vnckprop.c:1911
 msgid "Show options to modify properties of a screen"
 msgstr "Opties weergeven om schermeigenschappen te wijzigen"
 
-#: libvnck/vnckprop.c:1920
+#: libvnck/vnckprop.c:1922
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "Fout bij inlezen argumenten: %s\n"
 
-#: libvnck/vnckprop.c:1943
+#: libvnck/vnckprop.c:1945
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "Kan geen acties uitvoeren op scherm %d: het scherm bestaat niet\n"
 
-#: libvnck/vnckprop.c:1999
+#: libvnck/vnckprop.c:2001
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr ""
@@ -1198,7 +1203,7 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2023
+#: libvnck/vnckprop.c:2025
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
@@ -1206,7 +1211,7 @@ msgstr ""
 "Kan geen acties uitvoeren op klassegroep \"%s\": kan de klassegroep niet "
 "vinden\n"
 
-#: libvnck/vnckprop.c:2046
+#: libvnck/vnckprop.c:2048
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
@@ -1215,7 +1220,7 @@ msgstr ""
 "Kan geen acties uitvoeren op programma met groepsleider-XID %lu: kan "
 "programma niet vinden\n"
 
-#: libvnck/vnckprop.c:2069
+#: libvnck/vnckprop.c:2071
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr ""
