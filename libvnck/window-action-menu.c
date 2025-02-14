@@ -1,5 +1,4 @@
 /* window action menu (ops on a single window) */
-/* vim: set sw=2 et: */
 
 /*
  * Copyright (C) 2001 Havoc Pennington
@@ -109,7 +108,7 @@ static void refill_submenu_viewport (VnckActionMenu *menu);
 
 static void
 window_weak_notify (gpointer data,
-                    GObject *window)
+		    GObject *window G_GNUC_UNUSED)
 {
   VNCK_ACTION_MENU(data)->priv->window = NULL;
   ctk_widget_destroy (CTK_WIDGET (data));
@@ -580,41 +579,41 @@ queue_update (VnckActionMenu *menu)
 }
 
 static void
-state_changed_callback (VnckWindow     *window,
-                        VnckWindowState changed_mask,
-                        VnckWindowState new_state,
-                        gpointer        data)
+state_changed_callback (VnckWindow     *window G_GNUC_UNUSED,
+			VnckWindowState changed_mask G_GNUC_UNUSED,
+			VnckWindowState new_state G_GNUC_UNUSED,
+			gpointer        data)
 {
   queue_update (VNCK_ACTION_MENU (data));
 }
 
 static void
-actions_changed_callback (VnckWindow       *window,
-                          VnckWindowActions changed_mask,
-                          VnckWindowActions new_actions,
-                          gpointer          data)
+actions_changed_callback (VnckWindow       *window G_GNUC_UNUSED,
+			  VnckWindowActions changed_mask G_GNUC_UNUSED,
+			  VnckWindowActions new_actions G_GNUC_UNUSED,
+			  gpointer          data)
 {
   queue_update (VNCK_ACTION_MENU (data));
 }
 
 static void
-workspace_changed_callback (VnckWindow *window,
-                            gpointer    data)
+workspace_changed_callback (VnckWindow *window G_GNUC_UNUSED,
+			    gpointer    data)
 {
   queue_update (VNCK_ACTION_MENU (data));
 }
 
 static void
-screen_workspace_callback (VnckWindow    *window,
-                           VnckWorkspace *space,
-                           gpointer       data)
+screen_workspace_callback (VnckWindow    *window G_GNUC_UNUSED,
+			   VnckWorkspace *space G_GNUC_UNUSED,
+			   gpointer       data)
 {
   queue_update (VNCK_ACTION_MENU (data));
 }
 
 static void
-viewports_changed_callback (VnckWindow *window,
-                            gpointer    data)
+viewports_changed_callback (VnckWindow *window G_GNUC_UNUSED,
+			    gpointer    data)
 {
   queue_update (VNCK_ACTION_MENU (data));
 }

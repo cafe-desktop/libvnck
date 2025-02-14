@@ -1,5 +1,3 @@
-/* vim: set sw=2 et: */
-
 #include <libvnck/libvnck.h>
 #include <ctk/ctk.h>
 
@@ -27,9 +25,9 @@ static GOptionEntry entries[] = {
 };
 
 static gboolean
-window_draw (CtkWidget      *widget,
-             cairo_t        *cr,
-             gpointer        user_data)
+window_draw (CtkWidget *widget G_GNUC_UNUSED,
+	     cairo_t   *cr,
+	     gpointer   user_data G_GNUC_UNUSED)
 {
   cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
   cairo_set_source_rgba (cr, 1., 1., 1., .5);
@@ -40,7 +38,7 @@ window_draw (CtkWidget      *widget,
 
 static void
 window_composited_changed (CtkWidget *widget,
-                           gpointer   user_data)
+			   gpointer   user_data G_GNUC_UNUSED)
 {
   CdkScreen *screen;
   gboolean composited;

@@ -1,5 +1,4 @@
 /* screen object */
-/* vim: set sw=2 et: */
 
 /*
  * Copyright (C) 2001 Havoc Pennington
@@ -510,15 +509,15 @@ vnck_screen_finalize (GObject *object)
 
 #ifdef HAVE_STARTUP_NOTIFICATION
 static void
-sn_error_trap_push (SnDisplay *display,
-                    Display   *xdisplay)
+sn_error_trap_push (SnDisplay *display G_GNUC_UNUSED,
+		    Display   *xdisplay)
 {
   _vnck_error_trap_push (xdisplay);
 }
 
 static void
-sn_error_trap_pop (SnDisplay *display,
-                   Display   *xdisplay)
+sn_error_trap_pop (SnDisplay *display G_GNUC_UNUSED,
+		   Display   *xdisplay)
 {
   _vnck_error_trap_pop (xdisplay);
 }

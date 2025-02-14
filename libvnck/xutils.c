@@ -1,5 +1,5 @@
 /* Xlib utils */
-/* vim: set sw=2 et: */
+
 
 /*
  * Copyright (C) 2001 Havoc Pennington
@@ -720,9 +720,9 @@ _vnck_error_trap_pop (Display *display)
 }
 
 static CdkFilterReturn
-filter_func (CdkXEvent  *cdkxevent,
-             CdkEvent   *event,
-             gpointer    data)
+filter_func (CdkXEvent *cdkxevent,
+	     CdkEvent  *event G_GNUC_UNUSED,
+	     gpointer   data G_GNUC_UNUSED)
 {
   XEvent *xevent = cdkxevent;
 #ifdef HAVE_STARTUP_NOTIFICATION
@@ -1695,7 +1695,8 @@ read_rgb_icon (Screen        *screen,
 }
 
 static void
-free_pixels (guchar *pixels, gpointer data)
+free_pixels (guchar  *pixels,
+	     gpointer data G_GNUC_UNUSED)
 {
   g_free (pixels);
 }
@@ -2606,7 +2607,7 @@ typedef struct
 } TimeStampInfo;
 
 static Bool
-timestamp_predicate (Display *display,
+timestamp_predicate (Display *display G_GNUC_UNUSED,
 		     XEvent  *xevent,
 		     XPointer arg)
 {

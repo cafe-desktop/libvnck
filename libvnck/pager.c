@@ -1,5 +1,3 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 2 -*- */
-/* vim: set sw=2 et: */
 /* pager object */
 
 /*
@@ -1670,13 +1668,13 @@ vnck_pager_drag_drop  (CtkWidget        *widget,
 }
 
 static void
-vnck_pager_drag_data_received (CtkWidget          *widget,
-	  	               CdkDragContext     *context,
-			       gint                x,
-			       gint                y,
-			       CtkSelectionData   *selection_data,
-			       guint               info,
-			       guint               time)
+vnck_pager_drag_data_received (CtkWidget        *widget,
+			       CdkDragContext   *context,
+			       gint              x,
+			       gint              y,
+			       CtkSelectionData *selection_data,
+			       guint             info G_GNUC_UNUSED,
+			       guint             time)
 {
   VnckPager *pager = VNCK_PAGER (widget);
   VnckWorkspace *space;
@@ -1719,10 +1717,10 @@ vnck_pager_drag_data_received (CtkWidget          *widget,
 
 static void
 vnck_pager_drag_data_get (CtkWidget        *widget,
-                          CdkDragContext   *context,
-                          CtkSelectionData *selection_data,
-                          guint             info,
-                          guint             time)
+			  CdkDragContext   *context G_GNUC_UNUSED,
+			  CtkSelectionData *selection_data,
+			  guint             info G_GNUC_UNUSED,
+			  guint             time G_GNUC_UNUSED)
 {
   VnckPager *pager = VNCK_PAGER (widget);
   gulong xid;
@@ -1737,8 +1735,8 @@ vnck_pager_drag_data_get (CtkWidget        *widget,
 }
 
 static void
-vnck_pager_drag_end (CtkWidget        *widget,
-                     CdkDragContext   *context)
+vnck_pager_drag_end (CtkWidget      *widget,
+		     CdkDragContext *context G_GNUC_UNUSED)
 {
   VnckPager *pager = VNCK_PAGER (widget);
 
@@ -1746,9 +1744,9 @@ vnck_pager_drag_end (CtkWidget        *widget,
 }
 
 static void
-vnck_pager_drag_motion_leave (CtkWidget          *widget,
-                              CdkDragContext     *context,
-                              guint               time)
+vnck_pager_drag_motion_leave (CtkWidget      *widget,
+			      CdkDragContext *context G_GNUC_UNUSED,
+			      guint           time G_GNUC_UNUSED)
 {
   VnckPager *pager = VNCK_PAGER (widget);
 
@@ -1834,7 +1832,7 @@ vnck_drag_window_destroyed (gpointer  contextp,
 
 static void
 vnck_drag_source_destroyed (gpointer  contextp,
-                            GObject  *drag_source)
+			    GObject  *drag_source G_GNUC_UNUSED)
 {
   g_object_steal_data (G_OBJECT (contextp), "vnck-drag-source-widget");
 }
@@ -1949,8 +1947,8 @@ vnck_pager_motion (CtkWidget        *widget,
 }
 
 static gboolean
-vnck_pager_leave_notify	 (CtkWidget          *widget,
-	      		  CdkEventCrossing   *event)
+vnck_pager_leave_notify (CtkWidget        *widget,
+			 CdkEventCrossing *event G_GNUC_UNUSED)
 {
   VnckPager *pager;
 
@@ -2533,35 +2531,35 @@ vnck_pager_get_wrap_on_scroll (VnckPager *pager)
 }
 
 static void
-active_window_changed_callback    (VnckScreen      *screen,
-                                   VnckWindow      *previous_window,
-                                   gpointer         data)
+active_window_changed_callback (VnckScreen *screen G_GNUC_UNUSED,
+				VnckWindow *previous_window G_GNUC_UNUSED,
+				gpointer    data)
 {
   VnckPager *pager = VNCK_PAGER (data);
   ctk_widget_queue_draw (CTK_WIDGET (pager));
 }
 
 static void
-active_workspace_changed_callback (VnckScreen      *screen,
-                                   VnckWorkspace   *previous_workspace,
-                                   gpointer         data)
+active_workspace_changed_callback (VnckScreen    *screen G_GNUC_UNUSED,
+				   VnckWorkspace *previous_workspace G_GNUC_UNUSED,
+				   gpointer       data)
 {
   VnckPager *pager = VNCK_PAGER (data);
   ctk_widget_queue_draw (CTK_WIDGET (pager));
 }
 
 static void
-window_stacking_changed_callback  (VnckScreen      *screen,
-                                   gpointer         data)
+window_stacking_changed_callback (VnckScreen *screen G_GNUC_UNUSED,
+				  gpointer    data)
 {
   VnckPager *pager = VNCK_PAGER (data);
   ctk_widget_queue_draw (CTK_WIDGET (pager));
 }
 
 static void
-window_opened_callback            (VnckScreen      *screen,
-                                   VnckWindow      *window,
-                                   gpointer         data)
+window_opened_callback (VnckScreen *screen G_GNUC_UNUSED,
+			VnckWindow *window,
+			gpointer    data)
 {
   VnckPager *pager = VNCK_PAGER (data);
 
@@ -2570,9 +2568,9 @@ window_opened_callback            (VnckScreen      *screen,
 }
 
 static void
-window_closed_callback            (VnckScreen      *screen,
-                                   VnckWindow      *window,
-                                   gpointer         data)
+window_closed_callback (VnckScreen *screen G_GNUC_UNUSED,
+			VnckWindow *window,
+			gpointer    data)
 {
   VnckPager *pager = VNCK_PAGER (data);
 
@@ -2583,9 +2581,9 @@ window_closed_callback            (VnckScreen      *screen,
 }
 
 static void
-workspace_created_callback        (VnckScreen      *screen,
-                                   VnckWorkspace   *space,
-                                   gpointer         data)
+workspace_created_callback (VnckScreen    *screen G_GNUC_UNUSED,
+			    VnckWorkspace *space,
+			    gpointer       data)
 {
   VnckPager *pager = VNCK_PAGER (data);
   g_signal_connect (space, "name_changed",
@@ -2594,9 +2592,9 @@ workspace_created_callback        (VnckScreen      *screen,
 }
 
 static void
-workspace_destroyed_callback      (VnckScreen      *screen,
-                                   VnckWorkspace   *space,
-                                   gpointer         data)
+workspace_destroyed_callback (VnckScreen    *screen G_GNUC_UNUSED,
+			      VnckWorkspace *space,
+			      gpointer       data)
 {
   VnckPager *pager = VNCK_PAGER (data);
   g_signal_handlers_disconnect_by_func (space, G_CALLBACK (workspace_name_changed_callback), pager);
@@ -2604,17 +2602,17 @@ workspace_destroyed_callback      (VnckScreen      *screen,
 }
 
 static void
-application_opened_callback       (VnckScreen      *screen,
-                                   VnckApplication *app,
-                                   gpointer         data)
+application_opened_callback (VnckScreen      *screen G_GNUC_UNUSED,
+			     VnckApplication *app G_GNUC_UNUSED,
+			     gpointer         data G_GNUC_UNUSED)
 {
   /*   VnckPager *pager = VNCK_PAGER (data); */
 }
 
 static void
-application_closed_callback       (VnckScreen      *screen,
-                                   VnckApplication *app,
-                                   gpointer         data)
+application_closed_callback (VnckScreen      *screen G_GNUC_UNUSED,
+			     VnckApplication *app G_GNUC_UNUSED,
+			     gpointer         data G_GNUC_UNUSED)
 {
   /*   VnckPager *pager = VNCK_PAGER (data); */
 }
@@ -2628,10 +2626,10 @@ window_name_changed_callback      (VnckWindow      *window,
 }
 
 static void
-window_state_changed_callback     (VnckWindow      *window,
-                                   VnckWindowState  changed,
-                                   VnckWindowState  new,
-                                   gpointer         data)
+window_state_changed_callback (VnckWindow      *window,
+			       VnckWindowState  changed,
+			       VnckWindowState  new G_GNUC_UNUSED,
+			       gpointer         data)
 {
   VnckPager *pager = VNCK_PAGER (data);
 
@@ -2647,8 +2645,8 @@ window_state_changed_callback     (VnckWindow      *window,
 }
 
 static void
-window_workspace_changed_callback (VnckWindow      *window,
-                                   gpointer         data)
+window_workspace_changed_callback (VnckWindow *window G_GNUC_UNUSED,
+				   gpointer    data)
 {
   VnckPager *pager = VNCK_PAGER (data);
   ctk_widget_queue_draw (CTK_WIDGET (pager));
@@ -2672,8 +2670,8 @@ window_geometry_changed_callback  (VnckWindow      *window,
 }
 
 static void
-background_changed_callback (VnckWindow *window,
-                             gpointer    data)
+background_changed_callback (VnckWindow *window G_GNUC_UNUSED,
+			     gpointer    data)
 {
   VnckPager *pager = VNCK_PAGER (data);
 
@@ -2687,15 +2685,15 @@ background_changed_callback (VnckWindow *window,
 }
 
 static void
-workspace_name_changed_callback (VnckWorkspace *space,
-                                 gpointer       data)
+workspace_name_changed_callback (VnckWorkspace *space G_GNUC_UNUSED,
+				 gpointer       data)
 {
   ctk_widget_queue_resize (CTK_WIDGET (data));
 }
 
 static void
-viewports_changed_callback (VnckWorkspace *space,
-                            gpointer       data)
+viewports_changed_callback (VnckWorkspace *space G_GNUC_UNUSED,
+			    gpointer       data)
 {
   ctk_widget_queue_resize (CTK_WIDGET (data));
 }

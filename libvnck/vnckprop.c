@@ -1,4 +1,3 @@
-/* vim: set sw=2 et: */
 /*
  * Copyright (C) 2007 Vincent Untz
  *
@@ -301,7 +300,7 @@ typedef struct
 } TimeStampInfo;
 
 static Bool
-timestamp_predicate (Display *display,
+timestamp_predicate (Display *display G_GNUC_UNUSED,
 		     XEvent  *xevent,
 		     XPointer arg)
 {
@@ -356,9 +355,9 @@ get_xserver_timestamp (VnckScreen *screen)
 
 static gboolean
 option_parse (const char  *option_name,
-              const char  *value,
-              gpointer     data,
-              GError     **error)
+	      const char  *value,
+	      gpointer     data G_GNUC_UNUSED,
+	      GError     **error)
 {
   char *end;
 
@@ -1762,8 +1761,8 @@ handle_button_press_event (Display *dpy, XIDeviceEvent *event)
 
 static CdkFilterReturn
 target_filter (CdkXEvent *cdk_xevent,
-               CdkEvent  *cdk_event,
-               gpointer   data)
+	       CdkEvent  *cdk_event G_GNUC_UNUSED,
+	       gpointer   data G_GNUC_UNUSED)
 {
   XEvent *xevent = (XEvent *) cdk_xevent;
   XGenericEventCookie *cookie = &xevent->xcookie;
@@ -1798,15 +1797,15 @@ target_filter (CdkXEvent *cdk_xevent,
 }
 
 static void
-prepare (CdkSeat   *seat,
-         CdkWindow *window,
-         gpointer   user_data)
+prepare (CdkSeat   *seat G_GNUC_UNUSED,
+	 CdkWindow *window,
+	 gpointer   user_data G_GNUC_UNUSED)
 {
   cdk_window_show_unraised (window);
 }
 
 static gboolean
-get_target (gpointer data)
+get_target (gpointer data G_GNUC_UNUSED)
 {
   CdkWindow *root;
   CdkDisplay *display;

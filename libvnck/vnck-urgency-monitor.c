@@ -1,4 +1,3 @@
-/* vim: set sw=2 et: */
 /*
  * Copyright (C) 2009 Vincent Untz
  *
@@ -29,8 +28,8 @@
 #include <libvnck/libvnck.h>
 
 static void
-status_icon_activated (CtkStatusIcon *icon,
-                       VnckWindow    *window)
+status_icon_activated (CtkStatusIcon *icon G_GNUC_UNUSED,
+		       VnckWindow    *window)
 {
   VnckWorkspace *workspace;
   guint32 timestamp;
@@ -118,9 +117,9 @@ status_icon_remove (VnckWindow *window)
 
 static void
 window_state_changed (VnckWindow      *window,
-                      VnckWindowState  changed_mask,
-                      VnckWindowState  new_state,
-                      gpointer         data)
+		      VnckWindowState  changed_mask,
+		      VnckWindowState  new_state G_GNUC_UNUSED,
+		      gpointer         data G_GNUC_UNUSED)
 {
   CtkStatusIcon *icon;
 
@@ -147,21 +146,21 @@ window_state_changed (VnckWindow      *window,
 
 static void
 window_icon_changed (VnckWindow *window,
-                     gpointer    data)
+		     gpointer    data G_GNUC_UNUSED)
 {
   status_icon_update (window);
 }
 
 static void
 window_name_changed (VnckWindow *window,
-                     gpointer    data)
+		     gpointer    data G_GNUC_UNUSED)
 {
   status_icon_update (window);
 }
 
 static void
-connect_to_window (VnckScreen *screen,
-                   VnckWindow *window)
+connect_to_window (VnckScreen *screen G_GNUC_UNUSED,
+		   VnckWindow *window)
 {
   if (vnck_window_or_transient_needs_attention (window))
     {
@@ -177,8 +176,8 @@ connect_to_window (VnckScreen *screen,
 }
 
 static void
-disconnect_from_window (VnckScreen *screen,
-                        VnckWindow *window)
+disconnect_from_window (VnckScreen *screen G_GNUC_UNUSED,
+			VnckWindow *window)
 {
   status_icon_remove (window);
 }
