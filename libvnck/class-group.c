@@ -1,5 +1,4 @@
 /* class group object */
-/* vim: set sw=2 et: */
 
 /*
  * Copyright (C) 2003 Ximian, Inc.
@@ -134,8 +133,8 @@ vnck_class_group_init (VnckClassGroup *class_group)
 
 static void
 remove_signal_handler (gpointer key,
-                       gpointer value,
-                       gpointer user_data)
+		       gpointer value,
+		       gpointer user_data G_GNUC_UNUSED)
 {
   g_signal_handler_disconnect (key, (gulong) value);
 }
@@ -487,16 +486,16 @@ set_icon (VnckClassGroup *class_group)
 
 /* Handle window's icon_changed signal, update class group icon */
 static void
-update_class_group_icon (VnckWindow     *window,
-                         VnckClassGroup *class_group)
+update_class_group_icon (VnckWindow     *window G_GNUC_UNUSED,
+			 VnckClassGroup *class_group)
 {
   set_icon (class_group);
 }
 
 /* Handle window's name_changed signal, update class group name */
 static void
-update_class_group_name (VnckWindow     *window,
-                         VnckClassGroup *class_group)
+update_class_group_name (VnckWindow     *window G_GNUC_UNUSED,
+			 VnckClassGroup *class_group)
 {
   set_name (class_group);
 }

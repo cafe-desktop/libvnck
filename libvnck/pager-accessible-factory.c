@@ -1,4 +1,3 @@
-/* vim: set sw=2 et: */
 /*
  * Copyright 2002 Sun Microsystems Inc.
  *
@@ -37,7 +36,7 @@ vnck_pager_accessible_factory_class_init (VnckPagerAccessibleFactoryClass *klass
 }
 
 static void
-vnck_pager_accessible_factory_init (VnckPagerAccessibleFactory *factory)
+vnck_pager_accessible_factory_init (VnckPagerAccessibleFactory *factory G_GNUC_UNUSED)
 {
 }
 

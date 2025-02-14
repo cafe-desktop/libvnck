@@ -1,5 +1,3 @@
-/* vim: set sw=2 et: */
-
 #include <libvnck/libvnck.h>
 #include <ctk/ctk.h>
 
@@ -150,9 +148,9 @@ main (int argc, char **argv)
 }
 
 static void
-active_window_changed_callback    (VnckScreen    *screen,
-                                   VnckWindow    *previous_window,
-                                   gpointer       data)
+active_window_changed_callback (VnckScreen *screen,
+				VnckWindow *previous_window G_GNUC_UNUSED,
+				gpointer    data G_GNUC_UNUSED)
 {
   VnckWindow *window;
   
@@ -165,24 +163,24 @@ active_window_changed_callback    (VnckScreen    *screen,
 }
 
 static void
-active_workspace_changed_callback (VnckScreen    *screen,
-                                   VnckWorkspace *previous_workspace,
-                                   gpointer       data)
+active_workspace_changed_callback (VnckScreen    *screen G_GNUC_UNUSED,
+				   VnckWorkspace *previous_workspace G_GNUC_UNUSED,
+				   gpointer       data G_GNUC_UNUSED)
 {
   g_print ("Active workspace changed\n");
 }
 
 static void
-window_stacking_changed_callback  (VnckScreen    *screen,
-                                   gpointer       data)
+window_stacking_changed_callback (VnckScreen *screen G_GNUC_UNUSED,
+				  gpointer    data G_GNUC_UNUSED)
 {
   g_print ("Stacking changed\n");
 }
 
 static void
-window_opened_callback            (VnckScreen    *screen,
-                                   VnckWindow    *window,
-                                   gpointer       data)
+window_opened_callback (VnckScreen *screen G_GNUC_UNUSED,
+			VnckWindow *window,
+			gpointer    data G_GNUC_UNUSED)
 {
   g_print ("Window '%s' opened (pid = %d, session_id = %s, role = %s)\n",
            vnck_window_get_name (window),
@@ -218,9 +216,9 @@ window_opened_callback            (VnckScreen    *screen,
 }
 
 static void
-window_closed_callback            (VnckScreen    *screen,
-                                   VnckWindow    *window,
-                                   gpointer       data)
+window_closed_callback (VnckScreen *screen G_GNUC_UNUSED,
+			VnckWindow *window,
+			gpointer    data G_GNUC_UNUSED)
 {
   g_print ("Window '%s' closed\n",
            vnck_window_get_name (window));
@@ -229,32 +227,32 @@ window_closed_callback            (VnckScreen    *screen,
 }
 
 static void
-workspace_created_callback        (VnckScreen    *screen,
-                                   VnckWorkspace *space,
-                                   gpointer       data)
+workspace_created_callback (VnckScreen    *screen G_GNUC_UNUSED,
+			    VnckWorkspace *space G_GNUC_UNUSED,
+			    gpointer       data G_GNUC_UNUSED)
 {
   g_print ("Workspace created\n");
 }
 
 static void
-workspace_destroyed_callback      (VnckScreen    *screen,
-                                   VnckWorkspace *space,
-                                   gpointer       data)
+workspace_destroyed_callback (VnckScreen    *screen G_GNUC_UNUSED,
+			      VnckWorkspace *space G_GNUC_UNUSED,
+			      gpointer       data G_GNUC_UNUSED)
 {
   g_print ("Workspace destroyed\n");
 }
 
 static void
-application_opened_callback (VnckScreen      *screen,
-                             VnckApplication *app)
+application_opened_callback (VnckScreen      *screen G_GNUC_UNUSED,
+			     VnckApplication *app G_GNUC_UNUSED)
 {
   g_print ("Application opened\n");
   queue_refill_model ();
 }
 
 static void
-application_closed_callback (VnckScreen      *screen,
-                             VnckApplication *app)
+application_closed_callback (VnckScreen      *screen G_GNUC_UNUSED,
+			     VnckApplication *app G_GNUC_UNUSED)
 {
   g_print ("Application closed\n");
   queue_refill_model ();
@@ -262,15 +260,15 @@ application_closed_callback (VnckScreen      *screen,
 
 static void
 showing_desktop_changed_callback (VnckScreen *screen,
-                                  gpointer    data)
+				  gpointer    data G_GNUC_UNUSED)
 {
   g_print ("Showing desktop now = %d\n",
            vnck_screen_get_showing_desktop (screen));
 }
 
 static void
-window_name_changed_callback (VnckWindow    *window,
-                              gpointer       data)
+window_name_changed_callback (VnckWindow *window,
+			      gpointer    data G_GNUC_UNUSED)
 {
   g_print ("Name changed on window '%s'\n",
            vnck_window_get_name (window));
@@ -280,9 +278,9 @@ window_name_changed_callback (VnckWindow    *window,
 
 static void
 window_state_changed_callback (VnckWindow     *window,
-                               VnckWindowState changed,
-                               VnckWindowState new,
-                               gpointer        data)
+			       VnckWindowState changed,
+			       VnckWindowState new,
+			       gpointer        data G_GNUC_UNUSED)
 {
   g_print ("State changed on window '%s'\n",
            vnck_window_get_name (window));
@@ -330,8 +328,8 @@ window_state_changed_callback (VnckWindow     *window,
 }
 
 static void
-window_workspace_changed_callback (VnckWindow    *window,
-                                   gpointer       data)
+window_workspace_changed_callback (VnckWindow *window,
+				   gpointer    data G_GNUC_UNUSED)
 {
   VnckWorkspace *space;
 
@@ -349,8 +347,8 @@ window_workspace_changed_callback (VnckWindow    *window,
 }
 
 static void
-window_icon_changed_callback (VnckWindow    *window,
-                              gpointer       data)
+window_icon_changed_callback (VnckWindow *window,
+			      gpointer    data G_GNUC_UNUSED)
 {
   g_print ("Icon changed on window '%s'\n",
            vnck_window_get_name (window));
@@ -359,8 +357,8 @@ window_icon_changed_callback (VnckWindow    *window,
 }
 
 static void
-window_geometry_changed_callback  (VnckWindow      *window,
-                                   gpointer         data)
+window_geometry_changed_callback (VnckWindow *window,
+				  gpointer    data G_GNUC_UNUSED)
 {
   int x, y, width, height;
 
@@ -371,8 +369,8 @@ window_geometry_changed_callback  (VnckWindow      *window,
 }
 
 static void
-window_class_changed_callback  (VnckWindow      *window,
-                                gpointer         data)
+window_class_changed_callback  (VnckWindow *window,
+				gpointer    data G_GNUC_UNUSED)
 {
   const char *group_name;
   const char *instance_name;
@@ -385,8 +383,8 @@ window_class_changed_callback  (VnckWindow      *window,
 }
 
 static void
-window_role_changed_callback  (VnckWindow      *window,
-                               gpointer         data)
+window_role_changed_callback (VnckWindow *window,
+			      gpointer    data G_GNUC_UNUSED)
 {
   const char *role;
 
@@ -507,11 +505,11 @@ get_window (CtkTreeModel *model,
 }
 
 static void
-icon_set_func (CtkTreeViewColumn *tree_column,
-               CtkCellRenderer   *cell,
-               CtkTreeModel      *model,
-               CtkTreeIter       *iter,
-               gpointer           data)
+icon_set_func (CtkTreeViewColumn *tree_column G_GNUC_UNUSED,
+	       CtkCellRenderer   *cell,
+	       CtkTreeModel      *model,
+	       CtkTreeIter       *iter,
+	       gpointer           data G_GNUC_UNUSED)
 {
   VnckWindow *window;
   
@@ -525,11 +523,11 @@ icon_set_func (CtkTreeViewColumn *tree_column,
 }
 
 static void
-title_set_func (CtkTreeViewColumn *tree_column,
-                CtkCellRenderer   *cell,
-                CtkTreeModel      *model,
-                CtkTreeIter       *iter,
-                gpointer           data)
+title_set_func (CtkTreeViewColumn *tree_column G_GNUC_UNUSED,
+		CtkCellRenderer   *cell,
+		CtkTreeModel      *model,
+		CtkTreeIter       *iter,
+		gpointer           data G_GNUC_UNUSED)
 {
   VnckWindow *window;
 
@@ -543,11 +541,11 @@ title_set_func (CtkTreeViewColumn *tree_column,
 }
 
 static void
-workspace_set_func (CtkTreeViewColumn *tree_column,
-                    CtkCellRenderer   *cell,
-                    CtkTreeModel      *model,
-                    CtkTreeIter       *iter,
-                    gpointer           data)
+workspace_set_func (CtkTreeViewColumn *tree_column G_GNUC_UNUSED,
+		    CtkCellRenderer   *cell,
+		    CtkTreeModel      *model,
+		    CtkTreeIter       *iter,
+		    gpointer           data G_GNUC_UNUSED)
 {
   VnckWindow *window;
   VnckWorkspace *space;
@@ -574,11 +572,11 @@ workspace_set_func (CtkTreeViewColumn *tree_column,
 }
 
 static void
-pid_set_func (CtkTreeViewColumn *tree_column,
-              CtkCellRenderer   *cell,
-              CtkTreeModel      *model,
-              CtkTreeIter       *iter,
-              gpointer           data)
+pid_set_func (CtkTreeViewColumn *tree_column G_GNUC_UNUSED,
+	      CtkCellRenderer   *cell,
+	      CtkTreeModel      *model,
+	      CtkTreeIter       *iter,
+	      gpointer           data G_GNUC_UNUSED)
 {
   VnckWindow *window;
   int pid;
@@ -603,11 +601,11 @@ pid_set_func (CtkTreeViewColumn *tree_column,
 }
 
 static void
-shaded_set_func (CtkTreeViewColumn *tree_column,
-                 CtkCellRenderer   *cell,
-                 CtkTreeModel      *model,
-                 CtkTreeIter       *iter,
-                 gpointer           data)
+shaded_set_func (CtkTreeViewColumn *tree_column G_GNUC_UNUSED,
+		 CtkCellRenderer   *cell,
+		 CtkTreeModel      *model,
+		 CtkTreeIter       *iter,
+		 gpointer           data G_GNUC_UNUSED)
 {
   VnckWindow *window;
 
@@ -620,9 +618,9 @@ shaded_set_func (CtkTreeViewColumn *tree_column,
 }
 
 static void
-shaded_toggled_callback (CtkCellRendererToggle *cell,
-                         char                  *path_string,
-                         gpointer               data)
+shaded_toggled_callback (CtkCellRendererToggle *cell G_GNUC_UNUSED,
+			 char                  *path_string,
+			 gpointer               data)
 {
   CtkTreeView *tree_view = CTK_TREE_VIEW (data);
   CtkTreeModel *model = ctk_tree_view_get_model (tree_view);
@@ -642,11 +640,11 @@ shaded_toggled_callback (CtkCellRendererToggle *cell,
 }
 
 static void
-minimized_set_func (CtkTreeViewColumn *tree_column,
-                    CtkCellRenderer   *cell,
-                    CtkTreeModel      *model,
-                    CtkTreeIter       *iter,
-                    gpointer           data)
+minimized_set_func (CtkTreeViewColumn *tree_column G_GNUC_UNUSED,
+		    CtkCellRenderer   *cell,
+		    CtkTreeModel      *model,
+		    CtkTreeIter       *iter,
+		    gpointer           data G_GNUC_UNUSED)
 {
   VnckWindow *window;
 
@@ -660,9 +658,9 @@ minimized_set_func (CtkTreeViewColumn *tree_column,
 }
 
 static void
-minimized_toggled_callback (CtkCellRendererToggle *cell,
-                            char                  *path_string,
-                            gpointer               data)
+minimized_toggled_callback (CtkCellRendererToggle *cell G_GNUC_UNUSED,
+			    char                  *path_string,
+			    gpointer               data)
 {
   CtkTreeView *tree_view = CTK_TREE_VIEW (data);
   CtkTreeModel *model = ctk_tree_view_get_model (tree_view);
@@ -686,11 +684,11 @@ minimized_toggled_callback (CtkCellRendererToggle *cell,
 }
 
 static void
-maximized_set_func (CtkTreeViewColumn *tree_column,
-                    CtkCellRenderer   *cell,
-                    CtkTreeModel      *model,
-                    CtkTreeIter       *iter,
-                    gpointer           data)
+maximized_set_func (CtkTreeViewColumn *tree_column G_GNUC_UNUSED,
+		    CtkCellRenderer   *cell,
+		    CtkTreeModel      *model,
+		    CtkTreeIter       *iter,
+		    gpointer           data G_GNUC_UNUSED)
 {
   VnckWindow *window;
 
@@ -704,9 +702,9 @@ maximized_set_func (CtkTreeViewColumn *tree_column,
 }
 
 static void
-maximized_toggled_callback (CtkCellRendererToggle *cell,
-                            char                  *path_string,
-                            gpointer               data)
+maximized_toggled_callback (CtkCellRendererToggle *cell G_GNUC_UNUSED,
+			    char                  *path_string,
+			    gpointer               data)
 {
   CtkTreeView *tree_view = CTK_TREE_VIEW (data);
   CtkTreeModel *model = ctk_tree_view_get_model (tree_view);
@@ -726,11 +724,11 @@ maximized_toggled_callback (CtkCellRendererToggle *cell,
 }
 
 static void
-session_id_set_func (CtkTreeViewColumn *tree_column,
-                     CtkCellRenderer   *cell,
-                     CtkTreeModel      *model,
-                     CtkTreeIter       *iter,
-                     gpointer           data)
+session_id_set_func (CtkTreeViewColumn *tree_column G_GNUC_UNUSED,
+		     CtkCellRenderer   *cell,
+		     CtkTreeModel      *model,
+		     CtkTreeIter       *iter,
+		     gpointer           data G_GNUC_UNUSED)
 {
   VnckWindow *window;
   const char *id;
@@ -747,11 +745,11 @@ session_id_set_func (CtkTreeViewColumn *tree_column,
 }
 
 static gboolean
-selection_func (CtkTreeSelection  *selection,
-                CtkTreeModel      *model,
-                CtkTreePath       *path,
-                gboolean           currently_selected,
-                gpointer           data)
+selection_func (CtkTreeSelection *selection G_GNUC_UNUSED,
+		CtkTreeModel     *model,
+		CtkTreePath      *path,
+		gboolean          currently_selected,
+		gpointer          data G_GNUC_UNUSED)
 {
   CtkTreeIter iter;
   VnckWindow *window;
@@ -909,7 +907,7 @@ create_tree_view (void)
 }
 
 static gboolean
-do_refill_model (gpointer data)
+do_refill_model (gpointer data G_GNUC_UNUSED)
 {
   refill_idle = 0;
 

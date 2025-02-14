@@ -1,5 +1,4 @@
 /* util header */
-/* vim: set sw=2 et: */
 
 /*
  * Copyright (C) 2001 Havoc Pennington
@@ -477,7 +476,7 @@ vnck_pid_read_resource_usage_start_build_cache (CdkDisplay *gdisplay)
 }
 
 static gboolean
-vnck_pid_read_resource_usage_destroy_hash_table (gpointer data)
+vnck_pid_read_resource_usage_destroy_hash_table (gpointer data G_GNUC_UNUSED)
 {
   xres_removeid = 0;
 

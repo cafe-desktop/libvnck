@@ -1,5 +1,3 @@
-/* vim: set sw=2 et: */
-
 #include <ctk/ctk.h>
 
 static void
@@ -35,8 +33,8 @@ make_urgent (CtkWidget *widget)
 
 static gboolean
 focused_in (CtkWidget     *widget,
-            CdkEventFocus *event,
-            gpointer       user_data)
+	    CdkEventFocus *event G_GNUC_UNUSED,
+	    gpointer       user_data G_GNUC_UNUSED)
 {
   guint id;
 
@@ -53,8 +51,8 @@ focused_in (CtkWidget     *widget,
 
 static gboolean
 focused_out (CtkWidget     *widget,
-             CdkEventFocus *event,
-             gpointer       user_data)
+	     CdkEventFocus *event G_GNUC_UNUSED,
+	     gpointer       user_data G_GNUC_UNUSED)
 {
   guint id;
 

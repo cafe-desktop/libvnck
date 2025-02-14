@@ -1,5 +1,5 @@
 /* selector */
-/* vim: set sw=2 et: */
+
 /*
  * Copyright (C) 2003 Sun Microsystems, Inc.
  * Copyright (C) 2001 Free Software Foundation, Inc.
@@ -363,10 +363,10 @@ vnck_selector_window_name_changed (VnckWindow *window,
 }
 
 static void
-vnck_selector_window_state_changed (VnckWindow *window,
-                                    VnckWindowState changed_mask,
-                                    VnckWindowState new_state,
-                                    VnckSelector *selector)
+vnck_selector_window_state_changed (VnckWindow     *window,
+				    VnckWindowState changed_mask,
+				    VnckWindowState new_state G_GNUC_UNUSED,
+VnckSelector *selector)
 {
   CtkWidget *item;
   char *window_name;
@@ -444,8 +444,8 @@ vnck_selector_window_workspace_changed (VnckWindow   *window,
 
 static void
 vnck_selector_active_window_changed (VnckScreen   *screen,
-                                     VnckWindow   *previous_window,
-                                     VnckSelector *selector)
+				     VnckWindow   *previous_window G_GNUC_UNUSED,
+				     VnckSelector *selector)
 {
   VnckWindow *window;
 
@@ -496,12 +496,12 @@ vnck_selector_drag_begin (CtkWidget          *widget,
 }
 
 static void
-vnck_selector_drag_data_get (CtkWidget          *widget,
-			     CdkDragContext     *context,
-			     CtkSelectionData   *selection_data,
-			     guint               info,
-			     guint               time,
-			     VnckWindow         *window)
+vnck_selector_drag_data_get (CtkWidget        *widget G_GNUC_UNUSED,
+			     CdkDragContext   *context G_GNUC_UNUSED,
+			     CtkSelectionData *selection_data,
+			     guint             info G_GNUC_UNUSED,
+			     guint             time G_GNUC_UNUSED,
+			     VnckWindow       *window)
 {
   gulong xid;
 
@@ -726,8 +726,9 @@ vnck_selector_append_window (VnckSelector *selector, VnckWindow *window)
 }
 
 static void
-vnck_selector_window_opened (VnckScreen *screen,
-                             VnckWindow *window, VnckSelector *selector)
+vnck_selector_window_opened (VnckScreen   *screen G_GNUC_UNUSED,
+			     VnckWindow   *window,
+			     VnckSelector *selector)
 {
   vnck_selector_connect_to_window (selector, window);
 
@@ -744,8 +745,9 @@ vnck_selector_window_opened (VnckScreen *screen,
 }
 
 static void
-vnck_selector_window_closed (VnckScreen *screen,
-                             VnckWindow *window, VnckSelector *selector)
+vnck_selector_window_closed (VnckScreen   *screen G_GNUC_UNUSED,
+			     VnckWindow   *window,
+			     VnckSelector *selector)
 {
   CtkWidget *item;
 
@@ -790,9 +792,9 @@ vnck_selector_workspace_created (VnckScreen    *screen,
 }
 
 static void
-vnck_selector_workspace_destroyed (VnckScreen    *screen,
-                                   VnckWorkspace *workspace,
-                                   VnckSelector  *selector)
+vnck_selector_workspace_destroyed (VnckScreen    *screen G_GNUC_UNUSED,
+				   VnckWorkspace *workspace,
+				   VnckSelector  *selector)
 {
   GList     *l, *children;
   CtkWidget *destroy;
@@ -916,7 +918,8 @@ vnck_selector_disconnect_from_screen (VnckSelector *selector,
 }
 
 static void
-vnck_selector_destroy_menu (CtkWidget *widget, VnckSelector *selector)
+vnck_selector_destroy_menu (CtkWidget    *widget G_GNUC_UNUSED,
+			    VnckSelector *selector)
 {
   selector->priv->menu = NULL;
 
@@ -1008,13 +1011,15 @@ vnck_selector_scroll_event (CtkWidget      *widget,
 }
 
 static void
-vnck_selector_menu_hidden (CtkWidget *menu, VnckSelector *selector)
+vnck_selector_menu_hidden (CtkWidget    *menu G_GNUC_UNUSED,
+			   VnckSelector *selector)
 {
   ctk_widget_set_state_flags (CTK_WIDGET (selector), CTK_STATE_FLAG_NORMAL, TRUE);
 }
 
 static void
-vnck_selector_on_show (CtkWidget *widget, VnckSelector *selector)
+vnck_selector_on_show (CtkWidget    *widget G_GNUC_UNUSED,
+		       VnckSelector *selector)
 {
   CtkWidget *separator;
   VnckScreen *screen;

@@ -1,4 +1,3 @@
-/* vim: set sw=2 et: */
 /*
  * Copyright 2002 Sun Microsystems Inc.
  *
@@ -37,7 +36,7 @@ vnck_workspace_accessible_factory_class_init (VnckWorkspaceAccessibleFactoryClas
 }
 
 static void
-vnck_workspace_accessible_factory_init (VnckWorkspaceAccessibleFactory *factory)
+vnck_workspace_accessible_factory_init (VnckWorkspaceAccessibleFactory *factory G_GNUC_UNUSED)
 {
 }
 

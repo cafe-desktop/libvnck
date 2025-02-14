@@ -1,11 +1,9 @@
-/* vim: set sw=2 et: */
-
 #include <libvnck/libvnck.h>
 
 static void
 on_active_window_changed (VnckScreen *screen,
-                          VnckWindow *previously_active_window,
-                          gpointer    data)
+			  VnckWindow *previously_active_window G_GNUC_UNUSED,
+			  gpointer    data G_GNUC_UNUSED)
 {
   VnckWindow *active_window;
 

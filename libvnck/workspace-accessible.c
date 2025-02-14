@@ -1,4 +1,3 @@
-/* vim: set sw=2 et: */
 /*
  * Copyright 2002 Sun Microsystems Inc.
  *
@@ -166,7 +165,7 @@ vnck_workspace_accessible_class_init (VnckWorkspaceAccessibleClass *klass)
 }
 
 static void
-vnck_workspace_accessible_init (VnckWorkspaceAccessible *accessible)
+vnck_workspace_accessible_init (VnckWorkspaceAccessible *accessible G_GNUC_UNUSED)
 {
 }
 

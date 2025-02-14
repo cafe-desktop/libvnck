@@ -1,5 +1,4 @@
 /* tasklist object */
-/* vim: set sw=2 et: */
 
 /*
  * Copyright (C) 2001 Havoc Pennington
@@ -823,7 +822,7 @@ vnck_tasklist_set_grouping (VnckTasklist            *tasklist,
 }
 
 static void
-vnck_tasklist_set_relief_callback (VnckWindow   *win,
+vnck_tasklist_set_relief_callback (VnckWindow   *win G_GNUC_UNUSED,
 				   VnckTask     *task,
 				   VnckTasklist *tasklist)
 {
@@ -1100,7 +1099,7 @@ vnck_tasklist_layout (CtkAllocation *allocation,
 }
 
 static void
-vnck_tasklist_score_groups (VnckTasklist *tasklist,
+vnck_tasklist_score_groups (VnckTasklist *tasklist G_GNUC_UNUSED,
 			    GList        *ungrouped_class_groups)
 {
   VnckTask *class_group_task;
@@ -1727,7 +1726,7 @@ vnck_tasklist_size_allocate (CtkWidget      *widget,
 
 static void
 foreach_tasklist (VnckTasklist *tasklist,
-                  gpointer      user_data)
+		  gpointer      user_data G_GNUC_UNUSED)
 {
   vnck_tasklist_update_lists (tasklist);
 }
@@ -1786,9 +1785,9 @@ vnck_tasklist_unrealize (CtkWidget *widget)
 
 static void
 vnck_tasklist_forall (CtkContainer *container,
-                      gboolean      include_internals,
-                      CtkCallback   callback,
-                      gpointer      callback_data)
+		      gboolean      include_internals G_GNUC_UNUSED,
+		      CtkCallback   callback,
+		      gpointer      callback_data)
 {
   VnckTasklist *tasklist;
   GList *tmp;
@@ -2457,7 +2456,7 @@ vnck_tasklist_change_active_task (VnckTasklist *tasklist, VnckTask *active_task)
 }
 
 static void
-vnck_tasklist_update_icon_geometries (VnckTasklist *tasklist,
+vnck_tasklist_update_icon_geometries (VnckTasklist *tasklist G_GNUC_UNUSED,
 				      GList        *visible_tasks)
 {
 	gint x, y, width, height;
@@ -2505,7 +2504,7 @@ vnck_tasklist_update_icon_geometries (VnckTasklist *tasklist,
 
 static void
 vnck_tasklist_active_window_changed (VnckScreen   *screen,
-                                     VnckWindow   *previous_window,
+				     VnckWindow   *previous_window G_GNUC_UNUSED,
 				     VnckTasklist *tasklist)
 {
   VnckWindow *active_window;
@@ -2529,8 +2528,8 @@ vnck_tasklist_active_window_changed (VnckScreen   *screen,
 }
 
 static void
-vnck_tasklist_active_workspace_changed (VnckScreen    *screen,
-                                        VnckWorkspace *previous_workspace,
+vnck_tasklist_active_workspace_changed (VnckScreen    *screen G_GNUC_UNUSED,
+					VnckWorkspace *previous_workspace G_GNUC_UNUSED,
 					VnckTasklist  *tasklist)
 {
   vnck_tasklist_update_lists (tasklist);
@@ -2670,7 +2669,7 @@ vnck_tasklist_disconnect_window (VnckTasklist *tasklist,
 }
 
 static void
-vnck_tasklist_window_added (VnckScreen   *screen,
+vnck_tasklist_window_added (VnckScreen   *screen G_GNUC_UNUSED,
 			    VnckWindow   *win,
 			    VnckTasklist *tasklist)
 {
@@ -2685,8 +2684,8 @@ vnck_tasklist_window_added (VnckScreen   *screen,
 }
 
 static void
-vnck_tasklist_window_removed (VnckScreen   *screen,
-			      VnckWindow   *win,
+vnck_tasklist_window_removed (VnckScreen   *screen G_GNUC_UNUSED,
+			      VnckWindow   *win G_GNUC_UNUSED,
 			      VnckTasklist *tasklist)
 {
   vnck_tasklist_update_lists (tasklist);
@@ -2694,8 +2693,8 @@ vnck_tasklist_window_removed (VnckScreen   *screen,
 }
 
 static void
-vnck_tasklist_viewports_changed (VnckScreen   *screen,
-                                 VnckTasklist *tasklist)
+vnck_tasklist_viewports_changed (VnckScreen   *screen G_GNUC_UNUSED,
+				 VnckTasklist *tasklist)
 {
   vnck_tasklist_update_lists (tasklist);
   ctk_widget_queue_resize (CTK_WIDGET (tasklist));
@@ -2714,7 +2713,7 @@ vnck_tasklist_change_active_timeout (gpointer data)
 }
 
 static void
-vnck_task_menu_activated (CtkMenuItem *menu_item,
+vnck_task_menu_activated (CtkMenuItem *menu_item G_GNUC_UNUSED,
 			  gpointer     data)
 {
   VnckTask *task = VNCK_TASK (data);
@@ -2828,8 +2827,8 @@ vnck_tasklist_activate_task_window (VnckTask *task,
 }
 
 static void
-vnck_task_close_all (CtkMenuItem *menu_item,
- 		     gpointer     data)
+vnck_task_close_all (CtkMenuItem *menu_item G_GNUC_UNUSED,
+		     gpointer     data)
 {
   VnckTask *task = VNCK_TASK (data);
   GList *l;
@@ -2844,8 +2843,8 @@ vnck_task_close_all (CtkMenuItem *menu_item,
 }
 
 static void
-vnck_task_unminimize_all (CtkMenuItem *menu_item,
-		          gpointer     data)
+vnck_task_unminimize_all (CtkMenuItem *menu_item G_GNUC_UNUSED,
+			  gpointer     data)
 {
   VnckTask *task = VNCK_TASK (data);
   GList *l;
@@ -2863,8 +2862,8 @@ vnck_task_unminimize_all (CtkMenuItem *menu_item,
 }
 
 static void
-vnck_task_minimize_all (CtkMenuItem *menu_item,
-  		        gpointer     data)
+vnck_task_minimize_all (CtkMenuItem *menu_item G_GNUC_UNUSED,
+			gpointer     data)
 {
   VnckTask *task = VNCK_TASK (data);
   GList *l;
@@ -2879,8 +2878,8 @@ vnck_task_minimize_all (CtkMenuItem *menu_item,
 }
 
 static void
-vnck_task_unmaximize_all (CtkMenuItem *menu_item,
-  		        gpointer     data)
+vnck_task_unmaximize_all (CtkMenuItem *menu_item G_GNUC_UNUSED,
+			  gpointer     data)
 {
   VnckTask *task = VNCK_TASK (data);
   GList *l;
@@ -2895,8 +2894,8 @@ vnck_task_unmaximize_all (CtkMenuItem *menu_item,
 }
 
 static void
-vnck_task_maximize_all (CtkMenuItem *menu_item,
-  		        gpointer     data)
+vnck_task_maximize_all (CtkMenuItem *menu_item G_GNUC_UNUSED,
+			gpointer     data)
 {
   VnckTask *task = VNCK_TASK (data);
   GList *l;
@@ -3385,7 +3384,7 @@ vnck_task_update_visible_state (VnckTask *task)
 static void
 vnck_task_state_changed (VnckWindow     *window,
 			 VnckWindowState changed_mask,
-			 VnckWindowState new_state,
+			 VnckWindowState new_state G_GNUC_UNUSED,
 			 gpointer        data)
 {
   VnckTasklist *tasklist = VNCK_TASKLIST (data);
@@ -3441,7 +3440,7 @@ vnck_task_state_changed (VnckWindow     *window,
 }
 
 static void
-vnck_task_icon_changed (VnckWindow *window,
+vnck_task_icon_changed (VnckWindow *window G_GNUC_UNUSED,
 			gpointer    data)
 {
   VnckTask *task = VNCK_TASK (data);
@@ -3451,7 +3450,7 @@ vnck_task_icon_changed (VnckWindow *window,
 }
 
 static void
-vnck_task_name_changed (VnckWindow *window,
+vnck_task_name_changed (VnckWindow *window G_GNUC_UNUSED,
 			gpointer    data)
 {
   VnckTask *task = VNCK_TASK (data);
@@ -3461,7 +3460,7 @@ vnck_task_name_changed (VnckWindow *window,
 }
 
 static void
-vnck_task_class_name_changed (VnckClassGroup *class_group,
+vnck_task_class_name_changed (VnckClassGroup *class_group G_GNUC_UNUSED,
 			      gpointer        data)
 {
   VnckTask *task = VNCK_TASK (data);
@@ -3471,7 +3470,7 @@ vnck_task_class_name_changed (VnckClassGroup *class_group,
 }
 
 static void
-vnck_task_class_icon_changed (VnckClassGroup *class_group,
+vnck_task_class_icon_changed (VnckClassGroup *class_group G_GNUC_UNUSED,
 			      gpointer        data)
 {
   VnckTask *task = VNCK_TASK (data);
@@ -3505,10 +3504,10 @@ vnck_task_motion_timeout (gpointer data)
 }
 
 static void
-vnck_task_drag_leave (CtkWidget          *widget,
-		      CdkDragContext     *context,
-		      guint               time,
-		      VnckTask           *task)
+vnck_task_drag_leave (CtkWidget      *widget,
+		      CdkDragContext *context G_GNUC_UNUSED,
+		      guint           time G_GNUC_UNUSED,
+		      VnckTask       *task)
 {
   if (task->button_activate != 0)
     {
@@ -3520,12 +3519,12 @@ vnck_task_drag_leave (CtkWidget          *widget,
 }
 
 static gboolean
-vnck_task_drag_motion (CtkWidget          *widget,
-		       CdkDragContext     *context,
-		       gint                x,
-		       gint                y,
-		       guint               time,
-		       VnckTask            *task)
+vnck_task_drag_motion (CtkWidget      *widget,
+		       CdkDragContext *context,
+		       gint            x G_GNUC_UNUSED,
+		       gint            y G_GNUC_UNUSED,
+		       guint           time,
+		       VnckTask       *task)
 {
   if (ctk_drag_dest_find_target (widget, context, NULL))
     {
@@ -3549,9 +3548,9 @@ vnck_task_drag_motion (CtkWidget          *widget,
 }
 
 static void
-vnck_task_drag_begin (CtkWidget          *widget,
-		      CdkDragContext     *context,
-		      VnckTask           *task)
+vnck_task_drag_begin (CtkWidget      *widget G_GNUC_UNUSED,
+		      CdkDragContext *context,
+		      VnckTask       *task)
 {
   _vnck_window_set_as_drag_icon (task->window, context,
                                  CTK_WIDGET (task->tasklist));
@@ -3560,20 +3559,20 @@ vnck_task_drag_begin (CtkWidget          *widget,
 }
 
 static void
-vnck_task_drag_end (CtkWidget      *widget,
-		    CdkDragContext *context,
+vnck_task_drag_end (CtkWidget      *widget G_GNUC_UNUSED,
+		    CdkDragContext *context G_GNUC_UNUSED,
 		    VnckTask       *task)
 {
   task->tasklist->priv->drag_start_time = 0;
 }
 
 static void
-vnck_task_drag_data_get (CtkWidget          *widget,
-		         CdkDragContext     *context,
-		         CtkSelectionData   *selection_data,
-		         guint               info,
-		 	 guint               time,
-		         VnckTask           *task)
+vnck_task_drag_data_get (CtkWidget        *widget G_GNUC_UNUSED,
+			 CdkDragContext   *context G_GNUC_UNUSED,
+			 CtkSelectionData *selection_data,
+			 guint             info G_GNUC_UNUSED,
+			 guint             time G_GNUC_UNUSED,
+			 VnckTask         *task)
 {
   gulong xid;
 
@@ -3584,14 +3583,14 @@ vnck_task_drag_data_get (CtkWidget          *widget,
 }
 
 static void
-vnck_task_drag_data_received (CtkWidget          *widget,
-                              CdkDragContext     *context,
-                              gint                x,
-                              gint                y,
-                              CtkSelectionData   *data,
-                              guint               info,
-                              guint               time,
-                              VnckTask           *target_task)
+vnck_task_drag_data_received (CtkWidget        *widget G_GNUC_UNUSED,
+			      CdkDragContext   *context,
+			      gint              x G_GNUC_UNUSED,
+			      gint              y G_GNUC_UNUSED,
+			      CtkSelectionData *data,
+			      guint             info G_GNUC_UNUSED,
+			      guint             time,
+			      VnckTask         *target_task)
 {
   VnckTasklist *tasklist;
   GList        *l, *windows;
@@ -3672,9 +3671,9 @@ vnck_task_drag_data_received (CtkWidget          *widget,
 }
 
 static gboolean
-vnck_task_button_press_event (CtkWidget	      *widget,
-			      CdkEventButton  *event,
-			      gpointer         data)
+vnck_task_button_press_event (CtkWidget      *widget G_GNUC_UNUSED,
+			      CdkEventButton *event,
+			      gpointer        data)
 {
   VnckTask *task = VNCK_TASK (data);
 
@@ -3773,9 +3772,9 @@ vnck_task_extract_windows (VnckTask *task)
 }
 
 static gboolean
-vnck_task_enter_notify_event (CtkWidget *widget,
-                              CdkEvent  *event,
-                              gpointer   data)
+vnck_task_enter_notify_event (CtkWidget *widget G_GNUC_UNUSED,
+			      CdkEvent  *event G_GNUC_UNUSED,
+			      gpointer   data)
 {
   VnckTask *task = VNCK_TASK (data);
   GList *windows = vnck_task_extract_windows (task);
@@ -3790,9 +3789,9 @@ vnck_task_enter_notify_event (CtkWidget *widget,
 }
 
 static gboolean
-vnck_task_leave_notify_event (CtkWidget *widget,
-                              CdkEvent  *event,
-                              gpointer   data)
+vnck_task_leave_notify_event (CtkWidget *widget G_GNUC_UNUSED,
+			      CdkEvent  *event G_GNUC_UNUSED,
+			      gpointer   data)
 {
   VnckTask *task = VNCK_TASK (data);
   GList *windows = vnck_task_extract_windows (task);
@@ -3807,7 +3806,7 @@ vnck_task_leave_notify_event (CtkWidget *widget,
 }
 
 static gboolean
-vnck_task_scroll_event (CtkWidget *widget,
+vnck_task_scroll_event (CtkWidget *widget G_GNUC_UNUSED,
 			CdkEvent  *event,
 			gpointer   data)
 {
