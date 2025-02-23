@@ -2838,7 +2838,7 @@ gboolean
 _vnck_desktop_layout_manager_process_event (XEvent *xev)
 {
   GSList *tmp;
-  LayoutManager *lm;
+  LayoutManager *lm = NULL;
 
   if (xev->type != SelectionClear)
     return FALSE;

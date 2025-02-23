@@ -958,7 +958,8 @@ draw_window (cairo_t            *cr,
 {
   CtkStyleContext *context;
   GdkPixbuf *icon;
-  int icon_x, icon_y, icon_w, icon_h;
+  int icon_w;
+  int icon_h;
   gboolean is_active;
   CdkRGBA fg;
   gdouble translucency;
@@ -1020,6 +1021,9 @@ draw_window (cairo_t            *cr,
 
   if (icon)
     {
+      int icon_x;
+      int icon_y;
+
       icon_x = winrect->x + (winrect->width - icon_w) / 2;
       icon_y = winrect->y + (winrect->height - icon_h) / 2;
 
@@ -1963,10 +1967,7 @@ static gboolean
 vnck_pager_button_release (CtkWidget        *widget,
                            CdkEventButton   *event)
 {
-  VnckWorkspace *space;
   VnckPager *pager;
-  int i;
-  int j;
   int viewport_x;
   int viewport_y;
 
@@ -1977,6 +1978,10 @@ vnck_pager_button_release (CtkWidget        *widget,
 
   if (!pager->priv->dragging)
     {
+      VnckWorkspace *space;
+      int i;
+      int j;
+
       i = workspace_at_point (pager,
                               event->x, event->y,
                               &viewport_x, &viewport_y);

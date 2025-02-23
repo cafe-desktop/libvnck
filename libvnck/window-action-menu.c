@@ -836,7 +836,7 @@ refill_submenu_viewport (VnckActionMenu *menu)
   for (y = 0; y < viewport_height; y += screen_height)
     {
       char      *label;
-      CtkWidget *item;
+      CtkWidget *item = NULL;
 
       for (x = 0; x < viewport_width; x += screen_width)
         {

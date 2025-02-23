@@ -140,9 +140,10 @@ static GdkPixbuf *
 vnck_selector_dimm_icon (GdkPixbuf *pixbuf)
 {
   int x, y, pixel_stride, row_stride;
-  guchar *row, *pixels;
   int w, h;
   GdkPixbuf *dimmed;
+  guchar *row = NULL;
+  guchar *pixels = NULL;
 
   w = gdk_pixbuf_get_width (pixbuf);
   h = gdk_pixbuf_get_height (pixbuf);
@@ -283,13 +284,14 @@ vnck_selector_make_menu_consistent (VnckSelector *selector)
           if (workspace_item)
             {
               VnckWindow    *window;
-              VnckWorkspace *workspace;
 
               window = g_object_get_data (G_OBJECT (l->data),
                                           "vnck-selector-window");
 
               if (window)
                 {
+                  VnckWorkspace *workspace;
+
                   workspace = vnck_window_get_workspace (window);
                   if (workspace &&
                       workspace_n == vnck_workspace_get_number (workspace))
@@ -348,7 +350,6 @@ vnck_selector_window_name_changed (VnckWindow *window,
                                    VnckSelector *selector)
 {
   CtkWidget *item;
-  char *window_name;
 
   if (!selector->priv->window_hash)
 	  return;
@@ -356,6 +357,8 @@ vnck_selector_window_name_changed (VnckWindow *window,
   item = g_hash_table_lookup (selector->priv->window_hash, window);
   if (item != NULL)
     {
+      char *window_name;
+
       window_name = _vnck_window_get_name_for_display (window, FALSE, TRUE);
       ctk_menu_item_set_label (CTK_MENU_ITEM (item), window_name);
       g_free (window_name);
@@ -369,7 +372,6 @@ vnck_selector_window_state_changed (VnckWindow     *window,
 VnckSelector *selector)
 {
   CtkWidget *item;
-  char *window_name;
 
   if (!
       (changed_mask &
@@ -410,6 +412,8 @@ VnckSelector *selector)
   if (changed_mask &
       (VNCK_WINDOW_STATE_MINIMIZED | VNCK_WINDOW_STATE_SHADED))
     {
+      char *window_name;
+
       window_name = _vnck_window_get_name_for_display (window, FALSE, TRUE);
       ctk_menu_item_set_label (CTK_MENU_ITEM (item), window_name);
       g_free (window_name);
@@ -653,7 +657,6 @@ vnck_selector_insert_window (VnckSelector *selector, VnckWindow *window)
   CtkWidget     *item;
   VnckScreen    *screen;
   VnckWorkspace *workspace;
-  int            workspace_n;
   int            i;
 
   screen = vnck_selector_get_screen (selector);
@@ -686,6 +689,8 @@ vnck_selector_insert_window (VnckSelector *selector, VnckWindow *window)
     }
   else
     {
+      int workspace_n;
+
       workspace_n = vnck_workspace_get_number (workspace);
 
       if (workspace_n == vnck_screen_get_workspace_count (screen) - 1)

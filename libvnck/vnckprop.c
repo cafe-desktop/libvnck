@@ -427,14 +427,15 @@ option_parse (const char  *option_name,
     }
   else if (strcmp (option_name, "workspace") == 0)
     {
-      int space_buf;
-
       option_workspace = TRUE;
       get_from_user = FALSE;
 
       if (value)
         {
+          int space_buf;
+
           space_buf = strtol (value, &end, 10);
+
           if (end && end[0] == '\0')
             interact_space = space_buf;
           else
@@ -450,14 +451,15 @@ option_parse (const char  *option_name,
     }
   else if (strcmp (option_name, "screen") == 0)
     {
-      int screen_buf;
-
       option_screen = TRUE;
       get_from_user = FALSE;
 
       if (value)
         {
+          int screen_buf;
+
           screen_buf = strtol (value, &end, 10);
+
           if (end && end[0] == '\0')
             interact_screen = screen_buf;
           else
@@ -843,9 +845,6 @@ validate_options (void)
 static void
 update_screen (VnckScreen *screen)
 {
-  int viewport_x;
-  int viewport_y;
-
   if (set_n_workspaces > 0)
     vnck_screen_change_workspace_count (screen, set_n_workspaces);
 
@@ -878,6 +877,9 @@ update_screen (VnckScreen *screen)
          {
            if (vnck_workspace_is_virtual (active_space))
              {
+               int viewport_x;
+               int viewport_y;
+
                if (set_viewport_x != -1)
                  viewport_x = set_viewport_x;
                else
@@ -1085,9 +1087,9 @@ update_window (VnckWindow *window)
 static void
 list_windows (GList *windows)
 {
-  VnckWindow *window;
   GList      *l;
   const char *buf;
+  VnckWindow *window = NULL;
 
   for (l = windows; l; l = l->next)
     {
@@ -1109,9 +1111,9 @@ list_screen (VnckScreen *screen)
 {
   if (list_workspaces)
     {
-      VnckWorkspace *space;
       GList         *spaces;
       GList         *l;
+      VnckWorkspace *space = NULL;
 
       spaces = vnck_screen_get_workspaces (screen);
 
@@ -1132,13 +1134,12 @@ list_screen (VnckScreen *screen)
 static void
 list_workspace (VnckWorkspace *space)
 {
-  VnckWindow *window;
   GList      *all_windows;
   GList      *l;
-  GList      *space_windows;
+  GList      *space_windows = NULL;
+  VnckWindow *window = NULL;
 
   all_windows = vnck_screen_get_windows (vnck_workspace_get_screen (space));
-  space_windows = NULL;
 
   for (l = all_windows; l; l = l->next)
     {

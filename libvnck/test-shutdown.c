@@ -29,7 +29,7 @@ main (int    argc,
       char **argv)
 {
   GMainLoop *loop;
-  VnckScreen *screen;
+  VnckScreen *screen = NULL;
 
   cdk_init (&argc, &argv);
 
