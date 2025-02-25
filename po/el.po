@@ -12,7 +12,7 @@
 # Jennie Petoumenou <epetoumenou@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: el\n"
+"Project-Id-Version: libvnck 3.41.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-25 10:55+0100\n"
 "PO-Revision-Date: 2014-06-15 13:24+0200\n"

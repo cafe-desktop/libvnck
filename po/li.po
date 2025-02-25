@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck\n"
+"Project-Id-Version: libvnck 3.41.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-25 10:55+0100\n"
 "PO-Revision-Date: 2003-06-05 13:25+0100\n"

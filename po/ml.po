@@ -9,7 +9,7 @@
 # Anish A <aneesh.nl@gmail.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: test\n"
+"Project-Id-Version: libvnck 3.41.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-25 10:55+0100\n"
 "PO-Revision-Date: 2013-03-25 10:42+0530\n"

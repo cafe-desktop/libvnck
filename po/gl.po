@@ -13,7 +13,7 @@
 # Fran Dieguez <frandieguez@gnome.org>, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck-master-po-gl\n"
+"Project-Id-Version: libvnck 3.41.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-25 10:55+0100\n"
 "PO-Revision-Date: 2013-08-28 01:04+0200\n"

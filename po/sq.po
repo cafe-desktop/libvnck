@@ -4,7 +4,7 @@
 # Laurent Dhima <laurenti@alblinux.net>, 2002, 2003, 2004, 2005, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck HEAD\n"
+"Project-Id-Version: libvnck 3.41.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-25 10:55+0100\n"
 "PO-Revision-Date: 2006-03-09 18:03+0100\n"

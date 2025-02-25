@@ -7,7 +7,7 @@
 # Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck.HEAD.ro\n"
+"Project-Id-Version: libvnck 3.41.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-25 10:55+0100\n"
 "PO-Revision-Date: 2019-08-19 13:35+0300\n"
