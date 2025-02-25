@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libvnck.HEAD.ne\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-18 20:24+0100\n"
+"POT-Creation-Date: 2025-02-25 10:55+0100\n"
 "PO-Revision-Date: 2007-12-19 16:18+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -52,146 +52,146 @@ msgstr ""
 msgid "Untitled application"
 msgstr "शीर्षक बिहिन अनुप्रयोग"
 
-#: libvnck/pager-accessible.c:263
+#: libvnck/pager-accessible.c:262
 msgid "Workspace Switcher"
 msgstr "कार्यस्थान स्विचर"
 
-#: libvnck/pager-accessible.c:274
+#: libvnck/pager-accessible.c:273
 msgid "Tool to switch between workspaces"
 msgstr "कार्यस्थानहरूको बीचमा स्विच गर्ने उपकरण"
 
-#: libvnck/pager-accessible.c:379
+#: libvnck/pager-accessible.c:378
 #, c-format
 msgid "Click this to switch to workspace %s"
 msgstr "%s कार्यस्थानमा स्विच गर्न यसलाई क्लिक गर्नुहोस्"
 
-#: libvnck/pager.c:2221
+#: libvnck/pager.c:2224
 #, c-format
 msgid "Click to start dragging \"%s\""
 msgstr " \"%s\" तान्न सुरु गर्न क्लिक गर्नुहोस्"
 
-#: libvnck/pager.c:2224
+#: libvnck/pager.c:2227
 #, c-format
 msgid "Current workspace: \"%s\""
 msgstr "हालको कार्यस्थान: \"%s\""
 
-#: libvnck/pager.c:2229
+#: libvnck/pager.c:2232
 #, c-format
 msgid "Click to switch to \"%s\""
 msgstr " \"%s\" मा स्विच गर्न क्लिक गर्नुहोस्"
 
-#: libvnck/selector.c:1091
+#: libvnck/selector.c:1101
 msgid "No Windows Open"
 msgstr "सञ्झ्याल खुला छैन"
 
-#: libvnck/selector.c:1147
+#: libvnck/selector.c:1157
 msgid "Window Selector"
 msgstr "सञ्झ्याल चयनकर्ता"
 
-#: libvnck/selector.c:1148
+#: libvnck/selector.c:1158
 msgid "Tool to switch between windows"
 msgstr "सञ्झ्यालहरू बीचमा स्विच गर्ने उपकरण"
 
-#: libvnck/tasklist.c:603
+#: libvnck/tasklist.c:602
 msgid "Window List"
 msgstr "सञ्झ्याल सूची"
 
-#: libvnck/tasklist.c:604
+#: libvnck/tasklist.c:603
 msgid "Tool to switch between visible windows"
 msgstr "दृश्यात्मक सञ्झ्यालहरू बीचमा स्विच गर्ने उपकरण"
 
-#: libvnck/tasklist.c:3022
+#: libvnck/tasklist.c:3021
 msgid "Mi_nimize All"
 msgstr "सबैलाई घटाउनुहोस्"
 
-#: libvnck/tasklist.c:3030
+#: libvnck/tasklist.c:3029
 msgid "Un_minimize All"
 msgstr "सबैलाई पूर्वावस्थामा फर्काउनुहोस्"
 
-#: libvnck/tasklist.c:3038
+#: libvnck/tasklist.c:3037
 msgid "Ma_ximize All"
 msgstr "सबैलाई बढाउनुहोस्"
 
-#: libvnck/tasklist.c:3046
+#: libvnck/tasklist.c:3045
 msgid "_Unmaximize All"
 msgstr "सबैलाई पूर्वावस्थामा फर्काउनुहोस्"
 
-#: libvnck/tasklist.c:3058
+#: libvnck/tasklist.c:3057
 msgid "_Close All"
 msgstr "सबै बन्द गर्नुहोस्"
 
-#: libvnck/window-action-menu.c:367
+#: libvnck/window-action-menu.c:366
 msgid "Unmi_nimize"
 msgstr "पूर्वावस्थामा फर्काउनुहोस्"
 
-#: libvnck/window-action-menu.c:373
+#: libvnck/window-action-menu.c:372
 msgid "Mi_nimize"
 msgstr "घटाउनुहोस्"
 
-#: libvnck/window-action-menu.c:380
+#: libvnck/window-action-menu.c:379
 msgid "Unma_ximize"
 msgstr "पूर्वावस्थामा फर्काउनुहोस्"
 
-#: libvnck/window-action-menu.c:386
+#: libvnck/window-action-menu.c:385
 msgid "Ma_ximize"
 msgstr "बढाउनुहोस्"
 
-#: libvnck/window-action-menu.c:692 libvnck/workspace.c:265
+#: libvnck/window-action-menu.c:691 libvnck/workspace.c:265
 #, c-format
 msgid "Workspace %d"
 msgstr "कार्यस्थान %d"
 
-#: libvnck/window-action-menu.c:701 libvnck/window-action-menu.c:847
+#: libvnck/window-action-menu.c:700 libvnck/window-action-menu.c:846
 #, c-format
 msgid "Workspace 1_0"
 msgstr "कार्यस्थान १०"
 
-#: libvnck/window-action-menu.c:703 libvnck/window-action-menu.c:849
+#: libvnck/window-action-menu.c:702 libvnck/window-action-menu.c:848
 #, c-format
 msgid "Workspace %s%d"
 msgstr "कार्यस्थान %s%d"
 
-#: libvnck/window-action-menu.c:990
+#: libvnck/window-action-menu.c:989
 msgid "_Move"
 msgstr "सार्नुहोस्"
 
-#: libvnck/window-action-menu.c:996
+#: libvnck/window-action-menu.c:995
 msgid "_Resize"
 msgstr "रिसाइज गर्नुहोस्"
 
-#: libvnck/window-action-menu.c:1004
+#: libvnck/window-action-menu.c:1003
 msgid "Always On _Top"
 msgstr "सधैँ माथि"
 
-#: libvnck/window-action-menu.c:1012
+#: libvnck/window-action-menu.c:1011
 msgid "_Always on Visible Workspace"
 msgstr "सधैँ दृश्यात्मक कार्यस्थानमा"
 
-#: libvnck/window-action-menu.c:1017
+#: libvnck/window-action-menu.c:1016
 msgid "_Only on This Workspace"
 msgstr "सधैँ यो कार्यस्थानमा मात्र"
 
-#: libvnck/window-action-menu.c:1024
+#: libvnck/window-action-menu.c:1023
 msgid "Move to Workspace _Left"
 msgstr "कार्यस्थानलाई बायाँ सार्नुहोस्"
 
-#: libvnck/window-action-menu.c:1029
+#: libvnck/window-action-menu.c:1028
 msgid "Move to Workspace R_ight"
 msgstr "कार्यस्थानलाई दायाँ सार्नुहोस्"
 
-#: libvnck/window-action-menu.c:1034
+#: libvnck/window-action-menu.c:1033
 msgid "Move to Workspace _Up"
 msgstr "कार्यस्थानलाई माथि सार्नुहोस्"
 
-#: libvnck/window-action-menu.c:1039
+#: libvnck/window-action-menu.c:1038
 msgid "Move to Workspace _Down"
 msgstr "कार्यस्थानलाई तल सार्नुहोस्"
 
-#: libvnck/window-action-menu.c:1041
+#: libvnck/window-action-menu.c:1040
 msgid "Move to Another _Workspace"
 msgstr "अन्य कार्यस्थानमा सार्नुहोस्"
 
-#: libvnck/window-action-menu.c:1061
+#: libvnck/window-action-menu.c:1060
 msgid "_Close"
 msgstr "बन्द गर्नुहोस्"
 
@@ -208,11 +208,11 @@ msgstr "बन्द गर्नुहोस्"
 msgid "Untitled window"
 msgstr "शीर्षक बिहिन सञ्झ्याल"
 
-#: libvnck/vnckprop.c:137
+#: libvnck/vnckprop.c:136
 msgid "X window ID of the window to examine or modify"
 msgstr "परीक्षण वा परिमार्जन गरिने सञ्झ्यालको X सञ्झ्याल आईडी (ID)"
 
-#: libvnck/vnckprop.c:137 libvnck/vnckprop.c:144 libvnck/vnckprop.c:154
+#: libvnck/vnckprop.c:136 libvnck/vnckprop.c:143 libvnck/vnckprop.c:153
 msgid "XID"
 msgstr "XID"
 
@@ -220,40 +220,40 @@ msgstr "XID"
 #. * group of windows, ie: if you have multiple windows in one
 #. * application, one window has some information about the application
 #. * (like the application name).
-#: libvnck/vnckprop.c:143
+#: libvnck/vnckprop.c:142
 msgid "X window ID of the group leader of an application to examine"
 msgstr "परीक्षण गरिने अनुप्रयोगको समूह प्रमुखको X सञ्झ्याल आईडी (ID)"
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: libvnck/vnckprop.c:148
+#: libvnck/vnckprop.c:147
 msgid "Class resource of the class group to examine"
 msgstr "परीक्षण गरिने वर्ग समूहको वर्ग स्रोत"
 
-#: libvnck/vnckprop.c:148
+#: libvnck/vnckprop.c:147
 msgid "CLASS"
 msgstr "वर्ग"
 
-#: libvnck/vnckprop.c:150
+#: libvnck/vnckprop.c:149
 msgid "NUMBER of the workspace to examine or modify"
 msgstr "परीक्षण वा परिमार्जन गरिने कार्यस्थानको नम्बर"
 
-#: libvnck/vnckprop.c:150 libvnck/vnckprop.c:152 libvnck/vnckprop.c:170
-#: libvnck/vnckprop.c:172 libvnck/vnckprop.c:174 libvnck/vnckprop.c:271
+#: libvnck/vnckprop.c:149 libvnck/vnckprop.c:151 libvnck/vnckprop.c:169
+#: libvnck/vnckprop.c:171 libvnck/vnckprop.c:173 libvnck/vnckprop.c:270
 msgid "NUMBER"
 msgstr "नम्बर"
 
-#: libvnck/vnckprop.c:152
+#: libvnck/vnckprop.c:151
 msgid "NUMBER of the screen to examine or modify"
 msgstr "परीक्षण वा परिमार्जन गरिने पर्दाको नम्बर"
 
-#: libvnck/vnckprop.c:154
+#: libvnck/vnckprop.c:153
 msgid "Alias of --window"
 msgstr "-- सञ्झ्यालको उपनाम"
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: libvnck/vnckprop.c:162
+#: libvnck/vnckprop.c:161
 msgid ""
 "List windows of the application/class group/workspace/screen (output format: "
 "\"XID: Window Name\")"
@@ -261,144 +261,144 @@ msgstr ""
 "अनुप्रयोग/वर्ग समूह/कार्यस्थान/पर्दा (निर्गत ढाँचा: \"XID: सञ्झ्याल नाम\") का सञ्झ्याल "
 "सूचीकृत गर्नुहोस्"
 
-#: libvnck/vnckprop.c:164
+#: libvnck/vnckprop.c:163
 msgid ""
 "List workspaces of the screen (output format: \"Number: Workspace Name\")"
 msgstr "पर्दाको कार्यस्थान सूचीबद्ध गर्नुहोस् (निर्गत ढाँचा: \"नम्बर: कार्यस्थान नाम\")"
 
-#: libvnck/vnckprop.c:170
+#: libvnck/vnckprop.c:169
 msgid "Change the number of workspaces of the screen to NUMBER"
 msgstr "पर्दाको कार्यस्थानको नम्बरलाई नम्बर मानमा परिवर्तन गर्नुहोस्"
 
-#: libvnck/vnckprop.c:172
+#: libvnck/vnckprop.c:171
 msgid "Change the workspace layout of the screen to use NUMBER rows"
 msgstr "नम्बर पङ्क्ति प्रयोग गर्न पर्दाको कार्यस्थान सजावटलाई परिवर्तन गर्नुहोस्"
 
-#: libvnck/vnckprop.c:174
+#: libvnck/vnckprop.c:173
 msgid "Change the workspace layout of the screen to use NUMBER columns"
 msgstr "नम्बर स्तम्भ प्रयोग गर्न पर्दाको कार्यस्थान सजावट परिवर्तन गर्नुहोस्"
 
-#: libvnck/vnckprop.c:176
+#: libvnck/vnckprop.c:175
 msgid "Show the desktop"
 msgstr "डेस्कटप देखाउनुहोस्"
 
-#: libvnck/vnckprop.c:178
+#: libvnck/vnckprop.c:177
 msgid "Stop showing the desktop"
 msgstr "डेस्कटप देखाउन बन्द गर्नुहोस्"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:183
+#: libvnck/vnckprop.c:182
 msgid "Move the viewport of the current workspace to X coordinate X"
 msgstr "हालको कार्यस्थानको दृश्यपोर्टलाई X निर्देशाङ्क X मा सार्नुहोस्"
 
-#: libvnck/vnckprop.c:183 libvnck/vnckprop.c:273
+#: libvnck/vnckprop.c:182 libvnck/vnckprop.c:272
 msgid "X"
 msgstr "X"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:188
+#: libvnck/vnckprop.c:187
 msgid "Move the viewport of the current workspace to Y coordinate Y"
 msgstr "हालको कार्यस्थानको दृश्यपोर्टलाई Y निर्देशाङ्क Y मा सार्नुहोस्"
 
-#: libvnck/vnckprop.c:188 libvnck/vnckprop.c:275
+#: libvnck/vnckprop.c:187 libvnck/vnckprop.c:274
 msgid "Y"
 msgstr "Y"
 
-#: libvnck/vnckprop.c:194
+#: libvnck/vnckprop.c:193
 msgid "Minimize the window"
 msgstr "सञ्झ्याल घटाउनुहोस्"
 
-#: libvnck/vnckprop.c:196
+#: libvnck/vnckprop.c:195
 msgid "Unminimize the window"
 msgstr "सञ्झ्याललाई पूर्वावस्थामा फर्काउनुहोस्"
 
-#: libvnck/vnckprop.c:198
+#: libvnck/vnckprop.c:197
 msgid "Maximize the window"
 msgstr "सञ्झ्याललाई बढाउनुहोस्"
 
-#: libvnck/vnckprop.c:200
+#: libvnck/vnckprop.c:199
 msgid "Unmaximize the window"
 msgstr "सञ्झ्याललाई पूर्वावस्थामा फर्काउनुहोस्"
 
-#: libvnck/vnckprop.c:202
+#: libvnck/vnckprop.c:201
 msgid "Maximize horizontally the window"
 msgstr "सञ्झ्याललाई तेर्सो रूपमा बढाउनुहोस्"
 
-#: libvnck/vnckprop.c:204
+#: libvnck/vnckprop.c:203
 msgid "Unmaximize horizontally the window"
 msgstr "सञ्झ्याललाई तेर्सो रूपमा पूर्वावस्थामा फर्काउनुहोस्"
 
-#: libvnck/vnckprop.c:206
+#: libvnck/vnckprop.c:205
 msgid "Maximize vertically the window"
 msgstr "सञ्झ्याललाई ठाडो रूपमा बढाउनुहोस्"
 
-#: libvnck/vnckprop.c:208
+#: libvnck/vnckprop.c:207
 msgid "Unmaximize vertically the window"
 msgstr "सञ्झ्याललाई ठाडो रूपमा पूर्वावस्थामा फर्काउनुहोस्"
 
-#: libvnck/vnckprop.c:210
+#: libvnck/vnckprop.c:209
 msgid "Start moving the window via the keyboard"
 msgstr "कुञ्जीपाटीबाट सञ्झ्याल चलाउन सुरु गर्नुहोस्"
 
-#: libvnck/vnckprop.c:212
+#: libvnck/vnckprop.c:211
 msgid "Start resizing the window via the keyboard"
 msgstr "कुञ्जीपाटीबाट सञ्झ्याल रिसाइज गर्न सुरु गर्नुहोस्"
 
-#: libvnck/vnckprop.c:214
+#: libvnck/vnckprop.c:213
 msgid "Activate the window"
 msgstr "सञ्झ्याल सक्रिय पार्नुहोस्"
 
-#: libvnck/vnckprop.c:216
+#: libvnck/vnckprop.c:215
 msgid "Close the window"
 msgstr "सञ्झ्याल बन्द गर्नुहोस्"
 
-#: libvnck/vnckprop.c:219
+#: libvnck/vnckprop.c:218
 msgid "Make the window fullscreen"
 msgstr "सञ्झ्याललाई पूरा पर्दाको बनाउनुहोस्"
 
-#: libvnck/vnckprop.c:221
+#: libvnck/vnckprop.c:220
 msgid "Make the window quit fullscreen mode"
 msgstr "सञ्झ्यालको पूरा पर्दा मोड अन्त्य गर्नुहोस्"
 
-#: libvnck/vnckprop.c:223
+#: libvnck/vnckprop.c:222
 msgid "Make the window always on top"
 msgstr "सञ्झ्याललाई सधैँ माथि हुने बनाउनुहोस्"
 
-#: libvnck/vnckprop.c:225
+#: libvnck/vnckprop.c:224
 msgid "Make the window not always on top"
 msgstr "सञ्झ्याललाई सधैँ नहुने बनाउनुहोस्"
 
-#: libvnck/vnckprop.c:227
+#: libvnck/vnckprop.c:226
 msgid "Make the window below other windows"
 msgstr "सञ्झ्याललाई अन्य सञ्झ्यालको तल हुने बनाउनुहोस्"
 
-#: libvnck/vnckprop.c:229
+#: libvnck/vnckprop.c:228
 msgid "Make the window not below other windows"
 msgstr "सञ्झ्याललाई सधैँ अन्य सञ्झ्यालको तल नहुने बनाउनुहोस्"
 
-#: libvnck/vnckprop.c:231
+#: libvnck/vnckprop.c:230
 msgid "Shade the window"
 msgstr "सञ्झ्यालमा छाया पार्नुहोस्"
 
-#: libvnck/vnckprop.c:233
+#: libvnck/vnckprop.c:232
 msgid "Unshade the window"
 msgstr "सञ्झ्यालको छाया हटाउनुहोस्"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:238
+#: libvnck/vnckprop.c:237
 msgid "Make the window have a fixed position in the viewport"
 msgstr "दृश्यपोर्टमा सञ्झ्याललाई निश्चित स्थिति भएको बनाउनुहोस्"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:243
+#: libvnck/vnckprop.c:242
 msgid "Make the window not have a fixed position in the viewport"
 msgstr "दृश्यपोर्टमा सञ्झ्याललाई निश्चित स्थिति नभएको बनाउनुहोस्"
 
@@ -407,7 +407,7 @@ msgstr "दृश्यपोर्टमा सञ्झ्याललाई �
 #. * inside it. Please make sure that the translation is in sync with
 #. * gnome-panel, where this term is also used in translatable strings
 #.
-#: libvnck/vnckprop.c:250
+#: libvnck/vnckprop.c:249
 msgid "Make the window not appear in pagers"
 msgstr "सञ्झ्याललाई पेजरमा नदेखिने बनाउनुहोस्"
 
@@ -416,60 +416,60 @@ msgstr "सञ्झ्याललाई पेजरमा नदेखिन�
 #. * inside it. Please make sure that the translation is in sync with
 #. * gnome-panel, where this term is also used in translatable strings
 #.
-#: libvnck/vnckprop.c:257
+#: libvnck/vnckprop.c:256
 msgid "Make the window appear in pagers"
 msgstr "सञ्झ्याललाई पेजरमा देखिने बनाउनुहोस्"
 
 #. Translators: "tasklist" is the list of running applications (the
 #. * window list)
-#: libvnck/vnckprop.c:261
+#: libvnck/vnckprop.c:260
 msgid "Make the window not appear in tasklists"
 msgstr "सञ्झ्याललाई कार्य सूचीमा नदेखिने बनाउनुहोस्"
 
 #. Translators: "tasklist" is the list of running applications (the
 #. * window list)
-#: libvnck/vnckprop.c:265
+#: libvnck/vnckprop.c:264
 msgid "Make the window appear in tasklists"
 msgstr "सञ्झ्याललाई कार्य सूचीमा देखिने बनाउनुहोस्"
 
-#: libvnck/vnckprop.c:267
+#: libvnck/vnckprop.c:266
 msgid "Make the window visible on all workspaces"
 msgstr "सञ्झ्याललाई सबै कार्यस्थानमा देखिने बनाउनुहोस्"
 
-#: libvnck/vnckprop.c:269
+#: libvnck/vnckprop.c:268
 msgid "Make the window visible on the current workspace only"
 msgstr "सञ्झ्याललाई हालको कार्यस्थानमा मात्र देखिने बनाउनुहोस्"
 
-#: libvnck/vnckprop.c:271
+#: libvnck/vnckprop.c:270
 msgid "Move the window to workspace NUMBER (first workspace is 0)"
 msgstr "सञ्झ्याललाई कार्यस्थान नम्बर मानमा सार्नुहोस् (पहिलो कार्यस्थान ० हो)"
 
-#: libvnck/vnckprop.c:273
+#: libvnck/vnckprop.c:272
 msgid "Change the X coordinate of the window to X"
 msgstr "सञ्झ्यालको X निर्देशाङ्कलाई X मा परिवर्तन गर्नुहोस्"
 
-#: libvnck/vnckprop.c:275
+#: libvnck/vnckprop.c:274
 msgid "Change the Y coordinate of the window to Y"
 msgstr "सञ्झ्यालको Y निर्देशाङ्कलाई Y मा परिवर्तन गर्नुहोस्"
 
-#: libvnck/vnckprop.c:277
+#: libvnck/vnckprop.c:276
 msgid "Change the width of the window to WIDTH"
 msgstr "सञ्झ्यालको चौडाइलाई चौडाइ मानमा परिवर्तन गर्नुहोस्"
 
-#: libvnck/vnckprop.c:277
+#: libvnck/vnckprop.c:276
 msgid "WIDTH"
 msgstr "चौडाइ"
 
-#: libvnck/vnckprop.c:279
+#: libvnck/vnckprop.c:278
 msgid "Change the height of the window to HEIGHT"
 msgstr "सञ्झ्यालको उचाइलाई उचाइ मानमा परिवर्तन गर्नुहोस्"
 
-#: libvnck/vnckprop.c:279
+#: libvnck/vnckprop.c:278
 msgid "HEIGHT"
 msgstr "उचाइ"
 
 #. Translators: do not translate "normal, desktop, dock..."
-#: libvnck/vnckprop.c:282
+#: libvnck/vnckprop.c:281
 #, fuzzy
 msgid ""
 "Change the type of the window to TYPE (valid values: normal, desktop, dock, "
@@ -478,29 +478,29 @@ msgstr ""
 "सञ्झ्यालको प्रकारलाई प्रकार मानमा परिवर्तन गर्नुहोस् (मान्य मानहरू: सामान्य, डेस्कटप, डक, "
 "संवाद, उपकरणपट्टी, मेनु, उपयोगिता, स्प्लास)"
 
-#: libvnck/vnckprop.c:282
+#: libvnck/vnckprop.c:281
 msgid "TYPE"
 msgstr "प्रकार"
 
-#: libvnck/vnckprop.c:288
+#: libvnck/vnckprop.c:287
 msgid "Change the name of the workspace to NAME"
 msgstr "कार्यस्थानको नामलाई नाम मानमा परिवर्तन गर्नुहोस्"
 
-#: libvnck/vnckprop.c:288
+#: libvnck/vnckprop.c:287
 msgid "NAME"
 msgstr "नाम"
 
-#: libvnck/vnckprop.c:290
+#: libvnck/vnckprop.c:289
 msgid "Activate the workspace"
 msgstr "कार्यस्थान सक्रिय पार्नुहोस्"
 
-#: libvnck/vnckprop.c:384 libvnck/vnckprop.c:408 libvnck/vnckprop.c:444
-#: libvnck/vnckprop.c:467
+#: libvnck/vnckprop.c:383 libvnck/vnckprop.c:407 libvnck/vnckprop.c:444
+#: libvnck/vnckprop.c:468
 #, c-format
 msgid "Invalid value \"%s\" for --%s"
 msgstr " --%s का लागि अमान्य मान \"%s\""
 
-#: libvnck/vnckprop.c:501 libvnck/vnckprop.c:520
+#: libvnck/vnckprop.c:502 libvnck/vnckprop.c:521
 #, c-format
 msgid ""
 "Conflicting options are present: screen %d should be interacted with, but --"
@@ -509,7 +509,7 @@ msgstr ""
 "हाल विवादित विकल्प निम्न हुन्: पर्दा %d अन्तरक्रिया भएको हुनुपर्दछ, तर --%s प्रयोग "
 "गरिएको छ\n"
 
-#: libvnck/vnckprop.c:510
+#: libvnck/vnckprop.c:511
 #, c-format
 msgid ""
 "Conflicting options are present: windows or workspaces of screen %d should "
@@ -518,7 +518,7 @@ msgstr ""
 "हाल विवादित विकल्पहरू निम्न हुन्: पर्दा %d को सञ्झ्याल वा कार्यस्थान सूचीवद्ध हुनुपर्दछ, तर "
 "--%s प्रयोग गरिएको छ\n"
 
-#: libvnck/vnckprop.c:533 libvnck/vnckprop.c:553
+#: libvnck/vnckprop.c:534 libvnck/vnckprop.c:554
 #, c-format
 msgid ""
 "Conflicting options are present: workspace %d should be interacted with, but "
@@ -527,7 +527,7 @@ msgstr ""
 "हाल विवादित विकल्पहरू निम्न हुन्: कार्यस्थान %d अन्तरक्रिया भएको हुनुपर्दछ, तर --%s "
 "प्रयोग गरिएको छ\n"
 
-#: libvnck/vnckprop.c:543
+#: libvnck/vnckprop.c:544
 #, c-format
 msgid ""
 "Conflicting options are present: windows of workspace %d should be listed, "
@@ -536,7 +536,7 @@ msgstr ""
 "हाल विवादित विकल्प निम्न हुन्: कार्यस्थान %d का सञ्झ्याल सूचीबद्ध हुनुपर्दछ, तर --%s "
 "प्रयोग गरिएको छ\n"
 
-#: libvnck/vnckprop.c:565
+#: libvnck/vnckprop.c:566
 #, c-format
 msgid ""
 "Conflicting options are present: an application should be interacted with, "
@@ -545,7 +545,7 @@ msgstr ""
 "हाल विवादित विकल्पहरू निम्न हुन्: एउटा अनुप्रयोग अन्तरक्रिया भएको हुनुपर्दछ, तर --%s "
 "प्रयोग गरिएको छ\n"
 
-#: libvnck/vnckprop.c:575
+#: libvnck/vnckprop.c:576
 #, c-format
 msgid ""
 "Conflicting options are present: windows of an application should be listed, "
@@ -556,7 +556,7 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: libvnck/vnckprop.c:589
+#: libvnck/vnckprop.c:590
 #, c-format
 msgid ""
 "Conflicting options are present: class group \"%s\" should be interacted "
@@ -567,7 +567,7 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: libvnck/vnckprop.c:601
+#: libvnck/vnckprop.c:602
 #, c-format
 msgid ""
 "Conflicting options are present: windows of class group \"%s\" should be "
@@ -576,7 +576,7 @@ msgstr ""
 "हाल विवादित विकल्पहरू निम्न हुन्: वर्ग समूह \"%s\" को सञ्झ्याल सूचीबद्ध हुनुपर्दछ, तर --%s "
 "प्रयोग गरिएको छ\n"
 
-#: libvnck/vnckprop.c:613 libvnck/vnckprop.c:622
+#: libvnck/vnckprop.c:614 libvnck/vnckprop.c:623
 #, c-format
 msgid ""
 "Conflicting options are present: a window should be interacted with, but --"
@@ -585,33 +585,33 @@ msgstr ""
 "हाल विवादित विकल्पहरू निम्न हुन्: एउटा सञ्झ्याल अन्तरक्रिया भएको हुनुपर्दछ, तर --%s "
 "प्रयोग गरिएको छ\n"
 
-#: libvnck/vnckprop.c:641 libvnck/vnckprop.c:722 libvnck/vnckprop.c:769
+#: libvnck/vnckprop.c:642 libvnck/vnckprop.c:723 libvnck/vnckprop.c:770
 #, c-format
 msgid "Conflicting options are present: --%s and --%s\n"
 msgstr "हाल विवादित विकल्प निम्न हुन्: --%s र --%s\n"
 
-#: libvnck/vnckprop.c:680
+#: libvnck/vnckprop.c:681
 #, fuzzy, c-format
 msgid ""
 "Invalid argument \"%d\" for --%s: the argument must be strictly positive\n"
 msgstr "अमान्य तर्क --%s का लागि \"%d\": तर्क धनात्मक हुनुपर्दछ\n"
 
-#: libvnck/vnckprop.c:693
+#: libvnck/vnckprop.c:694
 #, fuzzy, c-format
 msgid "Invalid argument \"%d\" for --%s: the argument must be positive\n"
 msgstr " --%s का लागि अमान्य तर्क \"%d\": तर्क धनात्मक हुनुपर्दछ\n"
 
-#: libvnck/vnckprop.c:788
+#: libvnck/vnckprop.c:789
 #, c-format
 msgid "Conflicting options are present: --%s or --%s, and --%s\n"
 msgstr "हाल विवादित विकल्प निम्न हुन्: --%s वा --%s, र --%s\n"
 
-#: libvnck/vnckprop.c:820
+#: libvnck/vnckprop.c:821
 #, c-format
 msgid "Invalid argument \"%s\" for --%s, valid values are: %s\n"
 msgstr " --%s का लागि अमान्य तर्क \"%s\", मान्य मान: %s हुन्\n"
 
-#: libvnck/vnckprop.c:863
+#: libvnck/vnckprop.c:861
 #, c-format
 msgid ""
 "Cannot change the workspace layout on the screen: the layout is already "
@@ -622,7 +622,7 @@ msgstr ""
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:898
+#: libvnck/vnckprop.c:899
 #, c-format
 msgid ""
 "Viewport cannot be moved: the current workspace does not contain a viewport\n"
@@ -631,37 +631,37 @@ msgstr "दृश्यपोर्ट सार्न सकिँदैन: �
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:905
+#: libvnck/vnckprop.c:906
 #, c-format
 msgid "Viewport cannot be moved: there is no current workspace\n"
 msgstr "दृश्यपोर्ट सार्न सकिँदैन: त्यहाँ हाल कार्यस्थान छैन\n"
 
 #. FIXME: why do we have dual & boolean API. This is not consistent!
-#: libvnck/vnckprop.c:941 libvnck/vnckprop.c:950 libvnck/vnckprop.c:959
-#: libvnck/vnckprop.c:966 libvnck/vnckprop.c:976 libvnck/vnckprop.c:983
-#: libvnck/vnckprop.c:992 libvnck/vnckprop.c:1041
+#: libvnck/vnckprop.c:942 libvnck/vnckprop.c:951 libvnck/vnckprop.c:960
+#: libvnck/vnckprop.c:967 libvnck/vnckprop.c:977 libvnck/vnckprop.c:984
+#: libvnck/vnckprop.c:993 libvnck/vnckprop.c:1042
 #, c-format
 msgid "Action not allowed\n"
 msgstr "अनुमति नदिइएको कार्य\n"
 
-#: libvnck/vnckprop.c:1037
+#: libvnck/vnckprop.c:1038
 #, c-format
 msgid "Window cannot be moved to workspace %d: the workspace does not exist\n"
 msgstr "सञ्झ्याललाई कार्यस्थान %d मा सार्न सकिँदैन: कार्यस्थान अवस्थित छैन\n"
 
 #. Translators: 'unset' in the sense of "something has not been set".
-#: libvnck/vnckprop.c:1101 libvnck/vnckprop.c:1233
+#: libvnck/vnckprop.c:1102 libvnck/vnckprop.c:1233
 msgid "<name unset>"
 msgstr "<name unset>"
 
 #. Translators: %lu is a window number and %s a window name
-#: libvnck/vnckprop.c:1104
+#: libvnck/vnckprop.c:1105
 #, c-format
 msgid "%lu: %s\n"
 msgstr "%lu: %s\n"
 
 #. Translators: %d is a workspace number and %s a workspace name
-#: libvnck/vnckprop.c:1124
+#: libvnck/vnckprop.c:1125
 #, c-format
 msgid "%d: %s\n"
 msgstr "%d: %s\n"

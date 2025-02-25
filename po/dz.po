@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libvnck.gnome-2-14.dz\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-18 20:24+0100\n"
+"POT-Creation-Date: 2025-02-25 10:55+0100\n"
 "PO-Revision-Date: 2008-10-14 12:09+0530\n"
 "Last-Translator: Dawa pemo <daws_403@hotmail.com>\n"
 "Language-Team: DZONGKHA <pgeyleg@dit.gov.bt>\n"
@@ -42,146 +42,146 @@ msgstr ""
 msgid "Untitled application"
 msgstr "མགོ་མིང་མ་བཏགས་པའི་ གློག་རིམ་"
 
-#: libvnck/pager-accessible.c:263
+#: libvnck/pager-accessible.c:262
 msgid "Workspace Switcher"
 msgstr "ལཱ་གི་ས་སྒོ་ སོར་བསྒྱུར་འབད་མི།"
 
-#: libvnck/pager-accessible.c:274
+#: libvnck/pager-accessible.c:273
 msgid "Tool to switch between workspaces"
 msgstr "ལཱ་གི་ས་སྒོའི་བར་ན་ སོར་བསྒྱུར་འབད་ནིའི་ལག་ཆས།"
 
-#: libvnck/pager-accessible.c:379
+#: libvnck/pager-accessible.c:378
 #, c-format
 msgid "Click this to switch to workspace %s"
 msgstr "ལཱ་གི་ས་སྒོ་%sལུ་ སོར་བསྒྱུར་འབད་ནི་ལུ་ འདི་ལུ་ཨེབ་གཏང་འབད།"
 
-#: libvnck/pager.c:2221
+#: libvnck/pager.c:2224
 #, c-format
 msgid "Click to start dragging \"%s\""
 msgstr "\"%s\" འདྲུད་ནི་འགོ་བཙུགས་ནིའི་དོན་ལས་ ཨེབ་གཏང་འབད་ "
 
-#: libvnck/pager.c:2224
+#: libvnck/pager.c:2227
 #, c-format
 msgid "Current workspace: \"%s\""
 msgstr "ད་ལྟོའི་ ལཱ་གི་ས་སྒོ་ : \"%s\""
 
-#: libvnck/pager.c:2229
+#: libvnck/pager.c:2232
 #, c-format
 msgid "Click to switch to \"%s\""
 msgstr "\"%s\" ལུ་ སོར་བསྒྱུར་འབད་ནིའི་དོན་ལུ་ ཨེབ་གཏང་འབད་ "
 
-#: libvnck/selector.c:1091
+#: libvnck/selector.c:1101
 msgid "No Windows Open"
 msgstr "སྒོ་སྒྲིག་གཅིག་ཡང་ ཁ་མ་ཕྱེ་བས།"
 
-#: libvnck/selector.c:1147
+#: libvnck/selector.c:1157
 msgid "Window Selector"
 msgstr "སྒོ་སྒྲིག་སེལ་བྱེད།"
 
-#: libvnck/selector.c:1148
+#: libvnck/selector.c:1158
 msgid "Tool to switch between windows"
 msgstr "སྒོ་སྒྲིག་གི་བར་ན་ སོར་བསྒྱུར་འབད་ནིའི་ལག་ཆས།"
 
-#: libvnck/tasklist.c:603
+#: libvnck/tasklist.c:602
 msgid "Window List"
 msgstr "སྒོ་སྒྲིག་གི་ཐོ་ཡིག།"
 
-#: libvnck/tasklist.c:604
+#: libvnck/tasklist.c:603
 msgid "Tool to switch between visible windows"
 msgstr "མཐོང་ཚུགས་པའི་ སྒོ་སྒྲིག་གི་བར་ན་ སོར་བསྒྱུར་འབད་ནིའི་ལག་ཆས།"
 
-#: libvnck/tasklist.c:3022
+#: libvnck/tasklist.c:3021
 msgid "Mi_nimize All"
 msgstr "ཆ་མཉམ་ཆུང་ཀུ་བཟོ་ "
 
-#: libvnck/tasklist.c:3030
+#: libvnck/tasklist.c:3029
 msgid "Un_minimize All"
 msgstr "ཆ་མཉམ་ ཀུ་མ་བཟོ་ (_M)"
 
-#: libvnck/tasklist.c:3038
+#: libvnck/tasklist.c:3037
 msgid "Ma_ximize All"
 msgstr "ཆ་མཉམ་ སྦོམ་བཟོ་ (_X)"
 
-#: libvnck/tasklist.c:3046
+#: libvnck/tasklist.c:3045
 msgid "_Unmaximize All"
 msgstr "ཆ་མཉམ་ སྦོམ་མ་བཟོ་ (_U)"
 
-#: libvnck/tasklist.c:3058
+#: libvnck/tasklist.c:3057
 msgid "_Close All"
 msgstr "ཆ་མཉམ་ཁ་བསྡམས།(_C)"
 
-#: libvnck/window-action-menu.c:367
+#: libvnck/window-action-menu.c:366
 msgid "Unmi_nimize"
 msgstr "ཆུང་བཟོ་བཤོལ།(_n)"
 
-#: libvnck/window-action-menu.c:373
+#: libvnck/window-action-menu.c:372
 msgid "Mi_nimize"
 msgstr "ཆུང་ཀུ་བཟོ།(_n)"
 
-#: libvnck/window-action-menu.c:380
+#: libvnck/window-action-menu.c:379
 msgid "Unma_ximize"
 msgstr "སྦོམ་བཟོ་བཤོལ།(_x)"
 
-#: libvnck/window-action-menu.c:386
+#: libvnck/window-action-menu.c:385
 msgid "Ma_ximize"
 msgstr "སྦོམ་བཟོ།(_x)"
 
-#: libvnck/window-action-menu.c:692 libvnck/workspace.c:265
+#: libvnck/window-action-menu.c:691 libvnck/workspace.c:265
 #, c-format
 msgid "Workspace %d"
 msgstr "ལཱ་གི་ས་སྒོ་%d"
 
-#: libvnck/window-action-menu.c:701 libvnck/window-action-menu.c:847
+#: libvnck/window-action-menu.c:700 libvnck/window-action-menu.c:846
 #, c-format
 msgid "Workspace 1_0"
 msgstr "ལཱ་གི་ས་སྒོ་ ༡ ༠།(_0)"
 
-#: libvnck/window-action-menu.c:703 libvnck/window-action-menu.c:849
+#: libvnck/window-action-menu.c:702 libvnck/window-action-menu.c:848
 #, c-format
 msgid "Workspace %s%d"
 msgstr "ལཱ་གི་ས་སྒོ་ %s%d"
 
-#: libvnck/window-action-menu.c:990
+#: libvnck/window-action-menu.c:989
 msgid "_Move"
 msgstr "སྤོ།(_M)"
 
-#: libvnck/window-action-menu.c:996
+#: libvnck/window-action-menu.c:995
 msgid "_Resize"
 msgstr "ཚད་སླར་སྒྲིག(_R)"
 
-#: libvnck/window-action-menu.c:1004
+#: libvnck/window-action-menu.c:1003
 msgid "Always On _Top"
 msgstr "ཨ་རྟག་རང་ མགོ་ལུ་ (_T)"
 
-#: libvnck/window-action-menu.c:1012
+#: libvnck/window-action-menu.c:1011
 msgid "_Always on Visible Workspace"
 msgstr "ཨ་རྟག་རང་ མཐོང་ཚུགས་པའི་ ལཱ་གི་ས་སྒོ་གུ(_A)"
 
-#: libvnck/window-action-menu.c:1017
+#: libvnck/window-action-menu.c:1016
 msgid "_Only on This Workspace"
 msgstr "ལཱ་གི་ས་སྒོ་འདི་གུ་རྐྱངམ་གཅིག།(_O)"
 
-#: libvnck/window-action-menu.c:1024
+#: libvnck/window-action-menu.c:1023
 msgid "Move to Workspace _Left"
 msgstr "ས་སྒོ་གཡོན་ལུ་སྤོ།(_L)"
 
-#: libvnck/window-action-menu.c:1029
+#: libvnck/window-action-menu.c:1028
 msgid "Move to Workspace R_ight"
 msgstr "ལཱ་གི་ས་སྒོ་གཡས་ལུ་སྤོ།(_i)"
 
-#: libvnck/window-action-menu.c:1034
+#: libvnck/window-action-menu.c:1033
 msgid "Move to Workspace _Up"
 msgstr "ལཱ་གི་ས་སྒོ་ལྟགམ་ལུ་སྤོ།(_U)"
 
-#: libvnck/window-action-menu.c:1039
+#: libvnck/window-action-menu.c:1038
 msgid "Move to Workspace _Down"
 msgstr "ལཱ་གི་ས་སྒོ་འོགམ་ལུ་སྤོ།(_D)"
 
-#: libvnck/window-action-menu.c:1041
+#: libvnck/window-action-menu.c:1040
 msgid "Move to Another _Workspace"
 msgstr "ལཱ་གི་ས་སྒོ་གཞན་ལུ་སྤོ།(_W)"
 
-#: libvnck/window-action-menu.c:1061
+#: libvnck/window-action-menu.c:1060
 msgid "_Close"
 msgstr "ཁ་བསྡམས།(_C)"
 
@@ -198,11 +198,11 @@ msgstr "ཁ་བསྡམས།(_C)"
 msgid "Untitled window"
 msgstr "མགོ་མིང་མ་བཏགས་པའི་སྒོ་སྒྲིག་ "
 
-#: libvnck/vnckprop.c:137
+#: libvnck/vnckprop.c:136
 msgid "X window ID of the window to examine or modify"
 msgstr "བརྟག་དཔྱད་ ཡང་ན་  ལེགས་བཅོས་ འབད་ནིའི་དོན་ལུ་ ཝིན་ཌོ་གི་ ཨེགསི་ ཝིན་ཌོ་ ཨའི་ཌི"
 
-#: libvnck/vnckprop.c:137 libvnck/vnckprop.c:144 libvnck/vnckprop.c:154
+#: libvnck/vnckprop.c:136 libvnck/vnckprop.c:143 libvnck/vnckprop.c:153
 msgid "XID"
 msgstr "ཨེགསི་ཨའི་ཌི་ "
 
@@ -210,186 +210,186 @@ msgstr "ཨེགསི་ཨའི་ཌི་ "
 #. * group of windows, ie: if you have multiple windows in one
 #. * application, one window has some information about the application
 #. * (like the application name).
-#: libvnck/vnckprop.c:143
+#: libvnck/vnckprop.c:142
 msgid "X window ID of the group leader of an application to examine"
 msgstr "བརྟག་དཔྱད་འབད་ནིའི་ གློག་རིམ་གྱི་ སྡེ་ཚན་འགོ་ཁྲིད་པའི་ ཨེགསི་ ཝིན་ཌོ་ ཨའི་ཌི་ "
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: libvnck/vnckprop.c:148
+#: libvnck/vnckprop.c:147
 msgid "Class resource of the class group to examine"
 msgstr "བརྟག་དཔྱད་འབད་ནིའི་ དབྱེ་རིགས་སྡེ་ཚན་གྱི་ དབྱེ་རིགས་ ཐོན་ཁུངས་ "
 
-#: libvnck/vnckprop.c:148
+#: libvnck/vnckprop.c:147
 msgid "CLASS"
 msgstr "དབྱེ་རིགས་ "
 
-#: libvnck/vnckprop.c:150
+#: libvnck/vnckprop.c:149
 msgid "NUMBER of the workspace to examine or modify"
 msgstr "བརྟག་དཔྱད་ ཡང་ན་ ལེགས་བཅོས་འབད་ནིའི་ ལཱ་གི་ས་སྒོ་གི་ གྱངས་ཁ་ "
 
-#: libvnck/vnckprop.c:150 libvnck/vnckprop.c:152 libvnck/vnckprop.c:170
-#: libvnck/vnckprop.c:172 libvnck/vnckprop.c:174 libvnck/vnckprop.c:271
+#: libvnck/vnckprop.c:149 libvnck/vnckprop.c:151 libvnck/vnckprop.c:169
+#: libvnck/vnckprop.c:171 libvnck/vnckprop.c:173 libvnck/vnckprop.c:270
 msgid "NUMBER"
 msgstr "ཨང་ "
 
-#: libvnck/vnckprop.c:152
+#: libvnck/vnckprop.c:151
 msgid "NUMBER of the screen to examine or modify"
 msgstr "བརྟག་དཔྱད་ ཡང་ན་ ལེགས་བཅོས་འབད་ནིའི་ གསལ་གཞིའི་ གྱངས་ཁ་ "
 
-#: libvnck/vnckprop.c:154
+#: libvnck/vnckprop.c:153
 msgid "Alias of --window"
 msgstr "ཝིན་ཌེ་གི་མིང་གཞན་ "
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: libvnck/vnckprop.c:162
+#: libvnck/vnckprop.c:161
 msgid ""
 "List windows of the application/class group/workspace/screen (output format: "
 "\"XID: Window Name\")"
 msgstr ""
 "གློག་རིམ་/དབྱེ་རིགས་/ལཱ་གི་ས་སྒོ་/གསལ་གཞིའི་ ཐོ་ཡིག་ (output format: \"XID: Window Name\")"
 
-#: libvnck/vnckprop.c:164
+#: libvnck/vnckprop.c:163
 msgid ""
 "List workspaces of the screen (output format: \"Number: Workspace Name\")"
 msgstr "གསལ་གཞི་གི་ ལཱ་གི་ས་སྒོའི་ ཐོ་ཡིག་  (output format: \"Number: Workspace Name\")"
 
-#: libvnck/vnckprop.c:170
+#: libvnck/vnckprop.c:169
 msgid "Change the number of workspaces of the screen to NUMBER"
 msgstr "གསལ་གཞིའི་ ལཱ་གི་ས་སྒོའི་གྱངས་ཁ་དེ་ NUMBER ལུ་ བསྒྱུར་བཅོས་འབད་ "
 
-#: libvnck/vnckprop.c:172
+#: libvnck/vnckprop.c:171
 msgid "Change the workspace layout of the screen to use NUMBER rows"
 msgstr ""
 "NUMBER གྲལ་ཐིག་ལག་ལེན་འཐབ་ནིའི་དོན་ལུ་ གསལ་གཞིའི་ ལཱ་གི་ས་སྒོའི་སྒྲིག་བཀོད་ བསྒྱུར་བཅོས་འབད་ "
 
-#: libvnck/vnckprop.c:174
+#: libvnck/vnckprop.c:173
 msgid "Change the workspace layout of the screen to use NUMBER columns"
 msgstr ""
 "NUMBER ཀེར་ཐིག་ ལག་ལེན་འཐབ་ནིའི་དོན་ལུ་ གསལ་གཞིའི་ ལཱ་གི་ས་སྒོའི་སྒྲིག་བཀོད་ བསྒྱུར་བཅོས་འབད་ "
 
-#: libvnck/vnckprop.c:176
+#: libvnck/vnckprop.c:175
 msgid "Show the desktop"
 msgstr "ཌེཀསི་ཊོཔ་ སྟོན་ "
 
-#: libvnck/vnckprop.c:178
+#: libvnck/vnckprop.c:177
 msgid "Stop showing the desktop"
 msgstr "ཌེཀསི་ཊོབ་ སྟོན་ནི་བཀག་བཞག་ "
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:183
+#: libvnck/vnckprop.c:182
 msgid "Move the viewport of the current workspace to X coordinate X"
 msgstr "ད་ལྟོའི་ལཱ་གི་ས་སྒོ་གི་ མཐོང་སྣང་མཐུད་ལམ་དེ་ X coordinate X ལུ་ སྤོ་བཤུད་འབད་ "
 
-#: libvnck/vnckprop.c:183 libvnck/vnckprop.c:273
+#: libvnck/vnckprop.c:182 libvnck/vnckprop.c:272
 msgid "X"
 msgstr "ཨེགསི་ "
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:188
+#: libvnck/vnckprop.c:187
 msgid "Move the viewport of the current workspace to Y coordinate Y"
 msgstr "ད་ལྟོའི་ལཱ་གི་ས་སྒོ་གི་ མཐོང་སྣང་མཐུད་ལམ་དེ་ Y coordinate Y ལུ་ སྤོ་བཤུད་འབད་ "
 
-#: libvnck/vnckprop.c:188 libvnck/vnckprop.c:275
+#: libvnck/vnckprop.c:187 libvnck/vnckprop.c:274
 msgid "Y"
 msgstr "ཝའི་ "
 
-#: libvnck/vnckprop.c:194
+#: libvnck/vnckprop.c:193
 msgid "Minimize the window"
 msgstr "ཝིན་ཌོ་ ཆུང་ཀུ་བཟོ་ "
 
-#: libvnck/vnckprop.c:196
+#: libvnck/vnckprop.c:195
 msgid "Unminimize the window"
 msgstr "ཝིན་ཌོ་ ཆུང་ཀུ་ མ་བཟོ་ "
 
-#: libvnck/vnckprop.c:198
+#: libvnck/vnckprop.c:197
 msgid "Maximize the window"
 msgstr "ཝིན་ཌོ་ སྦོམ་བཟོ་ "
 
-#: libvnck/vnckprop.c:200
+#: libvnck/vnckprop.c:199
 msgid "Unmaximize the window"
 msgstr "ཝིན་ཌོ་ སྦོབ་མ་བཟོ་ "
 
-#: libvnck/vnckprop.c:202
+#: libvnck/vnckprop.c:201
 msgid "Maximize horizontally the window"
 msgstr "ཝིན་ཌོ་ ཐད་སྙོམས་སྦེ་ སྦོམ་བཟོ་ "
 
-#: libvnck/vnckprop.c:204
+#: libvnck/vnckprop.c:203
 msgid "Unmaximize horizontally the window"
 msgstr "ཝིན་ཌོ་ ཐད་སྙོམས་སྦེ་ སྦོམ་མ་བཟོ་ "
 
-#: libvnck/vnckprop.c:206
+#: libvnck/vnckprop.c:205
 msgid "Maximize vertically the window"
 msgstr "ཝིན་ཌོ་ ཀེར་ཕྲང་སྦེ་ སྦོམ་བཟོ་ "
 
-#: libvnck/vnckprop.c:208
+#: libvnck/vnckprop.c:207
 msgid "Unmaximize vertically the window"
 msgstr "ཝིན་ཌོ་ ཀེར་འཕྲང་སྦེ་ སྦོམ་མ་བཟོ་ "
 
-#: libvnck/vnckprop.c:210
+#: libvnck/vnckprop.c:209
 msgid "Start moving the window via the keyboard"
 msgstr "ཝིན་ཌོ་ ལྡེ་སྒྲོམ་བརྒྱདུ་དེ་ སྤོ་བཤུད་འབད་ནི་འགོ་བཙུགས་ "
 
-#: libvnck/vnckprop.c:212
+#: libvnck/vnckprop.c:211
 msgid "Start resizing the window via the keyboard"
 msgstr "ཝིན་ཌོ་ ལྡེ་སྒྲོམ་བརྒྱུད་དེ་ ཚད་བསྐྱར་བཟོ་འབད་ནི་ འགོ་བཙུགས་ "
 
-#: libvnck/vnckprop.c:214
+#: libvnck/vnckprop.c:213
 msgid "Activate the window"
 msgstr "ཝིན་ཌོ་ ཤུགས་ལྡན་བཟོ་ "
 
-#: libvnck/vnckprop.c:216
+#: libvnck/vnckprop.c:215
 msgid "Close the window"
 msgstr "ཝིན་ཌོ་ཁ་བསྡམས་ "
 
-#: libvnck/vnckprop.c:219
+#: libvnck/vnckprop.c:218
 msgid "Make the window fullscreen"
 msgstr "ཝིན་ཌོ་ གསལ་གཞི་གངམ་ བཟོ་ "
 
-#: libvnck/vnckprop.c:221
+#: libvnck/vnckprop.c:220
 msgid "Make the window quit fullscreen mode"
 msgstr "ཝིན་དོ་  གསལ་གཞི་གངམ་ ཐབས་ལམ་ སྤང་བཅུག་ "
 
-#: libvnck/vnckprop.c:223
+#: libvnck/vnckprop.c:222
 msgid "Make the window always on top"
 msgstr "ཝིན་ཌོ་དེ་ ཨ་རྟག་རང་ རྟག་ལུ་བཟོ་ "
 
-#: libvnck/vnckprop.c:225
+#: libvnck/vnckprop.c:224
 msgid "Make the window not always on top"
 msgstr "ཝིན་ཌོ་ ཨ་རྟག་རང་ རྟག་ལུ་ མ་བཟོ་ "
 
-#: libvnck/vnckprop.c:227
+#: libvnck/vnckprop.c:226
 msgid "Make the window below other windows"
 msgstr "ཝིན་ཌོ་དེ་ ཝིན་ཌོ་ གཞན་ཚུ་གི་འོག་ལུ་ བཟོ་ "
 
-#: libvnck/vnckprop.c:229
+#: libvnck/vnckprop.c:228
 msgid "Make the window not below other windows"
 msgstr "ཝིན་ཌོ་དེ་ ཝིན་ཌོ་གཞན་ཚུ་གི་འོག་ལུ་ མ་བཟོ་ "
 
-#: libvnck/vnckprop.c:231
+#: libvnck/vnckprop.c:230
 msgid "Shade the window"
 msgstr "ཝིན་ཌོ་ ནག་སྒྲིབ་བཟོ་ "
 
-#: libvnck/vnckprop.c:233
+#: libvnck/vnckprop.c:232
 msgid "Unshade the window"
 msgstr "ཝིན་ཌོ་ ནག་གྲིབ་བཤོལ་ "
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:238
+#: libvnck/vnckprop.c:237
 msgid "Make the window have a fixed position in the viewport"
 msgstr "མཐོང་སྣང་མཐུད་ལམ་ནང་ ཝིན་ཌོ་ལུ་ གནས་ས་ བརྟན་ཏོག་ཏོ་ ཡོདཔ་སྦེ་བཟོ་ "
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:243
+#: libvnck/vnckprop.c:242
 msgid "Make the window not have a fixed position in the viewport"
 msgstr "མཐོང་སྣང་མཐུད་ལམ་ནང་ ཝིན་ཌོ་ལུ་ གནས་ས་ བརྟན་ཏོག་ཏོ་ མེདཔ་སྦེ་བཟོ་ "
 
@@ -398,7 +398,7 @@ msgstr "མཐོང་སྣང་མཐུད་ལམ་ནང་ ཝིན�
 #. * inside it. Please make sure that the translation is in sync with
 #. * gnome-panel, where this term is also used in translatable strings
 #.
-#: libvnck/vnckprop.c:250
+#: libvnck/vnckprop.c:249
 msgid "Make the window not appear in pagers"
 msgstr "ཝིན་ཌོ་ བརྡ་འཕྲུལ་ཚུ་ནང་མ་ཐོནམ་སྦེ་ བཟོ་ "
 
@@ -407,60 +407,60 @@ msgstr "ཝིན་ཌོ་ བརྡ་འཕྲུལ་ཚུ་ནང་�
 #. * inside it. Please make sure that the translation is in sync with
 #. * gnome-panel, where this term is also used in translatable strings
 #.
-#: libvnck/vnckprop.c:257
+#: libvnck/vnckprop.c:256
 msgid "Make the window appear in pagers"
 msgstr "ཝིན་དོ་ བརྡ་འཕྲུལ་ཚུ་ནང་ ཐོན་བཏུབ་སྦེ་བཟོ་ "
 
 #. Translators: "tasklist" is the list of running applications (the
 #. * window list)
-#: libvnck/vnckprop.c:261
+#: libvnck/vnckprop.c:260
 msgid "Make the window not appear in tasklists"
 msgstr "ཝིན་དོ་ ལས་ཀའི་ཐོ་ཡིག་ནང་ ཐོན་མ་བཏུབ་སྦེ་ བཟོ་ "
 
 #. Translators: "tasklist" is the list of running applications (the
 #. * window list)
-#: libvnck/vnckprop.c:265
+#: libvnck/vnckprop.c:264
 msgid "Make the window appear in tasklists"
 msgstr "ཝིན་དོ་ ལས་ཀའི་ཐོ་ཡིག་ནང་ཐོན་བཏུབ་སྦེ་བཟོ་ "
 
-#: libvnck/vnckprop.c:267
+#: libvnck/vnckprop.c:266
 msgid "Make the window visible on all workspaces"
 msgstr "ལཱ་གི་ས་སྒོ་ག་ར་ནང་ ཝིན་ཌོ་ མཐོང་ཚུགསཔ་ བཟོ་ "
 
-#: libvnck/vnckprop.c:269
+#: libvnck/vnckprop.c:268
 msgid "Make the window visible on the current workspace only"
 msgstr "ཝིན་ཌོ་དེ་ ད་ལྟོའི་ལཱ་གི་ས་སྒོ་ནང་རྐྱངམ་ཅིག་ མཐོང་ཚུགསཔ་སྦེ་བཟོ་ "
 
-#: libvnck/vnckprop.c:271
+#: libvnck/vnckprop.c:270
 msgid "Move the window to workspace NUMBER (first workspace is 0)"
 msgstr "ཝིན་ཌོ་ ལཱ་གི་་ས་སྒོ་ NUMBER ལུ་ སྤོ་བཤུད་འབད་  (ལཱ་གི་ས་སྒོ་དང་པ་དེ་ ༠ ཨིན)"
 
-#: libvnck/vnckprop.c:273
+#: libvnck/vnckprop.c:272
 msgid "Change the X coordinate of the window to X"
 msgstr "ཝིན་ཌོ་གི་ X coordinate དེ་ X ལུ་ བསྒྱུར་བཅོས་འབད་ "
 
-#: libvnck/vnckprop.c:275
+#: libvnck/vnckprop.c:274
 msgid "Change the Y coordinate of the window to Y"
 msgstr "ཝིན་ཌོ་གི་ Y coordinate དེ་  Y ལུ་ བསྒྱུར་བཅོས་འབད་ "
 
-#: libvnck/vnckprop.c:277
+#: libvnck/vnckprop.c:276
 msgid "Change the width of the window to WIDTH"
 msgstr "ཝིན་ཌོ་གི་ width དེ་   WIDTH ལུ་ བསྒྱུར་བཅོས་འབད་ "
 
-#: libvnck/vnckprop.c:277
+#: libvnck/vnckprop.c:276
 msgid "WIDTH"
 msgstr "རྒྱ་ཚད་ "
 
-#: libvnck/vnckprop.c:279
+#: libvnck/vnckprop.c:278
 msgid "Change the height of the window to HEIGHT"
 msgstr "ཝིན་ཌོ་གི་ height དེ་ HEIGHT ལུ་བསྒྱུར་བཅོས་འབད་ "
 
-#: libvnck/vnckprop.c:279
+#: libvnck/vnckprop.c:278
 msgid "HEIGHT"
 msgstr "མཐོ་ཚད་ "
 
 #. Translators: do not translate "normal, desktop, dock..."
-#: libvnck/vnckprop.c:282
+#: libvnck/vnckprop.c:281
 msgid ""
 "Change the type of the window to TYPE (valid values: normal, desktop, dock, "
 "dialog, toolbar, menu, utility, splash)"
@@ -468,29 +468,29 @@ msgstr ""
 "ཝིན་ཌོ་གི་ type དེ་ TYPE ལུ་ བསྒྱུར་བཅོས་འབད་ (valid values: normal, desktop, dock, "
 "dialog, toolbar, menu, utility, splash)"
 
-#: libvnck/vnckprop.c:282
+#: libvnck/vnckprop.c:281
 msgid "TYPE"
 msgstr "དབྱེ་བ་ "
 
-#: libvnck/vnckprop.c:288
+#: libvnck/vnckprop.c:287
 msgid "Change the name of the workspace to NAME"
 msgstr "ལཱ་གི་ས་སྒོ་གི་ name དེ་ NAME ལུ་བསྒཡུར་བཅོས་འབད་ "
 
-#: libvnck/vnckprop.c:288
+#: libvnck/vnckprop.c:287
 msgid "NAME"
 msgstr "མིང་ "
 
-#: libvnck/vnckprop.c:290
+#: libvnck/vnckprop.c:289
 msgid "Activate the workspace"
 msgstr "ལཱ་གི་ས་སྒོ་ ཤུགས་ལྡན་བཟོ་ "
 
-#: libvnck/vnckprop.c:384 libvnck/vnckprop.c:408 libvnck/vnckprop.c:444
-#: libvnck/vnckprop.c:467
+#: libvnck/vnckprop.c:383 libvnck/vnckprop.c:407 libvnck/vnckprop.c:444
+#: libvnck/vnckprop.c:468
 #, c-format
 msgid "Invalid value \"%s\" for --%s"
 msgstr "ནུས་མེད་ བེ་ལུ་  \"%s\" for --%s"
 
-#: libvnck/vnckprop.c:501 libvnck/vnckprop.c:520
+#: libvnck/vnckprop.c:502 libvnck/vnckprop.c:521
 #, c-format
 msgid ""
 "Conflicting options are present: screen %d should be interacted with, but --"
@@ -499,7 +499,7 @@ msgstr ""
 "མི་མཐུན་པའི་གདམ་ཁ་ཚུ་འདུག་ : གསལ་གཞི་ %d ཕན་ཚུན་འབྲེལ་བ་འཐབ་དགོཔ་ཨིན་རུང་  -%s ལག་ལེན་འཐབ་"
 "དེ་འདུག་ \n"
 
-#: libvnck/vnckprop.c:510
+#: libvnck/vnckprop.c:511
 #, c-format
 msgid ""
 "Conflicting options are present: windows or workspaces of screen %d should "
@@ -508,7 +508,7 @@ msgstr ""
 "མི་མཐུན་པའི་གདམ་ཁ་ཚུ་འདུག་: སྒོ་སྒྲིག་ ཡང་ན་ གསལ་གཞིའི་ལཱ་གི་ས་སྒོ་ %d དེ་ ཐོ་བཀོད་འབད་དགོཔ་ཨིན་"
 "རུང་ --%s ལག་ལེན་འཐབ་དེ་འདུག་ \n"
 
-#: libvnck/vnckprop.c:533 libvnck/vnckprop.c:553
+#: libvnck/vnckprop.c:534 libvnck/vnckprop.c:554
 #, c-format
 msgid ""
 "Conflicting options are present: workspace %d should be interacted with, but "
@@ -517,7 +517,7 @@ msgstr ""
 "མི་མཐུན་པའི་གདམ་ཁ་ཚུ་འདུག་: ལཱ་གི་ས་སྒོ་ %d ཕན་ཚུན་འབྲེལ་བ་འཐབ་དགོཔ་ཨིན་རུང་ --%s ལག་ལེན་འཐབ་"
 "དེ་འདུག་ \n"
 
-#: libvnck/vnckprop.c:543
+#: libvnck/vnckprop.c:544
 #, c-format
 msgid ""
 "Conflicting options are present: windows of workspace %d should be listed, "
@@ -526,7 +526,7 @@ msgstr ""
 "མི་མཐུན་པའི་གདམ་ཁ་ཚུ་འདུག་: ལཱ་གི་ས་སྒོ་ %d གི་ སྒོ་སྒྲིག་ ཐོ་བཀོད་འབད་དགོཔ་ཨིན་རུང་ --%s ལག་ལེན་"
 "འཐབ་དེ་འདུག་\n"
 
-#: libvnck/vnckprop.c:565
+#: libvnck/vnckprop.c:566
 #, c-format
 msgid ""
 "Conflicting options are present: an application should be interacted with, "
@@ -535,7 +535,7 @@ msgstr ""
 "མི་མཐུན་པའི་གདམ་ཁ་ཚུ་འདུག་: གློག་རིམ་ཅིག་ ཕན་ཚུན་འབྲེལ་བ་འཐབ་དགོཔ་ཨིན་རུང་ --%s ལག་ལེན་འཐབ་དེ་"
 "འདུག་ \n"
 
-#: libvnck/vnckprop.c:575
+#: libvnck/vnckprop.c:576
 #, c-format
 msgid ""
 "Conflicting options are present: windows of an application should be listed, "
@@ -546,7 +546,7 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: libvnck/vnckprop.c:589
+#: libvnck/vnckprop.c:590
 #, c-format
 msgid ""
 "Conflicting options are present: class group \"%s\" should be interacted "
@@ -557,7 +557,7 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: libvnck/vnckprop.c:601
+#: libvnck/vnckprop.c:602
 #, c-format
 msgid ""
 "Conflicting options are present: windows of class group \"%s\" should be "
@@ -566,7 +566,7 @@ msgstr ""
 "མི་མཐུན་པའི་གདམ་ཁ་ཚུ་འདུག་: དབྱེ་རིགས་སྡེ་ཚན་ \"%s\" གི་ སྒོ་སྒྲིག་ཐོ་བཀོད་འབད་དགོཔ་ཨིན་རུང་ --%s "
 "ལག་ལེན་འཐབ་དེ་འདུག\n"
 
-#: libvnck/vnckprop.c:613 libvnck/vnckprop.c:622
+#: libvnck/vnckprop.c:614 libvnck/vnckprop.c:623
 #, c-format
 msgid ""
 "Conflicting options are present: a window should be interacted with, but --"
@@ -575,33 +575,33 @@ msgstr ""
 "མི་མཐུན་པའི་གདམ་ཁ་ཚུ་འདུག་: ཝིན་ཌོ་ཅིག་ ཕན་ཚུན་འབྲེལ་བ་འཐབ་དགོཔ་ཨིན་རུང་ --%s ལག་ལེན་འཐབ་དེ་"
 "འདུག་ \n"
 
-#: libvnck/vnckprop.c:641 libvnck/vnckprop.c:722 libvnck/vnckprop.c:769
+#: libvnck/vnckprop.c:642 libvnck/vnckprop.c:723 libvnck/vnckprop.c:770
 #, c-format
 msgid "Conflicting options are present: --%s and --%s\n"
 msgstr "མི་མཐུན་པའི་གདམ་ཁ་ཚུ་འདུག་ : --%s དང་ --%s\n"
 
-#: libvnck/vnckprop.c:680
+#: libvnck/vnckprop.c:681
 #, c-format
 msgid ""
 "Invalid argument \"%d\" for --%s: the argument must be strictly positive\n"
 msgstr "ནུས་མེད་ སྒྲུབ་རྟགས་ \"%d\" དེ་ --%s གི་དོན་ལུ་  : སྒྲུབ་རྟགས་ དེ་ ཡོད་ཆ་སྦེ་ དགོ་ \n"
 
-#: libvnck/vnckprop.c:693
+#: libvnck/vnckprop.c:694
 #, c-format
 msgid "Invalid argument \"%d\" for --%s: the argument must be positive\n"
 msgstr "ནུས་མེད་ སྒྲུབ་རྟགས་ \"%d\" དེ་ --%s གི་དོན་ལུ་ :  སྒྲུབ་རྟགས་དེ་ ཡོད་ཆ་སྦེ་དགོ་\n"
 
-#: libvnck/vnckprop.c:788
+#: libvnck/vnckprop.c:789
 #, c-format
 msgid "Conflicting options are present: --%s or --%s, and --%s\n"
 msgstr "མི་མཐུན་པའི་ གདམ་ཁ་ཚུ་འདུག་ : --%s or --%s, and --%s\n"
 
-#: libvnck/vnckprop.c:820
+#: libvnck/vnckprop.c:821
 #, c-format
 msgid "Invalid argument \"%s\" for --%s, valid values are: %s\n"
 msgstr "ནུས་མེད་ སྒྲུབ་རྟགས་ \"%s\"  དེ   --%s གི་ དོན་ལུ་ ནུས་ཅན་གྱི་ བེ་ལུ་ཚུ་་ : %s ཨིན་\n"
 
-#: libvnck/vnckprop.c:863
+#: libvnck/vnckprop.c:861
 #, c-format
 msgid ""
 "Cannot change the workspace layout on the screen: the layout is already "
@@ -613,7 +613,7 @@ msgstr ""
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:898
+#: libvnck/vnckprop.c:899
 #, c-format
 msgid ""
 "Viewport cannot be moved: the current workspace does not contain a viewport\n"
@@ -623,37 +623,37 @@ msgstr ""
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:905
+#: libvnck/vnckprop.c:906
 #, c-format
 msgid "Viewport cannot be moved: there is no current workspace\n"
 msgstr "མཐོང་སྣང་མཐུད་ལམ་ སྤོ་བཤུད་འབད་མི་བཏུབ་   ད་ལྟོའི་ ལཱ་གི་ས་སྒོ་མིན་ནུག་ \n"
 
 #. FIXME: why do we have dual & boolean API. This is not consistent!
-#: libvnck/vnckprop.c:941 libvnck/vnckprop.c:950 libvnck/vnckprop.c:959
-#: libvnck/vnckprop.c:966 libvnck/vnckprop.c:976 libvnck/vnckprop.c:983
-#: libvnck/vnckprop.c:992 libvnck/vnckprop.c:1041
+#: libvnck/vnckprop.c:942 libvnck/vnckprop.c:951 libvnck/vnckprop.c:960
+#: libvnck/vnckprop.c:967 libvnck/vnckprop.c:977 libvnck/vnckprop.c:984
+#: libvnck/vnckprop.c:993 libvnck/vnckprop.c:1042
 #, c-format
 msgid "Action not allowed\n"
 msgstr "བྱ་བ་ མི་ཆོག་ \n"
 
-#: libvnck/vnckprop.c:1037
+#: libvnck/vnckprop.c:1038
 #, c-format
 msgid "Window cannot be moved to workspace %d: the workspace does not exist\n"
 msgstr "ཝིན་ཌོ་ ལཱ་གི་ས་སྒོ་ %d ནང་ སྤོ་བཤུད་འབད་མི་བཏུབ་  ལཱ་གི་ས་སྒོ་དེ་ མིན་ནུག་ \n"
 
 #. Translators: 'unset' in the sense of "something has not been set".
-#: libvnck/vnckprop.c:1101 libvnck/vnckprop.c:1233
+#: libvnck/vnckprop.c:1102 libvnck/vnckprop.c:1233
 msgid "<name unset>"
 msgstr "<name unset>"
 
 #. Translators: %lu is a window number and %s a window name
-#: libvnck/vnckprop.c:1104
+#: libvnck/vnckprop.c:1105
 #, c-format
 msgid "%lu: %s\n"
 msgstr "%lu: %s\n"
 
 #. Translators: %d is a workspace number and %s a workspace name
-#: libvnck/vnckprop.c:1124
+#: libvnck/vnckprop.c:1125
 #, c-format
 msgid "%d: %s\n"
 msgstr "%d: %s\n"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libvnck\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-18 20:24+0100\n"
+"POT-Creation-Date: 2025-02-25 10:55+0100\n"
 "PO-Revision-Date: 2013-03-13 19:49+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -40,146 +40,146 @@ msgstr ""
 msgid "Untitled application"
 msgstr "โปรแกรมไม่มีชื่อ"
 
-#: libvnck/pager-accessible.c:263
+#: libvnck/pager-accessible.c:262
 msgid "Workspace Switcher"
 msgstr "ตัวสลับพื้นที่ทำงาน"
 
-#: libvnck/pager-accessible.c:274
+#: libvnck/pager-accessible.c:273
 msgid "Tool to switch between workspaces"
 msgstr "ใช้สลับไปมาระหว่างพื้นที่ทำงาน"
 
-#: libvnck/pager-accessible.c:379
+#: libvnck/pager-accessible.c:378
 #, c-format
 msgid "Click this to switch to workspace %s"
 msgstr "กดที่นี่แล้วจะสลับไปพื้นที่ทำงาน %s"
 
-#: libvnck/pager.c:2221
+#: libvnck/pager.c:2224
 #, c-format
 msgid "Click to start dragging \"%s\""
 msgstr "คลิกเพื่อเริ่มลาก \"%s\""
 
-#: libvnck/pager.c:2224
+#: libvnck/pager.c:2227
 #, c-format
 msgid "Current workspace: \"%s\""
 msgstr "พื้นที่ทำงานปัจจุบัน: \"%s\""
 
-#: libvnck/pager.c:2229
+#: libvnck/pager.c:2232
 #, c-format
 msgid "Click to switch to \"%s\""
 msgstr "คลิกเพื่อสลับไป %s"
 
-#: libvnck/selector.c:1091
+#: libvnck/selector.c:1101
 msgid "No Windows Open"
 msgstr "ไม่มีหน้าต่างเปิดอยู่"
 
-#: libvnck/selector.c:1147
+#: libvnck/selector.c:1157
 msgid "Window Selector"
 msgstr "เลือกหน้าต่าง"
 
-#: libvnck/selector.c:1148
+#: libvnck/selector.c:1158
 msgid "Tool to switch between windows"
 msgstr "ใช้สลับไปมาระหว่างหน้าต่าง"
 
-#: libvnck/tasklist.c:603
+#: libvnck/tasklist.c:602
 msgid "Window List"
 msgstr "ลิสต์หน้าต่าง"
 
-#: libvnck/tasklist.c:604
+#: libvnck/tasklist.c:603
 msgid "Tool to switch between visible windows"
 msgstr "ใช้สลับไปมาระหว่างหน้าต่าง"
 
-#: libvnck/tasklist.c:3022
+#: libvnck/tasklist.c:3021
 msgid "Mi_nimize All"
 msgstr "_ย่อเก็บทั้งหมด"
 
-#: libvnck/tasklist.c:3030
+#: libvnck/tasklist.c:3029
 msgid "Un_minimize All"
 msgstr "เ_ลิกย่อเก็บทั้งหมด"
 
-#: libvnck/tasklist.c:3038
+#: libvnck/tasklist.c:3037
 msgid "Ma_ximize All"
 msgstr "_ขยายเต็มจอทั้งหมด"
 
-#: libvnck/tasklist.c:3046
+#: libvnck/tasklist.c:3045
 msgid "_Unmaximize All"
 msgstr "เลิ_กขยายเต็มจอทั้งหมด"
 
-#: libvnck/tasklist.c:3058
+#: libvnck/tasklist.c:3057
 msgid "_Close All"
 msgstr "ปิ_ดทั้งหมด"
 
-#: libvnck/window-action-menu.c:367
+#: libvnck/window-action-menu.c:366
 msgid "Unmi_nimize"
 msgstr "เลิกย่_อเก็บ"
 
-#: libvnck/window-action-menu.c:373
+#: libvnck/window-action-menu.c:372
 msgid "Mi_nimize"
 msgstr "ย่_อเก็บ"
 
-#: libvnck/window-action-menu.c:380
+#: libvnck/window-action-menu.c:379
 msgid "Unma_ximize"
 msgstr "เลิกขย_ายเต็มจอ"
 
-#: libvnck/window-action-menu.c:386
+#: libvnck/window-action-menu.c:385
 msgid "Ma_ximize"
 msgstr "ขย_ายเต็มจอ"
 
-#: libvnck/window-action-menu.c:692 libvnck/workspace.c:265
+#: libvnck/window-action-menu.c:691 libvnck/workspace.c:265
 #, c-format
 msgid "Workspace %d"
 msgstr "พื้นที่ทำงาน %d"
 
-#: libvnck/window-action-menu.c:701 libvnck/window-action-menu.c:847
+#: libvnck/window-action-menu.c:700 libvnck/window-action-menu.c:846
 #, c-format
 msgid "Workspace 1_0"
 msgstr "พื้นที่ทำงาน 1_0"
 
-#: libvnck/window-action-menu.c:703 libvnck/window-action-menu.c:849
+#: libvnck/window-action-menu.c:702 libvnck/window-action-menu.c:848
 #, c-format
 msgid "Workspace %s%d"
 msgstr "พื้นที่ทำงาน %s%d"
 
-#: libvnck/window-action-menu.c:990
+#: libvnck/window-action-menu.c:989
 msgid "_Move"
 msgstr "ย้า_ย"
 
-#: libvnck/window-action-menu.c:996
+#: libvnck/window-action-menu.c:995
 msgid "_Resize"
 msgstr "_ปรับขนาด"
 
-#: libvnck/window-action-menu.c:1004
+#: libvnck/window-action-menu.c:1003
 msgid "Always On _Top"
 msgstr "อยู่_บนสุด"
 
-#: libvnck/window-action-menu.c:1012
+#: libvnck/window-action-menu.c:1011
 msgid "_Always on Visible Workspace"
 msgstr "บน_ทุกพื้นที่ทำงานที่มองเห็น"
 
-#: libvnck/window-action-menu.c:1017
+#: libvnck/window-action-menu.c:1016
 msgid "_Only on This Workspace"
 msgstr "บน_พื้นที่ทำงานนี้เท่านั้น"
 
-#: libvnck/window-action-menu.c:1024
+#: libvnck/window-action-menu.c:1023
 msgid "Move to Workspace _Left"
 msgstr "ย้ายไปพื้นที่ทำงานซ้_าย"
 
-#: libvnck/window-action-menu.c:1029
+#: libvnck/window-action-menu.c:1028
 msgid "Move to Workspace R_ight"
 msgstr "ย้ายไปพื้นที่ทำงานข_วา"
 
-#: libvnck/window-action-menu.c:1034
+#: libvnck/window-action-menu.c:1033
 msgid "Move to Workspace _Up"
 msgstr "ย้ายไปพื้นที่ทำงาน_บน"
 
-#: libvnck/window-action-menu.c:1039
+#: libvnck/window-action-menu.c:1038
 msgid "Move to Workspace _Down"
 msgstr "ย้ายไปพื้นที่ทำงาน_ล่าง"
 
-#: libvnck/window-action-menu.c:1041
+#: libvnck/window-action-menu.c:1040
 msgid "Move to Another _Workspace"
 msgstr "ย้ายไป_พื้นที่ทำงานอื่น"
 
-#: libvnck/window-action-menu.c:1061
+#: libvnck/window-action-menu.c:1060
 msgid "_Close"
 msgstr "ปิ_ด"
 
@@ -196,11 +196,11 @@ msgstr "ปิ_ด"
 msgid "Untitled window"
 msgstr "หน้าต่างไม่มีชื่อ"
 
-#: libvnck/vnckprop.c:137
+#: libvnck/vnckprop.c:136
 msgid "X window ID of the window to examine or modify"
 msgstr "ID ใน X Window ของหน้าต่างที่จะตรวจสอบหรือแก้ไข"
 
-#: libvnck/vnckprop.c:137 libvnck/vnckprop.c:144 libvnck/vnckprop.c:154
+#: libvnck/vnckprop.c:136 libvnck/vnckprop.c:143 libvnck/vnckprop.c:153
 msgid "XID"
 msgstr "XID"
 
@@ -208,40 +208,40 @@ msgstr "XID"
 #. * group of windows, ie: if you have multiple windows in one
 #. * application, one window has some information about the application
 #. * (like the application name).
-#: libvnck/vnckprop.c:143
+#: libvnck/vnckprop.c:142
 msgid "X window ID of the group leader of an application to examine"
 msgstr "ID ใน X Window ของหน้าต่างหลักของโปรแกรมที่จะตรวจสอบ"
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: libvnck/vnckprop.c:148
+#: libvnck/vnckprop.c:147
 msgid "Class resource of the class group to examine"
 msgstr "ทรัพยากรคลาสของกลุ่มคลาสที่จะตรวจสอบ"
 
-#: libvnck/vnckprop.c:148
+#: libvnck/vnckprop.c:147
 msgid "CLASS"
 msgstr "CLASS"
 
-#: libvnck/vnckprop.c:150
+#: libvnck/vnckprop.c:149
 msgid "NUMBER of the workspace to examine or modify"
 msgstr "หมายเลขของพื้นที่ทำงานที่จะตรวจสอบหรือแก้ไข"
 
-#: libvnck/vnckprop.c:150 libvnck/vnckprop.c:152 libvnck/vnckprop.c:170
-#: libvnck/vnckprop.c:172 libvnck/vnckprop.c:174 libvnck/vnckprop.c:271
+#: libvnck/vnckprop.c:149 libvnck/vnckprop.c:151 libvnck/vnckprop.c:169
+#: libvnck/vnckprop.c:171 libvnck/vnckprop.c:173 libvnck/vnckprop.c:270
 msgid "NUMBER"
 msgstr "NUMBER"
 
-#: libvnck/vnckprop.c:152
+#: libvnck/vnckprop.c:151
 msgid "NUMBER of the screen to examine or modify"
 msgstr "หมายเลขของสกรีนที่จะตรวจสอบหรือแก้ไข"
 
-#: libvnck/vnckprop.c:154
+#: libvnck/vnckprop.c:153
 msgid "Alias of --window"
 msgstr "เหมือน --window"
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: libvnck/vnckprop.c:162
+#: libvnck/vnckprop.c:161
 msgid ""
 "List windows of the application/class group/workspace/screen (output format: "
 "\"XID: Window Name\")"
@@ -249,144 +249,144 @@ msgstr ""
 "แสดงรายการหน้าต่างของโปรแกรม/กลุ่มคลาส/พื้นที่ทำงาน/สกรีน (รูปแบบการแสดงผล: \"XID: "
 "ชื่อหน้าต่าง\")"
 
-#: libvnck/vnckprop.c:164
+#: libvnck/vnckprop.c:163
 msgid ""
 "List workspaces of the screen (output format: \"Number: Workspace Name\")"
 msgstr "แสดงรายการพื้นที่ทำงานของสกรีน (รูปแบบการแสดงผล: \"หมายเลข: ชื่อพื้นที่ทำงาน\")"
 
-#: libvnck/vnckprop.c:170
+#: libvnck/vnckprop.c:169
 msgid "Change the number of workspaces of the screen to NUMBER"
 msgstr "เปลี่ยนจำนวนพื้นที่ทำงานของสกรีนเป็น NUMBER"
 
-#: libvnck/vnckprop.c:172
+#: libvnck/vnckprop.c:171
 msgid "Change the workspace layout of the screen to use NUMBER rows"
 msgstr "เปลี่ยนการจัดวางพื้นที่ทำงานของสกรีนเป็น NUMBER แถว"
 
-#: libvnck/vnckprop.c:174
+#: libvnck/vnckprop.c:173
 msgid "Change the workspace layout of the screen to use NUMBER columns"
 msgstr "เปลี่ยนการจัดวางพื้นที่ทำงานของสกรีนเป็น NUMBER คอลัมน์"
 
-#: libvnck/vnckprop.c:176
+#: libvnck/vnckprop.c:175
 msgid "Show the desktop"
 msgstr "แสดงพื้นโต๊ะ"
 
-#: libvnck/vnckprop.c:178
+#: libvnck/vnckprop.c:177
 msgid "Stop showing the desktop"
 msgstr "เลิกแสดงพื้นโต๊ะ"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:183
+#: libvnck/vnckprop.c:182
 msgid "Move the viewport of the current workspace to X coordinate X"
 msgstr "เลื่อนช่องมอง (viewport) ของพื้นที่ทำงานปัจจุบันไปที่พิกัดแนวนอน X"
 
-#: libvnck/vnckprop.c:183 libvnck/vnckprop.c:273
+#: libvnck/vnckprop.c:182 libvnck/vnckprop.c:272
 msgid "X"
 msgstr "X"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:188
+#: libvnck/vnckprop.c:187
 msgid "Move the viewport of the current workspace to Y coordinate Y"
 msgstr "เลื่อนช่องมอง (viewport) ของพื้นที่ทำงานปัจจุบันไปที่พิกัดแนวตั้ง Y"
 
-#: libvnck/vnckprop.c:188 libvnck/vnckprop.c:275
+#: libvnck/vnckprop.c:187 libvnck/vnckprop.c:274
 msgid "Y"
 msgstr "Y"
 
-#: libvnck/vnckprop.c:194
+#: libvnck/vnckprop.c:193
 msgid "Minimize the window"
 msgstr "ย่อเก็บหน้าต่าง"
 
-#: libvnck/vnckprop.c:196
+#: libvnck/vnckprop.c:195
 msgid "Unminimize the window"
 msgstr "เลิกย่อเก็บหน้าต่าง"
 
-#: libvnck/vnckprop.c:198
+#: libvnck/vnckprop.c:197
 msgid "Maximize the window"
 msgstr "ขยายหน้าต่างเต็ม"
 
-#: libvnck/vnckprop.c:200
+#: libvnck/vnckprop.c:199
 msgid "Unmaximize the window"
 msgstr "เลิกขยายหน้าต่างเต็ม"
 
-#: libvnck/vnckprop.c:202
+#: libvnck/vnckprop.c:201
 msgid "Maximize horizontally the window"
 msgstr "ขยายหน้าต่างเต็มตามแนวนอน"
 
-#: libvnck/vnckprop.c:204
+#: libvnck/vnckprop.c:203
 msgid "Unmaximize horizontally the window"
 msgstr "เลิกขยายหน้าต่างเต็มตามแนวนอน"
 
-#: libvnck/vnckprop.c:206
+#: libvnck/vnckprop.c:205
 msgid "Maximize vertically the window"
 msgstr "ขยายหน้าต่างเต็มตามแนวตั้ง"
 
-#: libvnck/vnckprop.c:208
+#: libvnck/vnckprop.c:207
 msgid "Unmaximize vertically the window"
 msgstr "เลิกขยายหน้าต่างเต็มตามแนวตั้ง"
 
-#: libvnck/vnckprop.c:210
+#: libvnck/vnckprop.c:209
 msgid "Start moving the window via the keyboard"
 msgstr "เริ่มย้ายหน้าต่างด้วยแป้นพิมพ์"
 
-#: libvnck/vnckprop.c:212
+#: libvnck/vnckprop.c:211
 msgid "Start resizing the window via the keyboard"
 msgstr "เริ่มปรับขนาดหน้าต่างด้วยแป้นพิมพ์"
 
-#: libvnck/vnckprop.c:214
+#: libvnck/vnckprop.c:213
 msgid "Activate the window"
 msgstr "เรียกหน้าต่างขึ้นมา"
 
-#: libvnck/vnckprop.c:216
+#: libvnck/vnckprop.c:215
 msgid "Close the window"
 msgstr "ปิดหน้าต่าง"
 
-#: libvnck/vnckprop.c:219
+#: libvnck/vnckprop.c:218
 msgid "Make the window fullscreen"
 msgstr "แสดงหน้าต่างเต็มจอ"
 
-#: libvnck/vnckprop.c:221
+#: libvnck/vnckprop.c:220
 msgid "Make the window quit fullscreen mode"
 msgstr "เลิกแสดงหน้าต่างเต็มจอ"
 
-#: libvnck/vnckprop.c:223
+#: libvnck/vnckprop.c:222
 msgid "Make the window always on top"
 msgstr "ยกหน้าต่างขึ้นมาอยู่บนสุด"
 
-#: libvnck/vnckprop.c:225
+#: libvnck/vnckprop.c:224
 msgid "Make the window not always on top"
 msgstr "เลิกยกหน้าต่างขึ้นมาอยู่บนสุด"
 
-#: libvnck/vnckprop.c:227
+#: libvnck/vnckprop.c:226
 msgid "Make the window below other windows"
 msgstr "ลดหน้าต่างลงไปอยู่ล่างสุด"
 
-#: libvnck/vnckprop.c:229
+#: libvnck/vnckprop.c:228
 msgid "Make the window not below other windows"
 msgstr "เลิกลดหน้าต่างลงไปอยู่ล่างสุด"
 
-#: libvnck/vnckprop.c:231
+#: libvnck/vnckprop.c:230
 msgid "Shade the window"
 msgstr "ม้วนหน้าต่างขึ้น"
 
-#: libvnck/vnckprop.c:233
+#: libvnck/vnckprop.c:232
 msgid "Unshade the window"
 msgstr "คลี่หน้าต่างกลับ"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:238
+#: libvnck/vnckprop.c:237
 msgid "Make the window have a fixed position in the viewport"
 msgstr "ตรึงตำแหน่งหน้าต่างในช่องมอง"
 
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:243
+#: libvnck/vnckprop.c:242
 msgid "Make the window not have a fixed position in the viewport"
 msgstr "เลิกตรึงตำแหน่งหน้าต่างในช่องมอง"
 
@@ -395,7 +395,7 @@ msgstr "เลิกตรึงตำแหน่งหน้าต่างใ
 #. * inside it. Please make sure that the translation is in sync with
 #. * gnome-panel, where this term is also used in translatable strings
 #.
-#: libvnck/vnckprop.c:250
+#: libvnck/vnckprop.c:249
 msgid "Make the window not appear in pagers"
 msgstr "ไม่แสดงหน้าต่างในเครื่องมือสลับพื้นที่ทำงาน"
 
@@ -404,60 +404,60 @@ msgstr "ไม่แสดงหน้าต่างในเครื่อง
 #. * inside it. Please make sure that the translation is in sync with
 #. * gnome-panel, where this term is also used in translatable strings
 #.
-#: libvnck/vnckprop.c:257
+#: libvnck/vnckprop.c:256
 msgid "Make the window appear in pagers"
 msgstr "แสดงหน้าต่างในเครื่องมือสลับพื้นที่ทำงาน"
 
 #. Translators: "tasklist" is the list of running applications (the
 #. * window list)
-#: libvnck/vnckprop.c:261
+#: libvnck/vnckprop.c:260
 msgid "Make the window not appear in tasklists"
 msgstr "ไม่แสดงหน้าต่างในรายการงาน"
 
 #. Translators: "tasklist" is the list of running applications (the
 #. * window list)
-#: libvnck/vnckprop.c:265
+#: libvnck/vnckprop.c:264
 msgid "Make the window appear in tasklists"
 msgstr "แสดงหน้าต่างในรายการงาน"
 
-#: libvnck/vnckprop.c:267
+#: libvnck/vnckprop.c:266
 msgid "Make the window visible on all workspaces"
 msgstr "แสดงหน้าต่างบนทุกพื้นที่ทำงาน"
 
-#: libvnck/vnckprop.c:269
+#: libvnck/vnckprop.c:268
 msgid "Make the window visible on the current workspace only"
 msgstr "แสดงหน้าต่างบนพื้นที่ทำงานปัจจุบันเท่านั้น"
 
-#: libvnck/vnckprop.c:271
+#: libvnck/vnckprop.c:270
 msgid "Move the window to workspace NUMBER (first workspace is 0)"
 msgstr "ย้ายหน้าต่างไปยังพื้นที่ทำงาน NUMBER (พื้นที่ทำงานแรกคือหมายเลข 0)"
 
-#: libvnck/vnckprop.c:273
+#: libvnck/vnckprop.c:272
 msgid "Change the X coordinate of the window to X"
 msgstr "เปลี่ยนพิกัดแนวนอนของหน้าต่างไปเป็น X"
 
-#: libvnck/vnckprop.c:275
+#: libvnck/vnckprop.c:274
 msgid "Change the Y coordinate of the window to Y"
 msgstr "เปลี่ยนพิกัดแนวตั้งของหน้าต่างไปเป็น Y"
 
-#: libvnck/vnckprop.c:277
+#: libvnck/vnckprop.c:276
 msgid "Change the width of the window to WIDTH"
 msgstr "เปลี่ยนความกว้างของหน้าต่างไปเป็น WIDTH"
 
-#: libvnck/vnckprop.c:277
+#: libvnck/vnckprop.c:276
 msgid "WIDTH"
 msgstr "WIDTH"
 
-#: libvnck/vnckprop.c:279
+#: libvnck/vnckprop.c:278
 msgid "Change the height of the window to HEIGHT"
 msgstr "เปลี่ยนความสูงของหน้าต่างไปเป็น HEIGHT"
 
-#: libvnck/vnckprop.c:279
+#: libvnck/vnckprop.c:278
 msgid "HEIGHT"
 msgstr "HEIGHT"
 
 #. Translators: do not translate "normal, desktop, dock..."
-#: libvnck/vnckprop.c:282
+#: libvnck/vnckprop.c:281
 msgid ""
 "Change the type of the window to TYPE (valid values: normal, desktop, dock, "
 "dialog, toolbar, menu, utility, splash)"
@@ -465,36 +465,36 @@ msgstr ""
 "เปลี่ยนชนิดของหน้าต่างไปเป็น TYPE (ค่าที่ใช้ได้: normal, desktop, dock, dialog, "
 "toolbar, menu, utility, splash)"
 
-#: libvnck/vnckprop.c:282
+#: libvnck/vnckprop.c:281
 msgid "TYPE"
 msgstr "TYPE"
 
-#: libvnck/vnckprop.c:288
+#: libvnck/vnckprop.c:287
 msgid "Change the name of the workspace to NAME"
 msgstr "เปลี่ยนชื่อของพื้นที่ทำงานไปเป็น NAME"
 
-#: libvnck/vnckprop.c:288
+#: libvnck/vnckprop.c:287
 msgid "NAME"
 msgstr "NAME"
 
-#: libvnck/vnckprop.c:290
+#: libvnck/vnckprop.c:289
 msgid "Activate the workspace"
 msgstr "ย้ายไปพื้นที่ทำงาน"
 
-#: libvnck/vnckprop.c:384 libvnck/vnckprop.c:408 libvnck/vnckprop.c:444
-#: libvnck/vnckprop.c:467
+#: libvnck/vnckprop.c:383 libvnck/vnckprop.c:407 libvnck/vnckprop.c:444
+#: libvnck/vnckprop.c:468
 #, c-format
 msgid "Invalid value \"%s\" for --%s"
 msgstr "ค่า \"%s\" ใช้การไม่ได้สำหรับ --%s"
 
-#: libvnck/vnckprop.c:501 libvnck/vnckprop.c:520
+#: libvnck/vnckprop.c:502 libvnck/vnckprop.c:521
 #, c-format
 msgid ""
 "Conflicting options are present: screen %d should be interacted with, but --"
 "%s has been used\n"
 msgstr "มีตัวเลือกที่ขัดแย้งกัน: ต้องโต้ตอบกับสกรีน %d แต่มีการใช้ตัวเลือก --%s\n"
 
-#: libvnck/vnckprop.c:510
+#: libvnck/vnckprop.c:511
 #, c-format
 msgid ""
 "Conflicting options are present: windows or workspaces of screen %d should "
@@ -503,14 +503,14 @@ msgstr ""
 "มีตัวเลือกที่ขัดแย้งกัน: ต้องแสดงรายการหน้าต่างหรือพื้นที่ทำงานของสกรีน %d แต่มีการใช้ตัวเลือก --"
 "%s\n"
 
-#: libvnck/vnckprop.c:533 libvnck/vnckprop.c:553
+#: libvnck/vnckprop.c:534 libvnck/vnckprop.c:554
 #, c-format
 msgid ""
 "Conflicting options are present: workspace %d should be interacted with, but "
 "--%s has been used\n"
 msgstr "มีตัวเลือกที่ขัดแย้งกัน: ต้องโต้ตอบกับพื้นที่ทำงาน %d แต่มีการใช้ตัวเลือก --%s\n"
 
-#: libvnck/vnckprop.c:543
+#: libvnck/vnckprop.c:544
 #, c-format
 msgid ""
 "Conflicting options are present: windows of workspace %d should be listed, "
@@ -518,14 +518,14 @@ msgid ""
 msgstr ""
 "มีตัวเลือกที่ขัดแย้งกัน: ต้องแสดงรายการหน้าต่างของพื้นที่ทำงาน %d แต่มีการใช้ตัวเลือก --%s\n"
 
-#: libvnck/vnckprop.c:565
+#: libvnck/vnckprop.c:566
 #, c-format
 msgid ""
 "Conflicting options are present: an application should be interacted with, "
 "but --%s has been used\n"
 msgstr "มีตัวเลือกที่ขัดแย้งกัน: ต้องโต้ตอบกับโปรแกรม แต่มีการใช้ตัวเลือก --%s\n"
 
-#: libvnck/vnckprop.c:575
+#: libvnck/vnckprop.c:576
 #, c-format
 msgid ""
 "Conflicting options are present: windows of an application should be listed, "
@@ -534,7 +534,7 @@ msgstr "มีตัวเลือกที่ขัดแย้งกัน: �
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: libvnck/vnckprop.c:589
+#: libvnck/vnckprop.c:590
 #, c-format
 msgid ""
 "Conflicting options are present: class group \"%s\" should be interacted "
@@ -543,7 +543,7 @@ msgstr "มีตัวเลือกที่ขัดแย้งกัน: �
 
 #. Translators: A class is like a "family". E.g., all gvim windows
 #. * are of the same class.
-#: libvnck/vnckprop.c:601
+#: libvnck/vnckprop.c:602
 #, c-format
 msgid ""
 "Conflicting options are present: windows of class group \"%s\" should be "
@@ -551,40 +551,40 @@ msgid ""
 msgstr ""
 "มีตัวเลือกที่ขัดแย้งกัน: ต้องแสดงรายการหน้าต่างของกลุ่มคลาส \"%s\" แต่มีการใช้ตัวเลือก --%s\n"
 
-#: libvnck/vnckprop.c:613 libvnck/vnckprop.c:622
+#: libvnck/vnckprop.c:614 libvnck/vnckprop.c:623
 #, c-format
 msgid ""
 "Conflicting options are present: a window should be interacted with, but --"
 "%s has been used\n"
 msgstr "มีตัวเลือกที่ขัดแย้งกัน: ต้องโต้ตอบกับหน้าต่าง แต่มีการใช้ตัวเลือก --%s\n"
 
-#: libvnck/vnckprop.c:641 libvnck/vnckprop.c:722 libvnck/vnckprop.c:769
+#: libvnck/vnckprop.c:642 libvnck/vnckprop.c:723 libvnck/vnckprop.c:770
 #, c-format
 msgid "Conflicting options are present: --%s and --%s\n"
 msgstr "มีตัวเลือกที่ขัดแย้งกัน: --%s กับ --%s\n"
 
-#: libvnck/vnckprop.c:680
+#: libvnck/vnckprop.c:681
 #, c-format
 msgid ""
 "Invalid argument \"%d\" for --%s: the argument must be strictly positive\n"
 msgstr "อาร์กิวเมนต์ \"%d\" ใช้ไม่ได้กับ --%s: อาร์กิวเมนต์ดังกล่าวต้องเป็นจำนวนบวกเท่านั้น\n"
 
-#: libvnck/vnckprop.c:693
+#: libvnck/vnckprop.c:694
 #, c-format
 msgid "Invalid argument \"%d\" for --%s: the argument must be positive\n"
 msgstr "อาร์กิวเมนต์ \"%d\" ใช้ไม่ได้กับ --%s: อาร์กิวเมนต์ดังกล่าวต้องเป็นจำนวนบวก\n"
 
-#: libvnck/vnckprop.c:788
+#: libvnck/vnckprop.c:789
 #, c-format
 msgid "Conflicting options are present: --%s or --%s, and --%s\n"
 msgstr "มีตัวเลือกที่ขัดแย้งกัน: --%s หรือ --%s กับ --%s\n"
 
-#: libvnck/vnckprop.c:820
+#: libvnck/vnckprop.c:821
 #, c-format
 msgid "Invalid argument \"%s\" for --%s, valid values are: %s\n"
 msgstr "อาร์กิวเมนต์ \"%s\" ใช้ไม่ได้กับ --%s ค่าที่ใช้ได้คือ: %s\n"
 
-#: libvnck/vnckprop.c:863
+#: libvnck/vnckprop.c:861
 #, c-format
 msgid ""
 "Cannot change the workspace layout on the screen: the layout is already "
@@ -594,7 +594,7 @@ msgstr "ไม่สามารถเปลี่ยนการจัดวา
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:898
+#: libvnck/vnckprop.c:899
 #, c-format
 msgid ""
 "Viewport cannot be moved: the current workspace does not contain a viewport\n"
@@ -603,37 +603,37 @@ msgstr "ไม่สามารถย้ายช่องมองได้: �
 #. Translators: 'viewport' is kind of the viewable area. A viewport
 #. * can be used to implement workspaces (e.g. compiz is an example);
 #. * however it is not just the current workspace.
-#: libvnck/vnckprop.c:905
+#: libvnck/vnckprop.c:906
 #, c-format
 msgid "Viewport cannot be moved: there is no current workspace\n"
 msgstr "ไม่สามารถย้ายช่องมองได้: ไม่มีพื้นที่ทำงานปัจจุบัน\n"
 
 #. FIXME: why do we have dual & boolean API. This is not consistent!
-#: libvnck/vnckprop.c:941 libvnck/vnckprop.c:950 libvnck/vnckprop.c:959
-#: libvnck/vnckprop.c:966 libvnck/vnckprop.c:976 libvnck/vnckprop.c:983
-#: libvnck/vnckprop.c:992 libvnck/vnckprop.c:1041
+#: libvnck/vnckprop.c:942 libvnck/vnckprop.c:951 libvnck/vnckprop.c:960
+#: libvnck/vnckprop.c:967 libvnck/vnckprop.c:977 libvnck/vnckprop.c:984
+#: libvnck/vnckprop.c:993 libvnck/vnckprop.c:1042
 #, c-format
 msgid "Action not allowed\n"
 msgstr "ไม่อนุญาตให้กระทำการ\n"
 
-#: libvnck/vnckprop.c:1037
+#: libvnck/vnckprop.c:1038
 #, c-format
 msgid "Window cannot be moved to workspace %d: the workspace does not exist\n"
 msgstr "ไม่สามารถย้ายหน้าต่างไปยังพื้นที่ทำงาน %d: ไม่มีพื้นที่ทำงานดังกล่าว\n"
 
 #. Translators: 'unset' in the sense of "something has not been set".
-#: libvnck/vnckprop.c:1101 libvnck/vnckprop.c:1233
+#: libvnck/vnckprop.c:1102 libvnck/vnckprop.c:1233
 msgid "<name unset>"
 msgstr "<ไม่มีชื่อ>"
 
 #. Translators: %lu is a window number and %s a window name
-#: libvnck/vnckprop.c:1104
+#: libvnck/vnckprop.c:1105
 #, c-format
 msgid "%lu: %s\n"
 msgstr "%lu: %s\n"
 
 #. Translators: %d is a workspace number and %s a workspace name
-#: libvnck/vnckprop.c:1124
+#: libvnck/vnckprop.c:1125
 #, c-format
 msgid "%d: %s\n"
 msgstr "%d: %s\n"
