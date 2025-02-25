@@ -1,6 +1,6 @@
 project('libvnck',
   'c',
-  version: '3.40.0',
+  version: '3.41.0',
   meson_version: '>= 0.50.0')
 
 LIBVNCK_SOVERSION = 0

@@ -1,4 +1,13 @@
 ==============
+Version 3.41.0
+==============
+
+  * ci: some improvements
+  * add G_GNUC_UNUSED in unused parameters
+  * reduce the scope of some variables
+  * update translations
+
+==============
 Version 3.40.0
 ==============
 
