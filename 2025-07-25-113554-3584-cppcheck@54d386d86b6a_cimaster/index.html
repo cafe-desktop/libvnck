@@ -1,0 +1,277 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cppcheck - HTML report - libvnck (cppcheck 2.17.1-2)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+    </style>
+    <script>
+      function getStyle(el, styleProp) {
+        var y;
+
+        if (el.currentStyle) {
+          y = el.currentStyle[styleProp];
+        } else if (window.getComputedStyle) {
+          y = document.defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
+        }
+
+        return y;
+      }
+
+      function toggle() {
+        var el = this.expandable_content;
+        var mark = this.expandable_marker;
+
+        if (el.style.display === "block") {
+          el.style.display = "none";
+          mark.textContent = "[+]";
+        } else {
+          el.style.display = "block";
+          mark.textContent = "[-]";
+        }
+      }
+
+      function initExpandables() {
+        var elements = document.querySelectorAll(".expandable");
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          var el = elements[i];
+          var clickable = el.querySelector("span");
+          var marker = clickable.querySelector(".marker");
+          var content = el.querySelector(".content");
+          var width = clickable.clientWidth - parseInt(getStyle(content, "padding-left")) - parseInt(getStyle(content, "padding-right"));
+          content.style.width = width + "px";
+          clickable.expandable_content = content;
+          clickable.expandable_marker = marker;
+          clickable.addEventListener("click", toggle);
+        }
+      }
+
+      function toggleDisplay(cb) {
+        var elements = document.querySelectorAll("." + cb.id);
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          elements[i].classList.toggle("id-filtered", !cb.checked);
+        }
+
+        updateFileRows();
+      }
+
+      function toggleSeverity(cb) {
+        cb.parentElement.classList.toggle("unchecked", !cb.checked);
+        var elements = document.querySelectorAll(".sev_" + cb.id);
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          elements[i].classList.toggle("severity-filtered", !cb.checked);
+        }
+
+        updateFileRows();
+      }
+
+      function toggleTool(cb) {
+        cb.parentElement.classList.toggle("unchecked", !cb.checked);
+
+        var elements;
+        if (cb.id == "clang-tidy")
+            elements = document.querySelectorAll("[class^=clang-tidy-]");
+        else
+            elements = document.querySelectorAll(".issue:not([class^=clang-tidy-])");
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          elements[i].classList.toggle("tool-filtered", !cb.checked);
+        }
+
+        updateFileRows();
+      }
+
+      function toggleAll() {
+        var elements = document.querySelectorAll(".idToggle");
+
+        // starting from 1 since 0 is the "toggle all" input
+        for (var i = 1, len = elements.length; i < len; i++) {
+          var changed = elements[i].checked != elements[0].checked;
+          if (changed) {
+            elements[i].checked = elements[0].checked;
+            toggleDisplay(elements[i]);
+          }
+        }
+      }
+
+      function filterFile(filter) {
+        var elements = document.querySelectorAll(".fileEntry");
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          var visible = elements[i].querySelector("tr").querySelector("td").textContent.toLowerCase().includes(filter.toLowerCase());
+          elements[i].classList.toggle("text-filtered", !visible);
+        }
+      }
+
+      function filterText(text) {
+        filter = text.toLowerCase();
+        var elements = document.querySelectorAll(".issue");
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          var visible = false;
+          var fields = elements[i].querySelectorAll("td");
+          for (var n = 0, num = fields.length; n < num; n++) {
+            if (fields[n].textContent.toLowerCase().includes(filter)) {
+              visible = true;
+              break;
+            }
+          }
+          elements[i].classList.toggle("text-filtered", !visible);
+        }
+
+        updateFileRows();
+      }
+
+      function updateFileRows(element) {
+        var elements = document.querySelectorAll(".fileEntry");
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          var visible = elements[i].querySelector(".issue:not(.id-filtered):not(.severity-filtered):not(.tool-filtered):not(.text-filtered)");
+          elements[i].classList.toggle("file-filtered", !visible);
+        }
+      }
+
+      window.addEventListener("load", initExpandables);
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+    <div id="header" class="header">
+      <h1>Cppcheck report - libvnck (cppcheck 2.17.1-2)</h1>
+      <div id="filters">
+
+        <label class="checkBtn"><input type="checkbox" onclick="toggleSeverity(this)" id="error"checked/>error</label>
+        <label class="checkBtn disabled"><input type="checkbox" onclick="toggleSeverity(this)" id="warning"disabled/>warning</label>
+        <label class="checkBtn disabled"><input type="checkbox" onclick="toggleSeverity(this)" id="portability"disabled/>portability</label>
+        <label class="checkBtn disabled"><input type="checkbox" onclick="toggleSeverity(this)" id="performance"disabled/>performance</label>
+        <label class="checkBtn"><input type="checkbox" onclick="toggleSeverity(this)" id="style"checked/>style</label>
+        <label class="checkBtn"><input type="checkbox" onclick="toggleSeverity(this)" id="information"checked/>information</label>
+        | 
+        <label class="checkBtn"><input type="checkbox" onclick="toggleTool(this)" id="cppcheck"checked/>cppcheck</label>
+        <label class="checkBtn disabled"><input type="checkbox" onclick="toggleTool(this)" id="clang-tidy"disabled/>clang-tidy</label>
+        | 
+        <label class="severityHeader">File: <input type="search" oninput="filterFile(this.value)"/></label>
+        <label class="severityHeader">Filter: <input type="search" oninput="filterText(this.value)"/></label>
+      </div>
+
+    </div>
+
+    <div id="menu_index">
+     <p><a href="index.html">Defect summary</a> </p>
+
+       <label><input type="checkbox" class="idToggle" onclick="toggleAll()" checked> Toggle all</label>
+       <table>
+           <tr><th>Show</th><th>#</th><th>Defect ID</th></tr>
+            <tr><td><input type="checkbox" class="idToggle" onclick="toggleDisplay(this)" id="constParameterCallback" name="constParameterCallback" checked></td><td>17</td><td>constParameterCallback</td></tr>
+            <tr><td><input type="checkbox" class="idToggle" onclick="toggleDisplay(this)" id="staticFunction" name="staticFunction" checked></td><td>17</td><td>staticFunction</td></tr>
+            <tr><td><input type="checkbox" class="idToggle" onclick="toggleDisplay(this)" id="constParameterPointer" name="constParameterPointer" checked></td><td>5</td><td>constParameterPointer</td></tr>
+            <tr><td><input type="checkbox" class="idToggle" onclick="toggleDisplay(this)" id="constVariablePointer" name="constVariablePointer" checked></td><td>5</td><td>constVariablePointer</td></tr>
+            <tr><td><input type="checkbox" class="idToggle" onclick="toggleDisplay(this)" id="unknownMacro" name="unknownMacro" checked></td><td>5</td><td>unknownMacro</td></tr>
+            <tr><td><input type="checkbox" class="idToggle" onclick="toggleDisplay(this)" id="checkersReport" name="checkersReport" checked></td><td>1</td><td>checkersReport</td></tr>
+            <tr><td><input type="checkbox" class="idToggle" onclick="toggleDisplay(this)" id="knownConditionTrueFalse" name="knownConditionTrueFalse" checked></td><td>1</td><td>knownConditionTrueFalse</td></tr>
+            <tr><td><input type="checkbox" class="idToggle" onclick="toggleDisplay(this)" id="uninitvar" name="uninitvar" checked></td><td>1</td><td>uninitvar</td></tr>
+           <tr><td></td><td>52</td><td>total</td></tr>
+       </table>
+       <p><a href="stats.html">Statistics</a></p>
+    </div>
+    <div id="content_index">
+
+       <table class="summaryTable">
+       <tr><th>Line</th><th>Id</th><th>CWE</th><th>Severity</th><th>Message</th></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="13.html"></a></td></tr>
+         <tr class="checkersReport sev_information issue"><td></td><td>checkersReport</td><td></td><td>information</td><td>Active checkers: There was critical errors (use --checkers-report=&lt;filename&gt; to see details)</td></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="0.html">libvnck/application.c</a></td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="0.html#line-573">573</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;window&apos; can be declared as pointer to const. However it seems that &apos;window_name_changed&apos; is a callback function, if &apos;window&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="1.html">libvnck/class-group.h</a></td></tr>
+         <tr class="unknownMacro sev_error issue"><td><a href="1.html#line-86">86</a></td><td>unknownMacro</td><td></td><td>error</td><td class="error">There is an unknown macro here somewhere. Configuration is required. If G_DEPRECATED_FOR is a macro then please configure it.</td></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="2.html">libvnck/pager-accessible.c</a></td></tr>
+         <tr class="unknownMacro sev_error issue"><td><a href="2.html#line-54">54</a></td><td>unknownMacro</td><td></td><td>error</td><td class="error">There is an unknown macro here somewhere. Configuration is required. If G_DEFINE_TYPE_WITH_CODE is a macro then please configure it.</td></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="3.html">libvnck/pager.c</a></td></tr>
+         <tr class="constParameterPointer sev_style issue"><td><a href="3.html#line-1057">1057</a></td><td>constParameterPointer</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;space_rect&apos; can be declared as pointer to const</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="3.html#line-1495">1495</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;event&apos; can be declared as pointer to const. However it seems that &apos;vnck_pager_button_press&apos; is a callback function, if &apos;event&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="4.html">libvnck/selector.c</a></td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="4.html#line-176">176</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_selector_set_window_icon&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="knownConditionTrueFalse sev_style issue"><td><a href="4.html#line-193">193</a></td><td>knownConditionTrueFalse</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>The comparison &apos;icon_size == -1&apos; is always true.</td></tr>
+         <tr class="constVariablePointer sev_style issue"><td><a href="4.html#line-944">944</a></td><td>constVariablePointer</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Variable &apos;workspace&apos; can be declared as pointer to const</td></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="5.html">libvnck/test-vnck.c</a></td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="5.html#line-166">166</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;G_GNUC_UNUSED&apos; can be declared as pointer to const. However it seems that &apos;active_workspace_changed_callback&apos; is a callback function, if &apos;G_GNUC_UNUSED&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="5.html#line-167">167</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;G_GNUC_UNUSED&apos; can be declared as pointer to const. However it seems that &apos;active_workspace_changed_callback&apos; is a callback function, if &apos;G_GNUC_UNUSED&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="5.html#line-174">174</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;G_GNUC_UNUSED&apos; can be declared as pointer to const. However it seems that &apos;window_stacking_changed_callback&apos; is a callback function, if &apos;G_GNUC_UNUSED&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="5.html#line-230">230</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;G_GNUC_UNUSED&apos; can be declared as pointer to const. However it seems that &apos;workspace_created_callback&apos; is a callback function, if &apos;G_GNUC_UNUSED&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="5.html#line-231">231</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;G_GNUC_UNUSED&apos; can be declared as pointer to const. However it seems that &apos;workspace_created_callback&apos; is a callback function, if &apos;G_GNUC_UNUSED&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="5.html#line-238">238</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;G_GNUC_UNUSED&apos; can be declared as pointer to const. However it seems that &apos;workspace_destroyed_callback&apos; is a callback function, if &apos;G_GNUC_UNUSED&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="5.html#line-239">239</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;G_GNUC_UNUSED&apos; can be declared as pointer to const. However it seems that &apos;workspace_destroyed_callback&apos; is a callback function, if &apos;G_GNUC_UNUSED&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="5.html#line-246">246</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;G_GNUC_UNUSED&apos; can be declared as pointer to const. However it seems that &apos;application_opened_callback&apos; is a callback function, if &apos;G_GNUC_UNUSED&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="5.html#line-247">247</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;G_GNUC_UNUSED&apos; can be declared as pointer to const. However it seems that &apos;application_opened_callback&apos; is a callback function, if &apos;G_GNUC_UNUSED&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="5.html#line-254">254</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;G_GNUC_UNUSED&apos; can be declared as pointer to const. However it seems that &apos;application_closed_callback&apos; is a callback function, if &apos;G_GNUC_UNUSED&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="5.html#line-255">255</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;G_GNUC_UNUSED&apos; can be declared as pointer to const. However it seems that &apos;application_closed_callback&apos; is a callback function, if &apos;G_GNUC_UNUSED&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="11.html">libvnck/util.c</a></td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="11.html#line-791">791</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_get_default_display&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="11.html#line-855">855</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_ensure_fallback_style&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="6.html">libvnck/vnck-image-menu-item.c</a></td></tr>
+         <tr class="unknownMacro sev_error issue"><td><a href="6.html#line-36">36</a></td><td>unknownMacro</td><td></td><td>error</td><td class="error">There is an unknown macro here somewhere. Configuration is required. If G_DEFINE_TYPE is a macro then please configure it.</td></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="7.html">libvnck/vnck-urgency-monitor.c</a></td></tr>
+         <tr class="unknownMacro sev_error issue"><td><a href="7.html#line-81">81</a></td><td>unknownMacro</td><td></td><td>error</td><td class="error">There is an unknown macro here somewhere. Configuration is required. If G_GNUC_END_IGNORE_DEPRECATIONS is a macro then please configure it.</td></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="8.html">libvnck/vnckprop.c</a></td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="8.html#line-303">303</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;G_GNUC_UNUSED&apos; can be declared as pointer to const. However it seems that &apos;timestamp_predicate&apos; is a callback function, if &apos;G_GNUC_UNUSED&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="8.html#line-304">304</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;xevent&apos; can be declared as pointer to const. However it seems that &apos;timestamp_predicate&apos; is a callback function, if &apos;xevent&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constVariablePointer sev_style issue"><td><a href="8.html#line-307">307</a></td><td>constVariablePointer</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Variable &apos;info&apos; can be declared as pointer to const</td></tr>
+         <tr class="constVariablePointer sev_style issue"><td><a href="8.html#line-1055">1055</a></td><td>constVariablePointer</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Variable &apos;active_space&apos; can be declared as pointer to const</td></tr>
+         <tr class="uninitvar sev_error issue"><td><a href="8.html#line-1696">1696</a></td><td>uninitvar</td><td><a href="https://cwe.mitre.org/data/definitions/457.html">457</a></td><td>error</td><td class="error">Uninitialized variable: prop</td></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="9.html">libvnck/workspace-accessible.c</a></td></tr>
+         <tr class="unknownMacro sev_error issue"><td><a href="9.html#line-47">47</a></td><td>unknownMacro</td><td></td><td>error</td><td class="error">There is an unknown macro here somewhere. Configuration is required. If G_DEFINE_TYPE_WITH_CODE is a macro then please configure it.</td></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="12.html">libvnck/workspace.c</a></td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="12.html#line-254">254</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_workspace_update_name&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+      <tbody class="fileEntry">
+       <tr><td colspan="5"><a href="10.html">libvnck/xutils.c</a></td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="10.html#line-35">35</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_get_cardinal&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="10.html#line-124">124</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_get_window&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="10.html#line-291">291</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_get_text_property&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="10.html#line-522">522</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_get_cardinal_list&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="10.html#line-700">700</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_error_trap_push&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="10.html#line-711">711</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_error_trap_pop&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="10.html#line-1323">1323</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_get_wmclass&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="constVariablePointer sev_style issue"><td><a href="10.html#line-1425">1425</a></td><td>constVariablePointer</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Variable &apos;cdkwindow&apos; can be declared as pointer to const</td></tr>
+         <tr class="constParameterPointer sev_style issue"><td><a href="10.html#line-1586">1586</a></td><td>constParameterPointer</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;argb_data&apos; can be declared as pointer to const</td></tr>
+         <tr class="constParameterPointer sev_style issue"><td><a href="10.html#line-2049">2049</a></td><td>constParameterPointer</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;icon_cache&apos; can be declared as pointer to const</td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="10.html#line-2049">2049</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_icon_cache_get_icon_invalidated&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="constParameterPointer sev_style issue"><td><a href="10.html#line-2080">2080</a></td><td>constParameterPointer</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;icon_cache&apos; can be declared as pointer to const</td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="10.html#line-2375">2375</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_get_fallback_icons&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="10.html#line-2469">2469</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_get_window_position&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="10.html#line-2529">2529</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_cdk_display_lookup_from_display&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="10.html#line-2543">2543</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_cdk_window_lookup_from_window&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="10.html#line-2610">2610</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;G_GNUC_UNUSED&apos; can be declared as pointer to const. However it seems that &apos;timestamp_predicate&apos; is a callback function, if &apos;G_GNUC_UNUSED&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constParameterCallback sev_style issue"><td><a href="10.html#line-2611">2611</a></td><td>constParameterCallback</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;xevent&apos; can be declared as pointer to const. However it seems that &apos;timestamp_predicate&apos; is a callback function, if &apos;xevent&apos; is declared with const you might also need to cast function pointer(s).</td></tr>
+         <tr class="constVariablePointer sev_style issue"><td><a href="10.html#line-2614">2614</a></td><td>constVariablePointer</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Variable &apos;info&apos; can be declared as pointer to const</td></tr>
+         <tr class="constParameterPointer sev_style issue"><td><a href="10.html#line-2838">2838</a></td><td>constParameterPointer</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td>Parameter &apos;xev&apos; can be declared as pointer to const</td></tr>
+         <tr class="staticFunction sev_style issue"><td><a href="10.html#line-2838">2838</a></td><td>staticFunction</td><td></td><td>style</td><td>The function &apos;_vnck_desktop_layout_manager_process_event&apos; should have static linkage since it is not used outside of its translation unit.</td></tr>
+      </tbody>
+       </table>
+    </div>
+    <div id="footer" class="footer">
+      <p>
+        Created by Cppcheck 2.17.1 (<a href="https://cppcheck.sourceforge.io">Sourceforge</a>, <a href="irc://irc.freenode.net/cppcheck">IRC</a>)
+      </p>
+    </div>
+    </div>
+  </body>
+</html>
