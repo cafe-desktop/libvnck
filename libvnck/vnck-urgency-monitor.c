@@ -66,7 +66,6 @@ status_icon_update (VnckWindow *window)
       return;
     }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   if (vnck_window_get_icon_is_fallback (window))
     {
       ctk_status_icon_set_from_icon_name (icon, "dialog-information");
@@ -78,7 +77,6 @@ status_icon_update (VnckWindow *window)
     }
 
   ctk_status_icon_set_tooltip_text (icon, vnck_window_get_name (window));
-  G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 static void
@@ -86,9 +84,7 @@ status_icon_create (VnckWindow *window)
 {
   CtkStatusIcon *icon;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   icon = ctk_status_icon_new ();
-  G_GNUC_END_IGNORE_DEPRECATIONS
 
   g_object_set_data (G_OBJECT (window), "vnck-urgency-icon", icon);
 
@@ -106,9 +102,7 @@ status_icon_remove (VnckWindow *window)
   icon = status_icon_get (window);
   if (icon != NULL)
     {
-      G_GNUC_BEGIN_IGNORE_DEPRECATIONS
       ctk_status_icon_set_visible (icon, FALSE);
-      G_GNUC_END_IGNORE_DEPRECATIONS
 
       g_object_unref (icon);
       g_object_set_data (G_OBJECT (window), "vnck-urgency-icon", NULL);
