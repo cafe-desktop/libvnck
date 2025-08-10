@@ -1,0 +1,1282 @@
+Checking doc/example-force-update.c ...
+1/26 files checked 0% done
+Checking doc/example-lazy-initialization.c ...
+2/26 files checked 0% done
+Checking libvnck/application.c ...
+Checking libvnck/application.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+libvnck/application.c:573:39: style: Parameter 'window' can be declared as pointer to const. However it seems that 'window_name_changed' is a callback function, if 'window' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+window_name_changed (VnckWindow      *window,
+                                      ^
+libvnck/application.c:619:41: note: You might need to cast the function pointer here
+                                        window_name_changed, app);
+                                        ^
+libvnck/application.c:573:39: note: Parameter 'window' can be declared as pointer to const
+window_name_changed (VnckWindow      *window,
+                                      ^
+3/26 files checked 2% done
+Checking libvnck/class-group.c ...
+Checking libvnck/class-group.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+libvnck/class-group.h:86:1: error: There is an unknown macro here somewhere. Configuration is required. If G_DEPRECATED_FOR is a macro then please configure it. [unknownMacro]
+G_DEPRECATED_FOR(vnck_class_group_get_id)
+^
+4/26 files checked 5% done
+Checking libvnck/pager-accessible-factory.c ...
+Checking libvnck/pager-accessible-factory.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__...
+5/26 files checked 5% done
+Checking libvnck/pager-accessible.c ...
+Checking libvnck/pager-accessible.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+libvnck/pager-accessible.c:54:1: error: There is an unknown macro here somewhere. Configuration is required. If G_DEFINE_TYPE_WITH_CODE is a macro then please configure it. [unknownMacro]
+G_DEFINE_TYPE_WITH_CODE (VnckPagerAccessible,
+^
+6/26 files checked 7% done
+Checking libvnck/pager.c ...
+Checking libvnck/pager.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+libvnck/pager.c:1057:33: style: Parameter 'space_rect' can be declared as pointer to const [constParameterPointer]
+                 CdkRectangle  *space_rect,
+                                ^
+libvnck/pager.c:1495:42: style: Parameter 'event' can be declared as pointer to const. However it seems that 'vnck_pager_button_press' is a callback function, if 'event' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+                         CdkEventButton *event)
+                                         ^
+libvnck/pager.c:252:38: note: You might need to cast the function pointer here
+  widget_class->button_press_event = vnck_pager_button_press;
+                                     ^
+libvnck/pager.c:1495:42: note: Parameter 'event' can be declared as pointer to const
+                         CdkEventButton *event)
+                                         ^
+7/26 files checked 18% done
+Checking libvnck/screen.c ...
+Checking libvnck/screen.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+8/26 files checked 28% done
+Checking libvnck/selector.c ...
+Checking libvnck/selector.c: VNCK_COMPILATION;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+libvnck/selector.c:193:17: style: The comparison 'icon_size == -1' is always true. [knownConditionTrueFalse]
+  if (icon_size == -1)
+                ^
+libvnck/selector.c:181:20: note: 'icon_size' is assigned value '-1' here.
+  int icon_size = -1;
+                   ^
+libvnck/selector.c:193:17: note: The comparison 'icon_size == -1' is always true.
+  if (icon_size == -1)
+                ^
+libvnck/selector.c:944:18: style: Variable 'workspace' can be declared as pointer to const [constVariablePointer]
+  VnckWorkspace *workspace;
+                 ^
+Checking libvnck/selector.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+9/26 files checked 33% done
+Checking libvnck/tasklist.c ...
+Checking libvnck/tasklist.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+10/26 files checked 50% done
+Checking libvnck/test-pager.c ...
+11/26 files checked 51% done
+Checking libvnck/test-selector.c ...
+12/26 files checked 51% done
+Checking libvnck/test-shutdown.c ...
+13/26 files checked 51% done
+Checking libvnck/test-tasklist.c ...
+14/26 files checked 52% done
+Checking libvnck/test-urgent.c ...
+15/26 files checked 52% done
+Checking libvnck/test-vnck.c ...
+libvnck/test-vnck.c:166:58: style: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const. However it seems that 'active_workspace_changed_callback' is a callback function, if 'G_GNUC_UNUSED' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+active_workspace_changed_callback (VnckScreen    *screen G_GNUC_UNUSED,
+                                                         ^
+libvnck/test-vnck.c:91:33: note: You might need to cast the function pointer here
+                    G_CALLBACK (active_workspace_changed_callback),
+                                ^
+libvnck/test-vnck.c:166:58: note: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const
+active_workspace_changed_callback (VnckScreen    *screen G_GNUC_UNUSED,
+                                                         ^
+libvnck/test-vnck.c:167:42: style: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const. However it seems that 'active_workspace_changed_callback' is a callback function, if 'G_GNUC_UNUSED' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+       VnckWorkspace *previous_workspace G_GNUC_UNUSED,
+                                         ^
+libvnck/test-vnck.c:91:33: note: You might need to cast the function pointer here
+                    G_CALLBACK (active_workspace_changed_callback),
+                                ^
+libvnck/test-vnck.c:167:42: note: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const
+       VnckWorkspace *previous_workspace G_GNUC_UNUSED,
+                                         ^
+libvnck/test-vnck.c:174:54: style: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const. However it seems that 'window_stacking_changed_callback' is a callback function, if 'G_GNUC_UNUSED' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+window_stacking_changed_callback (VnckScreen *screen G_GNUC_UNUSED,
+                                                     ^
+libvnck/test-vnck.c:94:33: note: You might need to cast the function pointer here
+                    G_CALLBACK (window_stacking_changed_callback),
+                                ^
+libvnck/test-vnck.c:174:54: note: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const
+window_stacking_changed_callback (VnckScreen *screen G_GNUC_UNUSED,
+                                                     ^
+libvnck/test-vnck.c:230:51: style: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const. However it seems that 'workspace_created_callback' is a callback function, if 'G_GNUC_UNUSED' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+workspace_created_callback (VnckScreen    *screen G_GNUC_UNUSED,
+                                                  ^
+libvnck/test-vnck.c:103:33: note: You might need to cast the function pointer here
+                    G_CALLBACK (workspace_created_callback),
+                                ^
+libvnck/test-vnck.c:230:51: note: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const
+workspace_created_callback (VnckScreen    *screen G_GNUC_UNUSED,
+                                                  ^
+libvnck/test-vnck.c:231:29: style: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const. However it seems that 'workspace_created_callback' is a callback function, if 'G_GNUC_UNUSED' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+       VnckWorkspace *space G_GNUC_UNUSED,
+                            ^
+libvnck/test-vnck.c:103:33: note: You might need to cast the function pointer here
+                    G_CALLBACK (workspace_created_callback),
+                                ^
+libvnck/test-vnck.c:231:29: note: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const
+       VnckWorkspace *space G_GNUC_UNUSED,
+                            ^
+libvnck/test-vnck.c:238:53: style: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const. However it seems that 'workspace_destroyed_callback' is a callback function, if 'G_GNUC_UNUSED' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+workspace_destroyed_callback (VnckScreen    *screen G_GNUC_UNUSED,
+                                                    ^
+libvnck/test-vnck.c:106:33: note: You might need to cast the function pointer here
+                    G_CALLBACK (workspace_destroyed_callback),
+                                ^
+libvnck/test-vnck.c:238:53: note: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const
+workspace_destroyed_callback (VnckScreen    *screen G_GNUC_UNUSED,
+                                                    ^
+libvnck/test-vnck.c:239:31: style: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const. However it seems that 'workspace_destroyed_callback' is a callback function, if 'G_GNUC_UNUSED' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+         VnckWorkspace *space G_GNUC_UNUSED,
+                              ^
+libvnck/test-vnck.c:106:33: note: You might need to cast the function pointer here
+                    G_CALLBACK (workspace_destroyed_callback),
+                                ^
+libvnck/test-vnck.c:239:31: note: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const
+         VnckWorkspace *space G_GNUC_UNUSED,
+                              ^
+libvnck/test-vnck.c:246:54: style: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const. However it seems that 'application_opened_callback' is a callback function, if 'G_GNUC_UNUSED' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+application_opened_callback (VnckScreen      *screen G_GNUC_UNUSED,
+                                                     ^
+libvnck/test-vnck.c:109:33: note: You might need to cast the function pointer here
+                    G_CALLBACK (application_opened_callback),
+                                ^
+libvnck/test-vnck.c:246:54: note: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const
+application_opened_callback (VnckScreen      *screen G_GNUC_UNUSED,
+                                                     ^
+libvnck/test-vnck.c:247:30: style: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const. However it seems that 'application_opened_callback' is a callback function, if 'G_GNUC_UNUSED' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+        VnckApplication *app G_GNUC_UNUSED)
+                             ^
+libvnck/test-vnck.c:109:33: note: You might need to cast the function pointer here
+                    G_CALLBACK (application_opened_callback),
+                                ^
+libvnck/test-vnck.c:247:30: note: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const
+        VnckApplication *app G_GNUC_UNUSED)
+                             ^
+libvnck/test-vnck.c:254:54: style: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const. However it seems that 'application_closed_callback' is a callback function, if 'G_GNUC_UNUSED' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+application_closed_callback (VnckScreen      *screen G_GNUC_UNUSED,
+                                                     ^
+libvnck/test-vnck.c:112:33: note: You might need to cast the function pointer here
+                    G_CALLBACK (application_closed_callback),
+                                ^
+libvnck/test-vnck.c:254:54: note: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const
+application_closed_callback (VnckScreen      *screen G_GNUC_UNUSED,
+                                                     ^
+libvnck/test-vnck.c:255:30: style: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const. However it seems that 'application_closed_callback' is a callback function, if 'G_GNUC_UNUSED' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+        VnckApplication *app G_GNUC_UNUSED)
+                             ^
+libvnck/test-vnck.c:112:33: note: You might need to cast the function pointer here
+                    G_CALLBACK (application_closed_callback),
+                                ^
+libvnck/test-vnck.c:255:30: note: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const
+        VnckApplication *app G_GNUC_UNUSED)
+                             ^
+16/26 files checked 56% done
+Checking libvnck/util.c ...
+Checking libvnck/util.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+17/26 files checked 59% done
+Checking libvnck/vnck-image-menu-item.c ...
+Checking libvnck/vnck-image-menu-item.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+libvnck/vnck-image-menu-item.c:36:1: error: There is an unknown macro here somewhere. Configuration is required. If G_DEFINE_TYPE is a macro then please configure it. [unknownMacro]
+G_DEFINE_TYPE (VnckImageMenuItem, vnck_image_menu_item, CTK_TYPE_MENU_ITEM)
+^
+18/26 files checked 60% done
+Checking libvnck/vnck-urgency-monitor.c ...
+libvnck/vnck-urgency-monitor.c:118:18: style: Variable 'icon' can be declared as pointer to const [constVariablePointer]
+  CtkStatusIcon *icon;
+                 ^
+19/26 files checked 61% done
+Checking libvnck/vnckprop.c ...
+libvnck/vnckprop.c:303:39: style: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const. However it seems that 'timestamp_predicate' is a callback function, if 'G_GNUC_UNUSED' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+timestamp_predicate (Display *display G_GNUC_UNUSED,
+                                      ^
+libvnck/vnckprop.c:346:6: note: You might need to cast the function pointer here
+     timestamp_predicate, (XPointer)&info);
+     ^
+libvnck/vnckprop.c:303:39: note: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const
+timestamp_predicate (Display *display G_GNUC_UNUSED,
+                                      ^
+libvnck/vnckprop.c:304:17: style: Parameter 'xevent' can be declared as pointer to const. However it seems that 'timestamp_predicate' is a callback function, if 'xevent' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+       XEvent  *xevent,
+                ^
+libvnck/vnckprop.c:346:6: note: You might need to cast the function pointer here
+     timestamp_predicate, (XPointer)&info);
+     ^
+libvnck/vnckprop.c:304:17: note: Parameter 'xevent' can be declared as pointer to const
+       XEvent  *xevent,
+                ^
+libvnck/vnckprop.c:307:18: style: Variable 'info' can be declared as pointer to const [constVariablePointer]
+  TimeStampInfo *info = (TimeStampInfo *)arg;
+                 ^
+libvnck/vnckprop.c:1055:27: style: Variable 'active_space' can be declared as pointer to const [constVariablePointer]
+           VnckWorkspace *active_space;
+                          ^
+libvnck/vnckprop.c:1696:58: error: Uninitialized variable: prop [uninitvar]
+                               &bytes_after, (gpointer) &prop);
+                                                         ^
+20/26 files checked 70% done
+Checking libvnck/window-action-menu.c ...
+Checking libvnck/window-action-menu.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+21/26 files checked 75% done
+Checking libvnck/window.c ...
+Checking libvnck/window.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+22/26 files checked 88% done
+Checking libvnck/workspace-accessible-factory.c ...
+Checking libvnck/workspace-accessible-factory.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__...
+23/26 files checked 88% done
+Checking libvnck/workspace-accessible.c ...
+Checking libvnck/workspace-accessible.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+libvnck/workspace-accessible.c:47:1: error: There is an unknown macro here somewhere. Configuration is required. If G_DEFINE_TYPE_WITH_CODE is a macro then please configure it. [unknownMacro]
+G_DEFINE_TYPE_WITH_CODE (VnckWorkspaceAccessible,
+^
+24/26 files checked 89% done
+Checking libvnck/workspace.c ...
+Checking libvnck/workspace.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+25/26 files checked 91% done
+Checking libvnck/xutils.c ...
+Checking libvnck/xutils.c: VNCK_COMPILATION;__LIBVNCK_H_INSIDE__;VNCK_I_KNOW_THIS_IS_UNSTABLE...
+libvnck/xutils.c:1425:14: style: Variable 'cdkwindow' can be declared as pointer to const [constVariablePointer]
+  CdkWindow *cdkwindow;
+             ^
+libvnck/xutils.c:1586:30: style: Parameter 'argb_data' can be declared as pointer to const [constParameterPointer]
+argbdata_to_pixdata (gulong *argb_data, int len, guchar **pixdata)
+                             ^
+libvnck/xutils.c:2049:55: style: Parameter 'icon_cache' can be declared as pointer to const [constParameterPointer]
+_vnck_icon_cache_get_icon_invalidated (VnckIconCache *icon_cache)
+                                                      ^
+libvnck/xutils.c:2080:50: style: Parameter 'icon_cache' can be declared as pointer to const [constParameterPointer]
+_vnck_icon_cache_get_is_fallback (VnckIconCache *icon_cache)
+                                                 ^
+libvnck/xutils.c:2610:39: style: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const. However it seems that 'timestamp_predicate' is a callback function, if 'G_GNUC_UNUSED' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+timestamp_predicate (Display *display G_GNUC_UNUSED,
+                                      ^
+libvnck/xutils.c:2651:6: note: You might need to cast the function pointer here
+     timestamp_predicate, (XPointer)&info);
+     ^
+libvnck/xutils.c:2610:39: note: Parameter 'G_GNUC_UNUSED' can be declared as pointer to const
+timestamp_predicate (Display *display G_GNUC_UNUSED,
+                                      ^
+libvnck/xutils.c:2611:17: style: Parameter 'xevent' can be declared as pointer to const. However it seems that 'timestamp_predicate' is a callback function, if 'xevent' is declared with const you might also need to cast function pointer(s). [constParameterCallback]
+       XEvent  *xevent,
+                ^
+libvnck/xutils.c:2651:6: note: You might need to cast the function pointer here
+     timestamp_predicate, (XPointer)&info);
+     ^
+libvnck/xutils.c:2611:17: note: Parameter 'xevent' can be declared as pointer to const
+       XEvent  *xevent,
+                ^
+libvnck/xutils.c:2614:18: style: Variable 'info' can be declared as pointer to const [constVariablePointer]
+  TimeStampInfo *info = (TimeStampInfo *)arg;
+                 ^
+libvnck/xutils.c:2838:53: style: Parameter 'xev' can be declared as pointer to const [constParameterPointer]
+_vnck_desktop_layout_manager_process_event (XEvent *xev)
+                                                    ^
+26/26 files checked 100% done
+libvnck/selector.c:176:0: style: The function '_vnck_selector_set_window_icon' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_selector_set_window_icon (CtkWidget  *image,
+^
+libvnck/util.c:791:0: style: The function '_vnck_get_default_display' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_get_default_display (void)
+^
+libvnck/util.c:855:0: style: The function '_vnck_ensure_fallback_style' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_ensure_fallback_style (void)
+^
+libvnck/workspace.c:254:0: style: The function '_vnck_workspace_update_name' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_workspace_update_name (VnckWorkspace *space,
+^
+libvnck/xutils.c:35:0: style: The function '_vnck_get_cardinal' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_get_cardinal (Screen *screen,
+^
+libvnck/xutils.c:124:0: style: The function '_vnck_get_window' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_get_window (Screen *screen,
+^
+libvnck/xutils.c:291:0: style: The function '_vnck_get_text_property' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_get_text_property (Screen *screen,
+^
+libvnck/xutils.c:522:0: style: The function '_vnck_get_cardinal_list' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_get_cardinal_list (Screen  *screen,
+^
+libvnck/xutils.c:700:0: style: The function '_vnck_error_trap_push' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_error_trap_push (Display *display)
+^
+libvnck/xutils.c:711:0: style: The function '_vnck_error_trap_pop' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_error_trap_pop (Display *display)
+^
+libvnck/xutils.c:1323:0: style: The function '_vnck_get_wmclass' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_get_wmclass (Screen *screen,
+^
+libvnck/xutils.c:2049:0: style: The function '_vnck_icon_cache_get_icon_invalidated' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_icon_cache_get_icon_invalidated (VnckIconCache *icon_cache)
+^
+libvnck/xutils.c:2375:0: style: The function '_vnck_get_fallback_icons' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_get_fallback_icons (GdkPixbuf **iconp,
+^
+libvnck/xutils.c:2469:0: style: The function '_vnck_get_window_position' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_get_window_position (Screen *screen,
+^
+libvnck/xutils.c:2529:0: style: The function '_vnck_cdk_display_lookup_from_display' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_cdk_display_lookup_from_display (Display *display)
+^
+libvnck/xutils.c:2543:0: style: The function '_vnck_cdk_window_lookup_from_window' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_cdk_window_lookup_from_window (Screen *screen,
+^
+libvnck/xutils.c:2838:0: style: The function '_vnck_desktop_layout_manager_process_event' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+_vnck_desktop_layout_manager_process_event (XEvent *xev)
+^
+nofile:0:0: information: Active checkers: There was critical errors (use --checkers-report=<filename> to see details) [checkersReport]
+
+scan-build: Using '/usr/lib/llvm-19/bin/clang' for static analysis
+The Meson build system
+Version: 1.7.0
+Source dir: /rootdir
+Build dir: /rootdir/_build
+Build type: native build
+Project name: libvnck
+Project version: 3.41.0
+C compiler for the host machine: /usr/share/clang/scan-build-19/bin/../libexec/ccc-analyzer (gcc 14.2.0 "gcc (Debian 14.2.0-19) 14.2.0")
+C linker for the host machine: /usr/share/clang/scan-build-19/bin/../libexec/ccc-analyzer ld.bfd 2.44
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Library m found: YES
+Found pkg-config: YES (/usr/bin/pkg-config) 1.8.1
+Run-time dependency cairo-xlib-xrender found: YES 1.18.4
+Run-time dependency glib-2.0 found: YES 2.84.3
+Run-time dependency gobject-2.0 found: YES 2.84.3
+Run-time dependency ctk+-3.0 found: YES 3.25.6
+Run-time dependency libstartup-notification-1.0 found: YES 0.12
+Run-time dependency x11 found: YES 1.8.12
+Run-time dependency xres found: YES 1.2.1
+Configuring config.h using configuration
+Configuring libvnck-3.0.pc using configuration
+Configuring libvnck-3.0-uninstalled.pc using configuration
+Configuring version.h using configuration
+Dependency glib-2.0 found: YES 2.84.3 (cached)
+Program /usr/bin/glib-mkenums found: YES (/usr/bin/glib-mkenums)
+Dependency glib-2.0 found: YES 2.84.3 (cached)
+Program /usr/bin/glib-mkenums found: YES (/usr/bin/glib-mkenums)
+Build-time dependency gio-2.0 found: YES 2.84.3
+Program /usr/bin/glib-compile-resources found: YES (/usr/bin/glib-compile-resources)
+Program g-ir-scanner found: YES (/usr/bin/g-ir-scanner)
+Run-time dependency gobject-introspection-1.0 found: YES 1.84.0
+Dependency gobject-introspection-1.0 found: YES 1.84.0 (cached)
+Program /usr/bin/x86_64-linux-gnu-g-ir-scanner found: YES (/usr/bin/x86_64-linux-gnu-g-ir-scanner)
+Dependency gobject-introspection-1.0 found: YES 1.84.0 (cached)
+Program /usr/bin/x86_64-linux-gnu-g-ir-compiler found: YES (/usr/bin/x86_64-linux-gnu-g-ir-compiler)
+Program msgfmt found: YES (/usr/bin/msgfmt)
+Program msginit found: YES (/usr/bin/msginit)
+Program msgmerge found: YES (/usr/bin/msgmerge)
+Program xgettext found: YES (/usr/bin/xgettext)
+Program gtkdoc-scan found: YES (/usr/bin/gtkdoc-scan)
+Program gtkdoc-scangobj found: YES (/usr/bin/gtkdoc-scangobj)
+Program gtkdoc-mkdb found: YES (/usr/bin/gtkdoc-mkdb)
+Program gtkdoc-mkhtml found: YES (/usr/bin/gtkdoc-mkhtml)
+Program gtkdoc-fixxref found: YES (/usr/bin/gtkdoc-fixxref)
+Build targets in project: 113
+NOTICE: Future-deprecated features used:
+ * 0.56.0: {'meson.source_root'}
+
+libvnck 3.41.0
+
+  User defined options
+    gtk_doc: true
+
+Found ninja-1.12.1 at /usr/bin/ninja
+scan-build: Analysis run complete.
+scan-build: Removing directory '/tmp/scan-build-2025-08-10-112339-9287-1' because it contains no reports.
+scan-build: No bugs found.
+scan-build: Using '/usr/lib/llvm-19/bin/clang' for static analysis
+ninja: Entering directory `_build'
+[0/135] Generating GObject enum file libvnck/vnck-enum-types.c (wrapped by meson because command contains newlines, to capture output)[0/135] Generating GObject enum file libvnck/vnck-enum-types.h (wrapped by meson because command contains newlines, to capture output)[0/135] Generating libvnck/libvnck-resources_c with a custom command[0/135] Generating libvnck/libvnck-resources_h with a custom command[0/135] Building translation po/am/LC_MESSAGES/libvnck-3.0-am.mo[0/135] Building translation po/ar/LC_MESSAGES/libvnck-3.0-ar.mo[1/135] Generating libvnck/libvnck-resources_c with a custom command[1/135] Building translation po/as/LC_MESSAGES/libvnck-3.0-as.mo[2/135] Generating libvnck/libvnck-resources_h with a custom command[2/135] Building translation po/ast/LC_MESSAGES/libvnck-3.0-ast.mo[3/135] Building translation po/am/LC_MESSAGES/libvnck-3.0-am.mo[3/135] Building translation po/az/LC_MESSAGES/libvnck-3.0-az.mo[4/135] Building translation po/as/LC_MESSAGES/libvnck-3.0-as.mo[4/135] Building translation po/be/LC_MESSAGES/libvnck-3.0-be.mo[5/135] Building translation po/ar/LC_MESSAGES/libvnck-3.0-ar.mo[5/135] Building translation po/be@latin/LC_MESSAGES/libvnck-3.0-be@latin.mo[6/135] Building translation po/be/LC_MESSAGES/libvnck-3.0-be.mo[6/135] Building translation po/bg/LC_MESSAGES/libvnck-3.0-bg.mo[7/135] Building translation po/be@latin/LC_MESSAGES/libvnck-3.0-be@latin.mo[7/135] Building translation po/bn/LC_MESSAGES/libvnck-3.0-bn.mo[8/135] Building translation po/ast/LC_MESSAGES/libvnck-3.0-ast.mo[8/135] Building translation po/bn_IN/LC_MESSAGES/libvnck-3.0-bn_IN.mo[9/135] Building translation po/az/LC_MESSAGES/libvnck-3.0-az.mo[9/135] Building translation po/br/LC_MESSAGES/libvnck-3.0-br.mo[10/135] Building translation po/bn/LC_MESSAGES/libvnck-3.0-bn.mo[10/135] Building translation po/bs/LC_MESSAGES/libvnck-3.0-bs.mo[11/135] Building translation po/br/LC_MESSAGES/libvnck-3.0-br.mo[11/135] Building translation po/ca/LC_MESSAGES/libvnck-3.0-ca.mo[12/135] Building translation po/bg/LC_MESSAGES/libvnck-3.0-bg.mo[12/135] Building translation po/ca@valencia/LC_MESSAGES/libvnck-3.0-ca@valencia.mo[13/135] Building translation po/bn_IN/LC_MESSAGES/libvnck-3.0-bn_IN.mo[13/135] Building translation po/crh/LC_MESSAGES/libvnck-3.0-crh.mo[14/135] Building translation po/bs/LC_MESSAGES/libvnck-3.0-bs.mo[14/135] Building translation po/cs/LC_MESSAGES/libvnck-3.0-cs.mo[15/135] Building translation po/ca/LC_MESSAGES/libvnck-3.0-ca.mo[15/135] Building translation po/cy/LC_MESSAGES/libvnck-3.0-cy.mo[16/135] Building translation po/ca@valencia/LC_MESSAGES/libvnck-3.0-ca@valencia.mo[16/135] Building translation po/da/LC_MESSAGES/libvnck-3.0-da.mo[17/135] Building translation po/crh/LC_MESSAGES/libvnck-3.0-crh.mo[17/135] Building translation po/de/LC_MESSAGES/libvnck-3.0-de.mo[18/135] Building translation po/cy/LC_MESSAGES/libvnck-3.0-cy.mo[18/135] Building translation po/dz/LC_MESSAGES/libvnck-3.0-dz.mo[19/135] Building translation po/cs/LC_MESSAGES/libvnck-3.0-cs.mo[19/135] Building translation po/el/LC_MESSAGES/libvnck-3.0-el.mo[20/135] Building translation po/da/LC_MESSAGES/libvnck-3.0-da.mo[20/135] Building translation po/en_CA/LC_MESSAGES/libvnck-3.0-en_CA.mo[21/135] Building translation po/de/LC_MESSAGES/libvnck-3.0-de.mo[21/135] Building translation po/en_GB/LC_MESSAGES/libvnck-3.0-en_GB.mo[22/135] Building translation po/el/LC_MESSAGES/libvnck-3.0-el.mo[22/135] Building translation po/en@shaw/LC_MESSAGES/libvnck-3.0-en@shaw.mo[23/135] Building translation po/dz/LC_MESSAGES/libvnck-3.0-dz.mo[23/135] Building translation po/eo/LC_MESSAGES/libvnck-3.0-eo.mo[24/135] Building translation po/eo/LC_MESSAGES/libvnck-3.0-eo.mo[24/135] Building translation po/es/LC_MESSAGES/libvnck-3.0-es.mo[25/135] Building translation po/en_CA/LC_MESSAGES/libvnck-3.0-en_CA.mo[25/135] Building translation po/et/LC_MESSAGES/libvnck-3.0-et.mo[26/135] Building translation po/en@shaw/LC_MESSAGES/libvnck-3.0-en@shaw.mo[26/135] Building translation po/eu/LC_MESSAGES/libvnck-3.0-eu.mo[27/135] Building translation po/en_GB/LC_MESSAGES/libvnck-3.0-en_GB.mo[27/135] Building translation po/fa/LC_MESSAGES/libvnck-3.0-fa.mo[28/135] Building translation po/fa/LC_MESSAGES/libvnck-3.0-fa.mo[28/135] Building translation po/fi/LC_MESSAGES/libvnck-3.0-fi.mo[29/135] Building translation po/es/LC_MESSAGES/libvnck-3.0-es.mo[29/135] Building translation po/fr/LC_MESSAGES/libvnck-3.0-fr.mo[30/135] Building translation po/et/LC_MESSAGES/libvnck-3.0-et.mo[30/135] Building translation po/fy/LC_MESSAGES/libvnck-3.0-fy.mo[31/135] Building translation po/eu/LC_MESSAGES/libvnck-3.0-eu.mo[31/135] Building translation po/ga/LC_MESSAGES/libvnck-3.0-ga.mo[32/135] Building translation po/fr/LC_MESSAGES/libvnck-3.0-fr.mo[32/135] Building translation po/gd/LC_MESSAGES/libvnck-3.0-gd.mo[33/135] Building translation po/fi/LC_MESSAGES/libvnck-3.0-fi.mo[33/135] Building translation po/gl/LC_MESSAGES/libvnck-3.0-gl.mo[34/135] Building translation po/fy/LC_MESSAGES/libvnck-3.0-fy.mo[34/135] Building translation po/gu/LC_MESSAGES/libvnck-3.0-gu.mo[35/135] Building translation po/ga/LC_MESSAGES/libvnck-3.0-ga.mo[35/135] Building translation po/he/LC_MESSAGES/libvnck-3.0-he.mo[36/135] Building translation po/gl/LC_MESSAGES/libvnck-3.0-gl.mo[36/135] Building translation po/hi/LC_MESSAGES/libvnck-3.0-hi.mo[37/135] Building translation po/gd/LC_MESSAGES/libvnck-3.0-gd.mo[37/135] Building translation po/hr/LC_MESSAGES/libvnck-3.0-hr.mo[38/135] Building translation po/gu/LC_MESSAGES/libvnck-3.0-gu.mo[38/135] Building translation po/hu/LC_MESSAGES/libvnck-3.0-hu.mo[39/135] Building translation po/hi/LC_MESSAGES/libvnck-3.0-hi.mo[39/135] Building translation po/id/LC_MESSAGES/libvnck-3.0-id.mo[40/135] Building translation po/he/LC_MESSAGES/libvnck-3.0-he.mo[40/135] Building translation po/is/LC_MESSAGES/libvnck-3.0-is.mo[41/135] Building translation po/hr/LC_MESSAGES/libvnck-3.0-hr.mo[41/135] Building translation po/it/LC_MESSAGES/libvnck-3.0-it.mo[42/135] Building translation po/hu/LC_MESSAGES/libvnck-3.0-hu.mo[42/135] Building translation po/ja/LC_MESSAGES/libvnck-3.0-ja.mo[43/135] Building translation po/id/LC_MESSAGES/libvnck-3.0-id.mo[43/135] Building translation po/ka/LC_MESSAGES/libvnck-3.0-ka.mo[44/135] Building translation po/is/LC_MESSAGES/libvnck-3.0-is.mo[44/135] Building translation po/kk/LC_MESSAGES/libvnck-3.0-kk.mo[45/135] Building translation po/it/LC_MESSAGES/libvnck-3.0-it.mo[45/135] Building translation po/km/LC_MESSAGES/libvnck-3.0-km.mo[46/135] Building translation po/ka/LC_MESSAGES/libvnck-3.0-ka.mo[46/135] Building translation po/kn/LC_MESSAGES/libvnck-3.0-kn.mo[47/135] Building translation po/ja/LC_MESSAGES/libvnck-3.0-ja.mo[47/135] Building translation po/ko/LC_MESSAGES/libvnck-3.0-ko.mo[48/135] Building translation po/kk/LC_MESSAGES/libvnck-3.0-kk.mo[48/135] Building translation po/ku/LC_MESSAGES/libvnck-3.0-ku.mo[49/135] Building translation po/ku/LC_MESSAGES/libvnck-3.0-ku.mo[49/135] Building translation po/ky/LC_MESSAGES/libvnck-3.0-ky.mo[50/135] Building translation po/kn/LC_MESSAGES/libvnck-3.0-kn.mo[50/135] Building translation po/li/LC_MESSAGES/libvnck-3.0-li.mo[51/135] Building translation po/km/LC_MESSAGES/libvnck-3.0-km.mo[51/135] Building translation po/lt/LC_MESSAGES/libvnck-3.0-lt.mo[52/135] Building translation po/ko/LC_MESSAGES/libvnck-3.0-ko.mo[52/135] Building translation po/lv/LC_MESSAGES/libvnck-3.0-lv.mo[53/135] Building translation po/ky/LC_MESSAGES/libvnck-3.0-ky.mo[53/135] Building translation po/mai/LC_MESSAGES/libvnck-3.0-mai.mo[54/135] Generating GObject enum file libvnck/vnck-enum-types.h (wrapped by meson because command contains newlines, to capture output)[54/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/meson-generated_.._libvnck-resources.c.o[55/135] Building translation po/li/LC_MESSAGES/libvnck-3.0-li.mo[55/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/application.c.o[56/135] Building translation po/lt/LC_MESSAGES/libvnck-3.0-lt.mo[56/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/class-group.c.o[57/135] Building translation po/mai/LC_MESSAGES/libvnck-3.0-mai.mo[57/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/pager.c.o[58/135] Generating GObject enum file libvnck/vnck-enum-types.c (wrapped by meson because command contains newlines, to capture output)[58/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/meson-generated_.._vnck-enum-types.c.o[59/135] Building translation po/lv/LC_MESSAGES/libvnck-3.0-lv.mo[59/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/screen.c.o[60/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/meson-generated_.._libvnck-resources.c.o
+libvnck/libvnck-resources.c:91:9: warning: macro "__G_CONSTRUCTOR_H__" is not used [-Wunused-macros]
+   91 | #define __G_CONSTRUCTOR_H__
+      |         ^~~~~~~~~~~~~~~~~~~
+[60/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/selector.c.o[61/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/meson-generated_.._vnck-enum-types.c.o[61/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/tasklist.c.o[62/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/application.c.o[62/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/util.c.o[63/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/class-group.c.o
+../libvnck/class-group.c: In function '_vnck_class_group_remove_window':
+../libvnck/class-group.c:586:18: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long unsigned int' [-Wbad-function-cast]
+  586 |   icon_handler = (gulong) g_hash_table_lookup (class_group->priv->window_icon_handlers,
+      |                  ^
+../libvnck/class-group.c:595:18: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long unsigned int' [-Wbad-function-cast]
+  595 |   name_handler = (gulong) g_hash_table_lookup (class_group->priv->window_name_handlers,
+      |                  ^
+[63/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/window-action-menu.c.o[64/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/util.c.o
+In file included from /usr/include/glib-2.0/glib/gtypes.h:34,
+                 from /usr/include/glib-2.0/glib/galloca.h:34,
+                 from /usr/include/glib-2.0/glib.h:32,
+                 from /usr/include/glib-2.0/glib/gi18n-lib.h:23,
+                 from ../libvnck/util.c:23:
+../libvnck/util.c: In function 'vnck_init_resource_usage':
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:103:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long int' [-Wbad-function-cast]
+  103 | #define GPOINTER_TO_INT(p)      ((gint)  (glong) (p))
+      |                                          ^
+../libvnck/util.c:110:12: note: in expansion of macro 'GPOINTER_TO_INT'
+  110 |   status = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (gdisplay),
+      |            ^~~~~~~~~~~~~~~
+[64/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/window.c.o[65/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/screen.c.o
+../libvnck/screen.c:1086:3: warning: Value stored to 'current_row' is never read [deadcode.DeadStores]
+ 1086 |   current_row = -1;
+      |   ^             ~~
+../libvnck/screen.c:1087:3: warning: Value stored to 'current_col' is never read [deadcode.DeadStores]
+ 1087 |   current_col = -1;
+      |   ^             ~~
+2 warnings generated.
+[65/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/vnck-image-menu-item.c.o[66/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/window-action-menu.c.o
+In file included from /usr/include/glib-2.0/glib/gtypes.h:34,
+                 from /usr/include/glib-2.0/glib/galloca.h:34,
+                 from /usr/include/glib-2.0/glib.h:32,
+                 from /usr/include/glib-2.0/glib/gi18n-lib.h:23,
+                 from ../libvnck/window-action-menu.c:25:
+../libvnck/window-action-menu.c: In function 'item_activated_callback':
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:103:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long int' [-Wbad-function-cast]
+  103 | #define GPOINTER_TO_INT(p)      ((gint)  (glong) (p))
+      |                                          ^
+../libvnck/window-action-menu.c:290:29: note: in expansion of macro 'GPOINTER_TO_INT'
+  290 |           workspace_index = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (menu_item),
+      |                             ^~~~~~~~~~~~~~~
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:103:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long int' [-Wbad-function-cast]
+  103 | #define GPOINTER_TO_INT(p)      ((gint)  (glong) (p))
+      |                                          ^
+../libvnck/window-action-menu.c:303:28: note: in expansion of macro 'GPOINTER_TO_INT'
+  303 |           new_viewport_x = GPOINTER_TO_INT (
+      |                            ^~~~~~~~~~~~~~~
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:103:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long int' [-Wbad-function-cast]
+  103 | #define GPOINTER_TO_INT(p)      ((gint)  (glong) (p))
+      |                                          ^
+../libvnck/window-action-menu.c:306:28: note: in expansion of macro 'GPOINTER_TO_INT'
+  306 |           new_viewport_y = GPOINTER_TO_INT (
+      |                            ^~~~~~~~~~~~~~~
+[66/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/workspace.c.o[67/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/vnck-image-menu-item.c.o[67/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/xutils.c.o[68/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/selector.c.o
+In file included from /usr/include/glib-2.0/glib/gtypes.h:34,
+                 from /usr/include/glib-2.0/glib/galloca.h:34,
+                 from /usr/include/glib-2.0/glib.h:32,
+                 from /usr/include/ctk-3.0/cdk/cdkconfig.h:13,
+                 from /usr/include/ctk-3.0/cdk/cdk.h:30,
+                 from /usr/include/ctk-3.0/ctk/ctk.h:30,
+                 from ../libvnck/selector.c:30:
+../libvnck/selector.c: In function 'vnck_selector_make_menu_consistent':
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:103:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long int' [-Wbad-function-cast]
+  103 | #define GPOINTER_TO_INT(p)      ((gint)  (glong) (p))
+      |                                          ^
+../libvnck/selector.c:257:11: note: in expansion of macro 'GPOINTER_TO_INT'
+  257 |       i = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (l->data),
+      |           ^~~~~~~~~~~~~~~
+../libvnck/selector.c: In function 'vnck_selector_insert_window':
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:103:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long int' [-Wbad-function-cast]
+  103 | #define GPOINTER_TO_INT(p)      ((gint)  (glong) (p))
+      |                                          ^
+../libvnck/selector.c:710:19: note: in expansion of macro 'GPOINTER_TO_INT'
+  710 |               j = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (l->data),
+      |                   ^~~~~~~~~~~~~~~
+../libvnck/selector.c: In function 'vnck_selector_workspace_destroyed':
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:103:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long int' [-Wbad-function-cast]
+  103 | #define GPOINTER_TO_INT(p)      ((gint)  (glong) (p))
+      |                                          ^
+../libvnck/selector.c:822:11: note: in expansion of macro 'GPOINTER_TO_INT'
+  822 |       j = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (l->data),
+      |           ^~~~~~~~~~~~~~~
+[68/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/pager-accessible.c.o[69/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/workspace.c.o[69/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/pager-accessible-factory.c.o[70/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/pager.c.o
+../libvnck/pager.c: In function '_vnck_pager_get_workspace_width_for_height':
+../libvnck/pager.c:428:15: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+  428 |               (double) vnck_workspace_get_width (space) /
+      |               ^
+../libvnck/pager.c:429:15: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+  429 |               (double) vnck_workspace_get_height (space);
+      |               ^
+../libvnck/pager.c:432:15: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+  432 |               (double) vnck_screen_get_width (pager->priv->screen) /
+      |               ^
+../libvnck/pager.c:433:15: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+  433 |               (double) vnck_screen_get_height (pager->priv->screen);
+      |               ^
+../libvnck/pager.c: In function '_vnck_pager_get_workspace_height_for_width':
+../libvnck/pager.c:481:11: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+  481 |           (double) vnck_workspace_get_height (space) /
+      |           ^
+../libvnck/pager.c:482:11: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+  482 |           (double) vnck_workspace_get_width (space);
+      |           ^
+../libvnck/pager.c:485:11: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+  485 |           (double) vnck_screen_get_height (pager->priv->screen) /
+      |           ^
+../libvnck/pager.c:486:11: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+  486 |           (double) vnck_screen_get_width (pager->priv->screen);
+      |           ^
+../libvnck/pager.c: In function 'get_window_rect':
+../libvnck/pager.c:923:50: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+  923 |   width_ratio = (double) workspace_rect->width / (double) vnck_workspace_get_width (workspace);
+      |                                                  ^
+../libvnck/pager.c:924:52: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+  924 |   height_ratio = (double) workspace_rect->height / (double) vnck_workspace_get_height (workspace);
+      |                                                    ^
+../libvnck/pager.c: In function 'workspace_at_point':
+../libvnck/pager.c:1164:25: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+ 1164 |           width_ratio = (double) vnck_workspace_get_width (space) / (double) rect.width;
+      |                         ^
+../libvnck/pager.c:1165:26: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+ 1165 |           height_ratio = (double) vnck_workspace_get_height (space) / (double) rect.height;
+      |                          ^
+../libvnck/pager.c: In function 'vnck_update_drag_icon':
+../libvnck/pager.c:1808:50: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+ 1808 |   rect.width = 0.5 + ((double) (dnd_w * org_w) / (double) vnck_workspace_get_width (workspace));
+      |                                                  ^
+../libvnck/pager.c:2075:13: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+ 2075 |             cdk_event_get_scroll_deltas ((CdkEvent*)event, &smooth_x, &smooth_y);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+[70/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/workspace-accessible.c.o[71/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/pager-accessible.c.o[71/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/workspace-accessible-factory.c.o[72/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/pager-accessible-factory.c.o[72/135] Compiling C object libvnck/vnckprop.p/vnckprop.c.o[73/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/workspace-accessible.c.o
+../libvnck/workspace-accessible.c:151:11: warning: The right operand of '>' is a garbage value [core.UndefinedBinaryOperatorResult]
+  151 |   if ( (x > lx) && ((lx + width) >= x)  && (y > ly) && ((ly + height) >= ly) )
+      |           ^ ~~
+1 warning generated.
+[73/135] Compiling C object libvnck/vnck-urgency-monitor.p/vnck-urgency-monitor.c.o[74/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/workspace-accessible-factory.c.o[74/135] Compiling C object libvnck/test-vnck.p/test-vnck.c.o[75/135] Compiling C object libvnck/vnck-urgency-monitor.p/vnck-urgency-monitor.c.o[75/135] Compiling C object libvnck/test-tasklist.p/test-tasklist.c.o[76/135] Compiling C object libvnck/test-vnck.p/test-vnck.c.o[76/135] Compiling C object libvnck/test-selector.p/test-selector.c.o[77/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/window.c.o
+../libvnck/window.c:3071:7: warning: Value stored to 'found_type' is never read [deadcode.DeadStores]
+ 3071 |       found_type = TRUE;
+      |       ^            ~~~~
+1 warning generated.
+[77/135] Compiling C object libvnck/test-pager.p/test-pager.c.o[78/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/xutils.c.o
+../libvnck/xutils.c:923:9: warning: macro "_NET_WM_MOVERESIZE_SIZE_RIGHT" is not used [-Wunused-macros]
+  923 | #define _NET_WM_MOVERESIZE_SIZE_RIGHT        3
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/xutils.c:2565:9: warning: macro "_NET_WM_BOTTOMLEFT" is not used [-Wunused-macros]
+ 2565 | #define _NET_WM_BOTTOMLEFT  3
+      |         ^~~~~~~~~~~~~~~~~~
+../libvnck/xutils.c:924:9: warning: macro "_NET_WM_MOVERESIZE_SIZE_BOTTOMRIGHT" is not used [-Wunused-macros]
+  924 | #define _NET_WM_MOVERESIZE_SIZE_BOTTOMRIGHT  4
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/xutils.c:1016:9: warning: macro "_NET_WM_STATE_TOGGLE" is not used [-Wunused-macros]
+ 1016 | #define _NET_WM_STATE_TOGGLE        2    /* toggle property  */
+      |         ^~~~~~~~~~~~~~~~~~~~
+../libvnck/xutils.c:922:9: warning: macro "_NET_WM_MOVERESIZE_SIZE_TOPRIGHT" is not used [-Wunused-macros]
+  922 | #define _NET_WM_MOVERESIZE_SIZE_TOPRIGHT     2
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/xutils.c:925:9: warning: macro "_NET_WM_MOVERESIZE_SIZE_BOTTOM" is not used [-Wunused-macros]
+  925 | #define _NET_WM_MOVERESIZE_SIZE_BOTTOM       5
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/xutils.c:2563:9: warning: macro "_NET_WM_TOPRIGHT" is not used [-Wunused-macros]
+ 2563 | #define _NET_WM_TOPRIGHT    1
+      |         ^~~~~~~~~~~~~~~~
+../libvnck/xutils.c:928:9: warning: macro "_NET_WM_MOVERESIZE_MOVE" is not used [-Wunused-macros]
+  928 | #define _NET_WM_MOVERESIZE_MOVE              8
+      |         ^~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/xutils.c:927:9: warning: macro "_NET_WM_MOVERESIZE_SIZE_LEFT" is not used [-Wunused-macros]
+  927 | #define _NET_WM_MOVERESIZE_SIZE_LEFT         7
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/xutils.c:2564:9: warning: macro "_NET_WM_BOTTOMRIGHT" is not used [-Wunused-macros]
+ 2564 | #define _NET_WM_BOTTOMRIGHT 2
+      |         ^~~~~~~~~~~~~~~~~~~
+../libvnck/xutils.c:920:9: warning: macro "_NET_WM_MOVERESIZE_SIZE_TOPLEFT" is not used [-Wunused-macros]
+  920 | #define _NET_WM_MOVERESIZE_SIZE_TOPLEFT      0
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/xutils.c:921:9: warning: macro "_NET_WM_MOVERESIZE_SIZE_TOP" is not used [-Wunused-macros]
+  921 | #define _NET_WM_MOVERESIZE_SIZE_TOP          1
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/xutils.c:926:9: warning: macro "_NET_WM_MOVERESIZE_SIZE_BOTTOMLEFT" is not used [-Wunused-macros]
+  926 | #define _NET_WM_MOVERESIZE_SIZE_BOTTOMLEFT   6
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/xutils.c:2614:25: warning: Casting a non-structure type to a structure type and accessing a field can lead to memory access errors or data corruption [alpha.core.CastToStruct]
+ 2614 |   TimeStampInfo *info = (TimeStampInfo *)arg;
+      |                         ^~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+[78/135] Compiling C object libvnck/test-urgent.p/test-urgent.c.o[79/135] Compiling C object libvnck/test-selector.p/test-selector.c.o
+../libvnck/test-selector.c:66:5: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+   66 |     ctk_window_set_skip_taskbar_hint (CTK_WINDOW (win), TRUE);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+[79/135] Compiling C object libvnck/test-shutdown.p/test-shutdown.c.o[80/135] Compiling C object libvnck/test-tasklist.p/test-tasklist.c.o
+../libvnck/test-tasklist.c:71:5: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+   71 |     ctk_widget_set_default_direction (CTK_TEXT_DIR_RTL);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/test-tasklist.c:96:5: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+   96 |     vnck_tasklist_set_grouping (VNCK_TASKLIST (tasklist),
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/test-tasklist.c:99:5: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+   99 |     vnck_tasklist_set_grouping (VNCK_TASKLIST (tasklist),
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/test-tasklist.c:110:46: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+  110 |                                  (vertical ? CTK_ORIENTATION_VERTICAL :
+      |                                              ^~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/test-tasklist.c:117:16: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+  117 |       visual = cdk_screen_get_rgba_visual (ctk_widget_get_screen (win));
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/test-tasklist.c:154:5: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+  154 |     ctk_window_set_skip_taskbar_hint (CTK_WINDOW (win), TRUE);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+6 warnings generated.
+[80/135] Building translation po/mi/LC_MESSAGES/libvnck-3.0-mi.mo[81/135] Building translation po/mi/LC_MESSAGES/libvnck-3.0-mi.mo[81/135] Building translation po/mk/LC_MESSAGES/libvnck-3.0-mk.mo[82/135] Building translation po/mk/LC_MESSAGES/libvnck-3.0-mk.mo[82/135] Building translation po/ml/LC_MESSAGES/libvnck-3.0-ml.mo[83/135] Building translation po/ml/LC_MESSAGES/libvnck-3.0-ml.mo[83/135] Building translation po/mn/LC_MESSAGES/libvnck-3.0-mn.mo[84/135] Building translation po/mn/LC_MESSAGES/libvnck-3.0-mn.mo[84/135] Building translation po/mr/LC_MESSAGES/libvnck-3.0-mr.mo[85/135] Building translation po/mr/LC_MESSAGES/libvnck-3.0-mr.mo[85/135] Building translation po/ms/LC_MESSAGES/libvnck-3.0-ms.mo[86/135] Building translation po/ms/LC_MESSAGES/libvnck-3.0-ms.mo[86/135] Building translation po/nb/LC_MESSAGES/libvnck-3.0-nb.mo[87/135] Building translation po/nb/LC_MESSAGES/libvnck-3.0-nb.mo[87/135] Building translation po/ne/LC_MESSAGES/libvnck-3.0-ne.mo[88/135] Building translation po/ne/LC_MESSAGES/libvnck-3.0-ne.mo[88/135] Building translation po/nl/LC_MESSAGES/libvnck-3.0-nl.mo[89/135] Building translation po/nl/LC_MESSAGES/libvnck-3.0-nl.mo[89/135] Building translation po/nn/LC_MESSAGES/libvnck-3.0-nn.mo[90/135] Building translation po/nn/LC_MESSAGES/libvnck-3.0-nn.mo[90/135] Building translation po/oc/LC_MESSAGES/libvnck-3.0-oc.mo[91/135] Building translation po/oc/LC_MESSAGES/libvnck-3.0-oc.mo[91/135] Building translation po/or/LC_MESSAGES/libvnck-3.0-or.mo[92/135] Building translation po/or/LC_MESSAGES/libvnck-3.0-or.mo[92/135] Building translation po/pa/LC_MESSAGES/libvnck-3.0-pa.mo[93/135] Building translation po/pa/LC_MESSAGES/libvnck-3.0-pa.mo[93/135] Building translation po/pl/LC_MESSAGES/libvnck-3.0-pl.mo[94/135] Building translation po/pl/LC_MESSAGES/libvnck-3.0-pl.mo[94/135] Building translation po/pt/LC_MESSAGES/libvnck-3.0-pt.mo[95/135] Building translation po/pt/LC_MESSAGES/libvnck-3.0-pt.mo[95/135] Building translation po/pt_BR/LC_MESSAGES/libvnck-3.0-pt_BR.mo[96/135] Building translation po/pt_BR/LC_MESSAGES/libvnck-3.0-pt_BR.mo[96/135] Building translation po/ro/LC_MESSAGES/libvnck-3.0-ro.mo[97/135] Building translation po/ro/LC_MESSAGES/libvnck-3.0-ro.mo[97/135] Building translation po/ru/LC_MESSAGES/libvnck-3.0-ru.mo[98/135] Building translation po/ru/LC_MESSAGES/libvnck-3.0-ru.mo[98/135] Building translation po/rw/LC_MESSAGES/libvnck-3.0-rw.mo[99/135] Building translation po/rw/LC_MESSAGES/libvnck-3.0-rw.mo[99/135] Building translation po/si/LC_MESSAGES/libvnck-3.0-si.mo[100/135] Building translation po/si/LC_MESSAGES/libvnck-3.0-si.mo[100/135] Building translation po/sk/LC_MESSAGES/libvnck-3.0-sk.mo[101/135] Building translation po/sk/LC_MESSAGES/libvnck-3.0-sk.mo[101/135] Building translation po/sl/LC_MESSAGES/libvnck-3.0-sl.mo[102/135] Building translation po/sl/LC_MESSAGES/libvnck-3.0-sl.mo[102/135] Building translation po/sq/LC_MESSAGES/libvnck-3.0-sq.mo[103/135] Compiling C object libvnck/test-pager.p/test-pager.c.o
+../libvnck/test-pager.c:87:5: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+   87 |     ctk_widget_set_default_direction (CTK_TEXT_DIR_RTL);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/test-pager.c:95:18: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+   95 |           orientation = CTK_ORIENTATION_VERTICAL;
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/test-pager.c:100:11: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+  100 |           mode = VNCK_PAGER_DISPLAY_NAME;
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/test-pager.c:105:18: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+  105 |           scroll_mode = VNCK_PAGER_SCROLL_1D;
+      |                         ^~~~~~~~~~~~~~~~~~~~
+4 warnings generated.
+[103/135] Building translation po/sr/LC_MESSAGES/libvnck-3.0-sr.mo[104/135] Building translation po/sr/LC_MESSAGES/libvnck-3.0-sr.mo[104/135] Building translation po/sr@latin/LC_MESSAGES/libvnck-3.0-sr@latin.mo[105/135] Building translation po/sq/LC_MESSAGES/libvnck-3.0-sq.mo[105/135] Building translation po/sv/LC_MESSAGES/libvnck-3.0-sv.mo[106/135] Building translation po/sr@latin/LC_MESSAGES/libvnck-3.0-sr@latin.mo[106/135] Building translation po/ta/LC_MESSAGES/libvnck-3.0-ta.mo[107/135] Building translation po/sv/LC_MESSAGES/libvnck-3.0-sv.mo[107/135] Building translation po/te/LC_MESSAGES/libvnck-3.0-te.mo[108/135] Building translation po/ta/LC_MESSAGES/libvnck-3.0-ta.mo[108/135] Building translation po/th/LC_MESSAGES/libvnck-3.0-th.mo[109/135] Building translation po/te/LC_MESSAGES/libvnck-3.0-te.mo[109/135] Building translation po/tr/LC_MESSAGES/libvnck-3.0-tr.mo[110/135] Building translation po/th/LC_MESSAGES/libvnck-3.0-th.mo[110/135] Building translation po/ug/LC_MESSAGES/libvnck-3.0-ug.mo[111/135] Building translation po/tr/LC_MESSAGES/libvnck-3.0-tr.mo[111/135] Building translation po/uk/LC_MESSAGES/libvnck-3.0-uk.mo[112/135] Compiling C object libvnck/test-urgent.p/test-urgent.c.o
+In file included from /usr/include/glib-2.0/glib/gtypes.h:34,
+                 from /usr/include/glib-2.0/glib/galloca.h:34,
+                 from /usr/include/glib-2.0/glib.h:32,
+                 from /usr/include/ctk-3.0/cdk/cdkconfig.h:13,
+                 from /usr/include/ctk-3.0/cdk/cdk.h:30,
+                 from /usr/include/ctk-3.0/ctk/ctk.h:30,
+                 from ../libvnck/test-urgent.c:1:
+../libvnck/test-urgent.c: In function 'focused_in':
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:104:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long unsigned int' [-Wbad-function-cast]
+  104 | #define GPOINTER_TO_UINT(p)     ((guint) (gulong) (p))
+      |                                          ^
+../libvnck/test-urgent.c:43:8: note: in expansion of macro 'GPOINTER_TO_UINT'
+   43 |   id = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (widget), "vnck-timeout"));
+      |        ^~~~~~~~~~~~~~~~
+[112/135] Building translation po/vi/LC_MESSAGES/libvnck-3.0-vi.mo[113/135] Building translation po/vi/LC_MESSAGES/libvnck-3.0-vi.mo[113/135] Building translation po/wa/LC_MESSAGES/libvnck-3.0-wa.mo[114/135] Building translation po/ug/LC_MESSAGES/libvnck-3.0-ug.mo[114/135] Building translation po/xh/LC_MESSAGES/libvnck-3.0-xh.mo[115/135] Building translation po/uk/LC_MESSAGES/libvnck-3.0-uk.mo[115/135] Building translation po/zh_CN/LC_MESSAGES/libvnck-3.0-zh_CN.mo[116/135] Building translation po/wa/LC_MESSAGES/libvnck-3.0-wa.mo[116/135] Building translation po/zh_HK/LC_MESSAGES/libvnck-3.0-zh_HK.mo[117/135] Building translation po/zh_CN/LC_MESSAGES/libvnck-3.0-zh_CN.mo[117/135] Building translation po/zh_TW/LC_MESSAGES/libvnck-3.0-zh_TW.mo[118/135] Building translation po/xh/LC_MESSAGES/libvnck-3.0-xh.mo[119/135] Building translation po/zh_HK/LC_MESSAGES/libvnck-3.0-zh_HK.mo[120/135] Building translation po/zh_TW/LC_MESSAGES/libvnck-3.0-zh_TW.mo[121/135] Compiling C object libvnck/test-shutdown.p/test-shutdown.c.o[122/135] Compiling C object libvnck/libvnck-3.so.0.3.0.p/tasklist.c.o
+../libvnck/tasklist.c: In function 'vnck_task_scale_icon':
+../libvnck/tasklist.c:3213:32: warning: cast from function call of type 'int' to non-matching type 'double' [-Wbad-function-cast]
+ 3213 |       scale = MINI_ICON_SIZE / (double) gdk_pixbuf_get_height (orig);
+      |                                ^
+../libvnck/tasklist.c: At top level:
+../libvnck/tasklist.c:84:9: warning: macro "VNCK_IS_TASK_CLASS" is not used [-Wunused-macros]
+   84 | #define VNCK_IS_TASK_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), VNCK_TYPE_TASK))
+      |         ^~~~~~~~~~~~~~~~~~
+../libvnck/tasklist.c:85:9: warning: macro "VNCK_TASK_GET_CLASS" is not used [-Wunused-macros]
+   85 | #define VNCK_TASK_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), VNCK_TYPE_TASK, VnckTaskClass))
+      |         ^~~~~~~~~~~~~~~~~~~
+../libvnck/tasklist.c:82:9: warning: macro "VNCK_TASK_CLASS" is not used [-Wunused-macros]
+   82 | #define VNCK_TASK_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), VNCK_TYPE_TASK, VnckTaskClass))
+      |         ^~~~~~~~~~~~~~~
+../libvnck/tasklist.c:83:9: warning: macro "VNCK_IS_TASK" is not used [-Wunused-macros]
+   83 | #define VNCK_IS_TASK(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), VNCK_TYPE_TASK))
+      |         ^~~~~~~~~~~~
+../libvnck/tasklist.c:1599:43: warning: Access to field 'windows' results in a dereference of a null pointer (loaded from variable 'class_group_task') [core.NullDereference]
+ 1599 |       n_grouped_buttons += g_list_length (class_group_task->windows) - 1;
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/tasklist.c:1669:3: warning: Value stored to 'total_width' is never read [deadcode.DeadStores]
+ 1669 |   total_width = MIN (total_width, allocation->width);
+      |   ^             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/tasklist.c:1677:19: warning: Division by zero [core.DivideZero]
+ 1677 |       int row = i % n_rows;
+      |                 ~~^~~~~~~~
+../libvnck/tasklist.c:2311:7: warning: Although the value stored to 'windows' is used in the enclosing expression, the value is never actually read from 'windows' [deadcode.DeadStores]
+ 2311 |   l = windows = vnck_screen_get_windows (tasklist->priv->screen);
+      |       ^         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../libvnck/tasklist.c:4164:3: warning: Value stored to 'pos1' is never read [deadcode.DeadStores]
+ 4164 |   pos1 = pos2 = 0;  /* silence the compiler */
+      |   ^      ~~~~~~~~
+../libvnck/tasklist.c:4164:10: warning: Although the value stored to 'pos2' is used in the enclosing expression, the value is never actually read from 'pos2' [deadcode.DeadStores]
+ 4164 |   pos1 = pos2 = 0;  /* silence the compiler */
+      |          ^      ~
+6 warnings generated.
+[122/135] Linking target libvnck/libvnck-3.so.0.3.0[123/135] Linking target libvnck/libvnck-3.so.0.3.0[123/135] Generating symbol file libvnck/libvnck-3.so.0.3.0.p/libvnck-3.so.0.3.0.symbols[123/135] Generating libvnck/Vnck-3.0.gir with a custom command (wrapped by meson to set env)[124/135] Generating symbol file libvnck/libvnck-3.so.0.3.0.p/libvnck-3.so.0.3.0.symbols[124/135] Linking target libvnck/vnck-urgency-monitor[124/135] Linking target libvnck/test-vnck[124/135] Linking target libvnck/test-tasklist[124/135] Linking target libvnck/test-selector[125/135] Compiling C object libvnck/vnckprop.p/vnckprop.c.o
+../libvnck/vnckprop.c:307:25: warning: Casting a non-structure type to a structure type and accessing a field can lead to memory access errors or data corruption [alpha.core.CastToStruct]
+  307 |   TimeStampInfo *info = (TimeStampInfo *)arg;
+      |                         ^~~~~~~~~~~~~~~~~~~~
+../libvnck/vnckprop.c:1938:25: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+ 1938 |   if ((option_screen && interact_screen < 0) || !option_screen)
+      |                         ^~~~~~~~~~~~~~~
+../libvnck/vnckprop.c:1942:16: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+ 1942 |       screen = vnck_screen_get (interact_screen);
+      |                ^~~~~~~~~~~~~~~
+../libvnck/vnckprop.c:1954:27: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+ 1954 |   if (option_workspace && interact_space < 0)
+      |                           ^~~~~~~~~~~~~~
+../libvnck/vnckprop.c:1991:15: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+ 1991 |           if (mode == WORKSPACE_READ_MODE)
+      |               ^~~~
+../libvnck/vnckprop.c:2015:15: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+ 2015 |           if (mode == CLASS_GROUP_READ_MODE)
+      |               ^~~~
+../libvnck/vnckprop.c:2040:15: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+ 2040 |           if (mode == APPLICATION_READ_MODE)
+      |               ^~~~
+../libvnck/vnckprop.c:2057:18: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+ 2057 |         window = got_from_user;
+      |                  ^~~~~~~~~~~~~
+../libvnck/vnckprop.c:2063:15: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+ 2063 |           if (mode == WINDOW_WRITE_MODE)
+      |               ^~~~
+9 warnings generated.
+[125/135] Linking target libvnck/vnckprop[126/135] Linking target libvnck/test-vnck[126/135] Linking target libvnck/test-pager[127/135] Linking target libvnck/test-tasklist[127/135] Linking target libvnck/test-urgent[128/135] Linking target libvnck/vnck-urgency-monitor[128/135] Linking target libvnck/test-shutdown[129/135] Linking target libvnck/test-selector[130/135] Linking target libvnck/vnckprop[131/135] Linking target libvnck/test-pager[132/135] Linking target libvnck/test-urgent[133/135] Linking target libvnck/test-shutdown[134/135] Generating libvnck/Vnck-3.0.gir with a custom command (wrapped by meson to set env)
+/rootdir/_build/tmp-introspect75a4znw9/Vnck-3.0.c:89:13: warning: File position of the stream might be 'indeterminate' after a failed operation. Can cause undefined behavior [unix.Stream]
+   89 |       ret = fread (&byte, 1, 1, input);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/rootdir/_build/tmp-introspect75a4znw9/Vnck-3.0.c:89:13: warning: Read function called when stream is in EOF state. Function has no effect [unix.Stream]
+   89 |       ret = fread (&byte, 1, 1, input);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/rootdir/_build/tmp-introspect75a4znw9/Vnck-3.0.c:239:11: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+  239 |           break;
+      |           ^~~~~
+/rootdir/_build/tmp-introspect75a4znw9/Vnck-3.0.c:246:11: warning: This statement is never executed [alpha.deadcode.UnreachableCode]
+  246 |           break;
+      |           ^~~~~
+4 warnings generated.
+[134/135] Generating libvnck/Vnck-3.0.typelib with a custom command[135/135] Generating libvnck/Vnck-3.0.typelib with a custom command
+scan-build: Analysis run complete.
+scan-build: 31 bugs found.
+scan-build: Run 'scan-view /rootdir/html-report/2025-08-10-112340-9461-1' to examine bug reports.
+Listing... 0%Listing... 0%Listing... 0%              adduser/testing,now 3.152 all [installed,automatic]
+advaita-icon-theme/unknown,now 3.25.0-1 all [installed,automatic]
+apt/testing,now 3.0.3 amd64 [installed,automatic]
+aptitude-common/testing,now 0.8.13-7 all [installed,automatic]
+aptitude/testing,now 0.8.13-7 amd64 [installed]
+at-spi2-common/testing,now 2.56.2-1 all [installed,automatic]
+at-spi2-core/testing,now 2.56.2-1 amd64 [installed,automatic]
+base-files/testing,now 13.8 amd64 [installed,automatic]
+base-passwd/testing,now 3.6.7 amd64 [installed,automatic]
+bash-completion/testing,now 1:2.16.0-7 all [installed,automatic]
+bash/testing,now 5.2.37-2+b5 amd64 [installed,automatic]
+binfmt-support/testing,now 2.2.2-7 amd64 [installed,automatic]
+binutils-common/testing,now 2.44-3 amd64 [installed,automatic]
+binutils-x86-64-linux-gnu/testing,now 2.44-3 amd64 [installed,automatic]
+binutils/testing,now 2.44-3 amd64 [installed,automatic]
+bsdutils/testing,now 1:2.41-5 amd64 [installed,automatic]
+build-essential/testing,now 12.12 amd64 [installed]
+bzip2-doc/testing,now 1.0.8-6 all [installed,automatic]
+bzip2/testing,now 1.0.8-6 amd64 [installed,automatic]
+ca-certificates/testing,now 20250419 all [installed,automatic]
+clang-19/testing,now 1:19.1.7-3+b1 amd64 [installed,automatic]
+clang-tools-19/testing,now 1:19.1.7-3+b1 amd64 [installed,automatic]
+clang-tools/testing,now 1:19.0-63 amd64 [installed]
+coreutils/testing,now 9.7-3 amd64 [installed,automatic]
+cpp-14-x86-64-linux-gnu/testing,now 14.2.0-19 amd64 [installed,automatic]
+cpp-14/testing,now 14.2.0-19 amd64 [installed,automatic]
+cpp-x86-64-linux-gnu/testing,now 4:14.2.0-1 amd64 [installed,automatic]
+cpp/testing,now 4:14.2.0-1 amd64 [installed,automatic]
+cppcheck/testing,now 2.17.1-2 amd64 [installed]
+ctk-update-icon-cache/unknown,now 3.25.6-1 amd64 [installed,automatic]
+curl/testing,now 8.14.1-2 amd64 [installed,automatic]
+dash/testing,now 0.5.12-12 amd64 [installed,automatic]
+dbus-bin/testing,now 1.16.2-2 amd64 [installed,automatic]
+dbus-daemon/testing,now 1.16.2-2 amd64 [installed,automatic]
+dbus-session-bus-common/testing,now 1.16.2-2 all [installed,automatic]
+dbus-system-bus-common/testing,now 1.16.2-2 all [installed,automatic]
+dbus-user-session/testing,now 1.16.2-2 amd64 [installed,automatic]
+dbus/testing,now 1.16.2-2 amd64 [installed,automatic]
+dconf-gsettings-backend/testing,now 0.40.0-5 amd64 [installed,automatic]
+dconf-service/testing,now 0.40.0-5 amd64 [installed,automatic]
+debconf/testing,now 1.5.91 all [installed,automatic]
+debian-archive-keyring/testing,now 2025.1 all [installed,automatic]
+debianutils/testing,now 5.23.2 amd64 [installed,automatic]
+diffutils/testing,now 1:3.10-4 amd64 [installed,automatic]
+dmsetup/testing,now 2:1.02.205-2 amd64 [installed,automatic]
+docbook-to-man/testing,now 1:2.0.0-48 amd64 [installed,automatic]
+docbook-xml/testing,now 4.5-13 all [installed]
+docbook-xsl/testing,now 1.79.2+dfsg-7 all [installed,automatic]
+docbook/testing,now 4.5-11 all [installed,automatic]
+dpkg-dev/testing,now 1.22.21 all [installed,automatic]
+dpkg/testing,now 1.22.21 amd64 [installed,automatic]
+expect/testing,now 5.45.4-4 amd64 [installed]
+fakeroot/testing,now 1.37.1.1-1 amd64 [installed,automatic]
+findutils/testing,now 4.10.0-3 amd64 [installed,automatic]
+fontconfig-config/testing,now 2.15.0-2.3 amd64 [installed,automatic]
+fontconfig/testing,now 2.15.0-2.3 amd64 [installed,automatic]
+fonts-dejavu-core/testing,now 2.37-8 all [installed,automatic]
+fonts-dejavu-mono/testing,now 2.37-8 all [installed,automatic]
+g++-14-x86-64-linux-gnu/testing,now 14.2.0-19 amd64 [installed,automatic]
+g++-14/testing,now 14.2.0-19 amd64 [installed,automatic]
+g++-x86-64-linux-gnu/testing,now 4:14.2.0-1 amd64 [installed,automatic]
+g++/testing,now 4:14.2.0-1 amd64 [installed,automatic]
+gcc-14-base/testing,now 14.2.0-19 amd64 [installed,automatic]
+gcc-14-x86-64-linux-gnu/testing,now 14.2.0-19 amd64 [installed,automatic]
+gcc-14/testing,now 14.2.0-19 amd64 [installed,automatic]
+gcc-x86-64-linux-gnu/testing,now 4:14.2.0-1 amd64 [installed,automatic]
+gcc/testing,now 4:14.2.0-1 amd64 [installed,automatic]
+gettext-base/testing,now 0.23.1-2 amd64 [installed,automatic]
+gettext/testing,now 0.23.1-2 amd64 [installed]
+gir1.2-atk-1.0/testing,now 2.56.2-1 amd64 [installed,automatic]
+gir1.2-atspi-2.0/testing,now 2.56.2-1 amd64 [installed,automatic]
+gir1.2-ctk-3.0/unknown,now 3.25.6-1 amd64 [installed]
+gir1.2-freedesktop-dev/testing,now 1.84.0-1 amd64 [installed,automatic]
+gir1.2-freedesktop/testing,now 1.84.0-1 amd64 [installed,automatic]
+gir1.2-gdkpixbuf-2.0/testing,now 2.42.12+dfsg-4 amd64 [installed,automatic]
+gir1.2-girepository-2.0-dev/testing,now 1.84.0-1 amd64 [installed,automatic]
+gir1.2-girepository-2.0/testing,now 1.84.0-1 amd64 [installed,automatic]
+gir1.2-glib-2.0-dev/testing,now 2.84.3-1 amd64 [installed,automatic]
+gir1.2-glib-2.0/testing,now 2.84.3-1 amd64 [installed,automatic]
+gir1.2-harfbuzz-0.0/testing,now 10.2.0-1+b1 amd64 [installed,automatic]
+gir1.2-pango-1.0/testing,now 1.56.3-1 amd64 [installed,automatic]
+girepository-tools/testing,now 2.84.3-1 amd64 [installed,automatic]
+git-man/testing,now 1:2.47.2-0.2 all [installed,automatic]
+git/testing,now 1:2.47.2-0.2 amd64 [installed]
+gobject-introspection-bin/testing,now 1.84.0-1 amd64 [installed,automatic]
+gobject-introspection/testing,now 1.84.0-1 amd64 [installed]
+grep/testing,now 3.11-4 amd64 [installed,automatic]
+gsettings-desktop-schemas/testing,now 48.0-1 all [installed,automatic]
+gtk-doc-tools/testing,now 1.34.0-2 all [installed]
+gzip/testing,now 1.13-1 amd64 [installed,automatic]
+hicolor-icon-theme/testing,now 0.18-2 all [installed,automatic]
+hostname/testing,now 3.25 amd64 [installed,automatic]
+icu-devtools/testing,now 76.1-4 amd64 [installed,automatic]
+init-system-helpers/testing,now 1.68 all [installed,automatic]
+krb5-locales/testing,now 1.21.3-5 all [installed,automatic]
+less/testing,now 668-1 amd64 [installed,automatic]
+lib32gcc-s1/testing,now 14.2.0-19 amd64 [installed,automatic]
+lib32stdc++6/testing,now 14.2.0-19 amd64 [installed,automatic]
+libacl1/testing,now 2.3.2-2+b1 amd64 [installed,automatic]
+libalgorithm-diff-perl/testing,now 1.201-1 all [installed,automatic]
+libalgorithm-diff-xs-perl/testing,now 0.04-9 amd64 [installed,automatic]
+libalgorithm-merge-perl/testing,now 0.08-5 all [installed,automatic]
+libapparmor1/testing,now 4.1.0-1 amd64 [installed,automatic]
+libapt-pkg7.0/testing,now 3.0.3 amd64 [installed,automatic]
+libasan8/testing,now 14.2.0-19 amd64 [installed,automatic]
+libatk-bridge2.0-0t64/testing,now 2.56.2-1 amd64 [installed,automatic]
+libatk-bridge2.0-dev/testing,now 2.56.2-1 amd64 [installed,automatic]
+libatk1.0-0t64/testing,now 2.56.2-1 amd64 [installed,automatic]
+libatk1.0-dev/testing,now 2.56.2-1 amd64 [installed,automatic]
+libatk1.0-doc/testing,now 2.56.2-1 all [installed,automatic]
+libatomic1/testing,now 14.2.0-19 amd64 [installed,automatic]
+libatspi2.0-0t64/testing,now 2.56.2-1 amd64 [installed,automatic]
+libatspi2.0-dev/testing,now 2.56.2-1 amd64 [installed,automatic]
+libattr1/testing,now 1:2.5.2-3 amd64 [installed,automatic]
+libaudit-common/testing,now 1:4.0.2-2 all [installed,automatic]
+libaudit1/testing,now 1:4.0.2-2+b2 amd64 [installed,automatic]
+libavahi-client3/testing,now 0.8-16 amd64 [installed,automatic]
+libavahi-common-data/testing,now 0.8-16 amd64 [installed,automatic]
+libavahi-common3/testing,now 0.8-16 amd64 [installed,automatic]
+libbinutils/testing,now 2.44-3 amd64 [installed,automatic]
+libblkid-dev/testing,now 2.41-5 amd64 [installed,automatic]
+libblkid1/testing,now 2.41-5 amd64 [installed,automatic]
+libboost-iostreams1.83.0/testing,now 1.83.0-4.2 amd64 [installed,automatic]
+libbrotli-dev/testing,now 1.1.0-2+b7 amd64 [installed,automatic]
+libbrotli1/testing,now 1.1.0-2+b7 amd64 [installed,automatic]
+libbsd0/testing,now 0.12.2-2 amd64 [installed,automatic]
+libbz2-1.0/testing,now 1.0.8-6 amd64 [installed,automatic]
+libbz2-dev/testing,now 1.0.8-6 amd64 [installed,automatic]
+libc-bin/testing,now 2.41-12 amd64 [installed,automatic]
+libc-dev-bin/testing,now 2.41-12 amd64 [installed,automatic]
+libc6-dev/testing,now 2.41-12 amd64 [installed,automatic]
+libc6-i386/testing,now 2.41-12 amd64 [installed,automatic]
+libc6/testing,now 2.41-12 amd64 [installed,automatic]
+libcairo-gobject2/testing,now 1.18.4-1+b1 amd64 [installed,automatic]
+libcairo-script-interpreter2/testing,now 1.18.4-1+b1 amd64 [installed,automatic]
+libcairo2-dev/testing,now 1.18.4-1+b1 amd64 [installed,automatic]
+libcairo2/testing,now 1.18.4-1+b1 amd64 [installed,automatic]
+libcap-dev/testing,now 1:2.75-10+b1 amd64 [installed,automatic]
+libcap-ng0/testing,now 0.8.5-4+b1 amd64 [installed,automatic]
+libcap2/testing,now 1:2.75-10+b1 amd64 [installed,automatic]
+libcbor0.10/testing,now 0.10.2-2 amd64 [installed,automatic]
+libcc1-0/testing,now 14.2.0-19 amd64 [installed,automatic]
+libclang-common-19-dev/testing,now 1:19.1.7-3+b1 amd64 [installed,automatic]
+libclang-cpp19/testing,now 1:19.1.7-3+b1 amd64 [installed,automatic]
+libclang-rt-19-dev/testing,now 1:19.1.7-3+b1 amd64 [installed,automatic]
+libclang1-19/testing,now 1:19.1.7-3+b1 amd64 [installed,automatic]
+libcolord2/testing,now 1.4.7-3 amd64 [installed,automatic]
+libcom-err2/testing,now 1.47.2-3+b3 amd64 [installed,automatic]
+libcrypt-dev/testing,now 1:4.4.38-1 amd64 [installed,automatic]
+libcrypt1/testing,now 1:4.4.38-1 amd64 [installed,automatic]
+libcryptsetup12/testing,now 2:2.7.5-2 amd64 [installed,automatic]
+libctf-nobfd0/testing,now 2.44-3 amd64 [installed,automatic]
+libctf0/testing,now 2.44-3 amd64 [installed,automatic]
+libctk-3-0/unknown,now 3.25.6-1 amd64 [installed]
+libctk-3-bin/unknown,now 3.25.6-1 amd64 [installed,automatic]
+libctk-3-common/unknown,now 3.25.6-1 all [installed]
+libctk-3-dev/unknown,now 3.25.6-1 amd64 [installed]
+libctk-3-doc/unknown,now 3.25.6-1 all [installed]
+libcups2t64/testing,now 2.4.10-3 amd64 [installed,automatic]
+libcurl3t64-gnutls/testing,now 8.14.1-2 amd64 [installed,automatic]
+libcurl4t64/testing,now 8.14.1-2 amd64 [installed,automatic]
+libcwidget4/testing,now 0.5.18-6+b2 amd64 [installed,automatic]
+libdatrie-dev/testing,now 0.2.13-3+b1 amd64 [installed,automatic]
+libdatrie1/testing,now 0.2.13-3+b1 amd64 [installed,automatic]
+libdav1d7/testing,now 1.5.1-1 amd64 [installed,automatic]
+libdb5.3t64/testing,now 5.3.28+dfsg2-9 amd64 [installed,automatic]
+libdbus-1-3/testing,now 1.16.2-2 amd64 [installed,automatic]
+libdbus-1-dev/testing,now 1.16.2-2 amd64 [installed,automatic]
+libdconf1/testing,now 0.40.0-5 amd64 [installed,automatic]
+libdebconfclient0/testing,now 0.280 amd64 [installed,automatic]
+libdeflate-dev/testing,now 1.23-2 amd64 [installed,automatic]
+libdeflate0/testing,now 1.23-2 amd64 [installed,automatic]
+libdevmapper1.02.1/testing,now 2:1.02.205-2 amd64 [installed,automatic]
+libdpkg-perl/testing,now 1.22.21 all [installed,automatic]
+libdrm-amdgpu1/testing,now 2.4.124-2 amd64 [installed,automatic]
+libdrm-common/testing,now 2.4.124-2 all [installed,automatic]
+libdrm-intel1/testing,now 2.4.124-2 amd64 [installed,automatic]
+libdrm2/testing,now 2.4.124-2 amd64 [installed,automatic]
+libedit2/testing,now 3.1-20250104-1 amd64 [installed,automatic]
+libegl-dev/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libegl-mesa0/testing,now 25.0.7-2 amd64 [installed,automatic]
+libegl1-mesa-dev/testing,now 25.0.7-2 amd64 [installed,automatic]
+libegl1/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libelf1t64/testing,now 0.192-4 amd64 [installed,automatic]
+libepoxy-dev/testing,now 1.5.10-2 amd64 [installed,automatic]
+libepoxy0/testing,now 1.5.10-2 amd64 [installed,automatic]
+liberror-perl/testing,now 0.17030-1 all [installed,automatic]
+libexpat1-dev/testing,now 2.7.1-2 amd64 [installed,automatic]
+libexpat1/testing,now 2.7.1-2 amd64 [installed,automatic]
+libfakeroot/testing,now 1.37.1.1-1 amd64 [installed,automatic]
+libffi-dev/testing,now 3.4.8-2 amd64 [installed,automatic]
+libffi8/testing,now 3.4.8-2 amd64 [installed,automatic]
+libfido2-1/testing,now 1.15.0-1+b1 amd64 [installed,automatic]
+libfile-fcntllock-perl/testing,now 0.22-4+b4 amd64 [installed,automatic]
+libfontconfig-dev/testing,now 2.15.0-2.3 amd64 [installed,automatic]
+libfontconfig1/testing,now 2.15.0-2.3 amd64 [installed,automatic]
+libfreetype-dev/testing,now 2.13.3+dfsg-1 amd64 [installed,automatic]
+libfreetype6/testing,now 2.13.3+dfsg-1 amd64 [installed,automatic]
+libfribidi-dev/testing,now 1.0.16-1 amd64 [installed,automatic]
+libfribidi0/testing,now 1.0.16-1 amd64 [installed,automatic]
+libgbm1/testing,now 25.0.7-2 amd64 [installed,automatic]
+libgc1/testing,now 1:8.2.8-1 amd64 [installed,automatic]
+libgcc-14-dev/testing,now 14.2.0-19 amd64 [installed,automatic]
+libgcc-s1/testing,now 14.2.0-19 amd64 [installed,automatic]
+libgcrypt20/testing,now 1.11.0-7 amd64 [installed,automatic]
+libgdbm-compat4t64/testing,now 1.24-2 amd64 [installed,automatic]
+libgdbm6t64/testing,now 1.24-2 amd64 [installed,automatic]
+libgdk-pixbuf-2.0-0/testing,now 2.42.12+dfsg-4 amd64 [installed,automatic]
+libgdk-pixbuf-2.0-dev/testing,now 2.42.12+dfsg-4 amd64 [installed,automatic]
+libgdk-pixbuf2.0-bin/testing,now 2.42.12+dfsg-4 amd64 [installed,automatic]
+libgdk-pixbuf2.0-common/testing,now 2.42.12+dfsg-4 all [installed,automatic]
+libgio-2.0-dev-bin/testing,now 2.84.3-1 amd64 [installed,automatic]
+libgio-2.0-dev/testing,now 2.84.3-1 amd64 [installed,automatic]
+libgirepository-1.0-1/testing,now 1.84.0-1 amd64 [installed,automatic]
+libgirepository-1.0-dev/testing,now 1.84.0-1 amd64 [installed,automatic]
+libgirepository-2.0-0/testing,now 2.84.3-1 amd64 [installed,automatic]
+libgirepository1.0-dev/testing,now 1.84.0-1 amd64 [installed]
+libgl-dev/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libgl1-mesa-dri/testing,now 25.0.7-2 amd64 [installed,automatic]
+libgl1/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libgles-dev/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libgles1/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libgles2/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libglib2.0-0t64/testing,now 2.84.3-1 amd64 [installed,automatic]
+libglib2.0-bin/testing,now 2.84.3-1 amd64 [installed,automatic]
+libglib2.0-data/testing,now 2.84.3-1 all [installed,automatic]
+libglib2.0-dev-bin/testing,now 2.84.3-1 amd64 [installed,automatic]
+libglib2.0-dev/testing,now 2.84.3-1 amd64 [installed]
+libglib2.0-doc/testing,now 2.84.3-1 all [installed]
+libglvnd-core-dev/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libglvnd-dev/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libglvnd0/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libglx-dev/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libglx-mesa0/testing,now 25.0.7-2 amd64 [installed,automatic]
+libglx0/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libgmp10/testing,now 2:6.3.0+dfsg-3 amd64 [installed,automatic]
+libgnutls30t64/testing,now 3.8.9-3 amd64 [installed,automatic]
+libgomp1/testing,now 14.2.0-19 amd64 [installed,automatic]
+libgpg-error-l10n/testing,now 1.51-4 all [installed,automatic]
+libgpg-error0/testing,now 1.51-4 amd64 [installed,automatic]
+libgpm2/testing,now 1.20.7-11+b2 amd64 [installed,automatic]
+libgprofng0/testing,now 2.44-3 amd64 [installed,automatic]
+libgraphite2-3/testing,now 1.3.14-2+b1 amd64 [installed,automatic]
+libgraphite2-dev/testing,now 1.3.14-2+b1 amd64 [installed,automatic]
+libgssapi-krb5-2/testing,now 1.21.3-5 amd64 [installed,automatic]
+libharfbuzz-cairo0/testing,now 10.2.0-1+b1 amd64 [installed,automatic]
+libharfbuzz-dev/testing,now 10.2.0-1+b1 amd64 [installed,automatic]
+libharfbuzz-gobject0/testing,now 10.2.0-1+b1 amd64 [installed,automatic]
+libharfbuzz-icu0/testing,now 10.2.0-1+b1 amd64 [installed,automatic]
+libharfbuzz-subset0/testing,now 10.2.0-1+b1 amd64 [installed,automatic]
+libharfbuzz0b/testing,now 10.2.0-1+b1 amd64 [installed,automatic]
+libhogweed6t64/testing,now 3.10.1-1 amd64 [installed,automatic]
+libhwasan0/testing,now 14.2.0-19 amd64 [installed,automatic]
+libice-dev/testing,now 2:1.1.1-1 amd64 [installed,automatic]
+libice6/testing,now 2:1.1.1-1 amd64 [installed,automatic]
+libicu-dev/testing,now 76.1-4 amd64 [installed,automatic]
+libicu76/testing,now 76.1-4 amd64 [installed,automatic]
+libidn2-0/testing,now 2.3.8-2 amd64 [installed,automatic]
+libisl23/testing,now 0.27-1 amd64 [installed,automatic]
+libitm1/testing,now 14.2.0-19 amd64 [installed,automatic]
+libjansson4/testing,now 2.14-2+b3 amd64 [installed,automatic]
+libjbig-dev/testing,now 2.1-6.1+b2 amd64 [installed,automatic]
+libjbig0/testing,now 2.1-6.1+b2 amd64 [installed,automatic]
+libjpeg-dev/testing,now 1:2.1.5-4 amd64 [installed,automatic]
+libjpeg62-turbo-dev/testing,now 1:2.1.5-4 amd64 [installed,automatic]
+libjpeg62-turbo/testing,now 1:2.1.5-4 amd64 [installed,automatic]
+libjson-c5/testing,now 0.18+ds-1 amd64 [installed,automatic]
+libk5crypto3/testing,now 1.21.3-5 amd64 [installed,automatic]
+libkeyutils1/testing,now 1.6.3-6 amd64 [installed,automatic]
+libkmod2/testing,now 34.2-2 amd64 [installed,automatic]
+libkrb5-3/testing,now 1.21.3-5 amd64 [installed,automatic]
+libkrb5support0/testing,now 1.21.3-5 amd64 [installed,automatic]
+liblastlog2-2/testing,now 2.41-5 amd64 [installed,automatic]
+liblcms2-2/testing,now 2.16-2 amd64 [installed,automatic]
+libldap-common/testing,now 2.6.10+dfsg-1 all [installed,automatic]
+libldap2/testing,now 2.6.10+dfsg-1 amd64 [installed,automatic]
+liblerc-dev/testing,now 4.0.0+ds-5 amd64 [installed,automatic]
+liblerc4/testing,now 4.0.0+ds-5 amd64 [installed,automatic]
+libllvm19/testing,now 1:19.1.7-3+b1 amd64 [installed,automatic]
+liblocale-gettext-perl/testing,now 1.07-7+b1 amd64 [installed,automatic]
+liblsan0/testing,now 14.2.0-19 amd64 [installed,automatic]
+liblz4-1/testing,now 1.10.0-4 amd64 [installed,automatic]
+liblzma-dev/testing,now 5.8.1-1 amd64 [installed,automatic]
+liblzma5/testing,now 5.8.1-1 amd64 [installed,automatic]
+liblzo2-2/testing,now 2.10-3+b1 amd64 [installed,automatic]
+libmd0/testing,now 1.1.0-2+b1 amd64 [installed,automatic]
+libmount-dev/testing,now 2.41-5 amd64 [installed,automatic]
+libmount1/testing,now 2.41-5 amd64 [installed,automatic]
+libmpc3/testing,now 1.3.1-1+b3 amd64 [installed,automatic]
+libmpfr6/testing,now 4.2.2-1 amd64 [installed,automatic]
+libncurses-dev/testing,now 6.5+20250216-2 amd64 [installed,automatic]
+libncurses6/testing,now 6.5+20250216-2 amd64 [installed,automatic]
+libncursesw6/testing,now 6.5+20250216-2 amd64 [installed,automatic]
+libnettle8t64/testing,now 3.10.1-1 amd64 [installed,automatic]
+libnghttp2-14/testing,now 1.64.0-1.1 amd64 [installed,automatic]
+libnghttp3-9/testing,now 1.8.0-1 amd64 [installed,automatic]
+libngtcp2-16/testing,now 1.11.0-1 amd64 [installed,automatic]
+libngtcp2-crypto-gnutls8/testing,now 1.11.0-1 amd64 [installed,automatic]
+libnss-systemd/testing,now 257.7-1 amd64 [installed,automatic]
+libobjc-14-dev/testing,now 14.2.0-19 amd64 [installed,automatic]
+libobjc4/testing,now 14.2.0-19 amd64 [installed,automatic]
+libopengl-dev/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libopengl0/testing,now 1.7.0-1+b2 amd64 [installed,automatic]
+libosp5/testing,now 1.5.2-15.2 amd64 [installed,automatic]
+libp11-kit0/testing,now 0.25.5-3 amd64 [installed,automatic]
+libpam-modules-bin/testing,now 1.7.0-5 amd64 [installed,automatic]
+libpam-modules/testing,now 1.7.0-5 amd64 [installed,automatic]
+libpam-runtime/testing,now 1.7.0-5 all [installed,automatic]
+libpam-systemd/testing,now 257.7-1 amd64 [installed,automatic]
+libpam0g/testing,now 1.7.0-5 amd64 [installed,automatic]
+libpango-1.0-0/testing,now 1.56.3-1 amd64 [installed,automatic]
+libpango1.0-dev/testing,now 1.56.3-1 amd64 [installed,automatic]
+libpango1.0-doc/testing,now 1.56.3-1 all [installed,automatic]
+libpangocairo-1.0-0/testing,now 1.56.3-1 amd64 [installed,automatic]
+libpangoft2-1.0-0/testing,now 1.56.3-1 amd64 [installed,automatic]
+libpangoxft-1.0-0/testing,now 1.56.3-1 amd64 [installed,automatic]
+libpciaccess0/testing,now 0.17-3+b3 amd64 [installed,automatic]
+libpcre2-16-0/testing,now 10.45-1 amd64 [installed,automatic]
+libpcre2-32-0/testing,now 10.45-1 amd64 [installed,automatic]
+libpcre2-8-0/testing,now 10.45-1 amd64 [installed,automatic]
+libpcre2-dev/testing,now 10.45-1 amd64 [installed,automatic]
+libpcre2-posix3/testing,now 10.45-1 amd64 [installed,automatic]
+libperl5.40/testing,now 5.40.1-6 amd64 [installed,automatic]
+libpfm4/testing,now 4.13.0+git99-gc5587f9-1 amd64 [installed,automatic]
+libpipeline1/testing,now 1.5.8-1 amd64 [installed,automatic]
+libpixman-1-0/testing,now 0.44.0-3 amd64 [installed,automatic]
+libpixman-1-dev/testing,now 0.44.0-3 amd64 [installed,automatic]
+libpkgconf3/testing,now 1.8.1-4 amd64 [installed,automatic]
+libpng-dev/testing,now 1.6.48-1 amd64 [installed,automatic]
+libpng-tools/testing,now 1.6.48-1 amd64 [installed,automatic]
+libpng16-16t64/testing,now 1.6.48-1 amd64 [installed,automatic]
+libproc2-0/testing,now 2:4.0.4-9 amd64 [installed,automatic]
+libpsl5t64/testing,now 0.21.2-1.1+b1 amd64 [installed,automatic]
+libpython3-stdlib/testing,now 3.13.5-1 amd64 [installed,automatic]
+libpython3.13-minimal/testing,now 3.13.5-2 amd64 [installed,automatic]
+libpython3.13-stdlib/testing,now 3.13.5-2 amd64 [installed,automatic]
+libquadmath0/testing,now 14.2.0-19 amd64 [installed,automatic]
+libreadline8t64/testing,now 8.2-6 amd64 [installed,automatic]
+librsvg2-2/testing,now 2.60.0+dfsg-1 amd64 [installed,automatic]
+librsvg2-common/testing,now 2.60.0+dfsg-1 amd64 [installed,automatic]
+librtmp1/testing,now 2.4+20151223.gitfa8646d.1-2+b5 amd64 [installed,automatic]
+libsasl2-2/testing,now 2.1.28+dfsg1-9 amd64 [installed,automatic]
+libsasl2-modules-db/testing,now 2.1.28+dfsg1-9 amd64 [installed,automatic]
+libsasl2-modules/testing,now 2.1.28+dfsg1-9 amd64 [installed,automatic]
+libseccomp2/testing,now 2.6.0-2 amd64 [installed,automatic]
+libselinux1-dev/testing,now 3.8.1-1 amd64 [installed,automatic]
+libselinux1/testing,now 3.8.1-1 amd64 [installed,automatic]
+libsemanage-common/testing,now 3.8.1-1 all [installed,automatic]
+libsemanage2/testing,now 3.8.1-1 amd64 [installed,automatic]
+libsensors-config/testing,now 1:3.6.2-2 all [installed,automatic]
+libsensors5/testing,now 1:3.6.2-2 amd64 [installed,automatic]
+libsepol-dev/testing,now 3.8.1-1 amd64 [installed,automatic]
+libsepol2/testing,now 3.8.1-1 amd64 [installed,automatic]
+libsframe1/testing,now 2.44-3 amd64 [installed,automatic]
+libsharpyuv-dev/testing,now 1.5.0-0.1 amd64 [installed,automatic]
+libsharpyuv0/testing,now 1.5.0-0.1 amd64 [installed,automatic]
+libsigc++-2.0-0v5/testing,now 2.12.1-3 amd64 [installed,automatic]
+libsm-dev/testing,now 2:1.2.6-1 amd64 [installed,automatic]
+libsm6/testing,now 2:1.2.6-1 amd64 [installed,automatic]
+libsmartcols1/testing,now 2.41-5 amd64 [installed,automatic]
+libsqlite3-0/testing,now 3.46.1-7 amd64 [installed,automatic]
+libssh2-1t64/testing,now 1.11.1-1 amd64 [installed,automatic]
+libssl3t64/testing,now 3.5.1-1 amd64 [installed,automatic]
+libstartup-notification0-dev/testing,now 0.12-8 amd64 [installed]
+libstartup-notification0/testing,now 0.12-8 amd64 [installed,automatic]
+libstdc++-14-dev/testing,now 14.2.0-19 amd64 [installed,automatic]
+libstdc++6/testing,now 14.2.0-19 amd64 [installed,automatic]
+libsysprof-capture-4-dev/testing,now 48.0-2 amd64 [installed,automatic]
+libsystemd-dev/testing,now 257.7-1 amd64 [installed,automatic]
+libsystemd-shared/testing,now 257.7-1 amd64 [installed,automatic]
+libsystemd0/testing,now 257.7-1 amd64 [installed,automatic]
+libtasn1-6/testing,now 4.20.0-2 amd64 [installed,automatic]
+libtcl8.6/testing,now 8.6.16+dfsg-1 amd64 [installed,automatic]
+libthai-data/testing,now 0.1.29-2 all [installed,automatic]
+libthai-dev/testing,now 0.1.29-2+b1 amd64 [installed,automatic]
+libthai0/testing,now 0.1.29-2+b1 amd64 [installed,automatic]
+libtiff-dev/testing,now 4.7.0-3 amd64 [installed,automatic]
+libtiff6/testing,now 4.7.0-3 amd64 [installed,automatic]
+libtiffxx6/testing,now 4.7.0-3 amd64 [installed,automatic]
+libtinfo6/testing,now 6.5+20250216-2 amd64 [installed,automatic]
+libtinyxml2-11/testing,now 11.0.0+dfsg-1+b1 amd64 [installed,automatic]
+libtsan2/testing,now 14.2.0-19 amd64 [installed,automatic]
+libubsan1/testing,now 14.2.0-19 amd64 [installed,automatic]
+libudev1/testing,now 257.7-1 amd64 [installed,automatic]
+libunistring5/testing,now 1.3-2 amd64 [installed,automatic]
+libuuid1/testing,now 2.41-5 amd64 [installed,automatic]
+libvulkan1/testing,now 1.4.309.0-1 amd64 [installed,automatic]
+libwayland-bin/testing,now 1.23.1-3 amd64 [installed,automatic]
+libwayland-client0/testing,now 1.23.1-3 amd64 [installed,automatic]
+libwayland-cursor0/testing,now 1.23.1-3 amd64 [installed,automatic]
+libwayland-dev/testing,now 1.23.1-3 amd64 [installed,automatic]
+libwayland-egl1/testing,now 1.23.1-3 amd64 [installed,automatic]
+libwayland-server0/testing,now 1.23.1-3 amd64 [installed,automatic]
+libwebp-dev/testing,now 1.5.0-0.1 amd64 [installed,automatic]
+libwebp7/testing,now 1.5.0-0.1 amd64 [installed,automatic]
+libwebpdecoder3/testing,now 1.5.0-0.1 amd64 [installed,automatic]
+libwebpdemux2/testing,now 1.5.0-0.1 amd64 [installed,automatic]
+libwebpmux3/testing,now 1.5.0-0.1 amd64 [installed,automatic]
+libx11-6/testing,now 2:1.8.12-1 amd64 [installed,automatic]
+libx11-data/testing,now 2:1.8.12-1 all [installed,automatic]
+libx11-dev/testing,now 2:1.8.12-1 amd64 [installed]
+libx11-xcb1/testing,now 2:1.8.12-1 amd64 [installed,automatic]
+libxapian30/testing,now 1.4.29-3 amd64 [installed,automatic]
+libxau-dev/testing,now 1:1.0.11-1 amd64 [installed,automatic]
+libxau6/testing,now 1:1.0.11-1 amd64 [installed,automatic]
+libxcb-dri3-0/testing,now 1.17.0-2+b1 amd64 [installed,automatic]
+libxcb-glx0/testing,now 1.17.0-2+b1 amd64 [installed,automatic]
+libxcb-present0/testing,now 1.17.0-2+b1 amd64 [installed,automatic]
+libxcb-randr0/testing,now 1.17.0-2+b1 amd64 [installed,automatic]
+libxcb-render0-dev/testing,now 1.17.0-2+b1 amd64 [installed,automatic]
+libxcb-render0/testing,now 1.17.0-2+b1 amd64 [installed,automatic]
+libxcb-shm0-dev/testing,now 1.17.0-2+b1 amd64 [installed,automatic]
+libxcb-shm0/testing,now 1.17.0-2+b1 amd64 [installed,automatic]
+libxcb-sync1/testing,now 1.17.0-2+b1 amd64 [installed,automatic]
+libxcb-util1/testing,now 0.4.1-1 amd64 [installed,automatic]
+libxcb-xfixes0/testing,now 1.17.0-2+b1 amd64 [installed,automatic]
+libxcb1-dev/testing,now 1.17.0-2+b1 amd64 [installed,automatic]
+libxcb1/testing,now 1.17.0-2+b1 amd64 [installed,automatic]
+libxcomposite-dev/testing,now 1:0.4.6-1 amd64 [installed,automatic]
+libxcomposite1/testing,now 1:0.4.6-1 amd64 [installed,automatic]
+libxcursor-dev/testing,now 1:1.2.3-1 amd64 [installed,automatic]
+libxcursor1/testing,now 1:1.2.3-1 amd64 [installed,automatic]
+libxdamage-dev/testing,now 1:1.1.6-1+b2 amd64 [installed,automatic]
+libxdamage1/testing,now 1:1.1.6-1+b2 amd64 [installed,automatic]
+libxdmcp-dev/testing,now 1:1.1.5-1 amd64 [installed,automatic]
+libxdmcp6/testing,now 1:1.1.5-1 amd64 [installed,automatic]
+libxext-dev/testing,now 2:1.3.4-1+b3 amd64 [installed]
+libxext6/testing,now 2:1.3.4-1+b3 amd64 [installed,automatic]
+libxfixes-dev/testing,now 1:6.0.0-2+b4 amd64 [installed,automatic]
+libxfixes3/testing,now 1:6.0.0-2+b4 amd64 [installed,automatic]
+libxft-dev/testing,now 2.3.6-1+b4 amd64 [installed,automatic]
+libxft2/testing,now 2.3.6-1+b4 amd64 [installed,automatic]
+libxi-dev/testing,now 2:1.8.2-1 amd64 [installed,automatic]
+libxi6/testing,now 2:1.8.2-1 amd64 [installed,automatic]
+libxinerama-dev/testing,now 2:1.1.4-3+b4 amd64 [installed,automatic]
+libxinerama1/testing,now 2:1.1.4-3+b4 amd64 [installed,automatic]
+libxkbcommon-dev/testing,now 1.7.0-2 amd64 [installed,automatic]
+libxkbcommon0/testing,now 1.7.0-2 amd64 [installed,automatic]
+libxml2-dev/testing,now 2.12.7+dfsg+really2.9.14-2.1 amd64 [installed,automatic]
+libxml2/testing,now 2.12.7+dfsg+really2.9.14-2.1 amd64 [installed,automatic]
+libxmuu1/testing,now 2:1.1.3-3+b4 amd64 [installed,automatic]
+libxrandr-dev/testing,now 2:1.5.4-1+b3 amd64 [installed,automatic]
+libxrandr2/testing,now 2:1.5.4-1+b3 amd64 [installed,automatic]
+libxrender-dev/testing,now 1:0.9.12-1 amd64 [installed,automatic]
+libxrender1/testing,now 1:0.9.12-1 amd64 [installed,automatic]
+libxres-dev/testing,now 2:1.2.1-1+b2 amd64 [installed]
+libxres1/testing,now 2:1.2.1-1+b2 amd64 [installed,automatic]
+libxshmfence1/testing,now 1.3.3-1 amd64 [installed,automatic]
+libxslt1.1/testing,now 1.1.35-1.2 amd64 [installed,automatic]
+libxtst-dev/testing,now 2:1.2.5-1 amd64 [installed,automatic]
+libxtst6/testing,now 2:1.2.5-1 amd64 [installed,automatic]
+libxxf86vm1/testing,now 1:1.1.4-1+b4 amd64 [installed,automatic]
+libxxhash0/testing,now 0.8.3-2 amd64 [installed,automatic]
+libyaml-0-2/testing,now 0.2.5-2 amd64 [installed,automatic]
+libz3-4/testing,now 4.13.3-1 amd64 [installed,automatic]
+libz3-dev/testing,now 4.13.3-1 amd64 [installed,automatic]
+libzstd-dev/testing,now 1.5.7+dfsg-1 amd64 [installed,automatic]
+libzstd1/testing,now 1.5.7+dfsg-1 amd64 [installed,automatic]
+linux-libc-dev/testing,now 6.12.38-1 all [installed,automatic]
+linux-sysctl-defaults/testing,now 4.12 all [installed,automatic]
+llvm-19-dev/testing,now 1:19.1.7-3+b1 amd64 [installed,automatic]
+llvm-19-linker-tools/testing,now 1:19.1.7-3+b1 amd64 [installed,automatic]
+llvm-19-runtime/testing,now 1:19.1.7-3+b1 amd64 [installed,automatic]
+llvm-19-tools/testing,now 1:19.1.7-3+b1 amd64 [installed,automatic]
+llvm-19/testing,now 1:19.1.7-3+b1 amd64 [installed,automatic]
+login.defs/testing,now 1:4.17.4-2 all [installed,automatic]
+login/testing,now 1:4.16.0-2+really2.41-5 amd64 [installed,automatic]
+make/testing,now 4.4.1-2 amd64 [installed,automatic]
+manpages-dev/testing,now 6.9.1-1 all [installed,automatic]
+manpages/testing,now 6.9.1-1 all [installed,automatic]
+mawk/testing,now 1.3.4.20250131-1 amd64 [installed,automatic]
+media-types/testing,now 13.0.0 all [installed,automatic]
+mesa-libgallium/testing,now 25.0.7-2 amd64 [installed,automatic]
+mesa-vulkan-drivers/testing,now 25.0.7-2 amd64 [installed,automatic]
+meson/testing,now 1.7.0-1 all [installed]
+mount/testing,now 2.41-5 amd64 [installed,automatic]
+native-architecture/testing,now 0.2.6 all [installed,automatic]
+ncurses-base/testing,now 6.5+20250216-2 all [installed,automatic]
+ncurses-bin/testing,now 6.5+20250216-2 amd64 [installed,automatic]
+netbase/testing,now 6.5 all [installed,automatic]
+ninja-build/testing,now 1.12.1-1 amd64 [installed]
+opensp/testing,now 1.5.2-15.2 amd64 [installed,automatic]
+openssh-client/testing,now 1:10.0p1-7 amd64 [installed,automatic]
+openssl-provider-legacy/testing,now 3.5.1-1 amd64 [installed,automatic]
+openssl/testing,now 3.5.1-1 amd64 [installed,automatic]
+pango1.0-tools/testing,now 1.56.3-1 amd64 [installed,automatic]
+passwd/testing,now 1:4.17.4-2 amd64 [installed,automatic]
+patch/testing,now 2.8-2 amd64 [installed,automatic]
+perl-base/testing,now 5.40.1-6 amd64 [installed,automatic]
+perl-modules-5.40/testing,now 5.40.1-6 all [installed,automatic]
+perl/testing,now 5.40.1-6 amd64 [installed,automatic]
+pkgconf-bin/testing,now 1.8.1-4 amd64 [installed,automatic]
+pkgconf/testing,now 1.8.1-4 amd64 [installed,automatic]
+procps/testing,now 2:4.0.4-9 amd64 [installed,automatic]
+psmisc/testing,now 23.7-2 amd64 [installed,automatic]
+publicsuffix/testing,now 20250328.1952-0.1 all [installed,automatic]
+python3-autocommand/testing,now 2.2.2-3 all [installed,automatic]
+python3-bs4/testing,now 4.13.4-2 all [installed,automatic]
+python3-chardet/testing,now 5.2.0+dfsg-2 all [installed,automatic]
+python3-cssselect/testing,now 1.3.0-1 all [installed,automatic]
+python3-html5lib/testing,now 1.2-2 all [installed,automatic]
+python3-inflect/testing,now 7.3.1-2 all [installed,automatic]
+python3-jaraco.context/testing,now 6.0.1-1 all [installed,automatic]
+python3-jaraco.functools/testing,now 4.1.0-1 all [installed,automatic]
+python3-jaraco.text/testing,now 4.0.0-1 all [installed,automatic]
+python3-lxml/testing,now 5.4.0-1 amd64 [installed,automatic]
+python3-mako/testing,now 1.3.9-1 all [installed,automatic]
+python3-markdown/testing,now 3.7-2 all [installed,automatic]
+python3-markupsafe/testing,now 2.1.5-1+b3 amd64 [installed,automatic]
+python3-minimal/testing,now 3.13.5-1 amd64 [installed,automatic]
+python3-more-itertools/testing,now 10.7.0-1 all [installed,automatic]
+python3-packaging/testing,now 25.0-1 all [installed,automatic]
+python3-pkg-resources/testing,now 78.1.1-0.1 all [installed,automatic]
+python3-pygments/testing,now 2.18.0+dfsg-2 all [installed,automatic]
+python3-setuptools/testing,now 78.1.1-0.1 all [installed,automatic]
+python3-soupsieve/testing,now 2.7-1 all [installed,automatic]
+python3-typeguard/testing,now 4.4.2-1 all [installed,automatic]
+python3-typing-extensions/testing,now 4.13.2-1 all [installed,automatic]
+python3-webencodings/testing,now 0.5.1-5 all [installed,automatic]
+python3-yaml/testing,now 6.0.2-1+b2 amd64 [installed,automatic]
+python3-zipp/testing,now 3.21.0-1 all [installed,automatic]
+python3.13-minimal/testing,now 3.13.5-2 amd64 [installed,automatic]
+python3.13/testing,now 3.13.5-2 amd64 [installed,automatic]
+python3/testing,now 3.13.5-1 amd64 [installed,automatic]
+readline-common/testing,now 8.2-6 all [installed,automatic]
+rpcsvc-proto/testing,now 1.4.3-1 amd64 [installed,automatic]
+sed/testing,now 4.9-2 amd64 [installed,automatic]
+sensible-utils/testing,now 0.0.25 all [installed,automatic]
+sgml-base/testing,now 1.31+nmu1 all [installed,automatic]
+sgml-data/testing,now 2.0.11+nmu1 all [installed,automatic]
+shared-mime-info/testing,now 2.4-5+b2 amd64 [installed,automatic]
+sq/testing,now 1.3.1-2+b1 amd64 [installed,automatic]
+sqv/testing,now 1.3.0-3 amd64 [installed,automatic]
+systemd-cryptsetup/testing,now 257.7-1 amd64 [installed,automatic]
+systemd-sysv/testing,now 257.7-1 amd64 [installed,automatic]
+systemd-timesyncd/testing,now 257.7-1 amd64 [installed,automatic]
+systemd/testing,now 257.7-1 amd64 [installed,automatic]
+sysvinit-utils/testing,now 3.14-4 amd64 [installed,automatic]
+tar/testing,now 1.35+dfsg-3.1 amd64 [installed,automatic]
+tcl-expect/testing,now 5.45.4-4 amd64 [installed,automatic]
+tcl8.6/testing,now 8.6.16+dfsg-1 amd64 [installed,automatic]
+tzdata/testing,now 2025b-4 all [installed,automatic]
+util-linux/testing,now 2.41-5 amd64 [installed,automatic]
+uuid-dev/testing,now 2.41-5 amd64 [installed,automatic]
+wayland-protocols/testing,now 1.44-1 all [installed,automatic]
+x11-common/testing,now 1:7.7+24 all [installed,automatic]
+x11proto-dev/testing,now 2024.1-1 all [installed,automatic]
+xauth/testing,now 1:1.1.2-1.1 amd64 [installed,automatic]
+xdg-user-dirs/testing,now 0.18-2 amd64 [installed,automatic]
+xkb-data/testing,now 2.42-1 all [installed,automatic]
+xml-core/testing,now 0.19 all [installed,automatic]
+xorg-sgml-doctools/testing,now 1:1.11-1.1 all [installed,automatic]
+xsltproc/testing,now 1.1.35-1.2 amd64 [installed,automatic]
+xtrans-dev/testing,now 1.4.0-1 all [installed,automatic]
+xz-utils/testing,now 5.8.1-1 amd64 [installed,automatic]
+zlib1g-dev/testing,now 1:1.3.dfsg+really1.3.1-1+b1 amd64 [installed,automatic]
+zlib1g/testing,now 1:1.3.dfsg+really1.3.1-1+b1 amd64 [installed,automatic]
+Errors detected in the build 0
+Warnings detected in the logs 89
+cppcheck defects detected in the logs 52
+TOTAL warnings detected in the logs 141

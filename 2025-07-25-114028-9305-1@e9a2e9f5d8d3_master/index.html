@@ -1,0 +1,203 @@
+<html>
+<head>
+<title>libvnck (clang-tools 1:19.0-63) - scan-build results</title>
+<link type="text/css" rel="stylesheet" href="scanview.css"/>
+<script src="sorttable.js"></script>
+<script language='javascript' type="text/javascript">
+function SetDisplay(RowClass, DisplayVal)
+{
+  var Rows = document.getElementsByTagName("tr");
+  for ( var i = 0 ; i < Rows.length; ++i ) {
+    if (Rows[i].className == RowClass) {
+      Rows[i].style.display = DisplayVal;
+    }
+  }
+}
+
+function CopyCheckedStateToCheckButtons(SummaryCheckButton) {
+  var Inputs = document.getElementsByTagName("input");
+  for ( var i = 0 ; i < Inputs.length; ++i ) {
+    if (Inputs[i].type == "checkbox") {
+      if(Inputs[i] != SummaryCheckButton) {
+        Inputs[i].checked = SummaryCheckButton.checked;
+        Inputs[i].onclick();
+      }
+    }
+  }
+}
+
+function returnObjById( id ) {
+    if (document.getElementById)
+        var returnVar = document.getElementById(id);
+    else if (document.all)
+        var returnVar = document.all[id];
+    else if (document.layers)
+        var returnVar = document.layers[id];
+    return returnVar;
+}
+
+var NumUnchecked = 0;
+
+function ToggleDisplay(CheckButton, ClassName) {
+  if (CheckButton.checked) {
+    SetDisplay(ClassName, "");
+    if (--NumUnchecked == 0) {
+      returnObjById("AllBugsCheck").checked = true;
+    }
+  }
+  else {
+    SetDisplay(ClassName, "none");
+    NumUnchecked++;
+    returnObjById("AllBugsCheck").checked = false;
+  }
+}
+</script>
+<!-- SUMMARYENDHEAD -->
+</head>
+<body>
+<h1>libvnck (clang-tools 1:19.0-63) - scan-build results</h1>
+
+<table>
+<tr><th>User:</th><td>root@a5199fcd1375</td></tr>
+<tr><th>Working Directory:</th><td>/rootdir</td></tr>
+<tr><th>Command Line:</th><td>ninja -C _build</td></tr>
+<tr><th>Clang Version:</th><td>Debian clang version 19.1.7 (3+b1)
+</td></tr>
+<tr><th>Date:</th><td>Fri Jul 25 11:40:28 2025</td></tr>
+</table>
+<h2>Bug Summary</h2><table>
+<thead><tr><td>Bug Type</td><td>Quantity</td><td class="sorttable_nosort">Display?</td></tr></thead>
+<tr style="font-weight:bold"><td class="SUMM_DESC">All Bugs</td><td class="Q">31</td><td><center><input type="checkbox" id="AllBugsCheck" onClick="CopyCheckedStateToCheckButtons(this);" checked/></center></td></tr>
+<tr><th>Logic error</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Cast from non-struct type to struct type</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_cast_from_non-struct_type_to_struct_type');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Dereference of null pointer</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_dereference_of_null_pointer');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Division by zero</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_division_by_zero');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Result of operation is garbage or undefined</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_result_of_operation_is_garbage_or_undefined');" checked/></center></td></tr>
+<tr><th>Stream handling error</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Invalid stream state</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_stream_handling_error_invalid_stream_state');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Stream already in EOF</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_stream_handling_error_stream_already_in_eof');" checked/></center></td></tr>
+<tr><th>Unused code</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Dead assignment</td><td class="Q">5</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_unused_code_dead_assignment');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Dead nested assignment</td><td class="Q">2</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_unused_code_dead_nested_assignment');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Unreachable code</td><td class="Q">18</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_unused_code_unreachable_code');" checked/></center></td></tr>
+</table>
+
+<h2>Filter Results by File</h2>
+<input
+  type="text"
+  id="file_input"
+  onkeyup="searchFiles()"
+  placeholder="Enter a path or filename"
+  title="Enter a path or filename">
+
+<h2>Reports</h2>
+
+<table id="reports_table" class="sortable" style="table-layout:automatic">
+<thead><tr>
+  <td>Bug Group</td>
+  <td class="sorttable_sorted">Bug Type<span id="sorttable_sortfwdind">&nbsp;&#x25BE;</span></td>
+  <td>File</td>
+  <td>Function/Method</td>
+  <td class="Q">Line</td>
+  <td class="Q">Path Length</td>
+  <td class="sorttable_nosort"></td>
+  <!-- REPORTBUGCOL -->
+</tr></thead>
+<tbody>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libvnck/xutils.c</td><td class="DESC">timestamp_predicate</td><td class="Q">2614</td><td class="Q">1</td><td><a href="report-de3178.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-de3178.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>libvnck/tasklist.c</td><td class="DESC">vnck_tasklist_size_allocate</td><td class="Q">1669</td><td class="Q">1</td><td><a href="report-10b16b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-10b16b.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>libvnck/screen.c</td><td class="DESC">vnck_screen_calc_workspace_layout</td><td class="Q">1087</td><td class="Q">1</td><td><a href="report-233c80.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-233c80.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>libvnck/tasklist.c</td><td class="DESC">vnck_task_compare</td><td class="Q">4164</td><td class="Q">1</td><td><a href="report-6ea880.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6ea880.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>libvnck/screen.c</td><td class="DESC">vnck_screen_calc_workspace_layout</td><td class="Q">1086</td><td class="Q">1</td><td><a href="report-8da74e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8da74e.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>libvnck/window.c</td><td class="DESC">update_wintype</td><td class="Q">3071</td><td class="Q">1</td><td><a href="report-e0dd32.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e0dd32.html" -->
+</tr>
+<tr class="bt_unused_code_dead_nested_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead nested assignment</td><td>libvnck/tasklist.c</td><td class="DESC">vnck_tasklist_update_lists</td><td class="Q">2311</td><td class="Q">1</td><td><a href="report-34cebc.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-34cebc.html" -->
+</tr>
+<tr class="bt_unused_code_dead_nested_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead nested assignment</td><td>libvnck/tasklist.c</td><td class="DESC">vnck_task_compare</td><td class="Q">4164</td><td class="Q">1</td><td><a href="report-422426.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-422426.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>libvnck/tasklist.c</td><td class="DESC">vnck_tasklist_size_allocate</td><td class="Q">1599</td><td class="Q">19</td><td><a href="report-1d12a0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1d12a0.html" -->
+</tr>
+<tr class="bt_logic_error_division_by_zero"><td class="DESC">Logic error</td><td class="DESC">Division by zero</td><td>libvnck/tasklist.c</td><td class="DESC">vnck_tasklist_size_allocate</td><td class="Q">1677</td><td class="Q">19</td><td><a href="report-3715fb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3715fb.html" -->
+</tr>
+<tr class="bt_stream_handling_error_invalid_stream_state"><td class="DESC">Stream handling error</td><td class="DESC">Invalid stream state</td><td>_build/tmp-introspectko7km8wx/Vnck-3.0.c</td><td class="DESC">read_line</td><td class="Q">89</td><td class="Q">33</td><td><a href="report-5d4bc8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5d4bc8.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>libvnck/workspace-accessible.c</td><td class="DESC">vnck_workspace_accessible_contains</td><td class="Q">151</td><td class="Q">13</td><td><a href="report-40defa.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-40defa.html" -->
+</tr>
+<tr class="bt_stream_handling_error_stream_already_in_eof"><td class="DESC">Stream handling error</td><td class="DESC">Stream already in EOF</td><td>_build/tmp-introspectko7km8wx/Vnck-3.0.c</td><td class="DESC">read_line</td><td class="Q">89</td><td class="Q">33</td><td><a href="report-9361af.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9361af.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/vnckprop.c</td><td class="DESC">main</td><td class="Q">1991</td><td class="Q">1</td><td><a href="report-0950ac.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0950ac.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/vnckprop.c</td><td class="DESC">main</td><td class="Q">2040</td><td class="Q">1</td><td><a href="report-1e2ccc.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1e2ccc.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/pager.c</td><td class="DESC">vnck_pager_scroll_event</td><td class="Q">2075</td><td class="Q">1</td><td><a href="report-2f6b17.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2f6b17.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/test-pager.c</td><td class="DESC">main</td><td class="Q">105</td><td class="Q">1</td><td><a href="report-40a89a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-40a89a.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/vnckprop.c</td><td class="DESC">main</td><td class="Q">2057</td><td class="Q">1</td><td><a href="report-46f2eb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-46f2eb.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/test-pager.c</td><td class="DESC">main</td><td class="Q">95</td><td class="Q">1</td><td><a href="report-4772e4.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4772e4.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/test-pager.c</td><td class="DESC">main</td><td class="Q">100</td><td class="Q">1</td><td><a href="report-62a91a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-62a91a.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/vnckprop.c</td><td class="DESC">main</td><td class="Q">1938</td><td class="Q">1</td><td><a href="report-7a3ede.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7a3ede.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/test-tasklist.c</td><td class="DESC">main</td><td class="Q">154</td><td class="Q">1</td><td><a href="report-7d6bad.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7d6bad.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/vnckprop.c</td><td class="DESC">main</td><td class="Q">2063</td><td class="Q">1</td><td><a href="report-7ee073.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7ee073.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/vnckprop.c</td><td class="DESC">main</td><td class="Q">1954</td><td class="Q">1</td><td><a href="report-937584.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-937584.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/test-tasklist.c</td><td class="DESC">main</td><td class="Q">96</td><td class="Q">1</td><td><a href="report-9fce4f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9fce4f.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/vnckprop.c</td><td class="DESC">main</td><td class="Q">2015</td><td class="Q">1</td><td><a href="report-a57a9c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a57a9c.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/vnckprop.c</td><td class="DESC">main</td><td class="Q">1942</td><td class="Q">1</td><td><a href="report-c28944.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c28944.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/test-tasklist.c</td><td class="DESC">main</td><td class="Q">71</td><td class="Q">1</td><td><a href="report-e04fbb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e04fbb.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/test-tasklist.c</td><td class="DESC">main</td><td class="Q">117</td><td class="Q">1</td><td><a href="report-ea1da3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ea1da3.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>_build/tmp-introspectko7km8wx/Vnck-3.0.c</td><td class="DESC">value_to_string</td><td class="Q">239</td><td class="Q">1</td><td><a href="report-fb6164.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fb6164.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libvnck/test-tasklist.c</td><td class="DESC">main</td><td class="Q">110</td><td class="Q">1</td><td><a href="report-fdc93a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fdc93a.html" -->
+</tr>
+</tbody>
+</table>
+
+</body></html>
