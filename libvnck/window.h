@@ -379,8 +379,8 @@ void     vnck_window_activate_transient (VnckWindow *window,
                                          guint32     timestamp);
 gboolean vnck_window_transient_is_most_recently_activated (VnckWindow *window);
 
-GdkPixbuf* vnck_window_get_icon      (VnckWindow *window);
-GdkPixbuf* vnck_window_get_mini_icon (VnckWindow *window);
+CdkPixbuf* vnck_window_get_icon      (VnckWindow *window);
+CdkPixbuf* vnck_window_get_mini_icon (VnckWindow *window);
 
 gboolean vnck_window_get_icon_is_fallback (VnckWindow *window);
 

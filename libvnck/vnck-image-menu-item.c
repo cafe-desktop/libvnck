@@ -213,7 +213,7 @@ vnck_image_menu_item_new_with_label (const gchar *label)
 
 void
 vnck_image_menu_item_set_image_from_icon_pixbuf (VnckImageMenuItem *item,
-                                                 GdkPixbuf         *pixbuf)
+                                                 CdkPixbuf         *pixbuf)
 {
   ctk_image_set_from_pixbuf (CTK_IMAGE (item->image), pixbuf);
   ctk_widget_show (item->image);

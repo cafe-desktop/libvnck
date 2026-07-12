@@ -121,10 +121,10 @@ vnck_selector_get_screen (VnckSelector *selector)
   return vnck_screen_get (cdk_x11_screen_get_screen_number (screen));
 }
 
-static GdkPixbuf *
+static CdkPixbuf *
 vnck_selector_get_default_window_icon (void)
 {
-  static GdkPixbuf *retval = NULL;
+  static CdkPixbuf *retval = NULL;
 
   if (retval)
     return retval;
@@ -136,12 +136,12 @@ vnck_selector_get_default_window_icon (void)
   return retval;
 }
 
-static GdkPixbuf *
-vnck_selector_dimm_icon (GdkPixbuf *pixbuf)
+static CdkPixbuf *
+vnck_selector_dimm_icon (CdkPixbuf *pixbuf)
 {
   int x, y, pixel_stride, row_stride;
   int w, h;
-  GdkPixbuf *dimmed;
+  CdkPixbuf *dimmed;
   guchar *row = NULL;
   guchar *pixels = NULL;
 
@@ -176,7 +176,7 @@ void
 _vnck_selector_set_window_icon (CtkWidget  *image,
                                 VnckWindow *window)
 {
-  GdkPixbuf *pixbuf, *freeme, *freeme2;
+  CdkPixbuf *pixbuf, *freeme, *freeme2;
   int width, height;
   int icon_size = -1;
 
