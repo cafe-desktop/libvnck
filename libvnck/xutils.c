@@ -1770,12 +1770,12 @@ TRAP_POP:
   return surface;
 }
 
-GdkPixbuf*
+CdkPixbuf*
 _vnck_cdk_pixbuf_get_from_pixmap (Screen *screen,
                                   Pixmap  xpixmap)
 {
   cairo_surface_t *surface;
-  GdkPixbuf *retval;
+  CdkPixbuf *retval;
 
   surface = _vnck_cairo_surface_get_from_pixmap (screen, xpixmap);
 
@@ -1796,16 +1796,16 @@ static gboolean
 try_pixmap_and_mask (Screen     *screen,
                      Pixmap      src_pixmap,
                      Pixmap      src_mask,
-                     GdkPixbuf **iconp,
+                     CdkPixbuf **iconp,
                      int         ideal_width,
                      int         ideal_height,
-                     GdkPixbuf **mini_iconp,
+                     CdkPixbuf **mini_iconp,
                      int         ideal_mini_width,
                      int         ideal_mini_height)
 {
   cairo_surface_t *surface, *mask_surface, *image;
   CdkDisplay *cdk_display;
-  GdkPixbuf *unscaled;
+  CdkPixbuf *unscaled;
   int width, height;
   cairo_t *cr;
 
@@ -1967,8 +1967,8 @@ struct _VnckIconCache
   IconOrigin origin;
   Pixmap prev_pixmap;
   Pixmap prev_mask;
-  GdkPixbuf *icon;
-  GdkPixbuf *mini_icon;
+  CdkPixbuf *icon;
+  CdkPixbuf *mini_icon;
   int ideal_width;
   int ideal_height;
   int ideal_mini_width;
@@ -2085,8 +2085,8 @@ _vnck_icon_cache_get_is_fallback (VnckIconCache *icon_cache)
 static void
 replace_cache (VnckIconCache *icon_cache,
                IconOrigin     origin,
-               GdkPixbuf     *new_icon,
-               GdkPixbuf     *new_mini_icon)
+               CdkPixbuf     *new_icon,
+               CdkPixbuf     *new_mini_icon)
 {
   clear_icon_cache (icon_cache, FALSE);
 
@@ -2103,15 +2103,15 @@ replace_cache (VnckIconCache *icon_cache,
   icon_cache->mini_icon = new_mini_icon;
 }
 
-static GdkPixbuf*
+static CdkPixbuf*
 scaled_from_pixdata (guchar *pixdata,
                      int     w,
                      int     h,
                      int     new_w,
                      int     new_h)
 {
-  GdkPixbuf *src;
-  GdkPixbuf *dest;
+  CdkPixbuf *src;
+  CdkPixbuf *dest;
 
   src = cdk_pixbuf_new_from_data (pixdata,
                                   CDK_COLORSPACE_RGB,
@@ -2126,7 +2126,7 @@ scaled_from_pixdata (guchar *pixdata,
 
   if (w != h)
     {
-      GdkPixbuf *tmp;
+      CdkPixbuf *tmp;
       int size;
 
       size = MAX (w, h);
@@ -2163,10 +2163,10 @@ gboolean
 _vnck_read_icons (VnckScreen     *screen,
                   Window          xwindow,
                   VnckIconCache  *icon_cache,
-                  GdkPixbuf     **iconp,
+                  CdkPixbuf     **iconp,
                   int             ideal_width,
                   int             ideal_height,
-                  GdkPixbuf     **mini_iconp,
+                  CdkPixbuf     **mini_iconp,
                   int             ideal_mini_width,
                   int             ideal_mini_height)
 {
@@ -2338,11 +2338,11 @@ _vnck_read_icons (VnckScreen     *screen,
   return FALSE;
 }
 
-static GdkPixbuf*
+static CdkPixbuf*
 default_icon_at_size (int width,
                       int height)
 {
-  GdkPixbuf *base;
+  CdkPixbuf *base;
 
   base = cdk_pixbuf_new_from_resource ("/org/gnome/libvnck/default_icon.png", NULL);
 
@@ -2356,7 +2356,7 @@ default_icon_at_size (int width,
     }
   else
     {
-      GdkPixbuf *scaled;
+      CdkPixbuf *scaled;
 
       scaled = cdk_pixbuf_scale_simple (base,
                                         width > 0 ? width :
@@ -2372,10 +2372,10 @@ default_icon_at_size (int width,
 }
 
 void
-_vnck_get_fallback_icons (GdkPixbuf **iconp,
+_vnck_get_fallback_icons (CdkPixbuf **iconp,
                           int         ideal_width,
                           int         ideal_height,
-                          GdkPixbuf **mini_iconp,
+                          CdkPixbuf **mini_iconp,
                           int         ideal_mini_width,
                           int         ideal_mini_height)
 {
