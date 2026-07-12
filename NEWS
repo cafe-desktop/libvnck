@@ -1,15 +1,24 @@
-==============
-Version 3.41.0
-==============
+### libvnck 3.42.0
+
+  * vnck-urgency-monitor: don't hide deprecations
+  * ci: add debian stable build
+  * port from GdkPixbuf to CdkPixbuf
+  * Fix [-Wheader-guard] warnings
+  * vnckprop:
+    - Fix cppcheck [uninitvar] warning
+    - make sure 'prop' variable is freed in 'wm_state_set' function
+  * update translations
+
+
+### libvnck 3.41.0
 
   * ci: some improvements
   * add G_GNUC_UNUSED in unused parameters
   * reduce the scope of some variables
   * update translations
 
-==============
-Version 3.40.0
-==============
+
+### libvnck 3.40.0
 
   * libwnck 3.36.0 fork
   * ci: enable Github Actions
