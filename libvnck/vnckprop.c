@@ -1695,11 +1695,12 @@ wm_state_set (Display *display,
                                False, wm_state, &ret_type, &ret_format, &nitems,
                                &bytes_after, (gpointer) &prop);
   err = cdk_x11_display_error_trap_pop (cdk_display);
+
+  XFree (prop);
+
   if (err != Success ||
       result != Success)
     return FALSE;
-
-  XFree (prop);
 
   if (ret_type != wm_state)
     return FALSE;
