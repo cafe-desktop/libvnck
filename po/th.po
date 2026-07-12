@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck 3.41.0\n"
+"Project-Id-Version: libvnck 3.42.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-25 10:55+0100\n"
+"POT-Creation-Date: 2026-07-12 02:58+0200\n"
 "PO-Revision-Date: 2013-03-13 19:49+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -1112,7 +1112,7 @@ msgstr "ไม่มีปฏิบัติการที่ทำได้"
 msgid "Possible Actions: %s\n"
 msgstr "ปฏิบัติการที่ทำได้: %s\n"
 
-#: libvnck/vnckprop.c:1876
+#: libvnck/vnckprop.c:1877
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1124,69 +1124,69 @@ msgstr ""
 "สำหรับข้อมูลเกี่ยวกับข้อกำหนดเหล่านี้ โปรดอ่าน:\n"
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: libvnck/vnckprop.c:1886
+#: libvnck/vnckprop.c:1887
 msgid "Options to list windows or workspaces"
 msgstr "ตัวเลือกสำหรับแสดงรายการหน้าต่างหรือพื้นที่ทำงาน"
 
-#: libvnck/vnckprop.c:1887
+#: libvnck/vnckprop.c:1888
 msgid "Show options to list windows or workspaces"
 msgstr "แสดงตัวเลือกสำหรับการแสดงรายการหน้าต่างหรือพื้นที่ทำงาน"
 
-#: libvnck/vnckprop.c:1894
+#: libvnck/vnckprop.c:1895
 msgid "Options to modify properties of a window"
 msgstr "ตัวเลือกสำหรับแก้ไขคุณสมบัติของหน้าต่าง"
 
-#: libvnck/vnckprop.c:1895
+#: libvnck/vnckprop.c:1896
 msgid "Show options to modify properties of a window"
 msgstr "แสดงตัวเลือกสำหรับแก้ไขคุณสมบัติของหน้าต่าง"
 
-#: libvnck/vnckprop.c:1902
+#: libvnck/vnckprop.c:1903
 msgid "Options to modify properties of a workspace"
 msgstr "ตัวเลือกสำหรับแก้ไขคุณสมบัติของพื้นที่ทำงาน"
 
-#: libvnck/vnckprop.c:1903
+#: libvnck/vnckprop.c:1904
 msgid "Show options to modify properties of a workspace"
 msgstr "แสดงตัวเลือกสำหรับแก้ไขคุณสมบัติของพื้นที่ทำงาน"
 
-#: libvnck/vnckprop.c:1910
+#: libvnck/vnckprop.c:1911
 msgid "Options to modify properties of a screen"
 msgstr "ตัวเลือกสำหรับแก้ไขคุณสมบัติของสกรีน"
 
-#: libvnck/vnckprop.c:1911
+#: libvnck/vnckprop.c:1912
 msgid "Show options to modify properties of a screen"
 msgstr "แสดงตัวเลือกสำหรับแก้ไขคุณสมบัติของสกรีน"
 
-#: libvnck/vnckprop.c:1922
+#: libvnck/vnckprop.c:1923
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "เกิดข้อผิดพลาดขณะแจงอาร์กิวเมนต์: %s\n"
 
-#: libvnck/vnckprop.c:1945
+#: libvnck/vnckprop.c:1946
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "ไม่สามารถโต้ตอบกับสกรีน %d: ไม่มีสกรีนดังกล่าวอยู่\n"
 
-#: libvnck/vnckprop.c:2001
+#: libvnck/vnckprop.c:2002
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr "ไม่สามารถโต้ตอบกับพื้นที่ทำงาน %d: ไม่พบพื้นที่ทำงานดังกล่าว\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2025
+#: libvnck/vnckprop.c:2026
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
 msgstr "ไม่สามารถโต้ตอบกับกลุ่มคลาส \"%s\": ไม่พบกลุ่มคลาสดังกล่าว\n"
 
-#: libvnck/vnckprop.c:2048
+#: libvnck/vnckprop.c:2049
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
 "application cannot be found\n"
 msgstr "ไม่สามารถโต้ตอบกับโปรแกรมที่มีหน้าต่างหลักที่มี XID เป็น %lu: ไม่พบโปรแกรมดังกล่าว\n"
 
-#: libvnck/vnckprop.c:2071
+#: libvnck/vnckprop.c:2072
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr "ไม่สามารถโต้ตอบกับหน้าต่างที่มี XID เป็น %lu: ไม่พบหน้าต่างดังกล่าว\n"

@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck 3.41.0\n"
+"Project-Id-Version: libvnck 3.42.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-25 10:55+0100\n"
+"POT-Creation-Date: 2026-07-12 02:58+0200\n"
 "PO-Revision-Date: 2010-01-06 18:22+0100\n"
 "Last-Translator: astur <malditoastur@gmail.com>\n"
 "Language-Team: Asturian <alministradores@softastur.org>\n"
@@ -1147,7 +1147,7 @@ msgstr "nun hai aiciones posibles"
 msgid "Possible Actions: %s\n"
 msgstr "Aiciones posibles: %s\n"
 
-#: libvnck/vnckprop.c:1876
+#: libvnck/vnckprop.c:1877
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1159,49 +1159,49 @@ msgstr ""
 "Pa obtener más información tocante a esta especificación vea:\n"
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: libvnck/vnckprop.c:1886
+#: libvnck/vnckprop.c:1887
 msgid "Options to list windows or workspaces"
 msgstr "Opciones pa llistar les ventanes o les árees de trabayu"
 
-#: libvnck/vnckprop.c:1887
+#: libvnck/vnckprop.c:1888
 msgid "Show options to list windows or workspaces"
 msgstr "Amosar les opciones pa llistar les ventanes o les árees de trabayu"
 
-#: libvnck/vnckprop.c:1894
+#: libvnck/vnckprop.c:1895
 msgid "Options to modify properties of a window"
 msgstr "Opciones pa modificar les propiedaes d'una ventana"
 
-#: libvnck/vnckprop.c:1895
+#: libvnck/vnckprop.c:1896
 msgid "Show options to modify properties of a window"
 msgstr "Amosar les opciones pa modificar les propiedaes d'una ventana"
 
-#: libvnck/vnckprop.c:1902
+#: libvnck/vnckprop.c:1903
 msgid "Options to modify properties of a workspace"
 msgstr "Opciones pa modificar les propiedaes d'un área de trabayu"
 
-#: libvnck/vnckprop.c:1903
+#: libvnck/vnckprop.c:1904
 msgid "Show options to modify properties of a workspace"
 msgstr "Amosar les opciones pa modificar les propiedaes d'un área de trabayu"
 
-#: libvnck/vnckprop.c:1910
+#: libvnck/vnckprop.c:1911
 msgid "Options to modify properties of a screen"
 msgstr "Opciones pa modificar les propiedaes d'una pantalla"
 
-#: libvnck/vnckprop.c:1911
+#: libvnck/vnckprop.c:1912
 msgid "Show options to modify properties of a screen"
 msgstr "Amosar les opciones pa modificar les propiedaes d'una pantalla"
 
-#: libvnck/vnckprop.c:1922
+#: libvnck/vnckprop.c:1923
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "Fallu al analizar los argumentos: %s\n"
 
-#: libvnck/vnckprop.c:1945
+#: libvnck/vnckprop.c:1946
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "Nun pue interautuase cola pantalla %d: la pantalla nun esiste\n"
 
-#: libvnck/vnckprop.c:2001
+#: libvnck/vnckprop.c:2002
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr ""
@@ -1210,7 +1210,7 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2025
+#: libvnck/vnckprop.c:2026
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
@@ -1218,7 +1218,7 @@ msgstr ""
 "Nun pue interautuase col grupu de clas «%s»: nun pue alcontrase'l grupu de "
 "clas\n"
 
-#: libvnck/vnckprop.c:2048
+#: libvnck/vnckprop.c:2049
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
@@ -1227,7 +1227,7 @@ msgstr ""
 "Nun pue interautuase cola aplicación cuyu líder de grupu tien el XID %lu: "
 "nun pue alcontrase l'aplicación\n"
 
-#: libvnck/vnckprop.c:2071
+#: libvnck/vnckprop.c:2072
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr ""

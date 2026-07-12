@@ -5,9 +5,9 @@
 # GunChleoc <fios@foramnagaidhlig.net>, 2018.
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck 3.41.0\n"
+"Project-Id-Version: libvnck 3.42.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-25 10:55+0100\n"
+"POT-Creation-Date: 2026-07-12 02:58+0200\n"
 "PO-Revision-Date: 2018-03-02 11:43+0100\n"
 "Last-Translator: GunChleoc <fios@foramnagaidhlig.net>\n"
 "Language-Team: Fòram na Gàidhlig\n"
@@ -1149,7 +1149,7 @@ msgstr "cha ghabh gnìomh a dhèanamh"
 msgid "Possible Actions: %s\n"
 msgstr "Gnìomhan a ghabhas dèanamh: %s\n"
 
-#: libvnck/vnckprop.c:1876
+#: libvnck/vnckprop.c:1877
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1161,53 +1161,53 @@ msgstr ""
 "Airson fiosrachaidh mun t-sònrachas seo, tadhail air:\n"
 "\t http://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: libvnck/vnckprop.c:1886
+#: libvnck/vnckprop.c:1887
 msgid "Options to list windows or workspaces"
 msgstr ""
 "Roghainnean airson liosta de dh’uinneagan no rummanan-obrach a dhèanamh"
 
-#: libvnck/vnckprop.c:1887
+#: libvnck/vnckprop.c:1888
 msgid "Show options to list windows or workspaces"
 msgstr ""
 "Seall na roghainnean gus liosta de dh’uinneagan no rummanan-obrach a dhèanamh"
 
-#: libvnck/vnckprop.c:1894
+#: libvnck/vnckprop.c:1895
 msgid "Options to modify properties of a window"
 msgstr "Roghainnean airson roghainnean uinneige atharrachadh"
 
-#: libvnck/vnckprop.c:1895
+#: libvnck/vnckprop.c:1896
 msgid "Show options to modify properties of a window"
 msgstr "Seall roghainnean gus na roghainnean aig uinneag atharrachadh"
 
-#: libvnck/vnckprop.c:1902
+#: libvnck/vnckprop.c:1903
 msgid "Options to modify properties of a workspace"
 msgstr "Roghainnean airson roghainnean ruim-obrach atharrachadh"
 
-#: libvnck/vnckprop.c:1903
+#: libvnck/vnckprop.c:1904
 msgid "Show options to modify properties of a workspace"
 msgstr "Seall roghainnean gus na roghainnean aig rum-obrach atharrachadh"
 
-#: libvnck/vnckprop.c:1910
+#: libvnck/vnckprop.c:1911
 msgid "Options to modify properties of a screen"
 msgstr "Roghainnean airson roghainnean sgrìn atharrachadh"
 
-#: libvnck/vnckprop.c:1911
+#: libvnck/vnckprop.c:1912
 msgid "Show options to modify properties of a screen"
 msgstr "Seall roghainnean gus na roghainnean aig sgrìn atharrachadh"
 
-#: libvnck/vnckprop.c:1922
+#: libvnck/vnckprop.c:1923
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "Mearachd le parsadh nan argamaidean: %s\n"
 
-#: libvnck/vnckprop.c:1945
+#: libvnck/vnckprop.c:1946
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr ""
 "Chan urrainn dhuinn eadar-ghnìomh a dhèanamh leis an sgrìn %d: chan eil an "
 "sgrìn ann\n"
 
-#: libvnck/vnckprop.c:2001
+#: libvnck/vnckprop.c:2002
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr ""
@@ -1216,7 +1216,7 @@ msgstr ""
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2025
+#: libvnck/vnckprop.c:2026
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
@@ -1224,7 +1224,7 @@ msgstr ""
 "Chan urrainn dhuinn eadar-ghnìomh a dhèanamh leis a’ bhuidheann clas “%s”: "
 "cha deach am buidheann clas a lorg\n"
 
-#: libvnck/vnckprop.c:2048
+#: libvnck/vnckprop.c:2049
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
@@ -1233,7 +1233,7 @@ msgstr ""
 "Chan urrainn dhuinn eadar-ghnìomh a dhèanamh leis an aplacaid aig a bheil an "
 "ceannard buidhinn le XID %lu: cha deach an aplacaid a lorg\n"
 
-#: libvnck/vnckprop.c:2071
+#: libvnck/vnckprop.c:2072
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr ""

@@ -5,9 +5,9 @@
 # Shankar Prasad <svenkate@redhat.com>, 2008, 2009, 2010, 2012, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck 3.41.0\n"
+"Project-Id-Version: libvnck 3.42.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-25 10:55+0100\n"
+"POT-Creation-Date: 2026-07-12 02:58+0200\n"
 "PO-Revision-Date: 2013-03-25 12:29+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: Kannada <kde-i18n-doc@kde.org>\n"
@@ -1134,7 +1134,7 @@ msgstr "ಯಾವುದೆ ಕಾರ್ಯವು ಸಾಧ್ಯವಿಲ್ಲ"
 msgid "Possible Actions: %s\n"
 msgstr "ಸಾಧ್ಯವಿರುವ ಕಾರ್ಯಗಳು: %s\n"
 
-#: libvnck/vnckprop.c:1876
+#: libvnck/vnckprop.c:1877
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1146,62 +1146,62 @@ msgstr ""
 "ಈ ಸೂಚನೆಯ ಬಗೆಗಿನ ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗಾಗಿ, ಇಲ್ಲಿಗೆ ಭೇಟಿಕೊಡಿ:\n"
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: libvnck/vnckprop.c:1886
+#: libvnck/vnckprop.c:1887
 msgid "Options to list windows or workspaces"
 msgstr "ವಿಂಡೋಗಳನ್ನು ಅಥವ ಕಾರ್ಯಸ್ಥಳಗಳನ್ನು ಪಟ್ಟಿ ಮಾಡಲು ಆಯ್ಕೆಗಳು"
 
-#: libvnck/vnckprop.c:1887
+#: libvnck/vnckprop.c:1888
 msgid "Show options to list windows or workspaces"
 msgstr "ವಿಂಡೋಗಳನ್ನು ಅಥವ ಕಾರ್ಯಸ್ಥಳಗಳನ್ನು ಪಟ್ಟಿ ಮಾಡಲು ಆಯ್ಕೆಗಳನ್ನು ತೋರಿಸು"
 
-#: libvnck/vnckprop.c:1894
+#: libvnck/vnckprop.c:1895
 msgid "Options to modify properties of a window"
 msgstr "ಒಂದು ವಿಂಡೋದ ಗುಣಲಕ್ಷಣಗಳನ್ನು ಮಾರ್ಪಡಿಸಲು ಆಯ್ಕೆಗಳು"
 
-#: libvnck/vnckprop.c:1895
+#: libvnck/vnckprop.c:1896
 msgid "Show options to modify properties of a window"
 msgstr "ಒಂದು ವಿಂಡೋದ ಗುಣಲಕ್ಷಣಗಳನ್ನು ಮಾರ್ಪಡಿಸಲು ಆಯ್ಕೆಗಳನ್ನು ತೋರಿಸು"
 
-#: libvnck/vnckprop.c:1902
+#: libvnck/vnckprop.c:1903
 msgid "Options to modify properties of a workspace"
 msgstr "ಒಂದು ಕಾರ್ಯಸ್ಥಳ ಗುಣಲಕ್ಷಣಗಳನ್ನು ಮಾರ್ಪಡಿಸಲು ಆಯ್ಕೆಗಳು"
 
-#: libvnck/vnckprop.c:1903
+#: libvnck/vnckprop.c:1904
 msgid "Show options to modify properties of a workspace"
 msgstr "ಒಂದು ಕಾರ್ಯಸ್ಥಳ ಗುಣಲಕ್ಷಣಗಳನ್ನು ಮಾರ್ಪಡಿಸಲು ಆಯ್ಕೆಗಳನ್ನು ತೋರಿಸು"
 
-#: libvnck/vnckprop.c:1910
+#: libvnck/vnckprop.c:1911
 msgid "Options to modify properties of a screen"
 msgstr "ಒಂದು ತೆರೆಯನ್ನು ಗುಣಲಕ್ಷಣಗಳನ್ನು ಮಾರ್ಪಡಿಸಲು ಆಯ್ಕೆಗಳು"
 
-#: libvnck/vnckprop.c:1911
+#: libvnck/vnckprop.c:1912
 msgid "Show options to modify properties of a screen"
 msgstr "ಒಂದು ತೆರೆಯನ್ನು ಗುಣಲಕ್ಷಣಗಳನ್ನು ಮಾರ್ಪಡಿಸಲು ಆಯ್ಕೆಗಳನ್ನು ತೋರಿಸು"
 
-#: libvnck/vnckprop.c:1922
+#: libvnck/vnckprop.c:1923
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "ಆರ್ಗ್ಯುಮೆಂಟ್‌ಗಳನ್ನು ಪಾರ್ಸ್ ಮಾಡುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ: %s\n"
 
-#: libvnck/vnckprop.c:1945
+#: libvnck/vnckprop.c:1946
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "%d ತೆರೆಯೊಂದಿಗೆ ವ್ಯವಹರಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: ತೆರೆಯು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ\n"
 
-#: libvnck/vnckprop.c:2001
+#: libvnck/vnckprop.c:2002
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr "%d ಕಾರ್ಯಸ್ಥಳದೊಂದಿಗೆ ವ್ಯವಹರಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: ಕಾರ್ಯಸ್ಥಳವು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2025
+#: libvnck/vnckprop.c:2026
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
 msgstr "\"%s\" ವರ್ಗ ಸಮೂಹದೊಂದಿಗೆ ವ್ಯವಹರಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: ವರ್ಗ ಸಮೂಹವು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ\n"
 
-#: libvnck/vnckprop.c:2048
+#: libvnck/vnckprop.c:2049
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
@@ -1210,7 +1210,7 @@ msgstr ""
 "XID %lu ಯೊಂದಿಗೆ ಸಮೂಹ ಮುಖ್ಯಸ್ಥನನ್ನು ಹೊಂದಿರುವ ಅನ್ವಯದೊಂದಿಗೆ ವ್ಯವಹರಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: "
 "ಅನ್ವಯವು ಕಂಡುಬಂದಿಲ್ಲ\n"
 
-#: libvnck/vnckprop.c:2071
+#: libvnck/vnckprop.c:2072
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr ""

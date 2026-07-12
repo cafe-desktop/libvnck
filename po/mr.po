@@ -7,9 +7,9 @@
 # Sandeep Shedmake <sshedmak@redhat.com>, 2009, 2012, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck 3.41.0\n"
+"Project-Id-Version: libvnck 3.42.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-25 10:55+0100\n"
+"POT-Creation-Date: 2026-07-12 02:58+0200\n"
 "PO-Revision-Date: 2013-03-20 06:48+0530\n"
 "Last-Translator: Sandeep Shedmake <sshedmak@redhat.com>\n"
 "Language-Team: Marathi <maajhe-sanganak@freelists.org>\n"
@@ -1121,7 +1121,7 @@ msgstr "प्रतिसादात्मक कृती शक्य ना
 msgid "Possible Actions: %s\n"
 msgstr "संभाव्य कृती: %s\n"
 
-#: libvnck/vnckprop.c:1876
+#: libvnck/vnckprop.c:1877
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1133,69 +1133,69 @@ msgstr ""
 "EWMH संरचन विषयी अधिक माहितीकरीता, खालील पहा:\n"
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: libvnck/vnckprop.c:1886
+#: libvnck/vnckprop.c:1887
 msgid "Options to list windows or workspaces"
 msgstr "चौकट किंवा कार्यक्षेत्र यादीत दर्शविण्याकरीता पर्याय"
 
-#: libvnck/vnckprop.c:1887
+#: libvnck/vnckprop.c:1888
 msgid "Show options to list windows or workspaces"
 msgstr "चौकट किंवा कार्यक्षेत्र यादीत दर्शविण्याकरीता पर्याय दर्शवा"
 
-#: libvnck/vnckprop.c:1894
+#: libvnck/vnckprop.c:1895
 msgid "Options to modify properties of a window"
 msgstr "चौकटचे गुणधर्म संपादीत करण्याकरीताचे पर्याय"
 
-#: libvnck/vnckprop.c:1895
+#: libvnck/vnckprop.c:1896
 msgid "Show options to modify properties of a window"
 msgstr "चौकटीचे गुणधर्म संपादीत करण्याकरीता पर्याय दर्शवा"
 
-#: libvnck/vnckprop.c:1902
+#: libvnck/vnckprop.c:1903
 msgid "Options to modify properties of a workspace"
 msgstr "कार्यक्षेत्रचे गुणधर्म संपादीत करण्याकरीताचे पर्याय"
 
-#: libvnck/vnckprop.c:1903
+#: libvnck/vnckprop.c:1904
 msgid "Show options to modify properties of a workspace"
 msgstr "कार्यक्षेत्रचे गुणधर्म संपादीत करण्याकरीताचे पर्याय दर्शवा"
 
-#: libvnck/vnckprop.c:1910
+#: libvnck/vnckprop.c:1911
 msgid "Options to modify properties of a screen"
 msgstr "पडद्याचे गुणधर्म संपादीत करण्याकरीताचे पर्याय"
 
-#: libvnck/vnckprop.c:1911
+#: libvnck/vnckprop.c:1912
 msgid "Show options to modify properties of a screen"
 msgstr "पडद्याचे गुणधर्म संपादीत करण्याकरीताचे पर्याय दर्शवा"
 
-#: libvnck/vnckprop.c:1922
+#: libvnck/vnckprop.c:1923
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "बाब वाचतेवेळी त्रुटी आढळली: %s\n"
 
-#: libvnck/vnckprop.c:1945
+#: libvnck/vnckprop.c:1946
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "पडदा %d शी संवाद साधू शकत नाही: पडदा अस्तित्वात नाही\n"
 
-#: libvnck/vnckprop.c:2001
+#: libvnck/vnckprop.c:2002
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr "कार्यक्षेत्र %d शी संवाद साधू शकत नाही: कार्यक्षेत्र आढळले नाही\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2025
+#: libvnck/vnckprop.c:2026
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
 msgstr "वर्ग गट \"%s\" शी संवाद साधू शकत नाही: वर्ग गट आढळले नाही\n"
 
-#: libvnck/vnckprop.c:2048
+#: libvnck/vnckprop.c:2049
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
 "application cannot be found\n"
 msgstr "अनुप्रयोगतील गट प्रमुखचा XID %lu शी संवाद साधू शकत नाही: अनुप्रयोग आढळले नाही\n"
 
-#: libvnck/vnckprop.c:2071
+#: libvnck/vnckprop.c:2072
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr "XID %lu असलेल्या चौकटशी संवाद साधू शकत नाही: चौकट आढळले नाही\n"

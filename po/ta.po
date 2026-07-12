@@ -12,9 +12,9 @@
 # Shantha kumar <shkumar@redhat.com>, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck 3.41.0\n"
+"Project-Id-Version: libvnck 3.42.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-25 10:55+0100\n"
+"POT-Creation-Date: 2026-07-12 02:58+0200\n"
 "PO-Revision-Date: 2013-03-25 10:47+0530\n"
 "Last-Translator: Shantha kumar <shkumar@redhat.com>\n"
 "Language-Team: Tamil <>\n"
@@ -1136,7 +1136,7 @@ msgstr "செயல் ஏதும் இயலாது"
 msgid "Possible Actions: %s\n"
 msgstr "இயலும் செயல்கள்: %s\n"
 
-#: libvnck/vnckprop.c:1876
+#: libvnck/vnckprop.c:1877
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1148,62 +1148,62 @@ msgstr ""
 "இந்த வரன்முறைகளை பற்றி மேல் தகவல்களுக்கு பார்க்க:\n"
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: libvnck/vnckprop.c:1886
+#: libvnck/vnckprop.c:1887
 msgid "Options to list windows or workspaces"
 msgstr "சாளரம் அல்லது வேலையிடங்கள் ஐ பட்டியல் இட தேர்வுகள்"
 
-#: libvnck/vnckprop.c:1887
+#: libvnck/vnckprop.c:1888
 msgid "Show options to list windows or workspaces"
 msgstr "சாளரம் அல்லது வேலையிடங்கள் ஐ பட்டியல் இட தேர்வுகளை காட்டு"
 
-#: libvnck/vnckprop.c:1894
+#: libvnck/vnckprop.c:1895
 msgid "Options to modify properties of a window"
 msgstr "சாளர பண்புகள் ஐ மாற்ற தேர்வுகள்"
 
-#: libvnck/vnckprop.c:1895
+#: libvnck/vnckprop.c:1896
 msgid "Show options to modify properties of a window"
 msgstr "சாளர பண்புகள் ஐ மாற்ற தேர்வுகளை காட்டு"
 
-#: libvnck/vnckprop.c:1902
+#: libvnck/vnckprop.c:1903
 msgid "Options to modify properties of a workspace"
 msgstr "வேலையிட பண்புகள் ஐ மாற்ற தேர்வுகள்"
 
-#: libvnck/vnckprop.c:1903
+#: libvnck/vnckprop.c:1904
 msgid "Show options to modify properties of a workspace"
 msgstr "வேலையிட பண்புகள் ஐ மாற்ற தேர்வுகளை காட்டு"
 
-#: libvnck/vnckprop.c:1910
+#: libvnck/vnckprop.c:1911
 msgid "Options to modify properties of a screen"
 msgstr "திரை பண்புகள் ஐ மாற்ற தேர்வுகளை காட்டு"
 
-#: libvnck/vnckprop.c:1911
+#: libvnck/vnckprop.c:1912
 msgid "Show options to modify properties of a screen"
 msgstr "திரை பண்புகள் ஐ மாற்ற தேர்வுகளை காட்டு"
 
-#: libvnck/vnckprop.c:1922
+#: libvnck/vnckprop.c:1923
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "தருமதிப்புகளை பகுக்கையில் பிழை: %s\n"
 
-#: libvnck/vnckprop.c:1945
+#: libvnck/vnckprop.c:1946
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "%d திரையுடன் ஊடாட இயலவில்லை: அந்த திரை இருப்பில் இல்லை\n"
 
-#: libvnck/vnckprop.c:2001
+#: libvnck/vnckprop.c:2002
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr "%d பணிவௌததுடன் ஊடாட இயலவில்லை: அது காணப்படவில்லை\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2025
+#: libvnck/vnckprop.c:2026
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
 msgstr "வர்க்க குழு \"%s\": உடன் ஊடாட இயலவில்லை: அது காணப்படவில்லை\n"
 
-#: libvnck/vnckprop.c:2048
+#: libvnck/vnckprop.c:2049
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
@@ -1212,7 +1212,7 @@ msgstr ""
 "எக்ஸ்ஐடி %lu என்ற குழு தலவன்  உள்ள செயல்பாடு உடன் ஊடாட இயலவில்லை: அந்த செயல்பாடு "
 "காணப்படவில்லை\n"
 
-#: libvnck/vnckprop.c:2071
+#: libvnck/vnckprop.c:2072
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr "எக்ஸ்ஐடி %lu உள்ள சாளரம் உடன் ஊடாட இயலவில்லை: அந்த சாளரம் காணப்படவில்லை\n"

@@ -4,12 +4,12 @@
 # Gheyret Kenji<gheyret@yahoo.com>,2010.
 # Sahran <sahran.ug@gmail.com>, 2010.
 # Zeper <zeper@msn.com>, 2010.
-# 
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck 3.41.0\n"
+"Project-Id-Version: libvnck 3.42.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-25 10:55+0100\n"
+"POT-Creation-Date: 2026-07-12 02:58+0200\n"
 "PO-Revision-Date: 2011-04-25 16:42+0600\n"
 "Last-Translator: Sahran <sahran.ug@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -1142,7 +1142,7 @@ msgstr "مەشغۇلات مۇمكىنچىلىكى يوق"
 msgid "Possible Actions: %s\n"
 msgstr "مۇمكىنچىلىكى بار مەشغۇلاتلار:  %s\n"
 
-#: libvnck/vnckprop.c:1876
+#: libvnck/vnckprop.c:1877
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1154,63 +1154,63 @@ msgstr ""
 "EWMH بەلگىلىمىسىگە ئائىت مەزمۇنلارنى تۆۋەندىكى يەردىن كۆرۈڭ:\n"
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: libvnck/vnckprop.c:1886
+#: libvnck/vnckprop.c:1887
 msgid "Options to list windows or workspaces"
 msgstr "كۆزنەك ياكى خىزمەت بوشلۇقىنى تىزىپ كۆرسىتىش تاللانمىلىرى"
 
-#: libvnck/vnckprop.c:1887
+#: libvnck/vnckprop.c:1888
 msgid "Show options to list windows or workspaces"
 msgstr ""
 "كۆزنەك ياكى خىزمەت بوشلۇقىنى تىزىپ كۆرسىتىدىغان تاللانمىلارنى كۆرسىتىدۇ"
 
-#: libvnck/vnckprop.c:1894
+#: libvnck/vnckprop.c:1895
 msgid "Options to modify properties of a window"
 msgstr "كۆزنەكنىڭ خاسلىقىنى ئۆزگەرتىدىغان تاللانمىلار"
 
-#: libvnck/vnckprop.c:1895
+#: libvnck/vnckprop.c:1896
 msgid "Show options to modify properties of a window"
 msgstr "كۆزنەكنىڭ خاسلىقىنى ئۆزگەرتىدىغان تاللانمىلارنى كۆرسىتىدۇ"
 
-#: libvnck/vnckprop.c:1902
+#: libvnck/vnckprop.c:1903
 msgid "Options to modify properties of a workspace"
 msgstr "خىزمەت بوشلۇقىنىڭ خاسلىقىنى ئۆزگەرتىدىغان تاللانمىلار"
 
-#: libvnck/vnckprop.c:1903
+#: libvnck/vnckprop.c:1904
 msgid "Show options to modify properties of a workspace"
 msgstr "خىزمەت بوشلۇقىنىڭ خاسلىقىنى ئۆزگەرتىدىغان تاللانمىلارنى كۆرسىتىدۇ"
 
-#: libvnck/vnckprop.c:1910
+#: libvnck/vnckprop.c:1911
 msgid "Options to modify properties of a screen"
 msgstr "ئېكراننىڭ خاسلىقىنى ئۆزگەرتىدىغان تاللانمىلار"
 
-#: libvnck/vnckprop.c:1911
+#: libvnck/vnckprop.c:1912
 msgid "Show options to modify properties of a screen"
 msgstr "ئېكراننىڭ خاسلىقىنى ئۆزگەرتىدىغان تاللانمىلارنى كۆرسىتىدۇ"
 
-#: libvnck/vnckprop.c:1922
+#: libvnck/vnckprop.c:1923
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "پارامېتىرلارنى تەھلىل قىلىشتا خاتالىق كۆرۈلدى: %s\n"
 
-#: libvnck/vnckprop.c:1945
+#: libvnck/vnckprop.c:1946
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "ئېكران %d بىلەن ئالاقە قىلالمىدى: ئېكران مەۋجۇت ئەمەس\n"
 
-#: libvnck/vnckprop.c:2001
+#: libvnck/vnckprop.c:2002
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr "خىزمەت بوشلۇقى %d بىلەن ئالاقە قىلالمىدى: خىزمەت بوشلۇقى تېپىلمىدى\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2025
+#: libvnck/vnckprop.c:2026
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
 msgstr "تىپ گۇرۇپپىسى \"%s\" بىلەن ئالاقە قىلالمىدى: تىپ گۇرۇپپىسى تېپىلمىدى\n"
 
-#: libvnck/vnckprop.c:2048
+#: libvnck/vnckprop.c:2049
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
@@ -1219,7 +1219,7 @@ msgstr ""
 "گۇرۇپپا باشلىقىنىڭ XID سى %lu بولغان پروگرامما بىلەن ئالاقە قىلالمىدى: "
 "پروگرامما تېپىلمىدى\n"
 
-#: libvnck/vnckprop.c:2071
+#: libvnck/vnckprop.c:2072
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr ""

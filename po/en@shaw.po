@@ -3,9 +3,9 @@
 # Thomas Thurman <tthurman@gnome.org>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck 3.41.0\n"
+"Project-Id-Version: libvnck 3.42.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-25 10:55+0100\n"
+"POT-Creation-Date: 2026-07-12 02:58+0200\n"
 "PO-Revision-Date: 2010-05-12 18:37 -0400\n"
 "Last-Translator: Thomas Thurman <tthurman@gnome.org>\n"
 "Language-Team: Shavian <ubuntu-l10n-en-shaw@launchpad.net>\n"
@@ -1160,7 +1160,7 @@ msgstr "𐑯𐑴 𐑨𐑒𐑖𐑩𐑯 𐑐𐑪𐑕𐑩𐑚𐑩𐑤"
 msgid "Possible Actions: %s\n"
 msgstr "𐑐𐑪𐑕𐑩𐑚𐑩𐑤 𐑨𐑒𐑖𐑩𐑯𐑟: %s\n"
 
-#: libvnck/vnckprop.c:1876
+#: libvnck/vnckprop.c:1877
 #, fuzzy
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
@@ -1173,69 +1173,69 @@ msgstr ""
 "𐑓𐑹 𐑦𐑯𐑓𐑼𐑥𐑱𐑖𐑩𐑯 𐑩𐑚𐑬𐑑 𐑞𐑦𐑕 𐑕𐑐𐑧𐑕𐑦𐑓𐑦𐑒𐑱𐑖𐑩𐑯, 𐑕𐑰:\n"
 "\t·𐑣·𐑑·𐑑·𐑐://freedesktop.𐑹𐑜/𐑢𐑦𐑒𐑦/𐑕𐑐𐑧𐑕𐑩𐑓𐑩𐑒𐑱𐑖𐑩𐑯𐑟/𐑢𐑦𐑤𐑘𐑩𐑥-𐑕𐑐𐑧𐑒"
 
-#: libvnck/vnckprop.c:1886
+#: libvnck/vnckprop.c:1887
 msgid "Options to list windows or workspaces"
 msgstr "𐑪𐑐𐑖𐑩𐑯𐑟 𐑑 𐑤𐑦𐑕𐑑 𐑢𐑦𐑯𐑛𐑴𐑟 𐑹 𐑢𐑻𐑒𐑕𐑐𐑱𐑕𐑩𐑟"
 
-#: libvnck/vnckprop.c:1887
+#: libvnck/vnckprop.c:1888
 msgid "Show options to list windows or workspaces"
 msgstr "𐑖𐑴 𐑪𐑐𐑖𐑩𐑯𐑟 𐑑 𐑤𐑦𐑕𐑑 𐑢𐑦𐑯𐑛𐑴𐑟 𐑹 𐑢𐑻𐑒𐑕𐑐𐑱𐑕𐑩𐑟"
 
-#: libvnck/vnckprop.c:1894
+#: libvnck/vnckprop.c:1895
 msgid "Options to modify properties of a window"
 msgstr "𐑪𐑐𐑖𐑩𐑯𐑟 𐑑 𐑥𐑪𐑛𐑦𐑓𐑲 𐑐𐑮𐑪𐑐𐑼𐑑𐑦𐑟 𐑝 𐑩 𐑢𐑦𐑯𐑛𐑴"
 
-#: libvnck/vnckprop.c:1895
+#: libvnck/vnckprop.c:1896
 msgid "Show options to modify properties of a window"
 msgstr "𐑖𐑴 𐑪𐑐𐑖𐑩𐑯𐑟 𐑑 𐑥𐑪𐑛𐑦𐑓𐑲 𐑐𐑮𐑪𐑐𐑼𐑑𐑦𐑟 𐑝 𐑩 𐑢𐑦𐑯𐑛𐑴"
 
-#: libvnck/vnckprop.c:1902
+#: libvnck/vnckprop.c:1903
 msgid "Options to modify properties of a workspace"
 msgstr "𐑪𐑐𐑖𐑩𐑯𐑟 𐑑 𐑥𐑪𐑛𐑦𐑓𐑲 𐑐𐑮𐑪𐑐𐑼𐑑𐑦𐑟 𐑝 𐑩 𐑢𐑻𐑒𐑕𐑐𐑱𐑕"
 
-#: libvnck/vnckprop.c:1903
+#: libvnck/vnckprop.c:1904
 msgid "Show options to modify properties of a workspace"
 msgstr "𐑖𐑴 𐑪𐑐𐑖𐑩𐑯𐑟 𐑑 𐑥𐑪𐑛𐑦𐑓𐑲 𐑐𐑮𐑪𐑐𐑼𐑑𐑦𐑟 𐑝 𐑩 𐑢𐑻𐑒𐑕𐑐𐑱𐑕"
 
-#: libvnck/vnckprop.c:1910
+#: libvnck/vnckprop.c:1911
 msgid "Options to modify properties of a screen"
 msgstr "𐑪𐑐𐑖𐑩𐑯𐑟 𐑑 𐑥𐑪𐑛𐑦𐑓𐑲 𐑐𐑮𐑪𐑐𐑼𐑑𐑦𐑟 𐑝 𐑩 𐑕𐑒𐑮𐑰𐑯"
 
-#: libvnck/vnckprop.c:1911
+#: libvnck/vnckprop.c:1912
 msgid "Show options to modify properties of a screen"
 msgstr "𐑖𐑴 𐑪𐑐𐑖𐑩𐑯𐑟 𐑑 𐑥𐑪𐑛𐑦𐑓𐑲 𐑐𐑮𐑪𐑐𐑼𐑑𐑦𐑟 𐑝 𐑩 𐑕𐑒𐑮𐑰𐑯"
 
-#: libvnck/vnckprop.c:1922
+#: libvnck/vnckprop.c:1923
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "𐑻𐑼 𐑢𐑲𐑤 𐑐𐑸𐑕𐑦𐑙 𐑸𐑜𐑿𐑥𐑩𐑯𐑑𐑕: %s\n"
 
-#: libvnck/vnckprop.c:1945
+#: libvnck/vnckprop.c:1946
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "𐑒𐑨𐑯𐑪𐑑 𐑦𐑯𐑑𐑻𐑨𐑒𐑑 𐑢𐑦𐑞 𐑕𐑒𐑮𐑰𐑯 %d: 𐑞 𐑕𐑒𐑮𐑰𐑯 𐑛𐑳𐑟 𐑯𐑪𐑑 𐑧𐑒𐑟𐑦𐑕𐑑\n"
 
-#: libvnck/vnckprop.c:2001
+#: libvnck/vnckprop.c:2002
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr "𐑒𐑨𐑯𐑪𐑑 𐑦𐑯𐑑𐑻𐑨𐑒𐑑 𐑢𐑦𐑞 𐑢𐑻𐑒𐑕𐑐𐑱𐑕 %d: 𐑞 𐑢𐑻𐑒𐑕𐑐𐑱𐑕 𐑒𐑨𐑯𐑪𐑑 𐑚𐑰 𐑓𐑬𐑯𐑛\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2025
+#: libvnck/vnckprop.c:2026
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
 msgstr "𐑒𐑨𐑯𐑪𐑑 𐑦𐑯𐑑𐑻𐑨𐑒𐑑 𐑢𐑦𐑞 𐑒𐑤𐑭𐑕 𐑜𐑮𐑵𐑐 \"%s\": 𐑞 𐑒𐑤𐑭𐑕 𐑜𐑮𐑵𐑐 𐑒𐑨𐑯𐑪𐑑 𐑚𐑰 𐑓𐑬𐑯𐑛\n"
 
-#: libvnck/vnckprop.c:2048
+#: libvnck/vnckprop.c:2049
 #, fuzzy, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
 "application cannot be found\n"
 msgstr "𐑒𐑨𐑯𐑪𐑑 𐑦𐑯𐑑𐑻𐑨𐑒𐑑 𐑢𐑦𐑞 𐑒𐑤𐑭𐑕 𐑜𐑮𐑵𐑐 \"%s\": 𐑞 𐑒𐑤𐑭𐑕 𐑜𐑮𐑵𐑐 𐑒𐑨𐑯𐑪𐑑 𐑚𐑰 𐑓𐑬𐑯𐑛\n"
 
-#: libvnck/vnckprop.c:2071
+#: libvnck/vnckprop.c:2072
 #, fuzzy, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr "𐑒𐑨𐑯𐑪𐑑 𐑦𐑯𐑑𐑻𐑨𐑒𐑑 𐑢𐑦𐑞 𐑢𐑻𐑒𐑕𐑐𐑱𐑕 %d: 𐑞 𐑢𐑻𐑒𐑕𐑐𐑱𐑕 𐑒𐑨𐑯𐑪𐑑 𐑚𐑰 𐑓𐑬𐑯𐑛\n"

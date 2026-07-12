@@ -7,9 +7,9 @@
 # Khoem Sokhem <khoemsokhem@khmeros.info>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck 3.41.0\n"
+"Project-Id-Version: libvnck 3.42.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-25 10:55+0100\n"
+"POT-Creation-Date: 2026-07-12 02:58+0200\n"
 "PO-Revision-Date: 2012-04-10 08:06+0000\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -1118,7 +1118,7 @@ msgstr "មិន​អាច​មាន​សកម្មភាព"
 msgid "Possible Actions: %s\n"
 msgstr "អាច​មានសកម្មភាព ៖ %s\n"
 
-#: libvnck/vnckprop.c:1876
+#: libvnck/vnckprop.c:1877
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1130,62 +1130,62 @@ msgstr ""
 "សម្រាប់​ព័ត៌មាន​អំពី​ការ​បញ្ជាក់​នេះ សូមមើល  ៖\n"
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec"
 
-#: libvnck/vnckprop.c:1886
+#: libvnck/vnckprop.c:1887
 msgid "Options to list windows or workspaces"
 msgstr "ជម្រើស​ត្រូវ​រាយ​បង្អួច ឬ​តំបន់​ធ្វើការ"
 
-#: libvnck/vnckprop.c:1887
+#: libvnck/vnckprop.c:1888
 msgid "Show options to list windows or workspaces"
 msgstr "បង្ហាញ​ជម្រើស​ត្រូវ​រាយ​បង្អួច ឬ​តំបន់​ធ្វើការ"
 
-#: libvnck/vnckprop.c:1894
+#: libvnck/vnckprop.c:1895
 msgid "Options to modify properties of a window"
 msgstr "ជម្រើស​ត្រូវ​កែប្រែ​លក្ខណសម្បត្តិ​របស់​បង្អួច"
 
-#: libvnck/vnckprop.c:1895
+#: libvnck/vnckprop.c:1896
 msgid "Show options to modify properties of a window"
 msgstr "បង្ហាញ​ជម្រើស​ត្រូវ​កែប្រែ​លក្ខណសម្បត្តិ​របស់​បង្អួច"
 
-#: libvnck/vnckprop.c:1902
+#: libvnck/vnckprop.c:1903
 msgid "Options to modify properties of a workspace"
 msgstr "ជម្រើស​​ត្រូវ​កែប្រែ​លក្ខណសម្បត្តិ​របស់​តំបន់​ធ្វើការ"
 
-#: libvnck/vnckprop.c:1903
+#: libvnck/vnckprop.c:1904
 msgid "Show options to modify properties of a workspace"
 msgstr "បង្ហាញ​ជម្រើស​ត្រូវ​កែប្រែ​លក្ខណសម្បត្តិ​របស់​តំបន់​ធ្វើការ"
 
-#: libvnck/vnckprop.c:1910
+#: libvnck/vnckprop.c:1911
 msgid "Options to modify properties of a screen"
 msgstr "ជម្រើស​ត្រូវ​កែប្រែ​លក្ខណសម្បត្តិ​របស់​អេក្រង់"
 
-#: libvnck/vnckprop.c:1911
+#: libvnck/vnckprop.c:1912
 msgid "Show options to modify properties of a screen"
 msgstr "បង្ហាញ​ជម្រើស​ត្រូវ​កែប្រែ​លក្ខណសម្បត្តិ​របស់​អេក្រង់"
 
-#: libvnck/vnckprop.c:1922
+#: libvnck/vnckprop.c:1923
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "កំហុស ខណៈ​ពេល​ញែក​អាគុយម៉ង់ ៖ %s\n"
 
-#: libvnck/vnckprop.c:1945
+#: libvnck/vnckprop.c:1946
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "មិន​អាច​ធ្វើ​អន្តរកម្ម​ជាមួយ​អេក្រង់​បាន​ឡើយ %d ៖ មិន​មាន​អេក្រង់\n"
 
-#: libvnck/vnckprop.c:2001
+#: libvnck/vnckprop.c:2002
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr "មិន​អាច​ធ្វើ​អន្តរកម្ម​ជាមួយ​​តំបន់​ធ្វើការ​បាន​ឡើយ %d ៖ រក​មិន​ឃើញ​តំបន់​ធ្វើការ\n"
 
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2025
+#: libvnck/vnckprop.c:2026
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
 msgstr "មិន​អាច​ធ្វើ​អន្តរកម្ម​ជាមួយ​ក្រុម​ថ្នាក់​បាន​ឡើយ \"%s\" ៖ រក​មិន​ឃើញ​ក្រុម​ថ្នាក់\n"
 
-#: libvnck/vnckprop.c:2048
+#: libvnck/vnckprop.c:2049
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
@@ -1194,7 +1194,7 @@ msgstr ""
 "មិន​អាច​ធ្វើ​អន្តរកម្ម​ជាមួយ​កម្មវិធី​ដែល​មាន​បង្អួច​គ្រប់គ្រង​ក្រុម​ដែល​​ប្រើ XID បាន​ឡើយ %lu ៖ រក​មិន​ឃើញ​"
 "កម្មវិធី\n"
 
-#: libvnck/vnckprop.c:2071
+#: libvnck/vnckprop.c:2072
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr "មិន​អាច​ធ្វើ​អន្តរកម្ម​ជាមួយ​បង្អួច​ដែល​មាន XID បាន​ឡើយ %lu ៖ រក​មិន​ឃើញ​បង្អួច\n"

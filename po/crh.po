@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: libvnck 3.41.0\n"
+"Project-Id-Version: libvnck 3.42.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-25 10:55+0100\n"
+"POT-Creation-Date: 2026-07-12 02:58+0200\n"
 "PO-Revision-Date: 2012-03-17 17:31-0500\n"
 "Last-Translator: Reşat SABIQ <tilde.birlik@gmail.com>\n"
 "Language-Team: QIRIMTATARCA <tilde-birlik-meydan@lists.sourceforge.net>\n"
@@ -1179,7 +1179,7 @@ msgid "Possible Actions: %s\n"
 msgstr "Caiz Ameller: %s\n"
 
 # tr
-#: libvnck/vnckprop.c:1876
+#: libvnck/vnckprop.c:1877
 msgid ""
 "Print or modify the properties of a screen/workspace/window, or interact "
 "with it, following the EWMH specification.\n"
@@ -1191,58 +1191,58 @@ msgstr ""
 "Bu belirtim hakkında bilgi almak için, \n"
 "\thttp://freedesktop.org/wiki/Specifications/wm-spec adresine bakın"
 
-#: libvnck/vnckprop.c:1886
+#: libvnck/vnckprop.c:1887
 msgid "Options to list windows or workspaces"
 msgstr "Pencerelerni ya da çalışma fezalarını listeleme ihtiyariyatı"
 
 # tr
-#: libvnck/vnckprop.c:1887
+#: libvnck/vnckprop.c:1888
 msgid "Show options to list windows or workspaces"
 msgstr "Pencereleri ve çalışma fezalarını listelemek için seçenekleri göster"
 
-#: libvnck/vnckprop.c:1894
+#: libvnck/vnckprop.c:1895
 msgid "Options to modify properties of a window"
 msgstr "Bir pencereniñ hasiyetlerini deñiştirmek içün ihtiyariyat"
 
 # tr
-#: libvnck/vnckprop.c:1895
+#: libvnck/vnckprop.c:1896
 msgid "Show options to modify properties of a window"
 msgstr "Bir pencerenin özelliklerini değiştirmek için seçenekleri göster"
 
 # tr
-#: libvnck/vnckprop.c:1902
+#: libvnck/vnckprop.c:1903
 msgid "Options to modify properties of a workspace"
 msgstr "Bir çalışma fezasının özelliklerini değiştirmek için seçenekler"
 
 # tr
-#: libvnck/vnckprop.c:1903
+#: libvnck/vnckprop.c:1904
 msgid "Show options to modify properties of a workspace"
 msgstr ""
 "Bir çalışma fezasının özelliklerini değiştirmek için seçenekleri göster"
 
-#: libvnck/vnckprop.c:1910
+#: libvnck/vnckprop.c:1911
 msgid "Options to modify properties of a screen"
 msgstr "Bir ekrannıñ hasiyetlerini deñiştirmek içün ihtiyariyat"
 
 # tr
-#: libvnck/vnckprop.c:1911
+#: libvnck/vnckprop.c:1912
 msgid "Show options to modify properties of a screen"
 msgstr "Bir ekranın özelliklerini değiştirmek için seçenekleri göster"
 
 # tüklü
-#: libvnck/vnckprop.c:1922
+#: libvnck/vnckprop.c:1923
 #, c-format
 msgid "Error while parsing arguments: %s\n"
 msgstr "Delillerni ayırıştırğanda hata: %s\n"
 
 # tr
-#: libvnck/vnckprop.c:1945
+#: libvnck/vnckprop.c:1946
 #, c-format
 msgid "Cannot interact with screen %d: the screen does not exist\n"
 msgstr "Ekran %d ile etkileşim kulurulamıyor: ekran mevcut değil\n"
 
 # tr
-#: libvnck/vnckprop.c:2001
+#: libvnck/vnckprop.c:2002
 #, c-format
 msgid "Cannot interact with workspace %d: the workspace cannot be found\n"
 msgstr "Çalışma fezası %d etkileşim kurulamadı: çalışma fezası bulunamadı\n"
@@ -1250,14 +1250,14 @@ msgstr "Çalışma fezası %d etkileşim kurulamadı: çalışma fezası bulunam
 # tr
 #. Translators: A class is like a "family". E.g., all gvim windows are
 #. * of the same class.
-#: libvnck/vnckprop.c:2025
+#: libvnck/vnckprop.c:2026
 #, c-format
 msgid ""
 "Cannot interact with class group \"%s\": the class group cannot be found\n"
 msgstr "Sınıf grubu \"%s\" ile etkileşim kurulamadı: sınıf grubu bulunamadı\n"
 
 # tr
-#: libvnck/vnckprop.c:2048
+#: libvnck/vnckprop.c:2049
 #, c-format
 msgid ""
 "Cannot interact with application having its group leader with XID %lu: the "
@@ -1267,7 +1267,7 @@ msgstr ""
 "bulunamadı\n"
 
 # tr
-#: libvnck/vnckprop.c:2071
+#: libvnck/vnckprop.c:2072
 #, c-format
 msgid "Cannot interact with window with XID %lu: the window cannot be found\n"
 msgstr "XID %lu olan pencere ile etkileşim kurulamadı: pencere bulunamadı\n"
