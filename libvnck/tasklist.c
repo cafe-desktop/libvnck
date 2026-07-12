@@ -3162,15 +3162,15 @@ vnck_dimm_icon (GdkPixbuf *pixbuf)
 
   g_assert (pixbuf != NULL);
 
-  w = gdk_pixbuf_get_width (pixbuf);
-  h = gdk_pixbuf_get_height (pixbuf);
+  w = cdk_pixbuf_get_width (pixbuf);
+  h = cdk_pixbuf_get_height (pixbuf);
 
-  g_assert (gdk_pixbuf_get_has_alpha (pixbuf));
+  g_assert (cdk_pixbuf_get_has_alpha (pixbuf));
 
   pixel_stride = 4;
 
-  row = gdk_pixbuf_get_pixels (pixbuf);
-  row_stride = gdk_pixbuf_get_rowstride (pixbuf);
+  row = cdk_pixbuf_get_pixels (pixbuf);
+  row_stride = cdk_pixbuf_get_rowstride (pixbuf);
 
   for (y = 0; y < h; y++)
     {
@@ -3196,27 +3196,27 @@ vnck_task_scale_icon (GdkPixbuf *orig, gboolean minimized)
   if (!orig)
     return NULL;
 
-  w = gdk_pixbuf_get_width (orig);
-  h = gdk_pixbuf_get_height (orig);
+  w = cdk_pixbuf_get_width (orig);
+  h = cdk_pixbuf_get_height (orig);
 
   if (h != (int) MINI_ICON_SIZE ||
-      !gdk_pixbuf_get_has_alpha (orig))
+      !cdk_pixbuf_get_has_alpha (orig))
     {
       double scale;
 
-      pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
+      pixbuf = cdk_pixbuf_new (GDK_COLORSPACE_RGB,
 			       TRUE,
 			       8,
 			       MINI_ICON_SIZE * w / (double) h,
 			       MINI_ICON_SIZE);
 
-      scale = MINI_ICON_SIZE / (double) gdk_pixbuf_get_height (orig);
+      scale = MINI_ICON_SIZE / (double) cdk_pixbuf_get_height (orig);
 
-      gdk_pixbuf_scale (orig,
+      cdk_pixbuf_scale (orig,
 			pixbuf,
 			0, 0,
-			gdk_pixbuf_get_width (pixbuf),
-			gdk_pixbuf_get_height (pixbuf),
+			cdk_pixbuf_get_width (pixbuf),
+			cdk_pixbuf_get_height (pixbuf),
 			0, 0,
 			scale, scale,
 			GDK_INTERP_HYPER);
@@ -3227,7 +3227,7 @@ vnck_task_scale_icon (GdkPixbuf *orig, gboolean minimized)
   if (minimized)
     {
       if (orig == pixbuf)
-	pixbuf = gdk_pixbuf_copy (orig);
+	pixbuf = cdk_pixbuf_copy (orig);
 
       vnck_dimm_icon (pixbuf);
     }
