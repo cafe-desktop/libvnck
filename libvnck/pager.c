@@ -2926,7 +2926,7 @@ vnck_pager_get_background (VnckPager *pager,
       pager->priv->bg_cache = cdk_pixbuf_scale_simple (pix,
                                                        width,
                                                        height,
-                                                       GDK_INTERP_BILINEAR);
+                                                       CDK_INTERP_BILINEAR);
 
       g_object_unref (G_OBJECT (pix));
     }

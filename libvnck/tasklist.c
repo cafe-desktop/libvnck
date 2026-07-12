@@ -3204,7 +3204,7 @@ vnck_task_scale_icon (GdkPixbuf *orig, gboolean minimized)
     {
       double scale;
 
-      pixbuf = cdk_pixbuf_new (GDK_COLORSPACE_RGB,
+      pixbuf = cdk_pixbuf_new (CDK_COLORSPACE_RGB,
 			       TRUE,
 			       8,
 			       MINI_ICON_SIZE * w / (double) h,
@@ -3219,7 +3219,7 @@ vnck_task_scale_icon (GdkPixbuf *orig, gboolean minimized)
 			cdk_pixbuf_get_height (pixbuf),
 			0, 0,
 			scale, scale,
-			GDK_INTERP_HYPER);
+			CDK_INTERP_HYPER);
     }
   else
     pixbuf = orig;
