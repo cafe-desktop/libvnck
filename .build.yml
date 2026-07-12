@@ -8,7 +8,7 @@ before_scripts:
   - ./debrepo-install
 
 build_scripts:
-  - ./build-debs https://github.com/cafe-desktop/debian-packages devel libvnck3
+  - ./testrepo
 
 after_scripts:
   - ./gen-index -l 20 -i https://github.com/cafe-desktop/libvnck/raw/master/libvnck/default_icon.png
