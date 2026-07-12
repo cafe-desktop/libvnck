@@ -3,35 +3,12 @@
 ##########################################################
 requires:
   debian:
-    # cafe B-D: libctk-3-dev
-    - aptitude
-    - build-essential
-    - clang-tools
-    - cppcheck
-    - expect #required for unbuffer
-    - git
-    - docbook-xml
-    - gettext
-    - gobject-introspection
-    - gtk-doc-tools
-    - libgirepository1.0-dev
-    - libglib2.0-dev
-    - libglib2.0-doc
-    - libstartup-notification0-dev
-    - libx11-dev
-    - libxext-dev
-    - libxres-dev
-    - meson
-    - ninja-build
 
 before_scripts:
-  - ./html-cppcheck
-  - ./debrepo-install 'libctk-3-dev gir1.2-ctk-3.0 libctk-3-common libctk-3-0 libctk-3-doc'
+  - ./debrepo-install
 
 build_scripts:
-  - ./before-build
-  - ./make-scanbuild meson 'setup -Dgtk_doc=true'
-  - ./after-build
+  - ./build-debs https://github.com/cafe-desktop/debian-packages devel libvnck
 
 after_scripts:
   - ./gen-index -l 20 -i https://github.com/cafe-desktop/libvnck/raw/master/libvnck/default_icon.png
