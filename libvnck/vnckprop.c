@@ -1677,7 +1677,7 @@ wm_state_set (Display *display,
   Atom    wm_state;
   gulong  nitems;
   gulong  bytes_after;
-  gulong *prop;
+  gulong *prop = NULL;
   Atom    ret_type = None;
   int     ret_format;
   int     err, result;
