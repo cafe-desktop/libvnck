@@ -1,0 +1,1 @@
+vnckprop: Fix cppcheck [uninitvar] warning

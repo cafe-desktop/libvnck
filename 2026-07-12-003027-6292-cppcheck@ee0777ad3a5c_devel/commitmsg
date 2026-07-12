@@ -1,0 +1,3 @@
+Fix [-Wheader-guard] warnings
+
+rename WBCK -> VNCK

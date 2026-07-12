@@ -1,0 +1,1 @@
+vnckprop: make sure 'prop' variable is freed in 'wm_state_set' function
